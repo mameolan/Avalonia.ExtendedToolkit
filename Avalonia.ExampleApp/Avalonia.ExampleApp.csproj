@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.8.999-cibuild0003699-beta" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.8.999-cibuild0003699-beta" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.8.999-cibuild0003699-beta" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.8.999-cibuild0003699-beta" />
+    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.9.0-build20190819-01" />
+    <PackageReference Include="Avalonia.Xaml.Interactions" Version="0.9.0-build20190819-01" />
+    <PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.9.0-build20190819-01" />
+    <PackageReference Include="GridExtra.Avalonia" Version="0.6.1" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Compile Update="**\*.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <AvaloniaResource Include="**\*.xaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+    <AvaloniaResource Include="Assets\*" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Avalonia.ExtendedToolkit\Avalonia.ExtendedToolkit.csproj" />
+  </ItemGroup>
+  
+  
+  
+  <ItemGroup>
+    <Reference Include="FontAwesome.Avalonia">
+      <HintPath>..\ExternalDependencies\FontAwesome.Avalonia.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="FontAwesome.Generate">
+      <HintPath>..\ExternalDependencies\FontAwesome.Generate.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+  
+</Project>

@@ -1,0 +1,278 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit">
+
+
+
+  <Style Selector="Controls|Wizard">
+    <Setter Property="Background"
+            Value="{DynamicResource MahApps.Brushes.Gray10}" />
+    <Setter Property="Foreground"
+            Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="BorderBrush"
+            Value="{DynamicResource MahApps.Brushes.TextBox.Border}" />
+    <Setter Property="BorderThickness"
+            Value="1" />
+    <Setter Property="ItemsPanel">
+      <Setter.Value>
+        <ItemsPanelTemplate>
+          <Grid />
+        </ItemsPanelTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  Padding="{TemplateBinding Padding}">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+
+              <ContentPresenter Content="{Binding CurrentPage, RelativeSource={RelativeSource TemplatedParent}}" />
+
+              <Border Grid.Row="1"
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      BorderThickness="0,1,0,0"
+                      Padding="7">
+                <StackPanel>
+                  <Grid>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="Auto" />
+                      <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Controls:MetroButton Name="HelpButton"
+                            Grid.Column="0"
+                            MinWidth="75"
+                            Command="{TemplateBinding HelpCommand}"
+                            Content="{TemplateBinding HelpButtonContent}"
+                            >
+                      <Controls:MetroButton.IsVisible>
+                        <MultiBinding >
+                          <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                   Path="IsHelpButtonVisible" />
+                          <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                   Path="CurrentPage.HelpButtonVisible" />
+                        </MultiBinding>
+                      </Controls:MetroButton.IsVisible>
+                    </Controls:MetroButton>
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                      <Controls:MetroButton Name="BackButton"
+                              Command="{TemplateBinding PreviousPageCommand}"
+                              Content="{TemplateBinding BackButtonContent}"
+                          >
+                        <Controls:MetroButton.IsVisible>
+                          <MultiBinding >
+                            <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                     Path="IsBackButtonVisible" />
+                            <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                     Path="CurrentPage.IsBackButtonVisible" />
+                          </MultiBinding>
+                        </Controls:MetroButton.IsVisible>
+                      </Controls:MetroButton>
+                      <Controls:MetroButton Name="NextButton"
+                                Margin="7,0,0,0"
+                                Command="{TemplateBinding NextPageCommand}"
+                                Content="{TemplateBinding NextButtonContent}"
+                                >
+                        <Controls:MetroButton.IsVisible>
+                          <MultiBinding >
+                            <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                     Path="IsNextButtonVisibile" />
+                            <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                     Path="CurrentPage.IsNextButtonVisibile" />
+                          </MultiBinding>
+                        </Controls:MetroButton.IsVisible>
+                      </Controls:MetroButton>
+
+                      <Controls:MetroButton Name="FinishButton"
+                                Margin="7,0,0,0"
+                                Command="{TemplateBinding FinishCommand}"
+                                Content="{TemplateBinding FinishButtonContent}"
+                                >
+                        <Controls:MetroButton.IsVisible>
+                          <MultiBinding >
+                            <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                     Path="IsFinishButtonVisible" />
+                            <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                     Path="CurrentPage.IsFinishButtonVisible" />
+                          </MultiBinding>
+                        </Controls:MetroButton.IsVisible>
+                      </Controls:MetroButton>
+
+                      <Controls:MetroButton Name="CancelButton"
+                              Margin="7,0,0,0"
+                              MinWidth="75"
+                              Command="{TemplateBinding CancelCommand}"
+                              Content="{TemplateBinding CancelButtonContent}"
+                          >
+
+                        <Controls:MetroButton.IsVisible>
+                          <MultiBinding>
+                            <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                     Path="IsCancelButtonVisible" />
+                            <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                     Path="CurrentPage.IsCancelButtonVisible" />
+                          </MultiBinding>
+                        </Controls:MetroButton.IsVisible>
+                      </Controls:MetroButton>
+                    </StackPanel>
+                  </Grid>
+                </StackPanel>
+              </Border>
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|WizardPage[PageType=Blank]">
+    <Setter Property="Background" Value="{TemplateBinding Background}" />
+    <Setter Property="BorderThickness"
+            Value="0" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border
+                  Background="{TemplateBinding Background}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  BorderBrush="{TemplateBinding BorderBrush}">
+            <Grid Background="{TemplateBinding Background}">
+              <ContentPresenter Margin="14"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                 />
+            </Grid>
+          </Border>
+        </ControlTemplate>
+
+      </Setter.Value>
+
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|WizardPage[PageType=Exterior]">
+    <Setter Property="Background"
+                Value="{TemplateBinding Background}" />
+    <Setter Property="BorderThickness"
+            Value="0" />
+    <Setter Property="ExteriorPanelBackground"
+           Value="{DynamicResource Avalonia.ExtendedToolkit.Wizard.ExteriorPanelBackground}"/>
+      
+    
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate >
+          <Grid Background="{TemplateBinding Background}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border BorderThickness="{TemplateBinding BorderThickness}"
+                    BorderBrush="{TemplateBinding BorderBrush}">
+              <Grid Grid.Column="0"
+                    Background="{TemplateBinding ExteriorPanelBackground}"
+                    MinWidth="{Binding ExteriorPanelMinWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Controls:Wizard}}">
+                <ContentControl Content="{TemplateBinding ExteriorPanelContent}" />
+              </Grid>
+            </Border>
+            <Grid Column="1"
+                  Margin="14">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+              <TextBlock Grid.Row="0"
+                         TextWrapping="Wrap"
+                         Margin="0,0,0,14"
+                         FontSize="16"
+                         FontWeight="Bold"
+                         Text="{TemplateBinding Title}" >
+              </TextBlock>
+              <TextBlock Grid.Row="1"
+                         TextWrapping="Wrap"
+                         Margin="0,0,0,14"
+                         Text="{TemplateBinding Description}" >
+              </TextBlock>
+              <ContentPresenter Grid.Row="2"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                />
+            </Grid>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|WizardPage[PageType=Interior]">
+    <Setter Property="Background"
+                Value="{TemplateBinding Background}" />
+    <Setter Property="BorderBrush"
+            Value="{DynamicResource MahApps.Brushes.Gray3}" />
+    <Setter Property="BorderThickness"
+            Value="0,1,0,0" />
+    <Setter Property="HeaderBackground"
+            Value="{DynamicResource Avalonia.ExtendedToolkit.Wizard.InteriorHeaderBackground}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate >
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Background="{TemplateBinding HeaderBackground}"
+                  MinHeight="56">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <StackPanel>
+                <TextBlock Margin="16,9,0,1"
+                           TextWrapping="Wrap"
+                           FontWeight="Bold"
+                           Text="{TemplateBinding Title}" >
+                </TextBlock>
+                <TextBlock Margin="32,0,0,3"
+                           TextWrapping="Wrap"
+                           Text="{TemplateBinding Description}" >
+                </TextBlock>
+              </StackPanel>
+              <Image Grid.Column="1"
+                     Margin="4"
+                     Source="{TemplateBinding HeaderImage}"
+                     Stretch="None"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" >
+              </Image>
+            </Grid>
+
+            <Border Grid.Row="1"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    BorderBrush="{TemplateBinding BorderBrush}">
+              <Grid Background="{TemplateBinding Background}">
+                <ContentPresenter Margin="14"
+                                  Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                  />
+              </Grid>
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+</Styles>

@@ -1,0 +1,43 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit">
+  <Styles.Resources>
+    <!--<Converter:ToLowerConverter x:Key="ToLowerConverter" />-->
+  </Styles.Resources>
+
+  <Style Selector="Controls|ContentControlEx">
+    <Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Background="Transparent">
+            <ContentPresenter x:Name="PART_ContentPresenter"
+                              Margin="{TemplateBinding Padding}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              UseLayoutRounding="{TemplateBinding UseLayoutRounding}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|ContentControlEx[ContentCharacterCasing=Normal] /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Content}" />
+  </Style>
+
+   <Style Selector="Controls|ContentControlEx[ContentCharacterCasing=Upper] /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Content, Converter={Converter:ToUpperConverter}}" />
+  </Style>
+
+  <Style Selector="Controls|ContentControlEx[ContentCharacterCasing=Lower] /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Content, Converter={Converter:ToLowerConverter}}" />
+  </Style>
+</Styles>

@@ -1,0 +1,136 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit">
+  <Style Selector="Controls|Badged">
+    <Setter Property="BadgeForeground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
+    <Setter Property="BadgePlacementMode" Value="TopRight" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <!--ClipToBounds have to be set to false otherwise Badged is cut-->
+    <Setter Property="ClipToBounds" Value="False"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid>
+            <Border Background="{TemplateBinding BadgeBackground}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+              <ContentPresenter Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                />
+            </Border>
+            <Border x:Name="PART_BadgeContainer"
+                    MinWidth="18"
+                    MinHeight="18"
+                    Padding="2"
+                    Margin="-6"
+                    Background="{DynamicResource MahApps.Brushes.AccentBase}"
+                    CornerRadius="9"
+                    RenderTransformOrigin=".5,.5"      
+                    TextBlock.FontSize="11"
+                    TextBlock.FontWeight="DemiBold"
+                    IsVisible="{TemplateBinding IsBadgeSet}"
+                    >
+              <!--
+              
+              Not working
+                HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+              -->
+
+              <Border.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1" />
+              </Border.RenderTransform>
+              <ContentControl Margin="1 0 1 0"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Content="{TemplateBinding Badge}"
+                              Focusable="False"
+                              Foreground="{TemplateBinding BadgeForeground}"
+                              FontSize="11"
+                              FontWeight="DemiBold"
+                               />
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+
+  <Style Selector="Controls|Badged[BadgePlacementMode=TopLeft] /template/ Border#PART_BadgeContainer">
+    <Setter  Property="HorizontalAlignment" Value="Left" />
+    <Setter  Property="VerticalAlignment" Value="Top" />
+  </Style>
+
+  <Style Selector="Controls|Badged[BadgePlacementMode=Top] /template/ Border#PART_BadgeContainer">
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+  </Style>
+
+  <Style Selector="Controls|Badged[BadgePlacementMode=TopRight] /template/ Border#PART_BadgeContainer">
+    <Setter Property="HorizontalAlignment" Value="Right" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+  </Style>
+
+  <Style Selector="Controls|Badged[BadgePlacementMode=Right] /template/ Border#PART_BadgeContainer">
+    <Setter  Property="HorizontalAlignment" Value="Right" />
+    <Setter  Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="Controls|Badged[BadgePlacementMode=BottomRight] /template/ Border#PART_BadgeContainer">
+    <Setter  Property="HorizontalAlignment" Value="Right" />
+    <Setter  Property="VerticalAlignment" Value="Bottom" />
+  </Style>
+
+  <Style Selector="Controls|Badged[BadgePlacementMode=Bottom] /template/ Border#PART_BadgeContainer">
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Bottom" />
+  </Style>
+
+  <Style Selector="Controls|Badged[BadgePlacementMode=BottomLeft] /template/ Border#PART_BadgeContainer">
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Bottom" />
+  </Style>
+
+  <Style Selector="Controls|Badged[BadgePlacementMode=Left] /template/ Border#PART_BadgeContainer">
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="Controls|Badged[IsEnabled=False] /template/ Border#PART_BadgeContainer">
+    <Setter Property="Background" Value="{DynamicResource ResourceKey=MahApps.Metro.Brushes.Badged.DisabledBackgroundBrush}" />
+  </Style>
+
+
+  <Style Selector="Controls|Badged[IsBadgeSet=True]">
+    <Style.Animations>
+      <Animation Duration="0:0:0.3">
+        <KeyFrame Cue="0%">
+          <Setter Property="ScaleTransform.ScaleX" Value="1.4"/>
+          <Setter Property="ScaleTransform.ScaleY" Value="1.4"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="ScaleTransform.ScaleX" Value="1"/>
+          <Setter Property="ScaleTransform.ScaleY" Value="1"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+
+
+
+
+
+
+
+
+
+
+
+</Styles>

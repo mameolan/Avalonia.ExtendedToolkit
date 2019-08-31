@@ -1,0 +1,60 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.WizardView" >
+  <UserControl.Resources>
+    <Thickness x:Key="ControlMargin">0 5 0 0</Thickness>
+  </UserControl.Resources>
+  <Grid ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Stretch">
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+      <RowDefinition/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+
+    <StackPanel Grid.Row="0" HorizontalAlignment="Left" Margin="10">
+      <TextBlock Classes="DescriptionHeaderStyle" Text="Wizard Blank Page"  />
+      <Controls:Wizard Margin="{StaticResource ControlMargin}"
+        Width="500" Height="200">
+        <Controls:WizardPage PageType="Blank">
+          <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Hello"/>
+          </Grid>
+        </Controls:WizardPage>
+        <Controls:WizardPage PageType="Blank" CanFinish="True">
+          <Grid>
+            <TextBlock Text="World" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+          </Grid>
+        </Controls:WizardPage>
+      </Controls:Wizard>
+
+    </StackPanel>
+
+
+    <StackPanel Grid.Row="1" HorizontalAlignment="Left" Margin="10">
+      <TextBlock Classes="DescriptionHeaderStyle" Text="Wizard Exterior Page"  />
+      <Controls:Wizard Margin="{StaticResource ControlMargin}"
+        Width="500" Height="200">
+        <Controls:WizardPage Title="Hallo" PageType="Exterior"/>
+        <Controls:WizardPage Title="World" PageType="Exterior" CanFinish="True"/>
+      </Controls:Wizard>
+
+    </StackPanel>
+
+    <StackPanel Grid.Row="2" HorizontalAlignment="Left" Margin="10">
+      <TextBlock Classes="DescriptionHeaderStyle" Text="Wizard Interior Page"  />
+      <Controls:Wizard Margin="{StaticResource ControlMargin}"
+        Width="500" Height="200">
+        <Controls:WizardPage Title="Hallo" PageType="Interior"/>
+        <Controls:WizardPage Title="World" PageType="Interior" CanFinish="True"/>
+      </Controls:Wizard>
+
+    </StackPanel>
+
+  </Grid>
+
+
+</UserControl>

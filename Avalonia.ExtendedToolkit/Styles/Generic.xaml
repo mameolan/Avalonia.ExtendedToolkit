@@ -1,0 +1,14 @@
+﻿<Styles xmlns="https://github.com/avaloniaui">
+  <!--<StyleInclude Source="resm:Avalonia.ExtendedToolkit.Styles.ProgressRing.xaml?assembly=Avalonia.Metro"/>-->
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Fonts.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/MetroWindow.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/BusyIndicator/BusyIndicator.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Badged/Badget.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Wizard/Wizard.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/ContentControlEx/ContentControlEx.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Buttons.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.CheckBox.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ComboBox.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ListBox.xaml"/>
+  
+ </Styles>

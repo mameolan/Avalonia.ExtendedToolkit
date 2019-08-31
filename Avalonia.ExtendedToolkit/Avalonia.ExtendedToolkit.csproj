@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.8.999-cibuild0003699-beta" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.8.999-cibuild0003699-beta" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.8.999-cibuild0003699-beta" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.8.999-cibuild0003699-beta" />
+    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.9.0-build20190819-01" />
+    <PackageReference Include="Avalonia.Xaml.Interactions" Version="0.9.0-build20190819-01" />
+    <PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.9.0-build20190819-01" />
+    <PackageReference Include="GridExtra.Avalonia" Version="0.6.1" />
+    <PackageReference Include="XamlColorSchemeGenerator" Version="3.0.0.31" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="**\*.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <AvaloniaResource Include="**\*.xaml" Exclude="**\*.Template.xaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove=".gitignore" />
+    <None Remove="Styles\Themes\GeneratorParameters.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Styles\Themes\GeneratorParameters.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FontAwesome.Avalonia">
+      <HintPath>..\ExternalDependencies\FontAwesome.Avalonia.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="FontAwesome.Generate">
+      <HintPath>..\ExternalDependencies\FontAwesome.Generate.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="GenerateXamlFilesInner">
+    <PropertyGroup>
+      <XamlColorSchemeGeneratorVersion Condition="'%(PackageReference.Identity)' == 'XamlColorSchemeGenerator'">%(PackageReference.Version)</XamlColorSchemeGeneratorVersion>
+    </PropertyGroup>
+    <Exec Command="&quot;$(NuGetPackageRoot)xamlcolorschemegenerator\$(XamlColorSchemeGeneratorVersion)\tools\XamlColorSchemeGenerator.exe&quot; &quot;$(MSBuildProjectDirectory)\Styles\Themes\GeneratorParameters.json&quot;" />
+  </Target>
+  <Target Name="GenerateXamlFiles" BeforeTargets="DispatchToInnerBuilds;BeforeBuild">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="GenerateXamlFilesInner" Properties="TargetFramework=once" />
+  </Target>
+ 
+</Project>

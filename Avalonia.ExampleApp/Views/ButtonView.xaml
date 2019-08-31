@@ -1,0 +1,174 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+              xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+              xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+              xmlns:iac="clr-namespace:Avalonia.Xaml.Interactions.Custom;assembly=Avalonia.Xaml.Interactions.Custom"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.ButtonView">
+  <UserControl.Resources>
+    <Thickness x:Key="ControlMargin">0 5 0 0</Thickness>
+  </UserControl.Resources>
+  <Grid>
+    
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition />
+      <ColumnDefinition />
+      <ColumnDefinition />
+      <ColumnDefinition />
+      <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+
+    <StackPanel Grid.Row="0" Grid.Column="0">
+      <TextBlock Classes="DescriptionHeaderStyle" Text="Default button"  />
+      <Controls:Badged Width="100"
+                       Margin="{StaticResource ControlMargin}"
+                       Badge="3">
+        <Controls:MetroButton Content="Mail" />
+      </Controls:Badged>
+      <Controls:Badged Width="100"
+                       Margin="{StaticResource ControlMargin}"
+                       Badge="2"
+                       IsEnabled="False">
+        <Controls:MetroButton Content="Print" />
+      </Controls:Badged>
+      <Controls:Badged x:Name="CountingBadge"
+                       Width="100"
+                       Margin="{StaticResource ControlMargin}">
+        <Controls:MetroButton Content="Click Me" x:Name="btnClickMe"/>
+      </Controls:Badged>
+      <Controls:MetroButton Width="100"
+              Margin="{StaticResource ControlMargin}"
+              Content="Enabled" />
+      <Controls:MetroButton Width="100"
+              Margin="{StaticResource ControlMargin}"
+              Content="Disabled"
+              IsEnabled="False" />
+    </StackPanel>
+
+    <StackPanel Grid.Row="0" Grid.Column="1">
+      <TextBlock Text="Square button" Classes="DescriptionHeaderStyle"   />
+
+      <Controls:SquareButton Width="100"
+        Margin="{StaticResource ControlMargin}"
+        Content="Enabled"
+                    />
+
+      <Controls:SquareButton Classes="AccentedSquareButtonStyle" Width="100"
+          Margin="{StaticResource ControlMargin}"
+          Content="Enabled"
+                    />
+
+      <Controls:SquareButton Width="100"
+        Margin="{StaticResource ControlMargin}"
+        Content="Disabled"
+        IsEnabled="False"
+                    />
+
+      <Controls:SquareButton Classes="AccentedSquareButtonStyle" Width="100"
+        Margin="{StaticResource ControlMargin}"
+        Content="Disabled"
+        IsEnabled="False"
+                     />
+    </StackPanel>
+
+    <StackPanel Grid.Row="0" Grid.Column="2">
+      <TextBlock Text="Toggle button" Classes="DescriptionHeaderStyle" />
+      <ToggleButton Width="100"
+                    Margin="{StaticResource ControlMargin}"
+                    Content="Enabled" />
+      <ToggleButton Width="100"
+              Margin="{StaticResource ControlMargin}"
+              Content="Disabled"
+              IsEnabled="False" />
+      <ToggleButton Classes="MetroFlatToggleButton" Width="100"
+                    Margin="{StaticResource ControlMargin}"
+                    Content="Enabled"
+                                 />
+      <ToggleButton Classes="MetroFlatToggleButton" Width="100"
+              Margin="{StaticResource ControlMargin}"
+              Content="Disabled"
+              IsEnabled="False"
+                          />
+
+      <!--iconPacks todo-->
+      <!--<StackPanel Margin="{StaticResource ControlMargin}"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+                    <ToggleButton Width="48"
+                                  Height="48"
+                                  Margin="4"
+                                  Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+                      <iconPacks:PackIconModern Width="20"
+                                                Height="20"
+                                                Kind="City" />
+                    </ToggleButton>
+                    <ToggleButton Width="48"
+                                  Height="48"
+                                  Margin="4"
+                                  IsEnabled="False"
+                                  Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
+                      <iconPacks:PackIconModern Width="20"
+                                                Height="20"
+                                                Kind="City" />
+                    </ToggleButton>-->
+
+    </StackPanel>
+
+    <StackPanel Grid.Row="0" Grid.Column="3">
+      <TextBlock Text="Flat button" Classes="DescriptionHeaderStyle" />
+      <Controls:MetroButton Width="100"
+              Margin="{StaticResource ControlMargin}"
+              Content="Enabled" Classes="MetroFlatButton" />
+      <Controls:MetroButton Width="100"
+              Margin="{StaticResource ControlMargin}"
+              Content="Disabled"
+              IsEnabled="False" Classes="MetroFlatButton" />
+    </StackPanel>
+
+    <StackPanel Grid.Row="0" Grid.Column="4">
+      <TextBlock Text="Circle button" Classes="DescriptionHeaderStyle" />
+      <Controls:MetroButton Width="48"
+            Height="48"
+            Margin="4"
+            Classes="MetroCircleButtonStyle">
+        <!--<iconPacks:PackIconModern Width="20"
+                                              Height="20"
+                                              Kind="City" />-->
+        iconPacks missing
+      </Controls:MetroButton>
+      <Controls:MetroButton Width="48"
+              Height="48"
+              Margin="4"
+              IsEnabled="False"
+              Classes="MetroCircleButtonStyle">
+        <!--<iconPacks:PackIconModern Width="20"
+                                              Height="20"
+                                              Kind="CitySeattle" />-->
+        iconPacks missing
+      </Controls:MetroButton>
+      <Controls:MetroButton Width="48"
+              Height="48"
+              Margin="4"
+              Foreground="{DynamicResource MahApps.Brushes.Accent}"
+              IsEnabled="False"
+              Classes="MetroCircleButtonStyle">
+        <!--<Controls:MetroButton.ContentTemplate>
+                      <DataTemplate>
+                        <iconPacks:PackIconModern Width="20"
+                                                  Height="20"
+                                                  Kind="CitySeattle" />
+                      </DataTemplate>
+                    </Controls:MetroButton.ContentTemplate>-->
+        iconPacks missing
+      </Controls:MetroButton>
+
+    </StackPanel>
+  </Grid>
+</UserControl>
