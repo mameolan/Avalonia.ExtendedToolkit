@@ -1,9 +1,6 @@
 ﻿using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml.Styling;
-using Avalonia.Platform;
 using Avalonia.Styling;
-using DynamicData.Annotations;
 using Newtonsoft.Json;
 using ReactiveUI;
 using System;
@@ -13,17 +10,20 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Runtime.CompilerServices;
-using System.Security;
-using System.Text;
 using XamlColorSchemeGenerator;
 
 namespace Avalonia.ExtendedToolkit
 {
+    /// <summary>
+    /// theme manager
+    /// </summary>
     public partial class ThemeManager : ReactiveObject
     {
         private static object myLockObject = new object();
 
+        /// <summary>
+        /// parameter filename for generating the themes
+        /// </summary>
         private const string GeneratedParameterFile = "GeneratorParameters.json";
 
         /// <summary>
@@ -48,6 +48,10 @@ namespace Avalonia.ExtendedToolkit
         private readonly ReadOnlyObservableCollection<ColorScheme> colorSchemes;
 
         private static ThemeManager myInstance;
+
+        /// <summary>
+        /// singelton instance
+        /// </summary>
         public static ThemeManager Instance
         {
             get
@@ -57,30 +61,17 @@ namespace Avalonia.ExtendedToolkit
                     if (myInstance == null)
                     {
                         myInstance = new ThemeManager();
-                        myInstance.AddBaseThemes();
                         myInstance.EnsureThemes();
                     }
 
                     return myInstance;
                 }
-
             }
         }
 
-        private void AddBaseThemes()
-        {
-            //myBaseLightStyleInclude = new StyleInclude(new Uri("resm:Styles?assembly=Avalonia.ExtendedToolkit"))
-            //{
-            //    Source = new Uri($"avares://Avalonia.Themes.Default/Accents/BaseLight.xaml")
-            //};
-            
-
-            //myBaseDarkStyleInclude = new StyleInclude(new Uri("resm:Styles?assembly=Avalonia.ExtendedToolkit"))
-            //{
-            //    Source = new Uri($"avares://Avalonia.Themes.Default/Accents/BaseDark.xaml")
-            //};
-        }
-
+        /// <summary>
+        /// initialize the lists
+        /// </summary>
         private ThemeManager()
         {
             {
@@ -111,34 +102,29 @@ namespace Avalonia.ExtendedToolkit
         }
 
         private Theme _selectedTheme;
-        //private StyleInclude myBaseLightStyleInclude;
-        //private StyleInclude myBaseDarkStyleInclude;
 
-
+        /// <summary>
+        /// current selected theme
+        /// </summary>
         public Theme SelectedTheme
         {
             get => _selectedTheme;
-            set { this.RaiseAndSetIfChanged(ref _selectedTheme, value);
-                //SelectedColorScheme = ColorSchemes.FirstOrDefault(x => x.Name == _selectedTheme.ColorScheme);
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedTheme, value);
             }
         }
 
-        //private ColorScheme _selectedColorSchemee;
-        //public ColorScheme SelectedColorScheme
-        //{
-        //    get { return _selectedColorSchemee; }
-        //    private set { this.RaiseAndSetIfChanged(ref _selectedColorSchemee, value); }
-        //}
-
         private string mySelectedBaseColor;
 
+        /// <summary>
+        /// current selected base color
+        /// </summary>
         public string SelectedBaseColor
         {
             get { return mySelectedBaseColor; }
             set { this.RaiseAndSetIfChanged(ref mySelectedBaseColor, value); }
         }
-
-
 
         /// <summary>
         /// Gets a list of all themes.
@@ -179,21 +165,28 @@ namespace Avalonia.ExtendedToolkit
             }
         }
 
+        /// <summary>
+        /// check if the current theme is the dark color
+        /// </summary>
+        /// <param name="windowBase"></param>
+        /// <returns></returns>
         public bool GetIsBaseColorDark(WindowBase windowBase)
         {
             return windowBase.Styles.OfType<StyleInclude>()
           .FirstOrDefault(x => x.Source.AbsoluteUri.Contains(BaseColorDark)) != null;
-
         }
 
+        /// <summary>
+        /// returns the styles base color index
+        /// </summary>
+        /// <param name="windowBase"></param>
+        /// <returns></returns>
         public int GetBaseColorIndex(WindowBase windowBase)
         {
-
             if (GetIsBaseColorDark(windowBase))
             {
                 var item = windowBase.Styles.OfType<StyleInclude>()
            .FirstOrDefault(x => x.Source.AbsoluteUri.Contains(BaseColorDark));
-
 
                 return windowBase.Styles.OfType<StyleInclude>().ToList().IndexOf(item);
             }
@@ -203,82 +196,51 @@ namespace Avalonia.ExtendedToolkit
            .FirstOrDefault(x => x.Source.AbsoluteUri.Contains(BaseColorLight));
                 return windowBase.Styles.OfType<StyleInclude>().ToList().IndexOf(item);
             }
-
         }
 
-
+        /// <summary>
+        /// enables the theme for the window
+        /// </summary>
+        /// <param name="window"></param>
         public void EnableTheme(Window window)
         {
-
             IDisposable disposableForSelectedTheme = null;
             IDisposable disposableForSelectedBaseColor = null;
-            IDisposable disposableForSelectedColorScheme = null;
-
-            //var result =  || x.Source.AbsoluteUri.Contains(BaseColorLight));
-
 
             window.Opened += (o, e) =>
               {
                   disposableForSelectedTheme = this.WhenAnyValue(x => x.SelectedTheme).Where(x => x != null).Subscribe(x =>
                   {
-
-
-                      //Application.Current.Styles.Add(_selectedTheme.Resources);
                       var item = window.Styles.OfType<StyleInclude>()
-                                      .FirstOrDefault(styleInclude => styleInclude.
-                                      Source.AbsoluteUri.StartsWith("avares://Avalonia.ExtendedToolkit/Styles/Themes"));
+                                                            .FirstOrDefault(styleInclude => styleInclude.
+                                                            Source.AbsoluteUri.StartsWith("avares://Avalonia.ExtendedToolkit/Styles/Themes"));
 
                       int index = window.Styles.OfType<StyleInclude>().ToList().IndexOf(item);
-                      var result= window.CheckAccess();
+                      var result = window.CheckAccess();
                       if (index == -1)
                       {
                           window.Styles.Add(x.Resources);
                       }
                       else
                       {
-                          window.Styles[index] = x.Resources;
+                          window.Styles.Remove(item);
+                          window.Styles.Add(x.Resources);
                       }
-
-
                   });
 
                   disposableForSelectedBaseColor = this.WhenAnyValue(x => x.SelectedBaseColor).Where(x => x != null).Subscribe(selectedBaseColor =>
                   {
-                      //int baseColorIndex = GetBaseColorIndex(window);
-                      //StyleInclude baseColor = null;
-                      var colorScheme = SelectedTheme?.ColorScheme?? Themes.Select(x=> x.ColorScheme).FirstOrDefault();
-                      
-                      SelectedTheme = Themes.FirstOrDefault(x => x.ColorScheme == colorScheme && x.BaseColorScheme == selectedBaseColor);
+                      var colorScheme = SelectedTheme?.ColorScheme ?? Themes.Select(x => x.ColorScheme)
+                                                                        .FirstOrDefault();
 
-                      //switch (selectedBaseColor)
-                      //{
-                      //    case BaseColorDark:
-
-                      //        break;
-                      //    case BaseColorLight:
-                      //        baseColor = myBaseLightStyleInclude;
-                      //        break;
-                      //}
-
-                      //if (baseColorIndex == -1)
-                      //{
-                      //    window.Styles.Add(baseColor);
-                      //}
-                      //else
-                      //{
-                      //    window.Styles[baseColorIndex] = baseColor;
-                      //}
-
+                      SelectedTheme = Themes.FirstOrDefault(x => x.ColorScheme == colorScheme
+                                                                && x.BaseColorScheme == selectedBaseColor);
                   });
-
 
                   if (registeredWindows.Contains(window) == false)
                   {
-                      //SelectedBaseColor = BaseColorLight;
-                      //SelectedTheme = Themes.FirstOrDefault(x => x.BaseColorScheme == BaseColorLight);
                       registeredWindows.Add(window);
                   }
-
               };
 
             window.Closing += (o, e) =>
@@ -286,15 +248,12 @@ namespace Avalonia.ExtendedToolkit
                 disposableForSelectedTheme?.Dispose();
                 disposableForSelectedBaseColor?.Dispose();
                 registeredWindows.Remove(window);
-
             };
-
-
-
         }
 
-
-
+        /// <summary>
+        /// fills the theme through the generation file
+        /// </summary>
         private void EnsureThemes()
         {
             if (themes.Count > 0)
@@ -304,9 +263,6 @@ namespace Avalonia.ExtendedToolkit
 
             try
             {
-
-
-
                 //var assets= AvaloniaLocator.Current.GetService<IAssetLoader>();
                 //var assembly = typeof(ThemeManager).Assembly;
                 ////assets.SetDefaultAssembly(assembly);
@@ -316,8 +272,6 @@ namespace Avalonia.ExtendedToolkit
                 //var test= assets.GetAssets(folderUri, baseUri);
                 //var coumt = test.ToList();
                 //var test= assets.Open(folderUri);
-
-
 
                 var assembly = typeof(ThemeManager).Assembly;
                 string resourceName = assembly.GetManifestResourceNames().FirstOrDefault(x => x.Contains(GeneratedParameterFile));
@@ -357,7 +311,6 @@ namespace Avalonia.ExtendedToolkit
                     };
                     themesInternal.Add(new Theme(theme));
                 }
-
             }
             catch (Exception e)
             {
@@ -367,6 +320,11 @@ namespace Avalonia.ExtendedToolkit
             }
         }
 
+        /// <summary>
+        /// fills the baseColorsInternal and colorSchemesInternal
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ThemesInternalCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
@@ -406,17 +364,6 @@ namespace Avalonia.ExtendedToolkit
                     colorSchemesInternal.Clear();
                     break;
             }
-        }
-
-        #region Remove
-
-
-        /// <summary>
-        /// Clears the internal themes list.
-        /// </summary>
-        public void ClearThemes()
-        {
-            themesInternal?.Clear();
         }
 
         /// <summary>
@@ -470,6 +417,10 @@ namespace Avalonia.ExtendedToolkit
             return Themes.FirstOrDefault(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
+        /// <summary>
+        /// changes the theme through the base color
+        /// </summary>
+        /// <param name="baseColor"></param>
         public void ChangeBaseColor(string baseColor)
         {
             if (BaseColors.Contains(baseColor) == false)
@@ -477,58 +428,8 @@ namespace Avalonia.ExtendedToolkit
                 throw new ArgumentException($"Wrong basecolor: {baseColor}");
             }
 
-
-            SelectedBaseColor= baseColor;
-
-            //if (SelectedTheme == null)
-            //{
-            //    SelectedTheme = Themes.FirstOrDefault(x => x.BaseColorScheme == baseColor);
-            //}
-
-
-            //if (SelectedTheme.BaseColorScheme != baseColor)
-            //{
-            //    string colorScheme = SelectedTheme.ColorScheme;
-            //    string themeToSearch = $"{baseColor}.{colorScheme}";
-            //    SelectedTheme = Themes.FirstOrDefault(x => x.Name == themeToSearch);
-            //}
-
-
-
-
-
+            SelectedBaseColor = baseColor;
         }
-
-
-        //        /// <summary>
-        //        /// Gets the <see cref="Theme"/> with the given resource dictionary.
-        //        /// </summary>
-        //        /// <param name="resources"><see cref="ResourceDictionary"/> from which the theme should be retrieved.</param>
-        //        /// <returns>The <see cref="Theme"/> or <c>null</c>, if the theme wasn't found.</returns>
-        //        public static Theme GetTheme(IStyle resources)
-        //        {
-        //            if (resources == null)
-        //            {
-        //                throw new ArgumentNullException(nameof(resources));
-        //            }
-
-        //            var builtInTheme = Themes.FirstOrDefault(x => AreResourceDictionarySourcesEqual(x.Resources, resources));
-        //            if (builtInTheme.IsNotNull())
-        //            {
-        //                return builtInTheme;
-        //            }
-
-        //            // support dynamically created runtime resource dictionaries
-        //            //if (resources.Source.IsNull())
-        //            //{
-        //            //    if (IsThemeDictionary(resources))
-        //            //    {
-        //            //        return new Theme(resources);
-        //            //    }
-        //            //}
-
-        //            return null;
-        //        }
 
         /// <summary>
         /// Gets the inverse <see cref="Theme" /> of the given <see cref="Theme"/>.
@@ -561,717 +462,13 @@ namespace Avalonia.ExtendedToolkit
         }
 
         /// <summary>
-        /// Determines whether the specified resource dictionary represents an <see cref="Theme"/>.
-        /// <para />
-        /// This might include runtime themes which do not have a resource uri.
+        /// changes the color scheme of the current theme
         /// </summary>
-        /// <param name="resources">The resources.</param>
-        /// <returns><c>true</c> if the resource dictionary is an <see cref="Theme"/>; otherwise, <c>false</c>.</returns>
-        /// <exception cref="System.ArgumentNullException">resources</exception>
-        public bool IsThemeDictionary(IStyle resources)
-        {
-            if (resources == null)
-            {
-                throw new ArgumentNullException(nameof(resources));
-            }
-
-            foreach (var styleKey in styleKeys)
-            {
-                // Note: do not use contains, because that will look in all merged dictionaries as well. We need to check
-                // out the actual keys of the current resource dictionary
-
-                var obj = new object();
-                if (resources.TryGetResource(styleKey, out obj) == false)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
+        /// <param name="colorScheme"></param>
         public void ChangeColorScheme(ColorScheme colorScheme)
         {
-            SelectedTheme = this.Themes.FirstOrDefault(x=> x.ColorScheme== colorScheme.Name
-                                                        && x.BaseColorScheme==SelectedBaseColor);
+            SelectedTheme = this.Themes.FirstOrDefault(x => x.ColorScheme == colorScheme.Name
+                                                        && x.BaseColorScheme == SelectedBaseColor);
         }
-
-
-        //        /// <summary>
-        //        /// Gets a resource from the detected AppStyle.
-        //        /// </summary>
-        //        /// <param name="window">The window to check. If this is null, the Application's sources will be checked.</param>
-        //        /// <param name="key">The key to check against.</param>
-        //        /// <returns>The resource object or null, if the resource wasn't found.</returns>
-        //        //public static object GetResourceFromAppStyle(Window window, string key)
-        //        //{
-        //        //    Theme appStyle;
-
-        //        //    if (Application.Current.IsNull()) // In case the Window is hosted in a WinForm app
-        //        //    {
-        //        //        appStyle = !window.IsNull()
-        //        //                        ? DetectTheme(window)
-        //        //                        : null;
-        //        //    }
-        //        //    else
-        //        //    {
-        //        //        appStyle = (window.IsNull()
-        //        //                        ? DetectTheme(Application.Current)
-        //        //                        : DetectTheme(window))
-        //        //                    ?? DetectTheme(Application.Current);
-        //        //    }
-
-        //        //    var resource = appStyle?.Resources[key];
-
-        //        //    return resource;
-        //        //}
-
-        //        /// <summary>
-        //        /// Change the theme for the whole application.
-        //        /// </summary>
-        //        //[SecurityCritical]
-        //        public static Theme ChangeTheme( Application app, string themeName)
-        //        {
-        //            if (app==null)
-        //            {
-        //                throw new ArgumentNullException(nameof(app));
-        //            }
-
-        //            if (themeName==null)
-        //            {
-        //                throw new ArgumentNullException(nameof(themeName));
-        //            }
-
-        //            var oldTheme = DetectTheme(app);
-        //            Theme matched;
-        //            if ((matched = GetTheme(themeName))!=null)
-        //            {
-        //                return ChangeTheme(app.Resources, oldTheme, matched);
-        //            }
-
-        //            return oldTheme;
-        //        }
-
-        //        /// <summary>
-        //        /// Change theme for the given window.
-        //        /// </summary>
-        //        //[SecurityCritical]
-        //        public static Theme ChangeTheme(Window window, string themeName)
-        //        {
-        //            if (window==null)
-        //            {
-        //                throw new ArgumentNullException(nameof(window));
-        //            }
-
-        //            if (themeName==null)
-        //            {
-        //                throw new ArgumentNullException(nameof(themeName));
-        //            }
-
-        //            var oldTheme = DetectTheme(window);
-        //            Theme matched;
-        //            if ((matched = GetTheme(themeName))!=null)
-        //            {
-        //                return ChangeTheme(window.Resources, oldTheme, matched);
-        //            }
-
-        //            return oldTheme;
-        //        }
-
-        //        /// <summary>
-        //        /// Change theme for the whole application.
-        //        /// </summary>
-        //        /// <param name="app">The instance of Application to change.</param>
-        //        /// <param name="newTheme">The theme to apply.</param>
-        //        [SecurityCritical]
-        //        public static Theme ChangeTheme([NotNull] Application app, [NotNull] Theme newTheme)
-        //        {
-        //            if (app.IsNull())
-        //            {
-        //                throw new ArgumentNullException(nameof(app));
-        //            }
-
-        //            if (newTheme.IsNull())
-        //            {
-        //                throw new ArgumentNullException(nameof(newTheme));
-        //            }
-
-        //            var oldTheme = DetectTheme(app);
-        //            return ChangeTheme(app.Resources, oldTheme, newTheme);
-        //        }
-
-        //        /// <summary>
-        //        /// Change theme for the given window.
-        //        /// </summary>
-        //        /// <param name="window">The Window to change.</param>
-        //        /// <param name="newTheme">The theme to apply.</param>
-        //        [SecurityCritical]
-        //        public static Theme ChangeTheme([NotNull] Window window, [NotNull] Theme newTheme)
-        //        {
-        //            if (window.IsNull())
-        //            {
-        //                throw new ArgumentNullException(nameof(window));
-        //            }
-
-        //            if (newTheme.IsNull())
-        //            {
-        //                throw new ArgumentNullException(nameof(newTheme));
-        //            }
-
-        //            var oldTheme = DetectTheme(window);
-        //            return ChangeTheme(window.Resources, oldTheme, newTheme);
-        //        }
-
-        //        /// <summary>
-        //        /// Change theme for the given ResourceDictionary.
-        //        /// </summary>
-        //        /// <param name="resourceDictionary">The Window to change.</param>
-        //        /// <param name="newTheme">The theme to apply.</param>
-        //        [SecurityCritical]
-        //        public static Theme ChangeTheme([NotNull] ResourceDictionary resourceDictionary, [NotNull] Theme newTheme)
-        //        {
-        //            if (resourceDictionary.IsNull())
-        //            {
-        //                throw new ArgumentNullException(nameof(resourceDictionary));
-        //            }
-
-        //            if (newTheme.IsNull())
-        //            {
-        //                throw new ArgumentNullException(nameof(newTheme));
-        //            }
-
-        //            var oldTheme = DetectTheme(resourceDictionary);
-        //            return ChangeTheme(resourceDictionary, oldTheme, newTheme);
-        //        }
-
-        //        [SecurityCritical]
-        //        private static Theme ChangeTheme(ResourceDictionary resources, Theme oldTheme, Theme newTheme)
-        //        {
-        //            var themeChanged = false;
-
-        //            if (oldTheme != newTheme)
-        //            {
-        //                resources.BeginInit();
-
-        //                ResourceDictionary oldThemeResource = null;
-        //                if (oldTheme.IsNotNull())
-        //                {
-        //                    oldThemeResource = resources.MergedDictionaries.FirstOrDefault(d => AreResourceDictionarySourcesEqual(d, oldTheme.Resources));
-        //                }
-
-        //                resources.MergedDictionaries.Add(newTheme.Resources);
-
-        //                if (oldThemeResource.IsNotNull())
-        //                {
-        //                    resources.MergedDictionaries.Remove(oldThemeResource);
-        //                }
-
-        //                themeChanged = true;
-        //                resources.EndInit();
-        //            }
-
-        //            if (themeChanged)
-        //            {
-        //                OnThemeChanged(newTheme);
-        //            }
-
-        //            return newTheme;
-        //        }
-
-        //        /// <summary>
-        //        /// Change base color and color scheme of for the given application.
-        //        /// </summary>
-        //        /// <param name="app">The application to modify.</param>
-        //        /// <param name="baseColor">The base color to apply to the ResourceDictionary.</param>
-        //        /// <param name="colorScheme">The color scheme to apply to the ResourceDictionary.</param>
-        //        [SecurityCritical]
-        //        public static Theme ChangeTheme([NotNull] Application app, [NotNull] string baseColor, [NotNull] string colorScheme)
-        //        {
-        //            var currentTheme = DetectTheme(app);
-
-        //            if (currentTheme.IsNull())
-        //            {
-        //                return null;
-        //            }
-
-        //            var newTheme = Themes.FirstOrDefault(x => x.BaseColorScheme == baseColor && x.ColorScheme == colorScheme);
-
-        //            if (newTheme.IsNull())
-        //            {
-        //                Trace.TraceError($"Could not find a theme with base color scheme '{baseColor}' and color scheme '{currentTheme.ColorScheme}'.");
-        //                return null;
-        //            }
-
-        //            return ChangeTheme(app.Resources, currentTheme, newTheme);
-        //        }
-
-        //        /// <summary>
-        //        /// Change base color and color scheme of for the given window.
-        //        /// </summary>
-        //        /// <param name="window">The window to modify.</param>
-        //        /// <param name="baseColor">The base color to apply to the ResourceDictionary.</param>
-        //        /// <param name="colorScheme">The color scheme to apply to the ResourceDictionary.</param>
-        //        [SecurityCritical]
-        //        public static Theme ChangeTheme([NotNull] Window window, [NotNull] string baseColor, [NotNull] string colorScheme)
-        //        {
-        //            var currentTheme = DetectTheme(window);
-
-        //            if (currentTheme.IsNull())
-        //            {
-        //                return null;
-        //            }
-
-        //            var newTheme = Themes.FirstOrDefault(x => x.BaseColorScheme == baseColor && x.ColorScheme == colorScheme);
-
-        //            if (newTheme.IsNull())
-        //            {
-        //                Trace.TraceError($"Could not find a theme with base color scheme '{baseColor}' and color scheme '{currentTheme.ColorScheme}'.");
-        //                return null;
-        //            }
-
-        //            return ChangeTheme(window.Resources, currentTheme, newTheme);
-        //        }
-
-        //        /// <summary>
-        //        /// Change base color and color scheme of for the given ResourceDictionary.
-        //        /// </summary>
-        //        /// <param name="resources">The ResourceDictionary to modify.</param>
-        //        /// <param name="oldTheme">The old/current theme.</param>
-        //        /// <param name="baseColor">The base color to apply to the ResourceDictionary.</param>
-        //        /// <param name="colorScheme">The color scheme to apply to the ResourceDictionary.</param>
-        //        [SecurityCritical]
-        //        public static Theme ChangeTheme([NotNull] ResourceDictionary resources, Theme oldTheme, [NotNull] string baseColor, [NotNull] string colorScheme)
-        //        {
-        //            var newTheme = Themes.FirstOrDefault(x => x.BaseColorScheme == baseColor && x.ColorScheme == colorScheme);
-
-        //            if (newTheme.IsNull())
-        //            {
-        //                Trace.TraceError($"Could not find a theme with base color scheme '{baseColor}' and color scheme '{oldTheme.ColorScheme}'.");
-        //                return null;
-        //            }
-
-        //            return ChangeTheme(resources, oldTheme, newTheme);
-        //        }
-
-        //        /// <summary>
-        //        /// Change base color for the given application.
-        //        /// </summary>
-        //        /// <param name="app">The application to change.</param>
-        //        /// <param name="baseColor">The base color to apply to the ResourceDictionary.</param>
-        //        [SecurityCritical]
-        //        public static Theme ChangeThemeBaseColor([NotNull] Application app, [NotNull] string baseColor)
-        //        {
-        //            var currentTheme = DetectTheme(app);
-
-        //            if (currentTheme.IsNull())
-        //            {
-        //                return null;
-        //            }
-
-        //            return ChangeTheme(app.Resources, currentTheme, baseColor, currentTheme.ColorScheme);
-        //        }
-
-        //        /// <summary>
-        //        /// Change base color for the given window.
-        //        /// </summary>
-        //        /// <param name="window">The Window to change.</param>
-        //        /// <param name="baseColor">The base color to apply to the ResourceDictionary.</param>
-        //        [SecurityCritical]
-        //        public static Theme ChangeThemeBaseColor([NotNull] Window window, [NotNull] string baseColor)
-        //        {
-        //            var currentTheme = DetectTheme(window);
-
-        //            if (currentTheme.IsNull())
-        //            {
-        //                return null;
-        //            }
-
-        //            return ChangeTheme(window.Resources, currentTheme, baseColor, currentTheme.ColorScheme);
-        //        }
-
-        //        /// <summary>
-        //        /// Change base color of for the given ResourceDictionary.
-        //        /// </summary>
-        //        /// <param name="resources">The ResourceDictionary to modify.</param>
-        //        /// <param name="oldTheme">The old/current theme.</param>
-        //        /// <param name="baseColor">The base color to apply to the ResourceDictionary.</param>
-        //        [SecurityCritical]
-        //        public static Theme ChangeThemeBaseColor([NotNull] ResourceDictionary resources, [CanBeNull] Theme oldTheme, [NotNull] string baseColor)
-        //        {
-        //            var currentTheme = oldTheme ?? DetectTheme(resources);
-
-        //            if (currentTheme.IsNull())
-        //            {
-        //                return null;
-        //            }
-
-        //            return ChangeTheme(resources, currentTheme, baseColor, currentTheme.ColorScheme);
-        //        }
-
-        //        /// <summary>
-        //        /// Change color scheme for the given application.
-        //        /// </summary>
-        //        /// <param name="app">The application to change.</param>
-        //        /// <param name="colorScheme">The color scheme to apply to the ResourceDictionary.</param>
-        //        [SecurityCritical]
-        //        public static Theme ChangeThemeColorScheme([NotNull] Application app, [NotNull] string colorScheme)
-        //        {
-        //            var currentTheme = DetectTheme(app);
-
-        //            if (currentTheme.IsNull())
-        //            {
-        //                return null;
-        //            }
-
-        //            return ChangeTheme(app.Resources, currentTheme, currentTheme.BaseColorScheme, colorScheme);
-        //        }
-
-        //        /// <summary>
-        //        /// Change color scheme for the given window.
-        //        /// </summary>
-        //        /// <param name="window">The Window to change.</param>
-        //        /// <param name="colorScheme">The color scheme to apply to the ResourceDictionary.</param>
-        //        [SecurityCritical]
-        //        public static Theme ChangeThemeColorScheme([NotNull] Window window, [NotNull] string colorScheme)
-        //        {
-        //            var currentTheme = DetectTheme(window);
-
-        //            if (currentTheme.IsNull())
-        //            {
-        //                return null;
-        //            }
-
-        //            return ChangeTheme(window.Resources, currentTheme, currentTheme.BaseColorScheme, colorScheme);
-        //        }
-
-        //        /// <summary>
-        //        /// Change color scheme for the given ResourceDictionary.
-        //        /// </summary>
-        //        /// <param name="resources">The ResourceDictionary to modify.</param>
-        //        /// <param name="oldTheme">The old/current theme.</param>
-        //        /// <param name="colorScheme">The color scheme to apply to the ResourceDictionary.</param>
-        //        [SecurityCritical]
-        //        public static Theme ChangeThemeColorScheme([NotNull] ResourceDictionary resources, [CanBeNull] Theme oldTheme, [NotNull] string colorScheme)
-        //        {
-        //            var currentTheme = oldTheme ?? DetectTheme(resources);
-
-        //            if (currentTheme.IsNull())
-        //            {
-        //                return null;
-        //            }
-
-        //            return ChangeTheme(resources, currentTheme, currentTheme.BaseColorScheme, colorScheme);
-        //        }
-
-        //        /// <summary>
-        //        /// Changes the theme of a ResourceDictionary directly.
-        //        /// </summary>
-        //        /// <param name="resources">The ResourceDictionary to modify.</param>
-        //        /// <param name="newTheme">The theme to apply to the ResourceDictionary.</param>
-        //        [SecurityCritical]
-        //        public static void ApplyThemeResourcesFromTheme([NotNull] ResourceDictionary resources, [NotNull] Theme newTheme)
-        //        {
-        //            if (resources.IsNull())
-        //            {
-        //                throw new ArgumentNullException(nameof(resources));
-        //            }
-
-        //            if (newTheme.IsNull())
-        //            {
-        //                throw new ArgumentNullException(nameof(newTheme));
-        //            }
-
-        //            ApplyResourceDictionary(newTheme.Resources, resources);
-        //        }
-
-        //        [SecurityCritical]
-        //        private static void ApplyResourceDictionary(ResourceDictionary newRd, ResourceDictionary oldRd)
-        //        {
-        //            oldRd.BeginInit();
-
-        //            foreach (DictionaryEntry r in newRd)
-        //            {
-        //                if (oldRd.Contains(r.Key))
-        //                {
-        //                    oldRd.Remove(r.Key);
-        //                }
-
-        //                oldRd.Add(r.Key, r.Value);
-        //            }
-
-        //            oldRd.EndInit();
-        //        }
-
-        //        /// <summary>
-        //        /// Scans the window resources and returns it's theme.
-        //        /// </summary>
-        //        /// <remarks>If the theme can't be detected from the <see cref="Application.MainWindow"/> we try to detect it from <see cref="Application.Current"/>.</remarks>
-        //        [CanBeNull]
-        //        public static Theme DetectTheme()
-        //        {
-        //            var mainWindow = Application.Current?.MainWindow;
-
-        //            if (mainWindow.IsNotNull())
-        //            {
-        //                try
-        //                {
-        //                    var style = DetectTheme(mainWindow);
-
-        //                    if (style.IsNotNull())
-        //                    {
-        //                        return style;
-        //                    }
-        //                }
-        //                catch (Exception ex)
-        //                {
-        //                    Trace.WriteLine($"Failed to detect app style on main window.{Environment.NewLine}{ex}");
-        //                }
-        //            }
-
-        //            return Application.Current != null // In case the Window is hosted in a WinForm app
-        //                ? DetectTheme(Application.Current)
-        //                : null;
-        //        }
-
-        //        /// <summary>
-        //        /// Scans the window resources and returns it's theme.
-        //        /// </summary>
-        //        /// <param name="window">The Window to scan.</param>
-        //        /// <remarks>If the theme can't be detected from the <paramref name="window"/> we try to detect it from <see cref="Application.Current"/>.</remarks>
-        //        [CanBeNull]
-        //        public static Theme DetectTheme([NotNull] Window window)
-        //        {
-        //            if (window.IsNull())
-        //            {
-        //                throw new ArgumentNullException(nameof(window));
-        //            }
-
-        //            var detectedStyle = DetectTheme(window.Resources)
-        //                                ?? (Application.Current != null // In case the Window is hosted in a WinForm app
-        //                                        ? DetectTheme(Application.Current.Resources)
-        //                                        : null);
-
-        //            return detectedStyle;
-        //        }
-
-        //        /// <summary>
-        //        /// Scans the application resources and returns it's theme.
-        //        /// </summary>
-        //        /// <param name="app">The Application instance to scan.</param>
-        //        [CanBeNull]
-        //        public static Theme DetectTheme([NotNull] Application app)
-        //        {
-        //            if (app.IsNull())
-        //            {
-        //                throw new ArgumentNullException(nameof(app));
-        //            }
-
-        //            return DetectTheme(app.Resources);
-        //        }
-
-        //        /// <summary>
-        //        /// Scans a resources and returns it's theme.
-        //        /// </summary>
-        //        /// <param name="resourceDictionary">The ResourceDictionary to scan.</param>
-        //        [CanBeNull]
-        //        public static Theme DetectTheme([NotNull] ResourceDictionary resourceDictionary)
-        //        {
-        //            if (resourceDictionary.IsNull())
-        //            {
-        //                throw new ArgumentNullException(nameof(resourceDictionary));
-        //            }
-
-        //            if (DetectThemeFromResources(out var currentTheme, resourceDictionary))
-        //            {
-        //                return currentTheme;
-        //            }
-
-        //            return null;
-        //        }
-
-        //private static bool DetectThemeFromResources(out Theme detectedTheme, ResourceDictionary dict)
-        //{
-        //    using (var enumerator = dict.MergedDictionaries.Reverse().GetEnumerator())
-        //    {
-        //        while (enumerator.MoveNext())
-        //        {
-        //            var currentRd = enumerator.Current;
-
-        //            if (currentRd.IsNull())
-        //            {
-        //                continue;
-        //            }
-
-        //            Theme matched;
-        //            if ((matched = GetTheme(currentRd)).IsNotNull())
-        //            {
-        //                detectedTheme = matched;
-        //                return true;
-        //            }
-
-        //            if (DetectThemeFromResources(out detectedTheme, currentRd))
-        //            {
-        //                return true;
-        //            }
-        //        }
-        //    }
-
-        //    detectedTheme = null;
-        //    return false;
-        //}
-
-        //        /// <summary>
-        //        /// This event fires if the theme was changed
-        //        /// this should be using the weak event pattern, but for now it's enough
-        //        /// </summary>
-        //        public static event EventHandler<OnThemeChangedEventArgs> IsThemeChanged;
-
-        //        /// <summary>
-        //        /// Invalidates global colors and resources.
-        //        /// Sometimes the ContextMenu is not changing the colors, so this will fix it.
-        //        /// </summary>
-        //        [SecurityCritical]
-        //        private static void OnThemeChanged(Theme newTheme)
-        //        {
-        //            IsThemeChanged?.Invoke(Application.Current, new OnThemeChangedEventArgs(newTheme));
-        //        }
-
-        //private static bool AreResourceDictionarySourcesEqual(StyleInclude first, StyleInclude second)
-        //{
-        //    ResourceDictionary
-        //    if (first.IsNull()
-        //        || second.IsNull())
-        //    {
-        //        return false;
-        //    }
-
-        //    // If RD does not have a source, but both have keys and the first one has at least as many keys as the second,
-        //    // then compares their values.
-        //    if ((first.Source.IsNull()
-        //        || second.Source.IsNull())
-        //        && first.Keys.Count > 0
-        //        && second.Keys.Count > 0
-        //        && first.Keys.Count >= second.Keys.Count)
-        //    {
-        //        try
-        //        {
-        //            foreach (var key in first.Keys)
-        //            {
-        //                var isTheSame = second.Contains(key)
-        //                                && Equals(first[key], second[key]);
-        //                if (!isTheSame)
-        //                {
-        //                    return false;
-        //                }
-        //            }
-        //        }
-        //        catch (Exception exception)
-        //        {
-        //            Trace.TraceError($"Could not compare resource dictionaries: {exception} {Environment.NewLine} {exception.StackTrace}");
-        //            return false;
-        //        }
-
-        //        return true;
-        //    }
-
-        //    return Uri.Compare(first.Source, second.Source, UriComponents.Host | UriComponents.Path, UriFormat.SafeUnescaped, StringComparison.OrdinalIgnoreCase) == 0;
-        //}
-
-        //        #region WindowsAppModeSetting
-
-        //        /// <summary>
-        //        /// Synchronizes the current <see cref="Theme"/> with the "app mode" setting from windows.
-        //        /// </summary>
-        //        public static void SyncThemeWithWindowsAppModeSetting()
-        //        {
-        //            var baseColor = AppsUseLightTheme()
-        //                               ? BaseColorLight
-        //                               : BaseColorDark;
-
-        //            if (Application.Current != null) // In case the Window is hosted in a WinForm app
-        //            {
-        //                ChangeThemeBaseColor(Application.Current, baseColor);
-        //            }
-        //        }
-
-        //        private static bool isAutomaticWindowsAppModeSettingSyncEnabled;
-
-        //        /// <summary>
-        //        /// Gets or sets whether changes to the "app mode" setting from windows should be detected at runtime and the current <see cref="Theme"/> be changed accordingly.
-        //        /// </summary>
-        //        public static bool IsAutomaticWindowsAppModeSettingSyncEnabled
-        //        {
-        //            get { return isAutomaticWindowsAppModeSettingSyncEnabled; }
-
-        //            set
-        //            {
-        //                if (value == isAutomaticWindowsAppModeSettingSyncEnabled)
-        //                {
-        //                    return;
-        //                }
-
-        //                isAutomaticWindowsAppModeSettingSyncEnabled = value;
-
-        //                if (isAutomaticWindowsAppModeSettingSyncEnabled)
-        //                {
-        //                    SystemEvents.UserPreferenceChanged += HandleUserPreferenceChanged;
-        //                }
-        //                else
-        //                {
-        //                    SystemEvents.UserPreferenceChanged -= HandleUserPreferenceChanged;
-        //                }
-        //            }
-        //        }
-
-        ////        private static void HandleUserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
-        ////        {
-        ////            if (e.Category == UserPreferenceCategory.General)
-        ////            {
-        ////                if (Application.Current.IsNull())
-        ////                {
-        ////#if DEBUG
-        ////                    Trace.TraceWarning("ThemeManager (UserPreferenceChanged): Can not sync theme with windows app mode settings, because the current application is NULL!");
-        ////#endif
-        ////                    return;
-        ////                }
-
-        ////                SyncThemeWithWindowsAppModeSetting();
-        ////            }
-        ////        }
-
-        //        private static bool AppsUseLightTheme()
-        //        {
-        //            try
-        //            {
-        //                var registryValue = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", true);
-        //                return registryValue.IsNull()
-        //                       || Convert.ToBoolean(registryValue);
-        //            }
-        //            catch (Exception exception)
-        //            {
-        //                Trace.WriteLine(exception);
-        //            }
-
-        //            return true;
-        //        }
-
-        //        #endregion WindowsAppModeSetting
-
-        //        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //        [Pure]
-        //        [ContractAnnotation("obj:null => true")]
-        //        private static bool IsNull(this object obj)
-        //        {
-        //            return obj is null;
-        //        }
-
-        //        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        //        [Pure]
-        //        [ContractAnnotation("obj:null => false")]
-        //        private static bool IsNotNull(this object obj)
-        //        {
-        //            return obj is null == false;
-        //        }
-        #endregion
-
     }
 }

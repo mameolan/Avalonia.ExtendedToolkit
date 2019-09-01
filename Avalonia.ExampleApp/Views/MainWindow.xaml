@@ -12,102 +12,107 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Avalonia.ExampleApp.Views.MainWindow"
         Name="mainWindow"
+        Title="Avalonia.ExampleApp"
         >
 
   <Controls:MetroWindow.Resources>
-    <Thickness x:Key="ControlMargin">0 5 0 0</Thickness>
-    <!--<behaviors:CommandSelectedChangedBehavior x:Key="CommandSelectedChangedBehavior"/>-->
-  </Controls:MetroWindow.Resources>
+        <Thickness x:Key="ControlMargin">0 5 0 0</Thickness>
+        <!--<behaviors:CommandSelectedChangedBehavior x:Key="CommandSelectedChangedBehavior"/>-->
+    </Controls:MetroWindow.Resources>
 
 
 
 
   <Controls:MetroWindow.Styles>
-    <Style Selector="TextBlock.DescriptionHeaderStyle">
-      <Setter Property="FontSize" Value="22" />
-      <Setter Property="HorizontalAlignment" Value="Center" />
-    </Style>
-    <Style Selector="TextBox">
-      <Setter Property="VerticalAlignment" Value="Center"/>
-    </Style>
-    <Style Selector="TextBlock">
-      <Setter Property="VerticalAlignment" Value="Center"/>
-    </Style>
-  </Controls:MetroWindow.Styles>
+        <Style Selector="TextBlock.DescriptionHeaderStyle">
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="TextBox">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Controls:MetroWindow.Styles>
 
-  <Design.DataContext>
-    <vm:MainWindowViewModel/>
-  </Design.DataContext>
-  <DockPanel>
-    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-      <TextBlock Text="Themes"/>
-      <ComboBox Name="cmbThemes" Margin="10,1,0,1" Items="{Binding BaseColors}"
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <TextBlock Text="Themes"/>
+            <ComboBox Name="cmbThemes" Margin="10,1,0,1" Items="{Binding BaseColors}"
                SelectedIndex="0" SelectedItem="{Binding SelectedBaseColor}" Width="100">
-        <ComboBox.Styles>
-          <Style Selector="ComboBoxItem">
-            <Setter Property="Content" Value="{Binding .}"/>
-          </Style>
-        </ComboBox.Styles>
-        <i:Interaction.Behaviors>
-          <!--<behaviors:CommandSelectedChangedBehavior Command="{Binding ChangeBaseColorsCommand}"
+                <ComboBox.Styles>
+                    <Style Selector="ComboBoxItem">
+                        <Setter Property="Content" Value="{Binding .}"/>
+                    </Style>
+                </ComboBox.Styles>
+                <i:Interaction.Behaviors>
+                    <!--<behaviors:CommandSelectedChangedBehavior Command="{Binding ChangeBaseColorsCommand}"
                                                     />-->
-          <!--<ia:EventTriggerBehavior EventName="SelectionChanged" SourceObject="{Binding cmbThemes}">
+                    <!--<ia:EventTriggerBehavior EventName="SelectionChanged" SourceObject="{Binding cmbThemes}">
             <ia:InvokeCommandAction Command="{Binding ElementName=mainWindow, Path=DataContext.ChangeBaseColorsCommand}"
                                     CommandParameter="{Binding ElementName=cmbThemes, Path=SelectedItem}"
                                       />
           </ia:EventTriggerBehavior>-->
-        </i:Interaction.Behaviors>
-      </ComboBox>
+                </i:Interaction.Behaviors>
+            </ComboBox>
 
-      <TextBlock Margin="10,0,0,0" Text="Color Schemes"/>
-      <ComboBox Name="cmbColorScheme" Margin="10,1,0,1" Items="{Binding ColorSchemes}"
+            <TextBlock Margin="10,0,0,0" Text="Color Schemes"/>
+            <ComboBox Name="cmbColorScheme" Margin="10,1,0,1" Items="{Binding ColorSchemes}"
                SelectedIndex="0" SelectedItem="{Binding SelectedColorScheme}" Width="100"
                 
                 >
-        <ComboBox.Styles>
+                <ComboBox.Styles>
 
-          <Style Selector="ComboBoxItem">
-            <Setter Property="Content" Value="{Binding Name}"/>
-          </Style>
+                    <Style Selector="ComboBoxItem">
+                        <Setter Property="Content" Value="{Binding Name}"/>
+                    </Style>
 
-        </ComboBox.Styles>
-        <i:Interaction.Behaviors>
-          <!--<behaviors:CommandSelectedChangedBehavior Command="{Binding ElementName=mainWindow, Path=DataContext.ChangeBaseColorsCommand}"
+                </ComboBox.Styles>
+                <i:Interaction.Behaviors>
+                    <!--<behaviors:CommandSelectedChangedBehavior Command="{Binding ElementName=mainWindow, Path=DataContext.ChangeBaseColorsCommand}"
                                                     CommandParameter="{Binding ElementName=cmbColorScheme, Path=SelectedItem}"
                                                     />-->
-          <!--<ia:EventTriggerBehavior EventName="SelectionChanged" SourceObject="{Binding #cmbColorScheme}">
+                    <!--<ia:EventTriggerBehavior EventName="SelectionChanged" SourceObject="{Binding #cmbColorScheme}">
             <ia:InvokeCommandAction Command="{Binding ElementName=mainWindow, Path=DataContext.ChangeColorSchemeCommand}"
                                     CommandParameter="{Binding ElementName=cmbColorScheme, Path=SelectedItem}"
                                       />
           </ia:EventTriggerBehavior>-->
-        </i:Interaction.Behaviors>
-      </ComboBox>
+                </i:Interaction.Behaviors>
+            </ComboBox>
 
 
 
-    </StackPanel>
-    <Grid DockPanel.Dock="Bottom" Margin="5">
+        </StackPanel>
+        <Grid DockPanel.Dock="Bottom" Margin="5">
 
-      <Grid.RowDefinitions>
-        <RowDefinition/>
-        <RowDefinition Height="35"/>
-      </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
 
-      <TabControl Grid.Row="0">
-        <TabItem Header="Buttons">
-          <Views:ButtonView/>
-        </TabItem>
-        <TabItem Header="Wizard">
-          <Views:WizardView/>
-        </TabItem>
-      </TabControl>
+            <TabControl Grid.Row="0">
+                <TabItem Header="Buttons">
+                    <ScrollViewer>
+                        <Views:ButtonView/>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Wizard">
+                    <ScrollViewer>
+                        <Views:WizardView/>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
 
 
 
 
 
-    </Grid>
-  </DockPanel>
+        </Grid>
+    </DockPanel>
 
 
 

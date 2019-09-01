@@ -2,7 +2,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit">
-  
+
   <Style Selector="Controls|MetroWindow">
     <Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}" />
     <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
@@ -12,83 +12,71 @@
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Template">
       <ControlTemplate>
-        <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
-                Background="{TemplateBinding Background}">
-          <AdornerLayer>
-
-            <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto,Auto,*,Auto,Auto"
-                  Background="Transparent">
+        <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+          <VisualLayerManager>
+            <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto,Auto,*,Auto,Auto" Background="Transparent">
               <Grid Grid.RowSpan="5" Grid.ColumnSpan="3">
-
-                  <Grid RowDefinitions="Auto, *">
-                    <Border BorderThickness="0 0 0 1" BorderBrush="Black" Background="{DynamicResource MahApps.Brushes.AccentBase}" /> <!--TitleBar background and border-->
-                    <Grid ColumnDefinitions="Auto,*,Auto" Name="titlebar" Margin="4 0"
-                          Background="Transparent" IsVisible="{TemplateBinding IsChromeVisible}">
-
-                      <Grid>
-                        <StackPanel Orientation="Horizontal" Spacing="10">
-                          <!--<Rectangle Height="20" Width="20" Fill="Blue" />-->
-                          <Border BorderThickness="0">
-                            <TextBlock Margin="0 7 0 0"  Text="{TemplateBinding Title}"
-                                 Foreground="{DynamicResource ThemeForegroundBrush}"      VerticalAlignment="Center" />
-                            <!--Foreground="{TemplateBinding Foreground}"-->
-                          </Border>
-                        </StackPanel>
-                      </Grid>
-
-                      <ContentPresenter Grid.Column="1" Grid.ColumnSpan="1" Content="{TemplateBinding TitleBarContent}" />
-                      <Grid Grid.Column="2" HorizontalAlignment="Right" Margin="0">
-                        <StackPanel Orientation="Horizontal">
-                          <Button Background="Transparent" BorderThickness="0"
-                                  Foreground="{DynamicResource ThemeForegroundBrush}"
-                                   Name="minimiseButton" FontWeight="Bold">
-                            <Panel Margin="4" Height="8" Width="8" >
-                              <Path VerticalAlignment="Bottom" Data="M0,20L53.333,20 53.333,8.888 0,8.888z"
-                                  Stretch="Uniform" Fill="{DynamicResource ThemeForegroundBrush}"/>
-                            </Panel>
-                          </Button>
-                          <Button Background="Transparent" BorderThickness="0" Name="restoreButton">
-                            <Panel Margin="4">
-                              <Path Height="8" Width="8" Data="M4.3685131,23.127279L4.3685131,47.283243 47.117023,47.283243 47.117023,23.127279z M0,10.684L53.755001,10.684 53.755001,51.668001 0,51.668001z M8.5679998,0L58.668022,0 64,0 64,5.6864691 64,45.317999 58.668022,45.317999 58.668022,5.6864691 8.5679998,5.6864691z"
-                                    Stretch="Uniform" Fill="{DynamicResource ThemeForegroundBrush}" />
-                            </Panel>
-                          </Button>
-                          <Button Background="Transparent" BorderThickness="0" Name="closeButton">
-                            <Panel Margin="4">
-                              <Path Height="8" Width="8" Data="F1M54.0573,47.8776L38.1771,31.9974 54.0547,16.1198C55.7604,14.4141 55.7604,11.6511 54.0573,9.94531 52.3516,8.23962 49.5859,8.23962 47.8802,9.94531L32.0026,25.8229 16.1224,9.94531C14.4167,8.23962 11.6511,8.23962 9.94794,9.94531 8.24219,11.6511 8.24219,14.4141 9.94794,16.1198L25.8255,32 9.94794,47.8776C8.24219,49.5834 8.24219,52.3477 9.94794,54.0534 11.6511,55.7572 14.4167,55.7585 16.1224,54.0534L32.0026,38.1745 47.8802,54.0534C49.5859,55.7585 52.3516,55.7572 54.0573,54.0534 55.7604,52.3477 55.763,49.5834 54.0573,47.8776z"
-                                      Stretch="Uniform" Fill="{DynamicResource ThemeForegroundBrush}"/>
-                            </Panel>
-                          </Button>
-                        </StackPanel>
-                      </Grid>
+                <Grid RowDefinitions="Auto, *">
+                  <!--Margin="4 0"-->
+                  <Grid ColumnDefinitions="Auto,*,Auto" Name="PART_TitleBar"  Background="{DynamicResource MahApps.Brushes.AccentBase}" IsVisible="{TemplateBinding IsChromeVisible}">
+                    <Grid>
+                      <StackPanel Orientation="Horizontal" Spacing="10">
+                        <!--<Rectangle Height="20" Width="20" Fill="Blue" >-->
+                          <Image Height="20" Width="20" Source="{TemplateBinding Icon}"/>
+                        <!--</Rectangle>-->
+                        <Border BorderThickness="0">
+                          <TextBlock Margin="0 7 0 0" Text="{TemplateBinding Title}" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center" />
+                        </Border>
+                      </StackPanel>
                     </Grid>
-                    <Grid Grid.Row="1">
-                      <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2" />
-                        <ColumnDefinition />
-                      </Grid.ColumnDefinitions>
-                      <Border Grid.Column="1" BorderBrush="AliceBlue" BorderThickness="1" VerticalAlignment="Stretch" />
-                      <ContentPresenter Grid.Column="2" Name="PART_ContentPresenter" Content="{TemplateBinding Content}" />
+                    <ContentPresenter Grid.Column="1" Grid.ColumnSpan="1" Content="{TemplateBinding TitleBarContent}" />
+                    <Grid Grid.Column="2" HorizontalAlignment="Right" Margin="0">
+                      <StackPanel Orientation="Horizontal">
+                        <Button Background="Transparent" BorderThickness="0"
+                                Foreground="{DynamicResource ThemeForegroundBrush}"
+                                 Name="PART_MinimiseButton" FontWeight="Bold">
+                          <Panel Margin="4" Height="8" Width="8" >
+                            <Path VerticalAlignment="Bottom" Data="M0,20L53.333,20 53.333,8.888 0,8.888z"
+                                Stretch="Uniform" Fill="{DynamicResource ThemeForegroundBrush}"/>
+                          </Panel>
+                        </Button>
+                        <Button Background="Transparent" BorderThickness="0" Name="PART_RestoreButton">
+                          <Panel Margin="4">
+                            <Path Height="8" Width="8" Data="M4.3685131,23.127279L4.3685131,47.283243 47.117023,47.283243 47.117023,23.127279z M0,10.684L53.755001,10.684 53.755001,51.668001 0,51.668001z M8.5679998,0L58.668022,0 64,0 64,5.6864691 64,45.317999 58.668022,45.317999 58.668022,5.6864691 8.5679998,5.6864691z"
+                                  Stretch="Uniform" Fill="{DynamicResource ThemeForegroundBrush}" />
+                          </Panel>
+                        </Button>
+                        <Button Background="Transparent" BorderThickness="0" Name="PART_CloseButton">
+                          <Panel Margin="4">
+                            <Path Height="8" Width="8" Data="F1M54.0573,47.8776L38.1771,31.9974 54.0547,16.1198C55.7604,14.4141 55.7604,11.6511 54.0573,9.94531 52.3516,8.23962 49.5859,8.23962 47.8802,9.94531L32.0026,25.8229 16.1224,9.94531C14.4167,8.23962 11.6511,8.23962 9.94794,9.94531 8.24219,11.6511 8.24219,14.4141 9.94794,16.1198L25.8255,32 9.94794,47.8776C8.24219,49.5834 8.24219,52.3477 9.94794,54.0534 11.6511,55.7572 14.4167,55.7585 16.1224,54.0534L32.0026,38.1745 47.8802,54.0534C49.5859,55.7585 52.3516,55.7572 54.0573,54.0534 55.7604,52.3477 55.763,49.5834 54.0573,47.8776z"
+                                    Stretch="Uniform" Fill="{DynamicResource ThemeForegroundBrush}"/>
+                          </Panel>
+                        </Button>
+                      </StackPanel>
                     </Grid>
                   </Grid>
+                  <Grid Grid.Row="1">
+                    <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}" />
+                  </Grid>
+                </Grid>
               </Grid>
               <Grid Grid.Row="0" Grid.RowSpan="5" Grid.Column="1" RowDefinitions="Auto * Auto" ColumnDefinitions="Auto,Auto,*,Auto,Auto">
                 <Grid Background="Transparent" Width="10" Height="4" />
-                <Grid Background="Transparent" Grid.Column="1" Height="4" Grid.ColumnSpan="2" Cursor="SizeNorthSouth" Name="topHorizontalGrip" />
+                <Grid Background="Transparent" Grid.Column="1" Height="4" Grid.ColumnSpan="2" Cursor="SizeNorthSouth" Name="PART_TopHorizontalGrip" />
                 <Grid Background="Transparent" Width="10" Height="4" Grid.Column="4" />
 
                 <Grid Background="Transparent" Width="10" Height="4" Grid.Row="2" />
-                <Grid Background="Transparent" Grid.Column="1" Height="4" Grid.ColumnSpan="2" Grid.Row="2" Cursor="SizeNorthSouth" Name="bottomHorizontalGrip" />
+                <Grid Background="Transparent" Grid.Column="1" Height="4" Grid.ColumnSpan="2" Grid.Row="2" Cursor="SizeNorthSouth" Name="PART_BottomHorizontalGrip" />
                 <Grid Background="Transparent" Width="10" Height="4" Grid.Column="4" Grid.Row="2" />
               </Grid>
-              <Grid Background="Transparent" Width="4" Height="10" Name="topLeftGrip" Cursor="TopLeftCorner" />
-              <Grid Background="Transparent" Width="4" Grid.Row="1" Grid.RowSpan="2" Cursor="SizeWestEast" Name="leftVerticalGrip" />
-              <Grid Background="Transparent" Width="4" Height="10" Grid.Row="4" Name="bottomLeftGrip" Cursor="BottomLeftCorner" />
-              <Grid Background="Transparent" Width="4" Height="10" Grid.Column="2" Name="topRightGrip" Cursor="TopRightCorner" />
-              <Grid Background="Transparent" Width="4" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Cursor="SizeWestEast" Name="rightVerticalGrip" />
-              <Grid Background="Transparent" Width="4" Height="10" Grid.Row="4" Grid.Column="2" Name="bottomRightGrip" Cursor="BottomRightCorner" />
+              <Grid Background="Transparent" Width="4" Height="10" Name="PART_TopLeftGrip" Cursor="TopLeftCorner" />
+              <Grid Background="Transparent" Width="4" Grid.Row="1" Grid.RowSpan="2" Cursor="SizeWestEast" Name="PART_LeftVerticalGrip" />
+              <Grid Background="Transparent" Width="4" Height="10" Grid.Row="4" Name="PART_BottomLeftGrip" Cursor="BottomLeftCorner" />
+              <Grid Background="Transparent" Width="4" Height="10" Grid.Column="2" Name="PART_TopRightGrip" Cursor="TopRightCorner" />
+              <Grid Background="Transparent" Width="4" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Cursor="SizeWestEast" Name="PART_RightVerticalGrip" />
+              <Grid Background="Transparent" Width="4" Height="10" Grid.Row="4" Grid.Column="2" Name="PART_BottomRightGrip" Cursor="BottomRightCorner" />
             </Grid>
-          </AdornerLayer>
+          </VisualLayerManager>
         </Border>
       </ControlTemplate>
     </Setter>

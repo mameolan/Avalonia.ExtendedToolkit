@@ -40,6 +40,5 @@ namespace Avalonia.ExtendedToolkit
         {
             return Name;
         }
-
     }
 }

@@ -31,8 +31,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         private bool _mouseDown;
         private Point _mouseDownPosition;
 
-        public event EventHandler<Size> OnSizeChanged;
-
         /// <summary>
         /// Defines the <see cref="IsChromeVisible"/> property.
         /// </summary>
@@ -67,54 +65,55 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void ToggleWindowState()
         {
+            var oldValue = WindowState;
             switch (WindowState)
             {
                 case WindowState.Maximized:
                     WindowState = WindowState.Normal;
                     break;
-
                 case WindowState.Normal:
                     WindowState = WindowState.Maximized;
                     break;
             }
+            //RaisePropertyChanged(WindowStateProperty, oldValue, WindowState, Data.BindingPriority.TemplatedParent);
         }
 
         /// <inheritdoc/>
         protected override void OnPointerPressed(PointerPressedEventArgs e)
         {
-            if (_topHorizontalGrip.IsPointerOver)
+            if (_topHorizontalGrip != null && _topHorizontalGrip.IsPointerOver)
             {
                 BeginResizeDrag(WindowEdge.North);
             }
-            else if (_bottomHorizontalGrip.IsPointerOver)
+            else if (_bottomHorizontalGrip != null && _bottomHorizontalGrip.IsPointerOver)
             {
                 BeginResizeDrag(WindowEdge.South);
             }
-            else if (_leftVerticalGrip.IsPointerOver)
+            else if (_leftVerticalGrip != null && _leftVerticalGrip.IsPointerOver)
             {
                 BeginResizeDrag(WindowEdge.West);
             }
-            else if (_rightVerticalGrip.IsPointerOver)
+            else if (_rightVerticalGrip != null && _rightVerticalGrip.IsPointerOver)
             {
                 BeginResizeDrag(WindowEdge.East);
             }
-            else if (_topLeftGrip.IsPointerOver)
+            else if (_topLeftGrip != null && _topLeftGrip.IsPointerOver)
             {
                 BeginResizeDrag(WindowEdge.NorthWest);
             }
-            else if (_bottomLeftGrip.IsPointerOver)
+            else if (_bottomLeftGrip != null && _bottomLeftGrip.IsPointerOver)
             {
                 BeginResizeDrag(WindowEdge.SouthWest);
             }
-            else if (_topRightGrip.IsPointerOver)
+            else if (_topRightGrip != null && _topRightGrip.IsPointerOver)
             {
                 BeginResizeDrag(WindowEdge.NorthEast);
             }
-            else if (_bottomRightGrip.IsPointerOver)
+            else if (_bottomRightGrip != null && _bottomRightGrip.IsPointerOver)
             {
                 BeginResizeDrag(WindowEdge.SouthEast);
             }
-            else if (_titleBar.IsPointerOver)
+            else if (_titleBar != null && _titleBar.IsPointerOver)
             {
                 _mouseDown = true;
                 _mouseDownPosition = e.GetPosition(this);
@@ -137,21 +136,13 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <inheritdoc/>
         protected override void OnPointerMoved(PointerEventArgs e)
         {
-            if (_titleBar.IsPointerOver && _mouseDown)
+            if (_titleBar != null && _titleBar.IsPointerOver && _mouseDown)
             {
                 WindowState = WindowState.Normal;
                 BeginMoveDrag();
                 _mouseDown = false;
             }
-
             base.OnPointerMoved(e);
-        }
-
-        protected override void HandleResized(Size clientSize)
-        {
-            base.HandleResized(clientSize);
-
-            OnSizeChanged?.Invoke(this, clientSize);
         }
 
         /// <inheritdoc/>
@@ -159,31 +150,50 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             base.OnTemplateApplied(e);
 
-            _titleBar = e.NameScope.Find<Grid>("titlebar");
-            _minimiseButton = e.NameScope.Find<Button>("minimiseButton");
-            _restoreButton = e.NameScope.Find<Button>("restoreButton");
-            _closeButton = e.NameScope.Find<Button>("closeButton");
-            _icon = e.NameScope.Find<Image>("icon");
+            _titleBar = e.NameScope.Find<Grid>("PART_TitleBar");
+            _minimiseButton = e.NameScope.Find<Button>("PART_MinimiseButton");
+            _restoreButton = e.NameScope.Find<Button>("PART_RestoreButton");
+            _closeButton = e.NameScope.Find<Button>("PART_CloseButton");
+            _icon = e.NameScope.Find<Image>("PART_Icon");
 
-            _topHorizontalGrip = e.NameScope.Find<Grid>("topHorizontalGrip");
-            _bottomHorizontalGrip = e.NameScope.Find<Grid>("bottomHorizontalGrip");
-            _leftVerticalGrip = e.NameScope.Find<Grid>("leftVerticalGrip");
-            _rightVerticalGrip = e.NameScope.Find<Grid>("rightVerticalGrip");
+            _topHorizontalGrip = e.NameScope.Find<Grid>("PART_TopHorizontalGrip");
+            _bottomHorizontalGrip = e.NameScope.Find<Grid>("PART_BottomHorizontalGrip");
+            _leftVerticalGrip = e.NameScope.Find<Grid>("PART_LeftVerticalGrip");
+            _rightVerticalGrip = e.NameScope.Find<Grid>("PART_RightVerticalGrip");
 
-            _topLeftGrip = e.NameScope.Find<Grid>("topLeftGrip");
-            _bottomLeftGrip = e.NameScope.Find<Grid>("bottomLeftGrip");
-            _topRightGrip = e.NameScope.Find<Grid>("topRightGrip");
-            _bottomRightGrip = e.NameScope.Find<Grid>("bottomRightGrip");
+            _topLeftGrip = e.NameScope.Find<Grid>("PART_TopLeftGrip");
+            _bottomLeftGrip = e.NameScope.Find<Grid>("PART_BottomLeftGrip");
+            _topRightGrip = e.NameScope.Find<Grid>("PART_TopRightGrip");
+            _bottomRightGrip = e.NameScope.Find<Grid>("PART_BottomRightGrip");
 
-            _minimiseButton.Click += (sender, ee) => { WindowState = WindowState.Minimized; };
+            if (_minimiseButton != null)
+            {
+                _minimiseButton.Click += (sender, ee) => { WindowState = WindowState.Minimized; };
 
-            _restoreButton.Click += (sender, ee) => { ToggleWindowState(); };
+            }
 
-            _titleBar.DoubleTapped += (sender, ee) => { ToggleWindowState(); };
+            if (_restoreButton != null)
+            {
+                _restoreButton.Click += (sender, ee) => { ToggleWindowState(); };
+            }
 
-            _closeButton.Click += (sender, ee) => { Close(); };
+            if (_titleBar != null)
+            {
+                _titleBar.DoubleTapped += (sender, ee) =>
+                {
+                    ToggleWindowState();
+                };
+            }
 
-            //icon.DoubleTapped += (sender, ee) => { Close(); };
+            if (_closeButton != null)
+            {
+                _closeButton.Click += (sender, ee) => { Close(); };
+            }
+
+            //if (_icon != null)
+            //{
+            //    _icon.DoubleTapped += (sender, ee) => { Close(); };
+            //}
         }
     }
 }

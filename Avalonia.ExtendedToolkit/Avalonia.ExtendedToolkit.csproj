@@ -34,17 +34,6 @@
     <EmbeddedResource Include="Styles\Themes\GeneratorParameters.json" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="FontAwesome.Avalonia">
-      <HintPath>..\ExternalDependencies\FontAwesome.Avalonia.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
-    <Reference Include="FontAwesome.Generate">
-      <HintPath>..\ExternalDependencies\FontAwesome.Generate.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
-  </ItemGroup>
-
   <Target Name="GenerateXamlFilesInner">
     <PropertyGroup>
       <XamlColorSchemeGeneratorVersion Condition="'%(PackageReference.Identity)' == 'XamlColorSchemeGenerator'">%(PackageReference.Version)</XamlColorSchemeGeneratorVersion>

@@ -25,20 +25,20 @@ namespace Avalonia.ExampleApp
         {
             var vm = new MainWindowViewModel();
 
-            MainWindowView mainWindowView = new MainWindowView();
-            mainWindowView.DataContext = vm;
-            MetroWindow metroWindow = new MetroWindow();
-            metroWindow.Content = mainWindowView;
+            //MainWindowView mainWindowView = new MainWindowView();
+            //mainWindowView.DataContext = vm;
+            //MetroWindow mainWindow = new MetroWindow();
+            //mainWindow.Content = mainWindowView;
 
-            //MainWindow mainWindow = new MainWindow();
-            //mainWindow.DataContext = vm;
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.DataContext = vm;
 
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
-                desktopLifetime.MainWindow = metroWindow;
+                desktopLifetime.MainWindow = mainWindow;
             //else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
             //    singleViewLifetime.MainView = new MainView();
 
-            ThemeManager.Instance.EnableTheme(metroWindow);
+            ThemeManager.Instance.EnableTheme(mainWindow);
 
 
             base.OnFrameworkInitializationCompleted();

@@ -2,11 +2,12 @@
 using Avalonia.Media;
 using Avalonia.Styling;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit
 {
+    /// <summary>
+    /// represents a theme entry
+    /// </summary>
     public class Theme
     {
         /// <summary>
@@ -37,19 +38,6 @@ namespace Avalonia.ExtendedToolkit
         /// <summary>
         /// Initializes a new instance.
         /// </summary>
-        /// <param name="resourceAddress">The URI of the theme ResourceDictionary.</param>
-        //public Theme(Uri resourceAddress)
-        //    : this(new StyleInclude(resourceAddress))
-        //{
-        //    if (resourceAddress == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(resourceAddress));
-        //    }
-        //}
-
-        /// <summary>
-        /// Initializes a new instance.
-        /// </summary>
         /// <param name="resourceDictionary">The ResourceDictionary of the theme.</param>
         public Theme(IStyle resourceDictionary)
         {
@@ -74,10 +62,7 @@ namespace Avalonia.ExtendedToolkit
                 Source = uri
             })
         {
-            
         }
-
-
 
         /// <summary>
         /// The ResourceDictionary that represents this application theme.
@@ -113,6 +98,5 @@ namespace Avalonia.ExtendedToolkit
         //{
         //    return DisplayName;
         //}
-
     }
 }
