@@ -1,4 +1,6 @@
 ﻿using Avalonia.Controls;
+using Avalonia.ExtendedToolkit.Controls;
+using Avalonia.ExtendedToolkit.Extensions;
 using Avalonia.Markup.Xaml.Styling;
 using Avalonia.Styling;
 using Newtonsoft.Json;
@@ -112,6 +114,8 @@ namespace Avalonia.ExtendedToolkit
             set
             {
                 this.RaiseAndSetIfChanged(ref _selectedTheme, value);
+                OnThemeChanged(value);
+
             }
         }
 
@@ -124,6 +128,18 @@ namespace Avalonia.ExtendedToolkit
         {
             get { return mySelectedBaseColor; }
             set { this.RaiseAndSetIfChanged(ref mySelectedBaseColor, value); }
+        }
+
+
+        /// <summary>
+        /// This event fires if the theme was changed
+        /// this should be using the weak event pattern, but for now it's enough
+        /// </summary>
+        public event EventHandler<OnThemeChangedEventArgs> IsThemeChanged;
+
+        private void OnThemeChanged(Theme newTheme)
+        {
+            IsThemeChanged?.Invoke(Application.Current, new OnThemeChangedEventArgs(newTheme));
         }
 
         /// <summary>
@@ -211,11 +227,9 @@ namespace Avalonia.ExtendedToolkit
               {
                   disposableForSelectedTheme = this.WhenAnyValue(x => x.SelectedTheme).Where(x => x != null).Subscribe(x =>
                   {
-                      var item = window.Styles.OfType<StyleInclude>()
-                                                            .FirstOrDefault(styleInclude => styleInclude.
-                                                            Source.AbsoluteUri.StartsWith("avares://Avalonia.ExtendedToolkit/Styles/Themes"));
+                      var item = window.Styles.GetThemeStyle();
 
-                      int index = window.Styles.OfType<StyleInclude>().ToList().IndexOf(item);
+                      int index = window.Styles.GetThemeStyleIndex(item);
                       var result = window.CheckAccess();
                       if (index == -1)
                       {
@@ -320,6 +334,24 @@ namespace Avalonia.ExtendedToolkit
             }
         }
 
+        internal void ApplyThemeResourcesFromTheme(Styles styles, Theme theme)
+        {
+            var item = styles.GetThemeStyle();
+
+            int index = styles.GetThemeStyleIndex(item);
+            if(index==-1)
+            {
+                styles.Add(theme.Resources);
+            }
+            else
+            {
+                styles.Remove(item);
+                styles.Add(item);
+            }
+
+
+        }
+
         /// <summary>
         /// fills the baseColorsInternal and colorSchemesInternal
         /// </summary>
@@ -417,6 +449,32 @@ namespace Avalonia.ExtendedToolkit
             return Themes.FirstOrDefault(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
+        internal Theme DetectTheme(Window window)
+        {
+            var item = window.Styles.GetThemeStyle();
+
+            if (item != null)
+            {
+                return themes.FirstOrDefault(x => x.Resources == item);
+            }
+
+            return null;
+
+        }
+
+        internal Theme DetectTheme(Application current)
+        {
+            var item = current.Styles.GetThemeStyle();
+
+            if (item != null)
+            {
+                return themes.FirstOrDefault(x => x.Resources == item);
+            }
+
+            return null;
+        }
+
+
         /// <summary>
         /// changes the theme through the base color
         /// </summary>
@@ -430,6 +488,8 @@ namespace Avalonia.ExtendedToolkit
 
             SelectedBaseColor = baseColor;
         }
+
+
 
         /// <summary>
         /// Gets the inverse <see cref="Theme" /> of the given <see cref="Theme"/>.

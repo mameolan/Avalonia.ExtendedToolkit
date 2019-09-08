@@ -1,0 +1,276 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:actions="clr-namespace:Avalonia.ExtendedToolkit.Actions;assembly=Avalonia.ExtendedToolkit"
+    xmlns:extensions="clr-namespace:Avalonia.ExtendedToolkit.Extensions;assembly=Avalonia.ExtendedToolkit"
+    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+    xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+    xmlns:iac="clr-namespace:Avalonia.Xaml.Interactions.Custom;assembly=Avalonia.Xaml.Interactions.Custom"
+    >
+  <Styles.Resources>
+    <DataTemplate x:Key="MahApps.Templates.FlyoutHeader" >
+      <!--x:Shared="False"-->
+      <DockPanel x:Name="dpHeader"
+                 VerticalAlignment="Center"
+                 LastChildFill="True">
+        <Controls:MetroButton Classes="MetroCircleButtonStyle" x:Name="PART_BackButton"
+                Width="34"
+                Height="34"
+                Margin="2 4 2 2"
+                VerticalAlignment="Bottom"
+                DockPanel.Dock="Left"
+                Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=Foreground}"
+                IsDefault="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonIsCancel}"
+                IsVisible="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonIsVisible}">
+          <i:Interaction.Behaviors>
+            <ia:EventTriggerBehavior EventName="Click" SourceObject="{Binding #PART_BackButton}">
+              <actions:CloseFlyoutAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommand, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommandParameter, Mode=OneWay}"/>
+            </ia:EventTriggerBehavior>
+            <!--<i:EventTrigger EventName="Click">
+              <actions:CloseFlyoutAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommand, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommandParameter, Mode=OneWay}" />
+            </i:EventTrigger>-->
+          </i:Interaction.Behaviors>
+          <ContentControl 
+                          Classes="PathIcon"
+                          Width="20"
+                          Height="20"
+                          Content="M19,34V42H43.75L33.75,52H44.25L58.25,38L44.25,24H33.75L43.75,34H19Z"
+                           />
+          <!--Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}"-->
+          <!--FlowDirection="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=FlowDirection}"-->
+        </Controls:MetroButton>
+        <ContentControl x:Name="PART_BackHeaderText"
+                        Margin="15 0 0 0"
+                        VerticalAlignment="Center"
+                        Content="{Binding}"
+                        Focusable="False"
+                        IsVisible="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=TitleIsVisible}" />
+      </DockPanel>
+      <!--<i:Interaction.Behaviors>
+        <ia:DataTriggerBehavior Binding="{Binding Position, RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}}" Value="Left">
+          <ia:ChangePropertyAction TargetObject="{Binding #PART_BackButton}" PropertyName="DockPanel.Dock" Value="Right"/>
+          -->
+      <!--<ia:ChangePropertyAction TargetObject="{Binding #PART_BackButton}" PropertyName="LayoutTransform">
+            
+              <ScaleTransform ScaleX="-1" />
+            
+          </ia:ChangePropertyAction>-->
+      <!--
+        </ia:DataTriggerBehavior>
+
+      </i:Interaction.Behaviors>-->
+
+
+      <!--<DataTemplate.Triggers>
+        <DataTrigger Binding="{Binding Position, RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}}" Value="Left">
+          <Setter TargetName="PART_BackButton" Property="DockPanel.Dock" Value="Right" />
+          <Setter TargetName="PART_BackButton" Property="LayoutTransform">
+            <Setter.Value>
+              <ScaleTransform ScaleX="-1" />
+            </Setter.Value>
+          </Setter>
+          <Setter TargetName="PART_BackHeaderText" Property="HorizontalAlignment" Value="Right" />
+          <Setter TargetName="PART_BackHeaderText" Property="Margin" Value="0 0 15 0" />
+        </DataTrigger>
+        <DataTrigger Binding="{Binding Position, RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}}" Value="Top">
+          <Setter TargetName="PART_BackButton" Property="LayoutTransform">
+            <Setter.Value>
+              <RotateTransform Angle="-90" />
+            </Setter.Value>
+          </Setter>
+        </DataTrigger>
+        <DataTrigger Binding="{Binding Position, RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}}" Value="Bottom">
+          <Setter TargetName="PART_BackButton" Property="LayoutTransform">
+            <Setter.Value>
+              <RotateTransform Angle="90" />
+            </Setter.Value>
+          </Setter>
+        </DataTrigger>
+      </DataTemplate.Triggers>-->
+    </DataTemplate>
+
+
+
+  </Styles.Resources>
+
+  <Style Selector="Controls|Flyout">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Flyout.Background}" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="HeaderFontSize" Value="{DynamicResource MahApps.Sizes.Font.FlyoutHeader}" />
+    <Setter Property="HeaderMargin" Value="10" />
+
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Flyout.Foreground}" />
+    <Setter Property="HeaderTemplate" Value="{StaticResource MahApps.Templates.FlyoutHeader}" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="IsVisible" Value="false" />
+
+    <Setter Property="Template" >
+      <Setter.Value>
+        <ControlTemplate >
+          <Border x:Name="PART_Root"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+            <Border.RenderTransform>
+              <TranslateTransform />
+            </Border.RenderTransform>
+            <VisualLayerManager>
+              <DockPanel  Focusable="False">
+                <Controls:MetroThumbContentControl x:Name="PART_Header"
+                                                       
+                                                       Content="{TemplateBinding Header}"
+                                                       
+                                                       ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                                       DockPanel.Dock="Top"
+                                                       RecognizesAccessKey="True"
+                                                       
+                                                       
+                                                        />
+                <!--
+                 FontFamily="{TemplateBinding Controls:ControlsHelper.HeaderFontFamily}"
+                                                       FontSize="{TemplateBinding Controls:ControlsHelper.HeaderFontSize}"
+                                                       FontWeight="{TemplateBinding Controls:ControlsHelper.HeaderFontWeight}"
+                Padding="{TemplateBinding Controls:ControlsHelper.HeaderMargin}"
+                ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.ContentCharacterCasing)}"-->
+                <ContentPresenter x:Name="PART_Content"
+                                Content="{TemplateBinding Content}"
+                                DockPanel.Dock="Bottom" />
+
+
+
+
+              </DockPanel>
+            </VisualLayerManager>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+
+
+  </Style>
+
+  <Style Selector="Controls|Flyout[FlyoutVisualStates=Hide] /template/ Border#PART_Root">
+    <Style.Animations>
+      <Animation Duration="00:00:01" >
+        <extensions:KeyFrameExt KeyTime="00:00:00.750" Name="hideFrame">
+          <!--hideFrame-->
+          <Setter Property="TranslateTransform.X" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HideFrameTranslateTransformX}"/>
+        </extensions:KeyFrameExt>
+        <extensions:KeyFrameExt KeyTime="00:00:00.750" Name="hideFrameY">
+          <!--hideFrameY-->
+          <Setter Property="TranslateTransform.Y" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HideFrameTranslateTransformY}"/>
+        </extensions:KeyFrameExt>
+        <extensions:KeyFrameExt KeyTime="00:00:00.750" Name="fadeOutFrame">
+          <!--fadeOutFrame-->
+          <Setter Property="Opacity" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FadeOutFrameOpacity}"/>
+        </extensions:KeyFrameExt>
+      </Animation>
+    </Style.Animations>
+
+
+
+  </Style>
+
+  <Style Selector="Controls|Flyout[FlyoutVisualStates=Show] /template/ Border#PART_Root">
+    <Style.Animations>
+      <Animation Duration="00:00:01" >
+        <extensions:KeyFrameExt KeyTime="00:00:00.750" Name="showFrame">
+          <!--showFrame-->
+          <Setter Property="TranslateTransform.X" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ShowFrameTranslateTransformX}"/>
+        </extensions:KeyFrameExt>
+        <extensions:KeyFrameExt KeyTime="00:00:00.750" Name="showFrameY">
+          <!--showFrameY-->
+          <Setter Property="TranslateTransform.Y" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ShowFrameTranslateTransformY}"/>
+        </extensions:KeyFrameExt>
+        <KeyFrame KeyTime="00:00:00.750" >
+          <Setter Property="Opacity" Value="1"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|Flyout[FlyoutVisualStates=HideDirect] /template/ Border#PART_Root">
+    <Style.Animations>
+      <Animation Duration="00:00:01" >
+        <KeyFrame Cue="0%" >
+          <Setter Property="TranslateTransform.X" Value="0"/>
+        </KeyFrame>
+        <KeyFrame Cue="0%" >
+          <Setter Property="TranslateTransform.Y" Value="0"/>
+        </KeyFrame>
+        <KeyFrame Cue="0%" >
+          <Setter Property="Opacity" Value="0"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|Flyout[FlyoutVisualStates=ShowDirect] /template/ Border#PART_Root">
+    <Style.Animations>
+      <Animation Duration="00:00:01" >
+        <KeyFrame Cue="0%" >
+          <Setter Property="TranslateTransform.X" Value="0"/>
+        </KeyFrame>
+        <KeyFrame Cue="0%" >
+          <Setter Property="TranslateTransform.Y" Value="0"/>
+        </KeyFrame>
+        <KeyFrame Cue="0%" >
+          <Setter Property="Opacity" Value="1"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|Flyout[Position=Right]">
+    <Setter Property="HeaderMargin" Value="10,25,10,10" />
+  </Style>
+
+  <Style Selector="Controls|Flyout[Position=Left]">
+    <Setter Property="HeaderMargin" Value="10,25,10,10" />
+  </Style>
+
+  <Style Selector="Controls|Flyout[Position=Left] /template/ Controls|MetroButton#PART_BackButton">
+    <Setter Property="DockPanel.Dock" Value="Right" />
+
+    <Setter Property="RenderTransform">
+      <Setter.Value>
+        <ScaleTransform ScaleX="-1" />
+      </Setter.Value>
+    </Setter>
+    
+    
+    <!--<Setter Property="LayoutTransform">
+      <Setter.Value>
+        <ScaleTransform ScaleX="-1" />
+      </Setter.Value>
+    </Setter>-->
+  </Style>
+
+  <Style Selector="Controls|Flyout[Position=Left] /template/ ContentControl#PART_BackHeaderText">
+    <Setter Property="HorizontalAlignment" Value="Right" />
+    <Setter Property="Margin" Value="0 0 15 0" />
+  </Style>
+
+  <Style Selector="Controls|Flyout[Position=Top] /template/ Controls|MetroButton#PART_BackButton">
+    <Setter Property="RenderTransform" >
+      <!--LayoutTransform-->
+      <Setter.Value>
+        <RotateTransform Angle="-90" />
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|Flyout[Position=Bottom] /template/ Controls|MetroButton#PART_BackButton">
+    <Setter Property="RenderTransform">
+      <!--LayoutTransform-->
+      <Setter.Value>
+        <RotateTransform Angle="90" />
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  
+  
+</Styles>
