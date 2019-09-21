@@ -2,17 +2,14 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit">
-
+    
   <Style Selector="Controls|MetroWindow">
     <Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}" />
     <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
     <Setter Property="FontSize" Value="{DynamicResource FontSizeNormal}" />
     <Setter Property="FontFamily" Value="{TemplateBinding FontFamily}" />
-    <Setter Property="FlyoutOverlayBrush">
-      <Setter.Value>
-        <SolidColorBrush Opacity="0.5" Color="{DynamicResource MahApps.Colors.Black}" />
-      </Setter.Value>
-    </Setter>
+    <Setter Property="FlyoutOverlayBrush" Value="{DynamicResource MetroWindow.FlyoutOverlayBrush}"/>
+    
     
     <Setter Property="HasSystemDecorations" Value="false" />
     <Setter Property="BorderThickness" Value="1" />

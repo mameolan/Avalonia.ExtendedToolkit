@@ -99,6 +99,7 @@
       <GradientStop Color="{{MahApps.Colors.Accent4}}" Offset="1"/>
     </LinearGradientBrush>
 
+    <SolidColorBrush Opacity="0.5" Color="{{MahApps.Colors.Black}}" x:Key="MetroWindow.FlyoutOverlayBrush" />
     <!--Extended Toolkit Colors Stop-->
 
     <!--  Matadata  -->
@@ -153,6 +154,7 @@
     <!--  PROJECT TEMPLATE BRUSHES  -->
 
     <!--  UNIVERSAL CONTROL BRUSHES  -->
+    
     <SolidColorBrush x:Key="MahApps.Brushes.Control.Background" Color="{StaticResource MahApps.Colors.White}" options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.White" Color="{StaticResource MahApps.Colors.White}" options:Freeze="True" />
     <SolidColorBrush x:Key="MahApps.Brushes.Black" Color="{StaticResource MahApps.Colors.Black}" options:Freeze="True" />
