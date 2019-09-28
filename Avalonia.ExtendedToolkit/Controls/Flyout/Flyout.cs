@@ -623,8 +623,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 thumbContentControl.DragCompleted -= this.WindowTitleThumbOnDragCompleted;
                 //thumbContentControl.PreviewMouseLeftButtonUp -= this.WindowTitleThumbOnPreviewMouseLeftButtonUp;
                 thumbContentControl.DragDelta -= this.WindowTitleThumbMoveOnDragDelta;
-                thumbContentControl.MouseDoubleClick -= this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
-                thumbContentControl.MouseRightButtonUp -= this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
+                thumbContentControl.DoubleTapped -= this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
+                thumbContentControl.PointerReleased -= this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
 
                 var flyoutsControl = this.TryFindParent<FlyoutsControl>();
                 if (flyoutsControl != null)
@@ -633,8 +633,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                     thumbContentControl.DragCompleted += this.WindowTitleThumbOnDragCompleted;
                     //thumbContentControl.PreviewMouseLeftButtonUp += this.WindowTitleThumbOnPreviewMouseLeftButtonUp;
                     thumbContentControl.DragDelta += this.WindowTitleThumbMoveOnDragDelta;
-                    thumbContentControl.MouseDoubleClick += this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
-                    thumbContentControl.MouseRightButtonUp += this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
+                    thumbContentControl.DoubleTapped += this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
+                    thumbContentControl.PointerReleased += this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
                 }
             }
 
@@ -683,8 +683,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 thumbContentControl.DragCompleted -= this.WindowTitleThumbOnDragCompleted;
                 //thumbContentControl.PreviewMouseLeftButtonUp -= this.WindowTitleThumbOnPreviewMouseLeftButtonUp;
                 thumbContentControl.DragDelta -= this.WindowTitleThumbMoveOnDragDelta;
-                thumbContentControl.MouseDoubleClick -= this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
-                thumbContentControl.MouseRightButtonUp -= this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
+                thumbContentControl.DoubleTapped -= this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
+                thumbContentControl.PointerReleased -= this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
             }
             this.parentWindow = null;
         }
@@ -700,7 +700,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        private void WindowTitleThumbChangeWindowStateOnMouseDoubleClick(object sender, PointerPressedEventArgs mouseButtonEventArgs)
+        private void WindowTitleThumbChangeWindowStateOnMouseDoubleClick(object sender, RoutedEventArgs mouseButtonEventArgs)
         {
             var window = this.ParentWindow;
             if (window != null && this.Position != Position.Bottom /*&& Mouse.GetPosition((IInputElement)sender).Y <= window.TitleBarHeight && window.TitleBarHeight > 0*/)
@@ -709,9 +709,13 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        private void WindowTitleThumbSystemMenuOnMouseRightButtonUp(object sender, PointerPressedEventArgs e)
+        private void WindowTitleThumbSystemMenuOnMouseRightButtonUp(object sender, PointerReleasedEventArgs e)
         {
+            if (e.MouseButton != MouseButton.Right)
+                return;
+
             var window = this.ParentWindow;
+            
             if (window != null && this.Position != Position.Bottom /*&& Mouse.GetPosition((IInputElement)sender).Y <= window.TitleBarHeight && window.TitleBarHeight > 0*/)
             {
                 //MetroWindow.DoWindowTitleThumbSystemMenuOnMouseRightButtonUp(window, e);

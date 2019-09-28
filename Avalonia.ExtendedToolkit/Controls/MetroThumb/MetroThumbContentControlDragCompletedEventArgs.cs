@@ -2,7 +2,7 @@
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
-    internal class MetroThumbContentControlDragCompletedEventArgs : VectorEventArgs
+    public class MetroThumbContentControlDragCompletedEventArgs : VectorEventArgs
     {
         public MetroThumbContentControlDragCompletedEventArgs(double horizontalOffset, double verticalOffset, bool canceled)
         {

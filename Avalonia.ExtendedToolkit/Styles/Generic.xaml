@@ -2,6 +2,11 @@
   <!--<StyleInclude Source="resm:Avalonia.ExtendedToolkit.Styles.ProgressRing.xaml?assembly=Avalonia.Metro"/>-->
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Fonts.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/MetroWindow/MetroWindow.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/MetroContentControl/MetroContentControl.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/MetroThumb/MetroThumbContentControl.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/WindowCommands/WindowButtonCommands.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/WindowCommands/WindowCommands.xaml"/>
+  
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/BusyIndicator/BusyIndicator.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Badged/Badget.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Wizard/Wizard.xaml"/>

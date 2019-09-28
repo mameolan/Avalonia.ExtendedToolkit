@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls;
+using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Shapes;
 using Avalonia.ExtendedToolkit.Extensions;
@@ -525,7 +526,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                     WindowState = WindowState.Maximized;
                     break;
             }
-            //RaisePropertyChanged(WindowStateProperty, oldValue, WindowState, Data.BindingPriority.TemplatedParent);
+            RaisePropertyChanged(WindowStateProperty, oldValue, WindowState, Data.BindingPriority.TemplatedParent);
         }
 
         internal void HandleFlyoutStatusChange(Flyout flyout, List<Flyout> visibleFlyouts)
@@ -587,7 +588,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 BeginResizeDrag(WindowEdge.SouthEast);
             }
-            else if (_titleBar != null && _titleBar.IsPointerOver)
+            else if (titleBar != null && titleBar.IsPointerOver)
             {
                 _mouseDown = true;
                 _mouseDownPosition = e.GetPosition(this);
@@ -608,16 +609,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         /// <inheritdoc/>
-        protected override void OnPointerMoved(PointerEventArgs e)
-        {
-            if (_titleBar != null && _titleBar.IsPointerOver && _mouseDown)
-            {
-                WindowState = WindowState.Normal;
-                BeginMoveDrag();
-                _mouseDown = false;
-            }
-            base.OnPointerMoved(e);
-        }
+        //protected override void OnPointerMoved(PointerEventArgs e)
+        //{
+        //    if (titleBar != null && titleBar.IsPointerOver && _mouseDown)
+        //    {
+        //        WindowState = WindowState.Normal;
+        //        BeginMoveDrag();
+        //        _mouseDown = false;
+        //    }
+        //    base.OnPointerMoved(e);
+        //}
 
         public MetroWindow()
         {
@@ -646,6 +647,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             //{
             //    Flyouts = new FlyoutsControl();
             //}
+            SetVisibiltyForAllTitleElements();
         }
 
         private void OnWidthChanged(MetroWindow o, AvaloniaPropertyChangedEventArgs e)
@@ -795,7 +797,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 //this.windowTitleThumb.PreviewMouseLeftButtonUp += WindowTitleThumbOnPreviewMouseLeftButtonUp;
                 this.windowTitleThumb.DragDelta += this.WindowTitleThumbMoveOnDragDelta;
-                this.windowTitleThumb.PointerPressed += this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
+                this.windowTitleThumb.DoubleTapped += this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
                 this.windowTitleThumb.PointerReleased += this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
             }
             var thumbContentControl = this.titleBar as IMetroThumb;
@@ -803,14 +805,14 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 //thumbContentControl.PreviewMouseLeftButtonUp += WindowTitleThumbOnPreviewMouseLeftButtonUp;
                 thumbContentControl.DragDelta += this.WindowTitleThumbMoveOnDragDelta;
-                thumbContentControl.PointerPressed += this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
+                thumbContentControl.DoubleTapped += this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
                 thumbContentControl.PointerReleased += this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
             }
             if (this.flyoutModalDragMoveThumb != null)
             {
                 //this.flyoutModalDragMoveThumb.PreviewMouseLeftButtonUp += WindowTitleThumbOnPreviewMouseLeftButtonUp;
                 this.flyoutModalDragMoveThumb.DragDelta += this.WindowTitleThumbMoveOnDragDelta;
-                this.flyoutModalDragMoveThumb.PointerPressed += this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
+                this.flyoutModalDragMoveThumb.DoubleTapped += this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
                 this.flyoutModalDragMoveThumb.PointerReleased += this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
             }
 
@@ -820,6 +822,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 this.SizeChanged += this.MetroWindow_SizeChanged;
             }
+        }
+
+        private void WindowTitleThumbChangeWindowStateOnMouseDoubleClick(object sender, RoutedEventArgs e)
+        {
+            DoWindowTitleThumbChangeWindowStateOnMouseDoubleClick(this, e);
         }
 
         private void MetroWindow_SizeChanged(object sender, EventArgs e)
@@ -872,27 +879,32 @@ namespace Avalonia.ExtendedToolkit.Controls
             DoWindowTitleThumbSystemMenuOnMouseRightButtonUp(this, e);
         }
 
-        private void DoWindowTitleThumbSystemMenuOnMouseRightButtonUp(MetroWindow metroWindow, PointerReleasedEventArgs e)
+        public void DoWindowTitleThumbSystemMenuOnMouseRightButtonUp(MetroWindow metroWindow, PointerReleasedEventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
-        private void WindowTitleThumbChangeWindowStateOnMouseDoubleClick(object sender, PointerPressedEventArgs e)
+        private void DoWindowTitleThumbChangeWindowStateOnMouseDoubleClick(MetroWindow metroWindow, RoutedEventArgs mouseButtonEventArgs)
         {
-            if (e.MouseButton != MouseButton.Left &&e.ClickCount<2)
-                return;
+            // restore/maximize only with left button
+            //if (mouseButtonEventArgs.ChangedButton == MouseButton.Left)
+            {
+                // we can maximize or restore the window if the title bar height is set (also if title bar is hidden)
+                var canResize = metroWindow.CanResize;//.ResizeMode == ResizeMode.CanResizeWithGrip || metroWindow.ResizeMode == ResizeMode.CanResize;
+                //var mousePos = Mouse.GetPosition(window);
+                //var isMouseOnTitlebar = mousePos.Y <= window.TitleBarHeight && window.TitleBarHeight > 0;
+                if (canResize /*&& isMouseOnTitlebar*/)
+                {
+                    ToggleWindowState();
 
-            DoWindowTitleThumbChangeWindowStateOnMouseDoubleClick(this, e);
-        }
-
-        private void DoWindowTitleThumbChangeWindowStateOnMouseDoubleClick(MetroWindow metroWindow, PointerPressedEventArgs mouseButtonEventArgs)
-        {
-            throw new NotImplementedException();
+                    mouseButtonEventArgs.Handled = true;
+                }
+            }
         }
 
         private void WindowTitleThumbMoveOnDragDelta(object sender, VectorEventArgs e)
         {
-            throw new NotImplementedException();
+            DoWindowTitleThumbMoveOnDragDelta(sender as IMetroThumb, this, e);
         }
 
         private void IconMouseDown(object sender, PointerPressedEventArgs e)
@@ -964,57 +976,174 @@ namespace Avalonia.ExtendedToolkit.Controls
             
         }
 
+        internal void DoWindowTitleThumbMoveOnDragDelta(IMetroThumb thumb, MetroWindow window, VectorEventArgs dragDeltaEventArgs)
+        {
+            if (thumb == null)
+            {
+                throw new ArgumentNullException(nameof(thumb));
+            }
+            if (window == null)
+            {
+                throw new ArgumentNullException(nameof(window));
+            }
+
+            // drag only if IsWindowDraggable is set to true
+            if (!window.IsWindowDraggable ||
+                (!(Math.Abs(dragDeltaEventArgs.Vector.Y) > 2) && !(Math.Abs(dragDeltaEventArgs.Vector.X) > 2)))
+            {
+                return;
+            }
+
+            // tage from DragMove internal code
+            window.VerifyAccess();
+
+            //var cursorPos = WinApiHelper.GetPhysicalCursorPos();
+
+            // if the window is maximized dragging is only allowed on title bar (also if not visible)
+            var windowIsMaximized = window.WindowState == WindowState.Maximized;
+
+            if (titleBar != null && titleBar.IsPointerOver /*&& _mouseDown*/)
+            {
+                WindowState = WindowState.Normal;
+                BeginMoveDrag();
+                _mouseDown = false;
+            }
+
+            //var isMouseOnTitlebar = Mouse.GetPosition(thumb).Y <= window.TitleBarHeight && window.TitleBarHeight > 0;
+            //if (!isMouseOnTitlebar && windowIsMaximized)
+            //{
+            //    return;
+            //}
+
+#pragma warning disable 618
+            // for the touch usage
+            //UnsafeNativeMethods.ReleaseCapture();
+#pragma warning restore 618
+
+            if (windowIsMaximized)
+            {
+                //var cursorXPos = cursorPos.x;
+                EventHandler windowOnStateChanged = null;
+                windowOnStateChanged = (sender, args) =>
+                {
+                    //window.Top = 2;
+                    //window.Left = Math.Max(cursorXPos - window.RestoreBounds.Width / 2, 0);
+
+                    //window.StateChanged -= windowOnStateChanged;
+                    //if (window.WindowState == WindowState.Normal)
+                    //{
+                    //    Mouse.Capture(thumb, CaptureMode.Element);
+                    //}
+                };
+                //window.StateChanged -= windowOnStateChanged;
+                //window.StateChanged += windowOnStateChanged;
+            }
+
+//            var criticalHandle = window.CriticalHandle;
+//#pragma warning disable 618
+//            // these lines are from DragMove
+//            // NativeMethods.SendMessage(criticalHandle, WM.SYSCOMMAND, (IntPtr)SC.MOUSEMOVE, IntPtr.Zero);
+//            // NativeMethods.SendMessage(criticalHandle, WM.LBUTTONUP, IntPtr.Zero, IntPtr.Zero);
+
+//            var wpfPoint = window.PointToScreen(Mouse.GetPosition(window));
+//            var x = (int)wpfPoint.X;
+//            var y = (int)wpfPoint.Y;
+//            NativeMethods.SendMessage(criticalHandle, WM.NCLBUTTONDOWN, (IntPtr)HT.CAPTION, new IntPtr(x | (y << 16)));
+//#pragma warning restore 618
+        }
+
+
+
+
         /// <inheritdoc/>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             base.OnTemplateApplied(e);
 
-            _titleBar = e.NameScope.Find<Grid>("PART_TitleBar");
-            _minimiseButton = e.NameScope.Find<Button>("PART_MinimiseButton");
-            _restoreButton = e.NameScope.Find<Button>("PART_RestoreButton");
-            _closeButton = e.NameScope.Find<Button>("PART_CloseButton");
-            _icon = e.NameScope.Find<Image>("PART_Icon");
+            LeftWindowCommandsPresenter = e.NameScope.Find<ContentPresenter>(PART_LeftWindowCommands);
+            RightWindowCommandsPresenter = e.NameScope.Find<ContentPresenter>(PART_RightWindowCommands);
+            WindowButtonCommandsPresenter = e.NameScope.Find<ContentPresenter>(PART_WindowButtonCommands);
 
-            _topHorizontalGrip = e.NameScope.Find<Grid>("PART_TopHorizontalGrip");
-            _bottomHorizontalGrip = e.NameScope.Find<Grid>("PART_BottomHorizontalGrip");
-            _leftVerticalGrip = e.NameScope.Find<Grid>("PART_LeftVerticalGrip");
-            _rightVerticalGrip = e.NameScope.Find<Grid>("PART_RightVerticalGrip");
+            if (LeftWindowCommands == null)
+                LeftWindowCommands = new WindowCommands();
+            if (RightWindowCommands == null)
+                RightWindowCommands = new WindowCommands();
+            if (WindowButtonCommands == null)
+                WindowButtonCommands = new WindowButtonCommands();
 
-            _topLeftGrip = e.NameScope.Find<Grid>("PART_TopLeftGrip");
-            _bottomLeftGrip = e.NameScope.Find<Grid>("PART_BottomLeftGrip");
-            _topRightGrip = e.NameScope.Find<Grid>("PART_TopRightGrip");
-            _bottomRightGrip = e.NameScope.Find<Grid>("PART_BottomRightGrip");
+            LeftWindowCommands.ParentWindow = this;
+            RightWindowCommands.ParentWindow = this;
+            WindowButtonCommands.ParentWindow = this;
+            overlayBox = e.NameScope.Find<Grid>(PART_OverlayBox);
+            metroActiveDialogContainer = e.NameScope.Find<Grid>(PART_MetroActiveDialogContainer);
+            metroInactiveDialogContainer = e.NameScope.Find<Grid>(PART_MetroInactiveDialogsContainer);
+            flyoutModal = e.NameScope.Find<Rectangle>(PART_FlyoutModal);
+            //flyoutModal.MouseDown += FlyoutsPreviewMouseDown;
+            //this.PreviewMouseDown += FlyoutsPreviewMouseDown;
 
-            flyoutModal = e.NameScope.Find<Rectangle>("PART_FlyoutModal");
-            flyoutModalDragMoveThumb = e.NameScope.Find<Thumb>("PART_FlyoutModalDragMoveThumb");
+            icon = e.NameScope.Find<ContentControl>(PART_Icon);
+            titleBar = e.NameScope.Find<ContentControl>(PART_TitleBar);
+            titleBarBackground = e.NameScope.Find<Rectangle>(PART_WindowTitleBackground);
+            windowTitleThumb = e.NameScope.Find<Thumb>(PART_WindowTitleThumb);
+            flyoutModalDragMoveThumb= e.NameScope.Find<Thumb>(PART_FlyoutModalDragMoveThumb);
+            SetVisibiltyForAllTitleElements();
 
-            if (_minimiseButton != null)
+            var metroContentControl = e.NameScope.Find<MetroContentControl>(PART_Content);
+            if (metroContentControl != null)
             {
-                _minimiseButton.Click += (sender, ee) => { WindowState = WindowState.Minimized; };
+                metroContentControl.TransitionCompleted += (sender, args) => this.RaiseEvent(new RoutedEventArgs(WindowTransitionCompletedEvent));
             }
 
-            if (_restoreButton != null)
-            {
-                _restoreButton.Click += (sender, ee) => { ToggleWindowState(); };
-            }
 
-            if (_titleBar != null)
-            {
-                _titleBar.DoubleTapped += (sender, ee) =>
-                {
-                    ToggleWindowState();
-                };
-            }
 
-            if (_closeButton != null)
-            {
-                _closeButton.Click += (sender, ee) => { Close(); };
-            }
+            //_titleBar = e.NameScope.Find<Grid>("PART_TitleBar");
+            //_minimiseButton = e.NameScope.Find<Button>("PART_MinimiseButton");
+            //_restoreButton = e.NameScope.Find<Button>("PART_RestoreButton");
+            //_closeButton = e.NameScope.Find<Button>("PART_CloseButton");
+            //_icon = e.NameScope.Find<Image>("PART_Icon");
+
+            //_topHorizontalGrip = e.NameScope.Find<Grid>("PART_TopHorizontalGrip");
+            //_bottomHorizontalGrip = e.NameScope.Find<Grid>("PART_BottomHorizontalGrip");
+            //_leftVerticalGrip = e.NameScope.Find<Grid>("PART_LeftVerticalGrip");
+            //_rightVerticalGrip = e.NameScope.Find<Grid>("PART_RightVerticalGrip");
+
+            //_topLeftGrip = e.NameScope.Find<Grid>("PART_TopLeftGrip");
+            //_bottomLeftGrip = e.NameScope.Find<Grid>("PART_BottomLeftGrip");
+            //_topRightGrip = e.NameScope.Find<Grid>("PART_TopRightGrip");
+            //_bottomRightGrip = e.NameScope.Find<Grid>("PART_BottomRightGrip");
+
+            //flyoutModal = e.NameScope.Find<Rectangle>("PART_FlyoutModal");
+            //flyoutModalDragMoveThumb = e.NameScope.Find<Thumb>("PART_FlyoutModalDragMoveThumb");
+
+            //if (_minimiseButton != null)
+            //{
+            //    _minimiseButton.Click += (sender, ee) => { WindowState = WindowState.Minimized; };
+            //}
+
+            //if (_restoreButton != null)
+            //{
+            //    _restoreButton.Click += (sender, ee) => { ToggleWindowState(); };
+            //}
+
+            //if (_titleBar != null)
+            //{
+            //    _titleBar.DoubleTapped += (sender, ee) =>
+            //    {
+            //        ToggleWindowState();
+            //    };
+            //}
+
+            //if (_closeButton != null)
+            //{
+            //    _closeButton.Click += (sender, ee) => { Close(); };
+            //}
 
             //if (_icon != null)
             //{
             //    _icon.DoubleTapped += (sender, ee) => { Close(); };
             //}
+
+
         }
     }
 }

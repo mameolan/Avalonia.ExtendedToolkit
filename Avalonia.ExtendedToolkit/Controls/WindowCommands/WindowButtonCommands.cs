@@ -146,6 +146,89 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly AvaloniaProperty RestoreProperty =
             AvaloniaProperty.Register<WindowButtonCommands, string>(nameof(Restore));
 
+
+
+
+        public bool IsCloseButtonEnabled
+        {
+            get { return (bool)GetValue(IsCloseButtonEnabledProperty); }
+            private set { SetValue(IsCloseButtonEnabledProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty IsCloseButtonEnabledProperty =
+            AvaloniaProperty.Register<WindowButtonCommands, bool>(nameof(IsCloseButtonEnabled));
+
+
+
+        public bool IsAnyDialogOpen
+        {
+            get { return (bool)GetValue(IsAnyDialogOpenProperty); }
+            private set { SetValue(IsAnyDialogOpenProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty IsAnyDialogOpenProperty =
+            AvaloniaProperty.Register<WindowButtonCommands, bool>(nameof(IsAnyDialogOpen));
+
+
+
+        public bool IsCloseButtonEnabledWithDialog
+        {
+            get { return (bool)GetValue(IsCloseButtonEnabledWithDialogProperty); }
+            private set { SetValue(IsCloseButtonEnabledWithDialogProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty IsCloseButtonEnabledWithDialogProperty =
+            AvaloniaProperty.Register<WindowButtonCommands, bool>(nameof(IsCloseButtonEnabledWithDialog));
+
+
+
+
+        public WindowState WindowState
+        {
+            get { return (WindowState)GetValue(WindowStateProperty); }
+            set { SetValue(WindowStateProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty WindowStateProperty =
+            AvaloniaProperty.Register<WindowButtonCommands, WindowState>(nameof(WindowState));
+
+
+
+        public WindowButtonCommands()
+        {
+            ThemeProperty.Changed.AddClassHandler<WindowButtonCommands>((o, e) => OnThemeChanged(o, e));
+        }
+
+        private void OnThemeChanged(WindowButtonCommands o, AvaloniaPropertyChangedEventArgs e)
+        {
+            if (e.NewValue is WindowCommandTheme)
+            {
+                WindowCommandTheme windowCommandTheme = (WindowCommandTheme)e.NewValue;
+
+                switch (windowCommandTheme)
+                {
+                    case WindowCommandTheme.Light:
+                        close.Styles.Add(LightCloseButtonStyle);
+                        max.Styles.Add(LightMaxButtonStyle);
+                        min.Styles.Add(LightMinButtonStyle);
+                        break;
+                    case WindowCommandTheme.Dark:
+                        close.Styles.Add(DarkCloseButtonStyle);
+                        max.Styles.Add(DarkMaxButtonStyle);
+                        min.Styles.Add(DarkMinButtonStyle);
+                        break;
+                }
+
+
+
+
+            }
+        }
+
         private Button min;
         private Button max;
         private Button close;
@@ -193,7 +276,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             if (null == this.ParentWindow) return;
             if (this.ParentWindow.WindowState == WindowState.Maximized)
             {
-              //  ControlzEx.Windows.Shell.SystemCommands.RestoreWindow(this.ParentWindow);
+                //  ControlzEx.Windows.Shell.SystemCommands.RestoreWindow(this.ParentWindow);
             }
             else
             {
@@ -227,9 +310,39 @@ namespace Avalonia.ExtendedToolkit.Controls
                 {
                     return;
                 }
+
+                if (_parentWindow != null)
+                {
+                    _parentWindow.PropertyChanged -= ParentWindow_PropertyChanged;
+                }
+
+
+
                 _parentWindow = value;
                 //this.OnPropertyChanged("ParentWindow");
+
+
+                _parentWindow.PropertyChanged += ParentWindow_PropertyChanged;
+
             }
+        }
+
+        private void ParentWindow_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
+        {
+            if (WindowState != _parentWindow.WindowState)
+            {
+                WindowState = _parentWindow.WindowState;
+            }
+            if (IsAnyDialogOpen != _parentWindow.IsAnyDialogOpen)
+            {
+                IsAnyDialogOpen = _parentWindow.IsAnyDialogOpen;
+            }
+            if (IsCloseButtonEnabled != _parentWindow.IsCloseButtonEnabled)
+            {
+                IsCloseButtonEnabled = _parentWindow.IsCloseButtonEnabled;
+            }
+
+            //IsCloseButtonEnabledWithDialog = _parentWindow.IsCloseButtonEnabledWithDialog;
         }
 
         //public event PropertyChangedEventHandler PropertyChanged;

@@ -25,9 +25,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         private const string PART_FlyoutModal = "PART_FlyoutModal";
         private const string PART_Content = "PART_Content";
 
-        Image icon;
-        Control titleBar;
-        Control titleBarBackground;
+        ContentControl icon;
+        ContentControl titleBar;
+        Rectangle titleBarBackground;
         Thumb windowTitleThumb;
         Thumb flyoutModalDragMoveThumb;
         private IInputElement restoreFocus;

@@ -23,14 +23,14 @@
                 Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=Foreground}"
                 IsDefault="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonIsCancel}"
                 IsVisible="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonIsVisible}">
-          <i:Interaction.Behaviors>
+          <!--<i:Interaction.Behaviors>
             <ia:EventTriggerBehavior EventName="Click" SourceObject="{Binding #PART_BackButton}">
               <actions:CloseFlyoutAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommand, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommandParameter, Mode=OneWay}"/>
             </ia:EventTriggerBehavior>
-            <!--<i:EventTrigger EventName="Click">
+            --><!--<i:EventTrigger EventName="Click">
               <actions:CloseFlyoutAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommand, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommandParameter, Mode=OneWay}" />
-            </i:EventTrigger>-->
-          </i:Interaction.Behaviors>
+            </i:EventTrigger>--><!--
+          </i:Interaction.Behaviors>-->
           <ContentControl 
                           Classes="PathIcon"
                           Width="20"

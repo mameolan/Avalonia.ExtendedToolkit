@@ -11,14 +11,14 @@ namespace Avalonia.ExtendedToolkit.Controls
         event EventHandler<VectorEventArgs> DragCompleted;
 
 
-        //event DragStartedEventHandler DragStarted;
+        //event EventHandler<MetroThumbContentControlDragStartedEventArgs> DragStarted;
 
         //event DragDeltaEventHandler DragDelta;
 
-        //event DragCompletedEventHandler DragCompleted;
+        //event EventHandler<MetroThumbContentControlDragCompletedEventArgs> DragCompleted;
+        event EventHandler<RoutedEventArgs> DoubleTapped;
+        //event MouseButtonEventHandler MouseDoubleClick;
 
-        event MouseButtonEventHandler MouseDoubleClick;
-
-        event MouseButtonEventHandler MouseRightButtonUp;
+        event EventHandler<PointerReleasedEventArgs> PointerReleased;
     }
 }

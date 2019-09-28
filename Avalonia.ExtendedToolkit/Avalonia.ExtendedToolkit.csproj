@@ -25,7 +25,6 @@
     </AvaloniaResource>
   </ItemGroup>
 
-  
   <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="Styles\Themes\GeneratorParameters.json" />
@@ -35,6 +34,7 @@
     <EmbeddedResource Include="Styles\Themes\GeneratorParameters.json" />
   </ItemGroup>
 
+  
   <Target Name="GenerateXamlFilesInner">
     <PropertyGroup>
       <XamlColorSchemeGeneratorVersion Condition="'%(PackageReference.Identity)' == 'XamlColorSchemeGenerator'">%(PackageReference.Version)</XamlColorSchemeGeneratorVersion>

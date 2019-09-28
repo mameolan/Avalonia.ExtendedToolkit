@@ -19,8 +19,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         public event MouseButtonEventHandler MouseDoubleClick;
         public event MouseButtonEventHandler MouseRightButtonUp;
 
-        public static RoutedEvent<RoutedEventArgs> DragStartedEvent =
-            RoutedEvent.Register<Wizard, RoutedEventArgs>(nameof(DragStartedEvent), RoutingStrategies.Bubble);
+        public static RoutedEvent<VectorEventArgs> DragStartedEvent =
+            RoutedEvent.Register<MetroThumbContentControl, VectorEventArgs>(nameof(DragStartedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler<VectorEventArgs> DragStarted
         {
@@ -34,8 +34,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> DragDeltaEvent =
-            RoutedEvent.Register<Wizard, RoutedEventArgs>(nameof(DragDeltaEvent), RoutingStrategies.Bubble);
+        public static RoutedEvent<VectorEventArgs> DragDeltaEvent =
+            RoutedEvent.Register<MetroThumbContentControl, VectorEventArgs>(nameof(DragDeltaEvent), RoutingStrategies.Bubble);
 
         public event EventHandler<VectorEventArgs> DragDelta
         {
@@ -49,8 +49,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> DragCompletedEvent =
-            RoutedEvent.Register<Wizard, RoutedEventArgs>(nameof(DragCompletedEvent), RoutingStrategies.Bubble);
+        public static RoutedEvent<VectorEventArgs> DragCompletedEvent =
+            RoutedEvent.Register<MetroThumbContentControl, VectorEventArgs>(nameof(DragCompletedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler<VectorEventArgs> DragCompleted
         {
@@ -93,7 +93,16 @@ namespace Avalonia.ExtendedToolkit.Controls
             this.ClearValue(IsDraggingProperty);
             var horizontalChange = this.oldDragScreenPoint.Value.X - this.startDragScreenPoint.X;
             var verticalChange = this.oldDragScreenPoint.Value.Y - this.startDragScreenPoint.Y;
-            this.RaiseEvent(new MetroThumbContentControlDragCompletedEventArgs(horizontalChange, verticalChange, true));
+
+            var args = new VectorEventArgs()
+            {
+                Handled = true,
+                RoutedEvent = DragCompletedEvent,
+                Vector = new Vector(horizontalChange, verticalChange)
+            };
+
+
+            this.RaiseEvent(args);
         }
 
 
@@ -121,7 +130,14 @@ namespace Avalonia.ExtendedToolkit.Controls
                     this.startDragPoint = e.GetPosition(this);
                     this.oldDragScreenPoint = this.startDragScreenPoint = this.PointToScreen(this.startDragPoint);
 
-                    this.RaiseEvent(new MetroThumbContentControlDragStartedEventArgs(this.startDragPoint.X, this.startDragPoint.Y));
+                    var args = new VectorEventArgs()
+                    {
+                        RoutedEvent = DragStartedEvent,
+                        Vector = new Vector(this.startDragPoint.X, this.startDragPoint.Y)
+                    };
+
+
+                    this.RaiseEvent(args);
                 }
                 catch (Exception exception)
                 {
@@ -150,7 +166,16 @@ namespace Avalonia.ExtendedToolkit.Controls
                 PixelPoint currentMouseScreenPoint = this.PointToScreen(e.GetPosition(this));
                 var horizontalChange = currentMouseScreenPoint.X - this.startDragScreenPoint.X;
                 var verticalChange = currentMouseScreenPoint.Y - this.startDragScreenPoint.Y;
-                this.RaiseEvent(new MetroThumbContentControlDragCompletedEventArgs(horizontalChange, verticalChange, false));
+
+                var args = new VectorEventArgs()
+                {
+                    Handled=false,
+                    RoutedEvent = DragCompletedEvent,
+                    Vector = new Vector(horizontalChange, verticalChange)
+                };
+
+
+                this.RaiseEvent(args);
 
 
             }

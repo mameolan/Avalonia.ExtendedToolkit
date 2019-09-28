@@ -1,0 +1,18 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit">
+
+  <Style Selector="Controls|WindowCommands">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.TransparentWhite}" />
+    <!--<Setter Property="Controls:ControlsHelper.ContentCharacterCasing" Value="Normal" />-->
+    <!--<Setter Property="DarkTemplate" Value="{StaticResource MahApps.Templates.WindowCommands.Dark}" />-->
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <!--<Setter Property="LightTemplate" Value="{StaticResource MahApps.Templates.WindowCommands.Light}" />
+    <Setter Property="Template" Value="{StaticResource MahApps.Templates.WindowCommands.Light}" />-->
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+  </Style>
+  
+</Styles>
