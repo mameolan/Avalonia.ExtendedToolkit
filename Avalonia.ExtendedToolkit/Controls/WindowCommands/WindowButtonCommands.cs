@@ -224,7 +224,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 }
 
 
-
+                
 
             }
         }
@@ -268,6 +268,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         private void MinimizeClick(object sender, RoutedEventArgs e)
         {
             if (null == this.ParentWindow) return;
+
+            this.ParentWindow.WindowState = WindowState.Minimized;
+
             //ControlzEx.Windows.Shell.SystemCommands.MinimizeWindow(this.ParentWindow);
         }
 
@@ -276,10 +279,13 @@ namespace Avalonia.ExtendedToolkit.Controls
             if (null == this.ParentWindow) return;
             if (this.ParentWindow.WindowState == WindowState.Maximized)
             {
+                this.ParentWindow.WindowState = WindowState.Normal;
+
                 //  ControlzEx.Windows.Shell.SystemCommands.RestoreWindow(this.ParentWindow);
             }
             else
             {
+                this.ParentWindow.WindowState = WindowState.Maximized;
                 //ControlzEx.Windows.Shell.SystemCommands.MaximizeWindow(this.ParentWindow);
             }
         }

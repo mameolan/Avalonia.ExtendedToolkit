@@ -22,11 +22,11 @@ namespace Avalonia.ExtendedToolkit.Extensions
             {
                 if (resetBrush == null)
                 {
-                    //window.ResetAllWindowCommandsBrush();
+                    window.ResetAllWindowCommandsBrush();
                 }
                 else
                 {
-                    //window.ChangeAllWindowCommandsBrush(resetBrush);
+                    window.ChangeAllWindowCommandsBrush(resetBrush);
                 }
             }
             var topFlyout = allOpenFlyouts
@@ -35,7 +35,7 @@ namespace Avalonia.ExtendedToolkit.Extensions
                             .FirstOrDefault();
             if (topFlyout != null)
             {
-                //window.UpdateWindowCommandsForFlyout(topFlyout);
+                window.UpdateWindowCommandsForFlyout(topFlyout);
             }
             else
             {
@@ -45,7 +45,7 @@ namespace Avalonia.ExtendedToolkit.Extensions
                                  .FirstOrDefault();
                 if (leftFlyout != null)
                 {
-                    //window.UpdateWindowCommandsForFlyout(leftFlyout);
+                    window.UpdateWindowCommandsForFlyout(leftFlyout);
                 }
 
                 var rightFlyout = allOpenFlyouts
@@ -54,13 +54,13 @@ namespace Avalonia.ExtendedToolkit.Extensions
                                   .FirstOrDefault();
                 if (rightFlyout != null)
                 {
-                    //window.UpdateWindowCommandsForFlyout(rightFlyout);
+                    window.UpdateWindowCommandsForFlyout(rightFlyout);
                 }
             }
 
         }
 
-        private static bool NeedLightTheme(this Brush brush)
+        private static bool NeedLightTheme(this IBrush brush)
         {
             if (brush == null)
             {
@@ -90,29 +90,57 @@ namespace Avalonia.ExtendedToolkit.Extensions
 
         public static void ResetAllWindowCommandsBrush(this MetroWindow window)
         {
-            //window.ChangeAllWindowCommandsBrush(window.OverrideDefaultWindowCommandsBrush);
-            //window.ChangeAllWindowButtonCommandsBrush(window.OverrideDefaultWindowCommandsBrush);
+            window.ChangeAllWindowCommandsBrush(window.OverrideDefaultWindowCommandsBrush);
+            window.ChangeAllWindowButtonCommandsBrush(window.OverrideDefaultWindowCommandsBrush);
         }
+
+        public static void UpdateWindowCommandsForFlyout(this MetroWindow window, Flyout flyout)
+        {
+            window.ChangeAllWindowButtonCommandsBrush(flyout.Foreground, flyout.Position);
+        }
+
 
         private static void ChangeAllWindowCommandsBrush(this MetroWindow window, Brush brush)
         {
             // set the theme based on color lightness
-            var theme = brush.NeedLightTheme() ? ThemeManager.BaseColorLight : ThemeManager.BaseColorDark;
+            var theme = brush.NeedLightTheme() ? WindowCommandTheme.Light : WindowCommandTheme.Dark;
 
             // set the theme to light by default
-            //window.LeftWindowCommands?.SetValue(WindowCommands.ThemeProperty, theme);
-            //window.RightWindowCommands?.SetValue(WindowCommands.ThemeProperty, theme);
+            window.LeftWindowCommands?.SetValue(WindowCommands.ThemeProperty, theme);
+            window.RightWindowCommands?.SetValue(WindowCommands.ThemeProperty, theme);
 
             // clear or set the foreground property
             if (brush != null)
             {
-                //window.LeftWindowCommands?.SetValue(TemplatedControl.ForegroundProperty, brush);
-                //window.RightWindowCommands?.SetValue(TemplatedControl.ForegroundProperty, brush);
+                window.LeftWindowCommands?.SetValue(TemplatedControl.ForegroundProperty, brush);
+                window.RightWindowCommands?.SetValue(TemplatedControl.ForegroundProperty, brush);
             }
             else
             {
-                //window.LeftWindowCommands?.ClearValue(TemplatedControl.ForegroundProperty);
-                //window.RightWindowCommands?.ClearValue(TemplatedControl.ForegroundProperty);
+                window.LeftWindowCommands?.ClearValue(TemplatedControl.ForegroundProperty);
+                window.RightWindowCommands?.ClearValue(TemplatedControl.ForegroundProperty);
+            }
+        }
+
+        private static void ChangeAllWindowButtonCommandsBrush(this MetroWindow window, IBrush brush, Position position = Position.Top)
+        {
+            // set the theme to light by default
+            if (position == Position.Right || position == Position.Top)
+            {
+                // set the theme based on color lightness
+                var theme = brush.NeedLightTheme() ? WindowCommandTheme.Light : WindowCommandTheme.Dark;
+
+                window.WindowButtonCommands?.SetValue(WindowButtonCommands.ThemeProperty, theme);
+
+                // clear or set the foreground property
+                if (brush != null)
+                {
+                    window.WindowButtonCommands?.SetValue(TemplatedControl.ForegroundProperty, brush);
+                }
+                else
+                {
+                    window.WindowButtonCommands?.ClearValue(TemplatedControl.ForegroundProperty);
+                }
             }
         }
 

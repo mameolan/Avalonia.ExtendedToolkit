@@ -25,11 +25,21 @@ namespace Avalonia.ExtendedToolkit.Controls
         private const string PART_FlyoutModal = "PART_FlyoutModal";
         private const string PART_Content = "PART_Content";
 
-        ContentControl icon;
-        ContentControl titleBar;
-        Rectangle titleBarBackground;
-        Thumb windowTitleThumb;
-        Thumb flyoutModalDragMoveThumb;
+        private const string PART_TopHorizontalGrip="PART_TopHorizontalGrip";
+        private const string PART_BottomHorizontalGrip = "PART_BottomHorizontalGrip";
+        private const string PART_LeftVerticalGrip = "PART_LeftVerticalGrip";
+        private const string PART_RightVerticalGrip = "PART_RightVerticalGrip";
+        private const string PART_TopLeftGrip = "PART_TopLeftGrip";
+        private const string PART_BottomLeftGrip = "PART_BottomLeftGrip";
+        private const string PART_TopRightGrip = "PART_TopRightGrip";
+        private const string PART_BottomRightGrip = "PART_BottomRightGrip";
+
+
+        ContentControl _icon;
+        ContentControl _titleBar;
+        Rectangle _titleBarBackground;
+        Thumb _windowTitleThumb;
+        Thumb _flyoutModalDragMoveThumb;
         private IInputElement restoreFocus;
         internal ContentPresenter LeftWindowCommandsPresenter;
         internal ContentPresenter RightWindowCommandsPresenter;
@@ -41,8 +51,11 @@ namespace Avalonia.ExtendedToolkit.Controls
         //private Storyboard overlayStoryboard;
         Rectangle flyoutModal;
 
-
-        private Grid _titleBar;
+        //private Button _closeButton;
+        //private Button _minimiseButton;
+        //private Button _restoreButton;
+        //private Image _icon;
+        //private Grid _titleBar;
 
         private Grid _bottomHorizontalGrip;
         private Grid _bottomLeftGrip;
@@ -53,13 +66,10 @@ namespace Avalonia.ExtendedToolkit.Controls
         private Grid _topLeftGrip;
         private Grid _topRightGrip;
 
-        private Button _closeButton;
-        private Button _minimiseButton;
-        private Button _restoreButton;
 
 
 
-        private Image _icon;
+        
 
         private bool _mouseDown;
         private Point _mouseDownPosition;

@@ -493,14 +493,14 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly AvaloniaProperty UseNoneWindowStyleProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(UseNoneWindowStyle));
 
-        public SolidColorBrush OverrideDefaultWindowCommandsBrushProperty
+        public SolidColorBrush OverrideDefaultWindowCommandsBrush
         {
-            get { return (SolidColorBrush)GetValue(OverrideDefaultWindowCommandsBrushPropertyProperty); }
-            set { SetValue(OverrideDefaultWindowCommandsBrushPropertyProperty, value); }
+            get { return (SolidColorBrush)GetValue(OverrideDefaultWindowCommandsBrushProperty); }
+            set { SetValue(OverrideDefaultWindowCommandsBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OverrideDefaultWindowCommandsBrushPropertyProperty =
-            AvaloniaProperty.Register<MetroWindow, SolidColorBrush>(nameof(OverrideDefaultWindowCommandsBrushProperty));
+        public static readonly AvaloniaProperty OverrideDefaultWindowCommandsBrushProperty=
+            AvaloniaProperty.Register<MetroWindow, SolidColorBrush>(nameof(OverrideDefaultWindowCommandsBrush));
 
         public bool IsWindowDraggable
         {
@@ -588,7 +588,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 BeginResizeDrag(WindowEdge.SouthEast);
             }
-            else if (titleBar != null && titleBar.IsPointerOver)
+            else if (_titleBar != null && _titleBar.IsPointerOver)
             {
                 _mouseDown = true;
                 _mouseDownPosition = e.GetPosition(this);
@@ -668,7 +668,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         private void OnTitleAlignmentChanged(MetroWindow o, AvaloniaPropertyChangedEventArgs e)
         {
             o.SizeChanged -= o.MetroWindow_SizeChanged;
-            if (e.NewValue is HorizontalAlignment && (HorizontalAlignment)e.NewValue == HorizontalAlignment.Center && o.titleBar != null)
+            if (e.NewValue is HorizontalAlignment && (HorizontalAlignment)e.NewValue == HorizontalAlignment.Center && o._titleBar != null)
             {
                 o.SizeChanged += o.MetroWindow_SizeChanged;
             }
@@ -702,12 +702,12 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void SetVisibiltyForIcon()
         {
-            if (this.icon != null)
+            if (_icon != null)
             {
                 var isVisible = (this.IconOverlayBehavior.HasFlag(OverlayBehavior.HiddenTitleBar) && !this.ShowTitleBar)
                                 || (this.ShowIconOnTitleBar && this.ShowTitleBar);
 
-                this.icon.IsVisible = isVisible;
+                _icon.IsVisible = isVisible;
             }
         }
 
@@ -750,7 +750,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 if (!flyouts.Any())
                 {
                     // we must update the window command brushes!!!
-                    //     this.ResetAllWindowCommandsBrush();
+                    this.ResetAllWindowCommandsBrush();
                     return;
                 }
 
@@ -767,8 +767,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             this.SetVisibiltyForIcon();
             var newVisibility = this.TitleBarHeight > 0 && this.ShowTitleBar && !this.UseNoneWindowStyle ? true : false;
 
-            this.titleBar?.SetValue(IsVisibleProperty, newVisibility);
-            this.titleBarBackground?.SetValue(IsVisibleProperty, newVisibility);
+            this._titleBar?.SetValue(IsVisibleProperty, newVisibility);
+            this._titleBarBackground?.SetValue(IsVisibleProperty, newVisibility);
 
             var leftWindowCommandsVisibility = this.LeftWindowCommandsOverlayBehavior.HasFlag(WindowCommandsOverlayBehavior.HiddenTitleBar) && !this.UseNoneWindowStyle ? true : newVisibility;
             this.LeftWindowCommandsPresenter?.SetValue(IsVisibleProperty, leftWindowCommandsVisibility);
@@ -788,19 +788,19 @@ namespace Avalonia.ExtendedToolkit.Controls
             this.ClearWindowEvents();
 
             // set mouse down/up for icon
-            if (icon != null && icon.IsVisible == true)
+            if (_icon != null && _icon.IsVisible == true)
             {
-                icon.PointerPressed += IconMouseDown;
+                _icon.PointerPressed += IconMouseDown;
             }
 
-            if (this.windowTitleThumb != null)
+            if (this._windowTitleThumb != null)
             {
                 //this.windowTitleThumb.PreviewMouseLeftButtonUp += WindowTitleThumbOnPreviewMouseLeftButtonUp;
-                this.windowTitleThumb.DragDelta += this.WindowTitleThumbMoveOnDragDelta;
-                this.windowTitleThumb.DoubleTapped += this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
-                this.windowTitleThumb.PointerReleased += this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
+                this._windowTitleThumb.DragDelta += this.WindowTitleThumbMoveOnDragDelta;
+                this._windowTitleThumb.DoubleTapped += this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
+                this._windowTitleThumb.PointerReleased += this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
             }
-            var thumbContentControl = this.titleBar as IMetroThumb;
+            var thumbContentControl = this._titleBar as IMetroThumb;
             if (thumbContentControl != null)
             {
                 //thumbContentControl.PreviewMouseLeftButtonUp += WindowTitleThumbOnPreviewMouseLeftButtonUp;
@@ -808,17 +808,17 @@ namespace Avalonia.ExtendedToolkit.Controls
                 thumbContentControl.DoubleTapped += this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
                 thumbContentControl.PointerReleased += this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
             }
-            if (this.flyoutModalDragMoveThumb != null)
+            if (this._flyoutModalDragMoveThumb != null)
             {
                 //this.flyoutModalDragMoveThumb.PreviewMouseLeftButtonUp += WindowTitleThumbOnPreviewMouseLeftButtonUp;
-                this.flyoutModalDragMoveThumb.DragDelta += this.WindowTitleThumbMoveOnDragDelta;
-                this.flyoutModalDragMoveThumb.DoubleTapped += this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
-                this.flyoutModalDragMoveThumb.PointerReleased += this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
+                this._flyoutModalDragMoveThumb.DragDelta += this.WindowTitleThumbMoveOnDragDelta;
+                this._flyoutModalDragMoveThumb.DoubleTapped += this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
+                this._flyoutModalDragMoveThumb.PointerReleased += this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
             }
 
             // handle size if we have a Grid for the title (e.g. clean window have a centered title)
             //if (titleBar != null && titleBar.GetType() == typeof(Grid))
-            if (titleBar != null && TitleAlignment == HorizontalAlignment.Center)
+            if (_titleBar != null && TitleAlignment == HorizontalAlignment.Center)
             {
                 this.SizeChanged += this.MetroWindow_SizeChanged;
             }
@@ -840,10 +840,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             // Half of this MetroWindow
             var halfDistance = this.Width / 2;
             // Distance between center and left/right
-            var margin = (Thickness)this.titleBar.GetValue(MarginProperty);
-            var distanceToCenter = (this.titleBar.DesiredSize.Width - margin.Left - margin.Right) / 2;
+            var margin = (Thickness)this._titleBar.GetValue(MarginProperty);
+            var distanceToCenter = (this._titleBar.DesiredSize.Width - margin.Left - margin.Right) / 2;
 
-            var iconWidth = this.icon?.Width ?? 0;
+            var iconWidth = this._icon?.Width ?? 0;
             var leftWindowCommandsWidth = this.LeftWindowCommands?.Width ?? 0;
             var rightWindowCommandsWidth = this.RightWindowCommands?.Width ?? 0;
             var windowButtonCommandsWith = this.WindowButtonCommands?.Width ?? 0;
@@ -859,15 +859,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             var dRight = distanceFromRight + distanceToCenter + horizontalMargin;
             if ((dLeft < halfDistance) && (dRight < halfDistance))
             {
-                this.titleBar.SetValue(MarginProperty, default(Thickness));
-                Grid.SetColumn(this.titleBar, 0);
-                Grid.SetColumnSpan(this.titleBar, 5);
+                this._titleBar.SetValue(MarginProperty, default(Thickness));
+                Grid.SetColumn(this._titleBar, 0);
+                Grid.SetColumnSpan(this._titleBar, 5);
             }
             else
             {
-                this.titleBar.SetValue(MarginProperty, new Thickness(leftWindowCommandsWidth, 0, rightWindowCommandsWidth, 0));
-                Grid.SetColumn(this.titleBar, 2);
-                Grid.SetColumnSpan(this.titleBar, 1);
+                this._titleBar.SetValue(MarginProperty, new Thickness(leftWindowCommandsWidth, 0, rightWindowCommandsWidth, 0));
+                Grid.SetColumn(this._titleBar, 2);
+                Grid.SetColumnSpan(this._titleBar, 1);
             }
         }
 
@@ -915,14 +915,14 @@ namespace Avalonia.ExtendedToolkit.Controls
         private void ClearWindowEvents()
         {
             // clear all event handlers first:
-            if (this.windowTitleThumb != null)
+            if (this._windowTitleThumb != null)
             {
                 //this.windowTitleThumb.PreviewMouseLeftButtonUp -= this.WindowTitleThumbOnPreviewMouseLeftButtonUp;
-                this.windowTitleThumb.DragDelta -= this.WindowTitleThumbMoveOnDragDelta;
-                this.windowTitleThumb.PointerPressed -= this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
-                this.windowTitleThumb.PointerReleased -= this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
+                this._windowTitleThumb.DragDelta -= this.WindowTitleThumbMoveOnDragDelta;
+                this._windowTitleThumb.PointerPressed -= this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
+                this._windowTitleThumb.PointerReleased -= this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
             }
-            var thumbContentControl = this.titleBar as IMetroThumb;
+            var thumbContentControl = this._titleBar as IMetroThumb;
             if (thumbContentControl != null)
             {
                 //thumbContentControl.PreviewMouseLeftButtonUp -= this.WindowTitleThumbOnPreviewMouseLeftButtonUp;
@@ -930,16 +930,16 @@ namespace Avalonia.ExtendedToolkit.Controls
                 thumbContentControl.PointerPressed -= this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
                 thumbContentControl.PointerReleased -= this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
             }
-            if (this.flyoutModalDragMoveThumb != null)
+            if (this._flyoutModalDragMoveThumb != null)
             {
                 //this.flyoutModalDragMoveThumb.PreviewMouseLeftButtonUp -= this.WindowTitleThumbOnPreviewMouseLeftButtonUp;
-                this.flyoutModalDragMoveThumb.DragDelta -= this.WindowTitleThumbMoveOnDragDelta;
-                this.flyoutModalDragMoveThumb.PointerPressed -= this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
-                this.flyoutModalDragMoveThumb.PointerReleased -= this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
+                this._flyoutModalDragMoveThumb.DragDelta -= this.WindowTitleThumbMoveOnDragDelta;
+                this._flyoutModalDragMoveThumb.PointerPressed -= this.WindowTitleThumbChangeWindowStateOnMouseDoubleClick;
+                this._flyoutModalDragMoveThumb.PointerReleased -= this.WindowTitleThumbSystemMenuOnMouseRightButtonUp;
             }
-            if (icon != null)
+            if (_icon != null)
             {
-                icon.PointerPressed -= IconMouseDown;
+                _icon.PointerPressed -= IconMouseDown;
             }
             this.SizeChanged -= this.MetroWindow_SizeChanged;
         }
@@ -1002,7 +1002,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             // if the window is maximized dragging is only allowed on title bar (also if not visible)
             var windowIsMaximized = window.WindowState == WindowState.Maximized;
 
-            if (titleBar != null && titleBar.IsPointerOver /*&& _mouseDown*/)
+            if (_titleBar != null && _titleBar.IsPointerOver /*&& _mouseDown*/)
             {
                 WindowState = WindowState.Normal;
                 BeginMoveDrag();
@@ -1081,11 +1081,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             //flyoutModal.MouseDown += FlyoutsPreviewMouseDown;
             //this.PreviewMouseDown += FlyoutsPreviewMouseDown;
 
-            icon = e.NameScope.Find<ContentControl>(PART_Icon);
-            titleBar = e.NameScope.Find<ContentControl>(PART_TitleBar);
-            titleBarBackground = e.NameScope.Find<Rectangle>(PART_WindowTitleBackground);
-            windowTitleThumb = e.NameScope.Find<Thumb>(PART_WindowTitleThumb);
-            flyoutModalDragMoveThumb= e.NameScope.Find<Thumb>(PART_FlyoutModalDragMoveThumb);
+            _icon = e.NameScope.Find<ContentControl>(PART_Icon);
+            _titleBar = e.NameScope.Find<ContentControl>(PART_TitleBar);
+            _titleBarBackground = e.NameScope.Find<Rectangle>(PART_WindowTitleBackground);
+            _windowTitleThumb = e.NameScope.Find<Thumb>(PART_WindowTitleThumb);
+            _flyoutModalDragMoveThumb= e.NameScope.Find<Thumb>(PART_FlyoutModalDragMoveThumb);
             SetVisibiltyForAllTitleElements();
 
             var metroContentControl = e.NameScope.Find<MetroContentControl>(PART_Content);
@@ -1094,54 +1094,15 @@ namespace Avalonia.ExtendedToolkit.Controls
                 metroContentControl.TransitionCompleted += (sender, args) => this.RaiseEvent(new RoutedEventArgs(WindowTransitionCompletedEvent));
             }
 
+            _topHorizontalGrip = e.NameScope.Find<Grid>(PART_TopHorizontalGrip);
+            _bottomHorizontalGrip = e.NameScope.Find<Grid>(PART_BottomHorizontalGrip);
+            _leftVerticalGrip = e.NameScope.Find<Grid>(PART_LeftVerticalGrip);
+            _rightVerticalGrip = e.NameScope.Find<Grid>(PART_RightVerticalGrip);
 
-
-            //_titleBar = e.NameScope.Find<Grid>("PART_TitleBar");
-            //_minimiseButton = e.NameScope.Find<Button>("PART_MinimiseButton");
-            //_restoreButton = e.NameScope.Find<Button>("PART_RestoreButton");
-            //_closeButton = e.NameScope.Find<Button>("PART_CloseButton");
-            //_icon = e.NameScope.Find<Image>("PART_Icon");
-
-            //_topHorizontalGrip = e.NameScope.Find<Grid>("PART_TopHorizontalGrip");
-            //_bottomHorizontalGrip = e.NameScope.Find<Grid>("PART_BottomHorizontalGrip");
-            //_leftVerticalGrip = e.NameScope.Find<Grid>("PART_LeftVerticalGrip");
-            //_rightVerticalGrip = e.NameScope.Find<Grid>("PART_RightVerticalGrip");
-
-            //_topLeftGrip = e.NameScope.Find<Grid>("PART_TopLeftGrip");
-            //_bottomLeftGrip = e.NameScope.Find<Grid>("PART_BottomLeftGrip");
-            //_topRightGrip = e.NameScope.Find<Grid>("PART_TopRightGrip");
-            //_bottomRightGrip = e.NameScope.Find<Grid>("PART_BottomRightGrip");
-
-            //flyoutModal = e.NameScope.Find<Rectangle>("PART_FlyoutModal");
-            //flyoutModalDragMoveThumb = e.NameScope.Find<Thumb>("PART_FlyoutModalDragMoveThumb");
-
-            //if (_minimiseButton != null)
-            //{
-            //    _minimiseButton.Click += (sender, ee) => { WindowState = WindowState.Minimized; };
-            //}
-
-            //if (_restoreButton != null)
-            //{
-            //    _restoreButton.Click += (sender, ee) => { ToggleWindowState(); };
-            //}
-
-            //if (_titleBar != null)
-            //{
-            //    _titleBar.DoubleTapped += (sender, ee) =>
-            //    {
-            //        ToggleWindowState();
-            //    };
-            //}
-
-            //if (_closeButton != null)
-            //{
-            //    _closeButton.Click += (sender, ee) => { Close(); };
-            //}
-
-            //if (_icon != null)
-            //{
-            //    _icon.DoubleTapped += (sender, ee) => { Close(); };
-            //}
+            _topLeftGrip = e.NameScope.Find<Grid>(PART_TopLeftGrip);
+            _bottomLeftGrip = e.NameScope.Find<Grid>(PART_BottomLeftGrip);
+            _topRightGrip = e.NameScope.Find<Grid>(PART_TopRightGrip);
+            _bottomRightGrip = e.NameScope.Find<Grid>(PART_BottomRightGrip);
 
 
         }

@@ -14,12 +14,12 @@
   <Style Selector="Controls|MetroWindow">
     <!--<Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}" />
     <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />-->
-    <!--<Setter Property="FontSize" Value="{DynamicResource FontSizeNormal}" />
-    <Setter Property="FontFamily" Value="{TemplateBinding FontFamily}" />-->
+    <Setter Property="FontSize" Value="{DynamicResource FontSizeNormal}" />
+    <Setter Property="FontFamily" Value="{TemplateBinding FontFamily}" />
     <Setter Property="FlyoutOverlayBrush" Value="{DynamicResource MetroWindow.FlyoutOverlayBrush}"/>
     <Setter Property="HasSystemDecorations" Value="false" />
     <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray10}" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
     <Setter Property="NonActiveBorderBrush" Value="{DynamicResource MahApps.Brushes.Border.NonActive}" />
     <Setter Property="NonActiveGlowBrush" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
@@ -27,9 +27,7 @@
     <Setter Property="OverlayBrush" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
     <!--<Setter Property="OverlayFadeIn" Value="{StaticResource OverlayFastSemiFadeIn}" />
     <Setter Property="OverlayFadeOut" Value="{StaticResource OverlayFastSemiFadeOut}" />-->
-
-    <!--<Setter Property="Template" Value="{StaticResource MahApps.Templates.MetroWindow}" />-->
-    <!--<Setter Property="TextBox.FontSize" Value="{DynamicResource MahApps.Sizes.Font.Content}" />-->
+    <Setter Property="TextBox.FontSize" Value="{DynamicResource MahApps.Sizes.Font.Content}" />
     <Setter Property="TitleForeground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
     <Setter Property="TitleTemplate">
       <Setter.Value>
@@ -125,7 +123,6 @@
                                                 VerticalContentAlignment="Stretch"
                                                 Content="{TemplateBinding Title}"
                                                 ContentCharacterCasing="{TemplateBinding TitleCharacterCasing}"
-                                                
                                                 Foreground="{TemplateBinding TitleForeground}"
                                                 Focusable="False"
                                                      >
@@ -162,21 +159,24 @@
                                          Grid.ColumnSpan="5"
                                          OnlyLoadTransition="True"
                                          TransitionsEnabled="False"
-                                         UseLayoutRounding="True">
+                                         UseLayoutRounding="True"
+                                         Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}"
+                  >
                   <!--{TemplateBinding WindowTransitionsEnabled}-->
-                  <ContentPresenter 
-                    Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={StaticResource ThicknessBindingConverter}, ConverterParameter={x:Static tk:ThicknessSideType.Top}}" 
-                    UseLayoutRounding="False" 
+                  <ContentPresenter
+                    Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={StaticResource ThicknessBindingConverter}, ConverterParameter={x:Static tk:ThicknessSideType.Top}}"
+                    UseLayoutRounding="False"
                     Content="{TemplateBinding Content}"
+                    
                     />
                 </Controls:MetroContentControl>
-                
+
                 <Controls:MetroThumb Classes="WindowTitle" x:Name="PART_FlyoutModalDragMoveThumb"
                                     Grid.Row="1"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="5"
                                     IsVisible="{Binding ElementName=PART_FlyoutModal, Path=IsVisible, Mode=OneWay}" />
-                
+
                 <!--  flyouts  -->
                 <ContentControl Grid.Row="1"
                                 Grid.RowSpan="2"
@@ -187,7 +187,7 @@
                                 Content="{Binding Flyouts, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                 Focusable="False"
                                 KeyboardNavigation.TabNavigation="None" />
-                
+
                 <!--  inactive dialog container  -->
                 <Grid x:Name="PART_MetroInactiveDialogsContainer"
                       Grid.Row="1"
@@ -216,6 +216,22 @@
                       Grid.ColumnSpan="3"
                       ZIndex="5"
                       />
+
+                <Grid Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="4" RowDefinitions="Auto * Auto" ColumnDefinitions="Auto,Auto,*,Auto,Auto">
+                  <Grid Background="Transparent" Width="4" Height="4" />
+                  <Grid Background="Transparent" Grid.Column="1" Height="4" Grid.ColumnSpan="2" Cursor="SizeNorthSouth" Name="PART_TopHorizontalGrip" />
+                  <Grid Background="Transparent" Width="4" Height="4" Grid.Column="4" />
+
+                  <Grid Background="Transparent" Width="4" Height="4" Grid.Row="2" />
+                  <Grid Background="Transparent" Grid.Column="1" Height="4" Grid.ColumnSpan="2" Grid.Row="2" Cursor="SizeNorthSouth" Name="PART_BottomHorizontalGrip" />
+                  <Grid Background="Transparent" Width="4" Height="4" Grid.Column="4" Grid.Row="2" />
+                </Grid>
+                <Grid Background="Transparent" Grid.Row="0" Grid.Column="0" Width="4" Height="10" Name="PART_TopLeftGrip" Cursor="TopLeftCorner" />
+                <Grid Background="Transparent" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Width="4" Cursor="SizeWestEast" Name="PART_LeftVerticalGrip" />
+                <Grid Background="GreenYellow" Grid.Row="3" Grid.Column="0" Width="4" Height="10" VerticalAlignment="Bottom" Name="PART_BottomLeftGrip" Cursor="BottomLeftCorner" />
+                <Grid Background="Transparent" Grid.Row="0" Grid.Column="4" Width="4" Height="10" Name="PART_TopRightGrip" Cursor="TopRightCorner" />
+                <Grid Background="Transparent" Grid.Row="1" Grid.Column="4" Grid.RowSpan="2" Width="4" Cursor="SizeWestEast" Name="PART_RightVerticalGrip" />
+                <Grid Background="GreenYellow"  Grid.Row="4" Grid.Column="4" Width="4" Height="10" VerticalAlignment="Bottom" Name="PART_BottomRightGrip" Cursor="BottomRightCorner" />  
               </Grid>
             </VisualLayerManager>
 
@@ -232,6 +248,12 @@
                         IsTabStop="False"
                         UseLayoutRounding="True"
                         Visibility="Collapsed" />-->
+            <!--<Grid Background="Transparent" Width="4" Height="10" Name="PART_TopLeftGrip" Cursor="TopLeftCorner" />
+            <Grid Background="Transparent" Width="4" Grid.Row="2" Cursor="SizeWestEast" Name="PART_LeftVerticalGrip" />
+            <Grid Background="Transparent" Width="4" Height="10"  Name="PART_BottomLeftGrip" Cursor="BottomLeftCorner" />
+            <Grid Background="Transparent" Width="4" Height="10" Name="PART_TopRightGrip" Cursor="TopRightCorner" />
+            <Grid Background="Transparent" Width="4" Grid.Row="2" Cursor="SizeWestEast" Name="PART_RightVerticalGrip" />
+            <Grid Background="Transparent" Width="4" Height="10" Name="PART_BottomRightGrip" Cursor="BottomRightCorner" />-->
           </Grid>
 
         </ControlTemplate>

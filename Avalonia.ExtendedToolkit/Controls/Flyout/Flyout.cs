@@ -204,15 +204,15 @@ namespace Avalonia.ExtendedToolkit.Controls
 
 
 
-        public bool IsCloseButtonVisible
+        public bool CloseButtonIsVisible
         {
-            get { return (bool)GetValue(IsCloseButtonVisibleProperty); }
-            set { SetValue(IsCloseButtonVisibleProperty, value); }
+            get { return (bool)GetValue(CloseButtonIsVisibleProperty); }
+            set { SetValue(CloseButtonIsVisibleProperty, value); }
         }
 
 
-        public static readonly AvaloniaProperty IsCloseButtonVisibleProperty =
-            AvaloniaProperty.Register<Flyout, bool>(nameof(IsCloseButtonVisible), defaultValue: true);
+        public static readonly AvaloniaProperty CloseButtonIsVisibleProperty =
+            AvaloniaProperty.Register<Flyout, bool>(nameof(CloseButtonIsVisible), defaultValue: true);
 
 
 
@@ -228,15 +228,15 @@ namespace Avalonia.ExtendedToolkit.Controls
 
 
 
-        public bool IsTitleVisible
+        public bool TitleIsVisible
         {
-            get { return (bool)GetValue(IsTitleVisibleProperty); }
-            set { SetValue(IsTitleVisibleProperty, value); }
+            get { return (bool)GetValue(TitleIsVisibleProperty); }
+            set { SetValue(TitleIsVisibleProperty, value); }
         }
 
 
-        public static readonly AvaloniaProperty IsTitleVisibleProperty =
-            AvaloniaProperty.Register<Flyout, bool>(nameof(IsTitleVisible), defaultValue: true);
+        public static readonly AvaloniaProperty TitleIsVisibleProperty =
+            AvaloniaProperty.Register<Flyout, bool>(nameof(TitleIsVisible), defaultValue: true);
 
 
 

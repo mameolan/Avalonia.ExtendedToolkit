@@ -23,20 +23,22 @@
                 Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=Foreground}"
                 IsDefault="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonIsCancel}"
                 IsVisible="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonIsVisible}">
-          <!--<i:Interaction.Behaviors>
-            <ia:EventTriggerBehavior EventName="Click" SourceObject="{Binding #PART_BackButton}">
+          <i:Interaction.Behaviors>
+            <!--<ia:EventTriggerBehavior EventName="Click" SourceObject="{Binding #PART_BackButton}">
               <actions:CloseFlyoutAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommand, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommandParameter, Mode=OneWay}"/>
-            </ia:EventTriggerBehavior>
-            --><!--<i:EventTrigger EventName="Click">
+            </ia:EventTriggerBehavior>-->
+            <!--<i:EventTrigger EventName="Click">
               <actions:CloseFlyoutAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommand, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommandParameter, Mode=OneWay}" />
-            </i:EventTrigger>--><!--
-          </i:Interaction.Behaviors>-->
+            </i:EventTrigger>-->
+          </i:Interaction.Behaviors>
+          <!---->
           <ContentControl 
-                          Classes="PathIcon"
+                          
                           Width="20"
                           Height="20"
-                          Content="M19,34V42H43.75L33.75,52H44.25L58.25,38L44.25,24H33.75L43.75,34H19Z"
+                          Content=">"
                            />
+          <!--Classes="PathIcon" Content="M19,34V42H43.75L33.75,52H44.25L58.25,38L44.25,24H33.75L43.75,34H19Z"-->
           <!--Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}"-->
           <!--FlowDirection="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=FlowDirection}"-->
         </Controls:MetroButton>
@@ -99,7 +101,6 @@
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="HeaderFontSize" Value="{DynamicResource MahApps.Sizes.Font.FlyoutHeader}" />
     <Setter Property="HeaderMargin" Value="10" />
-
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Flyout.Foreground}" />
     <Setter Property="HeaderTemplate" Value="{StaticResource MahApps.Templates.FlyoutHeader}" />
     <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -175,7 +176,7 @@
 
   <Style Selector="Controls|Flyout[FlyoutVisualStates=Show] /template/ Border#PART_Root">
     <Style.Animations>
-      <Animation Duration="00:00:01" >
+      <Animation Duration="00:00:01"  >
         <extensions:KeyFrameExt KeyTime="00:00:00.750" Name="showFrame">
           <!--showFrame-->
           <Setter Property="TranslateTransform.X" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ShowFrameTranslateTransformX}"/>

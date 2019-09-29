@@ -26,18 +26,21 @@
         <Style Selector="TextBlock.DescriptionHeaderStyle">
             <Setter Property="FontSize" Value="22" />
             <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
         </Style>
         <Style Selector="TextBox">
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
         </Style>
         <Style Selector="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
         </Style>
     </Controls:MetroWindow.Styles>
 
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl >
-            <Controls:Flyout x:Name="settingsFlyout"
+            <!--<Controls:Flyout x:Name="settingsFlyout"
                              Margin="200 30 0 0"
                              Header="Settings"
                              Position="Right"
@@ -56,18 +59,18 @@
                         <TextBlock Grid.Row="0" Text="This Flyout animates its opacity when opening and closing." />
                     </StackPanel>
                 </Grid>
-            </Controls:Flyout>
-            
-            
+            </Controls:Flyout>-->
+
+
         </Controls:FlyoutsControl>
     </Controls:MetroWindow.Flyouts>
-    
+
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     <DockPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-            <TextBlock Text="Themes"/>
+            <TextBlock Text="Themes" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
             <ComboBox Name="cmbThemes" Margin="10,1,0,1" Items="{Binding BaseColors}"
                SelectedIndex="0" SelectedItem="{Binding SelectedBaseColor}" Width="100">
                 <ComboBox.Styles>
@@ -86,7 +89,7 @@
                 </i:Interaction.Behaviors>
             </ComboBox>
 
-            <TextBlock Margin="10,0,0,0" Text="Color Schemes"/>
+            <TextBlock Margin="10,0,0,0" Text="Color Schemes" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
             <ComboBox Name="cmbColorScheme" Margin="10,1,0,1" Items="{Binding ColorSchemes}"
                SelectedIndex="0" SelectedItem="{Binding SelectedColorScheme}" Width="100"
                 
@@ -121,16 +124,44 @@
             </Grid.RowDefinitions>
 
             <TabControl Grid.Row="0">
-                <TabItem Header="Buttons">
+                <TabItem Header="Buttons" Foreground="{DynamicResource MahApps.Brushes.Black}">
                     <ScrollViewer>
                         <Views:ButtonView/>
                     </ScrollViewer>
                 </TabItem>
-                <TabItem Header="Wizard">
+                <TabItem Header="Wizard" Foreground="{DynamicResource MahApps.Brushes.Black}">
                     <ScrollViewer>
                         <Views:WizardView/>
                     </ScrollViewer>
                 </TabItem>
+                <!--<TabItem Header="Flyout" Foreground="{DynamicResource MahApps.Brushes.Black}">
+                    <ScrollViewer>
+                        <Grid>
+                            <Controls:Flyout 
+                             Margin="200 30 0 0"
+                             Header="Settings"
+                             Position="Right"
+                             IsAutoCloseEnabled="False"
+                             FlyoutTheme="Accent"
+                             IsOpen="True"
+                             >
+                                <Grid Margin="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <StackPanel>
+                                        <TextBlock Grid.Row="0" Text="Something above the ScrollPanel" />
+                                        <TextBlock Grid.Row="0" Text="This Flyout animates its opacity when opening and closing." />
+                                    </StackPanel>
+                                </Grid>
+                            </Controls:Flyout>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>-->
+
+
             </TabControl>
 
 
