@@ -171,12 +171,22 @@
                     />
                 </Controls:MetroContentControl>
 
+
+                <!--  disables the main content when a modal flyout is shown  -->
+                <Rectangle Name="PART_FlyoutModal"
+                           Grid.Row="1"
+                           Grid.RowSpan="2"
+                           Grid.Column="1"
+                           Grid.ColumnSpan="3"
+                           Fill="{TemplateBinding FlyoutOverlayBrush}"
+                           IsVisible="False" />
                 <Controls:MetroThumb Classes="WindowTitle" x:Name="PART_FlyoutModalDragMoveThumb"
                                     Grid.Row="1"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="5"
                                     IsVisible="{Binding ElementName=PART_FlyoutModal, Path=IsVisible, Mode=OneWay}" />
 
+                
                 <!--  flyouts  -->
                 <ContentControl Grid.Row="1"
                                 Grid.RowSpan="2"
@@ -186,7 +196,8 @@
                                 ZIndex="2"
                                 Content="{Binding Flyouts, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                 Focusable="False"
-                                KeyboardNavigation.TabNavigation="None" />
+                                KeyboardNavigation.TabNavigation="None" 
+                                />
 
                 <!--  inactive dialog container  -->
                 <Grid x:Name="PART_MetroInactiveDialogsContainer"
@@ -228,10 +239,10 @@
                 </Grid>
                 <Grid Background="Transparent" Grid.Row="0" Grid.Column="0" Width="4" Height="10" Name="PART_TopLeftGrip" Cursor="TopLeftCorner" />
                 <Grid Background="Transparent" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Width="4" Cursor="SizeWestEast" Name="PART_LeftVerticalGrip" />
-                <Grid Background="GreenYellow" Grid.Row="3" Grid.Column="0" Width="4" Height="10" VerticalAlignment="Bottom" Name="PART_BottomLeftGrip" Cursor="BottomLeftCorner" />
+                <Grid Background="Transparent" Grid.Row="3" Grid.Column="0" Width="4" Height="10" VerticalAlignment="Bottom" Name="PART_BottomLeftGrip" Cursor="BottomLeftCorner" />
                 <Grid Background="Transparent" Grid.Row="0" Grid.Column="4" Width="4" Height="10" Name="PART_TopRightGrip" Cursor="TopRightCorner" />
                 <Grid Background="Transparent" Grid.Row="1" Grid.Column="4" Grid.RowSpan="2" Width="4" Cursor="SizeWestEast" Name="PART_RightVerticalGrip" />
-                <Grid Background="GreenYellow"  Grid.Row="4" Grid.Column="4" Width="4" Height="10" VerticalAlignment="Bottom" Name="PART_BottomRightGrip" Cursor="BottomRightCorner" />  
+                <Grid Background="Transparent"  Grid.Row="4" Grid.Column="4" Width="4" Height="10" VerticalAlignment="Bottom" Name="PART_BottomRightGrip" Cursor="BottomRightCorner" />  
               </Grid>
             </VisualLayerManager>
 
@@ -248,12 +259,6 @@
                         IsTabStop="False"
                         UseLayoutRounding="True"
                         Visibility="Collapsed" />-->
-            <!--<Grid Background="Transparent" Width="4" Height="10" Name="PART_TopLeftGrip" Cursor="TopLeftCorner" />
-            <Grid Background="Transparent" Width="4" Grid.Row="2" Cursor="SizeWestEast" Name="PART_LeftVerticalGrip" />
-            <Grid Background="Transparent" Width="4" Height="10"  Name="PART_BottomLeftGrip" Cursor="BottomLeftCorner" />
-            <Grid Background="Transparent" Width="4" Height="10" Name="PART_TopRightGrip" Cursor="TopRightCorner" />
-            <Grid Background="Transparent" Width="4" Grid.Row="2" Cursor="SizeWestEast" Name="PART_RightVerticalGrip" />
-            <Grid Background="Transparent" Width="4" Height="10" Name="PART_BottomRightGrip" Cursor="BottomRightCorner" />-->
           </Grid>
 
         </ControlTemplate>

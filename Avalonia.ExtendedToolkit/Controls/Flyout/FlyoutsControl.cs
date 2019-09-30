@@ -8,6 +8,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Avalonia.LogicalTree;
+using System.ComponentModel;
+using System.Collections.Specialized;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -45,33 +47,44 @@ namespace Avalonia.ExtendedToolkit.Controls
             //ItemsProperty.AddOwner<FlyoutsControl>((o,e)=> ONi)
         }
 
-        protected override void OnContainersMaterialized(ItemContainerEventArgs e)
+        
+        protected override IItemContainerGenerator CreateItemContainerGenerator()
         {
-            base.OnContainersMaterialized(e);
+            var itemContainer= new ItemContainerGenerator<Flyout>(
+               this,
+               Flyout.ContentProperty,
+               Flyout.ContentTemplateProperty);
+
+            itemContainer.Materialized += ItemContainer_Materialized;
+            itemContainer.Dematerialized += ItemContainer_Dematerialized;
+            itemContainer.Recycled += ItemContainer_Recycled;
+
+            return itemContainer;
+            //return new ItemContainerGenerator(this);
         }
 
-        protected override void OnContainersRecycled(ItemContainerEventArgs e)
+        private void ItemContainer_Recycled(object sender, ItemContainerEventArgs e)
         {
-            base.OnContainersRecycled(e);
+            
         }
 
-        protected override void OnContainersDematerialized(ItemContainerEventArgs e)
+        private void ItemContainer_Dematerialized(object sender, ItemContainerEventArgs e)
         {
-            base.OnContainersDematerialized(e);
+            
+        }
+
+        private void ItemContainer_Materialized(object sender, ItemContainerEventArgs e)
+        {
+            
+        }
+
+        protected override void ItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            base.ItemsCollectionChanged(sender, e);
+            this.IsVisible = true;
         }
 
 
-
-
-        //protected override IItemContainerGenerator CreateItemContainerGenerator()
-        //{
-        //    return new ItemContainerGenerator<Flyout>(
-        //       this,
-        //       Flyout.ContentProperty,
-        //       Flyout.ContentTemplateProperty);
-
-        //    //return new ItemContainerGenerator(this);
-        //}
 
         internal void HandleFlyoutStatusChange(Flyout flyout, MetroWindow parentWindow)
         {
@@ -95,7 +108,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
 
             return (Flyout)item;
-            //return (Flyout)this.ItemContainerGenerator.ContainerFromItem(item);
+
+
+
+
+            //int index = this.ItemContainerGenerator.IndexFromContainer(DefaultPanel);
+
+
+
+            //return (Flyout)this.ItemContainerGenerator.ContainerFromIndex(index);
         }
 
         internal IEnumerable<Flyout> GetFlyouts()

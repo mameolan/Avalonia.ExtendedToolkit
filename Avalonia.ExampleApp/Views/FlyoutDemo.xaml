@@ -1,0 +1,86 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.FlyoutDemo">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   Margin="10"
+                   FontSize="30"
+                   Text="Some Flyout Tests..." />
+
+    <StackPanel Grid.Row="1"
+                    Grid.Column="0"
+                    MinWidth="200"
+                    Margin="5"
+                    HorizontalAlignment="Center">
+      <Button Margin="2"
+              Name="btnShowFirst"
+              Content="Show 1" />
+      <Button Margin="2"
+              Name="btnShowSecond"
+              Content="Show 2" />
+      <Button Margin="2"
+              Name="btnShowThird"
+              Content="Show 3" />
+      <Button Margin="2"
+              Name="btnShowAccent"
+              Content="Accent" />
+      <Button Margin="2"
+              Name="btnShowInverse"
+              Content="Inverse" />
+      <Button Margin="2"
+              Name="btnShowAdapt"
+              Content="Adapt" />
+      <Button Margin="2"
+              Name="btnShowSettings"
+              Content="Settings" />
+      <Button Margin="2"
+              Name="btnShowModal"
+              Content="Modal" />
+      <Button Margin="2"
+              Name="btnShowAppBar"
+              Content="AppBar" />
+      <Button Margin="2"
+              Name="btnShowDynamicFlyout"
+              Content="Dynamic" />
+      <Button Margin="2"
+              Name="btnShowAutoCloseFlyout"
+              Content="AutoClose" />
+    </StackPanel>
+
+    <StackPanel Grid.Row="1"
+    Grid.Column="2"
+    MinWidth="120"
+    Margin="5"
+    HorizontalAlignment="Center"
+    Grid.IsSharedSizeScope="True">
+
+      <Button Margin="2 10 2 2"
+                      Name="btnShowLeft"
+                      Content="Show Left" />
+      <Button Margin="2"
+              Name="btnShowCustomTop"
+              Content="Show Custom Top" />
+      <Button Margin="2"
+              Name="btnShowTop"
+              Content="Show Top" />
+      <Button Margin="2"
+              Name="btnShowBottom"
+              Content="Show Bottom" />
+      </StackPanel>
+  </Grid>
+</UserControl>

@@ -40,15 +40,14 @@
 
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl >
-            <!--<Controls:Flyout x:Name="settingsFlyout"
+            <Controls:Flyout x:Name="settingsFlyout"
                              Margin="200 30 0 0"
                              Header="Settings"
                              Position="Right"
                              IsAutoCloseEnabled="False"
                              FlyoutTheme="Accent"
-                             IsOpen="True"
                              >
-                <Grid Margin="10">
+                <Grid Margin="10" Width="100" Height="100" Background="Green">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
@@ -59,7 +58,7 @@
                         <TextBlock Grid.Row="0" Text="This Flyout animates its opacity when opening and closing." />
                     </StackPanel>
                 </Grid>
-            </Controls:Flyout>-->
+            </Controls:Flyout>
 
 
         </Controls:FlyoutsControl>
@@ -134,32 +133,13 @@
                         <Views:WizardView/>
                     </ScrollViewer>
                 </TabItem>
-                <!--<TabItem Header="Flyout" Foreground="{DynamicResource MahApps.Brushes.Black}">
+                <TabItem Header="Flyout" Foreground="{DynamicResource MahApps.Brushes.Black}">
                     <ScrollViewer>
                         <Grid>
-                            <Controls:Flyout 
-                             Margin="200 30 0 0"
-                             Header="Settings"
-                             Position="Right"
-                             IsAutoCloseEnabled="False"
-                             FlyoutTheme="Accent"
-                             IsOpen="True"
-                             >
-                                <Grid Margin="10">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <StackPanel>
-                                        <TextBlock Grid.Row="0" Text="Something above the ScrollPanel" />
-                                        <TextBlock Grid.Row="0" Text="This Flyout animates its opacity when opening and closing." />
-                                    </StackPanel>
-                                </Grid>
-                            </Controls:Flyout>
+                            <Views:FlyoutDemo/>
                         </Grid>
                     </ScrollViewer>
-                </TabItem>-->
+                </TabItem>
 
 
             </TabControl>

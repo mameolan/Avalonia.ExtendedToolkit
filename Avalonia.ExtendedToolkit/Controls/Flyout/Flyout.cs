@@ -396,22 +396,14 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public Flyout()
         {
-            
-
             PositionProperty.Changed.AddClassHandler<Flyout>((o, e) => PositionChanged(o, e));
-            IsOpenProperty.Changed.AddClassHandler<Flyout>((o, e) => IsOpenedChanged(o, e));
             AnimateOpacityProperty.Changed.AddClassHandler<Flyout>((o, e) => AnimateOpacityChanged(o, e));
             FlyoutThemeProperty.Changed.AddClassHandler<Flyout>((o, e) => ThemeChanged(o, e));
             IsAutoCloseEnabledProperty.Changed.AddClassHandler<Flyout>((o, e) => IsAutoCloseEnabledChanged(o, e));
             AutoCloseIntervalProperty.Changed.AddClassHandler<Flyout>((o, e) => AutoCloseIntervalChanged(o, e));
-
-            //this.Loaded += (sender, args) => this.UpdateFlyoutTheme();
-            //Initialized += (sender, args) => this.UpdateFlyoutTheme();
-
             ThemeManager.Instance.IsThemeChanged += (o, e) => { UpdateFlyoutTheme(); };
-            
-
             InitializeAutoCloseTimer();
+            IsOpenProperty.Changed.AddClassHandler<Flyout>((o, e) => IsOpenedChanged(o, e));
         }
 
         
@@ -604,14 +596,14 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            
             
             this.flyoutRoot = e.NameScope.Find<IControl>("PART_Root");
             if (this.flyoutRoot == null)
             {
                 return;
             }
-
+            
             this.flyoutHeader = e.NameScope.Find<IControl>("PART_Header");
             this.flyoutHeader?.ApplyTemplate();
             this.flyoutContent = e.NameScope.Find<IControl>("PART_Content");
@@ -650,6 +642,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             //    return;
             //}
 
+            base.OnTemplateApplied(e);
+            UpdateOpacityChange();
             this.ApplyAnimation(this.Position, this.AnimateOpacity);
 
 
@@ -967,6 +961,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                             {
                                 flyout.StartAutoCloseTimer();
                             }
+                            
                         }
                         else
                         {
@@ -982,7 +977,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 flyout.RaiseEvent(new RoutedEventArgs(IsOpenChangedEvent));
             };
 
-            //flyout.Dispatcher.BeginInvoke(DispatcherPriority.Background, openedChangedAction);
+            ////flyout.Dispatcher.BeginInvoke(DispatcherPriority.Background, openedChangedAction);
             Dispatcher.UIThread.InvokeAsync(openedChangedAction, DispatcherPriority.Background);
         }
 

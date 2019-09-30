@@ -538,10 +538,10 @@ namespace Avalonia.ExtendedToolkit.Controls
                 var zIndex = flyout.IsOpen ? flyout.ZIndex + 3 : visibleFlyouts.Count() + 2;
 
                 //if the the corresponding behavior has the right flag, set the window commands' and icon zIndex to a number that is higher than the flyout's.
-                //this.icon?.SetValue(Panel.ZIndexProperty, flyout.IsModal && flyout.IsOpen ? 0 : (this.IconOverlayBehavior.HasFlag(OverlayBehavior.Flyouts) ? zIndex : 1));
-                //this.LeftWindowCommandsPresenter?.SetValue(Panel.ZIndexProperty, flyout.IsModal && flyout.IsOpen ? 0 : 1);
-                //this.RightWindowCommandsPresenter?.SetValue(Panel.ZIndexProperty, flyout.IsModal && flyout.IsOpen ? 0 : 1);
-                //this.WindowButtonCommandsPresenter?.SetValue(Panel.ZIndexProperty, flyout.IsModal && flyout.IsOpen ? 0 : (this.WindowButtonCommandsOverlayBehavior.HasFlag(OverlayBehavior.Flyouts) ? zIndex : 1));
+                this._icon?.SetValue(Panel.ZIndexProperty, flyout.IsModal && flyout.IsOpen ? 0 : (this.IconOverlayBehavior.HasFlag(OverlayBehavior.Flyouts) ? zIndex : 1));
+                this.LeftWindowCommandsPresenter?.SetValue(Panel.ZIndexProperty, flyout.IsModal && flyout.IsOpen ? 0 : 1);
+                this.RightWindowCommandsPresenter?.SetValue(Panel.ZIndexProperty, flyout.IsModal && flyout.IsOpen ? 0 : 1);
+                this.WindowButtonCommandsPresenter?.SetValue(Panel.ZIndexProperty, flyout.IsModal && flyout.IsOpen ? 0 : (this.WindowButtonCommandsOverlayBehavior.HasFlag(OverlayBehavior.Flyouts) ? zIndex : 1));
                 this.HandleWindowCommandsForFlyouts(visibleFlyouts);
             }
 
@@ -549,6 +549,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 this.flyoutModal.IsVisible = visibleFlyouts.Any(x => x.IsModal) ? true : false;
             }
+
+            //flyout.IsVisible = true;
+
 
             RaiseEvent(new FlyoutStatusChangedRoutedEventArgs(FlyoutsStatusChangedEvent, this) { ChangedFlyout = flyout });
         }
@@ -641,12 +644,14 @@ namespace Avalonia.ExtendedToolkit.Controls
             WidthProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnWidthChanged(o, e));
             HeightProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnHeightChanged(o, e));
 
+            if (Flyouts == null)
+            {
+                Flyouts = new FlyoutsControl();
+            }
+
             ThemeManager.Instance.IsThemeChanged += ThemeManagerOnIsThemeChanged;
 
-            //if(Flyouts==null)
-            //{
-            //    Flyouts = new FlyoutsControl();
-            //}
+            
             SetVisibiltyForAllTitleElements();
         }
 

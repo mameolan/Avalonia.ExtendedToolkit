@@ -14,34 +14,37 @@
       <DockPanel x:Name="dpHeader"
                  VerticalAlignment="Center"
                  LastChildFill="True">
-        <Controls:MetroButton Classes="MetroCircleButtonStyle" x:Name="PART_BackButton"
-                Width="34"
-                Height="34"
-                Margin="2 4 2 2"
-                VerticalAlignment="Bottom"
-                DockPanel.Dock="Left"
-                Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=Foreground}"
-                IsDefault="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonIsCancel}"
-                IsVisible="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonIsVisible}">
-          <i:Interaction.Behaviors>
-            <!--<ia:EventTriggerBehavior EventName="Click" SourceObject="{Binding #PART_BackButton}">
+        <LayoutTransformControl DockPanel.Dock="Left" x:Name="PART_LayoutTransformControl">
+          <Controls:MetroButton Classes="MetroCircleButtonStyle" x:Name="PART_BackButton"
+                  Width="34"
+                  Height="34"
+                  Margin="2 4 2 2"
+                  VerticalAlignment="Bottom"
+                  DockPanel.Dock="Left"
+                  Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=Foreground}"
+                  IsDefault="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonIsCancel}"
+                  IsVisible="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonIsVisible}">
+            <i:Interaction.Behaviors>
+              <!--<ia:EventTriggerBehavior EventName="Click" SourceObject="{Binding #PART_BackButton}">
               <actions:CloseFlyoutAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommand, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommandParameter, Mode=OneWay}"/>
             </ia:EventTriggerBehavior>-->
-            <!--<i:EventTrigger EventName="Click">
+              <!--<i:EventTrigger EventName="Click">
               <actions:CloseFlyoutAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommand, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommandParameter, Mode=OneWay}" />
             </i:EventTrigger>-->
-          </i:Interaction.Behaviors>
-          <!---->
-          <ContentControl 
+            </i:Interaction.Behaviors>
+            <!---->
+            <ContentControl
                           
-                          Width="20"
-                          Height="20"
-                          Content=">"
+                            Width="20"
+                            Height="20"
+                            Content=">"
                            />
-          <!--Classes="PathIcon" Content="M19,34V42H43.75L33.75,52H44.25L58.25,38L44.25,24H33.75L43.75,34H19Z"-->
-          <!--Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}"-->
-          <!--FlowDirection="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=FlowDirection}"-->
-        </Controls:MetroButton>
+            <!--Classes="PathIcon" Content="M19,34V42H43.75L33.75,52H44.25L58.25,38L44.25,24H33.75L43.75,34H19Z"-->
+            <!--Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}"-->
+            <!--FlowDirection="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=FlowDirection}"-->
+          </Controls:MetroButton>
+        </LayoutTransformControl>
+
         <ContentControl x:Name="PART_BackHeaderText"
                         Margin="15 0 0 0"
                         VerticalAlignment="Center"
@@ -97,15 +100,19 @@
   </Styles.Resources>
 
   <Style Selector="Controls|Flyout">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Flyout.Background}" />
+    <!--<Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Flyout.Background}" />-->
+    <Setter Property="Background" Value="AliceBlue" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="HeaderFontSize" Value="{DynamicResource MahApps.Sizes.Font.FlyoutHeader}" />
     <Setter Property="HeaderMargin" Value="10" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Flyout.Foreground}" />
-    <Setter Property="HeaderTemplate" Value="{StaticResource MahApps.Templates.FlyoutHeader}" />
     <Setter Property="HorizontalAlignment" Value="Stretch" />
     <Setter Property="VerticalAlignment" Value="Stretch" />
     <Setter Property="IsVisible" Value="false" />
+    <Setter Property="HeaderTemplate" Value="{StaticResource MahApps.Templates.FlyoutHeader}" />
+
+
+
 
     <Setter Property="Template" >
       <Setter.Value>
@@ -118,17 +125,14 @@
               <TranslateTransform />
             </Border.RenderTransform>
             <VisualLayerManager>
-              <DockPanel  Focusable="False">
+              <DockPanel  Focusable="False" Background="AliceBlue">
                 <Controls:MetroThumbContentControl x:Name="PART_Header"
-                                                       
                                                        Content="{TemplateBinding Header}"
-                                                       
                                                        ContentTemplate="{TemplateBinding HeaderTemplate}"
                                                        DockPanel.Dock="Top"
                                                        RecognizesAccessKey="True"
-                                                       
-                                                       
-                                                        />
+                                                       UseLayoutRounding="False"
+                                                   />
                 <!--
                  FontFamily="{TemplateBinding Controls:ControlsHelper.HeaderFontFamily}"
                                                        FontSize="{TemplateBinding Controls:ControlsHelper.HeaderFontSize}"
@@ -154,7 +158,7 @@
 
   <Style Selector="Controls|Flyout[FlyoutVisualStates=Hide] /template/ Border#PART_Root">
     <Style.Animations>
-      <Animation Duration="00:00:01" >
+      <Animation Duration="00:00:01" RepeatCount="0">
         <extensions:KeyFrameExt KeyTime="00:00:00.750" Name="hideFrame">
           <!--hideFrame-->
           <Setter Property="TranslateTransform.X" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HideFrameTranslateTransformX}"/>
@@ -176,7 +180,7 @@
 
   <Style Selector="Controls|Flyout[FlyoutVisualStates=Show] /template/ Border#PART_Root">
     <Style.Animations>
-      <Animation Duration="00:00:01"  >
+      <Animation Duration="00:00:01" RepeatCount="0" >
         <extensions:KeyFrameExt KeyTime="00:00:00.750" Name="showFrame">
           <!--showFrame-->
           <Setter Property="TranslateTransform.X" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ShowFrameTranslateTransformX}"/>
@@ -194,7 +198,7 @@
 
   <Style Selector="Controls|Flyout[FlyoutVisualStates=HideDirect] /template/ Border#PART_Root">
     <Style.Animations>
-      <Animation Duration="00:00:01" >
+      <Animation Duration="00:00:01" RepeatCount="0" >
         <KeyFrame Cue="0%" >
           <Setter Property="TranslateTransform.X" Value="0"/>
         </KeyFrame>
@@ -210,7 +214,7 @@
 
   <Style Selector="Controls|Flyout[FlyoutVisualStates=ShowDirect] /template/ Border#PART_Root">
     <Style.Animations>
-      <Animation Duration="00:00:01" >
+      <Animation Duration="00:00:01" RepeatCount="0">
         <KeyFrame Cue="0%" >
           <Setter Property="TranslateTransform.X" Value="0"/>
         </KeyFrame>
@@ -235,13 +239,13 @@
   <Style Selector="Controls|Flyout[Position=Left] /template/ Controls|MetroButton#PART_BackButton">
     <Setter Property="DockPanel.Dock" Value="Right" />
 
-    <Setter Property="RenderTransform">
+    <!--<Setter Property="RenderTransform">
       <Setter.Value>
         <ScaleTransform ScaleX="-1" />
       </Setter.Value>
-    </Setter>
-    
-    
+    </Setter>-->
+
+
     <!--<Setter Property="LayoutTransform">
       <Setter.Value>
         <ScaleTransform ScaleX="-1" />
@@ -249,29 +253,55 @@
     </Setter>-->
   </Style>
 
+  <Style Selector="Controls|Flyout[Position=Left] /template/ LayoutTransformControl#PART_LayoutTransformControl">
+    <Setter Property="LayoutTransform">
+      <Setter.Value>
+        <ScaleTransform ScaleX="-1"/>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <!---->
+
   <Style Selector="Controls|Flyout[Position=Left] /template/ ContentControl#PART_BackHeaderText">
     <Setter Property="HorizontalAlignment" Value="Right" />
     <Setter Property="Margin" Value="0 0 15 0" />
   </Style>
 
-  <Style Selector="Controls|Flyout[Position=Top] /template/ Controls|MetroButton#PART_BackButton">
+  <!--<Style Selector="Controls|Flyout[Position=Top] /template/ Controls|MetroButton#PART_BackButton">
     <Setter Property="RenderTransform" >
-      <!--LayoutTransform-->
+      --><!--LayoutTransform--><!--
+      <Setter.Value>
+        <RotateTransform Angle="-90" />
+      </Setter.Value>
+    </Setter>
+  </Style>-->
+
+  <Style Selector="Controls|Flyout[Position=Top] /template/ LayoutTransformControl#PART_LayoutTransformControl">
+    <Setter Property="LayoutTransform">
       <Setter.Value>
         <RotateTransform Angle="-90" />
       </Setter.Value>
     </Setter>
   </Style>
-
-  <Style Selector="Controls|Flyout[Position=Bottom] /template/ Controls|MetroButton#PART_BackButton">
+  
+  
+  <!--<Style Selector="Controls|Flyout[Position=Bottom] /template/ Controls|MetroButton#PART_BackButton">
     <Setter Property="RenderTransform">
-      <!--LayoutTransform-->
+      --><!--LayoutTransform--><!--
+      <Setter.Value>
+        <RotateTransform Angle="90" />
+      </Setter.Value>
+    </Setter>
+  </Style>-->
+
+  <Style Selector="Controls|Flyout[Position=Bottom] /template/ LayoutTransformControl#PART_LayoutTransformControl">
+    <Setter Property="LayoutTransform">
       <Setter.Value>
         <RotateTransform Angle="90" />
       </Setter.Value>
     </Setter>
   </Style>
-  
-  
-  
+
+
 </Styles>
