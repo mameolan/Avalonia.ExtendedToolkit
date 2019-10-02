@@ -170,5 +170,30 @@
       </Controls:MetroButton>
 
     </StackPanel>
+
+    <StackPanel Grid.Row="1"
+                    Grid.Column="0"
+                    HorizontalAlignment="Center">
+      <!--<StackPanel.Resources>
+        <Style x:Key="CustomMetroToggleSwitch"
+               BasedOn="{StaticResource MahApps.Styles.ToggleSwitch}"
+               TargetType="{x:Type Controls:ToggleSwitch}">
+          <Setter Property="OffLabel" Value="False" />
+          <Setter Property="OffSwitchBrush" Value="Red" />
+          <Setter Property="OnLabel" Value="True" />
+          <Setter Property="OnSwitchBrush" Value="Green" />
+        </Style>
+        <Style x:Key="CustomMetroToggleSwitchButton"
+               BasedOn="{StaticResource MahApps.Styles.ToggleSwitchButton}"
+               TargetType="{x:Type Controls:ToggleSwitchButton}">
+          <Setter Property="OffSwitchBrush" Value="DarkRed" />
+          <Setter Property="OnSwitchBrush" Value="DarkGreen" />
+        </Style>
+      </StackPanel.Resources>-->
+      <TextBlock Classes="DescriptionHeaderStyle" Text="Toggle switch"  />
+      </StackPanel>
+    
+    
+    
   </Grid>
 </UserControl>

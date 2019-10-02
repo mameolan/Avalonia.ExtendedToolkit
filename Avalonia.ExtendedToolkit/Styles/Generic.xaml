@@ -6,7 +6,9 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/MetroThumb/MetroThumbContentControl.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/WindowCommands/WindowButtonCommands.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/WindowCommands/WindowCommands.xaml"/>
-  
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Toggle/ToggleSwitch.xaml"/>
+
+
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/BusyIndicator/BusyIndicator.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Badged/Badget.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Wizard/Wizard.xaml"/>
