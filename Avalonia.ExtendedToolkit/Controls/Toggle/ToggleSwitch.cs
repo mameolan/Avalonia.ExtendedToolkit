@@ -20,6 +20,10 @@ namespace Avalonia.ExtendedToolkit.Controls
 
 
 
+        
+
+
+
         public ToggleSwitchState ToggleSwitchState
         {
             get { return (ToggleSwitchState)GetValue(ToggleSwitchStateProperty); }
@@ -55,6 +59,18 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public static readonly AvaloniaProperty HeaderFontSizeProperty =
             AvaloniaProperty.Register<ToggleSwitch, double>(nameof(HeaderFontSize));
+
+
+
+        public FontWeight HeaderFontWeight
+        {
+            get { return (FontWeight)GetValue(HeaderFontWeightProperty); }
+            set { SetValue(HeaderFontWeightProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty HeaderFontWeightProperty =
+            AvaloniaProperty.Register<ToggleSwitch, FontWeight>(nameof(HeaderFontWeight), defaultValue: FontWeight.Normal);
 
 
 

@@ -12,7 +12,7 @@
     <Thickness x:Key="ControlMargin">0 5 0 0</Thickness>
   </UserControl.Resources>
   <Grid>
-    
+
     <Grid.ColumnDefinitions>
       <ColumnDefinition />
       <ColumnDefinition />
@@ -174,26 +174,89 @@
     <StackPanel Grid.Row="1"
                     Grid.Column="0"
                     HorizontalAlignment="Center">
-      <!--<StackPanel.Resources>
-        <Style x:Key="CustomMetroToggleSwitch"
+      <StackPanel.Styles>
+        <!--<Style x:Key="CustomMetroToggleSwitch"
                BasedOn="{StaticResource MahApps.Styles.ToggleSwitch}"
                TargetType="{x:Type Controls:ToggleSwitch}">
           <Setter Property="OffLabel" Value="False" />
           <Setter Property="OffSwitchBrush" Value="Red" />
           <Setter Property="OnLabel" Value="True" />
           <Setter Property="OnSwitchBrush" Value="Green" />
-        </Style>
-        <Style x:Key="CustomMetroToggleSwitchButton"
+        </Style>-->
+        <!--<Style x:Key="CustomMetroToggleSwitchButton"
                BasedOn="{StaticResource MahApps.Styles.ToggleSwitchButton}"
                TargetType="{x:Type Controls:ToggleSwitchButton}">
           <Setter Property="OffSwitchBrush" Value="DarkRed" />
           <Setter Property="OnSwitchBrush" Value="DarkGreen" />
+        </Style>-->
+        <Style Selector="Controls|ToggleSwitch.CustomMetroToggleSwitch">
+          <Setter Property="OffLabel" Value="False" />
+          <Setter Property="OffSwitchBrush" Value="Red" />
+          <Setter Property="OnLabel" Value="True" />
+          <Setter Property="OnSwitchBrush" Value="Green" />
         </Style>
-      </StackPanel.Resources>-->
+
+
+        <Style Selector="Controls|ToggleSwitchButton.CustomMetroToggleSwitchButton">
+          <Setter Property="OffSwitchBrush" Value="DarkRed" />
+          <Setter Property="OnSwitchBrush" Value="DarkGreen" />
+        </Style>
+
+
+      </StackPanel.Styles>
+      <StackPanel.Resources>
+
+      </StackPanel.Resources>
+
       <TextBlock Classes="DescriptionHeaderStyle" Text="Toggle switch"  />
-      </StackPanel>
-    
-    
-    
+      <Controls:ToggleSwitch Margin="{StaticResource ControlMargin}"
+                                 Header="ToggleSwitch Header"
+                                 IsChecked="True"
+                             />
+
+      <Controls:ToggleSwitch Classes="CustomMetroToggleSwitch" Margin="{StaticResource ControlMargin}"
+                                   IsChecked="True"
+                                    />
+
+      <Controls:ToggleSwitch Margin="{StaticResource ControlMargin}"
+                                   IsChecked="True"
+                                   IsEnabled="False" />
+      <Controls:ToggleSwitch Margin="{StaticResource ControlMargin}" IsEnabled="False" />
+
+    </StackPanel>
+
+    <StackPanel Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center">
+      <TextBlock Text="Enable / Visible" Classes="DescriptionHeaderStyle"/>
+      <Controls:ToggleSwitch Classes="Win10" x:Name="enabledSwitch"
+                                   Margin="{StaticResource ControlMargin}"
+                                   Header="Win10 Style"
+                                   IsChecked="True"
+                                   OffLabel="Disabled"
+                                   OnLabel="Enabled"
+                                    />
+      <Controls:ToggleSwitch x:Name="visibleSwitch"
+                                   Margin="{StaticResource ControlMargin}"
+                                   IsChecked="{Binding IsToggleSwitchVisible}"
+                                   OffLabel="Collapsed"
+                                   OnLabel="Visible"
+                                   Classes="Win10" />
+      <Controls:ToggleSwitch Margin="{StaticResource ControlMargin}"
+                                   IsEnabled="{Binding ElementName=enabledSwitch, Path=IsChecked}"
+                                   Classes="Win10"
+                                   IsVisible="{Binding ElementName=visibleSwitch, Path=IsChecked}" />
+      <Controls:ToggleSwitch Margin="{StaticResource ControlMargin}"
+                                   IsChecked="True"
+                                   IsEnabled="False"
+                                   Classes="Win10" />
+      <Controls:ToggleSwitch Margin="{StaticResource ControlMargin}"
+                                   IsChecked="False"
+                                   IsEnabled="False"
+                                   Classes="Win10" />
+      
+    </StackPanel>
+
+
   </Grid>
 </UserControl>
