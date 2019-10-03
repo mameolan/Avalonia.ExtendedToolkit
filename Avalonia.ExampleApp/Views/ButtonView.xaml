@@ -254,9 +254,33 @@
                                    IsChecked="False"
                                    IsEnabled="False"
                                    Classes="Win10" />
-      
-    </StackPanel>
 
+    </StackPanel>
+    <StackPanel Grid.Row="1"
+                    Grid.Column="2"
+                    HorizontalAlignment="Center">
+      <TextBlock Text="Checkbox" Classes="DescriptionHeaderStyle" />
+      <Controls:MetroCheckBox Margin="{StaticResource ControlMargin}" Content="Enabled" />
+      <Controls:MetroCheckBox Margin="{StaticResource ControlMargin}"
+                      Content="Enabled"
+                      IsChecked="True" />
+      <Controls:MetroCheckBox Margin="{StaticResource ControlMargin}"
+                      Content="Enabled"
+                      IsChecked="{x:Null}"
+                      IsThreeState="True" />
+      <Controls:MetroCheckBox Margin="{StaticResource ControlMargin}"
+                      Content="Disabled"
+                      IsEnabled="False" />
+      <Controls:MetroCheckBox Margin="{StaticResource ControlMargin}"
+                      Content="Disabled"
+                      IsChecked="True"
+                      IsEnabled="False" />
+      <Controls:MetroCheckBox Margin="{StaticResource ControlMargin}"
+                      Content="Disabled"
+                      IsChecked="{x:Null}"
+                      IsEnabled="False"
+                      IsThreeState="True" />
+    </StackPanel>
 
   </Grid>
 </UserControl>

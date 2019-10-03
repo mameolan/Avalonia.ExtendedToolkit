@@ -31,15 +31,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             element.SetValue(CornerRadiusProperty, value);
         }
 
-        public static readonly AttachedProperty<SolidColorBrush> FocusBorderBrushProperty =
-            AvaloniaProperty.RegisterAttached<Control, SolidColorBrush>("FocusBorderBrush", typeof(ControlsHelper), defaultValue:(SolidColorBrush)Brushes.Transparent);
+        public static readonly AttachedProperty<IBrush> FocusBorderBrushProperty =
+            AvaloniaProperty.RegisterAttached<Control, IBrush>("FocusBorderBrush", typeof(ControlsHelper), defaultValue:(SolidColorBrush)Brushes.Transparent);
 
-        public static SolidColorBrush GetFocusBorderBrush(Control element)
+        public static IBrush GetFocusBorderBrush(Control element)
         {
             return element.GetValue(FocusBorderBrushProperty);
         }
 
-        public static void SetFocusBorderBrush(Control element, SolidColorBrush value)
+        public static void SetFocusBorderBrush(Control element, IBrush value)
         {
             element.SetValue(FocusBorderBrushProperty, value);
         }

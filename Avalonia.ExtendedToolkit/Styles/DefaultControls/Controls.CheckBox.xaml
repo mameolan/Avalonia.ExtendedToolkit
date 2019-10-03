@@ -3,32 +3,33 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
     xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:tk="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit"
     xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit">
-  
+
   <Style Selector="Controls|MetroCheckBox">
-    <Setter Property="Background" Value="{DynamicResource WhiteBrush}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource CheckBoxBrush}" />
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.CheckBox}" />
     <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="FocusBorderBrush" Value="{DynamicResource HighlightBrush}" />
-    <Setter Property="MouseOverBorderBrush" Value="{DynamicResource CheckBoxMouseOverBrush}" />
-    <Setter Property="Foreground" Value="{DynamicResource LabelTextBrush}" />
+    <Setter Property="FocusBorderBrush" Value="{DynamicResource MahApps.Brushes.Highlight}" />
+    <Setter Property="MouseOverBorderBrush" Value="{DynamicResource MahApps.Brushes.CheckBox.MouseOver}" />
+    <Setter Property="FontFamily" Value="{DynamicResource MahApps.Fonts.Content}" />
+    <Setter Property="FontSize" Value="{DynamicResource MahApps.Sizes.Font.Content}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Label.Text}" />
     <Setter Property="HorizontalContentAlignment" Value="Left" />
     <Setter Property="Padding" Value="6 0 0 0" />
     <Setter Property="VerticalContentAlignment" Value="Center" />
-    <Setter Property="FontFamily" Value="{DynamicResource ContentFontFamily}" />
-    <Setter Property="FontSize" Value="{DynamicResource ContentFontSize}" />
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="CheckBox">
+        <ControlTemplate>
           <Grid>
             <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="Auto" />
+              <tk:ColumnDefinitionExt Name="LeftCol" Width="Auto" />
               <!--x:Name="LeftCol"-->
-              <ColumnDefinition  Width="*" />
+              <tk:ColumnDefinitionExt Name="RightCol" Width="*" />
               <!--x:Name="RightCol"-->
             </Grid.ColumnDefinitions>
             <Grid x:Name="PART_CHECKBOX">
-              <Rectangle Margin="-6 0" Fill="{DynamicResource TransparentWhiteBrush}" />
+              <Rectangle Margin="-6 0" Fill="{DynamicResource MahApps.Brushes.TransparentWhite}" />
               <Border x:Name="normal"
                       Width="18"
                       Height="18"
@@ -36,26 +37,33 @@
                       BorderBrush="{TemplateBinding BorderBrush}"
                       BorderThickness="{TemplateBinding BorderThickness}"
                        />
-              <Path x:Name="checkBox"
-                    Width="12"
-                    Height="10"
-                    Data="M 1145.607177734375,430 C1145.607177734375,430 1141.449951171875,435.0772705078125 1141.449951171875,435.0772705078125 1141.449951171875,435.0772705078125 1139.232177734375,433.0999755859375 1139.232177734375,433.0999755859375 1139.232177734375,433.0999755859375 1138,434.5538330078125 1138,434.5538330078125 1138,434.5538330078125 1141.482177734375,438 1141.482177734375,438 1141.482177734375,438 1141.96875,437.9375 1141.96875,437.9375 1141.96875,437.9375 1147,431.34619140625 1147,431.34619140625 1147,431.34619140625 1145.607177734375,430 1145.607177734375,430 z"
-                    Fill="{DynamicResource HighlightBrush}"
-                    Opacity="0"
-                    Stretch="Fill"
-                    UseLayoutRounding="False" />
+              <!--<LayoutTransformControl Name="checkBoxPathLayoutTransform" Opacity="0">-->
+                <Path x:Name="checkBox"
+                      Width="12"
+                      Height="10"
+                      Data="M 1145.607177734375,430 C1145.607177734375,430 1141.449951171875,435.0772705078125 1141.449951171875,435.0772705078125 1141.449951171875,435.0772705078125 1139.232177734375,433.0999755859375 1139.232177734375,433.0999755859375 1139.232177734375,433.0999755859375 1138,434.5538330078125 1138,434.5538330078125 1138,434.5538330078125 1141.482177734375,438 1141.482177734375,438 1141.482177734375,438 1141.96875,437.9375 1141.96875,437.9375 1141.96875,437.9375 1147,431.34619140625 1147,431.34619140625 1147,431.34619140625 1145.607177734375,430 1145.607177734375,430 z"
+                      Fill="{DynamicResource MahApps.Brushes.Highlight}"
+                      Opacity="0"
+                      Stretch="Fill"
+                      UseLayoutRounding="False" />
+                <!--
+                
+                
+                -->
+              <!--</LayoutTransformControl>-->
               <Rectangle x:Name="IndeterminateCheck"
                          Width="8"
                          Height="3"
-                         Fill="{DynamicResource GrayBrush3}"
+                         Fill="{DynamicResource MahApps.Brushes.Gray3}"
                          Opacity="0"
-                         /> 
+                         />
               <Border x:Name="disabled"
                       Width="18"
                       Height="18"
-                      Background="{DynamicResource SemiTransparentWhiteBrush}"
+                      Background="{DynamicResource MahApps.Brushes.SemiTransparentWhite}"
                       BorderThickness="{TemplateBinding BorderThickness}"
-                       /> <!--Opacity="0.5"-->
+                      Opacity="0"
+                      />
             </Grid>
             <ContentPresenter x:Name="contentPresenter"
                               Grid.Column="1"
@@ -93,59 +101,67 @@
     </Style.Animations>-->
   </Style>
 
-  <Style Selector="Controls|MetroCheckBox[IsChecked=true] /template/ Path#checked">
-    <Setter Property="Opacity" Value="1"/>
-    <!--<Style.Animations>
+  <!--<Style Selector="Controls|MetroCheckBox[IsChecked=false] /template/ Path#checkBox">
+    <Setter Property="Opacity" Value="0"/>
+    --><!--<Style.Animations>
       <Animation Duration="00:00:00.5">
         <KeyFrame Cue="100%">
           <Setter Property="Opacity" Value="1"/>
         </KeyFrame>
       </Animation>
-    </Style.Animations>-->
-  </Style>
+    </Style.Animations>--><!--
+  </Style>-->
 
-  <Style Selector="Controls|MetroCheckBox[IsIndeterminate=true] /template/ Rectangle#IndeterminateCheck">
+  <!--<Style Selector="Controls|MetroCheckBox[IsIndeterminate=true] /template/ Rectangle#IndeterminateCheck">
     <Setter Property="Opacity" Value="1"/>
-    <!--<Style.Animations>
+    --><!--<Style.Animations>
       <Animation Duration="00:00:00.5">
         <KeyFrame Cue="100%">
           <Setter Property="Opacity" Value="1"/>
         </KeyFrame>
       </Animation>
-    </Style.Animations>-->
-  </Style>
+    </Style.Animations>--><!--
+  </Style>-->
 
   <Style Selector="Controls|MetroCheckBox:pointover /template/ Border#normal">
     <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBorderBrush}" />
   </Style>
 
-  <Style Selector="Controls|MetroCheckBox:checked /template/ Border#normal">
-    <Setter Property="BorderBrush" Value="{DynamicResource HighlightBrush}" />
+  <Style Selector="Controls|MetroCheckBox:pressed /template/ Border#normal">
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Highlight}" />
   </Style>
 
   <Style Selector="Controls|MetroCheckBox:focused /template/ Border#normal">
     <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FocusBorderBrush}" />
   </Style>
 
-  <!--<Style Selector="Controls|MetroCheckBox[FlowDirection=LeftToRight] /template/ Path#checkBox">
+  <!--<Style Selector="Controls|MetroCheckBox[FlowDirection=LeftToRight] /template/ LayoutTransformControl#checkBoxPathLayoutTransform">
     <Setter Property="LayoutTransform" >
       <Setter.Value>
         <ScaleTransform ScaleX="-1" />
       </Setter.Value>
-      </Setter>
-    --><!--<Setter TargetName="" Property="LayoutTransform">
-      <Setter.Value>
-        <ScaleTransform ScaleX="-1" />
-      </Setter.Value>
-    </Setter>--><!--
+    </Setter>
   </Style>-->
 
-  <!--<Trigger Property="Controls:ToggleButtonHelper.ContentDirection" Value="RightToLeft">
+  <Style Selector="Controls|MetroCheckBox[ContentDirection=RightToLeft]">
     <Setter Property="Padding" Value="0 0 6 0" />
-    <Setter TargetName="LeftCol" Property="Width" Value="*" />
-    <Setter TargetName="PART_CHECKBOX" Property="Grid.Column" Value="1" />
-    <Setter TargetName="RightCol" Property="Width" Value="18" />
-    <Setter TargetName="contentPresenter" Property="Grid.Column" Value="0" />
-  </Trigger>-->
+  </Style>
+
+  <Style Selector="Controls|MetroCheckBox[ContentDirection=RightToLeft] /template/ tk|ColumnDefinitionExt#LeftCol">
+    <Setter Property="Width" Value="*" />
+  </Style>
+
+  <Style Selector="Controls|MetroCheckBox[ContentDirection=RightToLeft] /template/ Grid#PART_CHECKBOX">
+    <Setter Property="Grid.Column" Value="1" />
+  </Style>
+
+  <Style Selector="Controls|MetroCheckBox[ContentDirection=RightToLeft] /template/ tk|ColumnDefinitionExt#RightCol">
+    <Setter  Property="Width" Value="18" />
+  </Style>
+
+  <Style Selector="Controls|MetroCheckBox[ContentDirection=RightToLeft] /template/ ContentPresenter#contentPresenter">
+    <Setter Property="Grid.Column" Value="0" />
+  </Style>
+  
 
 </Styles>
