@@ -34,7 +34,6 @@
     <EmbeddedResource Include="Styles\Themes\GeneratorParameters.json" />
   </ItemGroup>
 
-  
   <Target Name="GenerateXamlFilesInner">
     <PropertyGroup>
       <XamlColorSchemeGeneratorVersion Condition="'%(PackageReference.Identity)' == 'XamlColorSchemeGenerator'">%(PackageReference.Version)</XamlColorSchemeGeneratorVersion>

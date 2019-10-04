@@ -1,0 +1,114 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:tk="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit"
+    xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit">
+
+  <Styles.Resources>
+    <Converter:ThicknessToDoubleConverter x:Key="ThicknessToDoubleConverter" />
+  </Styles.Resources>
+  
+  <Style Selector="Controls|MetroRadioButton">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.CheckBox}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="FocusBorderBrush" Value="{DynamicResource MahApps.Brushes.Highlight}" />
+    <Setter Property="MouseOverBorderBrush" Value="{DynamicResource MahApps.Brushes.CheckBox.MouseOver}" />
+    <Setter Property="FontFamily" Value="{DynamicResource MahApps.Fonts.Content}" />
+    <Setter Property="FontSize" Value="{DynamicResource MahApps.Sizes.Font.Content}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Label.Text}" />
+    <Setter Property="HorizontalContentAlignment" Value="Left" />
+    <Setter Property="Padding" Value="6 0 0 0" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <tk:ColumnDefinitionExt Name="LeftCol" Width="18" />
+              <tk:ColumnDefinitionExt x:Name="RightCol" Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="PART_CHECKBOX"
+                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+              <Rectangle Margin="-6 0" Fill="{DynamicResource MahApps.Brushes.TransparentWhite}" />
+              <Ellipse x:Name="normal"
+                       Width="18"
+                       Height="18"
+                       Fill="{TemplateBinding Background}"
+                       Stroke="{TemplateBinding BorderBrush}"
+                       StrokeThickness="{TemplateBinding BorderThickness, Converter={StaticResource ThicknessToDoubleConverter}, ConverterParameter={x:Static tk:ThicknessSideType.Left}}" />
+              <Ellipse x:Name="Checked1"
+                       Width="10"
+                       Height="10"
+                       Fill="{DynamicResource MahApps.Brushes.Highlight}"
+                       Opacity="0" />
+              <Ellipse x:Name="disabled"
+                       Width="18"
+                       Height="18"
+                       Fill="{DynamicResource MahApps.Brushes.SemiTransparentWhite}"
+                       Opacity="0"
+                       StrokeThickness="{TemplateBinding BorderThickness, Converter={StaticResource ThicknessToDoubleConverter}, ConverterParameter={x:Static tk:ThicknessSideType.Left}}" />
+            </Grid>
+            <ContentPresenter x:Name="contentPresenter"
+                              Grid.Column="1"
+                              Margin="{TemplateBinding Padding}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              />
+            
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|MetroRadioButton[IsEnabled=false] /template/ ContentPresenter#contentPresenter">
+    <Setter Property="Opacity" Value=".55"/>
+  </Style>
+
+  <Style Selector="Controls|MetroRadioButton[IsEnabled=false] /template/ Border#disabled">
+    <Setter Property="Opacity" Value="1"/>
+  </Style>
+
+  <!--<Style Selector="Controls|MetroRadioButton[IsChecked=true] /template/ Ellipse#Checked1">
+    <Setter Property="Opacity" Value="1"/>
+  </Style>-->
+
+  <Style Selector="Controls|MetroRadioButton:pointerover /template/ Ellipse#normal">
+    <Setter Property="Stroke" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBorderBrush}" />
+  </Style>
+
+  <Style Selector="Controls|MetroRadioButton:pressed /template/ Ellipse#normal">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.Highlight}" />
+  </Style>
+
+  <Style Selector="Controls|MetroRadioButton:focused /template/ Ellipse#normal">
+    <Setter Property="Stroke" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FocusBorderBrush}" />
+  </Style>
+
+  <Style Selector="Controls|MetroRadioButton[ContentDirection=RightToLeft]">
+    <Setter Property="Padding" Value="0 0 6 0" />
+  </Style>
+
+  <Style Selector="Controls|MetroRadioButton[ContentDirection=RightToLeft] /template/ tk|ColumnDefinitionExt#LeftCol">
+    <Setter Property="Width" Value="*" />
+  </Style>
+
+  <Style Selector="Controls|MetroRadioButton[ContentDirection=RightToLeft] /template/ Grid#PART_CHECKBOX">
+    <Setter Property="Grid.Column" Value="1" />
+  </Style>
+
+  <Style Selector="Controls|MetroRadioButton[ContentDirection=RightToLeft] /template/ tk|ColumnDefinitionExt#RightCol">
+    <Setter Property="Width" Value="18" />
+  </Style>
+
+  <Style Selector="Controls|MetroRadioButton[ContentDirection=RightToLeft] /template/ ContentPresenter#contentPresenter">
+    <Setter  Property="Grid.Column" Value="0" />
+  </Style>
+  
+</Styles>

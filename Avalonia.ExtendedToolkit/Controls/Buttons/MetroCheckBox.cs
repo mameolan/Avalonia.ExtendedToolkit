@@ -109,6 +109,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             _checkBoxPath = e.NameScope.Find<Path>("checkBox");
             _indeterminateCheck = e.NameScope.Find<Rectangle>("IndeterminateCheck");
 
+            //set init value 
             bool? isChecked = IsChecked;
             if(isChecked.HasValue)
             {
@@ -120,8 +121,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
             
             IsChecked = isChecked;
-
-            //RaisePropertyChanged(IsEnabledProperty, null, IsChecked);
 
             base.OnTemplateApplied(e);
         }

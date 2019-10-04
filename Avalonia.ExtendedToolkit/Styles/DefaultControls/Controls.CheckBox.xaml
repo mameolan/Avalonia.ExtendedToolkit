@@ -123,7 +123,7 @@
     </Style.Animations>--><!--
   </Style>-->
 
-  <Style Selector="Controls|MetroCheckBox:pointover /template/ Border#normal">
+  <Style Selector="Controls|MetroCheckBox:pointerover /template/ Border#normal">
     <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseOverBorderBrush}" />
   </Style>
 

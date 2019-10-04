@@ -20,5 +20,6 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.CheckBox.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ComboBox.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ListBox.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.RadioButton.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Thumb.xaml"/>
  </Styles>
