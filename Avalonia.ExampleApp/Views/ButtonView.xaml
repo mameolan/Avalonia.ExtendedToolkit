@@ -6,6 +6,7 @@
               xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
               xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
               xmlns:iac="clr-namespace:Avalonia.Xaml.Interactions.Custom;assembly=Avalonia.Xaml.Interactions.Custom"
+              xmlns:fontAwesome="clr-namespace:FontAwesome.Avalonia;assembly=FontAwesome.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.ButtonView">
   <UserControl.Resources>
@@ -96,30 +97,28 @@
               Content="Disabled"
               IsEnabled="False"
                           />
-
-      <!--iconPacks todo-->
-      <!--<StackPanel Margin="{StaticResource ControlMargin}"
+    </StackPanel>
+    <!--iconPacks todo-->
+    <!--<StackPanel Margin="{StaticResource ControlMargin}"
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">
-                    <ToggleButton Width="48"
-                                  Height="48"
-                                  Margin="4"
-                                  Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
-                      <iconPacks:PackIconModern Width="20"
-                                                Height="20"
-                                                Kind="City" />
-                    </ToggleButton>
-                    <ToggleButton Width="48"
+        <Controls:MetroToggleButton Width="48"
+                      Height="48"
+                      Margin="4"
+                      Classes="Circle">
+          <fontAwesome:FontAwesome Width="20"
+                                    Height="20" Icon="Compass"/>
+        </Controls:MetroToggleButton>
+        <Controls:MetroToggleButton Width="48"
                                   Height="48"
                                   Margin="4"
                                   IsEnabled="False"
-                                  Style="{DynamicResource MahApps.Styles.ToggleButton.Circle}">
-                      <iconPacks:PackIconModern Width="20"
-                                                Height="20"
-                                                Kind="City" />
-                    </ToggleButton>-->
-
-    </StackPanel>
+                                  Classes="Circle">
+          <fontAwesome:FontAwesome Width="20"
+                                    Height="20" Icon="Compass"/>
+        </Controls:MetroToggleButton>
+        -->
+    <!--</StackPanel>-->
 
     <StackPanel Grid.Row="0" Grid.Column="3">
       <TextBlock Text="Flat button" Classes="DescriptionHeaderStyle" />
@@ -138,35 +137,32 @@
             Height="48"
             Margin="4"
             Classes="MetroCircleButtonStyle">
-        <!--<iconPacks:PackIconModern Width="20"
-                                              Height="20"
-                                              Kind="City" />-->
-        iconPacks missing
+        <fontAwesome:FontAwesome Width="20"
+                                  Height="20" Icon="Glass"/>
       </Controls:MetroButton>
       <Controls:MetroButton Width="48"
               Height="48"
               Margin="4"
               IsEnabled="False"
               Classes="MetroCircleButtonStyle">
-        <!--<iconPacks:PackIconModern Width="20"
-                                              Height="20"
-                                              Kind="CitySeattle" />-->
-        iconPacks missing
+        <fontAwesome:FontAwesome Width="20"
+                                  Height="20" Icon="Glass"/>
       </Controls:MetroButton>
-      <Controls:MetroButton Width="48"
+      <Controls:MetroButton 
+              Width="140"
               Height="48"
               Margin="4"
               Foreground="{DynamicResource MahApps.Brushes.Accent}"
               IsEnabled="False"
               Classes="MetroCircleButtonStyle">
         <!--<Controls:MetroButton.ContentTemplate>
-                      <DataTemplate>
-                        <iconPacks:PackIconModern Width="20"
-                                                  Height="20"
-                                                  Kind="CitySeattle" />
-                      </DataTemplate>
-                    </Controls:MetroButton.ContentTemplate>-->
-        iconPacks missing
+          <DataTemplate>
+            <fontAwesome:FontAwesome Width="20"
+                        Height="20" Icon="Glass"/>
+          </DataTemplate>
+          
+        </Controls:MetroButton.ContentTemplate>-->
+        Datatemplate not working
       </Controls:MetroButton>
 
     </StackPanel>
@@ -303,6 +299,50 @@
                    IsChecked="True"
                    IsEnabled="False" />
     </StackPanel>
+
+    <StackPanel Grid.Row="1"
+                    Grid.Column="4"
+                    HorizontalAlignment="Stretch">
+      <TextBlock Text="DropDownButton" Classes="DescriptionHeaderStyle" />
+
+      <TextBlock Text="Not Working" Foreground="Red" Classes="DescriptionHeaderStyle" />
+      <!--<Controls:DropDownButton Margin="5"
+                                     Command="{Binding ArtistsDropDownCommand}"
+                                     Content="Artists"
+                                     Items="{Binding Artists}">
+        <Controls:DropDownButton.Icon>
+          <fontAwesome:FontAwesome Icon="Music"/>
+        </Controls:DropDownButton.Icon>
+      </Controls:DropDownButton>
+
+      <Controls:DropDownButton Margin="5"
+                                     Content="Genres"
+                                  >
+
+        <Controls:DropDownButton.ContextMenu>
+          <ContextMenu    Items="{Binding Genres}">
+            <ContextMenu.Styles>
+              <Style Selector="MenuItem">
+                <Setter Property="Header" Value="{Binding Name}"/>
+                <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:DropDownButton}}, Path=DataContext.GenreDropDownMenuItemCommand}" />
+                <Setter Property="CommandParameter" Value="{Binding Name}" />
+              </Style>
+            </ContextMenu.Styles>  
+          </ContextMenu>
+          
+        </Controls:DropDownButton.ContextMenu>-->
+        <!--<Controls:DropDownButton.ItemContainerStyle>
+          <Style Selector="{x:Type MenuItem}">
+            
+          </Style>
+        </Controls:DropDownButton.ItemContainerStyle>-->
+        <Controls:DropDownButton.Icon>
+          <fontAwesome:FontAwesome Margin="6" Icon="Music" />
+        </Controls:DropDownButton.Icon>
+      </Controls:DropDownButton>
+      
+    </StackPanel>
+
 
   </Grid>
 </UserControl>

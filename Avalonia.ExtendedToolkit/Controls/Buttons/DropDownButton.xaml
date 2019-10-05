@@ -1,0 +1,160 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+    xmlns:helper="clr-namespace:Avalonia.ExtendedToolkit.Helper;assembly=Avalonia.ExtendedToolkit"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+  <Style Selector="Controls|DropDownButton">
+    <Setter Property="ArrowBrush" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
+    <Setter Property="ArrowMouseOverBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="ArrowPressedBrush" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.WhiteColor}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="ButtonStyle" Value="{DynamicResource MahApps.Styles.Button.DropDown}" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="FontFamily" Value="{DynamicResource MahApps.Fonts.Content}" />
+    <Setter Property="FontSize" Value="{DynamicResource MahApps.Sizes.Font.Content}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
+    <!--<Setter Property="HorizontalContentAlignment" Value="Center" />-->
+    <!--<Setter Property="VerticalContentAlignment" Value="Center" />-->
+    <Setter Property="MenuStyle" Value="{DynamicResource MahApps.Styles.ContextMenu}" />
+    <Setter Property="MinHeight" Value="26" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border x:Name="PART_Border"
+                  Background="Transparent"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="{TemplateBinding CornerRadius}"
+                  UseLayoutRounding="True">
+            <Controls:ClipBorder x:Name="PART_ClipBorder"
+                                 CornerRadius="{TemplateBinding CornerRadius}"
+                                 >
+              <Button x:Name="PART_Button"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch"
+                      VerticalContentAlignment="Stretch"
+                      Background="{TemplateBinding Background}"
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      Command="{TemplateBinding Command}"
+                      CommandParameter="{TemplateBinding CommandParameter}"
+                      Foreground="{TemplateBinding Foreground}"
+                      helper:StyledElementExtension.Style="{TemplateBinding ButtonStyle}"
+                      >
+
+                <!--
+                    CommandTarget="{TemplateBinding CommandTarget}"
+                    RenderOptions.ClearTypeHint="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(RenderOptions.ClearTypeHint), Mode=OneWay}"
+                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                    Style="{TemplateBinding ButtonStyle}"
+                -->
+
+                <DockPanel x:Name="PART_Content"
+                           Focusable="False"
+                           LastChildFill="True">
+                  <!--  Material - ChevronDown  -->
+                  <ContentControl x:Name="PART_Arrow"
+                                  Width="9"
+                                  Height="9"
+                                  Margin="0 0 3 0"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Content="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                                  DockPanel.Dock="Right"
+                                  Foreground="{TemplateBinding ArrowBrush}"
+                                  IsVisible="{TemplateBinding IsArrowVisible}"
+                                  Classes="PathIcon"
+                                />
+                  <!--Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}"-->
+
+                  <StackPanel x:Name="PART_ContentOrientation"
+                              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                              Focusable="False"
+                              Orientation="Horizontal">
+                    <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Content="{TemplateBinding Icon}"
+                                      ContentTemplate="{TemplateBinding IconTemplate}"
+                                      Focusable="False"
+                                      UseLayoutRounding="False" />
+                    <Controls:ContentControlEx x:Name="PART_ButtonContent"
+                                               Margin="3"
+                                               Padding="{TemplateBinding Padding}"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               HorizontalContentAlignment="{TemplateBinding HorizontalAlignment}"
+                                               VerticalContentAlignment="{TemplateBinding VerticalAlignment}"
+                                               Content="{Binding Content, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                               ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentCharacterCasing}"
+                                               ContentTemplate="{TemplateBinding ContentTemplate}"
+                                               RecognizesAccessKey="True"
+                                               UseLayoutRounding="False" />
+                  </StackPanel>
+                </DockPanel>
+                <Button.ContextMenu>
+                  <Controls:ContextMenuExt x:Name="PART_Menu"
+                               MinWidth="{TemplateBinding Width}"
+                               ItemTemplate="{TemplateBinding ItemTemplate}"
+                               ItemsPanel="{TemplateBinding ItemsPanel}"
+                               Items="{TemplateBinding Items}"
+                               UseLayoutRounding="False"
+                               helper:StyledElementExtension.Style="{TemplateBinding MenuStyle}"
+                               IsOpen="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"             
+                                         />
+                  <!--Style="{TemplateBinding MenuStyle}"
+                
+                -->
+
+                </Button.ContextMenu>
+              </Button>
+            </Controls:ClipBorder>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|DropDownButton:focused">
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+  </Style>
+
+  <!--<Style Selector="Controls|DropDownButton[IsKeyboardFocusWithin=true]">
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+  </Style>-->
+
+  <Style Selector="Controls|DropDownButton:disabled">
+    <Setter Property="Opacity" Value=".55" />
+  </Style>
+
+  <Style Selector="Controls|DropDownButton[Content={x:Null}] /template/ Controls|ContentControlEx#PART_ButtonContent">
+    <Setter Property="Margin" Value="0" />
+  </Style>
+
+  <Style Selector="Controls|DropDownButton[Orientation=Vertical] /template/ ContentControl#PART_Arrow">
+    <Setter Property="DockPanel.Dock" Value="Bottom" />
+    <Setter Property="Margin" Value="0 0 0 3" />
+  </Style>
+
+  <Style Selector="Controls|DropDownButton[Orientation=Vertical] /template/ StackPanel#PART_ContentOrientation">
+    <Setter Property="Orientation" Value="Vertical" />
+  </Style>
+
+  <Style Selector="Controls|DropDownButton:pointerover:enabled /template/ ContentControl#PART_Arrow">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ArrowMouseOverBrush, Mode=OneWay}" />
+  </Style>
+
+  <Style Selector="Controls|DropDownButton:pressed /template/ ContentControl#PART_Arrow">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ArrowPressedBrush, Mode=OneWay}" />
+  </Style>
+
+  <Style Selector="Controls|DropDownButton:disabled /template/ Controls|ContentControlEx#PART_ButtonContent">
+    <Setter Property="Opacity" Value=".55" />
+  </Style>
+
+</Styles>

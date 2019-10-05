@@ -26,6 +26,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AvaloniaResource Remove="Commanding\**" />
+    <Compile Remove="Commanding\**" />
+    <EmbeddedResource Remove="Commanding\**" />
+    <None Remove="Commanding\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="Styles\Themes\GeneratorParameters.json" />
   </ItemGroup>
@@ -33,6 +40,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Styles\Themes\GeneratorParameters.json" />
   </ItemGroup>
+
+  
 
   <Target Name="GenerateXamlFilesInner">
     <PropertyGroup>

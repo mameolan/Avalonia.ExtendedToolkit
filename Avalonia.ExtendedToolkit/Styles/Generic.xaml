@@ -13,8 +13,10 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Badged/Badget.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Wizard/Wizard.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/ContentControlEx/ContentControlEx.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Buttons/DropDownButton.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Flyout/FlyoutsControl.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Flyout/Flyout.xaml"/>
+  
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Buttons.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.CheckBox.xaml"/>

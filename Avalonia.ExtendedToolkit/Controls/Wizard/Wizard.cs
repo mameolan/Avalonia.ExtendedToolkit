@@ -1,7 +1,6 @@
 ﻿using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
-using Avalonia.ExtendedToolkit.Commanding;
 using Avalonia.Interactivity;
 using System;
 using System.Collections;
@@ -11,7 +10,7 @@ using System.Windows.Input;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
-    public class Wizard : ItemsControlCommandBinding<ItemsControl>
+    public class Wizard : ItemsControl
     {
         private string ButtonName_Help = "HelpButton";
         private string ButtonName_Back = "BackButton";
@@ -412,10 +411,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
 
 
-            var eventArgs = new CancelRoutedEventArgs(Wizard.FinishEvent);
+            var eventArgs = new RoutedEventArgs(Wizard.FinishEvent);
             this.RaiseEvent(eventArgs);
-            if (eventArgs.Cancel)
-                return;
+            //if (eventArgs.Cancel)
+            //    return;
 
             if (FinishButtonClosesWindow)
                 CloseParentWindow(true);
@@ -469,10 +468,10 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             if (CurrentPage != null)
             {
-                var eventArgs = new CancelRoutedEventArgs(NextEvent);
+                var eventArgs = new RoutedEventArgs(NextEvent);
                 this.RaiseEvent(eventArgs);
-                if (eventArgs.Cancel)
-                    return;
+                //if (eventArgs.Cancel)
+                //    return;
 
                 //check next page
                 if (CurrentPage.NextPage != null)
@@ -518,10 +517,10 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             if (CurrentPage != null)
             {
-                var eventArgs = new CancelRoutedEventArgs(PreviousEvent);
+                var eventArgs = new RoutedEventArgs(PreviousEvent);
                 this.RaiseEvent(eventArgs);
-                if (eventArgs.Cancel)
-                    return;
+                //if (eventArgs.Cancel)
+                //    return;
 
                 //check previous page
                 if (CurrentPage.PreviousPage != null)
@@ -585,10 +584,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<CancelRoutedEventArgs> FinishEvent =
-            RoutedEvent.Register<Wizard, CancelRoutedEventArgs>(nameof(FinishEvent), RoutingStrategies.Bubble);
+        public static RoutedEvent<RoutedEventArgs> FinishEvent =
+            RoutedEvent.Register<Wizard, RoutedEventArgs>(nameof(FinishEvent), RoutingStrategies.Bubble);
 
-        public event CancelRoutedEventHandler Finish
+        public event EventHandler Finish
         {
             add
             {
@@ -615,7 +614,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public delegate void NextRoutedEventHandler(object sender, CancelRoutedEventArgs e);
+        public delegate void NextRoutedEventHandler(object sender, RoutedEventArgs e);
 
         public static RoutedEvent<RoutedEventArgs> NextEvent =
             RoutedEvent.Register<Wizard, RoutedEventArgs>(nameof(NextEvent), RoutingStrategies.Bubble);
@@ -632,7 +631,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public delegate void PreviousRoutedEventHandler(object sender, CancelRoutedEventArgs e);
+        public delegate void PreviousRoutedEventHandler(object sender, RoutedEventArgs e);
 
         public static RoutedEvent<RoutedEventArgs> PreviousEvent =
             RoutedEvent.Register<Wizard, RoutedEventArgs>(nameof(PreviousEvent), RoutingStrategies.Bubble);

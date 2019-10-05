@@ -1,4 +1,5 @@
-﻿using Avalonia.ExtendedToolkit;
+﻿using Avalonia.ExampleApp.Model;
+using Avalonia.ExtendedToolkit;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,25 @@ namespace Avalonia.ExampleApp.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private ObservableCollection<Album> _albums;
+        public ObservableCollection<Album> Albums
+        {
+            get { return _albums; }
+            set { this.RaiseAndSetIfChanged(ref _albums, value); }
+        }
+
+        private ObservableCollection<Artist> _artists;
+        public ObservableCollection<Artist> Artists
+        {
+            get { return _artists; }
+            set { this.RaiseAndSetIfChanged(ref _artists, value); }
+        }
+
+        public ICommand GenreDropDownMenuItemCommand { get; }
+
         public ICommand ChangeColorSchemeCommand { get; }
+
+        public ICommand ArtistsDropDownCommand { get; }
 
         public ICommand ChangeBaseColorsCommand { get; }
 
@@ -27,7 +46,7 @@ namespace Avalonia.ExampleApp.ViewModels
             {
                 this.RaiseAndSetIfChanged(ref myColorSchemes, value);
             }
-           
+
         }
 
 
@@ -91,16 +110,21 @@ namespace Avalonia.ExampleApp.ViewModels
         }
 
 
-       
+
 
 
         public MainWindowViewModel()
         {
             //ThemeManager.Instance.PropertyChanged += ThemeManager_PropertyChanged;
 
+            SampleData.Seed();
+            this.Albums = SampleData.Albums;
+            this.Artists = SampleData.Artists;
+
+
             ColorSchemes = ThemeManager.Instance.ColorSchemes;
             BaseColors = ThemeManager.Instance.BaseColors;
-            
+
 
             if (ThemeManager.Instance.SelectedTheme == null)
             {
@@ -116,17 +140,33 @@ namespace Avalonia.ExampleApp.ViewModels
 
             ChangeBaseColorsCommand = ReactiveCommand.Create<string>(x => ExecuteChangeBaseColorsCommand(x), outputScheduler: RxApp.MainThreadScheduler);
 
+            var canExecute = this.WhenAny(x => x, (test) => true == false);
+
+            ArtistsDropDownCommand = ReactiveCommand.Create<object>(x => ExecuteArtistsDropDownCommand(x), canExecute, outputScheduler: RxApp.MainThreadScheduler);
+            GenreDropDownMenuItemCommand = ReactiveCommand.Create<object>(x => ExecuteGenreDropDownMenuItemCommand(x), outputScheduler: RxApp.MainThreadScheduler);
+
+
             SelectedColorScheme = ColorSchemes.FirstOrDefault(x => x.Name == ThemeManager.Instance.SelectedTheme.ColorScheme);
             SelectedBaseColor = ThemeManager.Instance.SelectedBaseColor;
             SelectedTheme = ThemeManager.Instance.SelectedTheme;
         }
 
+        private void ExecuteGenreDropDownMenuItemCommand(object x)
+        {
+            //MessageBox
+        }
+
+        private void ExecuteArtistsDropDownCommand(object x)
+        {
+
+        }
+
         private void ThemeManager_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            switch(e.PropertyName)
+            switch (e.PropertyName)
             {
                 case nameof(SelectedColorScheme):
-                    SelectedColorScheme = ColorSchemes.FirstOrDefault(x=> x.Name== ThemeManager.Instance.SelectedTheme.ColorScheme);
+                    SelectedColorScheme = ColorSchemes.FirstOrDefault(x => x.Name == ThemeManager.Instance.SelectedTheme.ColorScheme);
                     break;
                 case nameof(SelectedBaseColor):
                     SelectedBaseColor = ThemeManager.Instance.SelectedBaseColor;
@@ -135,7 +175,7 @@ namespace Avalonia.ExampleApp.ViewModels
                     SelectedTheme = ThemeManager.Instance.SelectedTheme;
                     break;
             }
-            
+
         }
 
         private void ExecuteChangeBaseColorsCommand(object item)

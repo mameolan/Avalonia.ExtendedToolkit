@@ -18,15 +18,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             element.SetValue(ContentCharacterCasingProperty, value);
         }
 
-        public static readonly AttachedProperty<object> CornerRadiusProperty =
-            AvaloniaProperty.RegisterAttached<Control, object>(nameof(CornerRadius), typeof(ControlsHelper));
+        public static readonly AttachedProperty<CornerRadius> CornerRadiusProperty =
+            AvaloniaProperty.RegisterAttached<Control, CornerRadius>(nameof(CornerRadius), typeof(ControlsHelper));
 
-        public static object GetCornerRadius(Control element)
+        public static CornerRadius GetCornerRadius(Control element)
         {
             return element.GetValue(CornerRadiusProperty);
         }
 
-        public static void SetCornerRadius(Control element, object value)
+        public static void SetCornerRadius(Control element, CornerRadius value)
         {
             element.SetValue(CornerRadiusProperty, value);
         }
