@@ -306,7 +306,7 @@
       <TextBlock Text="DropDownButton" Classes="DescriptionHeaderStyle" />
 
       <TextBlock Text="Not Working" Foreground="Red" Classes="DescriptionHeaderStyle" />
-      <!--<Controls:DropDownButton Margin="5"
+      <Controls:DropDownButton Margin="5"
                                      Command="{Binding ArtistsDropDownCommand}"
                                      Content="Artists"
                                      Items="{Binding Artists}">
@@ -317,29 +317,22 @@
 
       <Controls:DropDownButton Margin="5"
                                      Content="Genres"
+                                     Items="{Binding Artists}"
                                   >
 
-        <Controls:DropDownButton.ContextMenu>
-          <ContextMenu    Items="{Binding Genres}">
-            <ContextMenu.Styles>
+        
+          <Controls:DropDownButton.MenuStyle>
               <Style Selector="MenuItem">
                 <Setter Property="Header" Value="{Binding Name}"/>
                 <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:DropDownButton}}, Path=DataContext.GenreDropDownMenuItemCommand}" />
                 <Setter Property="CommandParameter" Value="{Binding Name}" />
               </Style>
-            </ContextMenu.Styles>  
-          </ContextMenu>
-          
-        </Controls:DropDownButton.ContextMenu>-->
-        <!--<Controls:DropDownButton.ItemContainerStyle>
-          <Style Selector="{x:Type MenuItem}">
-            
-          </Style>
-        </Controls:DropDownButton.ItemContainerStyle>-->
-        <!--<Controls:DropDownButton.Icon>
+          </Controls:DropDownButton.MenuStyle>
+        
+        <Controls:DropDownButton.Icon>
           <fontAwesome:FontAwesome Margin="6" Icon="Music" />
         </Controls:DropDownButton.Icon>
-      </Controls:DropDownButton>-->
+      </Controls:DropDownButton>
       
     </StackPanel>
 

@@ -18,9 +18,9 @@
     <Setter Property="FontFamily" Value="{DynamicResource MahApps.Fonts.Content}" />
     <Setter Property="FontSize" Value="{DynamicResource MahApps.Sizes.Font.Content}" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
-    <!--<Setter Property="HorizontalContentAlignment" Value="Center" />-->
-    <!--<Setter Property="VerticalContentAlignment" Value="Center" />-->
-    <Setter Property="MenuStyle" Value="{DynamicResource MahApps.Styles.ContextMenu}" />
+    <!--<Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />-->
+    <!--<Setter Property="MenuStyle" Value="{DynamicResource MahApps.Styles.ContextMenu}" />-->
     <Setter Property="MinHeight" Value="26" />
     <Setter Property="Template">
       <Setter.Value>
@@ -31,9 +31,9 @@
                   BorderThickness="{TemplateBinding BorderThickness}"
                   CornerRadius="{TemplateBinding CornerRadius}"
                   UseLayoutRounding="True">
-            <Controls:ClipBorder x:Name="PART_ClipBorder"
+            <!--<Controls:ClipBorder x:Name="PART_ClipBorder"
                                  CornerRadius="{TemplateBinding CornerRadius}"
-                                 >
+                                 >-->
               <Button x:Name="PART_Button"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch"
@@ -94,7 +94,8 @@
                                                ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentCharacterCasing}"
                                                ContentTemplate="{TemplateBinding ContentTemplate}"
                                                RecognizesAccessKey="True"
-                                               UseLayoutRounding="False" />
+                                               UseLayoutRounding="False"
+                                               />
                   </StackPanel>
                 </DockPanel>
                 <Button.ContextMenu>
@@ -104,16 +105,16 @@
                                ItemsPanel="{TemplateBinding ItemsPanel}"
                                Items="{TemplateBinding Items}"
                                UseLayoutRounding="False"
-                               helper:StyledElementExtension.Style="{TemplateBinding MenuStyle}"
-                               IsOpen="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"             
+                               
                                          />
                   <!--Style="{TemplateBinding MenuStyle}"
-                
+                IsOpen="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"             
+                helper:StyledElementExtension.Style="{TemplateBinding MenuStyle}"
                 -->
 
                 </Button.ContextMenu>
               </Button>
-            </Controls:ClipBorder>
+            <!--</Controls:ClipBorder>-->
           </Border>
         </ControlTemplate>
       </Setter.Value>

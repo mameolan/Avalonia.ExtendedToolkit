@@ -19,7 +19,7 @@ namespace Avalonia.ExtendedToolkit.Controls
     public class DropDownButton : ItemsControl
     {
         private Button clickButton;
-        //private ContextMenu menu;
+        private ContextMenuExt menu;
 
         public static RoutedEvent<RoutedEventArgs> ClickEvent =
                     RoutedEvent.Register<DropDownButton, RoutedEventArgs>(nameof(ClickEvent), RoutingStrategies.Bubble);
@@ -271,9 +271,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public DropDownButton()
         {
-        
             IsExpandedProperty.Changed.AddClassHandler<DropDownButton>((o, e) => IsExpandedPropertyChangedCallback(o, e));
-            //ItemsSourceProperty.Changed.AddClassHandler<DropDownButton>((o, e) => OnItemsSourceChanged(o, e));
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
@@ -281,23 +279,32 @@ namespace Avalonia.ExtendedToolkit.Controls
             this.SetValue(IsExpandedProperty, true);
             e.RoutedEvent = ClickEvent;
             this.RaiseEvent(e);
+
+            if (menu.IsOpen)
+                menu.Close();
+
+            //if (menu.Parent == null)
+            {
+                menu.Open(this);
+            }
             
         }
 
         private void IsExpandedPropertyChangedCallback(DropDownButton dropDownButton, AvaloniaPropertyChangedEventArgs e)
         {
-            if (e.NewValue is bool)
-            {
-                bool value = (bool)e.NewValue;
+            //dropDownButton.SetContextMenuPlacementTarget(dropDownButton.menu);
+            //if (e.NewValue is bool)
+            //{
+            //    bool value = (bool)e.NewValue;
 
-                if (value && dropDownButton.ContextMenu.IsOpen == false)
-                {
-                    //dropDownButton.SetContextMenuPlacementTarget(dropDownButton.ContextMenu);
-                    //dropDownButton.ContextMenu.Open(this); 
-                    dropDownButton.ContextMenu.Open(dropDownButton);
+            //    if (value && dropDownButton.menu?.IsOpen == false)
+            //    {
+                    
+            //        //dropDownButton.ContextMenu.Open(this); 
+            //        dropDownButton.menu?.Open(dropDownButton);
 
-                }
-            }
+            //    }
+            //}
         }
 
         protected virtual void SetContextMenuPlacementTarget(ContextMenu contextMenu)
@@ -312,10 +319,10 @@ namespace Avalonia.ExtendedToolkit.Controls
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             this.clickButton = this.EnforceInstance<Button>(e, "PART_Button");
-            this.ContextMenu = this.EnforceInstance<ContextMenu>(e, "PART_Menu");
+            this.menu = this.EnforceInstance<ContextMenuExt>(e, "PART_Menu");
 
             this.InitializeVisualElementsContainer();
-            if (this.ContextMenu != null && this.Items != null /*&& this.ItemsSource == null*/)
+            if (this.menu != null && this.Items != null /*&& this.ItemsSource == null*/)
             {
                 var list= new AvaloniaList<object>();
                 foreach (var newItem in this.Items)
@@ -323,7 +330,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                     this.TryRemoveVisualFromOldTree(newItem);
                     list.Add(newItem);
                 }
-                ContextMenu.Items = list;
+                menu.Items = list;
 
             }
 
@@ -334,19 +341,19 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void TryRemoveVisualFromOldTree(object newItem)
         {
-            var visual = newItem as Visual;
-            if (visual != null)
-            {
-                var ve = LogicalTree.LogicalExtensions.GetLogicalParent(visual) as AvaloniaObject
-                    ?? VisualTree.VisualExtensions.GetVisualParent(visual) as AvaloniaObject;
+            //var visual = newItem as Visual;
+            //if (visual != null)
+            //{
+            //    var ve = LogicalTree.LogicalExtensions.GetLogicalParent(visual) as AvaloniaObject
+            //        ?? VisualTree.VisualExtensions.GetVisualParent(visual) as AvaloniaObject;
 
-                if (Equals(ve))
-                {
-                    this.LogicalChildren.Remove(visual);
-                    this.VisualChildren.Remove(visual);
-                }
+            //    if (Equals(ve))
+            //    {
+            //        this.LogicalChildren.Remove(visual);
+            //        this.VisualChildren.Remove(visual);
+            //    }
 
-            }
+            //}
         }
 
         private void InitializeVisualElementsContainer()
@@ -359,10 +366,10 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void DropDownButtonMouseRightButtonUp(object sender, PointerReleasedEventArgs e)
         {
-            //if (e.MouseButton == MouseButton.Right)
-            //{
-            //    e.Handled = true;
-            //}
+            if (e.MouseButton == MouseButton.Right)
+            {
+                e.Handled = true;
+            }
         }
 
         private T EnforceInstance<T>(TemplateAppliedEventArgs e, string partName) where T : class, new()
@@ -374,7 +381,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         protected override void ItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             base.ItemsCollectionChanged(sender, e);
-            if (this.ContextMenu == null /*|| this.ItemsSource != null || this.menu.ItemsSource != null*/)
+            if (this.menu == null /*|| this.ItemsSource != null || this.menu.ItemsSource != null*/)
             {
                 return;
             }
@@ -387,7 +394,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                         foreach (var newItem in e.NewItems)
                         {
                             this.TryRemoveVisualFromOldTree(newItem);
-                            this.ContextMenu.Items.OfType<object>().ToList().Add(newItem);
+                            this.menu.Items.OfType<object>().ToList().Add(newItem);
                         }
                     }
                     break;
@@ -396,7 +403,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                     {
                         foreach (var oldItem in e.OldItems)
                         {
-                            this.ContextMenu.Items.OfType<object>().ToList().Remove(oldItem);
+                            this.menu.Items.OfType<object>().ToList().Remove(oldItem);
                         }
                     }
                     break;
@@ -406,7 +413,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                     {
                         foreach (var oldItem in e.OldItems)
                         {
-                            this.ContextMenu.Items.OfType<object>().ToList().Remove(oldItem);
+                            this.menu.Items.OfType<object>().ToList().Remove(oldItem);
                         }
                     }
                     if (e.NewItems != null)
@@ -414,18 +421,18 @@ namespace Avalonia.ExtendedToolkit.Controls
                         foreach (var newItem in e.NewItems)
                         {
                             this.TryRemoveVisualFromOldTree(newItem);
-                            this.ContextMenu.Items.OfType<object>().ToList().Add(newItem);
+                            this.menu.Items.OfType<object>().ToList().Add(newItem);
                         }
                     }
                     break;
                 case NotifyCollectionChangedAction.Reset:
                     if (this.Items != null)
                     {
-                        this.ContextMenu.Items.OfType<object>().ToList().Clear();
+                        this.menu.Items.OfType<object>().ToList().Clear();
                         foreach (var newItem in this.Items)
                         {
                             this.TryRemoveVisualFromOldTree(newItem);
-                            this.ContextMenu.Items.OfType<object>().ToList().Add(newItem);
+                            this.menu.Items.OfType<object>().ToList().Add(newItem);
                         }
                     }
                     break;
