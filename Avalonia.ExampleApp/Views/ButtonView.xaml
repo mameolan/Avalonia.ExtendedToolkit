@@ -336,10 +336,10 @@
             
           </Style>
         </Controls:DropDownButton.ItemContainerStyle>-->
-        <Controls:DropDownButton.Icon>
+        <!--<Controls:DropDownButton.Icon>
           <fontAwesome:FontAwesome Margin="6" Icon="Music" />
         </Controls:DropDownButton.Icon>
-      </Controls:DropDownButton>
+      </Controls:DropDownButton>-->
       
     </StackPanel>
 
