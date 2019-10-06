@@ -9,7 +9,7 @@
   <Styles.Resources>
     <Converter:ThicknessToDoubleConverter x:Key="ThicknessToDoubleConverter" />
   </Styles.Resources>
-  
+
   <Style Selector="Controls|MetroRadioButton">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.CheckBox}" />
@@ -58,9 +58,7 @@
                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                               Content="{TemplateBinding Content}"
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              />
-            
+                              ContentTemplate="{TemplateBinding ContentTemplate}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -68,15 +66,15 @@
   </Style>
 
   <Style Selector="Controls|MetroRadioButton[IsEnabled=false] /template/ ContentPresenter#contentPresenter">
-    <Setter Property="Opacity" Value=".55"/>
+    <Setter Property="Opacity" Value=".55" />
   </Style>
 
   <Style Selector="Controls|MetroRadioButton[IsEnabled=false] /template/ Border#disabled">
-    <Setter Property="Opacity" Value="1"/>
+    <Setter Property="Opacity" Value="1" />
   </Style>
 
   <!--<Style Selector="Controls|MetroRadioButton[IsChecked=true] /template/ Ellipse#Checked1">
-    <Setter Property="Opacity" Value="1"/>
+    <Setter Property="Opacity" Value="1" />
   </Style>-->
 
   <Style Selector="Controls|MetroRadioButton:pointerover /template/ Ellipse#normal">
@@ -110,5 +108,4 @@
   <Style Selector="Controls|MetroRadioButton[ContentDirection=RightToLeft] /template/ ContentPresenter#contentPresenter">
     <Setter  Property="Grid.Column" Value="0" />
   </Style>
-  
 </Styles>

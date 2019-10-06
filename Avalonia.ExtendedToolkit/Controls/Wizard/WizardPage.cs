@@ -85,7 +85,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             get { return (Brush)GetValue(ExteriorPanelBackgroundProperty); }
             set { SetValue(ExteriorPanelBackgroundProperty, value); }
         }
-        
 
         public static readonly AvaloniaProperty ExteriorPanelBackgroundProperty =
             AvaloniaProperty.Register<WizardPage, Brush>(nameof(ExteriorPanelBackground));

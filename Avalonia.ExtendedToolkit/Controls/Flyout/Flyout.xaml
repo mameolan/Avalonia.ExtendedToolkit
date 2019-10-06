@@ -6,10 +6,9 @@
     xmlns:extensions="clr-namespace:Avalonia.ExtendedToolkit.Extensions;assembly=Avalonia.ExtendedToolkit"
     xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
     xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
-    xmlns:iac="clr-namespace:Avalonia.Xaml.Interactions.Custom;assembly=Avalonia.Xaml.Interactions.Custom"
-    >
+    xmlns:iac="clr-namespace:Avalonia.Xaml.Interactions.Custom;assembly=Avalonia.Xaml.Interactions.Custom">
   <Styles.Resources>
-    <DataTemplate x:Key="MahApps.Templates.FlyoutHeader" >
+    <DataTemplate x:Key="MahApps.Templates.FlyoutHeader">
       <!--x:Shared="False"-->
       <DockPanel x:Name="dpHeader"
                  VerticalAlignment="Center"
@@ -26,7 +25,7 @@
                   IsVisible="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonIsVisible}">
             <i:Interaction.Behaviors>
               <!--<ia:EventTriggerBehavior EventName="Click" SourceObject="{Binding #PART_BackButton}">
-              <actions:CloseFlyoutAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommand, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommandParameter, Mode=OneWay}"/>
+              <actions:CloseFlyoutAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommand, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommandParameter, Mode=OneWay}" />
             </ia:EventTriggerBehavior>-->
               <!--<i:EventTrigger EventName="Click">
               <actions:CloseFlyoutAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommand, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommandParameter, Mode=OneWay}" />
@@ -34,11 +33,10 @@
             </i:Interaction.Behaviors>
             <!---->
             <ContentControl
-                          
+
                             Width="20"
                             Height="20"
-                            Content=">"
-                           />
+                            Content=">" />
             <!--Classes="PathIcon" Content="M19,34V42H43.75L33.75,52H44.25L58.25,38L44.25,24H33.75L43.75,34H19Z"-->
             <!--Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}"-->
             <!--FlowDirection="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=FlowDirection}"-->
@@ -54,18 +52,15 @@
       </DockPanel>
       <!--<i:Interaction.Behaviors>
         <ia:DataTriggerBehavior Binding="{Binding Position, RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}}" Value="Left">
-          <ia:ChangePropertyAction TargetObject="{Binding #PART_BackButton}" PropertyName="DockPanel.Dock" Value="Right"/>
+          <ia:ChangePropertyAction TargetObject="{Binding #PART_BackButton}" PropertyName="DockPanel.Dock" Value="Right" />
           -->
       <!--<ia:ChangePropertyAction TargetObject="{Binding #PART_BackButton}" PropertyName="LayoutTransform">
-            
+
               <ScaleTransform ScaleX="-1" />
-            
           </ia:ChangePropertyAction>-->
       <!--
         </ia:DataTriggerBehavior>
-
       </i:Interaction.Behaviors>-->
-
 
       <!--<DataTemplate.Triggers>
         <DataTrigger Binding="{Binding Position, RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}}" Value="Left">
@@ -94,9 +89,6 @@
         </DataTrigger>
       </DataTemplate.Triggers>-->
     </DataTemplate>
-
-
-
   </Styles.Resources>
 
   <Style Selector="Controls|Flyout">
@@ -111,12 +103,9 @@
     <Setter Property="IsVisible" Value="false" />
     <Setter Property="HeaderTemplate" Value="{StaticResource MahApps.Templates.FlyoutHeader}" />
 
-
-
-
-    <Setter Property="Template" >
+    <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate >
+        <ControlTemplate>
           <Border x:Name="PART_Root"
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -131,8 +120,7 @@
                                                        ContentTemplate="{TemplateBinding HeaderTemplate}"
                                                        DockPanel.Dock="Top"
                                                        RecognizesAccessKey="True"
-                                                       UseLayoutRounding="False"
-                                                   />
+                                                       UseLayoutRounding="False" />
                 <!--
                  FontFamily="{TemplateBinding Controls:ControlsHelper.HeaderFontFamily}"
                                                        FontSize="{TemplateBinding Controls:ControlsHelper.HeaderFontSize}"
@@ -142,18 +130,12 @@
                 <ContentPresenter x:Name="PART_Content"
                                 Content="{TemplateBinding Content}"
                                 DockPanel.Dock="Bottom" />
-
-
-
-
               </DockPanel>
             </VisualLayerManager>
           </Border>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-
-
   </Style>
 
   <Style Selector="Controls|Flyout[FlyoutVisualStates=Hide] /template/ Border#PART_Root">
@@ -161,36 +143,33 @@
       <Animation Duration="00:00:01" RepeatCount="0">
         <extensions:KeyFrameExt KeyTime="00:00:00.750" Name="hideFrame">
           <!--hideFrame-->
-          <Setter Property="TranslateTransform.X" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HideFrameTranslateTransformX}"/>
+          <Setter Property="TranslateTransform.X" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HideFrameTranslateTransformX}" />
         </extensions:KeyFrameExt>
         <extensions:KeyFrameExt KeyTime="00:00:00.750" Name="hideFrameY">
           <!--hideFrameY-->
-          <Setter Property="TranslateTransform.Y" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HideFrameTranslateTransformY}"/>
+          <Setter Property="TranslateTransform.Y" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HideFrameTranslateTransformY}" />
         </extensions:KeyFrameExt>
         <extensions:KeyFrameExt KeyTime="00:00:00.750" Name="fadeOutFrame">
           <!--fadeOutFrame-->
-          <Setter Property="Opacity" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FadeOutFrameOpacity}"/>
+          <Setter Property="Opacity" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FadeOutFrameOpacity}" />
         </extensions:KeyFrameExt>
       </Animation>
     </Style.Animations>
-
-
-
   </Style>
 
   <Style Selector="Controls|Flyout[FlyoutVisualStates=Show] /template/ Border#PART_Root">
     <Style.Animations>
-      <Animation Duration="00:00:01" RepeatCount="0" >
+      <Animation Duration="00:00:01" RepeatCount="0">
         <extensions:KeyFrameExt KeyTime="00:00:00.750" Name="showFrame">
           <!--showFrame-->
-          <Setter Property="TranslateTransform.X" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ShowFrameTranslateTransformX}"/>
+          <Setter Property="TranslateTransform.X" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ShowFrameTranslateTransformX}" />
         </extensions:KeyFrameExt>
         <extensions:KeyFrameExt KeyTime="00:00:00.750" Name="showFrameY">
           <!--showFrameY-->
-          <Setter Property="TranslateTransform.Y" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ShowFrameTranslateTransformY}"/>
+          <Setter Property="TranslateTransform.Y" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ShowFrameTranslateTransformY}" />
         </extensions:KeyFrameExt>
-        <KeyFrame KeyTime="00:00:00.750" >
-          <Setter Property="Opacity" Value="1"/>
+        <KeyFrame KeyTime="00:00:00.750">
+          <Setter Property="Opacity" Value="1" />
         </KeyFrame>
       </Animation>
     </Style.Animations>
@@ -198,15 +177,15 @@
 
   <Style Selector="Controls|Flyout[FlyoutVisualStates=HideDirect] /template/ Border#PART_Root">
     <Style.Animations>
-      <Animation Duration="00:00:01" RepeatCount="0" >
-        <KeyFrame Cue="0%" >
-          <Setter Property="TranslateTransform.X" Value="0"/>
+      <Animation Duration="00:00:01" RepeatCount="0">
+        <KeyFrame Cue="0%">
+          <Setter Property="TranslateTransform.X" Value="0" />
         </KeyFrame>
-        <KeyFrame Cue="0%" >
-          <Setter Property="TranslateTransform.Y" Value="0"/>
+        <KeyFrame Cue="0%">
+          <Setter Property="TranslateTransform.Y" Value="0" />
         </KeyFrame>
-        <KeyFrame Cue="0%" >
-          <Setter Property="Opacity" Value="0"/>
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="0" />
         </KeyFrame>
       </Animation>
     </Style.Animations>
@@ -215,14 +194,14 @@
   <Style Selector="Controls|Flyout[FlyoutVisualStates=ShowDirect] /template/ Border#PART_Root">
     <Style.Animations>
       <Animation Duration="00:00:01" RepeatCount="0">
-        <KeyFrame Cue="0%" >
-          <Setter Property="TranslateTransform.X" Value="0"/>
+        <KeyFrame Cue="0%">
+          <Setter Property="TranslateTransform.X" Value="0" />
         </KeyFrame>
-        <KeyFrame Cue="0%" >
-          <Setter Property="TranslateTransform.Y" Value="0"/>
+        <KeyFrame Cue="0%">
+          <Setter Property="TranslateTransform.Y" Value="0" />
         </KeyFrame>
-        <KeyFrame Cue="0%" >
-          <Setter Property="Opacity" Value="1"/>
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="1" />
         </KeyFrame>
       </Animation>
     </Style.Animations>
@@ -245,7 +224,6 @@
       </Setter.Value>
     </Setter>-->
 
-
     <!--<Setter Property="LayoutTransform">
       <Setter.Value>
         <ScaleTransform ScaleX="-1" />
@@ -256,11 +234,11 @@
   <Style Selector="Controls|Flyout[Position=Left] /template/ LayoutTransformControl#PART_LayoutTransformControl">
     <Setter Property="LayoutTransform">
       <Setter.Value>
-        <ScaleTransform ScaleX="-1"/>
+        <ScaleTransform ScaleX="-1" />
       </Setter.Value>
     </Setter>
   </Style>
-  
+
   <!---->
 
   <Style Selector="Controls|Flyout[Position=Left] /template/ ContentControl#PART_BackHeaderText">
@@ -269,7 +247,7 @@
   </Style>
 
   <!--<Style Selector="Controls|Flyout[Position=Top] /template/ Controls|MetroButton#PART_BackButton">
-    <Setter Property="RenderTransform" >
+    <Setter Property="RenderTransform">
       --><!--LayoutTransform--><!--
       <Setter.Value>
         <RotateTransform Angle="-90" />
@@ -284,8 +262,7 @@
       </Setter.Value>
     </Setter>
   </Style>
-  
-  
+
   <!--<Style Selector="Controls|Flyout[Position=Bottom] /template/ Controls|MetroButton#PART_BackButton">
     <Setter Property="RenderTransform">
       --><!--LayoutTransform--><!--
@@ -302,6 +279,4 @@
       </Setter.Value>
     </Setter>
   </Style>
-
-
 </Styles>

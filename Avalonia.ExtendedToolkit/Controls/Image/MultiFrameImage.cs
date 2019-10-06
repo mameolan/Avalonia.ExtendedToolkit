@@ -3,8 +3,6 @@ using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -15,14 +13,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             SourceProperty.Changed.AddClassHandler<MultiFrameImage>((o, e) => OnSourceChanged(o, e));
         }
 
-
-
         public MultiFrameImageMode MultiFrameImageMode
         {
             get { return (MultiFrameImageMode)GetValue(MultiFrameImageModeProperty); }
             set { SetValue(MultiFrameImageModeProperty, value); }
         }
-
 
         public static readonly AvaloniaProperty MultiFrameImageModeProperty =
             AvaloniaProperty.Register<MultiFrameImage, MultiFrameImageMode>(nameof(MultiFrameImageMode));
@@ -67,7 +62,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 base.Render(dc);
                 return;
             }
-            
+
             switch (MultiFrameImageMode)
             {
                 case MultiFrameImageMode.ScaleDownLargerFrame:
@@ -75,15 +70,16 @@ namespace Avalonia.ExtendedToolkit.Controls
                     //var minFrame = _frames.FirstOrDefault(f => f.Width >= minSize && f.Height >= minSize) ?? _frames.Last();
                     //dc.DrawImage(minFrame, new Rect(0, 0, RenderSize.Width, RenderSize.Height));
                     break;
+
                 case MultiFrameImageMode.NoScaleSmallerFrame:
                     //var maxSize = Math.Min(RenderSize.Width, RenderSize.Height);
                     //var maxFrame = _frames.LastOrDefault(f => f.Width <= maxSize && f.Height <= maxSize) ?? _frames.First();
                     //dc.DrawImage(maxFrame, new Rect((RenderSize.Width - maxFrame.Width) / 2, (RenderSize.Height - maxFrame.Height) / 2, maxFrame.Width, maxFrame.Height));
                     break;
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
-
     }
 }

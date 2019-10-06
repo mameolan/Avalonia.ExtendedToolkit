@@ -4,8 +4,6 @@
     xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
     xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit">
 
-
-
   <Style Selector="Controls|Wizard">
     <Setter Property="Background"
             Value="{DynamicResource MahApps.Brushes.Gray10}" />
@@ -51,10 +49,9 @@
                             Grid.Column="0"
                             MinWidth="75"
                             Command="{TemplateBinding HelpCommand}"
-                            Content="{TemplateBinding HelpButtonContent}"
-                            >
+                            Content="{TemplateBinding HelpButtonContent}">
                       <Controls:MetroButton.IsVisible>
-                        <MultiBinding >
+                        <MultiBinding>
                           <Binding RelativeSource="{RelativeSource TemplatedParent}"
                                    Path="IsHelpButtonVisible" />
                           <Binding RelativeSource="{RelativeSource TemplatedParent}"
@@ -67,10 +64,9 @@
                                 HorizontalAlignment="Right">
                       <Controls:MetroButton Name="BackButton"
                               Command="{TemplateBinding PreviousPageCommand}"
-                              Content="{TemplateBinding BackButtonContent}"
-                          >
+                              Content="{TemplateBinding BackButtonContent}">
                         <Controls:MetroButton.IsVisible>
-                          <MultiBinding >
+                          <MultiBinding>
                             <Binding RelativeSource="{RelativeSource TemplatedParent}"
                                      Path="IsBackButtonVisible" />
                             <Binding RelativeSource="{RelativeSource TemplatedParent}"
@@ -81,10 +77,9 @@
                       <Controls:MetroButton Name="NextButton"
                                 Margin="7,0,0,0"
                                 Command="{TemplateBinding NextPageCommand}"
-                                Content="{TemplateBinding NextButtonContent}"
-                                >
+                                Content="{TemplateBinding NextButtonContent}">
                         <Controls:MetroButton.IsVisible>
-                          <MultiBinding >
+                          <MultiBinding>
                             <Binding RelativeSource="{RelativeSource TemplatedParent}"
                                      Path="IsNextButtonVisibile" />
                             <Binding RelativeSource="{RelativeSource TemplatedParent}"
@@ -96,10 +91,9 @@
                       <Controls:MetroButton Name="FinishButton"
                                 Margin="7,0,0,0"
                                 Command="{TemplateBinding FinishCommand}"
-                                Content="{TemplateBinding FinishButtonContent}"
-                                >
+                                Content="{TemplateBinding FinishButtonContent}">
                         <Controls:MetroButton.IsVisible>
-                          <MultiBinding >
+                          <MultiBinding>
                             <Binding RelativeSource="{RelativeSource TemplatedParent}"
                                      Path="IsFinishButtonVisible" />
                             <Binding RelativeSource="{RelativeSource TemplatedParent}"
@@ -112,8 +106,7 @@
                               Margin="7,0,0,0"
                               MinWidth="75"
                               Command="{TemplateBinding CancelCommand}"
-                              Content="{TemplateBinding CancelButtonContent}"
-                          >
+                              Content="{TemplateBinding CancelButtonContent}">
 
                         <Controls:MetroButton.IsVisible>
                           <MultiBinding>
@@ -149,14 +142,11 @@
             <Grid Background="{TemplateBinding Background}">
               <ContentPresenter Margin="14"
                                 Content="{TemplateBinding Content}"
-                                ContentTemplate="{TemplateBinding ContentTemplate}"
-                                 />
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
             </Grid>
           </Border>
         </ControlTemplate>
-
       </Setter.Value>
-
     </Setter>
   </Style>
 
@@ -166,12 +156,11 @@
     <Setter Property="BorderThickness"
             Value="0" />
     <Setter Property="ExteriorPanelBackground"
-           Value="{DynamicResource Avalonia.ExtendedToolkit.Wizard.ExteriorPanelBackground}"/>
-      
-    
+           Value="{DynamicResource Avalonia.ExtendedToolkit.Wizard.ExteriorPanelBackground}" />
+
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate >
+        <ControlTemplate>
           <Grid Background="{TemplateBinding Background}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="Auto" />
@@ -197,17 +186,16 @@
                          Margin="0,0,0,14"
                          FontSize="16"
                          FontWeight="Bold"
-                         Text="{TemplateBinding Title}" >
+                         Text="{TemplateBinding Title}">
               </TextBlock>
               <TextBlock Grid.Row="1"
                          TextWrapping="Wrap"
                          Margin="0,0,0,14"
-                         Text="{TemplateBinding Description}" >
+                         Text="{TemplateBinding Description}">
               </TextBlock>
               <ContentPresenter Grid.Row="2"
                                 Content="{TemplateBinding Content}"
-                                ContentTemplate="{TemplateBinding ContentTemplate}"
-                                />
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
             </Grid>
           </Grid>
         </ControlTemplate>
@@ -226,7 +214,7 @@
             Value="{DynamicResource Avalonia.ExtendedToolkit.Wizard.InteriorHeaderBackground}" />
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate >
+        <ControlTemplate>
           <Grid>
             <Grid.RowDefinitions>
               <RowDefinition Height="Auto" />
@@ -243,11 +231,11 @@
                 <TextBlock Margin="16,9,0,1"
                            TextWrapping="Wrap"
                            FontWeight="Bold"
-                           Text="{TemplateBinding Title}" >
+                           Text="{TemplateBinding Title}">
                 </TextBlock>
                 <TextBlock Margin="32,0,0,3"
                            TextWrapping="Wrap"
-                           Text="{TemplateBinding Description}" >
+                           Text="{TemplateBinding Description}">
                 </TextBlock>
               </StackPanel>
               <Image Grid.Column="1"
@@ -255,7 +243,7 @@
                      Source="{TemplateBinding HeaderImage}"
                      Stretch="None"
                      HorizontalAlignment="Center"
-                     VerticalAlignment="Center" >
+                     VerticalAlignment="Center">
               </Image>
             </Grid>
 
@@ -265,8 +253,7 @@
               <Grid Background="{TemplateBinding Background}">
                 <ContentPresenter Margin="14"
                                   Content="{TemplateBinding Content}"
-                                  ContentTemplate="{TemplateBinding ContentTemplate}"
-                                  />
+                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
               </Grid>
             </Border>
           </Grid>
@@ -274,5 +261,4 @@
       </Setter.Value>
     </Setter>
   </Style>
-
 </Styles>

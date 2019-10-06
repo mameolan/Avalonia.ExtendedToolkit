@@ -1,5 +1,4 @@
 ﻿using Avalonia.Controls;
-using Avalonia.ExtendedToolkit.Controls;
 using Avalonia.ExtendedToolkit.Extensions;
 using Avalonia.Markup.Xaml.Styling;
 using Avalonia.Styling;
@@ -115,7 +114,6 @@ namespace Avalonia.ExtendedToolkit
             {
                 this.RaiseAndSetIfChanged(ref _selectedTheme, value);
                 OnThemeChanged(value);
-
             }
         }
 
@@ -129,7 +127,6 @@ namespace Avalonia.ExtendedToolkit
             get { return mySelectedBaseColor; }
             set { this.RaiseAndSetIfChanged(ref mySelectedBaseColor, value); }
         }
-
 
         /// <summary>
         /// This event fires if the theme was changed
@@ -348,8 +345,6 @@ namespace Avalonia.ExtendedToolkit
                 styles.Remove(item);
                 styles.Add(item);
             }
-
-
         }
 
         /// <summary>
@@ -459,7 +454,6 @@ namespace Avalonia.ExtendedToolkit
             }
 
             return null;
-
         }
 
         internal Theme DetectTheme(Application current)
@@ -474,7 +468,6 @@ namespace Avalonia.ExtendedToolkit
             return null;
         }
 
-
         /// <summary>
         /// changes the theme through the base color
         /// </summary>
@@ -488,8 +481,6 @@ namespace Avalonia.ExtendedToolkit
 
             SelectedBaseColor = baseColor;
         }
-
-
 
         /// <summary>
         /// Gets the inverse <see cref="Theme" /> of the given <see cref="Theme"/>.

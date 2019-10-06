@@ -8,14 +8,12 @@
     <converters:ThicknessToDoubleConverter x:Key="BorderThicknessToStrokeThicknessConverter" TakeThicknessSide="Left" />
   </Styles.Resources>
 
-  
   <!--use metrobutton style as default button style-->
   <!--<Style Selector="Button">
-    <Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}"/>
-    <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
+    <Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
   </Style>-->
 
-  
   <!--  base button style for min, max and close window buttons  -->
   <Style  Selector="Button.BaseMetroWindowButtonStyle">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.TransparentWhite}" />
@@ -243,5 +241,4 @@
   <!--<Trigger Property="IsKeyboardFocusWithin" Value="True">
     <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.FocusBorderBrush), Mode=OneWay}" />
   </Trigger>-->
-
 </Styles>

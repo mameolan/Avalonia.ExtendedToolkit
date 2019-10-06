@@ -133,7 +133,7 @@
                         <Views:WizardView/>
                     </ScrollViewer>
                 </TabItem>
-                <TabItem Header="Flyout" Foreground="{DynamicResource MahApps.Brushes.Black}">
+                <TabItem Header="Flyout" IsEnabled="false"  Foreground="{DynamicResource MahApps.Brushes.Black}">
                     <ScrollViewer>
                         <Grid>
                             <Views:FlyoutDemo/>

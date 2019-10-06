@@ -1,15 +1,13 @@
-﻿using Avalonia.Controls.Primitives;
+﻿using Avalonia.Controls;
+using Avalonia.Controls.Presenters;
+using Avalonia.Controls.Primitives;
+using Avalonia.ExtendedToolkit.Extensions;
 using Avalonia.Markup.Xaml.Templates;
-using System.Linq;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
-using System.Collections;
-using Avalonia.Controls;
-using System;
-using Avalonia.Controls.Presenters;
-using Avalonia.ExtendedToolkit.Extensions;
-using Avalonia.Controls.Generators;
+using System.Linq;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -25,19 +23,14 @@ namespace Avalonia.ExtendedToolkit.Controls
     //should be toolbar but avalonia have no right now
     public class WindowCommands : HeaderedItemsControl, INotifyPropertyChanged
     {
-
-
         public WindowCommandTheme Theme
         {
             get { return (WindowCommandTheme)GetValue(ThemeProperty); }
             set { SetValue(ThemeProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ThemeProperty =
             AvaloniaProperty.Register<WindowCommands, WindowCommandTheme>(nameof(Theme));
-
-
 
         public ControlTemplate LightTemplate
         {
@@ -45,11 +38,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(LightTemplateProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty LightTemplateProperty =
             AvaloniaProperty.Register<WindowCommands, ControlTemplate>(nameof(LightTemplate));
-
-
 
         public ControlTemplate DarkTemplate
         {
@@ -57,11 +47,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(DarkTemplateProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty DarkTemplateProperty =
             AvaloniaProperty.Register<WindowCommands, ControlTemplate>(nameof(DarkTemplate));
-
-
 
         public bool ShowSeparators
         {
@@ -69,11 +56,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ShowSeparatorsProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ShowSeparatorsProperty =
             AvaloniaProperty.Register<WindowCommands, bool>(nameof(ShowSeparators));
-
-
 
         public bool ShowLastSeparator
         {
@@ -81,11 +65,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ShowLastSeparatorProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ShowLastSeparatorProperty =
             AvaloniaProperty.Register<WindowCommands, bool>(nameof(ShowLastSeparator));
-
-
 
         public int SeparatorHeight
         {
@@ -93,13 +74,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(SeparatorHeightProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty SeparatorHeightProperty =
             AvaloniaProperty.Register<WindowCommands, int>(nameof(SeparatorHeight), defaultValue: 15);
-
-
-
-
 
         public WindowCommands()
         {
@@ -107,19 +83,13 @@ namespace Avalonia.ExtendedToolkit.Controls
             ShowSeparatorsProperty.Changed.AddClassHandler<WindowCommands>((o, e) => OnShowSeparatorsChanged(o, e));
             ShowLastSeparatorProperty.Changed.AddClassHandler<WindowCommands>((o, e) => OnShowLastSeparatorChanged(o, e));
             this.Initialized += WindowCommands_Initialized;
-            
         }
-
-        
-        
 
         protected override void ItemsChanged(AvaloniaPropertyChangedEventArgs e)
         {
             base.ItemsChanged(e);
             ResetSeparators();
         }
-
-
 
         private void WindowCommands_Initialized(object sender, EventArgs e)
         {
@@ -176,7 +146,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                     o.SetValue(TemplateProperty, o.DarkTemplate);
                 }
             }
-
         }
 
         private void ResetSeparators(bool reset = true)

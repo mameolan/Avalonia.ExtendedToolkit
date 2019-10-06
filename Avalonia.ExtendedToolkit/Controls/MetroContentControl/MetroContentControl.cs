@@ -3,8 +3,6 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -13,7 +11,6 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class MetroContentControl : ContentControl
     {
-
         private bool transitionLoaded;
         private Grid _root;
 
@@ -23,15 +20,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(MetroContentControlStateProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty MetroContentControlStateProperty =
             AvaloniaProperty.Register<MetroContentControl, MetroContentControlState>(nameof(MetroContentControlState));
-
-
-
-
-
-
 
         public bool ReverseTransition
         {
@@ -39,11 +29,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ReverseTransitionProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ReverseTransitionProperty =
             AvaloniaProperty.Register<MetroContentControl, bool>(nameof(ReverseTransition));
-
-
 
         public bool TransitionsEnabled
         {
@@ -51,18 +38,14 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(TransitionsEnabledProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty TransitionsEnabledProperty =
             AvaloniaProperty.Register<MetroContentControl, bool>(nameof(TransitionsEnabled), defaultValue: true);
-
-
 
         public bool OnlyLoadTransition
         {
             get { return (bool)GetValue(OnlyLoadTransitionProperty); }
             set { SetValue(OnlyLoadTransitionProperty, value); }
         }
-
 
         public static readonly AvaloniaProperty OnlyLoadTransitionProperty =
             AvaloniaProperty.Register<MetroContentControl, bool>(nameof(OnlyLoadTransition));
@@ -131,28 +114,27 @@ namespace Avalonia.ExtendedToolkit.Controls
                 {
                     case MetroContentControlState.BeforeLoaded:
                         break;
+
                     case MetroContentControlState.AfterUnLoadedReverse:
                         break;
+
                     case MetroContentControlState.AfterUnLoaded:
                         break;
+
                     case MetroContentControlState.AfterLoadedReverse:
                     case MetroContentControlState.AfterLoaded:
                         AfterLoadedStoryboardCompleted(this, EventArgs.Empty);
                         break;
                  }
-
-
-
             }
         }
 
-        void MetroContentControlIsVisibleChanged(MetroContentControl sender, AvaloniaPropertyChangedEventArgs e)
+        private void MetroContentControlIsVisibleChanged(MetroContentControl sender, AvaloniaPropertyChangedEventArgs e)
         {
             if (TransitionsEnabled && !transitionLoaded)
             {
                 if (!IsVisible)
                 {
-
                     MetroContentControlState = ReverseTransition ? MetroContentControlState.AfterUnLoadedReverse : MetroContentControlState.AfterUnLoaded;
                     //   VisualStateManager.GoToState(this, ReverseTransition ? "AfterUnLoadedReverse" : "AfterUnLoaded", false);
                 }
@@ -196,16 +178,13 @@ namespace Avalonia.ExtendedToolkit.Controls
                 //VisualStateManager.GoToState(this, "BeforeLoaded", true);
                 //VisualStateManager.GoToState(this, "AfterLoaded", true);
             }
-
         }
 
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
-        
             _root = e.NameScope.Find<Grid>("root");
             base.OnTemplateApplied(e);
         }
-
 
         //public override void OnApplyTemplate()
         //{
@@ -248,7 +227,5 @@ namespace Avalonia.ExtendedToolkit.Controls
             //    this.afterLoadedReverseStoryboard.Completed -= this.AfterLoadedStoryboardCompleted;
             //}
         }
-
-
     }
 }

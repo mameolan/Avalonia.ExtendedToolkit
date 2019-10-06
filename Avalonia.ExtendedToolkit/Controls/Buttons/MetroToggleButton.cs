@@ -3,6 +3,9 @@ using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// toggle button with special properties
+    /// </summary>
     public class MetroToggleButton : ToggleButton
     {
         public CornerRadius CornerRadius

@@ -3,6 +3,9 @@ using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// right now this does not work with avalonia
+    /// </summary>
     public static class ControlsHelper
     {
         public static readonly AttachedProperty<CharacterCasing> ContentCharacterCasingProperty =
@@ -57,9 +60,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             element.SetValue(FocusBorderThicknessProperty, value);
         }
 
-
-
-
         public static readonly AttachedProperty<Thickness> HeaderMarginProperty =
             AvaloniaProperty.RegisterAttached<Control, Thickness>("HeaderMargin", typeof(ControlsHelper));
 
@@ -73,11 +73,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             element.SetValue(HeaderMarginProperty, value);
         }
 
-
-
         public static readonly AttachedProperty<FontFamily> HeaderFontFamilyProperty =
             AvaloniaProperty.RegisterAttached<Control, FontFamily>("HeaderFontFamily", typeof(ControlsHelper), defaultValue: FontFamily.Default);
-
 
         public static FontFamily GetHeaderFontFamily(Control element)
         {
@@ -88,8 +85,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             element.SetValue(HeaderFontFamilyProperty, value);
         }
-
-
 
         public static readonly AttachedProperty<double> HeaderFontSizeProperty =
             AvaloniaProperty.RegisterAttached<Control, double>("HeaderFontSize", typeof(ControlsHelper), defaultValue: 12);
@@ -104,9 +99,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             element.SetValue(HeaderFontSizeProperty, value);
         }
 
-
-
-
         public static readonly AttachedProperty<FontWeight> HeaderFontWeightProperty =
             AvaloniaProperty.RegisterAttached<Control, FontWeight>("HeaderFontWeight", typeof(ControlsHelper), defaultValue: FontWeight.Normal);
 
@@ -119,11 +111,5 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             element.SetValue(HeaderFontWeightProperty, value);
         }
-
-
-
-
-
-
     }
 }

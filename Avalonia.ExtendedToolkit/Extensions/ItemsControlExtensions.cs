@@ -2,9 +2,6 @@
 using Avalonia.Controls.Presenters;
 using Avalonia.LogicalTree;
 using Avalonia.VisualTree;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Extensions
 {
@@ -15,12 +12,11 @@ namespace Avalonia.ExtendedToolkit.Extensions
             ILogical uiLogical = container as ILogical;
             if (uiLogical == null)
                 return null;
-            
+
             // ui appeared in items collection
             ItemsControl ic = LogicalExtensions.GetLogicalParent(uiLogical) as ItemsControl;
             if (ic != null)
             {
-                
                 // this is the right ItemsControl as long as the item
                 // is (or is eligible to be) its own container
                 //IGeneratorHost host = ic as IGeneratorHost;
@@ -32,14 +28,10 @@ namespace Avalonia.ExtendedToolkit.Extensions
 
             IVisual uiVisual = container as IVisual;
 
-
             uiVisual = VisualTree.VisualExtensions.GetVisualParent<IVisual>(uiVisual);
 
             return GetItemsOwner(uiLogical as AvaloniaObject);
         }
-
-        
-
 
         internal static ItemsPresenter FromPanel(Panel panel)
         {
@@ -73,6 +65,5 @@ namespace Avalonia.ExtendedToolkit.Extensions
 
             return container;
         }
-
     }
 }

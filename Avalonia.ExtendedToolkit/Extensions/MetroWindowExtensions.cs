@@ -1,12 +1,8 @@
-﻿using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
+﻿using Avalonia.Controls.Primitives;
 using Avalonia.ExtendedToolkit.Controls;
 using Avalonia.Media;
-using Avalonia.Styling;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Extensions
 {
@@ -57,7 +53,6 @@ namespace Avalonia.ExtendedToolkit.Extensions
                     window.UpdateWindowCommandsForFlyout(rightFlyout);
                 }
             }
-
         }
 
         private static bool NeedLightTheme(this IBrush brush)
@@ -98,7 +93,6 @@ namespace Avalonia.ExtendedToolkit.Extensions
         {
             window.ChangeAllWindowButtonCommandsBrush(flyout.Foreground, flyout.Position);
         }
-
 
         private static void ChangeAllWindowCommandsBrush(this MetroWindow window, Brush brush)
         {
@@ -143,6 +137,5 @@ namespace Avalonia.ExtendedToolkit.Extensions
                 }
             }
         }
-
     }
 }

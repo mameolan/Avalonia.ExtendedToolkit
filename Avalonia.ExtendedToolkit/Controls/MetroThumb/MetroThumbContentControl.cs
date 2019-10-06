@@ -1,23 +1,15 @@
 ﻿using Avalonia.Input;
 using Avalonia.Interactivity;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
     public class MetroThumbContentControl : ContentControlEx, IMetroThumb
     {
-        private TouchDevice currentDevice = null;
         private Point startDragPoint;
         private PixelPoint startDragScreenPoint;
         private PixelPoint? oldDragScreenPoint;
-
-
-
-        public event MouseButtonEventHandler MouseDoubleClick;
-        public event MouseButtonEventHandler MouseRightButtonUp;
 
         public static RoutedEvent<VectorEventArgs> DragStartedEvent =
             RoutedEvent.Register<MetroThumbContentControl, VectorEventArgs>(nameof(DragStartedEvent), RoutingStrategies.Bubble);
@@ -64,14 +56,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-
-
         public bool IsDragging
         {
             get { return (bool)GetValue(IsDraggingProperty); }
             set { SetValue(IsDraggingProperty, value); }
         }
-
 
         public static readonly AvaloniaProperty IsDraggingProperty =
             AvaloniaProperty.Register<MetroThumbContentControl, bool>(nameof(IsDragging));
@@ -83,12 +72,10 @@ namespace Avalonia.ExtendedToolkit.Controls
                 return;
             }
 
-
             //if (this.IsMouseCaptured)
             //{
             //    this.ReleaseMouseCapture();
             //}
-
 
             this.ClearValue(IsDraggingProperty);
             var horizontalChange = this.oldDragScreenPoint.Value.X - this.startDragScreenPoint.X;
@@ -101,12 +88,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 Vector = new Vector(horizontalChange, verticalChange)
             };
 
-
             this.RaiseEvent(args);
         }
-
-
-
 
         protected override void OnPointerPressed(PointerPressedEventArgs e)
         {
@@ -136,7 +119,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                         Vector = new Vector(this.startDragPoint.X, this.startDragPoint.Y)
                     };
 
-
                     this.RaiseEvent(args);
                 }
                 catch (Exception exception)
@@ -144,10 +126,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                     Trace.TraceError($"{this}: Something went wrong here: {exception} {Environment.NewLine} {exception.StackTrace}");
                     this.CancelDragAction();
                 }
-
-
             }
-
 
             base.OnPointerPressed(e);
         }
@@ -174,10 +153,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                     Vector = new Vector(horizontalChange, verticalChange)
                 };
 
-
                 this.RaiseEvent(args);
-
-
             }
         }
 
@@ -218,20 +194,14 @@ namespace Avalonia.ExtendedToolkit.Controls
                         Vector = new Vector(horizontalChange, verticalChange)
                     };
 
-
                     this.RaiseEvent(ev);
                 }
-
-
             }
             else
             {
                 this.ClearValue(IsDraggingProperty);
                 this.startDragPoint = new Point(0, 0);
-
             }
-
-
         }
 
         //private void ReleaseCurrentDevice()
@@ -253,8 +223,5 @@ namespace Avalonia.ExtendedToolkit.Controls
         //        this.currentDevice = e.TouchDevice;
         //    }
         //}
-
-
-
     }
 }

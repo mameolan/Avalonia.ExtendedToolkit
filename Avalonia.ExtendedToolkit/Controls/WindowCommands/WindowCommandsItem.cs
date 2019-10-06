@@ -1,9 +1,6 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.ExtendedToolkit.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -12,19 +9,14 @@ namespace Avalonia.ExtendedToolkit.Controls
         private const string PART_ContentPresenter = "PART_ContentPresenter";
         private const string PART_Separator = "PART_Separator";
 
-
-
         public bool IsSeparatorVisible
         {
             get { return (bool)GetValue(IsSeparatorVisibleProperty); }
             set { SetValue(IsSeparatorVisibleProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty IsSeparatorVisibleProperty =
             AvaloniaProperty.Register<WindowCommandsItem, bool>(nameof(IsSeparatorVisible), defaultValue: true);
-
-
 
         public WindowCommands ParentWindowCommands
         {
@@ -32,18 +24,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ParentWindowCommandsProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ParentWindowCommandsProperty =
             AvaloniaProperty.Register<WindowCommandsItem, WindowCommands>(nameof(ParentWindowCommands));
 
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             base.OnTemplateApplied(e);
-            
 
             var windowCommands = ItemsControlExtensions.ItemsControlFromItemContainer(this) as WindowCommands;
             this.SetValue(WindowCommandsItem.ParentWindowCommandsProperty, windowCommands);
         }
-
     }
 }

@@ -1,8 +1,6 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:System="clr-namespace:System;assembly=mscorlib"
-        
-        >
+        xmlns:System="clr-namespace:System;assembly=mscorlib">
   <Styles.Resources>
     <FontFamily x:Key="MahApps.Fonts.Default">Segoe UI, Lucida Sans Unicode, Verdana</FontFamily>
     <FontFamily x:Key="MahApps.Fonts.Header">Segoe UI Light, Lucida Sans Unicode, Verdana</FontFamily>

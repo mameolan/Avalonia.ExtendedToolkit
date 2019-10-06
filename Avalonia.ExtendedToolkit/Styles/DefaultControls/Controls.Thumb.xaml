@@ -4,7 +4,7 @@
     xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
     xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
     xmlns:System="clr-namespace:System;assembly=mscorlib">
-  
+
   <Style Selector="Thumb.WindowTitle">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Template">
@@ -15,7 +15,4 @@
       </Setter.Value>
     </Setter>
   </Style>
-
-  
-  
 </Styles>

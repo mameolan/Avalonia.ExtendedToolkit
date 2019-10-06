@@ -11,6 +11,7 @@
         WizardPageType PageType { get; set; }
         string Title { get; set; }
         bool IsValid { get; }
+
         void Validate();
     }
 }

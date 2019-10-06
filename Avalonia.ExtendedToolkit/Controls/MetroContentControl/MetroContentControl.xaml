@@ -9,7 +9,7 @@
     <Setter Property="Foreground" Value="#FF000000" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <Setter Property="VerticalContentAlignment" Value="Stretch" />
-    
+
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="Controls:MetroContentControl">
@@ -25,10 +25,8 @@
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Content="{TemplateBinding Content}"
                                 ContentTemplate="{TemplateBinding ContentTemplate}"
-                                Cursor="{TemplateBinding Cursor}"
-                                />
+                                Cursor="{TemplateBinding Cursor}" />
             </VisualLayerManager>
-
           </Grid>
         </ControlTemplate>
       </Setter.Value>
@@ -40,22 +38,21 @@
       <Animation  Duration="00:00:01.000" Delay="00:00:01">
         <!--Duration="00:00:00.400"-->
         <KeyFrame Cue="0%">
-          <Setter Property="Opacity" Value="0"/>
+          <Setter Property="Opacity" Value="0" />
         </KeyFrame>
         <KeyFrame Cue="100%">
-          <Setter Property="Opacity" Value="1"/>
+          <Setter Property="Opacity" Value="1" />
         </KeyFrame>
       </Animation>
 
       <Animation Duration="00:00:00.700" Easing="BounceEaseOut">
         <KeyFrame Cue="0%">
-          <Setter Property="TranslateTransform.X" Value="30"/>
+          <Setter Property="TranslateTransform.X" Value="30" />
         </KeyFrame>
         <KeyFrame Cue="100%">
-          <Setter Property="TranslateTransform.X" Value="0"/>
+          <Setter Property="TranslateTransform.X" Value="0" />
         </KeyFrame>
       </Animation>
-
     </Style.Animations>
   </Style>
 
@@ -63,22 +60,21 @@
     <Style.Animations>
       <Animation Duration="00:00:00.400">
         <KeyFrame Cue="0%">
-          <Setter Property="Opacity" Value="0"/>
+          <Setter Property="Opacity" Value="0" />
         </KeyFrame>
         <KeyFrame Cue="100%">
-          <Setter Property="Opacity" Value="1"/>
+          <Setter Property="Opacity" Value="1" />
         </KeyFrame>
       </Animation>
 
       <Animation Duration="00:00:00.700" Easing="BounceEaseOut">
         <KeyFrame Cue="0%">
-          <Setter Property="TranslateTransform.X" Value="-30"/>
+          <Setter Property="TranslateTransform.X" Value="-30" />
         </KeyFrame>
         <KeyFrame Cue="100%">
-          <Setter Property="TranslateTransform.X" Value="0"/>
+          <Setter Property="TranslateTransform.X" Value="0" />
         </KeyFrame>
       </Animation>
-
     </Style.Animations>
   </Style>
 
@@ -86,22 +82,21 @@
     <Style.Animations>
       <Animation Duration="00:00:00.400">
         <KeyFrame Cue="0%">
-          <Setter Property="Opacity" Value="0"/>
+          <Setter Property="Opacity" Value="0" />
         </KeyFrame>
         <KeyFrame Cue="100%">
-          <Setter Property="Opacity" Value="1"/>
+          <Setter Property="Opacity" Value="1" />
         </KeyFrame>
       </Animation>
 
       <Animation Duration="00:00:00.700" Easing="BounceEaseOut">
         <KeyFrame Cue="0%">
-          <Setter Property="TranslateTransform.X" Value="0"/>
+          <Setter Property="TranslateTransform.X" Value="0" />
         </KeyFrame>
         <KeyFrame Cue="100%">
-          <Setter Property="TranslateTransform.X" Value="30"/>
+          <Setter Property="TranslateTransform.X" Value="30" />
         </KeyFrame>
       </Animation>
-
     </Style.Animations>
   </Style>
 
@@ -109,25 +104,21 @@
     <Style.Animations>
       <Animation Duration="00:00:00.400">
         <KeyFrame Cue="0%">
-          <Setter Property="Opacity" Value="1"/>
+          <Setter Property="Opacity" Value="1" />
         </KeyFrame>
         <KeyFrame Cue="100%">
-          <Setter Property="Opacity" Value="0"/>
+          <Setter Property="Opacity" Value="0" />
         </KeyFrame>
       </Animation>
 
       <Animation Duration="00:00:00.700" Easing="BounceEaseOut">
         <KeyFrame Cue="0%">
-          <Setter Property="TranslateTransform.X" Value="0"/>
+          <Setter Property="TranslateTransform.X" Value="0" />
         </KeyFrame>
         <KeyFrame Cue="100%">
-          <Setter Property="TranslateTransform.X" Value="-30"/>
+          <Setter Property="TranslateTransform.X" Value="-30" />
         </KeyFrame>
       </Animation>
-
     </Style.Animations>
   </Style>
-
-
-
 </Styles>

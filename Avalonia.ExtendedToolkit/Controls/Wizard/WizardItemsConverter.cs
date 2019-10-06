@@ -3,7 +3,6 @@ using Avalonia.Data.Converters;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -18,8 +17,6 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             var result = new AvaloniaList<WizardPage>();
 
-
-
             foreach (IWizardPageVM wizardPageVM in list)
             {
                 IWizardPageVM vm = wizardPageVM as IWizardPageVM;
@@ -27,10 +24,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 wizardPage.DataContext = vm;
                 result.Add(wizardPage);
             }
-
-
-
-
 
             return result;
         }

@@ -6,7 +6,6 @@ using System;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
-    
     public class Badged : ContentControl
     {
         public const string BadgeContainerPartName = "PART_BadgeContainer";
@@ -90,8 +89,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             base.OnTemplateApplied(e);
             _badgeContainer = e.NameScope.Get<Control>(BadgeContainerPartName);
-
-           
         }
 
         protected override Size MeasureOverride(Size availableSize)

@@ -4,13 +4,10 @@
     xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
     xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
     xmlns:System="clr-namespace:System;assembly=mscorlib">
-  
-  <Style Selector="ListBoxItem">
-    <Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}"/>
-    <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
-    <!--<Setter Property="TextBox.Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>-->
-  </Style>
 
-  
-  
+  <Style Selector="ListBoxItem">
+    <Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
+    <!--<Setter Property="TextBox.Foreground" Value="{DynamicResource ThemeForegroundBrush}" />-->
+  </Style>
 </Styles>

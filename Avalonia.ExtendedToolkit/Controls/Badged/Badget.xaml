@@ -8,7 +8,7 @@
     <Setter Property="BadgePlacementMode" Value="TopRight" />
     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     <!--ClipToBounds have to be set to false otherwise Badged is cut-->
-    <Setter Property="ClipToBounds" Value="False"/>
+    <Setter Property="ClipToBounds" Value="False" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
@@ -20,8 +20,7 @@
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Content="{TemplateBinding Content}"
-                                ContentTemplate="{TemplateBinding ContentTemplate}"
-                                />
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
             </Border>
             <Border x:Name="PART_BadgeContainer"
                     MinWidth="18"
@@ -30,13 +29,12 @@
                     Margin="-6"
                     Background="{DynamicResource MahApps.Brushes.AccentBase}"
                     CornerRadius="9"
-                    RenderTransformOrigin=".5,.5"      
+                    RenderTransformOrigin=".5,.5"
                     TextBlock.FontSize="11"
                     TextBlock.FontWeight="DemiBold"
-                    IsVisible="{TemplateBinding IsBadgeSet}"
-                    >
+                    IsVisible="{TemplateBinding IsBadgeSet}">
               <!--
-              
+
               Not working
                 HorizontalAlignment="Left"
                     VerticalAlignment="Top"
@@ -52,15 +50,13 @@
                               Focusable="False"
                               Foreground="{TemplateBinding BadgeForeground}"
                               FontSize="11"
-                              FontWeight="DemiBold"
-                               />
+                              FontWeight="DemiBold" />
             </Border>
           </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
-
 
   <Style Selector="Controls|Badged[BadgePlacementMode=TopLeft] /template/ Border#PART_BadgeContainer">
     <Setter  Property="HorizontalAlignment" Value="Left" />
@@ -106,31 +102,18 @@
     <Setter Property="Background" Value="{DynamicResource ResourceKey=MahApps.Metro.Brushes.Badged.DisabledBackgroundBrush}" />
   </Style>
 
-
   <Style Selector="Controls|Badged[IsBadgeSet=True]">
     <Style.Animations>
       <Animation Duration="0:0:0.3">
         <KeyFrame Cue="0%">
-          <Setter Property="ScaleTransform.ScaleX" Value="1.4"/>
-          <Setter Property="ScaleTransform.ScaleY" Value="1.4"/>
+          <Setter Property="ScaleTransform.ScaleX" Value="1.4" />
+          <Setter Property="ScaleTransform.ScaleY" Value="1.4" />
         </KeyFrame>
         <KeyFrame Cue="100%">
-          <Setter Property="ScaleTransform.ScaleX" Value="1"/>
-          <Setter Property="ScaleTransform.ScaleY" Value="1"/>
+          <Setter Property="ScaleTransform.ScaleX" Value="1" />
+          <Setter Property="ScaleTransform.ScaleY" Value="1" />
         </KeyFrame>
       </Animation>
     </Style.Animations>
   </Style>
-
-
-
-
-
-
-
-
-
-
-
-
 </Styles>

@@ -14,5 +14,4 @@
     <Setter Property="Template" Value="{StaticResource MahApps.Templates.WindowCommands.Light}" />-->
     <Setter Property="VerticalAlignment" Value="Stretch" />
   </Style>
-  
 </Styles>

@@ -8,8 +8,6 @@
     <converters:ThicknessToDoubleConverter x:Key="BorderThicknessToStrokeThicknessConverter" TakeThicknessSide="Left" />
   </Styles.Resources>
 
-  
-  
   <Style Selector="Button.ChromelessButtonStyle">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.TransparentWhite}" />
     <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundColor}" />

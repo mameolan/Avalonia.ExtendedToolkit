@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Behaviours\ButtonBehaviour.cs" />
     <Compile Remove="Controls\Buttons\SquareMetroButton.cs" />
   </ItemGroup>
 
@@ -43,6 +44,10 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Styles\Themes\GeneratorParameters.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Behaviours\" />
   </ItemGroup>
 
   <Target Name="GenerateXamlFilesInner">

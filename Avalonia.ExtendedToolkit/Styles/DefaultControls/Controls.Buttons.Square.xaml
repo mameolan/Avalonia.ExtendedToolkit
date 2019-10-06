@@ -92,7 +92,6 @@
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.White}" />
   </Style>
 
-
   <Style Selector="Controls|SquareButton.HighlightedSquareButtonStyle">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Highlight}" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
@@ -267,7 +266,7 @@
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />
-    <!--<Setter Property="Classes" Value=""/>-->
+    <!--<Setter Property="Classes" Value="" />-->
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>

@@ -11,10 +11,12 @@ namespace Avalonia.ExtendedToolkit.Controls
         //bool? CanSelectNextPage { get; set; }
         //bool? CanSelectPreviousPage { get; set; }
         string Description { get; set; }
+
         Brush ExteriorPanelBackground { get; set; }
         object ExteriorPanelContent { get; set; }
         Brush HeaderBackground { get; set; }
         Image HeaderImage { get; set; }
+
         //bool IsBackButtonVisible { get; set; }
         //bool IsCancelButtonVisibe { get; set; }
         //bool IsFinishButtonVisible { get; set; }
@@ -23,6 +25,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         //WizardPage NextPage { get; set; }
         //WizardPage PreviousPage { get; set; }
         WizardPageType PageType { get; set; }
+
         string Title { get; set; }
     }
 }

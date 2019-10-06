@@ -1,14 +1,9 @@
 ﻿using Avalonia.Styling;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Helper
 {
     public static class StyledElementExtension
     {
-
-
         public static readonly AttachedProperty<IStyle> StyleProperty =
             AvaloniaProperty.RegisterAttached<StyledElement, IStyle>(nameof(Style), typeof(StyledElementExtension));
 
@@ -22,8 +17,6 @@ namespace Avalonia.ExtendedToolkit.Helper
             element.SetValue(StyleProperty, value);
             OnStyleChanged(element, value);
         }
-
-
 
         private static void OnStyleChanged(StyledElement styledElement, IStyle style)
         {

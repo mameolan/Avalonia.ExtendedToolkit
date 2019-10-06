@@ -4,11 +4,12 @@ using System;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// button with special properties
+    /// </summary>
     public class MetroButton : Button
     {
         public Type StyleKey => typeof(Button);
-
-
 
         public CharacterCasing ContentCharacterCasing
         {

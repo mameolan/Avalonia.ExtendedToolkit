@@ -9,9 +9,6 @@ namespace Avalonia.ExtendedToolkit.Converters
     {
         public ThicknessSideType TakeThicknessSide { get; set; }
 
-        
-
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             bool  isGridTarget = targetType.Name.Contains(nameof(Grid));
@@ -35,7 +32,6 @@ namespace Avalonia.ExtendedToolkit.Converters
                         {
                             return orgThickness.Left;
                         }
-                        
 
                     case ThicknessSideType.Top:
                         if (isGridTarget)
@@ -44,9 +40,8 @@ namespace Avalonia.ExtendedToolkit.Converters
                         }
                         else
                         {
-                            return orgThickness.Top; 
+                            return orgThickness.Top;
                         }
-                        
 
                     case ThicknessSideType.Right:
                         if (isGridTarget)
@@ -57,7 +52,6 @@ namespace Avalonia.ExtendedToolkit.Converters
                         {
                             return orgThickness.Right;
                         }
-                        
 
                     case ThicknessSideType.Bottom:
                         if (isGridTarget)
@@ -68,7 +62,6 @@ namespace Avalonia.ExtendedToolkit.Converters
                         {
                             return orgThickness.Bottom;
                         }
-                        
 
                     default:
                         if (isGridTarget)
@@ -79,8 +72,6 @@ namespace Avalonia.ExtendedToolkit.Converters
                         {
                             return 0;
                         }
-
-                        
                 }
             }
 

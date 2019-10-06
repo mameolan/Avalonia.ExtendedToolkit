@@ -1,8 +1,5 @@
-﻿using Avalonia.Data;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Globalization;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Converters
 {
@@ -20,6 +17,7 @@ namespace Avalonia.ExtendedToolkit.Converters
         {
             return _instance ?? (_instance = new ToUpperConverter());
         }
+
         protected override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var val = value as string;

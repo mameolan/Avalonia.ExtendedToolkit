@@ -2,6 +2,9 @@
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// contentcontrol with special properties
+    /// </summary>
     public class ContentControlEx : ContentControl
     {
         public CharacterCasing ContentCharacterCasing

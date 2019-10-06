@@ -1,17 +1,12 @@
 ﻿using Avalonia.Collections;
-using Avalonia.ExtendedToolkit.Controls;
 using ReactiveUI;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Input;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
     public class WizardViewModelBase : ReactiveObject, IWizardVM
     {
-
         private bool myCanCancel = true;
 
         public bool CanCancel
@@ -97,7 +92,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             set
             {
                 this.RaiseAndSetIfChanged(ref myHasPreviousPage, value);
-
             }
         }
 
@@ -112,8 +106,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-
-
         private IWizardPageVM myCurrentPage;
 
         public IWizardPageVM CurrentPage
@@ -121,7 +113,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             get { return myCurrentPage; }
             set
             {
-
                 if (myCurrentPage != null)
                 {
                     (myCurrentPage as WizardPageViewModel)?.OnLeavePage();
@@ -158,8 +149,6 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public AvaloniaList<IWizardPageVM> WizardPages { get; } = new AvaloniaList<IWizardPageVM>();
 
-
-
         public WizardViewModelBase()
         {
             CancelCommand = ReactiveCommand.Create(ExecuteCancelCommand, outputScheduler: RxApp.MainThreadScheduler);
@@ -181,16 +170,12 @@ namespace Avalonia.ExtendedToolkit.Controls
                 (previousPageExists) => (previousPageExists == true));
             PreviousPageCommand = ReactiveCommand.Create(ExecutePreviousPageCommand, canExecutePreviousPageCommand, RxApp.MainThreadScheduler); //new DelegateCommand(x => ExecutePreviousPageCommand(), x => CanExecutePreviousPageCommand());//
 
-
             WizardPages.CollectionChanged += (o, e) =>
             {
                 CurrentPage = WizardPages.FirstOrDefault();
                 UpdatePageCommand();
             };
-
         }
-
-        
 
         private void ExecutePreviousPageCommand()
         {
@@ -219,32 +204,21 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void ExecuteHelpCommand()
         {
-
         }
 
         private void ExecuteFinishCommand()
         {
-
         }
 
         private void ExecuteCancelCommand()
         {
-
         }
-
-
-
-
-
-
-
 
         private bool NextPageExists
         {
             get
             {
                 bool exists = false;
-
 
                 //lets use an index to find the next page
                 var currentIndex = WizardPages.IndexOf(CurrentPage);
@@ -271,8 +245,5 @@ namespace Avalonia.ExtendedToolkit.Controls
                 return exists;
             }
         }
-
-
-
     }
 }

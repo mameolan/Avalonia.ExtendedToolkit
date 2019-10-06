@@ -44,8 +44,7 @@
                       Command="{TemplateBinding Command}"
                       CommandParameter="{TemplateBinding CommandParameter}"
                       Foreground="{TemplateBinding Foreground}"
-                      helper:StyledElementExtension.Style="{TemplateBinding ButtonStyle}"
-                      >
+                      helper:StyledElementExtension.Style="{TemplateBinding ButtonStyle}">
 
                 <!--
                     CommandTarget="{TemplateBinding CommandTarget}"
@@ -68,8 +67,7 @@
                                   DockPanel.Dock="Right"
                                   Foreground="{TemplateBinding ArrowBrush}"
                                   IsVisible="{TemplateBinding IsArrowVisible}"
-                                  Classes="PathIcon"
-                                />
+                                  Classes="PathIcon" />
                   <!--Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}"-->
 
                   <StackPanel x:Name="PART_ContentOrientation"
@@ -94,8 +92,7 @@
                                                ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentCharacterCasing}"
                                                ContentTemplate="{TemplateBinding ContentTemplate}"
                                                RecognizesAccessKey="True"
-                                               UseLayoutRounding="False"
-                                               />
+                                               UseLayoutRounding="False" />
                   </StackPanel>
                 </DockPanel>
                 <Button.ContextMenu>
@@ -104,14 +101,11 @@
                                ItemTemplate="{TemplateBinding ItemTemplate}"
                                ItemsPanel="{TemplateBinding ItemsPanel}"
                                Items="{TemplateBinding Items}"
-                               UseLayoutRounding="False"
-                               
-                                         />
+                               UseLayoutRounding="False" />
                   <!--Style="{TemplateBinding MenuStyle}"
-                IsOpen="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"             
+                IsOpen="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                 helper:StyledElementExtension.Style="{TemplateBinding MenuStyle}"
                 -->
-
                 </Button.ContextMenu>
               </Button>
             <!--</Controls:ClipBorder>-->
@@ -157,5 +151,4 @@
   <Style Selector="Controls|DropDownButton:disabled /template/ Controls|ContentControlEx#PART_ButtonContent">
     <Setter Property="Opacity" Value=".55" />
   </Style>
-
 </Styles>

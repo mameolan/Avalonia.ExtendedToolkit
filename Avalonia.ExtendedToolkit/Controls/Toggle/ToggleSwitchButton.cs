@@ -6,10 +6,6 @@ using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Styling;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -28,19 +24,14 @@ namespace Avalonia.ExtendedToolkit.Controls
         private IControl _ThumbIndicator;
         private TranslateTransform _ThumbTranslate;
 
-
-
         public IStyle Style
         {
             get { return (IStyle)GetValue(StyleProperty); }
             set { SetValue(StyleProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty StyleProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, IStyle>(nameof(Style));
-
-
 
         public IBrush OnSwitchBrush
         {
@@ -48,11 +39,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OnSwitchBrushProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty OnSwitchBrushProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, IBrush>(nameof(OnSwitchBrush));
-
-
 
         public IBrush OffSwitchBrush
         {
@@ -60,11 +48,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OffSwitchBrushProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty OffSwitchBrushProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, IBrush>(nameof(OffSwitchBrush));
-
-
 
         public IBrush ThumbIndicatorBrush
         {
@@ -72,11 +57,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ThumbIndicatorBrushProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ThumbIndicatorBrushProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, IBrush>(nameof(ThumbIndicatorBrush));
-
-
 
         public IBrush ThumbIndicatorDisabledBrush
         {
@@ -84,18 +66,14 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ThumbIndicatorDisabledBrushProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ThumbIndicatorDisabledBrushProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, IBrush>(nameof(ThumbIndicatorDisabledBrush));
-
-
 
         public double ThumbIndicatorWidth
         {
             get { return (double)GetValue(ThumbIndicatorWidthProperty); }
             set { SetValue(ThumbIndicatorWidthProperty, value); }
         }
-
 
         public static readonly AvaloniaProperty ThumbIndicatorWidthProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, double>(nameof(ThumbIndicatorWidth), defaultValue: 13d);
@@ -105,11 +83,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             StyleProperty.Changed.AddClassHandler<ToggleSwitchButton>((o, e) => StyleChanged(o, e));
         }
 
-
         public ToggleSwitchButton()
         {
             IsCheckedProperty.Changed.AddClassHandler<ToggleSwitchButton>((o, e) => IsCheckedChanged(o, e));
-
         }
 
         private static void StyleChanged(ToggleSwitchButton o, AvaloniaPropertyChangedEventArgs e)
@@ -126,7 +102,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             UpdateThumb();
         }
 
-        Animation.Animation _thumbAnimation;
+        private Animation.Animation _thumbAnimation;
 
         private void UpdateThumb()
         {
@@ -142,7 +118,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 _thumbAnimation.PropertyChanged += (o, e) =>
                 {
                     //if(e.Property.Name== nameof(Animation.Animation.)
-
                 };
                 //_ThumbTranslate.
 
@@ -179,7 +154,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
             if (_DraggingThumb != null && _ThumbIndicator != null && _ThumbTranslate != null)
             {
-
                 _DraggingThumb.DragStarted -= _DraggingThumb_DragStarted;
                 _DraggingThumb.DragDelta -= _DraggingThumb_DragDelta;
                 _DraggingThumb.DragCompleted -= _DraggingThumb_DragCompleted;
@@ -244,7 +218,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 return;
             }
 
-
             if (_lastDragPosition.HasValue)
             {
                 if (Math.Abs(e.Vector.X) > 3)
@@ -257,15 +230,13 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-
         private void _DraggingThumb_DragStarted(object sender, VectorEventArgs e)
         {
-
             if (_DraggingThumb.IsPointerOver == false)
             {
                 _lastDragPosition = null;
                 _isDragging = false;
-                return; 
+                return;
             }
 
             if (_ThumbTranslate != null)
@@ -277,8 +248,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
             _lastDragPosition = _ThumbTranslate.X;
             _isDragging = false;
-
-
         }
     }
 }

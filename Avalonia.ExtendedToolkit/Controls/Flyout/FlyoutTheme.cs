@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Avalonia.ExtendedToolkit.Controls
+﻿namespace Avalonia.ExtendedToolkit.Controls
 {
     public enum FlyoutTheme
     {
@@ -10,16 +6,19 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// Adapts the Flyout's theme to the theme of its host window.
         /// </summary>
         Adapt,
+
         /// <summary>
         /// Adapts the Flyout's theme to the theme of its host window, but inverted.
         /// This theme can only be applied if the host window's theme abides the "Dark" and "Light" affix convention.
         /// (see <see cref="ThemeManager.GetInverseTheme"/> for more infos.
         /// </summary>
         Inverse,
+
         /// <summary>
         /// The dark theme. This is the default theme.
         /// </summary>
         Dark,
+
         Light,
 
         /// <summary>

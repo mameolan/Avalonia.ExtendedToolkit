@@ -2,12 +2,12 @@
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Shapes;
 using Avalonia.Media;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// checkbox with special properties
+    /// </summary>
     public class MetroCheckBox : CheckBox
     {
         public IBrush FocusBorderBrush
@@ -19,33 +19,23 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly AvaloniaProperty FocusBorderBrushProperty =
             AvaloniaProperty.Register<MetroCheckBox, IBrush>(nameof(FocusBorderBrush));
 
-
-
-
         public IBrush MouseOverBorderBrush
         {
             get { return (IBrush)GetValue(MouseOverBorderBrushProperty); }
             set { SetValue(MouseOverBorderBrushProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty MouseOverBorderBrushProperty =
             AvaloniaProperty.Register<MetroCheckBox, IBrush>(nameof(MouseOverBorderBrush));
 
-
-
         public bool IsIndeterminate
         {
-
             get { return (bool)GetValue(IsIndeterminateProperty); }
             set { SetValue(IsIndeterminateProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty IsIndeterminateProperty =
             AvaloniaProperty.Register<MetroCheckBox, bool>(nameof(IsIndeterminate));
-
-
 
         public FlowDirection FlowDirection
         {
@@ -53,12 +43,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(FlowDirectionProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty FlowDirectionProperty =
             AvaloniaProperty.Register<MetroCheckBox, FlowDirection>(nameof(FlowDirection));
-
-
-
 
         public FlowDirection ContentDirection
         {
@@ -66,9 +52,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ContentDirectionProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ContentDirectionProperty =
             AvaloniaProperty.Register<MetroCheckBox, FlowDirection>(nameof(ContentDirection));
+
         private Path _checkBoxPath;
         private Rectangle _indeterminateCheck;
 
@@ -109,7 +95,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             _checkBoxPath = e.NameScope.Find<Path>("checkBox");
             _indeterminateCheck = e.NameScope.Find<Rectangle>("IndeterminateCheck");
 
-            //set init value 
+            //set init value
             bool? isChecked = IsChecked;
             if(isChecked.HasValue)
             {
@@ -119,12 +105,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 IsChecked = false;
             }
-            
+
             IsChecked = isChecked;
 
             base.OnTemplateApplied(e);
         }
-
-
     }
 }

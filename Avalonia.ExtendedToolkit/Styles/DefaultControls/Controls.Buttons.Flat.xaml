@@ -8,7 +8,6 @@
     <converters:ThicknessToDoubleConverter x:Key="BorderThicknessToStrokeThicknessConverter" TakeThicknessSide="Left" />
   </Styles.Resources>
 
-
   <Style Selector="Button.MetroFlatButton">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.FlatButton.Background}" />
     <Setter Property="BorderThickness" Value="0" />

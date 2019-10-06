@@ -5,6 +5,9 @@ using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// radiobutton with special properties
+    /// </summary>
     public class MetroRadioButton: RadioButton
     {
         public IBrush FocusBorderBrush

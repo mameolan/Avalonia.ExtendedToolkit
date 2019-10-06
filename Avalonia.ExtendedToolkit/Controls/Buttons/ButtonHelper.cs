@@ -1,14 +1,10 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Media;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
     public static class ButtonHelper
     {
-
         public static readonly AttachedProperty<CharacterCasing> ContentCharacterCasingProperty =
             AvaloniaProperty.RegisterAttached<Button, CharacterCasing>("ContentCharacterCasing", typeof(ButtonHelper));
 
@@ -21,8 +17,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             element.SetValue(ContentCharacterCasingProperty, value);
         }
-
-
 
         public static readonly AttachedProperty<CornerRadius> CornerRadiusProperty =
             AvaloniaProperty.RegisterAttached<Button
@@ -38,8 +32,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             element.SetValue(CornerRadiusProperty, value);
         }
 
-
-
         public static readonly AttachedProperty<IBrush> FocusBorderBrushProperty =
             AvaloniaProperty.RegisterAttached<Button, IBrush>("FocusBorderBrush", typeof(ButtonHelper));
 
@@ -53,8 +45,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             element.SetValue(FocusBorderBrushProperty, value);
         }
 
-
-
         public static readonly AttachedProperty<Thickness> FocusBorderThicknessProperty =
             AvaloniaProperty.RegisterAttached<Button, Thickness>("FocusBorderThickness", typeof(ButtonHelper));
 
@@ -67,12 +57,5 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             element.SetValue(FocusBorderThicknessProperty, value);
         }
-
-
-
-
-
-
-
     }
 }

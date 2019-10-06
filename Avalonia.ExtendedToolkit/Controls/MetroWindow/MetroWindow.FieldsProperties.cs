@@ -3,9 +3,6 @@ using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Shapes;
 using Avalonia.Input;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -34,12 +31,11 @@ namespace Avalonia.ExtendedToolkit.Controls
         private const string PART_TopRightGrip = "PART_TopRightGrip";
         private const string PART_BottomRightGrip = "PART_BottomRightGrip";
 
-
-        ContentControl _icon;
-        ContentControl _titleBar;
-        Rectangle _titleBarBackground;
-        Thumb _windowTitleThumb;
-        Thumb _flyoutModalDragMoveThumb;
+        private ContentControl _icon;
+        private ContentControl _titleBar;
+        private Rectangle _titleBarBackground;
+        private Thumb _windowTitleThumb;
+        private Thumb _flyoutModalDragMoveThumb;
         private IInputElement restoreFocus;
         internal ContentPresenter LeftWindowCommandsPresenter;
         internal ContentPresenter RightWindowCommandsPresenter;
@@ -48,8 +44,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         internal Grid overlayBox;
         internal Grid metroActiveDialogContainer;
         internal Grid metroInactiveDialogContainer;
+
         //private Storyboard overlayStoryboard;
-        Rectangle flyoutModal;
+        private Rectangle flyoutModal;
 
         //private Button _closeButton;
         //private Button _minimiseButton;
@@ -65,11 +62,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         private Grid _topHorizontalGrip;
         private Grid _topLeftGrip;
         private Grid _topRightGrip;
-
-
-
-
-        
 
         private bool _mouseDown;
         private Point _mouseDownPosition;

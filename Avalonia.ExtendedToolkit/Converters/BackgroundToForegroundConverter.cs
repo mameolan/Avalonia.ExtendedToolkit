@@ -3,7 +3,6 @@ using Avalonia.Media;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Converters
 {
@@ -39,7 +38,6 @@ namespace Avalonia.ExtendedToolkit.Converters
             var foreColor = (255 - bgDelta < nThreshold) ? Colors.Black : Colors.White;
             return foreColor;
         }
-
 
         public object Convert(IList<object> values, Type targetType, object parameter, CultureInfo culture)
         {

@@ -1,10 +1,7 @@
-﻿using Avalonia.Controls;
-using Avalonia.Data.Converters;
+﻿using Avalonia.Data.Converters;
 using Avalonia.Markup.Xaml;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Converters
 {
@@ -14,14 +11,10 @@ namespace Avalonia.ExtendedToolkit.Converters
 
         protected abstract object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture);
 
-
-
         object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
-                
-
                 return Convert(value, targetType, parameter, culture);
             }
             catch

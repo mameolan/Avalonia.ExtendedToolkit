@@ -8,8 +8,6 @@ using Avalonia.Markup.Xaml.Templates;
 using Avalonia.Media;
 using Avalonia.Styling;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
@@ -36,19 +34,14 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-
-
         public bool IsExpanded
         {
             get { return (bool)GetValue(IsExpandedProperty); }
             set { SetValue(IsExpandedProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty IsExpandedProperty =
             AvaloniaProperty.Register<DropDownButton, bool>(nameof(IsExpanded));
-
-
 
         public object ExtraTag
         {
@@ -56,11 +49,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ExtraTagProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ExtraTagProperty =
             AvaloniaProperty.Register<DropDownButton, object>(nameof(ExtraTag));
-
-
 
         public Orientation Orientation
         {
@@ -68,11 +58,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OrientationProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty OrientationProperty =
             AvaloniaProperty.Register<DropDownButton, Orientation>(nameof(Orientation));
-
-
 
         public object Icon
         {
@@ -80,11 +67,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IconProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty IconProperty =
             AvaloniaProperty.Register<DropDownButton, object>(nameof(Icon));
-
-
 
         public DataTemplate IconTemplate
         {
@@ -92,11 +76,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IconTemplateProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty IconTemplateProperty =
             AvaloniaProperty.Register<DropDownButton, DataTemplate>(nameof(IconTemplate));
-
-
 
         public ICommand Command
         {
@@ -104,11 +85,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CommandProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty CommandProperty =
             AvaloniaProperty.Register<DropDownButton, ICommand>(nameof(Command));
-
-
 
         public IInputElement CommandTarget
         {
@@ -116,11 +94,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CommandTargetProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty CommandTargetProperty =
             AvaloniaProperty.Register<DropDownButton, IInputElement>(nameof(CommandTarget));
-
-
 
         public object CommandParameter
         {
@@ -128,11 +103,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CommandParameterProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty CommandParameterProperty =
             AvaloniaProperty.Register<DropDownButton, object>(nameof(CommandParameter));
-
-
 
         public object Content
         {
@@ -140,11 +112,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ContentProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ContentProperty =
             AvaloniaProperty.Register<DropDownButton, object>(nameof(Content));
-
-
 
         public DataTemplate ContentTemplate
         {
@@ -152,13 +121,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ContentTemplateProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ContentTemplateProperty =
             AvaloniaProperty.Register<DropDownButton, DataTemplate>(nameof(ContentTemplate));
 
         //ContentTemplateSelector missing
-
-
 
         public string ContentStringFormat
         {
@@ -166,12 +132,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ContentStringFormatProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ContentStringFormatProperty =
             AvaloniaProperty.Register<DropDownButton, string>(nameof(ContentStringFormat));
-
-
-
 
         public IStyle ButtonStyle
         {
@@ -179,11 +141,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ButtonStyleProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ButtonStyleProperty =
             AvaloniaProperty.Register<DropDownButton, IStyle>(nameof(ButtonStyle));
-
-
 
         public IStyle MenuStyle
         {
@@ -191,11 +150,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(MenuStyleProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty MenuStyleProperty =
             AvaloniaProperty.Register<DropDownButton, IStyle>(nameof(MenuStyle));
-
-
 
         public IBrush ArrowBrush
         {
@@ -203,11 +159,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ArrowBrushProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ArrowBrushProperty =
             AvaloniaProperty.Register<DropDownButton, IBrush>(nameof(ArrowBrush));
-
-
 
         public IBrush ArrowMouseOverBrush
         {
@@ -215,11 +168,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ArrowMouseOverBrushProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ArrowMouseOverBrushProperty =
             AvaloniaProperty.Register<DropDownButton, IBrush>(nameof(ArrowMouseOverBrush));
-
-
 
         public IBrush ArrowPressedBrush
         {
@@ -227,11 +177,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ArrowPressedBrushProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ArrowPressedBrushProperty =
             AvaloniaProperty.Register<DropDownButton, IBrush>(nameof(ArrowPressedBrush));
-
-
 
         public bool IsArrowVisible
         {
@@ -239,11 +186,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsArrowVisibleProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty IsArrowVisibleProperty =
             AvaloniaProperty.Register<DropDownButton, bool>(nameof(IsArrowVisible));
-
-
 
         public CornerRadius CornerRadius
         {
@@ -251,11 +195,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CornerRadiusProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty CornerRadiusProperty =
             AvaloniaProperty.Register<DropDownButton, CornerRadius>(nameof(CornerRadius));
-
-
 
         public CharacterCasing ContentCharacterCasing
         {
@@ -263,11 +204,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ContentCharacterCasingProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ContentCharacterCasingProperty =
             AvaloniaProperty.Register<DropDownButton, CharacterCasing>(nameof(ContentCharacterCasing));
-
-
 
         public DropDownButton()
         {
@@ -287,7 +225,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 menu.Open(this);
             }
-            
         }
 
         private void IsExpandedPropertyChangedCallback(DropDownButton dropDownButton, AvaloniaPropertyChangedEventArgs e)
@@ -299,8 +236,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             //    if (value && dropDownButton.menu?.IsOpen == false)
             //    {
-                    
-            //        //dropDownButton.ContextMenu.Open(this); 
+            //        //dropDownButton.ContextMenu.Open(this);
             //        dropDownButton.menu?.Open(dropDownButton);
 
             //    }
@@ -331,10 +267,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                     list.Add(newItem);
                 }
                 menu.Items = list;
-
             }
-
-
 
             base.OnTemplateApplied(e);
         }
@@ -398,6 +331,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                         }
                     }
                     break;
+
                 case NotifyCollectionChangedAction.Remove:
                     if (e.OldItems != null)
                     {
@@ -407,6 +341,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                         }
                     }
                     break;
+
                 case NotifyCollectionChangedAction.Move:
                 case NotifyCollectionChangedAction.Replace:
                     if (e.OldItems != null)
@@ -425,6 +360,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                         }
                     }
                     break;
+
                 case NotifyCollectionChangedAction.Reset:
                     if (this.Items != null)
                     {
@@ -436,14 +372,10 @@ namespace Avalonia.ExtendedToolkit.Controls
                         }
                     }
                     break;
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-
-
         }
-
-
     }
 }

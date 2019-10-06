@@ -3,20 +3,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
     xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
-    xmlns:tk="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit"
-    >
+    xmlns:tk="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit">
   <Styles.Resources>
     <converters:ThicknessBindingConverter x:Key="ThicknessBindingConverter" />
     <converters:ThicknessToDoubleConverter x:Key="ThicknessToDoubleConverter" />
   </Styles.Resources>
-
 
   <Style Selector="Controls|MetroWindow">
     <!--<Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}" />
     <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />-->
     <Setter Property="FontSize" Value="{DynamicResource FontSizeNormal}" />
     <Setter Property="FontFamily" Value="{TemplateBinding FontFamily}" />
-    <Setter Property="FlyoutOverlayBrush" Value="{DynamicResource MetroWindow.FlyoutOverlayBrush}"/>
+    <Setter Property="FlyoutOverlayBrush" Value="{DynamicResource MetroWindow.FlyoutOverlayBrush}" />
     <Setter Property="HasSystemDecorations" Value="false" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray10}" />
@@ -35,8 +33,7 @@
           <TextBlock Margin="8 -1 1 0"
                      VerticalAlignment="Center"
                      Text="{TemplateBinding Content}"
-                     Foreground="Green"
-                      />
+                     Foreground="Green" />
           <!--FontFamily="{DynamicResource MahApps.Fonts.Header}"
                      FontSize="{DynamicResource MahApps.Sizes.Font.WindowTitle}"-->
         </DataTemplate>
@@ -49,8 +46,7 @@
           <!--LayoutTransform="{Binding LayoutTransform, RelativeSource={RelativeSource TemplatedParent}}"-->
           <Grid Background="{TemplateBinding Background}"
               RenderTransform="{Binding RenderTransform, RelativeSource={RelativeSource TemplatedParent}}"
-              UseLayoutRounding="False"
-                >
+              UseLayoutRounding="False">
             <VisualLayerManager>
               <Grid UseLayoutRounding="False">
                 <Grid.ColumnDefinitions>
@@ -124,8 +120,7 @@
                                                 Content="{TemplateBinding Title}"
                                                 ContentCharacterCasing="{TemplateBinding TitleCharacterCasing}"
                                                 Foreground="{TemplateBinding TitleForeground}"
-                                                Focusable="False"
-                                                     >
+                                                Focusable="False">
                     <!--ContentTemplate="{TemplateBinding TitleTemplate}"  -->
 
                     <ContentControl.Foreground>
@@ -160,17 +155,13 @@
                                          OnlyLoadTransition="True"
                                          TransitionsEnabled="False"
                                          UseLayoutRounding="True"
-                                         Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}"
-                  >
+                                         Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}">
                   <!--{TemplateBinding WindowTransitionsEnabled}-->
                   <ContentPresenter
                     Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={StaticResource ThicknessBindingConverter}, ConverterParameter={x:Static tk:ThicknessSideType.Top}}"
                     UseLayoutRounding="False"
-                    Content="{TemplateBinding Content}"
-                    
-                    />
+                    Content="{TemplateBinding Content}" />
                 </Controls:MetroContentControl>
-
 
                 <!--  disables the main content when a modal flyout is shown  -->
                 <Rectangle Name="PART_FlyoutModal"
@@ -186,7 +177,6 @@
                                     Grid.ColumnSpan="5"
                                     IsVisible="{Binding ElementName=PART_FlyoutModal, Path=IsVisible, Mode=OneWay}" />
 
-                
                 <!--  flyouts  -->
                 <ContentControl Grid.Row="1"
                                 Grid.RowSpan="2"
@@ -196,8 +186,7 @@
                                 ZIndex="2"
                                 Content="{Binding Flyouts, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                 Focusable="False"
-                                KeyboardNavigation.TabNavigation="None" 
-                                />
+                                KeyboardNavigation.TabNavigation="None" />
 
                 <!--  inactive dialog container  -->
                 <Grid x:Name="PART_MetroInactiveDialogsContainer"
@@ -205,8 +194,7 @@
                       Grid.RowSpan="2"
                       Grid.Column="1"
                       Grid.ColumnSpan="3"
-                      ZIndex="3"
-                      />
+                      ZIndex="3" />
 
                 <!--  overlay effect container  -->
                 <Grid x:Name="PART_OverlayBox"
@@ -225,8 +213,7 @@
                       Grid.RowSpan="2"
                       Grid.Column="1"
                       Grid.ColumnSpan="3"
-                      ZIndex="5"
-                      />
+                      ZIndex="5" />
 
                 <Grid Grid.Row="0" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="4" RowDefinitions="Auto * Auto" ColumnDefinitions="Auto,Auto,*,Auto,Auto">
                   <Grid Background="Transparent" Width="4" Height="4" />
@@ -242,7 +229,7 @@
                 <Grid Background="Transparent" Grid.Row="3" Grid.Column="0" Width="4" Height="10" VerticalAlignment="Bottom" Name="PART_BottomLeftGrip" Cursor="BottomLeftCorner" />
                 <Grid Background="Transparent" Grid.Row="0" Grid.Column="4" Width="4" Height="10" Name="PART_TopRightGrip" Cursor="TopRightCorner" />
                 <Grid Background="Transparent" Grid.Row="1" Grid.Column="4" Grid.RowSpan="2" Width="4" Cursor="SizeWestEast" Name="PART_RightVerticalGrip" />
-                <Grid Background="Transparent"  Grid.Row="4" Grid.Column="4" Width="4" Height="10" VerticalAlignment="Bottom" Name="PART_BottomRightGrip" Cursor="BottomRightCorner" />  
+                <Grid Background="Transparent"  Grid.Row="4" Grid.Column="4" Width="4" Height="10" VerticalAlignment="Bottom" Name="PART_BottomRightGrip" Cursor="BottomRightCorner" />
               </Grid>
             </VisualLayerManager>
 
@@ -260,7 +247,6 @@
                         UseLayoutRounding="True"
                         Visibility="Collapsed" />-->
           </Grid>
-
         </ControlTemplate>
       </Setter.Value>
     </Setter>

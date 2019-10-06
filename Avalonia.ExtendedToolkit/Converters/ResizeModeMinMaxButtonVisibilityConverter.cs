@@ -1,5 +1,4 @@
-﻿using Avalonia.Controls;
-using Avalonia.Data.Converters;
+﻿using Avalonia.Data.Converters;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -9,7 +8,6 @@ namespace Avalonia.ExtendedToolkit.Converters
 {
     public sealed class ResizeModeMinMaxButtonVisibilityConverter : IMultiValueConverter
     {
-
         private static ResizeModeMinMaxButtonVisibilityConverter _instance;
 
         // Explicit static constructor to tell C# compiler
@@ -27,11 +25,8 @@ namespace Avalonia.ExtendedToolkit.Converters
             get { return _instance ?? (_instance = new ResizeModeMinMaxButtonVisibilityConverter()); }
         }
 
-
         public object Convert(IList<object> values, Type targetType, object parameter, CultureInfo culture)
         {
-            
-
             var whichButton = parameter as string;
             if (values != null && !string.IsNullOrEmpty(whichButton))
             {
@@ -50,12 +45,14 @@ namespace Avalonia.ExtendedToolkit.Converters
                 {
                     case ResizeMode.NoResize:
                         return false;
+
                     case ResizeMode.CanMinimize:
                         if (whichButton == "MIN")
                         {
                             return useNoneWindowStyle || !showButton ? false : true;
                         }
                         return false;
+
                     case ResizeMode.CanResize:
                     case ResizeMode.CanResizeWithGrip:
                     default:

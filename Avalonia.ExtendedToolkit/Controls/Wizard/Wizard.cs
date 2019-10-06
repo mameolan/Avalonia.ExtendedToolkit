@@ -24,8 +24,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         private Button btnFinish;
         private Button btnCancel;
 
-
-
         /// <summary>
         /// used for viewmodel binding
         /// </summary>
@@ -410,7 +408,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 FinishCommand?.Execute(CanFinish);
             }
 
-
             var eventArgs = new RoutedEventArgs(Wizard.FinishEvent);
             this.RaiseEvent(eventArgs);
             //if (eventArgs.Cancel)
@@ -465,7 +462,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 NextPageCommand?.Execute(CanSelectNextPage);
             }
 
-
             if (CurrentPage != null)
             {
                 var eventArgs = new RoutedEventArgs(NextEvent);
@@ -513,7 +509,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 PreviousPageCommand?.Execute(CanSelectPreviousPage);
             }
-
 
             if (CurrentPage != null)
             {
@@ -636,7 +631,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static RoutedEvent<RoutedEventArgs> PreviousEvent =
             RoutedEvent.Register<Wizard, RoutedEventArgs>(nameof(PreviousEvent), RoutingStrategies.Bubble);
 
-
         public event EventHandler Previous
         {
             add
@@ -721,9 +715,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             base.OnTemplateApplied(e);
         }
 
-        void UpdateButtonState()
+        private void UpdateButtonState()
         {
-
             if (btnHelp != null)
                 btnHelp.IsEnabled = CanExecuteRequestHelp();
             if (btnBack != null)
@@ -735,7 +728,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             if (btnCancel != null)
                 btnCancel.IsEnabled = CanExecuteCancelWizard();
         }
-
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -767,7 +759,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 ExecuteSelectPreviousPage();
             }
-
         }
 
         private void BtnHelp_Click(object sender, RoutedEventArgs e)

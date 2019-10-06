@@ -2,14 +2,10 @@
 using Avalonia.Controls.Generators;
 using Avalonia.Controls.Templates;
 using Avalonia.Input;
-using System;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using Avalonia.LogicalTree;
-using System.ComponentModel;
 using System.Collections.Specialized;
+using System.Linq;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -24,11 +20,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OverrideExternalCloseButtonProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty OverrideExternalCloseButtonProperty =
             AvaloniaProperty.Register<FlyoutsControl, MouseButton?>(nameof(OverrideExternalCloseButton));
-
-
 
         public bool OverrideIsPinned
         {
@@ -36,10 +29,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OverrideIsPinnedProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty OverrideIsPinnedProperty =
             AvaloniaProperty.Register<FlyoutsControl, bool>(nameof(OverrideIsPinned));
-
 
         public FlyoutsControl()
         {
@@ -47,7 +38,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             //ItemsProperty.AddOwner<FlyoutsControl>((o,e)=> ONi)
         }
 
-        
         protected override IItemContainerGenerator CreateItemContainerGenerator()
         {
             var itemContainer= new ItemContainerGenerator<Flyout>(
@@ -65,17 +55,14 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void ItemContainer_Recycled(object sender, ItemContainerEventArgs e)
         {
-            
         }
 
         private void ItemContainer_Dematerialized(object sender, ItemContainerEventArgs e)
         {
-            
         }
 
         private void ItemContainer_Materialized(object sender, ItemContainerEventArgs e)
         {
-            
         }
 
         protected override void ItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -83,8 +70,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             base.ItemsCollectionChanged(sender, e);
             this.IsVisible = true;
         }
-
-
 
         internal void HandleFlyoutStatusChange(Flyout flyout, MetroWindow parentWindow)
         {
@@ -109,12 +94,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             return (Flyout)item;
 
-
-
-
             //int index = this.ItemContainerGenerator.IndexFromContainer(DefaultPanel);
-
-
 
             //return (Flyout)this.ItemContainerGenerator.ContainerFromIndex(index);
         }
@@ -142,12 +122,11 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             if (lastChanged.IsOpen)
             {
-                //lastChanged.IsVisible = true;
+                lastChanged.IsVisible = true;
 
                 lastChanged.ZIndex = index;
                 //Panel.SetZIndex(lastChanged, index);
             }
         }
-
     }
 }

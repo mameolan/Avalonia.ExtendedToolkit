@@ -1,7 +1,4 @@
 ﻿using Avalonia.Animation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Extensions
 {
@@ -13,13 +10,7 @@ namespace Avalonia.ExtendedToolkit.Extensions
             set { SetValue(NameProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty NameProperty =
             AvaloniaProperty.Register<KeyFrameExt, string>(nameof(Name));
-
-
-
-
-
     }
 }

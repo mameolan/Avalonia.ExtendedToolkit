@@ -4,14 +4,14 @@
     xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit">
   <Style Selector="Controls|FlyoutsControl">
     <Setter Property="Focusable" Value="False" />
-    <Setter Property="Background" Value="AliceBlue"/>
-    <Setter Property="Width" Value="300"/>
-    <Setter Property="Height" Value="300"/>
-    <Setter Property="IsVisible" Value="True"/>
+    <Setter Property="Background" Value="AliceBlue" />
+    <Setter Property="Width" Value="300" />
+    <Setter Property="Height" Value="300" />
+    <Setter Property="IsVisible" Value="True" />
     <Setter Property="ItemsPanel">
       <Setter.Value>
         <ItemsPanelTemplate>
-          <Grid  />
+          <Grid />
         </ItemsPanelTemplate>
       </Setter.Value>
     </Setter>

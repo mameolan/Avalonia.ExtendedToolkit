@@ -2,6 +2,9 @@
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// button with special properties
+    /// </summary>
     public class SquareButton : Button
     {
         public CharacterCasing ContentCharacterCasing

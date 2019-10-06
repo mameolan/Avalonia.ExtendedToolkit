@@ -331,7 +331,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public static readonly AvaloniaProperty FlyoutOverlayBrushProperty =
             AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(FlyoutOverlayBrush));
-        
+
         public FlyoutsControl Flyouts
         {
             get { return (FlyoutsControl)GetValue(FlyoutsProperty); }
@@ -357,7 +357,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public static readonly AvaloniaProperty<Control> TitleBarContentProperty =
             AvaloniaProperty.Register<MetroWindow, Control>(nameof(TitleBarContent));
-        
+
         /// <summary>
         ///  Gets or sets the flag indicating whether chrome is visible.
         /// </summary>
@@ -552,7 +552,6 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             //flyout.IsVisible = true;
 
-
             RaiseEvent(new FlyoutStatusChangedRoutedEventArgs(FlyoutsStatusChangedEvent, this) { ChangedFlyout = flyout });
         }
 
@@ -651,7 +650,6 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             ThemeManager.Instance.IsThemeChanged += ThemeManagerOnIsThemeChanged;
 
-            
             SetVisibiltyForAllTitleElements();
         }
 
@@ -889,7 +887,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             //throw new NotImplementedException();
         }
 
-        private void DoWindowTitleThumbChangeWindowStateOnMouseDoubleClick(MetroWindow metroWindow, RoutedEventArgs mouseButtonEventArgs)
+        internal static void DoWindowTitleThumbChangeWindowStateOnMouseDoubleClick(MetroWindow metroWindow, RoutedEventArgs mouseButtonEventArgs)
         {
             // restore/maximize only with left button
             //if (mouseButtonEventArgs.ChangedButton == MouseButton.Left)
@@ -900,7 +898,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 //var isMouseOnTitlebar = mousePos.Y <= window.TitleBarHeight && window.TitleBarHeight > 0;
                 if (canResize /*&& isMouseOnTitlebar*/)
                 {
-                    ToggleWindowState();
+                    metroWindow.ToggleWindowState();
 
                     mouseButtonEventArgs.Handled = true;
                 }
@@ -977,11 +975,9 @@ namespace Avalonia.ExtendedToolkit.Controls
                 //
                 newChild.DataContext = this.DataContext;
             }
-
-            
         }
 
-        internal void DoWindowTitleThumbMoveOnDragDelta(IMetroThumb thumb, MetroWindow window, VectorEventArgs dragDeltaEventArgs)
+        internal static void DoWindowTitleThumbMoveOnDragDelta(IMetroThumb thumb, MetroWindow window, VectorEventArgs dragDeltaEventArgs)
         {
             if (thumb == null)
             {
@@ -1007,11 +1003,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             // if the window is maximized dragging is only allowed on title bar (also if not visible)
             var windowIsMaximized = window.WindowState == WindowState.Maximized;
 
-            if (_titleBar != null && _titleBar.IsPointerOver /*&& _mouseDown*/)
+            if (window._titleBar != null && window._titleBar.IsPointerOver /*&& _mouseDown*/)
             {
-                WindowState = WindowState.Normal;
-                BeginMoveDrag();
-                _mouseDown = false;
+                window.WindowState = WindowState.Normal;
+                window.BeginMoveDrag();
+                window._mouseDown = false;
             }
 
             //var isMouseOnTitlebar = Mouse.GetPosition(thumb).Y <= window.TitleBarHeight && window.TitleBarHeight > 0;
@@ -1056,9 +1052,6 @@ namespace Avalonia.ExtendedToolkit.Controls
 //            NativeMethods.SendMessage(criticalHandle, WM.NCLBUTTONDOWN, (IntPtr)HT.CAPTION, new IntPtr(x | (y << 16)));
 //#pragma warning restore 618
         }
-
-
-
 
         /// <inheritdoc/>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
@@ -1108,8 +1101,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             _bottomLeftGrip = e.NameScope.Find<Grid>(PART_BottomLeftGrip);
             _topRightGrip = e.NameScope.Find<Grid>(PART_TopRightGrip);
             _bottomRightGrip = e.NameScope.Find<Grid>(PART_BottomRightGrip);
-
-
         }
     }
 }

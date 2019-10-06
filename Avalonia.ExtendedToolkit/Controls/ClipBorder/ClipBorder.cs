@@ -486,6 +486,5 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         #endregion Private Structures
-
     }
 }

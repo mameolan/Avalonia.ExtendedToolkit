@@ -7,7 +7,7 @@
   </Styles.Resources>
   <!--<Design.PreviewWith>
     <Border Padding="20">
-      <Controls:BusyIndicator/>
+      <Controls:BusyIndicator />
     </Border>
   </Design.PreviewWith>-->
 

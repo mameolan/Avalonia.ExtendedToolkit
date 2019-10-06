@@ -1,9 +1,7 @@
 ﻿using Avalonia.Controls;
 using Avalonia.LogicalTree;
 using Avalonia.VisualTree;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Extensions
 {
@@ -56,7 +54,6 @@ namespace Avalonia.ExtendedToolkit.Extensions
                     IControl avalonia = item as IControl;
                     if (avalonia != null)
                         yield return item as IControl;
-
                 }
             }
             else
@@ -68,14 +65,9 @@ namespace Avalonia.ExtendedToolkit.Extensions
                     IControl avalonia = item as IControl;
                     if (avalonia != null)
                         yield return item as IControl;
-
                 }
-
-
             }
-
         }
-
 
         public static IEnumerable<T> FindChildren<T>(this IControl source, bool forceUsingTheVisualTreeHelper = false) where T : IControl
         {
@@ -98,10 +90,5 @@ namespace Avalonia.ExtendedToolkit.Extensions
                 }
             }
         }
-
-
-
-
-
     }
 }

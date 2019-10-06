@@ -4,15 +4,15 @@
     xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
     xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
     xmlns:System="clr-namespace:System;assembly=mscorlib">
-  
-  <Style Selector="ContentControl.FloatingMessageContainer" >
+
+  <Style Selector="ContentControl.FloatingMessageContainer">
     <Setter Property="Focusable" Value="False" />
     <Setter Property="IsHitTestVisible" Value="False" />
     <Setter Property="Margin" Value="5 0" />
     <Setter Property="IsVisible" Value="false" />
   </Style>
 
-  <Style Selector="ContentControl.PathIcon" >
+  <Style Selector="ContentControl.PathIcon">
     <Setter Property="Height" Value="16" />
     <Setter Property="HorizontalAlignment" Value="Center" />
     <Setter Property="Padding" Value="0" />
@@ -32,7 +32,4 @@
     <Setter Property="VerticalAlignment" Value="Center" />
     <Setter Property="Width" Value="16" />
   </Style>
-  
-  
-  
 </Styles>

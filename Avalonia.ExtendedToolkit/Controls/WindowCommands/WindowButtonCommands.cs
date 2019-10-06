@@ -2,19 +2,15 @@
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Styling;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
     public class WindowButtonCommands : ContentControl, INotifyPropertyChanged
     {
         public event ClosingWindowEventHandler ClosingWindow;
+
         public delegate void ClosingWindowEventHandler(object sender, ClosingWindowEventHandlerArgs args);
-
-
 
         public IStyle LightMinButtonStyle
         {
@@ -22,11 +18,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(LightMinButtonStyleProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty LightMinButtonStyleProperty =
             AvaloniaProperty.Register<WindowButtonCommands, IStyle>(nameof(LightMinButtonStyle));
-
-
 
         public IStyle LightMaxButtonStyle
         {
@@ -34,11 +27,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(LightMaxButtonStyleProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty LightMaxButtonStyleProperty =
             AvaloniaProperty.Register<WindowButtonCommands, IStyle>(nameof(LightMaxButtonStyle));
-
-
 
         public IStyle LightCloseButtonStyle
         {
@@ -46,11 +36,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(LightCloseButtonStyleProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty LightCloseButtonStyleProperty =
             AvaloniaProperty.Register<WindowButtonCommands, IStyle>(nameof(LightCloseButtonStyle));
-
-
 
         public IStyle DarkMinButtonStyle
         {
@@ -58,11 +45,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(DarkMinButtonStyleProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty DarkMinButtonStyleProperty =
             AvaloniaProperty.Register<WindowButtonCommands, IStyle>(nameof(DarkMinButtonStyle));
-
-
 
         public IStyle DarkMaxButtonStyle
         {
@@ -70,11 +54,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(DarkMaxButtonStyleProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty DarkMaxButtonStyleProperty =
             AvaloniaProperty.Register<WindowButtonCommands, IStyle>(nameof(DarkMaxButtonStyle));
-
-
 
         public IStyle DarkCloseButtonStyle
         {
@@ -82,11 +63,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(DarkCloseButtonStyleProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty DarkCloseButtonStyleProperty =
             AvaloniaProperty.Register<WindowButtonCommands, IStyle>(nameof(DarkCloseButtonStyle));
-
-
 
         public WindowCommandTheme Theme
         {
@@ -94,11 +72,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ThemeProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ThemeProperty =
             AvaloniaProperty.Register<WindowButtonCommands, WindowCommandTheme>(nameof(Theme), WindowCommandTheme.Light);
-
-
 
         public string Minimize
         {
@@ -106,11 +81,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(MinimizeProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty MinimizeProperty =
             AvaloniaProperty.Register<WindowButtonCommands, string>(nameof(Minimize));
-
-
 
         public string Maximize
         {
@@ -118,11 +90,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(MaximizeProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty MaximizeProperty =
             AvaloniaProperty.Register<WindowButtonCommands, string>(nameof(Maximize));
-
-
 
         public string Close
         {
@@ -130,11 +99,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CloseProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty CloseProperty =
             AvaloniaProperty.Register<WindowButtonCommands, string>(nameof(Close));
-
-
 
         public string Restore
         {
@@ -142,12 +108,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(RestoreProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty RestoreProperty =
             AvaloniaProperty.Register<WindowButtonCommands, string>(nameof(Restore));
-
-
-
 
         public bool IsCloseButtonEnabled
         {
@@ -155,11 +117,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             private set { SetValue(IsCloseButtonEnabledProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty IsCloseButtonEnabledProperty =
             AvaloniaProperty.Register<WindowButtonCommands, bool>(nameof(IsCloseButtonEnabled));
-
-
 
         public bool IsAnyDialogOpen
         {
@@ -167,11 +126,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             private set { SetValue(IsAnyDialogOpenProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty IsAnyDialogOpenProperty =
             AvaloniaProperty.Register<WindowButtonCommands, bool>(nameof(IsAnyDialogOpen));
-
-
 
         public bool IsCloseButtonEnabledWithDialog
         {
@@ -179,12 +135,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             private set { SetValue(IsCloseButtonEnabledWithDialogProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty IsCloseButtonEnabledWithDialogProperty =
             AvaloniaProperty.Register<WindowButtonCommands, bool>(nameof(IsCloseButtonEnabledWithDialog));
-
-
-
 
         public WindowState WindowState
         {
@@ -192,11 +144,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(WindowStateProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty WindowStateProperty =
             AvaloniaProperty.Register<WindowButtonCommands, WindowState>(nameof(WindowState));
-
-
 
         public WindowButtonCommands()
         {
@@ -216,16 +165,13 @@ namespace Avalonia.ExtendedToolkit.Controls
                         max.Styles.Add(LightMaxButtonStyle);
                         min.Styles.Add(LightMinButtonStyle);
                         break;
+
                     case WindowCommandTheme.Dark:
                         close.Styles.Add(DarkCloseButtonStyle);
                         max.Styles.Add(DarkMaxButtonStyle);
                         min.Styles.Add(DarkMinButtonStyle);
                         break;
                 }
-
-
-                
-
             }
         }
 
@@ -289,6 +235,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 //ControlzEx.Windows.Shell.SystemCommands.MaximizeWindow(this.ParentWindow);
             }
         }
+
 #pragma warning restore 618
 
         private void CloseClick(object sender, RoutedEventArgs e)
@@ -322,14 +269,10 @@ namespace Avalonia.ExtendedToolkit.Controls
                     _parentWindow.PropertyChanged -= ParentWindow_PropertyChanged;
                 }
 
-
-
                 _parentWindow = value;
                 //this.OnPropertyChanged("ParentWindow");
 
-
                 _parentWindow.PropertyChanged += ParentWindow_PropertyChanged;
-
             }
         }
 
@@ -358,6 +301,5 @@ namespace Avalonia.ExtendedToolkit.Controls
         //    var handler = PropertyChanged;
         //    if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         //}
-
     }
 }
