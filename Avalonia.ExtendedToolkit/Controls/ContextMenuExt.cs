@@ -11,6 +11,8 @@ namespace Avalonia.ExtendedToolkit.Controls
 {
     public class ContextMenuExt : ContextMenu
     {
+        public Type StyleKey => typeof(ContextMenu);
+
         private Popup _popup;
 
         public bool IsOpen

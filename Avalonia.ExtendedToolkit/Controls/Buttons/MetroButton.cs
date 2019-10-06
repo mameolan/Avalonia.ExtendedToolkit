@@ -1,10 +1,15 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Media;
+using System;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
     public class MetroButton : Button
     {
+        public Type StyleKey => typeof(Button);
+
+
+
         public CharacterCasing ContentCharacterCasing
         {
             get { return (CharacterCasing)GetValue(ContentCharacterCasingProperty); }
@@ -23,14 +28,14 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly AvaloniaProperty CornerRadiusProperty =
             AvaloniaProperty.Register<MetroButton, CornerRadius>(nameof(CornerRadius));
 
-        public SolidColorBrush FocusBorderBrush
+        public IBrush FocusBorderBrush
         {
-            get { return (SolidColorBrush)GetValue(FocusBorderBrushProperty); }
+            get { return (IBrush)GetValue(FocusBorderBrushProperty); }
             set { SetValue(FocusBorderBrushProperty, value); }
         }
 
         public static readonly AvaloniaProperty FocusBorderBrushProperty =
-            AvaloniaProperty.Register<MetroButton, SolidColorBrush>(nameof(FocusBorderBrush));
+            AvaloniaProperty.Register<MetroButton, IBrush>(nameof(FocusBorderBrush));
 
         public Thickness FocusBorderThickness
         {
@@ -40,6 +45,5 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public static readonly AvaloniaProperty FocusBorderThicknessProperty =
             AvaloniaProperty.Register<MetroButton, Thickness>(nameof(FocusBorderThickness));
-
     }
 }

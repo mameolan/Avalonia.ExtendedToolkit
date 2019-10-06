@@ -4,13 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Avalonia.ExtendedToolkit.Controls.Buttons
+namespace Avalonia.ExtendedToolkit.Controls
 {
-    public class ButtonHelper
+    public static class ButtonHelper
     {
 
         public static readonly AttachedProperty<CharacterCasing> ContentCharacterCasingProperty =
-            AvaloniaProperty.RegisterAttached<ButtonHelper, Button, CharacterCasing>("ContentCharacterCasing");
+            AvaloniaProperty.RegisterAttached<Button, CharacterCasing>("ContentCharacterCasing", typeof(ButtonHelper));
 
         public static CharacterCasing GetContentCharacterCasing(Button element)
         {
@@ -25,8 +25,8 @@ namespace Avalonia.ExtendedToolkit.Controls.Buttons
 
 
         public static readonly AttachedProperty<CornerRadius> CornerRadiusProperty =
-            AvaloniaProperty.RegisterAttached<ButtonHelper, Button
-                , CornerRadius>(nameof(CornerRadius));
+            AvaloniaProperty.RegisterAttached<Button
+                , CornerRadius>(nameof(CornerRadius), typeof(ButtonHelper));
 
         public static CornerRadius GetCornerRadius(Button element)
         {
@@ -40,15 +40,15 @@ namespace Avalonia.ExtendedToolkit.Controls.Buttons
 
 
 
-        public static readonly AttachedProperty<SolidColorBrush> FocusBorderBrushProperty =
-            AvaloniaProperty.RegisterAttached<ButtonHelper, Button, SolidColorBrush>("FocusBorderBrush");
+        public static readonly AttachedProperty<IBrush> FocusBorderBrushProperty =
+            AvaloniaProperty.RegisterAttached<Button, IBrush>("FocusBorderBrush", typeof(ButtonHelper));
 
-        public static SolidColorBrush GetFocusBorderBrush(Button element)
+        public static IBrush GetFocusBorderBrush(Button element)
         {
             return element.GetValue(FocusBorderBrushProperty);
         }
 
-        public static void SetFocusBorderBrush(Button element, SolidColorBrush value)
+        public static void SetFocusBorderBrush(Button element, IBrush value)
         {
             element.SetValue(FocusBorderBrushProperty, value);
         }
@@ -56,7 +56,7 @@ namespace Avalonia.ExtendedToolkit.Controls.Buttons
 
 
         public static readonly AttachedProperty<Thickness> FocusBorderThicknessProperty =
-            AvaloniaProperty.RegisterAttached<ButtonHelper, Button, Thickness>("FocusBorderThickness");
+            AvaloniaProperty.RegisterAttached<Button, Thickness>("FocusBorderThickness", typeof(ButtonHelper));
 
         public static Thickness GetFocusBorderThickness(Button element)
         {

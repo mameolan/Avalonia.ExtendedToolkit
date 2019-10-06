@@ -1,0 +1,48 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+  <Styles.Resources>
+    <converters:ThicknessToDoubleConverter x:Key="BorderThicknessToStrokeThicknessConverter" TakeThicknessSide="Left" />
+  </Styles.Resources>
+
+  
+  
+  <Style Selector="Button.ChromelessButtonStyle">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.TransparentWhite}" />
+    <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundColor}" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Background="{TemplateBinding Background}">
+            <ContentPresenter x:Name="PART_ContentPresenter"
+                              Margin="{TemplateBinding Padding}"
+                              Content="{TemplateBinding Content}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Opacity="0.75" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Button.ChromelessButtonStyle:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Opacity" Value="1" />
+    <!--<Setter Property="Background" Value="Green" />-->
+  </Style>
+
+  <Style Selector="Button.ChromelessButtonStyle:pointernotover /template/ ContentPresenter#PART_ContentPresenter">
+
+    <Setter Property="Opacity" Value="0.5" />
+  </Style>
+
+  <Style Selector="Button.ChromelessButtonStyle:disabled">
+    <Setter Property="Foreground" Value="#ADADAD" />
+  </Style>
+</Styles>

@@ -1,0 +1,113 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+  <Styles.Resources>
+    <converters:ThicknessToDoubleConverter x:Key="BorderThicknessToStrokeThicknessConverter" TakeThicknessSide="Left" />
+  </Styles.Resources>
+
+
+  <Style Selector="Button.MetroFlatButton">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.FlatButton.Background}" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="FontSize" Value="{DynamicResource MahApps.Sizes.Font.FlatButton}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.FlatButton.Foreground}" />
+    <Setter Property="Padding" Value="10 5 10 5" />
+
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border x:Name="Border"
+                  Margin="0"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  Background="{TemplateBinding Background}">
+
+            <Controls:ContentControlEx x:Name="PART_ContentPresenter"
+                                       Padding="{TemplateBinding Padding}"
+                                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       Content="{TemplateBinding Content, Mode=TwoWay}"
+                                       ContentCharacterCasing="Normal"
+                                       ContentTemplate="{TemplateBinding ContentTemplate}"
+                                       RecognizesAccessKey="True" />
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Button.MetroFlatButton:pointerover">
+    <Setter Property="Background" Value="DarkGray" />
+  </Style>
+
+  <Style Selector="Button.MetroFlatButton:pressed">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.FlatButton.PressedBackground}" />
+    <Setter Property="Foreground" Value="{DynamicResource  MahApps.Brushes.FlatButton.PressedForeground}" />
+  </Style>
+
+  <Style Selector="Button.MetroFlatButton:disabled">
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray10}" />
+  </Style>
+
+  <Style Selector="ToggleButton.MetroFlatToggleButton">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.FlatButton.Background}" />
+    <Setter Property="BorderThickness" Value="0" />
+
+    <!--<Setter Property="FocusVisualStyle" Value="{DynamicResource MahApps.Metro.Styles.FlatButtonFocusVisualStyle}" />-->
+    <Setter Property="FontSize" Value="{DynamicResource MahApps.Sizes.Font.FlatButton}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.FlatButton.Foreground}" />
+    <Setter Property="Padding" Value="10 5 10 5" />
+    <!--<Setter Property="SnapsToDevicePixels" Value="True" />-->
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border x:Name="Border"
+                  Margin="0"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}">
+            <Controls:ContentControlEx x:Name="PART_ContentPresenter"
+                                       Padding="{TemplateBinding Padding}"
+                                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       Content="{TemplateBinding Content}"
+                                       ContentTemplate="{TemplateBinding ContentTemplate}"
+                                       RecognizesAccessKey="True" />
+            <!--ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.ContentCharacterCasing)}"-->
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="ToggleButton.MetroFlatToggleButton:checked">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.FlatButton.PressedForeground}" />
+  </Style>
+
+  <Style Selector="ToggleButton.MetroFlatToggleButton:pointerover:unchecked:pointerover">
+    <Setter Property="Background" Value="DarkGray" />
+  </Style>
+
+  <Style Selector="ToggleButton.MetroFlatToggleButton:pointerover:checked:pointerover">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent2}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.FlatButton.PressedForeground}" />
+  </Style>
+
+  <Style Selector="ToggleButton.MetroFlatToggleButton:pressed:checked:pressed">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.FlatButton.PressedBackground}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.FlatButton.PressedForeground}" />
+  </Style>
+
+  <Style Selector="ToggleButton.MetroFlatToggleButton:pressed:checked">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.FlatButton.PressedForeground}" />
+  </Style>
+
+  <Style Selector="ToggleButton.MetroFlatToggleButton:disabled">
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+  </Style>
+</Styles>

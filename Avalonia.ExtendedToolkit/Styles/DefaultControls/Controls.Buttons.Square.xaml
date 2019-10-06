@@ -1,0 +1,370 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+  <Styles.Resources>
+    <converters:ThicknessToDoubleConverter x:Key="BorderThicknessToStrokeThicknessConverter" TakeThicknessSide="Left" />
+  </Styles.Resources>
+
+  <Style Selector="Controls|SquareButton">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="ContentCharacterCasing" Value="Lower" />
+    <Setter Property="FontFamily" Value="{DynamicResource MahApps.Fonts.Default}" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="MinHeight" Value="25" />
+    <Setter Property="Padding" Value="5 6" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Background="{TemplateBinding Background}">
+            <Border x:Name="Background"
+                    Background="{x:Null}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}" />
+            <Rectangle x:Name="DisabledVisualElement"
+                       Fill="{DynamicResource ControlsDisabledBrush}"
+                       IsHitTestVisible="False"
+                       Opacity="0" />
+            <Controls:ContentControlEx x:Name="PART_ContentPresenter"
+                                       Padding="{TemplateBinding Padding}"
+                                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       Content="{TemplateBinding Content}"
+                                       ContentTemplate="{TemplateBinding ContentTemplate}"
+                                       RecognizesAccessKey="True"
+                                       ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentCharacterCasing}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|SquareButton[IsEnabled=false] /template/ Rectangle#DisabledVisualElement">
+    <Setter Property="Opacity" Value="0.7" />
+    <Style.Animations>
+      <Animation Duration="00:00:05"  RepeatCount="1">
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0.7" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|SquareButton[IsEnabled=false] /template/ Controls|ContentControlEx#PART_ContentPresenter">
+    <Setter Property="Opacity" Value="0.3" />
+    <Style.Animations>
+      <Animation Duration="00:00:05" RepeatCount="1">
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0.3" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|SquareButton[IsPointerOver=true]">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+  </Style>
+
+  <Style Selector="Controls|SquareButton[IsPressed=true]">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.White}" />
+  </Style>
+
+  <Style Selector="Controls|SquareButton.AccentedSquareButtonStyle">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
+  </Style>
+
+  <!--double why-->
+  <Style Selector="Controls|SquareButton.AccentedSquareButtonStyle[IsPointerOver=true]">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+  </Style>
+
+  <Style Selector="Controls|SquareButton.AccentedSquareButtonStyle[IsPressed=true]">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.White}" />
+  </Style>
+
+
+  <Style Selector="Controls|SquareButton.HighlightedSquareButtonStyle">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Highlight}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Background="{TemplateBinding Background}">
+            <Border x:Name="Background"
+                    Background="{x:Null}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}" />
+            <Rectangle x:Name="DisabledVisualElement"
+                       Fill="{DynamicResource ControlsDisabledBrush}"
+                       IsHitTestVisible="False"
+                       Opacity="0" />
+            <Controls:ContentControlEx x:Name="PART_ContentPresenter"
+                                       Padding="{TemplateBinding Padding}"
+                                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       Content="{TemplateBinding Content}"
+                                       ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentCharacterCasing}"
+                                       ContentTemplate="{TemplateBinding ContentTemplate}"
+                                       RecognizesAccessKey="True" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|SquareButton.HighlightedSquareButtonStyle:disabled /template/ Rectangle#DisabledVisualElement">
+    <Style.Animations>
+      <Animation Duration="00:00:05">
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0.7" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|SquareButton.HighlightedSquareButtonStyle:disabled /template/ Controls|ContentControlEx#PART_ContentPresenter">
+    <Style.Animations>
+      <Animation Duration="00:00:05">
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0.3" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|SquareButton.HighlightedSquareButtonStyle:pointerover">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
+  </Style>
+
+  <Style Selector="Controls|SquareButton.HighlightedSquareButtonStyle:pressed">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.White}" />
+  </Style>
+
+  <Style Selector="Controls|SquareButton.MetroSquare">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="BorderThickness" Value="2" />
+    <Setter Property="FontFamily" Value="{DynamicResource MahApps.Fonts.Default}" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="Padding" Value="12 4 12 4" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid>
+            <Border x:Name="Border"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+
+              <Grid>
+                <Rectangle x:Name="MouseOverRectangle"
+                           Fill="{DynamicResource MahApps.Brushes.White}"
+                           Opacity="0" />
+                <Rectangle x:Name="PressedRectangle"
+                           Fill="{DynamicResource MahApps.Brushes.Black}"
+                           Opacity="0" />
+                <Controls:ContentControlEx x:Name="PART_ContentPresenter"
+                                           Padding="{TemplateBinding Padding}"
+                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                           Content="{TemplateBinding Content}"
+                                           ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentCharacterCasing}"
+                                           ContentTemplate="{TemplateBinding ContentTemplate}"
+                                           RecognizesAccessKey="True" />
+              </Grid>
+            </Border>
+
+            <Rectangle x:Name="FocusVisualWhite"
+                       IsHitTestVisible="False"
+                       Opacity="0"
+                       Stroke="White"
+                       StrokeDashArray="1,1"
+                       StrokeDashOffset="1.5"
+                       StrokeLineCap="Square" />
+            <Rectangle x:Name="FocusVisualBlack"
+                       IsHitTestVisible="False"
+                       Opacity="0"
+                       Stroke="Black"
+                       StrokeDashArray="1,1"
+                       StrokeDashOffset="0.5"
+                       StrokeLineCap="Square" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|SquareButton.MetroSquare[IsPointerOver=true] /template/ Rectangle#MouseOverRectangle">
+    <Style.Animations>
+      <Animation Duration="0:0:0.5">
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0.4" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|SquareButton.MetroSquare[IsPressed=true] /template/ Rectangle#PressedRectangle">
+    <Style.Animations>
+      <Animation Duration="0:0:0.5">
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|SquareButton.MetroSquare[IsFocused=true] /template/ Rectangle#FocusVisualWhite">
+    <Style.Animations>
+      <Animation Duration="0:0:0.5">
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|SquareButton.MetroSquare[IsFocused=true] /template/ Rectangle#FocusVisualBlack">
+    <Style.Animations>
+      <Animation Duration="0:0:0.5">
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|SquareButton.MetroSquare[IsEnabled=false] /template/ Border#Border">
+    <Style.Animations>
+      <Animation Duration="0:0:0.5">
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0.5" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|SquareButton.MetroSquare[IsPressed=true]">
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.White}" />
+  </Style>
+
+  <Style Selector="Controls|SquareButton.MetroSquare.MetroAccentButton">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />
+    <!--<Setter Property="Classes" Value=""/>-->
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid>
+            <Border x:Name="Border"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+
+              <Grid>
+                <Rectangle x:Name="MouseOverRectangle"
+                           Fill="{DynamicResource BlackBrush}"
+                           Opacity="0" />
+                <Rectangle x:Name="PressedRectangle"
+                           Fill="White"
+                           Opacity="0" />
+                <Controls:ContentControlEx x:Name="PART_ContentPresenter"
+                                           Padding="{TemplateBinding Padding}"
+                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                           Content="{TemplateBinding Content}"
+                                           ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentCharacterCasing}"
+                                           ContentTemplate="{TemplateBinding ContentTemplate}"
+                                           RecognizesAccessKey="True" />
+              </Grid>
+            </Border>
+
+            <Rectangle x:Name="FocusVisualWhite"
+                       IsHitTestVisible="False"
+                       Opacity="0"
+                       Stroke="White"
+                       StrokeDashArray="1,1"
+                       StrokeDashOffset="1.5"
+                       StrokeLineCap="Square" />
+            <Rectangle x:Name="FocusVisualBlack"
+                       IsHitTestVisible="False"
+                       Opacity="0"
+                       Stroke="Black"
+                       StrokeDashArray="1,1"
+                       StrokeDashOffset="0.5"
+                       StrokeLineCap="Square" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|SquareButton.MetroSquare.MetroAccentButton[IsPointerOver=true] /template/ Rectangle#MouseOverRectangle">
+    <Style.Animations>
+      <Animation Duration="0:0:0.5">
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0.4" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|SquareButton.MetroSquare.MetroAccentButton[IsPressed=true] /template/ Rectangle#PressedRectangle">
+    <Style.Animations>
+      <Animation Duration="0:0:0.5">
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|SquareButton.MetroSquare.MetroAccentButton[IsEnabled=false] /template/ Border#Border">
+    <Style.Animations>
+      <Animation Duration="0:0:0.5">
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0.5" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+  <Style Selector="Controls|SquareButton.MetroSquare.MetroAccentButton[IsFocused=true] /template/ Rectangle#FocusVisualWhite">
+    <Style.Animations>
+      <Animation Duration="0:0:0.5">
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|SquareButton.MetroSquare.MetroAccentButton[IsFocused=true] /template/ Rectangle#FocusVisualBlack">
+    <Style.Animations>
+      <Animation Duration="0:0:0.5">
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|SquareButton.MetroSquare.MetroAccentButton[IsPressed=true]">
+    <Setter Property="Foreground" Value="Black" />
+  </Style>
+</Styles>

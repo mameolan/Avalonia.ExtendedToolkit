@@ -136,6 +136,7 @@
       <Controls:MetroButton Width="48"
             Height="48"
             Margin="4"
+           
             Classes="MetroCircleButtonStyle">
         <fontAwesome:FontAwesome Width="20"
                                   Height="20" Icon="Glass"/>
@@ -152,7 +153,6 @@
               Width="140"
               Height="48"
               Margin="4"
-              Foreground="{DynamicResource MahApps.Brushes.Accent}"
               IsEnabled="False"
               Classes="MetroCircleButtonStyle">
         <!--<Controls:MetroButton.ContentTemplate>
