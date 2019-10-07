@@ -152,14 +152,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly AvaloniaProperty SaveWindowPositionProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(SaveWindowPosition));
 
-        public IWindowPlacementSettings WindowPlacementSettings
-        {
-            get { return (IWindowPlacementSettings)GetValue(WindowPlacementSettingsProperty); }
-            set { SetValue(WindowPlacementSettingsProperty, value); }
-        }
-
-        public static readonly AvaloniaProperty WindowPlacementSettingsProperty =
-            AvaloniaProperty.Register<MetroWindow, IWindowPlacementSettings>(nameof(WindowPlacementSettings));
+        
 
         public IBrush TitleForeground
         {
@@ -178,15 +171,6 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public static readonly AvaloniaProperty WindowTransitionsEnabledProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(WindowTransitionsEnabled), defaultValue: true);
-
-        public MetroDialogSettings MetroDialogSettings
-        {
-            get { return (MetroDialogSettings)GetValue(MetroDialogSettingsProperty); }
-            set { SetValue(MetroDialogSettingsProperty, value); }
-        }
-
-        public static readonly AvaloniaProperty MetroDialogSettingsProperty =
-            AvaloniaProperty.Register<MetroWindow, MetroDialogSettings>(nameof(MetroDialogSettings));
 
         public IBrush WindowTitleBrush
         {
@@ -340,11 +324,6 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public static readonly AvaloniaProperty FlyoutsProperty =
             AvaloniaProperty.Register<MetroWindow, FlyoutsControl>(nameof(Flyouts));
-
-        public virtual IWindowPlacementSettings GetWindowPlacementSettings()
-        {
-            return this.WindowPlacementSettings ?? new WindowApplicationSettings(this);
-        }
 
         /// <summary>
         /// Defines the <see cref="IsChromeVisible"/> property.

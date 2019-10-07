@@ -3,9 +3,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -20,7 +18,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             get { return (bool)GetValue(IsOpenProperty); }
             set { SetValue(IsOpenProperty, value); }
         }
-
 
         public static readonly AvaloniaProperty IsOpenProperty =
             AvaloniaProperty.Register<ContentControlEx, bool>(nameof(IsOpen));
@@ -58,7 +55,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 RoutedEvent = MenuOpenedEvent,
                 Source = this,
             });
-
         }
 
         private void PopupOpened(object sender, EventArgs e)
@@ -92,7 +88,5 @@ namespace Avalonia.ExtendedToolkit.Controls
                 Source = this,
             });
         }
-
-
     }
 }
