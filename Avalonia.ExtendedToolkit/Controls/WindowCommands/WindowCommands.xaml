@@ -6,12 +6,107 @@
 
   <Style Selector="Controls|WindowCommands">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.TransparentWhite}" />
+
     <!--<Setter Property="Controls:ControlsHelper.ContentCharacterCasing" Value="Normal" />-->
-    <!--<Setter Property="DarkTemplate" Value="{StaticResource MahApps.Templates.WindowCommands.Dark}" />-->
+    <!--<Setter Property="DarkTemplate">
+    </Setter>-->
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
     <Setter Property="HorizontalAlignment" Value="Stretch" />
+
     <!--<Setter Property="LightTemplate" Value="{StaticResource MahApps.Templates.WindowCommands.Light}" />
     <Setter Property="Template" Value="{StaticResource MahApps.Templates.WindowCommands.Light}" />-->
     <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <DockPanel>
+            <Controls:MetroToggleButton x:Name="PART_ToggleButton"
+                          ClickMode="Press"
+                          DockPanel.Dock="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(DockPanel.Dock), Mode=OneWay}"
+                          IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsOverflowOpen, Mode=TwoWay}"
+                          IsEnabled="False"
+                          IsVisible="False"
+                          MinWidth="100"
+                                        >
+              <!--Style="{StaticResource MahApps.Styles.ToggleButton.ToolBarOverflow}"-->
+              <Popup x:Name="OverflowPopup"
+                     
+                     Focusable="false"
+                     IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsOverflowOpen}"
+                     
+                     
+                     StaysOpen="false">
+                <!--AllowsTransparency="true"
+                Placement="Bottom"
+                PopupAnimation="Slide"
+                -->
+
+                <Grid x:Name="DropDownBorder" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=Background, Mode=OneWay}">
+                  <Panel x:Name="PART_ToolBarOverflowPanel"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=WindowTitleBrush, Mode=OneWay}"
+                                        Focusable="true"/>
+                  <!--<ToolBarOverflowPanel x:Name="PART_ToolBarOverflowPanel"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=WindowTitleBrush, Mode=OneWay}"
+                                        FocusVisualStyle="{x:Null}"
+                                        Focusable="true"
+                                        KeyboardNavigation.DirectionalNavigation="Cycle"
+                                        KeyboardNavigation.TabNavigation="Cycle" />-->
+                </Grid>
+              </Popup>
+            </Controls:MetroToggleButton>
+
+            <Panel x:Name="PART_ToolBarPanel"
+                          Margin="0"
+                          Background="{TemplateBinding Background}"
+              />
+            <!--<ToolBarPanel x:Name="PART_ToolBarPanel"
+                          Margin="0"
+                          Background="{TemplateBinding Background}"
+                          IsItemsHost="true" />-->
+
+
+          </DockPanel>
+
+          <!--<ControlTemplate.Triggers>
+            <Trigger Property="HasOverflowItems" Value="true">
+              <Setter TargetName="PART_ToggleButton" Property="IsEnabled" Value="true" />
+              <Setter TargetName="PART_ToggleButton" Property="Visibility" Value="Visible" />
+            </Trigger>
+          </ControlTemplate.Triggers>-->
+
+          <!--<ControlTemplate.Resources>
+            <ResourceDictionary>
+              <Style BasedOn="{StaticResource MahApps.Styles.Control.WindowCommands}" TargetType="{x:Type Button}">
+                <Setter Property="Template" Value="{StaticResource MahApps.Templates.Button.WindowCommands}" />
+              </Style>
+              <Style BasedOn="{StaticResource MahApps.Styles.Control.WindowCommands}" TargetType="{x:Type ToggleButton}">
+                <Setter Property="Template" Value="{StaticResource MahApps.Templates.ToggleButton.WindowCommands}" />
+              </Style>
+
+              <Style x:Key="{x:Static ToolBar.ButtonStyleKey}"
+                     BasedOn="{StaticResource MahApps.Styles.Control.WindowCommands}"
+                     TargetType="{x:Type Button}">
+                <Setter Property="Template" Value="{StaticResource MahApps.Templates.Button.WindowCommands}" />
+              </Style>
+              <Style x:Key="{x:Static ToolBar.ToggleButtonStyleKey}"
+                     BasedOn="{StaticResource MahApps.Styles.Control.WindowCommands}"
+                     TargetType="{x:Type ToggleButton}">
+                <Setter Property="Template" Value="{StaticResource MahApps.Templates.ToggleButton.WindowCommands}" />
+              </Style>
+            </ResourceDictionary>
+          </ControlTemplate.Resources>-->
+        </ControlTemplate>
+
+      </Setter.Value>
+    </Setter>
   </Style>
+
+  <!--<Style Selector="Controls|WindowCommands[Overflow=true]">
+    
+  </Style>-->
+
 </Styles>

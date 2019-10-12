@@ -103,6 +103,7 @@
                                     VerticalAlignment="Top"
                                     Content="{Binding LeftWindowCommands, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                     DockPanel.Dock="Left"
+                                    ZIndex="1"
                                     Focusable="False" />
                   <!--  the right window commands  -->
                   <ContentPresenter x:Name="PART_RightWindowCommands"
@@ -110,7 +111,10 @@
                                     VerticalAlignment="Top"
                                     Content="{Binding RightWindowCommands, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                     DockPanel.Dock="Right"
-                                    Focusable="False" />
+                                    Focusable="False"
+                                    ZIndex="1"
+                                    MinWidth="100"
+                                    />
                   <!--  the title bar  -->
                   <Controls:MetroThumbContentControl x:Name="PART_TitleBar"
                                                 Height="{Binding TitleBarHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"

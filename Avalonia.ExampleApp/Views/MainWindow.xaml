@@ -38,6 +38,18 @@
         </Style>
     </Controls:MetroWindow.Styles>
 
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands ShowLastSeparator="False">
+            <Controls:WindowCommandsItem Background="Green" IsVisible="True">
+                <Button 
+                    Content="Flyouts"
+                    Foreground="Green"
+                     />    
+            </Controls:WindowCommandsItem>
+            
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
     <!--<Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl >
             <Controls:Flyout x:Name="settingsFlyout"

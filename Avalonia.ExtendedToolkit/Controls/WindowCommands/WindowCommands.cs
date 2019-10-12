@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia.Collections;
+using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.ExtendedToolkit.Extensions;
@@ -6,6 +7,7 @@ using Avalonia.Markup.Xaml.Templates;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 
@@ -82,12 +84,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             ThemeProperty.Changed.AddClassHandler<WindowCommands>((o, e) => OnThemeChanged(o, e));
             ShowSeparatorsProperty.Changed.AddClassHandler<WindowCommands>((o, e) => OnShowSeparatorsChanged(o, e));
             ShowLastSeparatorProperty.Changed.AddClassHandler<WindowCommands>((o, e) => OnShowLastSeparatorChanged(o, e));
+            //ItemsProperty.Changed.AddClassHandler<WindowCommands>((o, e) => OnItemsChanged(o, e));
+
+            (Items as AvaloniaList<object>).CollectionChanged += OnItemsChanged;
+            
             this.Initialized += WindowCommands_Initialized;
         }
 
-        protected override void ItemsChanged(AvaloniaPropertyChangedEventArgs e)
+        private void OnItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            base.ItemsChanged(e);
             ResetSeparators();
         }
 
@@ -180,7 +185,10 @@ namespace Avalonia.ExtendedToolkit.Controls
                 return windowCommandsItem;
             }
 
-            var index= ItemContainerGenerator.IndexFromContainer(item as IControl);
+            IControl control = item as IControl;
+            IControl parent = control.Parent;
+
+            var index= ItemContainerGenerator.IndexFromContainer(parent);
             return (WindowCommandsItem)ItemContainerGenerator.ContainerFromIndex(index);
             //return (WindowCommandsItem)this.ItemContainerGenerator.ContainerFromItem(item);
         }
