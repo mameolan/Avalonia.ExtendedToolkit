@@ -154,6 +154,12 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void OnThemeChanged(WindowButtonCommands o, AvaloniaPropertyChangedEventArgs e)
         {
+            if(LightCloseButtonStyle==null|| LightMaxButtonStyle==null|| LightMinButtonStyle==null
+                || DarkCloseButtonStyle==null|| DarkMaxButtonStyle==null|| DarkMinButtonStyle==null)
+            {
+                return;
+            }
+
             if (e.NewValue is WindowCommandTheme)
             {
                 WindowCommandTheme windowCommandTheme = (WindowCommandTheme)e.NewValue;

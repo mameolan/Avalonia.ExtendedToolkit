@@ -44,7 +44,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
 
             ((ISetLogicalParent)_popup).SetParent(null);
+            _popup.SetValue(Popup.ChildProperty, null);
+
             ((ISetLogicalParent)_popup).SetParent(control);
+            
+
             _popup.Child = this;
             _popup.IsOpen = true;
 

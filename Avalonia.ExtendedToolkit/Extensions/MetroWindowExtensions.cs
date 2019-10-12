@@ -59,7 +59,7 @@ namespace Avalonia.ExtendedToolkit.Extensions
         {
             if (brush == null)
             {
-                return true;
+                return false;
             }
 
             // calculate brush color lightness

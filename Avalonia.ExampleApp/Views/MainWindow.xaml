@@ -38,7 +38,7 @@
         </Style>
     </Controls:MetroWindow.Styles>
 
-    <Controls:MetroWindow.Flyouts>
+    <!--<Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl >
             <Controls:Flyout x:Name="settingsFlyout"
                              Margin="200 30 0 0"
@@ -62,7 +62,7 @@
 
 
         </Controls:FlyoutsControl>
-    </Controls:MetroWindow.Flyouts>
+    </Controls:MetroWindow.Flyouts>-->
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>

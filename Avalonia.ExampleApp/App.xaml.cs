@@ -18,7 +18,6 @@ namespace Avalonia.ExampleApp
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
-            var test = ThemeManager.Instance.BaseColors;
         }
 
         public override void OnFrameworkInitializationCompleted()
