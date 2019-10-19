@@ -299,7 +299,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void DropDownButtonMouseRightButtonUp(object sender, PointerReleasedEventArgs e)
         {
-            if (e.MouseButton == MouseButton.Right)
+            if (e.InitialPressMouseButton == MouseButton.Right)
             {
                 e.Handled = true;
             }

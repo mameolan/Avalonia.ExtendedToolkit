@@ -594,7 +594,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void WindowTitleThumbSystemMenuOnMouseRightButtonUp(object sender, PointerReleasedEventArgs e)
         {
-            if (e.MouseButton != MouseButton.Right)
+            if (e.InitialPressMouseButton != MouseButton.Right)
                 return;
 
             var window = this.ParentWindow;

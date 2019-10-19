@@ -539,35 +539,35 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             if (_topHorizontalGrip != null && _topHorizontalGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.North);
+                BeginResizeDrag(WindowEdge.North,e);
             }
             else if (_bottomHorizontalGrip != null && _bottomHorizontalGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.South);
+                BeginResizeDrag(WindowEdge.South,e);
             }
             else if (_leftVerticalGrip != null && _leftVerticalGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.West);
+                BeginResizeDrag(WindowEdge.West,e);
             }
             else if (_rightVerticalGrip != null && _rightVerticalGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.East);
+                BeginResizeDrag(WindowEdge.East,e);
             }
             else if (_topLeftGrip != null && _topLeftGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.NorthWest);
+                BeginResizeDrag(WindowEdge.NorthWest,e);
             }
             else if (_bottomLeftGrip != null && _bottomLeftGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.SouthWest);
+                BeginResizeDrag(WindowEdge.SouthWest,e);
             }
             else if (_topRightGrip != null && _topRightGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.NorthEast);
+                BeginResizeDrag(WindowEdge.NorthEast,e);
             }
             else if (_bottomRightGrip != null && _bottomRightGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.SouthEast);
+                BeginResizeDrag(WindowEdge.SouthEast,e);
             }
             else if (_titleBar != null && _titleBar.IsPointerOver)
             {
@@ -855,7 +855,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void WindowTitleThumbSystemMenuOnMouseRightButtonUp(object sender, PointerReleasedEventArgs e)
         {
-            if (e.MouseButton != MouseButton.Right)
+            if (e.InitialPressMouseButton != MouseButton.Right)
                 return;
 
             DoWindowTitleThumbSystemMenuOnMouseRightButtonUp(this, e);
@@ -985,7 +985,18 @@ namespace Avalonia.ExtendedToolkit.Controls
             if (window._titleBar != null && window._titleBar.IsPointerOver /*&& _mouseDown*/)
             {
                 window.WindowState = WindowState.Normal;
-                window.BeginMoveDrag();
+
+                ///var pointerPress=new 
+
+                try
+                {
+                    window.BeginMoveDrag(null);
+                }
+                catch 
+                { 
+                    //little hack so I do not need create Pointerpressed event
+                    //which has a huge constructor
+                }
                 window._mouseDown = false;
             }
 
