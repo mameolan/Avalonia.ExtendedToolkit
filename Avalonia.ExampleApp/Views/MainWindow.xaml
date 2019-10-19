@@ -145,6 +145,11 @@
                         <Views:WizardView/>
                     </ScrollViewer>
                 </TabItem>
+                <TabItem Header="DataGrid" Foreground="{DynamicResource MahApps.Brushes.Black}">
+                    <ScrollViewer>
+                        <Views:DataGridView/>
+                    </ScrollViewer>
+                </TabItem>
                 <TabItem Header="Flyout" IsEnabled="false"  Foreground="{DynamicResource MahApps.Brushes.Black}">
                     <ScrollViewer>
                         <Grid>
