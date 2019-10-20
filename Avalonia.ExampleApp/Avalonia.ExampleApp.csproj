@@ -29,8 +29,6 @@
     <ProjectReference Include="..\Avalonia.ExtendedToolkit\Avalonia.ExtendedToolkit.csproj" />
   </ItemGroup>
   
-  
-  
   <ItemGroup>
     <Reference Include="FontAwesome.Avalonia">
       <HintPath>..\ExternalDependencies\FontAwesome.Avalonia.dll</HintPath>

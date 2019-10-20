@@ -57,24 +57,22 @@ namespace Avalonia.ExtendedToolkit.Controls
                     this.FocusAfterBusy.Focus();
                 }
             }
-
-            ChnageBusyState();
         }
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+
+
+        public bool IsContentVisible
         {
-            base.OnTemplateApplied(e);
-            ChnageBusyState();
+            get { return (bool)GetValue(IsContentVisibleProperty); }
+            set { SetValue(IsContentVisibleProperty, value); }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether the BusyContent is visible.
-        /// </summary>
-        protected bool IsContentVisible
-        {
-            get;
-            set;
-        }
+
+        public static readonly AvaloniaProperty IsContentVisibleProperty =
+            AvaloniaProperty.Register<BusyIndicator, bool>(nameof(IsContentVisible));
+
+
+
 
         public bool IsBusy
         {
@@ -102,24 +100,6 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public static readonly AvaloniaProperty BusyContentTemplateProperty =
             AvaloniaProperty.Register<BusyIndicator, DataTemplate>(nameof(BusyContentTemplate));
-
-        public BusyStatus BusyStatus
-        {
-            get { return (BusyStatus)GetValue(BusyStatusProperty); }
-            set { SetValue(BusyStatusProperty, value); }
-        }
-
-        public static readonly AvaloniaProperty BusyStatusProperty =
-            AvaloniaProperty.Register<BusyIndicator, BusyStatus>(nameof(BusyStatus));
-
-        public VisibilityState VisibilityState
-        {
-            get { return (VisibilityState)GetValue(VisibilityStateProperty); }
-            set { SetValue(VisibilityStateProperty, value); }
-        }
-
-        public static readonly AvaloniaProperty VisibilityStateProperty =
-            AvaloniaProperty.Register<BusyIndicator, VisibilityState>(nameof(VisibilityState));
 
         public TimeSpan DisplayAfter
         {
@@ -162,13 +142,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             _displayAfterTimer.Stop();
             IsContentVisible = true;
-            ChnageBusyState();
         }
 
-        protected virtual void ChnageBusyState()
-        {
-            BusyStatus = IsBusy ? BusyStatus.Busy : BusyStatus.Idle;
-            VisibilityState = IsContentVisible ? VisibilityState.Visible : VisibilityState.Hidden;
-        }
     }
 }

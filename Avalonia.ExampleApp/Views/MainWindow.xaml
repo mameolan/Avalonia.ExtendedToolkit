@@ -150,10 +150,10 @@
                         <Views:DataGridView/>
                     </ScrollViewer>
                 </TabItem>
-                <TabItem Header="Flyout" IsEnabled="false"  Foreground="{DynamicResource MahApps.Brushes.Black}">
+                <TabItem Header="Progress Controls" Foreground="{DynamicResource MahApps.Brushes.Black}">
                     <ScrollViewer>
                         <Grid>
-                            <Views:FlyoutDemo/>
+                            <Views:ProgressControls/>
                         </Grid>
                     </ScrollViewer>
                 </TabItem>

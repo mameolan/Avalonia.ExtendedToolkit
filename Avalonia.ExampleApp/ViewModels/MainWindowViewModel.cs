@@ -1,5 +1,6 @@
 ﻿using Avalonia.ExampleApp.Model;
 using Avalonia.ExtendedToolkit;
+using Avalonia.Threading;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,18 @@ namespace Avalonia.ExampleApp.ViewModels
         public ICommand ArtistsDropDownCommand { get; }
 
         public ICommand ChangeBaseColorsCommand { get; }
+
+        public ICommand ShowBusyIndicator { get; }
+
+        private bool myIsBusy;
+
+        public bool IsBusy
+        {
+            get { return myIsBusy; }
+            set { this.RaiseAndSetIfChanged(ref myIsBusy , value); }
+        }
+
+
 
         private ReadOnlyObservableCollection<ColorScheme> myColorSchemes;
         public ReadOnlyObservableCollection<ColorScheme> ColorSchemes
@@ -136,6 +149,7 @@ namespace Avalonia.ExampleApp.ViewModels
                 ThemeManager.Instance.SelectedBaseColor = ThemeManager.Instance.BaseColors.FirstOrDefault();
             }
 
+
             ChangeColorSchemeCommand = ReactiveCommand.Create<object>(x => ExecuteChangeColorSchemeCommand(x), outputScheduler: RxApp.MainThreadScheduler);
 
             ChangeBaseColorsCommand = ReactiveCommand.Create<string>(x => ExecuteChangeBaseColorsCommand(x), outputScheduler: RxApp.MainThreadScheduler);
@@ -146,10 +160,27 @@ namespace Avalonia.ExampleApp.ViewModels
             GenreDropDownMenuItemCommand = ReactiveCommand.Create<object>(x => ExecuteGenreDropDownMenuItemCommand(x), outputScheduler: RxApp.MainThreadScheduler);
 
 
+            ShowBusyIndicator = ReactiveCommand.Create<object>(x => ExecuteShowBusyIndicator(x), outputScheduler: RxApp.MainThreadScheduler);
+
+
             SelectedColorScheme = ColorSchemes.FirstOrDefault(x => x.Name == ThemeManager.Instance.SelectedTheme.ColorScheme);
             SelectedBaseColor = ThemeManager.Instance.SelectedBaseColor;
             SelectedTheme = ThemeManager.Instance.SelectedTheme;
         }
+
+        private void ExecuteShowBusyIndicator(object x)
+        {
+            IsBusy = !IsBusy;
+            if (IsBusy)
+            {
+                DispatcherTimer.RunOnce(() =>
+                {
+                    IsBusy = false;
+
+                }, TimeSpan.FromSeconds(30));
+            }
+        }
+
 
         private void ExecuteGenreDropDownMenuItemCommand(object x)
         {
