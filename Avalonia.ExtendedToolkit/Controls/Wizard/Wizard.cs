@@ -1,6 +1,7 @@
 ﻿using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.ExtendedToolkit.Extensions;
 using Avalonia.Interactivity;
 using System;
 using System.Collections;
@@ -645,13 +646,10 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void CloseParentWindow(bool dialogResult)
         {
-            Window window = this.FindControl<Window>("");//todo correct
+            Window window = this.TryFindParent<Window>();
             if (window != null)
             {
-                //we can only set the DialogResult if the window was opened as modal with the ShowDialog() method. Otherwise an exception would occur
-                //if (ComponentDispatcher.IsThreadModal)
-                //    window. = dialogResult;
-
+           
                 window.Close();
             }
         }

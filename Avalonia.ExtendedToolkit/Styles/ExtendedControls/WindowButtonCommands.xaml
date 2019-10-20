@@ -7,14 +7,40 @@
 
   <Style Selector="Controls|WindowButtonCommands">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.TransparentWhite}" />
-    <Setter Property="DarkCloseButtonStyle" Value="{DynamicResource MahApps.Styles.Button.MetroWindow.Dark}" />
-    <Setter Property="DarkMaxButtonStyle" Value="{DynamicResource MahApps.Styles.Button.MetroWindow.Dark}" />
-    <Setter Property="DarkMinButtonStyle" Value="{DynamicResource MahApps.Styles.Button.MetroWindow.Dark}" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="DarkCloseButtonStyle" >
+      <Style Selector="Button.DarkMetroWindowButtonStyle"/>
+    </Setter>
+    <Setter Property="DarkMaxButtonStyle" >
+      <Style Selector="Button.DarkMetroWindowButtonStyle"/>
+    </Setter>
+    <Setter Property="DarkMinButtonStyle" >
+      <Style Selector="Button.DarkMetroWindowButtonStyle"/>
+    </Setter>
 
-    <Setter Property="LightCloseButtonStyle" Value="{DynamicResource MahApps.Styles.Button.MetroWindow.Light}" />
+    <Setter Property="LightCloseButtonStyle" >
+      <Style Selector="Button.LightMetroWindowButtonStyle"/>
+    </Setter>
+    <Setter Property="LightMaxButtonStyle" >
+      <Style Selector="Button.LightMetroWindowButtonStyle"/>
+    </Setter>
+
+    <Setter Property="LightMinButtonStyle" >
+      <Style Selector="Button.LightMetroWindowButtonStyle"/>
+    </Setter>
+    
+    
+
+
+
+    <!--<Setter Property="DarkCloseButtonStyle" Value="{DynamicResource MahApps.Styles.Button.MetroWindow.Dark}" />
+    <Setter Property="DarkMaxButtonStyle" Value="{DynamicResource MahApps.Styles.Button.MetroWindow.Dark}" />
+    <Setter Property="DarkMinButtonStyle" Value="{DynamicResource MahApps.Styles.Button.MetroWindow.Dark}" />-->
+
+
+    <!--<Setter Property="LightCloseButtonStyle" Value="{DynamicResource MahApps.Styles.Button.MetroWindow.Light}" />
     <Setter Property="LightMaxButtonStyle" Value="{DynamicResource MahApps.Styles.Button.MetroWindow.Light}" />
-    <Setter Property="LightMinButtonStyle" Value="{DynamicResource MahApps.Styles.Button.MetroWindow.Light}" />
+    <Setter Property="LightMinButtonStyle" Value="{DynamicResource MahApps.Styles.Button.MetroWindow.Light}" />-->
     <Setter Property="VerticalContentAlignment" Value="Center" />
     <Setter Property="Template">
       <Setter.Value>
@@ -121,7 +147,9 @@
   <!--<Style Selector="Controls|WindowButtonCommands[Theme=Light] /template/ Button#PART_Close">
     <Setter Property="Styles">
       <Setter.Value>
-        --><!--Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=LightCloseButtonStyle}"--><!--
+        -->
+  <!--Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=LightCloseButtonStyle}"-->
+  <!--
         <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="LightCloseButtonStyle" />
       </Setter.Value>
       </Setter>

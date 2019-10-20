@@ -222,8 +222,9 @@ namespace Avalonia.ExtendedToolkit
 
             window.Opened += (o, e) =>
               {
-                  disposableForSelectedTheme = this.WhenAnyValue(x => x.SelectedTheme).Where(x => x != null).
-                  ObserveOn(RxApp.MainThreadScheduler).Subscribe(x =>
+                  //ObserveOn(RxApp.MainThreadScheduler)
+                  disposableForSelectedTheme = this.WhenAnyValue(x => x.SelectedTheme).Where(x => x != null)
+                  .Subscribe(x =>
                   {
                       var item = window.Styles.GetThemeStyle();
 
@@ -240,8 +241,10 @@ namespace Avalonia.ExtendedToolkit
                       }
                   });
 
-                  disposableForSelectedBaseColor = this.WhenAnyValue(x => x.SelectedBaseColor).
-                  ObserveOn(RxApp.MainThreadScheduler).Where(x => x != null).Subscribe(selectedBaseColor =>
+                  
+                  //ObserveOn(RxApp.MainThreadScheduler)
+
+                  disposableForSelectedBaseColor = this.WhenAnyValue(x => x.SelectedBaseColor).Where(x => x != null).Subscribe(selectedBaseColor =>
                   {
                       var colorScheme = SelectedTheme?.ColorScheme ?? Themes.Select(x => x.ColorScheme)
                                                                         .FirstOrDefault();

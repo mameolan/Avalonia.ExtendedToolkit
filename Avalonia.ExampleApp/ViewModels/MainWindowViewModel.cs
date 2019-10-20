@@ -1,5 +1,8 @@
-﻿using Avalonia.ExampleApp.Model;
+﻿using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.ExampleApp.Model;
+using Avalonia.ExampleApp.Views;
 using Avalonia.ExtendedToolkit;
+using Avalonia.ExtendedToolkit.Controls;
 using Avalonia.Threading;
 using ReactiveUI;
 using System;
@@ -37,6 +40,9 @@ namespace Avalonia.ExampleApp.ViewModels
         public ICommand ChangeBaseColorsCommand { get; }
 
         public ICommand ShowBusyIndicator { get; }
+
+        public ICommand OpenWizardCommand { get; }
+
 
         private bool myIsBusy;
 
@@ -161,11 +167,24 @@ namespace Avalonia.ExampleApp.ViewModels
 
 
             ShowBusyIndicator = ReactiveCommand.Create<object>(x => ExecuteShowBusyIndicator(x), outputScheduler: RxApp.MainThreadScheduler);
-
+            OpenWizardCommand = ReactiveCommand.Create<object>(x => ExecuteOpenWizardCommand(x), outputScheduler: RxApp.MainThreadScheduler);
 
             SelectedColorScheme = ColorSchemes.FirstOrDefault(x => x.Name == ThemeManager.Instance.SelectedTheme.ColorScheme);
             SelectedBaseColor = ThemeManager.Instance.SelectedBaseColor;
             SelectedTheme = ThemeManager.Instance.SelectedTheme;
+        }
+
+        private void ExecuteOpenWizardCommand(object x)
+        {
+            MetroWindow metroWindow = new MetroWindow();
+            ThemeManager.Instance.EnableTheme(metroWindow);
+            metroWindow.Content = new WizardWithCloseView();
+            
+
+            metroWindow.ShowDialog((Application.Current.
+                ApplicationLifetime as IClassicDesktopStyleApplicationLifetime).MainWindow).ConfigureAwait(false);
+
+
         }
 
         private void ExecuteShowBusyIndicator(object x)

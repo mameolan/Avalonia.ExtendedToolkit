@@ -12,13 +12,16 @@
     <Grid.RowDefinitions>
       <RowDefinition/>
       <RowDefinition/>
-      <RowDefinition/>
     </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
 
-    <StackPanel Grid.Row="0" HorizontalAlignment="Left" Margin="10">
+    <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="10">
       <TextBlock Classes="DescriptionHeaderStyle" Text="Wizard Blank Page"  />
       <Controls:Wizard Margin="{StaticResource ControlMargin}"
-        Width="500" Height="200">
+        Width="500" Height="200" FinishButtonClosesWindow="False" CancelButtonClosesWindow="False">
         <Controls:WizardPage PageType="Blank">
           <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="Hello"/>
@@ -34,26 +37,36 @@
     </StackPanel>
 
 
-    <StackPanel Grid.Row="1" HorizontalAlignment="Left" Margin="10">
+    <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="10">
       <TextBlock Classes="DescriptionHeaderStyle" Text="Wizard Exterior Page"  />
       <Controls:Wizard Margin="{StaticResource ControlMargin}"
-        Width="500" Height="200">
+        Width="500" Height="200" FinishButtonClosesWindow="False" CancelButtonClosesWindow="False">
         <Controls:WizardPage Title="Hallo" PageType="Exterior"/>
         <Controls:WizardPage Title="World" PageType="Exterior" CanFinish="True"/>
       </Controls:Wizard>
 
     </StackPanel>
 
-    <StackPanel Grid.Row="2" HorizontalAlignment="Left" Margin="10">
+    <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="10">
       <TextBlock Classes="DescriptionHeaderStyle" Text="Wizard Interior Page"  />
       <Controls:Wizard Margin="{StaticResource ControlMargin}"
-        Width="500" Height="200">
+        Width="500" Height="200" FinishButtonClosesWindow="False" CancelButtonClosesWindow="False">
         <Controls:WizardPage Title="Hallo" PageType="Interior"/>
         <Controls:WizardPage Title="World" PageType="Interior" CanFinish="True"/>
       </Controls:Wizard>
-
     </StackPanel>
 
+    <StackPanel Grid.Row="1" Grid.Column="1"  Margin="10">
+      <TextBlock Classes="DescriptionHeaderStyle" Text="Wizard In New Window"  />
+      <Controls:MetroButton Content="Open Wizard" Width="100" Height="50"
+                            Command="{Binding OpenWizardCommand}"
+                            HorizontalAlignment="Center"
+                            Margin="10"
+                            />
+    </StackPanel>
+    
+    
+    
   </Grid>
 
 

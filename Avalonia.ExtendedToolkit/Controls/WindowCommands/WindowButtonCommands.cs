@@ -164,6 +164,13 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 WindowCommandTheme windowCommandTheme = (WindowCommandTheme)e.NewValue;
 
+                close.Styles.Remove(LightCloseButtonStyle);
+                close.Styles.Remove(DarkCloseButtonStyle);
+                max.Styles.Remove(LightMaxButtonStyle);
+                max.Styles.Remove(DarkMaxButtonStyle);
+                min.Styles.Remove(LightMinButtonStyle);
+                min.Styles.Remove(DarkMinButtonStyle);
+
                 switch (windowCommandTheme)
                 {
                     case WindowCommandTheme.Light:
