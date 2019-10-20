@@ -1,22 +1,7 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui">
-  <!--<StyleInclude Source="resm:Avalonia.ExtendedToolkit.Styles.ProgressRing.xaml?assembly=Avalonia.Metro"/>-->
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Fonts.xaml"/>
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/MetroWindow/MetroWindow.xaml"/>
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/MetroContentControl/MetroContentControl.xaml"/>
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/MetroThumb/MetroThumbContentControl.xaml"/>
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/WindowCommands/WindowButtonCommands.xaml"/>
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/WindowCommands/WindowCommands.xaml"/>
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Toggle/ToggleSwitch.xaml"/>
-
-
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/BusyIndicator/BusyIndicator.xaml"/>
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Badged/Badget.xaml"/>
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Wizard/Wizard.xaml"/>
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/ContentControlEx/ContentControlEx.xaml"/>
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Buttons/DropDownButton.xaml"/>
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Flyout/FlyoutsControl.xaml"/>
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/Flyout/Flyout.xaml"/>
   
+  <!--Default Controls-->
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Buttons.Chromless.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Buttons.Circle.xaml"/>
@@ -36,4 +21,24 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ListBox.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.RadioButton.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Thumb.xaml"/>
+  
+  
+  <!--Extended Controls-->
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/MetroWindow.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/MetroContentControl.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/MetroThumbContentControl.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/WindowButtonCommands.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/WindowCommands.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ToggleSwitch.xaml"/>
+
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BusyIndicator.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Badget.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Wizard.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ContentControlEx.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/DropDownButton.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/FlyoutsControl.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Flyout.xaml"/>
+  
+  
  </Styles>

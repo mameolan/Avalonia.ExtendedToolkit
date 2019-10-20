@@ -33,11 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Behaviours\ButtonBehaviour.cs" />
-    <Compile Remove="Controls\Buttons\SquareMetroButton.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="Styles\Themes\GeneratorParameters.json" />
   </ItemGroup>

@@ -96,6 +96,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             return base.MeasureOverride(availableSize);
         }
 
+        //is not working on avalonia
         //protected override Size ArrangeOverride(Size arrangeBounds)
         //{
         //    var result = base.ArrangeOverride(arrangeBounds);
