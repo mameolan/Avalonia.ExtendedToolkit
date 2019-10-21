@@ -18,6 +18,8 @@
       <ColumnDefinition/>
     </Grid.ColumnDefinitions>
 
+    
+    
     <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="10">
       <TextBlock Classes="DescriptionHeaderStyle" Text="Wizard Blank Page"  />
       <Controls:Wizard Margin="{StaticResource ControlMargin}"
@@ -63,6 +65,8 @@
                             HorizontalAlignment="Center"
                             Margin="10"
                             />
+
+      
     </StackPanel>
     
     

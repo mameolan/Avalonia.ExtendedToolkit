@@ -1,0 +1,162 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+    xmlns:tk="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+  <Styles.Resources>
+    <converters:BorderGapMaskConverter x:Key="BorderGapMaskConverter"/>
+    <converters:ThicknessBindingConverter x:Key="ThicknessBindingConverter"/>
+    <Thickness x:Key="GroupBoxHeaderThemePadding">4</Thickness>
+  </Styles.Resources>
+  <Style Selector="Controls|GroupBox">
+    <Setter Property="Background" Value="{DynamicResource ThemeControlMidBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderLowBrush}"/>
+    <Setter Property="BorderThickness" Value="{DynamicResource ThemeBorderThickness}"/>
+    <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="6"/>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="6"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="6"/>
+            </Grid.RowDefinitions>
+            <!-- Border for the background with the same CornerRadius as the Border with the Header
+                                 Using this because if the background is set in the Border with the Header the opacity
+                                   mask will be applied to the background as well. -->
+            <Border CornerRadius="4"
+                    Grid.Row="1"
+                    Grid.RowSpan="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="4"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    Background="{TemplateBinding BorderBrush}"/>
+
+            <Border CornerRadius="4"
+                    Grid.Row="1"
+                    Grid.RowSpan="3"
+                    Grid.ColumnSpan="4"
+                    BorderThickness="2"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+              
+                >
+              <Border.OpacityMask>
+                <MultiBinding Converter="{StaticResource BorderGapMaskConverter}"
+                              ConverterParameter="7">
+                  <Binding ElementName="Header"
+                           Path="ActualWidth"/>
+                  <Binding RelativeSource="{RelativeSource Self}"
+                           Path="ActualWidth"/>
+                  <Binding RelativeSource="{RelativeSource Self}"
+                           Path="ActualHeight"/>
+                </MultiBinding>
+              </Border.OpacityMask>
+
+              <Border BorderThickness="{TemplateBinding BorderThickness}"
+                      CornerRadius="3"
+                      >
+                <Border BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        CornerRadius="2"/>
+              </Border>
+            </Border>
+
+            <!-- ContentPresenter for the header -->
+            <Border x:Name="Header"
+                    Padding="3,1,3,0"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    
+                    >
+              <ContentPresenter Content="{TemplateBinding Header}"
+                                TextBlock.Foreground="{TemplateBinding Foreground}"
+                                  />
+            </Border>
+            <!-- Primary content for GroupBox -->
+            <ContentPresenter Grid.Row="2"
+                              Grid.Column="1"
+                              Grid.ColumnSpan="2"
+                              Margin="{TemplateBinding Padding}"
+                              Content="{TemplateBinding Content}"
+                                />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|MetroGroupBox">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="ContentCharacterCasing" Value="Upper" />
+        <Setter Property="HeaderFontSize" Value="{DynamicResource MahApps.Sizes.Font.Content}" />
+        <Setter Property="HeaderForeground" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid x:Name="GroupBoxRoot">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border x:Name="HeaderSite"
+                                Grid.Row="0"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                UseLayoutRounding="True">
+                            <Controls:ContentControlEx x:Name="HeaderContent"
+                                                       Margin="{DynamicResource GroupBoxHeaderThemePadding}"
+                                                       Content="{TemplateBinding Header}"
+                                                       ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentCharacterCasing}"
+                                                       ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                                       FontFamily="{TemplateBinding HeaderFontFamily}"
+                                                       FontSize="{TemplateBinding HeaderFontSize}"
+                                                       FontWeight="{TemplateBinding HeaderFontWeight}"
+                                                       UseLayoutRounding="False" >
+                                <TextBlock.Foreground>
+                                    <MultiBinding Converter="{x:Static converters:BackgroundToForegroundConverter.Instance}">
+                                        <Binding Mode="OneWay"
+                                                 Path="Background"
+                                                 RelativeSource="{RelativeSource TemplatedParent}" />
+                                        <Binding Mode="OneWay"
+                                                 Path="HeaderForeground"
+                                                 RelativeSource="{RelativeSource TemplatedParent}" />
+                                    </MultiBinding>
+                                </TextBlock.Foreground>
+                            </Controls:ContentControlEx>
+                        </Border>
+                        <Border Grid.Row="1"
+                                Background="Transparent"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={StaticResource ThicknessBindingConverter}, ConverterParameter={x:Static tk:ThicknessSideType.Top}}"
+                                UseLayoutRounding="True">
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              Cursor="{TemplateBinding Cursor}"
+                                              UseLayoutRounding="False" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+  </Style>
+
+</Styles>

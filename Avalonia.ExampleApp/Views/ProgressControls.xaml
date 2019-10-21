@@ -21,9 +21,9 @@
     </Grid.ColumnDefinitions>
 
     <Controls:MetroButton
-      Content="Show BusyIndicator"
+      Content="Show  BusyIndicator"
       Command="{Binding ShowBusyIndicator}"
-      Width="100"
+      Width="130"
       Height="35"
       HorizontalAlignment="Left"
       Margin="10"
