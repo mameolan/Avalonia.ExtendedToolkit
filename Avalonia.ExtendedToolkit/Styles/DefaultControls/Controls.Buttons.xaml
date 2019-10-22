@@ -15,7 +15,7 @@
   </Style>-->
 
   <!--  base button style for min, max and close window buttons  -->
-  <Style  Selector="Button.BaseMetroWindowButtonStyle">
+  <Style  Selector="Controls|MetroButton.BaseMetroWindowButtonStyle">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.TransparentWhite}" />
     <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundColor}" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -39,60 +39,60 @@
     <Setter Property="VerticalContentAlignment" Value="Center" />
   </Style>
 
-  <Style Selector="Button.BaseMetroWindowButtonStyle:pointerover /template/ ContentControl#PART_ContentPresenter">
+  <Style Selector="Controls|MetroButton.BaseMetroWindowButtonStyle:pointerover /template/ ContentControl#PART_ContentPresenter">
     <Setter Property="Opacity" Value="1" />
   </Style>
 
-  <Style Selector="Button.BaseMetroWindowButtonStyle:pointerover">
+  <Style Selector="Controls|MetroButton.BaseMetroWindowButtonStyle:pointerover">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.SemiTransparentWhite}" />
   </Style>
 
-  <Style Selector="Button.BaseMetroWindowButtonStyle:pressed">
+  <Style Selector="Controls|MetroButton.BaseMetroWindowButtonStyle:pressed">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
     <Setter Property="Foreground" Value="White" />
   </Style>
 
-  <Style Selector="Button.BaseMetroWindowButtonStyle:disabled">
+  <Style Selector="Controls|MetroButton.BaseMetroWindowButtonStyle:disabled">
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForegroundDisabled}" />
   </Style>
 
-  <Style Selector="Button.LightMetroWindowButtonStyle">
+  <Style Selector="Controls|MetroButton.LightMetroWindowButtonStyle">
     <Setter Property="Focusable" Value="False" />
     <Setter Property="MaxHeight" Value="34" />
     <Setter Property="Padding" Value="0" />
     <Setter Property="Width" Value="34" />
   </Style>
 
-  <Style Selector="Button.LightMetroWindowButtonStyle:pointerover">
+  <Style Selector="Controls|MetroButton.LightMetroWindowButtonStyle:pointerover">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.SemiTransparentWhite}" />
   </Style>
 
-  <Style Selector="Button.LightMetroWindowButtonStyle:pressed">
+  <Style Selector="Controls|MetroButton.LightMetroWindowButtonStyle:pressed">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
     <Setter Property="Foreground" Value="White" />
   </Style>
 
-  <Style Selector="Button.LightMetroWindowButtonStyle:disabled">
+  <Style Selector="Controls|MetroButton.LightMetroWindowButtonStyle:disabled">
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForegroundDisabled}" />
   </Style>
 
-  <Style Selector="Button.DarkMetroWindowButtonStyle">
+  <Style Selector="Controls|MetroButton.DarkMetroWindowButtonStyle">
     <Setter Property="Focusable" Value="False" />
     <Setter Property="MaxHeight" Value="34" />
     <Setter Property="Padding" Value="0" />
     <Setter Property="Width" Value="34" />
   </Style>
 
-  <Style Selector="Button.DarkMetroWindowButtonStyle:pointerover">
+  <Style Selector="Controls|MetroButton.DarkMetroWindowButtonStyle:pointerover">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.SemiTransparentGrey}" />
   </Style>
 
-  <Style Selector="Button.DarkMetroWindowButtonStyle:pressed">
+  <Style Selector="Controls|MetroButton.DarkMetroWindowButtonStyle:pressed">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
     <Setter Property="Foreground" Value="White" />
   </Style>
 
-  <Style Selector="Button.DarkMetroWindowButtonStyle:disabled">
+  <Style Selector="Controls|MetroButton.DarkMetroWindowButtonStyle:disabled">
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.DarkIdealForegroundDisabled}" />
   </Style>
 
@@ -181,7 +181,7 @@
     <Setter Property="Padding" Value="5 6" />
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="ToggleButton">
+        <ControlTemplate>
           <Grid>
             <Border x:Name="Border"
                     Background="{TemplateBinding Background}"

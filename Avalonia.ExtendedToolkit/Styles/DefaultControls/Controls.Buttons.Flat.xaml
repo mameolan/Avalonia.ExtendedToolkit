@@ -8,7 +8,7 @@
     <converters:ThicknessToDoubleConverter x:Key="BorderThicknessToStrokeThicknessConverter" TakeThicknessSide="Left" />
   </Styles.Resources>
 
-  <Style Selector="Button.MetroFlatButton">
+  <Style Selector="Controls|MetroButton.MetroFlatButton">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.FlatButton.Background}" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="FontSize" Value="{DynamicResource MahApps.Sizes.Font.FlatButton}" />
@@ -38,20 +38,20 @@
     </Setter>
   </Style>
 
-  <Style Selector="Button.MetroFlatButton:pointerover">
+  <Style Selector="Controls|MetroButton.MetroFlatButton:pointerover">
     <Setter Property="Background" Value="DarkGray" />
   </Style>
 
-  <Style Selector="Button.MetroFlatButton:pressed">
+  <Style Selector="Controls|MetroButton.MetroFlatButton:pressed">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.FlatButton.PressedBackground}" />
     <Setter Property="Foreground" Value="{DynamicResource  MahApps.Brushes.FlatButton.PressedForeground}" />
   </Style>
 
-  <Style Selector="Button.MetroFlatButton:disabled">
+  <Style Selector="Controls|MetroButton.MetroFlatButton:disabled">
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray10}" />
   </Style>
 
-  <Style Selector="ToggleButton.MetroFlatToggleButton">
+  <Style Selector="Controls|MetroToggleButton.MetroFlatToggleButton">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.FlatButton.Background}" />
     <Setter Property="BorderThickness" Value="0" />
 
@@ -82,31 +82,31 @@
     </Setter>
   </Style>
 
-  <Style Selector="ToggleButton.MetroFlatToggleButton:checked">
+  <Style Selector="Controls|MetroToggleButton.MetroFlatToggleButton:checked">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.FlatButton.PressedForeground}" />
   </Style>
 
-  <Style Selector="ToggleButton.MetroFlatToggleButton:pointerover:unchecked:pointerover">
+  <Style Selector="Controls|MetroToggleButton.MetroFlatToggleButton:pointerover:unchecked:pointerover">
     <Setter Property="Background" Value="DarkGray" />
   </Style>
 
-  <Style Selector="ToggleButton.MetroFlatToggleButton:pointerover:checked:pointerover">
+  <Style Selector="Controls|MetroToggleButton.MetroFlatToggleButton:pointerover:checked:pointerover">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent2}" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.FlatButton.PressedForeground}" />
   </Style>
 
-  <Style Selector="ToggleButton.MetroFlatToggleButton:pressed:checked:pressed">
+  <Style Selector="Controls|MetroToggleButton.MetroFlatToggleButton:pressed:checked:pressed">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.FlatButton.PressedBackground}" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.FlatButton.PressedForeground}" />
   </Style>
 
-  <Style Selector="ToggleButton.MetroFlatToggleButton:pressed:checked">
+  <Style Selector="Controls|MetroToggleButton.MetroFlatToggleButton:pressed:checked">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.FlatButton.PressedForeground}" />
   </Style>
 
-  <Style Selector="ToggleButton.MetroFlatToggleButton:disabled">
+  <Style Selector="Controls|MetroToggleButton.MetroFlatToggleButton:disabled">
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}" />
   </Style>
 </Styles>

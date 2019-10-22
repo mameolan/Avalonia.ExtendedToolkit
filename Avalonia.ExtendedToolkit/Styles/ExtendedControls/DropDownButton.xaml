@@ -31,9 +31,18 @@
                   BorderThickness="{TemplateBinding BorderThickness}"
                   CornerRadius="{TemplateBinding CornerRadius}"
                   UseLayoutRounding="True">
+            <Border.ContextMenu>
+              <ContextMenu x:Name="PART_Menu"
+                               MinWidth="{TemplateBinding Width}"
+                               ItemTemplate="{TemplateBinding ItemTemplate}"
+                               ItemsPanel="{TemplateBinding ItemsPanel}"
+                               Items="{TemplateBinding Items}"
+                               UseLayoutRounding="False" />
+            </Border.ContextMenu>
             <!--<Controls:ClipBorder x:Name="PART_ClipBorder"
                                  CornerRadius="{TemplateBinding CornerRadius}"
                                  >-->
+              <!--MetroButton throws a stackoverflow exception-->
               <Button x:Name="PART_Button"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch"
@@ -95,20 +104,24 @@
                                                UseLayoutRounding="False" />
                   </StackPanel>
                 </DockPanel>
-                <Button.ContextMenu>
+                <!--<Button.ContextMenu>
                   <Controls:ContextMenuExt x:Name="PART_Menu"
                                MinWidth="{TemplateBinding Width}"
                                ItemTemplate="{TemplateBinding ItemTemplate}"
                                ItemsPanel="{TemplateBinding ItemsPanel}"
                                Items="{TemplateBinding Items}"
                                UseLayoutRounding="False" />
-                  <!--Style="{TemplateBinding MenuStyle}"
+                  --><!--Style="{TemplateBinding MenuStyle}"
                 IsOpen="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                 helper:StyledElementExtension.Style="{TemplateBinding MenuStyle}"
-                -->
-                </Button.ContextMenu>
+                --><!--
+                </Button.ContextMenu>-->
               </Button>
+            <!--MetroButton throws a stackoverflow exception-->
             <!--</Controls:ClipBorder>-->
+            
+            
+            
           </Border>
         </ControlTemplate>
       </Setter.Value>

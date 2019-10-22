@@ -81,18 +81,18 @@
 
     <StackPanel Grid.Row="0" Grid.Column="2">
       <TextBlock Text="Toggle button" Classes="DescriptionHeaderStyle" />
-      <ToggleButton Width="100"
+      <Controls:MetroToggleButton Width="100"
                     Margin="{StaticResource ControlMargin}"
                     Content="Enabled" />
-      <ToggleButton Width="100"
+      <Controls:MetroToggleButton Width="100"
               Margin="{StaticResource ControlMargin}"
               Content="Disabled"
               IsEnabled="False" />
-      <ToggleButton Classes="MetroFlatToggleButton" Width="100"
+      <Controls:MetroToggleButton Classes="MetroFlatToggleButton" Width="100"
                     Margin="{StaticResource ControlMargin}"
                     Content="Enabled"
                                  />
-      <ToggleButton Classes="MetroFlatToggleButton" Width="100"
+      <Controls:MetroToggleButton Classes="MetroFlatToggleButton" Width="100"
               Margin="{StaticResource ControlMargin}"
               Content="Disabled"
               IsEnabled="False"
@@ -149,7 +149,7 @@
         <fontAwesome:FontAwesome Width="20"
                                   Height="20" Icon="Glass"/>
       </Controls:MetroButton>
-      <Controls:MetroButton 
+      <Controls:MetroButton
               Width="140"
               Height="48"
               Margin="4"
@@ -309,7 +309,8 @@
       <Controls:DropDownButton Margin="5"
                                      Command="{Binding ArtistsDropDownCommand}"
                                      Content="Artists"
-                                     Items="{Binding Artists}">
+                                     Items="{Binding Artists}"
+                               >
         <Controls:DropDownButton.Icon>
           <fontAwesome:FontAwesome Icon="Music"/>
         </Controls:DropDownButton.Icon>
@@ -319,21 +320,25 @@
                                      Content="Genres"
                                      Items="{Binding Artists}"
                                   >
+        <Controls:DropDownButton.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding Name}"/>
+          </DataTemplate>
+        </Controls:DropDownButton.ItemTemplate>
 
-        
-          <Controls:DropDownButton.MenuStyle>
-              <Style Selector="MenuItem">
-                <Setter Property="Header" Value="{Binding Name}"/>
-                <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:DropDownButton}}, Path=DataContext.GenreDropDownMenuItemCommand}" />
-                <Setter Property="CommandParameter" Value="{Binding Name}" />
-              </Style>
-          </Controls:DropDownButton.MenuStyle>
-        
+        <Controls:DropDownButton.MenuStyle>
+          <Style Selector="MenuItem">
+            <Setter Property="Header" Value="{Binding Name}"/>
+            <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:DropDownButton}}, Path=DataContext.GenreDropDownMenuItemCommand}" />
+            <Setter Property="CommandParameter" Value="{Binding Name}" />
+          </Style>
+        </Controls:DropDownButton.MenuStyle>
+
         <Controls:DropDownButton.Icon>
           <fontAwesome:FontAwesome Margin="6" Icon="Music" />
         </Controls:DropDownButton.Icon>
       </Controls:DropDownButton>
-      
+
     </StackPanel>
 
 

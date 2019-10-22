@@ -41,7 +41,7 @@
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands ShowLastSeparator="False">
             <Controls:WindowCommandsItem Background="Green" IsVisible="True">
-                <Button 
+                <Controls:MetroButton 
                     Content="Flyouts"
                     Foreground="Green"
                      />    

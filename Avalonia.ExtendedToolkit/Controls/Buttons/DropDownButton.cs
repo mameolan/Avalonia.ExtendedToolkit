@@ -17,7 +17,7 @@ namespace Avalonia.ExtendedToolkit.Controls
     public class DropDownButton : ItemsControl
     {
         private Button clickButton;
-        private ContextMenuExt menu;
+        private ContextMenu menu;
 
         public static RoutedEvent<RoutedEventArgs> ClickEvent =
                     RoutedEvent.Register<DropDownButton, RoutedEventArgs>(nameof(ClickEvent), RoutingStrategies.Bubble);
@@ -255,7 +255,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             this.clickButton = this.EnforceInstance<Button>(e, "PART_Button");
-            this.menu = this.EnforceInstance<ContextMenuExt>(e, "PART_Menu");
+            this.menu = this.EnforceInstance<ContextMenu>(e, "PART_Menu");
 
             this.InitializeVisualElementsContainer();
             if (this.menu != null && this.Items != null /*&& this.ItemsSource == null*/)

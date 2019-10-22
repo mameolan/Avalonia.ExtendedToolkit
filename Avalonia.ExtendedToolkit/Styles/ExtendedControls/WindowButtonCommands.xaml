@@ -9,24 +9,24 @@
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.TransparentWhite}" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
     <Setter Property="DarkCloseButtonStyle" >
-      <Style Selector="Button.DarkMetroWindowButtonStyle"/>
+      <Style Selector="Controls|MetroButton.DarkMetroWindowButtonStyle"/>
     </Setter>
     <Setter Property="DarkMaxButtonStyle" >
-      <Style Selector="Button.DarkMetroWindowButtonStyle"/>
+      <Style Selector="Controls|MetroButton.DarkMetroWindowButtonStyle"/>
     </Setter>
     <Setter Property="DarkMinButtonStyle" >
-      <Style Selector="Button.DarkMetroWindowButtonStyle"/>
+      <Style Selector="Controls|MetroButton.DarkMetroWindowButtonStyle"/>
     </Setter>
 
     <Setter Property="LightCloseButtonStyle" >
-      <Style Selector="Button.LightMetroWindowButtonStyle"/>
+      <Style Selector="Controls|MetroButton.LightMetroWindowButtonStyle"/>
     </Setter>
     <Setter Property="LightMaxButtonStyle" >
-      <Style Selector="Button.LightMetroWindowButtonStyle"/>
+      <Style Selector="Controls|MetroButton.LightMetroWindowButtonStyle"/>
     </Setter>
 
     <Setter Property="LightMinButtonStyle" >
-      <Style Selector="Button.LightMetroWindowButtonStyle"/>
+      <Style Selector="Controls|MetroButton.LightMetroWindowButtonStyle"/>
     </Setter>
     
     
@@ -46,7 +46,7 @@
       <Setter.Value>
         <ControlTemplate>
           <StackPanel Orientation="Horizontal">
-            <Button x:Name="PART_Min"
+            <Controls:MetroButton x:Name="PART_Min"
                     Focusable="False"
                     IsEnabled="{Binding ParentWindow.IsMinButtonEnabled}">
               <!--ToolTip="{Binding Minimize, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
@@ -54,7 +54,7 @@
 
               -->
 
-              <Button.IsVisible>
+              <Controls:MetroButton.IsVisible>
                 <MultiBinding Converter="{x:Static converter:ResizeModeMinMaxButtonVisibilityConverter.Instance}" ConverterParameter="MIN">
                   <Binding Mode="OneWay"
                            Path="ShowMinButton"
@@ -66,20 +66,20 @@
                            Path="ResizeMode"
                            RelativeSource="{RelativeSource AncestorType={x:Type Controls:MetroWindow}}" />
                 </MultiBinding>
-              </Button.IsVisible>
+              </Controls:MetroButton.IsVisible>
               <Path Data="F1M0,6L0,9 9,9 9,6 0,6z"
                     Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
               <!--
 
               SnapsToDevicePixels="True"-->
-            </Button>
-            <Button x:Name="PART_Max"
+            </Controls:MetroButton>
+            <Controls:MetroButton x:Name="PART_Max"
                     Focusable="False"
                     IsEnabled="{Binding ParentWindow.IsMaxRestoreButtonEnabled}">
               <!--ToolTip="{Binding Maximize, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
               , RelativeSource={RelativeSource AncestorType={x:Type Controls:MetroWindow}}
               -->
-              <Button.IsVisible>
+              <Controls:MetroButton.IsVisible>
                 <MultiBinding Converter="{x:Static converter:ResizeModeMinMaxButtonVisibilityConverter.Instance}" ConverterParameter="MAX">
                   <Binding Mode="OneWay"
                            Path="ShowMaxRestoreButton"
@@ -91,7 +91,7 @@
                            Path="ResizeMode"
                            RelativeSource="{RelativeSource AncestorType={x:Type Controls:MetroWindow}}" />
                 </MultiBinding>
-              </Button.IsVisible>
+              </Controls:MetroButton.IsVisible>
               <!--  normal state  -->
               <Path x:Name="PART_MaxPath"
                     Width="10"
@@ -101,15 +101,15 @@
               <!--
 
               SnapsToDevicePixels="True"-->
-            </Button>
-            <Button x:Name="PART_Close"
+            </Controls:MetroButton>
+            <Controls:MetroButton x:Name="PART_Close"
                     Focusable="False"
                     IsEnabled="{Binding ParentWindow.IsCloseButtonEnabled, Mode=OneWay}">
               <!--
             RenderOptions.EdgeMode="Aliased"
             RelativeSource={RelativeSource AncestorType={x:Type Controls:MetroWindow}}, Path=
             ToolTip="{Binding Close, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"-->
-              <Button.IsVisible>
+              <Controls:MetroButton.IsVisible>
                 <MultiBinding Converter="{x:Static converter:ResizeModeMinMaxButtonVisibilityConverter.Instance}" ConverterParameter="CLOSE">
                   <Binding Mode="OneWay"
                            Path="ShowCloseButton"
@@ -118,13 +118,13 @@
                            Path="UseNoneWindowStyle"
                            RelativeSource="{RelativeSource AncestorType={x:Type Controls:MetroWindow}}" />
                 </MultiBinding>
-              </Button.IsVisible>
+              </Controls:MetroButton.IsVisible>
               <Path Data="M 10.009,1.704 L 8.331,0.026 5.03,3.327 1.703,0 0,1.704 3.326,5.031 0.025,8.332 1.703,10.009 5.004,6.708 8.305,10.009 10.009,8.305 6.708,5.005"
               Fill="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
               <!--
 
               SnapsToDevicePixels="True"-->
-            </Button>
+            </Controls:MetroButton>
           </StackPanel>
         </ControlTemplate>
       </Setter.Value>

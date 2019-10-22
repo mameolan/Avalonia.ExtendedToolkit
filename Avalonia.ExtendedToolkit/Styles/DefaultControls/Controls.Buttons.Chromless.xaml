@@ -8,7 +8,7 @@
     <converters:ThicknessToDoubleConverter x:Key="BorderThicknessToStrokeThicknessConverter" TakeThicknessSide="Left" />
   </Styles.Resources>
 
-  <Style Selector="Button.ChromelessButtonStyle">
+  <Style Selector="Controls|MetroButton.ChromelessButtonStyle">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.TransparentWhite}" />
     <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundColor}" />
     <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -30,17 +30,17 @@
     </Setter>
   </Style>
 
-  <Style Selector="Button.ChromelessButtonStyle:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+  <Style Selector="Controls|MetroButton.ChromelessButtonStyle:pointerover /template/ ContentPresenter#PART_ContentPresenter">
     <Setter Property="Opacity" Value="1" />
     <!--<Setter Property="Background" Value="Green" />-->
   </Style>
 
-  <Style Selector="Button.ChromelessButtonStyle:pointernotover /template/ ContentPresenter#PART_ContentPresenter">
+  <Style Selector="Controls|MetroButton.ChromelessButtonStyle:pointernotover /template/ ContentPresenter#PART_ContentPresenter">
 
     <Setter Property="Opacity" Value="0.5" />
   </Style>
 
-  <Style Selector="Button.ChromelessButtonStyle:disabled">
+  <Style Selector="Controls|MetroButton.ChromelessButtonStyle:disabled">
     <Setter Property="Foreground" Value="#ADADAD" />
   </Style>
 </Styles>
