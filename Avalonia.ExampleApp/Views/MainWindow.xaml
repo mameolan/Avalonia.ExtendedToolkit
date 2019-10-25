@@ -169,7 +169,14 @@
                         </Grid>
                     </ScrollViewer>
                 </TabItem>
-
+                <TabItem Header="Tiles" Foreground="{DynamicResource MahApps.Brushes.Black}">
+                    <ScrollViewer>
+                        <Grid>
+                            <Views:TilesExample/>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+                
             </TabControl>
 
 

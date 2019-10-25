@@ -1,0 +1,112 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit">
+
+  <Style Selector="Controls|Tile">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="MouseOverBorderBrush" Value="{x:Null}" />
+    <Setter Property="CountFontSize" Value="28" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
+    <Setter Property="Height" Value="140" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="Margin" Value="3" />
+    <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid>
+            <Border x:Name="PART_Border"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    >
+              <Grid>
+                <StackPanel HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Orientation="Horizontal">
+                  <ContentPresenter  Content="{TemplateBinding Content}"
+                             />
+                  <TextBlock VerticalAlignment="Center"
+                             FontSize="{TemplateBinding CountFontSize}"
+                             Text="{TemplateBinding Count}" 
+                             
+                />
+                </StackPanel>
+                <!--<TextBlock >-->
+                <AccessText Margin="3"
+                            HorizontalAlignment="{TemplateBinding HorizontalTitleAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalTitleAlignment}"
+                            Foreground="{TemplateBinding Foreground}"
+                            FontSize="{TemplateBinding TitleFontSize}"
+                            Text="{TemplateBinding Title}"
+                            TextWrapping="Wrap" />
+                <!--</TextBlock>-->
+              </Grid>
+            </Border>
+            <Border x:Name="PART_HoverBorder"
+                    BorderBrush="{TemplateBinding MouseOverBorderBrush}"
+                    BorderThickness="2"
+                    Opacity="0"
+                    />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="TitleFontSize" Value="16" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Width" Value="140" />
+  </Style>
+
+  <!--<Style Selector="Controls|Tile:IsNullMouseOverBorderBrush:pointerover /template/ Border#PART_HoverBorder">
+    <Style.Animations>
+      <Animation Duration="0:0:0.9">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="0.1" />
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>-->
+
+  <Style Selector="Controls|Tile:pointerover /template/ Border#PART_HoverBorder">
+    <Style.Animations>
+      <Animation Duration="0:0:0.6">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="0.1" />
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0.6" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|Tile:pressed">
+    <!--<Setter Property="ScaleTransform.CenterX" Value="0.5"/>
+    <Setter Property="ScaleTransform.CenterY" Value="0.5"/>-->
+    <!--<Setter Property="ScaleTransform.ScaleX" Value="0.98"/>
+    <Setter Property="ScaleTransform.ScaleY" Value="0.98"/>-->
+    <Style.Animations>
+      <Animation Duration="0:0:0.3">
+        <KeyFrame Cue="0%">
+          <Setter Property="ScaleTransform.ScaleX" Value="0.98" />
+          <Setter Property="ScaleTransform.ScaleY" Value="0.98" />
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="ScaleTransform.ScaleX" Value="1" />
+          <Setter Property="ScaleTransform.ScaleY" Value="1" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+
+  </Style>
+
+  <Style Selector="Controls|Tile:disabled">
+    <Setter Property="Opacity" Value=".55" />
+  </Style>
+
+</Styles>

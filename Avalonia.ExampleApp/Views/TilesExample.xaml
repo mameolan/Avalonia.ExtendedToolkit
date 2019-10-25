@@ -1,0 +1,115 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             xmlns:fontAwesome="clr-namespace:FontAwesome.Avalonia;assembly=FontAwesome.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.TilesExample">
+  <UserControl.Styles>
+    
+    <Style Selector="Controls|Tile.LargeTileStyle">
+      <Setter Property="Height" Value="125" />
+      <!--<Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+      <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />-->
+      <Setter Property="TitleFontSize" Value="14" />
+      <Setter Property="Width" Value="300" />
+    </Style>
+
+    <Style Selector="Controls|Tile.SmallTileStyle">
+      <Setter Property="Height" Value="125" />
+      
+     <!--<Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+      <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />-->
+      <Setter Property="TitleFontSize" Value="10" />
+      <Setter Property="Width" Value="147" />
+    </Style>
+  </UserControl.Styles>
+  
+  <Grid Background="{DynamicResource MahApps.Brushes.Accent4}">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="100" />
+      <ColumnDefinition Width="430*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="83*" />
+      <RowDefinition Height="259*" />
+    </Grid.RowDefinitions>
+
+    <TextBlock Grid.Row="0"
+                Grid.Column="1"
+               VerticalAlignment="Center"
+               FontFamily="Segoe UI"
+               FontSize="30"
+               FontWeight="Light"
+               Foreground="{DynamicResource MahApps.Brushes.Black}"
+               Text="Only some Tiles in a WrapPanel" />
+
+    <WrapPanel Grid.Row="1"
+               Grid.Column="1"
+               Width="940"
+               Height="382"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               >
+    
+  
+      <Controls:Tile Title="Mail"
+                           Margin="3"
+                           MouseOverBorderBrush="{DynamicResource MahApps.Brushes.Black}"
+                           Background="Teal"
+                           HorizontalTitleAlignment="Right"
+                           Classes="LargeTileStyle">
+                <fontAwesome:FontAwesome Width="40"
+                                  Height="40" Icon="Inbox" 
+                                  />
+            </Controls:Tile>
+    <Controls:Tile Title="Desktop"
+                         Margin="3"
+                         MouseOverBorderBrush="{DynamicResource MahApps.Brushes.Black}"
+                         Classes="LargeTileStyle">
+      <fontAwesome:FontAwesome Width="40"
+                                     Height="40"
+                                     Icon="Folder" />
+    </Controls:Tile>
+    <Controls:Tile Title="Finance"
+                   Background="DimGray"
+                   Classes="LargeTileStyle">
+      <fontAwesome:FontAwesome Width="40"
+                                Height="40"
+                                Icon="Money" />
+    </Controls:Tile>
+    <Controls:Tile Title="People"
+                   Background="#D2691E"
+                   HorizontalTitleAlignment="Right"
+                   Classes="LargeTileStyle">
+      <fontAwesome:FontAwesome Width="40"
+                                Height="40"
+                                Icon="SearchPlus" />
+    </Controls:Tile>
+    <Controls:Tile Title="Count"
+                   Background="#FF842D"
+                   Count="28"
+                   CountFontSize="42"
+                   HorizontalTitleAlignment="Center"
+                   IsEnabled="False"
+                   Classes="SmallTileStyle"
+                   TitleFontSize="16"
+                   VerticalTitleAlignment="Top" />
+    <Controls:Tile Title="Weather"
+                   Background="#1E90FF"
+                   Classes="SmallTileStyle">
+      <fontAwesome:FontAwesome Width="40"
+                                  Height="40"
+                                  Icon="Weibo" />
+    </Controls:Tile>
+    <Controls:Tile Title="Store"
+                   Background="Green"
+                   Classes="LargeTileStyle">
+      <fontAwesome:FontAwesome Width="40"
+                                Height="40"
+                                Icon="Windows" />
+    </Controls:Tile>
+    </WrapPanel>
+  </Grid>
+</UserControl>
