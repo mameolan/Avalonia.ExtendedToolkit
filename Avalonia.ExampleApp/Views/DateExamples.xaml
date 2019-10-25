@@ -1,0 +1,34 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:globalization="clr-namespace:System.Globalization;assembly=mscorlib"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.DateExamples">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition />
+      <ColumnDefinition />
+      <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+    <StackPanel Grid.Row="0"
+                        Grid.Column="1"
+                        VerticalAlignment="Top">
+      <TextBlock Text="Calendar" Classes="DescriptionHeaderStyle" />
+      
+      <CheckBox x:Name="IsTodayHighlightedCheckBox"
+                Content="IsTodayHighlighted"
+                IsChecked="True" />
+      <Calendar Margin="5"
+                DisplayDateStart="{x:Static system:DateTime.Now}"
+                SelectionMode="MultipleRange" 
+                IsTodayHighlighted="{Binding ElementName=IsTodayHighlightedCheckBox, Path=IsChecked, Mode=TwoWay}"
+                />
+      
+      <Calendar Margin="5"
+                HorizontalAlignment="Center"
+                IsEnabled="False" />
+    </StackPanel>
+  </Grid>
+</UserControl>

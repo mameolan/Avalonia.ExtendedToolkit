@@ -162,7 +162,13 @@
                         </Grid>
                     </ScrollViewer>
                 </TabItem>
-
+                <TabItem Header="Date Controls" Foreground="{DynamicResource MahApps.Brushes.Black}">
+                    <ScrollViewer>
+                        <Grid>
+                            <Views:DateExamples/>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
 
             </TabControl>
 

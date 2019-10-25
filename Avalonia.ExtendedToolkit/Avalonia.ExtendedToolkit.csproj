@@ -32,7 +32,6 @@
     <None Remove="Commanding\**" />
   </ItemGroup>
 
-  
   <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="Styles\Themes\GeneratorParameters.json" />

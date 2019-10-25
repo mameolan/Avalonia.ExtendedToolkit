@@ -1,0 +1,454 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+
+  <Style Selector="CalendarDayButton">
+    <Setter Property="FontFamily" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=FontFamily, Mode=OneWay}" />
+    <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=FontSize, Mode=OneWay}" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="MinHeight" Value="5" />
+    <Setter Property="MinWidth" Value="5" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid>
+            <Rectangle x:Name="TodayBackground"
+                       Fill="{DynamicResource MahApps.Brushes.Accent}"
+                       Opacity="0" />
+            <Rectangle x:Name="SelectedBackground"
+                       Fill="{DynamicResource MahApps.Brushes.Accent4}"
+                       Opacity="0" />
+            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}" />
+            <Rectangle x:Name="HighlightBackground"
+                       Fill="{DynamicResource MahApps.Brushes.Accent4}"
+                       Opacity="0" />
+            <Path x:Name="Blackout"
+                  Margin="3"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z"
+                  Fill="{DynamicResource MahApps.Brushes.Accent3}"
+                  Opacity="0"
+                  RenderTransformOrigin="0.5,0.5"
+                  Stretch="Fill" />
+            <ContentPresenter x:Name="NormalText"
+                              Margin="5 1 5 1"
+                              Background="{TemplateBinding Background}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              TextBlock.Foreground="{TemplateBinding Foreground}" />
+            <Rectangle x:Name="DayButtonFocusVisual"
+                       IsHitTestVisible="false"
+                       Stroke="{DynamicResource MahApps.Brushes.Accent3}"
+                       IsVisible="false" />
+
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="CalendarDayButton:pointerover /template/ Rectangle#HighlightBackground" >
+    <Setter Property="Opacity" Value="0.75"/>
+  </Style>
+
+  <Style Selector="CalendarDayButton:pressed /template/ Rectangle#HighlightBackground" >
+    <Setter Property="Opacity" Value="0.9"/>
+  </Style>
+
+  <Style Selector="CalendarDayButton:disabled /template/ Rectangle#HighlightBackground" >
+    <Setter Property="Opacity" Value="0"/>
+  </Style>
+
+  <Style Selector="CalendarDayButton:disabled /template/ ContentPresenter#NormalText" >
+    <Setter Property="Opacity" Value=".35"/>
+  </Style>
+
+  <!--<Style Selector="CalendarDayButton:disabled /template/ ContentPresenter#NormalText" >
+    <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}"/>
+  </Style>-->
+
+  <Style Selector="CalendarDayButton:blackout /template/ Path#Blackout" >
+    <Setter Property="Opacity" Value="1"/>
+  </Style>
+
+  <Style Selector="CalendarDayButton:selected /template/ Rectangle#DayButtonFocusVisual" >
+    <Setter Property="IsVisible" Value="True"/>
+  </Style>
+
+  <Style Selector="CalendarDayButton:selected /template/ ContentPresenter#NormalText" >
+    <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+  </Style>
+
+  <!--<Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=IsTodayHighlighted}" Value="True" />
+  <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsToday}" Value="True" />
+  <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />-->
+  <!--correct: ?-->
+
+  <Style Selector="CalendarDayButton:selected:today:dayfocused /template/ Rectangle#DayButtonFocusVisual" >
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.Gray1}" />
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
+
+  <Style Selector="CalendarDayButton:selected:today:dayfocused /template/ ContentPresenter#NormalText" >
+    <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+  </Style>
+
+
+  <!--<Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=IsTodayHighlighted}" Value="True" />
+  <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsToday}" Value="True" />-->
+  <!--correct: ?-->
+
+  <Style Selector="CalendarDayButton:today:dayfocused /template/ ContentPresenter#NormalText" >
+    <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />
+  </Style>
+
+  <Style Selector="CalendarDayButton:today:dayfocused /template/ Rectangle#TodayBackground" >
+    <Setter Property="Opacity" Value="1" />
+  </Style>
+
+  <Style Selector="CalendarDayButton:today:blackout /template/ Path#Blackout" >
+    <Setter Property="Fill" Value="{DynamicResource MahApps.Brushes.Accent}" />
+  </Style>
+
+  <Style Selector="CalendarDayButton:today:blackout /template/ Rectangle#TodayBackground" >
+    <Setter Property="Opacity" Value="0.5" />
+  </Style>
+
+  <Style Selector="Controls|MetroButton.CalendarItemPrevious">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid Cursor="Hand">
+          <Rectangle Fill="{DynamicResource MahApps.Brushes.Accent}"
+                     Opacity="0.1"
+                     Stretch="Fill" />
+          <Path x:Name="path"
+                Width="6"
+                Height="10"
+                Margin="14 -6 0 0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Data="M288.75,232.25 L288.75,240.625 L283,236.625 z"
+                Fill="white"
+                Opacity="0.7"
+                Stretch="Fill" />
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|MetroButton.CalendarItemPrevious:pointerover /template/ Path#path">
+    <Setter Property="Opacity" Value="1"/>
+  </Style>
+
+  <Style Selector="Controls|MetroButton.CalendarItemPrevious:disabled /template/ Path#path">
+    <Setter Property="Opacity" Value=".5"/>
+  </Style>
+
+  <Style Selector="Controls|MetroButton.CalendarItemNext">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid Cursor="Hand">
+          <Rectangle Fill="{DynamicResource MahApps.Brushes.Accent}"
+                     Opacity="0.1"
+                     Stretch="Fill" />
+          <Path x:Name="path"
+                Width="6"
+                Height="10"
+                Margin="0 -6 14 0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Data="M282.875,231.875 L282.875,240.375 L288.625,236 z"
+                Fill="white"
+                Opacity="0.7"
+                Stretch="Fill" />
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|MetroButton.CalendarItemNext:pointerover /template/ Path#path">
+    <Setter Property="Opacity" Value="1"/>
+  </Style>
+
+  <Style Selector="Controls|MetroButton.CalendarItemNext:disabled /template/ Path#path">
+    <Setter Property="Opacity" Value=".2"/>
+  </Style>
+
+  <Style Selector="Controls|MetroButton.CalendarItemHeader">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Cursor="Hand">
+            <ContentPresenter x:Name="buttonContent"
+                              Margin="1 4 1 9"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              Opacity="0.7" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|MetroButton.CalendarItemHeader:pointerover /template/ ContentPresenter#buttonContent">
+    <Setter Property="Opacity" Value="1"/>
+  </Style>
+
+  <Style Selector="Controls|MetroButton.CalendarItemHeader:disabled /template/ ContentPresenter#buttonContent">
+    <Setter Property="Opacity" Value=".5"/>
+  </Style>
+
+
+
+
+
+
+  <Style Selector="CalendarItem">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
+    <Setter Property="Margin" Value="0 3" />
+    <Setter Property="Padding" Value="2" />
+    <Setter Property="DayTitleTemplate">
+      <Template>
+        <TextBlock Margin="0 6 0 6"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         FontWeight="Bold"
+                         Foreground="{DynamicResource MahApps.Brushes.Black}"
+                         Opacity="0.8"
+                         Text="{Binding}" />
+      </Template>
+    </Setter>
+
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid x:Name="PART_Root">
+            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    >
+              <Grid Margin="{TemplateBinding Padding}">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0"
+                      HorizontalAlignment="Stretch"
+                      Background="{DynamicResource MahApps.Brushes.Accent}">
+                  <Controls:MetroButton x:Name="PART_HeaderButton"
+                          Grid.Row="0"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Focusable="False"
+                          FontWeight="Bold"
+                          Classes="CalendarItemHeader"
+                          />
+                  <Controls:MetroButton x:Name="PART_PreviousButton"
+                          Grid.Row="0"
+                          Width="28"
+                          Height="20"
+                          HorizontalAlignment="Left"
+                          Focusable="False"
+                          Classes="CalendarItemPrevious"
+                          />
+
+                  <Controls:MetroButton x:Name="PART_NextButton"
+                          Grid.Row="0"
+                          Width="28"
+                          Height="20"
+                          HorizontalAlignment="Right"
+                          Focusable="False"
+                           Classes="CalendarItemNext"
+                          />
+
+                </Grid>
+                <Grid x:Name="PART_MonthView"
+                      Grid.Row="1"
+                      Margin="6 -1 6 6"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      IsVisible="True">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                  </Grid.RowDefinitions>
+                </Grid>
+                <Grid x:Name="PART_YearView"
+                      Grid.Row="1"
+                      Margin="6 -3 7 6"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      IsVisible="False">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                  </Grid.RowDefinitions>
+                </Grid>
+              </Grid>
+            </Border>
+            <Rectangle x:Name="PART_DisabledVisual"
+                       Fill="{DynamicResource MahApps.Brushes.Controls.Disabled}"
+                       Opacity="0"
+                       Stretch="Fill"
+                       Stroke="{DynamicResource MahApps.Brushes.Controls.Disabled}"
+                       StrokeThickness="1"
+                       IsVisible="False" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="CalendarItem:disabled /template/ Rectangle#PART_DisabledVisual">
+    <Setter Property="Opacity" Value="1"/>
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
+
+  <!--<Style Selector="CalendarItem[DisplayMode=Year] /template/ Rectangle#PART_DisabledVisual">
+  </Style>-->
+
+  <!--Todo-->
+  <!--<ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}" Value="Year">
+              <Setter TargetName="PART_MonthView" Property="Visibility" Value="Hidden" />
+              <Setter TargetName="PART_YearView" Property="Visibility" Value="Visible" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}" Value="Decade">
+              <Setter TargetName="PART_MonthView" Property="Visibility" Value="Hidden" />
+              <Setter TargetName="PART_YearView" Property="Visibility" Value="Visible" />
+            </DataTrigger>
+          </ControlTemplate.Triggers>-->
+
+  <Style Selector="CalendarButton">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent4}" />
+    <Setter Property="FontFamily" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=FontFamily, Mode=OneWay}" />
+    <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=FontSize, Mode=OneWay}" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="MinHeight" Value="42" />
+    <Setter Property="MinWidth" Value="40" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid>
+            <Rectangle x:Name="SelectedBackground"
+                       Fill="{TemplateBinding Background}"
+                       Opacity="0" />
+            <Rectangle x:Name="Background"
+                       Fill="{TemplateBinding Background}"
+                       Opacity="0" />
+            <ContentPresenter x:Name="NormalText"
+                              Margin="1 0 1 1"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              TextBlock.Foreground="{TemplateBinding Foreground}" />
+            <Rectangle x:Name="CalendarButtonFocusVisual"
+                       IsHitTestVisible="false"
+                       Stroke="{DynamicResource MahApps.Brushes.Accent3}"
+                       IsVisible="False" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+
+  </Style>
+
+  <Style Selector="CalendarButton:pointerover /template/ Rectangle#Background">
+    <Setter Property="Opacity" Value=".5"/>
+  </Style>
+
+  <Style Selector="CalendarButton:pressed /template/ Rectangle#Background">
+    <Setter Property="Opacity" Value=".5"/>
+  </Style>
+
+  <Style Selector="CalendarButton:selected /template/ Rectangle#SelectedBackground">
+    <Setter Property="Opacity" Value=".75"/>
+  </Style>
+
+  <Style Selector="CalendarButton:inactive /template/ ContentPresenter#NormalText">
+    <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}"/>
+  </Style>
+
+  <Style Selector="CalendarButton:btnfocused /template/ Rectangle#CalendarButtonFocusVisual">
+    <Setter Property="IsVisible" Value="true"/>
+  </Style>
+
+  <Style Selector="CalendarButton:focused /template/ Rectangle#CalendarButtonFocusVisual">
+    <Setter Property="IsVisible" Value="true"/>
+  </Style>
+
+  <Style Selector="Calendar">
+    <Setter Property="FontFamily" Value="{DynamicResource MahApps.Fonts.Content}" />
+    <Setter Property="FontSize" Value="{DynamicResource MahApps.Sizes.Font.Content}" />
+    
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <!--<Setter Property="CalendarButtonStyle" Value="{DynamicResource MahApps.Styles.CalendarButton}" />
+    <Setter Property="CalendarDayButtonStyle" Value="{DynamicResource MahApps.Styles.CalendarDayButton}" />
+    <Setter Property="CalendarItemStyle" Value="{DynamicResource MahApps.Styles.CalendarItem}" />-->
+    <!--<Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}" />-->
+    <!--<Setter Property="HorizontalContentAlignment" Value="Left" />-->
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid x:Name="PART_Root"
+                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                Background="Transparent">
+            <CalendarItem x:Name="PART_CalendarItem"
+                          Background="{TemplateBinding Background}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"
+                           />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+</Styles>
