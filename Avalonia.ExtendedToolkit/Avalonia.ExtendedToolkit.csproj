@@ -45,6 +45,7 @@
     <Folder Include="Behaviours\" />
   </ItemGroup>
 
+  
 
   <Target Name="GenerateXamlFilesInner">
     <PropertyGroup>
