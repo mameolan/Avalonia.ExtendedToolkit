@@ -1,0 +1,296 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit">
+  <Style Selector="Controls|TransitioningContentControl">
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="Transition" Value="Default" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="{TemplateBinding Controls:ControlsHelper.CornerRadius}">
+            <Grid>
+              <ContentPresenter x:Name="PreviousContentPresentationSite"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{x:Null}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                >
+                <ContentPresenter.RenderTransform>
+                  <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                  </TransformGroup>
+                </ContentPresenter.RenderTransform>
+              </ContentPresenter>
+              <ContentPresenter x:Name="CurrentContentPresentationSite"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                >
+                <ContentPresenter.RenderTransform>
+                  <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                  </TransformGroup>
+                </ContentPresenter.RenderTransform>
+              </ContentPresenter>
+            </Grid>
+
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|TransitioningContentControl[Transition=Default] /template/ ContentPresenter#CurrentContentPresentationSite">
+    <Style.Animations>
+      <Animation Duration="00:00:00.300">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="0"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|TransitioningContentControl[Transition=Default] /template/ ContentPresenter#PreviousContentPresentationSite">
+    <Style.Animations>
+      <Animation Duration="00:00:00.300">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="1"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|TransitioningContentControl[Transition=Normal] /template/ ContentPresenter#CurrentContentPresentationSite">
+    <Setter Property="Opacity" Value="0"/>
+  </Style>
+
+  <Style Selector="Controls|TransitioningContentControl[Transition=Up] /template/ ContentPresenter#CurrentContentPresentationSite">
+    <Style.Animations>
+      <Animation Duration="00:00:00.300">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="0"/>
+          <Setter Property="TranslateTransform.Y" Value="30"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1"/>
+          <Setter Property="TranslateTransform.Y" Value="0"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|TransitioningContentControl[Transition=Up] /template/ ContentPresenter#PreviousContentPresentationSite">
+    <Style.Animations>
+      <Animation Duration="00:00:00.300">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="1"/>
+          <Setter Property="TranslateTransform.Y" Value="0"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0"/>
+          <Setter Property="TranslateTransform.Y" Value="-30"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|TransitioningContentControl[Transition=Down] /template/ ContentPresenter#CurrentContentPresentationSite">
+    <Style.Animations>
+      <Animation Duration="00:00:00.300">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="0"/>
+          <Setter Property="TranslateTransform.Y" Value="-40"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1"/>
+          <Setter Property="TranslateTransform.Y" Value="0"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|TransitioningContentControl[Transition=Down] /template/ ContentPresenter#PreviousContentPresentationSite">
+    <Style.Animations>
+      <Animation Duration="00:00:00.300">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="1"/>
+          <Setter Property="TranslateTransform.Y" Value="0"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0"/>
+          <Setter Property="TranslateTransform.Y" Value="40"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|TransitioningContentControl[Transition=Right] /template/ ContentPresenter#CurrentContentPresentationSite">
+    <Style.Animations>
+      <Animation Duration="00:00:00.400">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="0"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1"/>
+        </KeyFrame>
+      </Animation>
+      <Animation Duration="00:00:00.700" Easing="BounceEaseOut">
+        <KeyFrame Cue="0%">
+          <Setter Property="TranslateTransform.X" Value="-30"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="TranslateTransform.X" Value="0"/>
+        </KeyFrame>
+      </Animation>
+      
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|TransitioningContentControl[Transition=Right] /template/ ContentPresenter#PreviousContentPresentationSite">
+    <Style.Animations>
+      <Animation Duration="00:00:00.100">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="1"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0"/>
+        </KeyFrame>
+      </Animation>
+      <Animation Duration="00:00:00.700" Easing="BounceEaseOut">
+        <KeyFrame Cue="0%">
+          <Setter Property="TranslateTransform.X" Value="0"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="TranslateTransform.X" Value="30"/>
+        </KeyFrame>
+      </Animation>
+
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|TransitioningContentControl[Transition=Left] /template/ ContentPresenter#CurrentContentPresentationSite">
+    <Style.Animations>
+      <Animation Duration="00:00:00.400">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="0"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1"/>
+        </KeyFrame>
+      </Animation>
+      <Animation Duration="00:00:00.700" Easing="BounceEaseOut">
+        <KeyFrame Cue="0%">
+          <Setter Property="TranslateTransform.X" Value="30"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="TranslateTransform.X" Value="0"/>
+        </KeyFrame>
+      </Animation>
+
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|TransitioningContentControl[Transition=Left] /template/ ContentPresenter#PreviousContentPresentationSite">
+    <Style.Animations>
+      <Animation Duration="00:00:00.100">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="1"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0"/>
+        </KeyFrame>
+      </Animation>
+      <Animation Duration="00:00:00.700" Easing="BounceEaseOut">
+        <KeyFrame Cue="0%">
+          <Setter Property="TranslateTransform.X" Value="0"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="TranslateTransform.X" Value="-30"/>
+        </KeyFrame>
+      </Animation>
+
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|TransitioningContentControl[Transition=RightReplace] /template/ ContentPresenter#CurrentContentPresentationSite">
+    <Style.Animations>
+      <Animation Duration="00:00:00.300">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="0"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1"/>
+        </KeyFrame>
+      </Animation>
+      <Animation Duration="00:00:00.700" Easing="BounceEaseOut">
+        <KeyFrame Cue="0%">
+          <Setter Property="TranslateTransform.X" Value="-40"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="TranslateTransform.X" Value="0"/>
+        </KeyFrame>
+      </Animation>
+
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|TransitioningContentControl[Transition=RightReplace] /template/ ContentPresenter#CurrentContentPresentationSite">
+    <Style.Animations>
+      <Animation Duration="00:00:00.300">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="1"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|TransitioningContentControl[Transition=LeftReplace] /template/ ContentPresenter#CurrentContentPresentationSite">
+    <Style.Animations>
+      <Animation Duration="00:00:00.300">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="0"/>
+          <Setter Property="TranslateTransform.X" Value="40"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1"/>
+          <Setter Property="TranslateTransform.X" Value="0"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+  
+  <Style Selector="Controls|TransitioningContentControl[Transition=LeftReplace] /template/ ContentPresenter#PreviousContentPresentationSite">
+    <Style.Animations>
+      <Animation Duration="00:00:00.300">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="1"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+</Styles>
