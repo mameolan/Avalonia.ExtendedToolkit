@@ -145,6 +145,14 @@
                         <Views:GroupBoxView/>
                     </ScrollViewer>
                 </TabItem>
+                <TabItem Header="List Controls" Foreground="{DynamicResource MahApps.Brushes.Black}">
+                    <ScrollViewer>
+                        <Grid>
+                            <Views:ListControlsView/>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+                
                 <TabItem Header="Wizard" Foreground="{DynamicResource MahApps.Brushes.Black}">
                     <ScrollViewer>
                         <Views:WizardView/>
