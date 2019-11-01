@@ -20,7 +20,8 @@
       <ColumnDefinition/>
     </Grid.ColumnDefinitions>
 
-    <Controls:MetroButton
+    <Controls:MetroButton Grid.Row="0"
+      Grid.Column="0"
       Content="Show  BusyIndicator"
       Command="{Binding ShowBusyIndicator}"
       Width="130"
@@ -31,8 +32,66 @@
       
     <Controls:BusyIndicator IsBusy="{Binding IsBusy}"
           Grid.RowSpan="4" Grid.ColumnSpan="2"                  />
-  
-  
+
+
+    <Grid Grid.Row="1"
+      Grid.Column="0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+
+      <StackPanel Grid.Column="0"
+                            Margin="10 0"
+                            Orientation="Vertical">
+        <Slider x:Name="ProgressValueSlider01"
+                          Width="250"
+                          Margin="4"
+                          LargeChange="10"
+                          Maximum="100"
+                          Minimum="0"
+                          Orientation="Horizontal"
+                          SmallChange="1"
+                          Value="25" />
+        
+          <ProgressBar Width="250"
+                              Margin="4"
+                              Maximum="100"
+                              Minimum="0"
+                              Value="{Binding ElementName=ProgressValueSlider01, Path=Value}" />
+
+        <ProgressBar Width="250"
+                                 Height="15"
+                                 Margin="4"
+                                 Maximum="100"
+                                 Minimum="0"
+                                 Value="{Binding ElementName=ProgressValueSlider01, Path=Value}" />
+
+        <Controls:MetroCheckBox x:Name="IsVisibleCheckBox01"
+                              Width="250"
+                              Margin="4"
+                              Content="IsVisible"
+                              IsChecked="True" />
+        <Controls:MetroCheckBox x:Name="IsIndeterminateCheckBox01"
+                                Width="250"
+                                Margin="4"
+                                Content="IsIndeterminate"
+                                IsChecked="True" />
+
+        <ProgressBar Width="250"
+                                 Margin="4"
+                                 IsIndeterminate="{Binding ElementName=IsIndeterminateCheckBox01, Path=IsChecked}"
+                                 Maximum="100"
+                                 Minimum="0"
+                                 IsVisible="{Binding ElementName=IsVisibleCheckBox01, Path=IsChecked}"
+                                 Value="{Binding ElementName=ProgressValueSlider01, Path=Value}" />
+        
+        
+        
+      </StackPanel>
+    </Grid>
+    
+    
   
   </Grid>
 </UserControl>
