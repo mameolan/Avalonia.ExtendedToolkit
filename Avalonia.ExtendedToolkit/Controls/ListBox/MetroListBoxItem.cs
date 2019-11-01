@@ -134,6 +134,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             AvaloniaProperty.Register<MetroListBoxItem, IBrush>(nameof(DisabledBackgroundBrush));
 
 
+        
 
 
     }
