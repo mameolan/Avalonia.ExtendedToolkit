@@ -6,12 +6,15 @@
              x:Class="Avalonia.ExampleApp.Views.DataGridView">
   <TabControl>
     <TabItem Header="Metro Style" Foreground="{DynamicResource MahApps.Brushes.Black}">
+      <Grid>
       <DataGrid Items="{Binding Albums}"
                  RowHeaderWidth="20"
                  SelectionMode="Single"
                  Margin="10"
                 HorizontalScrollBarVisibility="Auto"
                 VerticalScrollBarVisibility="Auto"
+                
+                
                 
         >
         <DataGrid.Columns>
@@ -33,12 +36,13 @@
         
         
       </DataGrid>
-      
-      
-      
-      
+
+
+
+      </Grid>
     </TabItem>
     <TabItem Header="Azure Style" Foreground="{DynamicResource MahApps.Brushes.Black}">
+      <Grid>
       <DataGrid Classes="Azure" Items="{Binding Albums}"
                  RowHeaderWidth="20"
                  SelectionMode="Single"
@@ -69,7 +73,7 @@
 
 
 
-
+      </Grid>
     </TabItem>
     
   </TabControl>

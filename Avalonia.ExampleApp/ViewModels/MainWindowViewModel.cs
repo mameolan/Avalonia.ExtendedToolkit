@@ -52,6 +52,15 @@ namespace Avalonia.ExampleApp.ViewModels
             set { this.RaiseAndSetIfChanged(ref myIsBusy , value); }
         }
 
+        private bool myIsToggleSwitchVisible;
+
+        public bool IsToggleSwitchVisible
+        {
+            get { return myIsToggleSwitchVisible; }
+            set { this.RaiseAndSetIfChanged(ref myIsToggleSwitchVisible, value); }
+        }
+
+
 
 
         private ReadOnlyObservableCollection<ColorScheme> myColorSchemes;

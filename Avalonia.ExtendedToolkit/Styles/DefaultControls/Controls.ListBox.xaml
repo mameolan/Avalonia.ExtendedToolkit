@@ -113,15 +113,18 @@
   </Style>
 
   <Style Selector="Controls|MetroListBoxItem[IsSelected=true]">
-    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />
+    <!--<Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />-->
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=SelectedForegroundBrush, Mode=OneWay}" />
   </Style>
 
   <Style Selector="Controls|MetroListBoxItem:selected /template/ Border#Border">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />
+    <!--<Setter Property="Background" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />-->
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedBackgroundBrush, Mode=OneWay}" />
   </Style>
 
   <Style Selector="Controls|MetroListBoxItem:selected:pointerover /template/ Border#Border">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <!--<Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />-->
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HoverSelectedBackgroundBrush, Mode=OneWay}" />
   </Style>
 
   
@@ -129,29 +132,34 @@
   
   
   <Style Selector="Controls|MetroListBoxItem[IsSelected=false][IsPointerOver=true] /template/ Border#Border">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}" />
+    <!--<Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}" />-->
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HoverBackgroundBrush, Mode=OneWay}" />
   </Style>
 
   <Style Selector="Controls|MetroListBoxItem[IsEnabled=false]">
-    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.GrayNormal}" />
+    <!--<Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.GrayNormal}" />-->
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=DisabledForegroundBrush, Mode=OneWay}" />
   </Style>
 
   <Style Selector="Controls|MetroListBoxItem:disabled  /template/ Border#Border">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray1}" />
+    <!--<Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray1}" />-->
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisabledBackgroundBrush, Mode=OneWay}" />
   </Style>
 
   <Style Selector="Controls|MetroListBoxItem[IsEnabled=false][IsSelected=true]">
-    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />
+    <!--<Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />-->
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=DisabledSelectedForegroundBrush, Mode=OneWay}" />
   </Style>
 
   <Style Selector="Controls|MetroListBoxItem[IsEnabled=false][IsSelected=true]  /template/ Border#Border">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray7}" />
+    <!--<Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray7}" />-->
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DisabledSelectedBackgroundBrush, Mode=OneWay}" />
   </Style>
 
   
   
   
-  <!--special avalonia-->
+  <!--avalonia styles otherwise normal control behaviour does not work (?)-->
   <Style Selector="Controls|MetroListBoxItem:selected /template/ ContentPresenter">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent2}"/>
   </Style>
