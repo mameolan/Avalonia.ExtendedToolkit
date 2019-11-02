@@ -1,0 +1,249 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+  <Styles.Resources>
+    <converters:TreeViewMarginConverter x:Key="LengthConverter" Length="12"/>
+    <!--<PathGeometry x:Key="TreeArrow" Figures="M0,0 L0,6 L6,0 z" />-->
+  </Styles.Resources>
+
+  <!--Virtualized is skipped-->
+    
+  <Style Selector="Controls|MetroToggleButton.ExpandCollapse">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="Height" Value="16" />
+    <Setter Property="Margin" Value="1" />
+    <Setter Property="Width" Value="16" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Width="16"
+                Height="16"
+                Margin="{TemplateBinding Margin}"
+                Background="Transparent">
+            <Path x:Name="ExpandPath"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Data="M0,0 L0,6 L6,0 z"
+                  Fill="{TemplateBinding Background}"
+                  Stroke="{TemplateBinding Foreground}">
+              <!--{StaticResource TreeArrow}-->
+
+              <!--<Path.RenderTransform>
+                -->
+              <!--CenterX="3" CenterY="3"-->
+              <!--
+                <RotateTransform Angle="135" />
+              </Path.RenderTransform>-->
+            </Path>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|MetroToggleButton.ExpandCollapse[IsChecked=false] /template/ Path#ExpandPath">
+    <Setter Property="RenderTransform">
+      <Setter.Value>
+        <!--CenterX="3" CenterY="3"-->
+        <RotateTransform  Angle="135" />
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|MetroToggleButton.ExpandCollapse:checked /template/ Path#ExpandPath">
+    <Setter Property="Fill" Value="{DynamicResource MahApps.Brushes.Gray1}" />
+    <Setter Property="RenderTransform">
+      <Setter.Value>
+        <!--CenterX="3" CenterY="3"-->
+        <RotateTransform  Angle="180" />
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|MetroToggleButton.ExpandCollapse:disabled /template/ Path#ExpandPath">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.Gray5}" />
+  </Style>
+
+  <Style Selector="Controls|MetroToggleButton.ExpandCollapse:disabled:checked /template/ Path#ExpandPath">
+    <Setter Property="Fill" Value="{DynamicResource MahApps.Brushes.Gray5}" />
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.Gray5}" />
+  </Style>
+
+  <Style Selector="Controls|MetroToggleButton.ExpandCollapse:pointerover /template/ Path#ExpandPath">
+    <Setter Property="Fill" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.Accent}" />
+  </Style>
+
+  <Style Selector="TreeViewItem">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
+    <Setter Property="Controls:ItemHelper.ActiveSelectionBackgroundBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Controls:ItemHelper.ActiveSelectionForegroundBrush" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />
+    <Setter Property="Controls:ItemHelper.DisabledForegroundBrush" Value="{DynamicResource MahApps.Brushes.GrayNormal}" />
+    <Setter Property="Controls:ItemHelper.DisabledSelectedBackgroundBrush" Value="{DynamicResource MahApps.Brushes.Gray7}" />
+    <Setter Property="Controls:ItemHelper.DisabledSelectedForegroundBrush" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />
+    <Setter Property="Controls:ItemHelper.HoverBackgroundBrush" Value="{DynamicResource MahApps.Brushes.Accent3}" />
+    <Setter Property="Controls:ItemHelper.HoverSelectedBackgroundBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Controls:ItemHelper.SelectedBackgroundBrush" Value="{DynamicResource MahApps.Brushes.Accent2}" />
+    <Setter Property="Controls:ItemHelper.SelectedForegroundBrush" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}" />
+    <!--<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, Mode=OneWay, FallbackValue=Stretch, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />-->
+    <!--<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, Mode=OneWay, FallbackValue=Center, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />-->
+    <Setter Property="MinHeight" Value="25" />
+
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <StackPanel>
+            <Border x:Name="Border"
+                    MinHeight="{TemplateBinding MinHeight}"
+                    Padding="{TemplateBinding Padding}"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    >
+              <Grid Margin="{Binding Converter={StaticResource LengthConverter}}"
+                    VerticalAlignment="Stretch"
+                    Background="Transparent">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" MinWidth="19" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Controls:MetroToggleButton x:Name="Expander"
+                              ClickMode="Press"
+                              IsChecked="{TemplateBinding IsExpanded, Mode=TwoWay}"
+                              Classes="ExpandCollapse"
+                              />
+
+                <!--Path=IsExpanded, RelativeSource=TemplatedParent, Mode=TwoWay-->
+                <ContentPresenter x:Name="PART_Header"
+                                  Grid.Column="1"
+                                  Content="{TemplateBinding Header}"
+                                   />
+                <!--HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"-->
+
+              </Grid>
+            </Border>
+            <ItemsPresenter x:Name="ItemsHost"
+                            Items="{TemplateBinding Items}"
+                            ItemsPanel="{TemplateBinding ItemsPanel}"
+                            ItemTemplate="{TemplateBinding ItemTemplate}"
+                            />
+          </StackPanel>
+          <!--<ControlTemplate.Triggers>
+            
+            
+
+  
+
+  
+          
+            
+          </ControlTemplate.Triggers>-->
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="TreeViewItem[IsExpanded=false] /template/ ItemsPresenter#ItemsHost">
+    <Setter  Property="IsVisible" Value="false" />
+  </Style>
+
+  <!--<Style Selector="TreeViewItem[HasItems=false] /template/ Controls|MetroToggleButton#Expander">
+    <Setter  Property="IsVisible" Value="false" />
+  </Style>-->
+
+  <Style Selector="TreeViewItem:selected">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Controls:ItemHelper.SelectedForegroundBrush), Mode=OneWay}" />
+  </Style>
+
+  <Style Selector="TreeViewItem:selected /template/ Border#Border">
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ItemHelper.SelectedBackgroundBrush), Mode=OneWay}" />
+  </Style>
+
+  <!--<Style Selector="TreeViewItem:selected:active">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Controls:ItemHelper.ActiveSelectionForegroundBrush), Mode=OneWay}" />
+  </Style>-->
+
+  <!--<Style Selector="TreeViewItem:selected:active /template/ Border#Border">
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ItemHelper.ActiveSelectionBackgroundBrush), Mode=OneWay}" />
+  </Style>-->
+
+  <Style Selector="TreeViewItem:selected /template/ Border#Border:pointerover">
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ItemHelper.HoverSelectedBackgroundBrush), Mode=OneWay}" />
+  </Style>
+
+  <Style Selector="TreeViewItem[IsSelected=false] /template/ Border#Border:pointerover">
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ItemHelper.HoverBackgroundBrush), Mode=OneWay}" />
+  </Style>
+
+  <Style Selector="TreeViewItem:disabled">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Controls:ItemHelper.DisabledForegroundBrush), Mode=OneWay}" />
+  </Style>
+
+  <Style Selector="TreeViewItem:disabled /template/ Border#Border">
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Controls:ItemHelper.DisabledBackgroundBrush), Mode=OneWay}" />
+  </Style>
+
+  <Style Selector="TreeViewItem:disabled:selected">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Controls:ItemHelper.DisabledSelectedForegroundBrush), Mode=OneWay}" />
+  </Style>
+
+  <Style Selector="TreeViewItem:disabled:selected /template/ Border#Border">
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Controls:ItemHelper.DisabledSelectedBackgroundBrush), Mode=OneWay}" />
+  </Style>
+
+  <!--<Style.Triggers>
+    <Trigger Property="VirtualizingStackPanel.IsVirtualizing" Value="True">
+      <Setter Property="ItemsPanel">
+        <Setter.Value>
+          <ItemsPanelTemplate>
+            <VirtualizingStackPanel />
+          </ItemsPanelTemplate>
+        </Setter.Value>
+      </Setter>
+    </Trigger>
+  </Style.Triggers>-->
+
+  <Style Selector="TreeView">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <!--  default to 0  -->
+    <Setter Property="BorderThickness" Value="0" />
+    <!--<Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />-->
+    <Setter Property="Padding" Value="1" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border Name="Border"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  >
+            <ScrollViewer x:Name="TreeViewScrollViewer"
+                          Padding="{TemplateBinding Padding}"
+                          Focusable="False"
+                          HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                          VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+              <ItemsPresenter Items="{TemplateBinding Items}" 
+                              ItemsPanel="{TemplateBinding ItemsPanel}"
+                              ItemTemplate="{TemplateBinding ItemTemplate}"
+                              />
+            </ScrollViewer>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    
+  </Style>
+
+
+
+
+</Styles>

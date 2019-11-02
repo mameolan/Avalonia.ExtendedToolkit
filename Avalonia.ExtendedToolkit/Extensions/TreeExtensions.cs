@@ -90,5 +90,18 @@ namespace Avalonia.ExtendedToolkit.Extensions
                 }
             }
         }
+
+        public static IEnumerable<IVisual> GetAncestors(this IVisual child)
+        {
+            IVisual parent= VisualTree.VisualExtensions.GetVisualParent(child);
+            while (parent != null)
+            {
+                yield return parent;
+                parent = VisualTree.VisualExtensions.GetVisualParent(parent);
+            }
+
+        }
+
+
     }
 }

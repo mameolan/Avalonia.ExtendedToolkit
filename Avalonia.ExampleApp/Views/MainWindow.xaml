@@ -152,7 +152,13 @@
                         </Grid>
                     </ScrollViewer>
                 </TabItem>
-                
+                <TabItem Header="Tree View" Foreground="{DynamicResource MahApps.Brushes.Black}">
+                    <ScrollViewer>
+                        <Grid>
+                            <Views:TreeViewExample/>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
                 <TabItem Header="Wizard" Foreground="{DynamicResource MahApps.Brushes.Black}">
                     <ScrollViewer>
                         <Views:WizardView/>

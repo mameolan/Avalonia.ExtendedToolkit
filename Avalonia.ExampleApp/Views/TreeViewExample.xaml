@@ -1,0 +1,99 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             xmlns:model="clr-namespace:Avalonia.ExampleApp.Model;assembly=Avalonia.ExampleApp"
+             
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.TreeViewExample">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+      <RowDefinition/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+
+    <Grid Grid.Row="0">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+
+      <TextBlock Grid.Row="0" Text="Enable"/>
+      <TreeView Items="{Binding Artists}" Height="300"
+              Grid.Row="1"  >
+        <TreeView.DataTemplates>
+          <TreeDataTemplate ItemsSource="{Binding Albums}" DataType="{x:Type model:Artist}">
+            <TextBlock Text="{Binding Name}" />
+            <!--<TreeDataTemplate.ItemTemplate>
+              <DataTemplate>
+                
+              </DataTemplate>
+            </TreeDataTemplate.ItemTemplate>-->
+          </TreeDataTemplate>
+
+          <DataTemplate DataType="{x:Type model:Album}">
+            <TextBlock Text="{Binding Title}" />
+          </DataTemplate>
+
+        </TreeView.DataTemplates>
+      </TreeView>
+    </Grid>
+
+    <Grid Grid.Row="1">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+
+      <TextBlock Grid.Row="0" Text="Disabled"/>
+
+      <TreeView Items="{Binding Artists}" Height="300" x:Name="disableTree"
+            Grid.Row="1" IsEnabled="False" >
+        <TreeView.DataTemplates>
+          <TreeDataTemplate ItemsSource="{Binding Albums}" DataType="{x:Type model:Artist}">
+            <TextBlock Text="{Binding Name}" />
+            <!--<TreeDataTemplate.ItemTemplate>
+              <DataTemplate>
+                
+              </DataTemplate>
+            </TreeDataTemplate.ItemTemplate>-->
+          </TreeDataTemplate>
+
+          <DataTemplate DataType="{x:Type model:Album}">
+            <TextBlock Text="{Binding Title}" />
+          </DataTemplate>
+
+        </TreeView.DataTemplates>
+      </TreeView>
+    </Grid>
+
+    <Grid Grid.Row="2">
+      <TreeView Margin="2" IsEnabled="False">
+        <TreeViewItem Header="Item 1">
+          <TreeViewItem Header="Item 1.1">
+            <TreeViewItem Header="Item 1.1.1" />
+            <TreeViewItem Header="Item 1.1.2" />
+          </TreeViewItem>
+          <TreeViewItem Header="Item 1.2" />
+          <TreeViewItem Header="Item 1.3" />
+        </TreeViewItem>
+        <TreeViewItem Header="Item 22" />
+        <TreeViewItem Header="Item 3"
+                      IsExpanded="True"
+                      IsSelected="True">
+          <TreeViewItem Header="Item 3.1" IsExpanded="True">
+            <TreeViewItem Header="Item 3.1.1" IsExpanded="True" />
+            <TreeViewItem Header="Item 3.1.2" IsSelected="True" IsEnabled="False" />
+          </TreeViewItem>
+          <TreeViewItem Header="Item 3.2" />
+          <TreeViewItem Header="Item 3.3" />
+        </TreeViewItem>
+      </TreeView>
+
+    </Grid>
+
+
+  </Grid>
+</UserControl>

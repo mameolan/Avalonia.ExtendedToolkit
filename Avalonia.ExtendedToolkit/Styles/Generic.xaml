@@ -28,7 +28,9 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.StatusBar.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.TextBlock.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ToolTip.xaml"/>
-
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.TreeView.xaml"/>
+  
+  
   <!--Extended Controls-->
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/MetroWindow.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/MetroContentControl.xaml"/>
