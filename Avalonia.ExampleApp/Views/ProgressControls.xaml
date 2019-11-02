@@ -85,12 +85,21 @@
                                  Minimum="0"
                                  IsVisible="{Binding ElementName=IsVisibleCheckBox01, Path=IsChecked}"
                                  Value="{Binding ElementName=ProgressValueSlider01, Path=Value}" />
-        
-        
+
+
+        <Controls:MetroCheckBox Name="chkProgressRing" Content="Start Progress Ring (Not working right now)"
+                                IsEnabled="False"
+                                />
+        <Controls:ProgressRing
+          Width="40"
+          Height="40"
+          IsActive="{Binding ElementName=chkProgressRing, Path=IsChecked}"
+          IsLarge="{Binding ElementName=chkProgressRing, Path=IsChecked}"
+          />
         
       </StackPanel>
     </Grid>
-    
+
     
   
   </Grid>
