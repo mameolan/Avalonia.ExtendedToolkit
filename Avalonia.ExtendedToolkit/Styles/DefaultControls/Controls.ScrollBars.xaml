@@ -10,8 +10,7 @@
   </Styles.Resources>
 
   <Style Selector="RepeatButton.ScrollBarSmall">
-    <!--<Setter Property="Background" Value="Transparent" />-->
-    
+    <Setter Property="Background" Value="Transparent" />
     <Setter Property="Focusable" Value="False" />
     <Setter Property="Height" Value="{DynamicResource MahApps.Sizes.ScrollBar.VerticalRepeatButton.Height}" />
     <Setter Property="HorizontalAlignment" Value="Center" />
@@ -19,7 +18,7 @@
     <Setter Property="Margin" Value="1" />
     <Setter Property="VerticalAlignment" Value="Center" />
     <Setter Property="Width" Value="{DynamicResource MahApps.Sizes.ScrollBar.HorizontalRepeatButton.Width}" />
-    <Setter Property="Template">
+    <!--<Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
           <Grid Width="{TemplateBinding Width}"
@@ -29,7 +28,7 @@
                      Margin="{TemplateBinding Margin}"
                      Stretch="Uniform"
                      UseLayoutRounding="True"
-                     
+                     Opacity="1"
                      >
             
               <Path x:Name="Arrow"
@@ -39,17 +38,19 @@
                     VerticalAlignment="Center"
                     Data="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content, Mode=OneWay}"
                     Fill="{DynamicResource MahApps.Brushes.Gray3}"
-                    Stretch="Fill" />
+                    Stretch="Uniform"
+                    Stroke="{DynamicResource MahApps.Brushes.Gray3}"
+                    />
             
             </Viewbox>
           </Grid>
         </ControlTemplate>
       </Setter.Value>
-    </Setter>
+    </Setter>-->
   </Style>
 
   <Style Selector="RepeatButton.ScrollBarSmall:enabled /template/ Viewbox#ArrowBox">
-    <Setter  Property="Opacity" Value="0.5" />
+    <Setter  Property="Opacity" Value="0.9" />
   </Style>
 
   <Style Selector="RepeatButton.ScrollBarSmall:pointerover /template/ Path#Arrow">
@@ -136,10 +137,9 @@
           </Grid.ColumnDefinitions>
           <RepeatButton x:Name="PART_LineUpButton"
                         Grid.Column="0"
-                        Classes="ScrollBarSmall" >
-            <Path Data="M54,14.9765625L54,74.9765625 24,44.9765625 54,14.9765625z"
-                  Fill="{DynamicResource MahApps.Brushes.Gray3}"
-                  />
+                         >
+            <!--Classes="ScrollBarSmall"-->
+            <Path Data="M 4 0 L 4 8 L 0 4 Z" Stroke="{DynamicResource MahApps.Brushes.Gray3}"/>
           </RepeatButton>
           <!--Command="ScrollBar.LineLeftCommand"-->
           <Track x:Name="PART_Track"
@@ -152,7 +152,8 @@
                    Orientation="{TemplateBinding Orientation}">
             <Track.DecreaseButton>
               <RepeatButton x:Name="HorizontalLargeDecrease"
-                            Classes="ScrollBarLarge" />
+                             />
+              <!--Classes="ScrollBarLarge"-->
               <!--Command="ScrollBar.PageLeftCommand"-->
             </Track.DecreaseButton>
             <Track.Thumb>
@@ -160,16 +161,16 @@
             </Track.Thumb>
             <Track.IncreaseButton>
               <RepeatButton x:Name="HorizontalLargeIncrease"
-                            Classes="ScrollBarLarge" />
+                             />
+              <!--Classes="ScrollBarLarge"-->
               <!--Command="ScrollBar.PageRightCommand"-->
             </Track.IncreaseButton>
           </Track>
           <RepeatButton x:Name="PART_LineDownButton"
                         Grid.Column="2"
-                        Classes="ScrollBarSmall" >
-            <Path Data="M192,79.875L352,239.875 192,399.875 192,79.875z"
-                  Fill="{DynamicResource MahApps.Brushes.Gray3}"
-                  />
+                         >
+            <!--Classes="ScrollBarSmall"-->
+            <Path Data="M 0 0 L 4 4 L 0 8 Z"  />
           </RepeatButton>
           <!--Command="ScrollBar.LineRightCommand"-->
         </Grid>
@@ -180,24 +181,6 @@
   <Style Selector="ScrollBar:horizontal /template/ Grid#HorizontalRoot">
     <Setter  Property="Opacity" Value="0.5" />
   </Style>
-
-  <!--<Style Selector="ScrollBar /template/ Controls|MetroThumb#thumb">
-    <Setter Property="Background" Value="{DynamicResource ThemeControlHighBrush}"/>
-  </Style>
-
-  <Style Selector="ScrollBar /template/ Controls|MetroThumb#thumb:pointerover">
-    <Setter Property="Background" Value="{DynamicResource ThemeControlHighBrush}"/>
-  </Style>-->
-
-  <!--<Style Selector="ScrollBar:vertical /template/ Thumb#thumb">
-    <Setter Property="MinHeight" Value="{DynamicResource ScrollBarThickness}" />
-    <Setter Property="Width" Value="{DynamicResource ScrollBarThumbThickness}" />
-  </Style>
-
-  <Style Selector="ScrollBar:horizontal /template/ Thumb#thumb">
-    <Setter Property="MinWidth" Value="{DynamicResource ScrollBarThickness}" />
-    <Setter Property="Height" Value="{DynamicResource ScrollBarThumbThickness}" />
-  </Style>-->
 
   <Style Selector="ScrollBar:vertical">
     <Setter Property="Width" Value="{DynamicResource MahApps.Sizes.ScrollBar.Width}" />
@@ -211,12 +194,10 @@
           </Grid.RowDefinitions>
           <RepeatButton x:Name="PART_LineUpButton"
                         Grid.Row="0"
-                        Classes="ScrollBarSmall"
                         MinHeight="{DynamicResource ScrollBarThickness}"
                         >
-            <Path Data="M240.125,160L400.125,320 80.125,320 240.125,160z"
-                 Fill="Aqua"  Stretch="Fill"
-                  />
+            <!--Classes="ScrollBarSmall"-->
+            <Path Data="M 0 4 L 8 4 L 4 0 Z" />
           </RepeatButton>
           <!--Command="ScrollBar.LineUpCommand"-->
           <Track x:Name="PART_Track"
@@ -232,7 +213,8 @@
             </Track.Resources>
             <Track.DecreaseButton>
               <RepeatButton x:Name="VerticalLargeDecrease"
-                            Classes="ScrollBarLarge" />
+                             />
+              <!--Classes="ScrollBarLarge"-->
               <!--Command="ScrollBar.PageUpCommand"-->
             </Track.DecreaseButton>
             <Track.Thumb>
@@ -243,17 +225,18 @@
             </Track.Thumb>
             <Track.IncreaseButton>
               <RepeatButton x:Name="VerticalLargeIncrease"
-                            Classes="ScrollBarLarge" />
+                             />
+              <!--Classes="ScrollBarLarge"-->
+
               <!--Command="ScrollBar.PageDownCommand"-->
             </Track.IncreaseButton>
           </Track>
           <RepeatButton x:Name="PART_LineDownButton"
                         Grid.Row="2"
                         MinHeight="{DynamicResource ScrollBarThickness}"
-                        Classes="ScrollBarSmall" >
-            <Path Data="M80.125,192L400.125,192 240.125,352 80.125,192z"
-                  Fill="{DynamicResource MahApps.Brushes.Gray3}"
-                  />
+                         >
+            <!--Classes="ScrollBarSmall"-->
+            <Path Data="M 0 0 L 4 4 L 8 0 Z" />
           </RepeatButton>
           <!--Command="ScrollBar.LineDownCommand"-->
         </Grid>
@@ -265,15 +248,44 @@
     <Setter Property="Opacity" Value="0.5" />
   </Style>
 
+
+  <!---->
+  <Style Selector="ScrollBar /template/ Thumb#thumb">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Thumb}"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border Background="{TemplateBinding Background}"/>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="ScrollBar /template/ Thumb#thumb:pointerover">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray1}"/>
+  </Style>
+  <Style Selector="ScrollBar /template/ Thumb#thumb:pressed">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+  </Style>
+  <Style Selector="ScrollBar:horizontal /template/ Thumb#thumb">
+    <Setter Property="MinWidth" Value="{DynamicResource ScrollBarThickness}" />
+    <Setter Property="Height" Value="{DynamicResource ScrollBarThumbThickness}" />
+  </Style>
+  <Style Selector="ScrollBar:vertical">
+    <Setter Property="Width" Value="{DynamicResource ScrollBarThickness}" />
+  </Style>
+  <Style Selector="ScrollBar:vertical /template/ Thumb#thumb">
+    <Setter Property="MinHeight" Value="{DynamicResource ScrollBarThickness}" />
+    <Setter Property="Width" Value="{DynamicResource ScrollBarThumbThickness}" />
+  </Style>
+
   <Style Selector="ScrollBar /template/ RepeatButton > Path">
     <Setter Property="Fill" Value="{DynamicResource MahApps.Brushes.Gray3}" />
   </Style>
 
   <Style Selector="ScrollBar /template/ RepeatButton:pointerover > Path">
-    <Setter Property="Fill" Value="{DynamicResource ThemeAccentBrush}" />
+    <Setter Property="Fill" Value="{DynamicResource MahApps.Brushes.Gray1}" />
   </Style>
-  
-  
   
   
 </Styles>

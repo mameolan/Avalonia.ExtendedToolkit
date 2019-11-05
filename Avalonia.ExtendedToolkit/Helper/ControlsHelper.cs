@@ -16,7 +16,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             return element.GetValue(ContentCharacterCasingProperty);
         }
 
-        public static void SetContentCharacterCasing(IControl element, object value)
+        public static void SetContentCharacterCasing(IControl element, CharacterCasing value)
         {
             element.SetValue(ContentCharacterCasingProperty, value);
         }
@@ -35,7 +35,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         public static readonly AttachedProperty<IBrush> FocusBorderBrushProperty =
-            AvaloniaProperty.RegisterAttached<IControl, IBrush>("FocusBorderBrush", typeof(ControlsHelper), defaultValue:(SolidColorBrush)Brushes.Transparent);
+            AvaloniaProperty.RegisterAttached<IControl, IBrush>("FocusBorderBrush", typeof(ControlsHelper), defaultValue: (IBrush)Brushes.Transparent);
 
         public static IBrush GetFocusBorderBrush(IControl element)
         {
