@@ -428,6 +428,7 @@
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="HeaderBackground" Value="{DynamicResource MahApps.Brushes.Accent}" />
     <Setter Property="BorderThickness" Value="1" />
     <!--<Setter Property="CalendarButtonStyle" Value="{DynamicResource MahApps.Styles.CalendarButton}" />
     <Setter Property="CalendarDayButtonStyle" Value="{DynamicResource MahApps.Styles.CalendarDayButton}" />
