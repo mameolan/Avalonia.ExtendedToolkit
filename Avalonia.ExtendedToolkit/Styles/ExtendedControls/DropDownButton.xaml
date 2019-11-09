@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
     xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
-    xmlns:helper="clr-namespace:Avalonia.ExtendedToolkit.Helper;assembly=Avalonia.ExtendedToolkit"
     xmlns:System="clr-namespace:System;assembly=mscorlib">
 
   <Style Selector="Controls|DropDownButton">
@@ -53,7 +52,7 @@
                       Command="{TemplateBinding Command}"
                       CommandParameter="{TemplateBinding CommandParameter}"
                       Foreground="{TemplateBinding Foreground}"
-                      helper:StyledElementExtension.Style="{TemplateBinding ButtonStyle}">
+                      Controls:StyledElementHelper.Style="{TemplateBinding ButtonStyle}">
 
                 <!--
                     CommandTarget="{TemplateBinding CommandTarget}"
@@ -111,10 +110,12 @@
                                ItemsPanel="{TemplateBinding ItemsPanel}"
                                Items="{TemplateBinding Items}"
                                UseLayoutRounding="False" />
-                  --><!--Style="{TemplateBinding MenuStyle}"
+                  -->
+                  <!--Style="{TemplateBinding MenuStyle}"
                 IsOpen="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                helper:StyledElementExtension.Style="{TemplateBinding MenuStyle}"
-                --><!--
+                Controls:StyledElementHelper.Style="{TemplateBinding MenuStyle}"
+                -->
+                  <!--
                 </Button.ContextMenu>-->
               </Button>
             <!--MetroButton throws a stackoverflow exception-->

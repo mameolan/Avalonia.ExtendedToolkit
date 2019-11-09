@@ -15,7 +15,7 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataGridRow.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataGrid.xaml"/>
 
-
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Expander.xaml"/>
 
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ComboBox.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ListBox.xaml"/>

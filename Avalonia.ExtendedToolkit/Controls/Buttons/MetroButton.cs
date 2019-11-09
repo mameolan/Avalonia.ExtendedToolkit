@@ -46,5 +46,8 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public static readonly AvaloniaProperty FocusBorderThicknessProperty =
             AvaloniaProperty.Register<MetroButton, Thickness>(nameof(FocusBorderThickness));
+
+        
+
     }
 }

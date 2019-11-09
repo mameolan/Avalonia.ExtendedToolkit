@@ -1,0 +1,476 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:Converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+    xmlns:tk="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+  <Styles.Resources>
+    <Converters:ThicknessBindingConverter x:Key="ThicknessBindingConverter" />
+    <Thickness x:Key="ExpanderHeaderThemePadding">2</Thickness>
+    <sys:Double x:Key="ExpanderToggleButtonEllipseThemeSize">18</sys:Double>
+  </Styles.Resources>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Margin" Value="0" />
+    <Setter Property="Padding" Value="{DynamicResource ExpanderHeaderThemePadding}" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Right">
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  >
+            <Grid Margin="{TemplateBinding Padding}"
+                  Background="Transparent"
+                  >
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+              <LayoutTransformControl >
+                <LayoutTransformControl.LayoutTransform>
+                  <RotateTransform Angle="-90" />
+                </LayoutTransformControl.LayoutTransform>
+                <Grid Margin="1">
+                  <Ellipse x:Name="Circle"
+                           Width="{DynamicResource ExpanderToggleButtonEllipseThemeSize}"
+                           Height="{DynamicResource ExpanderToggleButtonEllipseThemeSize}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Stroke="{TemplateBinding Foreground}" />
+                  <Path x:Name="Arrow"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Data="M 1,1.5 L 4.5,5 L 8,1.5"
+                        Stroke="{TemplateBinding Foreground}"
+                        StrokeThickness="2" />
+                </Grid>
+              </LayoutTransformControl>
+              <Controls:ContentControlEx Grid.Row="1"
+                                         Margin="0 4 0 0"
+                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                         Content="{TemplateBinding Content}"
+                                         ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.ContentCharacterCasing)}"
+                                         ContentTemplate="{TemplateBinding ContentTemplate}"
+                                         RecognizesAccessKey="True"
+                                         />
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Right:checked /template/ Path#Arrow">
+    <Setter  Property="Data" Value="M 1,4.5  L 4.5,1  L 8,4.5" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Right:pointerover /template/ Path#Arrow">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Right:pointerover /template/ Ellipse#Circle">
+    <Setter  Property="Stroke" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Right:pressed /template/ Path#Arrow">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Right:pressed /template/ Ellipse#Circle">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
+    <Setter Property="StrokeThickness" Value="2" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Up">
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}">
+            <Grid Margin="{TemplateBinding Padding}"
+                  Background="Transparent"
+                  >
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+
+              <LayoutTransformControl>
+                <LayoutTransformControl.LayoutTransform>
+                  <RotateTransform Angle="180" />
+                </LayoutTransformControl.LayoutTransform>
+                <Grid Margin="1">
+                  <Ellipse x:Name="Circle"
+                           Width="{DynamicResource ExpanderToggleButtonEllipseThemeSize}"
+                           Height="{DynamicResource ExpanderToggleButtonEllipseThemeSize}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Stroke="{TemplateBinding Foreground}" />
+                  <Path x:Name="Arrow"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Data="M 1,1.5 L 4.5,5 L 8,1.5"
+                        Stroke="{TemplateBinding Foreground}"
+                        StrokeThickness="2" />
+                </Grid>
+              </LayoutTransformControl>
+              <Controls:ContentControlEx Grid.Column="1"
+                                         Margin="4 0 0 0"
+                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                         Content="{TemplateBinding Content}"
+                                         ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.ContentCharacterCasing)}"
+                                         ContentTemplate="{TemplateBinding ContentTemplate}"
+                                         RecognizesAccessKey="True"
+                                         />
+            </Grid>
+          </Border>
+          <!--<ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+              
+          
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+              
+              
+            </Trigger>
+          </ControlTemplate.Triggers>-->
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Up:checked /template/ Path#Arrow">
+    <Setter Property="Data" Value="M 1,4.5  L 4.5,1  L 8,4.5" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Up:pointerover /template/ Path#Arrow">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Up:pointerover /template/ Ellipse#Circle">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Up:pressed /template/ Path#Arrow">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Up:pressed /template/ Ellipse#Circle">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
+    <Setter Property="StrokeThickness" Value="2" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Left">
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}">
+            <Grid Margin="{TemplateBinding Padding}"
+                  Background="Transparent"
+                  >
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+              <LayoutTransformControl>
+                <LayoutTransformControl.LayoutTransform>
+                  <RotateTransform Angle="90" />
+                </LayoutTransformControl.LayoutTransform>
+
+                <Grid Margin="1">
+                  <Ellipse x:Name="Circle"
+                           Width="{DynamicResource ExpanderToggleButtonEllipseThemeSize}"
+                           Height="{DynamicResource ExpanderToggleButtonEllipseThemeSize}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Stroke="{TemplateBinding Foreground}" />
+                  <Path x:Name="Arrow"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Data="M 1,1.5 L 4.5,5 L 8,1.5"
+                        Stroke="{TemplateBinding Foreground}"
+                        StrokeThickness="2" />
+                </Grid>
+              </LayoutTransformControl>
+              <Controls:ContentControlEx Grid.Row="1"
+                                         Margin="0 4 0 0"
+                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                         Content="{TemplateBinding Content}"
+                                         ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.ContentCharacterCasing)}"
+                                         ContentTemplate="{TemplateBinding ContentTemplate}"
+                                         RecognizesAccessKey="True"
+                                         />
+            </Grid>
+
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Left:checked /template/ Path#Arrow">
+    <Setter Property="Data" Value="M 1,4.5  L 4.5,1  L 8,4.5" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Left:pointerover /template/ Path#Arrow">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Left:pointerover /template/ Ellipse#Circle">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Left:pressed /template/ Path#Arrow">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Left:pressed /template/ Ellipse#Circle">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
+    <Setter Property="StrokeThickness" Value="2" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Down">
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}">
+            <Grid Margin="{TemplateBinding Padding}"
+                  Background="Transparent"
+                  >
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <Grid Margin="1">
+                <Ellipse x:Name="Circle"
+                         Width="{DynamicResource ExpanderToggleButtonEllipseThemeSize}"
+                         Height="{DynamicResource ExpanderToggleButtonEllipseThemeSize}"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Stroke="{TemplateBinding Foreground}" />
+                <Path x:Name="Arrow"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Data="M 1,1.5 L 4.5,5 L 8,1.5"
+                      Stroke="{TemplateBinding Foreground}"
+                      StrokeThickness="2" />
+              </Grid>
+              <Controls:ContentControlEx Grid.Column="1"
+                                         Margin="4 0 0 0"
+                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                         Content="{TemplateBinding Content}"
+                                         ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.ContentCharacterCasing)}"
+                                         ContentTemplate="{TemplateBinding ContentTemplate}"
+                                         RecognizesAccessKey="True"
+                                         />
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Down:checked /template/ Path#Arrow">
+    <Setter  Property="Data" Value="M 1,4.5  L 4.5,1  L 8,4.5" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Down:pointerover /template/ Path#Arrow">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Down:pointerover /template/ Ellipse#Circle">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Down:pressed /template/ Path#Arrow">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
+  </Style>
+
+  <Style Selector="ToggleButton.ExpanderHeaderBase.Down:pointerover /template/ Ellipse#Circle">
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
+    <Setter Property="StrokeThickness" Value="2" />
+  </Style>
+
+  <Style Selector="Expander">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Controls:ControlsHelper.ContentCharacterCasing" Value="Upper" />
+    <Setter Property="Controls:ControlsHelper.HeaderFontSize" Value="{DynamicResource MahApps.Sizes.Font.Content}" />
+    <Setter Property="Controls:ExpanderHelper.HeaderDownClass" Value="ExpanderHeaderBase.Down" />
+    <Setter Property="Controls:ExpanderHelper.HeaderLeftClass" Value="ExpanderHeaderBase.Left" />
+    <Setter Property="Controls:ExpanderHelper.HeaderRightClass" Value="ExpanderHeaderBase.Right" />
+    <Setter Property="Controls:ExpanderHelper.HeaderUpClass" Value="ExpanderHeaderBase.Up" />
+    <Setter Property="Controls:GroupBoxHelper.HeaderForeground" Value="{x:Null}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="Padding" Value="4" />
+
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid>
+            <Rectangle x:Name="DisabledVisualElement"
+                       Fill="{DynamicResource MahApps.Brushes.Controls.Disabled}"
+                       IsHitTestVisible="false"
+                       Opacity="0" />
+            <DockPanel x:Name="ExpanderRoot">
+              <Border x:Name="HeaderSite"
+                      Background="{TemplateBinding Background}"
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      BorderThickness="{TemplateBinding BorderThickness}"
+                      DockPanel.Dock="Top"
+                      UseLayoutRounding="True">
+                <ToggleButton x:Name="ToggleSite"
+                              Controls:ControlsHelper.ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.ContentCharacterCasing)}"
+                              Content="{TemplateBinding Header}"
+                              ContentTemplate="{TemplateBinding HeaderTemplate}"
+                              FontFamily="{TemplateBinding Controls:ControlsHelper.HeaderFontFamily}"
+                              FontSize="{TemplateBinding Controls:ControlsHelper.HeaderFontSize}"
+                              FontWeight="{TemplateBinding Controls:ControlsHelper.HeaderFontWeight}"
+                              IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                              Controls:StyledElementHelper.Classes="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ExpanderHelper.HeaderDownClass)}"
+                              UseLayoutRounding="False">
+                  <ToggleButton.Foreground>
+                    <MultiBinding Converter="{x:Static Converters:BackgroundToForegroundConverter.Instance}">
+                      <Binding Mode="OneWay"
+                               Path="Background"
+                               RelativeSource="{RelativeSource TemplatedParent}" />
+                      <Binding Mode="OneWay"
+                               Path="(Controls:GroupBoxHelper.HeaderForeground)"
+                               RelativeSource="{RelativeSource TemplatedParent}" />
+                    </MultiBinding>
+                  </ToggleButton.Foreground>
+                </ToggleButton>
+              </Border>
+              <Border x:Name="ExpandSite"
+                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                      Background="Transparent"
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={StaticResource ThicknessBindingConverter}, ConverterParameter={x:Static tk:ThicknessSideType.Top}}"
+                      DockPanel.Dock="Bottom"
+                      Focusable="false"
+                      Opacity="0"
+                      UseLayoutRounding="True"
+                      IsVisible="False">
+                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                  Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                  Cursor="{TemplateBinding Cursor}"
+                                  UseLayoutRounding="False" />
+              </Border>
+            </DockPanel>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Expander:disabled /template/ Rectangle#DisabledVisualElement">
+    <Setter Property="Opacity" Value="0.7"/>
+  </Style>
+
+  <Style Selector="Expander:disabled /template/ DockPanel#ExpanderRoot">
+    <Setter Property="Opacity" Value="0.3"/>
+  </Style>
+
+  <Style Selector="Expander:expanded /template/ Border#ExpandSite">
+    <Setter Property="IsVisible" Value="True" />
+    <Style.Animations>
+      <!--Enter-->
+      <Animation Duration="0:0:0.25">
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Expander[IsExpanded=false] /template/ Border#ExpandSite">
+    <!--Exit-->
+    <Style.Animations>
+      <Animation Duration="0:0:0.25">
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="0"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+
+
+  <!--Right Start-->
+  <Style Selector="Expander[ExpandDirection=Right] /template/ Border#ExpandSite">
+    <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={StaticResource ThicknessBindingConverter}, ConverterParameter={x:Static tk:ThicknessSideType.Left}}" />
+    <Setter Property="DockPanel.Dock" Value="Right" />
+  </Style>
+
+  <Style Selector="Expander[ExpandDirection=Right] /template/ Border#HeaderSite">
+    <Setter Property="DockPanel.Dock" Value="Left" />
+  </Style>
+
+  <Style Selector="Expander[ExpandDirection=Right] /template/ ToggleButton#ToggleSite">
+    <Setter Property="Controls:StyledElementHelper.Classes" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ExpanderHelper.HeaderRightClass)}" />
+  </Style>
+
+  <!--Up start-->
+  <Style Selector="Expander[ExpandDirection=Up] /template/ Border#ExpandSite">
+    <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={StaticResource ThicknessBindingConverter}, ConverterParameter={x:Static tk:ThicknessSideType.Bottom}}" />
+    <Setter Property="DockPanel.Dock" Value="Top" />
+  </Style>
+
+  <Style Selector="Expander[ExpandDirection=Up] /template/ Border#HeaderSite">
+    <Setter Property="DockPanel.Dock" Value="Bottom" />
+  </Style>
+
+  <Style Selector="Expander[ExpandDirection=Up] /template/ ToggleButton#ToggleSite">
+    <Setter Property="Controls:StyledElementHelper.Classes" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ExpanderHelper.HeaderUpClass)}" />
+  </Style>
+
+  <!--Left Up-->
+  <Style Selector="Expander[ExpandDirection=Left] /template/ Border#ExpandSite">
+    <Setter Property="BorderThickness" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderThickness, Converter={StaticResource ThicknessBindingConverter}, ConverterParameter={x:Static tk:ThicknessSideType.Right}}" />
+    <Setter Property="DockPanel.Dock" Value="Left" />
+  </Style>
+
+  <Style Selector="Expander[ExpandDirection=Left] /template/ Border#HeaderSite">
+    <Setter Property="DockPanel.Dock" Value="Right" />
+  </Style>
+
+  <Style Selector="Expander[ExpandDirection=Up] /template/ ToggleButton#ToggleSite">
+    <Setter Property="Controls:StyledElementHelper.Classes" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ExpanderHelper.HeaderLeftClass)}" />
+  </Style>
+
+  <Style Selector="Expander:disabled">
+    <!--<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />-->
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.DarkIdealForegroundDisabled}" />
+  </Style>
+
+</Styles>
