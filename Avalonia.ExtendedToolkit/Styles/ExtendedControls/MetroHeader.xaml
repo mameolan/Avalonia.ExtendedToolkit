@@ -1,0 +1,46 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit">
+  
+  <Style Selector="Controls|MetroHeader">
+    <Setter Property="Controls:ControlsHelper.HeaderFontSize" Value="{DynamicResource MahApps.Sizes.Font.Normal}" />
+    <Setter Property="Controls:ControlsHelper.HeaderMargin" Value="0 0 0 2" />
+    <Setter Property="Controls:GroupBoxHelper.HeaderForeground" Value="{Binding RelativeSource={RelativeSource Self}, Path=Foreground, Mode=OneWay}" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Controls:ContentControlEx x:Name="PART_Header"
+                                       Grid.Row="0"
+                                       Margin="{TemplateBinding Controls:ControlsHelper.HeaderMargin}"
+                                       Content="{TemplateBinding Header}"
+                                       ContentCharacterCasing="{TemplateBinding Controls:ControlsHelper.ContentCharacterCasing}"
+                                       ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                       FontFamily="{TemplateBinding Controls:ControlsHelper.HeaderFontFamily}"
+                                       FontSize="{TemplateBinding Controls:ControlsHelper.HeaderFontSize}"
+                                       FontWeight="{TemplateBinding Controls:ControlsHelper.HeaderFontWeight}"
+                                       Foreground="{TemplateBinding Controls:GroupBoxHelper.HeaderForeground}"
+                                       RecognizesAccessKey="True"
+                                       />
+            <ContentPresenter x:Name="PART_Content"
+                              Grid.Row="1"
+                              Margin="{TemplateBinding Padding}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Content="{TemplateBinding Content}"
+                              />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+</Styles>

@@ -5,15 +5,61 @@
              xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.GroupBoxView">
-  <Controls:MetroGroupBox Header="Metro Group Box">
-    <Controls:MetroGroupBox Header="Inner Group Box">
-      <Controls:MetroGroupBox Header="Inner Group Box">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+
+    <Grid.Styles>
+      <Style Selector="Controls|MetroHeader.Special">
+        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+        <Setter Property="HeaderTemplate">
+          <Setter.Value>
+            <Template>
+              <StackPanel Orientation="Vertical" UseLayoutRounding="True">
+                <TextBlock Margin="0 4 0 4" Text="{Binding}" />
+                <Separator Background="AliceBlue" />
+              </StackPanel>
+            </Template>
+          </Setter.Value>
+        </Setter>
+      </Style>
+    </Grid.Styles>
+    
+    
+    <StackPanel Grid.Row="0"
+                        Grid.Column="0"
+                        VerticalAlignment="Top"
+                Margin="10"
+                >
+      <TextBlock Text="Metro GroupBox" Classes="DescriptionHeaderStyle" />
+
+      <Controls:MetroGroupBox Grid.Row="0" Header="Metro Group Box">
         <Controls:MetroGroupBox Header="Inner Group Box">
           <Controls:MetroGroupBox Header="Inner Group Box">
-            <TextBlock Classes="DescriptionHeaderStyle" Text="Hallo GroupBox"/>
+            <Controls:MetroGroupBox Header="Inner Group Box">
+              <Controls:MetroGroupBox Header="Inner Group Box">
+                <TextBlock Classes="DescriptionHeaderStyle" Text="Hallo GroupBox"/>
+              </Controls:MetroGroupBox>
+            </Controls:MetroGroupBox>
           </Controls:MetroGroupBox>
         </Controls:MetroGroupBox>
       </Controls:MetroGroupBox>
-    </Controls:MetroGroupBox>
-  </Controls:MetroGroupBox>
+    </StackPanel>
+
+    <StackPanel Grid.Row="0"
+                        Grid.Column="1"
+                        VerticalAlignment="Top"
+                Margin="10"
+                >
+      <TextBlock Text="Metro Header" Classes="DescriptionHeaderStyle" />
+
+      <Controls:MetroHeader Classes="Special" Header="Metro Header Special">
+        <TextBox Text="Content"/>
+      </Controls:MetroHeader>
+    </StackPanel>
+
+  </Grid>
+
 </UserControl>
