@@ -152,7 +152,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly AvaloniaProperty SaveWindowPositionProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(SaveWindowPosition));
 
-        
+
 
         public IBrush TitleForeground
         {
@@ -478,7 +478,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OverrideDefaultWindowCommandsBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OverrideDefaultWindowCommandsBrushProperty=
+        public static readonly AvaloniaProperty OverrideDefaultWindowCommandsBrushProperty =
             AvaloniaProperty.Register<MetroWindow, SolidColorBrush>(nameof(OverrideDefaultWindowCommandsBrush));
 
         public bool IsWindowDraggable
@@ -539,35 +539,35 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             if (_topHorizontalGrip != null && _topHorizontalGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.North,e);
+                BeginResizeDrag(WindowEdge.North, e);
             }
             else if (_bottomHorizontalGrip != null && _bottomHorizontalGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.South,e);
+                BeginResizeDrag(WindowEdge.South, e);
             }
             else if (_leftVerticalGrip != null && _leftVerticalGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.West,e);
+                BeginResizeDrag(WindowEdge.West, e);
             }
             else if (_rightVerticalGrip != null && _rightVerticalGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.East,e);
+                BeginResizeDrag(WindowEdge.East, e);
             }
             else if (_topLeftGrip != null && _topLeftGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.NorthWest,e);
+                BeginResizeDrag(WindowEdge.NorthWest, e);
             }
             else if (_bottomLeftGrip != null && _bottomLeftGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.SouthWest,e);
+                BeginResizeDrag(WindowEdge.SouthWest, e);
             }
             else if (_topRightGrip != null && _topRightGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.NorthEast,e);
+                BeginResizeDrag(WindowEdge.NorthEast, e);
             }
             else if (_bottomRightGrip != null && _bottomRightGrip.IsPointerOver)
             {
-                BeginResizeDrag(WindowEdge.SouthEast,e);
+                BeginResizeDrag(WindowEdge.SouthEast, e);
             }
             else if (_titleBar != null && _titleBar.IsPointerOver)
             {
@@ -603,33 +603,36 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public MetroWindow()
         {
-            ShowIconOnTitleBarProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnShowIconOnTitleBarPropertyChangedCallback(o, e));
-            ShowTitleBarProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnShowTitleBarPropertyChangedCallback(o, e));
-            TitleBarHeightProperty.Changed.AddClassHandler<MetroWindow>((o, e) => TitleBarHeightPropertyChangedCallback(o, e));
-            //TitleCharacterCasingProperty.Changed.AddClassHandler<MetroWindow>((o, e) => TitleCharacterCasingChangedCallback(o, e));
-            TitleAlignmentProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnTitleAlignmentChanged(o, e));
+            if (Design.IsDesignMode == false)
+            {
+                ShowIconOnTitleBarProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnShowIconOnTitleBarPropertyChangedCallback(o, e));
+                ShowTitleBarProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnShowTitleBarPropertyChangedCallback(o, e));
+                TitleBarHeightProperty.Changed.AddClassHandler<MetroWindow>((o, e) => TitleBarHeightPropertyChangedCallback(o, e));
+                //TitleCharacterCasingProperty.Changed.AddClassHandler<MetroWindow>((o, e) => TitleCharacterCasingChangedCallback(o, e));
+                TitleAlignmentProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnTitleAlignmentChanged(o, e));
 
-            FlyoutsProperty.Changed.AddClassHandler<MetroWindow>((o, e) => UpdateLogicalChilds(o, e));
-            LeftWindowCommandsProperty.Changed.AddClassHandler<MetroWindow>((o, e) => UpdateLogicalChilds(o, e));
-            RightWindowCommandsProperty.Changed.AddClassHandler<MetroWindow>((o, e) => UpdateLogicalChilds(o, e));
-            WindowButtonCommandsProperty.Changed.AddClassHandler<MetroWindow>((o, e) => UpdateLogicalChilds(o, e));
-            LeftWindowCommandsOverlayBehaviorProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnShowTitleBarPropertyChangedCallback(o, e));
-            RightWindowCommandsOverlayBehaviorProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnShowTitleBarPropertyChangedCallback(o, e));
-            WindowButtonCommandsOverlayBehaviorProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnShowTitleBarPropertyChangedCallback(o, e));
-            IconOverlayBehaviorProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnShowTitleBarPropertyChangedCallback(o, e));
-            UseNoneWindowStyleProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnUseNoneWindowStylePropertyChangedCallback(o, e));
+                FlyoutsProperty.Changed.AddClassHandler<MetroWindow>((o, e) => UpdateLogicalChilds(o, e));
+                LeftWindowCommandsProperty.Changed.AddClassHandler<MetroWindow>((o, e) => UpdateLogicalChilds(o, e));
+                RightWindowCommandsProperty.Changed.AddClassHandler<MetroWindow>((o, e) => UpdateLogicalChilds(o, e));
+                WindowButtonCommandsProperty.Changed.AddClassHandler<MetroWindow>((o, e) => UpdateLogicalChilds(o, e));
+                LeftWindowCommandsOverlayBehaviorProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnShowTitleBarPropertyChangedCallback(o, e));
+                RightWindowCommandsOverlayBehaviorProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnShowTitleBarPropertyChangedCallback(o, e));
+                WindowButtonCommandsOverlayBehaviorProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnShowTitleBarPropertyChangedCallback(o, e));
+                IconOverlayBehaviorProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnShowTitleBarPropertyChangedCallback(o, e));
+                UseNoneWindowStyleProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnUseNoneWindowStylePropertyChangedCallback(o, e));
 
-            WidthProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnWidthChanged(o, e));
-            HeightProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnHeightChanged(o, e));
+                WidthProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnWidthChanged(o, e));
+                HeightProperty.Changed.AddClassHandler<MetroWindow>((o, e) => OnHeightChanged(o, e));
+                ThemeManager.Instance.IsThemeChanged += ThemeManagerOnIsThemeChanged;
 
+                SetVisibiltyForAllTitleElements();
+            }
             if (Flyouts == null)
             {
                 Flyouts = new FlyoutsControl();
             }
 
-            ThemeManager.Instance.IsThemeChanged += ThemeManagerOnIsThemeChanged;
 
-            SetVisibiltyForAllTitleElements();
         }
 
         private void OnWidthChanged(MetroWindow o, AvaloniaPropertyChangedEventArgs e)
@@ -992,8 +995,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 {
                     window.BeginMoveDrag(null);
                 }
-                catch 
-                { 
+                catch
+                {
                     //little hack so I do not need create Pointerpressed event
                     //which has a huge constructor
                 }
@@ -1030,17 +1033,17 @@ namespace Avalonia.ExtendedToolkit.Controls
                 //window.StateChanged += windowOnStateChanged;
             }
 
-//            var criticalHandle = window.CriticalHandle;
-//#pragma warning disable 618
-//            // these lines are from DragMove
-//            // NativeMethods.SendMessage(criticalHandle, WM.SYSCOMMAND, (IntPtr)SC.MOUSEMOVE, IntPtr.Zero);
-//            // NativeMethods.SendMessage(criticalHandle, WM.LBUTTONUP, IntPtr.Zero, IntPtr.Zero);
+            //            var criticalHandle = window.CriticalHandle;
+            //#pragma warning disable 618
+            //            // these lines are from DragMove
+            //            // NativeMethods.SendMessage(criticalHandle, WM.SYSCOMMAND, (IntPtr)SC.MOUSEMOVE, IntPtr.Zero);
+            //            // NativeMethods.SendMessage(criticalHandle, WM.LBUTTONUP, IntPtr.Zero, IntPtr.Zero);
 
-//            var wpfPoint = window.PointToScreen(Mouse.GetPosition(window));
-//            var x = (int)wpfPoint.X;
-//            var y = (int)wpfPoint.Y;
-//            NativeMethods.SendMessage(criticalHandle, WM.NCLBUTTONDOWN, (IntPtr)HT.CAPTION, new IntPtr(x | (y << 16)));
-//#pragma warning restore 618
+            //            var wpfPoint = window.PointToScreen(Mouse.GetPosition(window));
+            //            var x = (int)wpfPoint.X;
+            //            var y = (int)wpfPoint.Y;
+            //            NativeMethods.SendMessage(criticalHandle, WM.NCLBUTTONDOWN, (IntPtr)HT.CAPTION, new IntPtr(x | (y << 16)));
+            //#pragma warning restore 618
         }
 
         /// <inheritdoc/>
@@ -1073,7 +1076,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             _titleBar = e.NameScope.Find<ContentControl>(PART_TitleBar);
             _titleBarBackground = e.NameScope.Find<Rectangle>(PART_WindowTitleBackground);
             _windowTitleThumb = e.NameScope.Find<Thumb>(PART_WindowTitleThumb);
-            _flyoutModalDragMoveThumb= e.NameScope.Find<Thumb>(PART_FlyoutModalDragMoveThumb);
+            _flyoutModalDragMoveThumb = e.NameScope.Find<Thumb>(PART_FlyoutModalDragMoveThumb);
             SetVisibiltyForAllTitleElements();
 
             var metroContentControl = e.NameScope.Find<MetroContentControl>(PART_Content);

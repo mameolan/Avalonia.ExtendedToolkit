@@ -32,7 +32,6 @@
     <None Remove="Commanding\**" />
   </ItemGroup>
 
-
   <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="Styles\Themes\GeneratorParameters.json" />
@@ -46,7 +45,7 @@
     <Folder Include="Behaviours\" />
   </ItemGroup>
 
-
+  
   <Target Name="GenerateXamlFilesInner">
     <PropertyGroup>
       <XamlColorSchemeGeneratorVersion Condition="'%(PackageReference.Identity)' == 'XamlColorSchemeGenerator'">%(PackageReference.Version)</XamlColorSchemeGeneratorVersion>
