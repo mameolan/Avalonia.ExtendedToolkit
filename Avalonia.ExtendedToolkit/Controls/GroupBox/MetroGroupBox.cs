@@ -1,4 +1,6 @@
-﻿using Avalonia.Media;
+﻿using Avalonia.Controlz.Controls;
+using Avalonia.Media;
+
 using System;
 using System.Collections.Generic;
 using System.Text;

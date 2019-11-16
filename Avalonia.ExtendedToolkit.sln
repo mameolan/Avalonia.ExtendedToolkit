@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{1AB42F
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avalonia.Controlz", "Avalonia.Controlz\Avalonia.Controlz.csproj", "{156DBE13-42B7-4768-B8A2-64B7FC5DA99B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{4FE7526F-A6D1-4C15-BA98-3B11238F29D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FE7526F-A6D1-4C15-BA98-3B11238F29D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FE7526F-A6D1-4C15-BA98-3B11238F29D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{156DBE13-42B7-4768-B8A2-64B7FC5DA99B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{156DBE13-42B7-4768-B8A2-64B7FC5DA99B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{156DBE13-42B7-4768-B8A2-64B7FC5DA99B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{156DBE13-42B7-4768-B8A2-64B7FC5DA99B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

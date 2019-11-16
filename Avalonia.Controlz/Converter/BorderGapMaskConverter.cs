@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace Avalonia.ExtendedToolkit.Converters
+namespace Avalonia.Controlz.Converters
 {
     public class BorderGapMaskConverter : IMultiValueConverter
     {

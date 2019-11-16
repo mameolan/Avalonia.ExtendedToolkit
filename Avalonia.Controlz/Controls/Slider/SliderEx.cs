@@ -1,0 +1,720 @@
+﻿using Avalonia.Collections;
+using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
+using Avalonia.Controlz;
+using Avalonia.Input;
+using Avalonia.Interactivity;
+using Avalonia.Layout;
+using ReactiveUI;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows.Input;
+
+namespace Avalonia.Controlz.Controls
+{
+    public class SliderEx : RangeBaseEx
+    {
+        private const string TrackName = "PART_Track";
+        private const string SelectionRangeElementName = "PART_SelectionRange";
+
+
+        internal Track Track
+        { get; set; }
+
+        public AvaloniaObject SelectionRangeElement { get; set; }
+
+
+        public Orientation Orientation
+        {
+            get { return (Orientation)GetValue(OrientationProperty); }
+            set { SetValue(OrientationProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty OrientationProperty =
+            AvaloniaProperty.Register<SliderEx, Orientation>(nameof(Orientation), defaultValue: Orientation.Horizontal);
+
+
+
+        public bool IsDirectionReversed
+        {
+            get { return (bool)GetValue(IsDirectionReversedProperty); }
+            set { SetValue(IsDirectionReversedProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty IsDirectionReversedProperty =
+            AvaloniaProperty.Register<SliderEx, bool>(nameof(IsDirectionReversed));
+
+
+
+
+        public int Delay
+        {
+            get { return (int)GetValue(DelayProperty); }
+            set { SetValue(DelayProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty DelayProperty =
+            RepeatButton.DelayProperty.AddOwner<SliderEx>();
+        //AvaloniaProperty.Register<SliderEx, int>(nameof(Delay));
+
+
+
+        public int Interval
+        {
+            get { return (int)GetValue(IntervalProperty); }
+            set { SetValue(IntervalProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty IntervalProperty =
+            RepeatButton.IntervalProperty.AddOwner<SliderEx>();
+        //AvaloniaProperty.Register<SliderEx, int>(nameof(Interval));
+
+
+
+        public AutoToolTipPlacement AutoToolTipPlacement
+        {
+            get { return (AutoToolTipPlacement)GetValue(AutoToolTipPlacementProperty); }
+            set { SetValue(AutoToolTipPlacementProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty AutoToolTipPlacementProperty =
+           AvaloniaProperty.Register<SliderEx, AutoToolTipPlacement>(nameof(AutoToolTipPlacement)
+               , defaultValue: AutoToolTipPlacement.None
+
+               );
+
+
+
+        public int AutoToolTipPrecision
+        {
+            get { return (int)GetValue(AutoToolTipPrecisionProperty); }
+            set { SetValue(AutoToolTipPrecisionProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty AutoToolTipPrecisionProperty =
+            AvaloniaProperty.Register<SliderEx, int>(nameof(AutoToolTipPrecision), defaultValue: 0);
+
+
+        public bool IsSnapToTickEnabled
+        {
+            get { return (bool)GetValue(IsSnapToTickEnabledProperty); }
+            set { SetValue(IsSnapToTickEnabledProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty IsSnapToTickEnabledProperty =
+            AvaloniaProperty.Register<SliderEx, bool>(nameof(IsSnapToTickEnabled));
+
+
+
+        public TickPlacement TickPlacement
+        {
+            get { return (TickPlacement)GetValue(TickPlacementProperty); }
+            set { SetValue(TickPlacementProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty TickPlacementProperty =
+            AvaloniaProperty.Register<SliderEx, TickPlacement>(nameof(TickPlacement)
+                , defaultValue: TickPlacement.None);
+
+
+
+
+        public double TickFrequency
+        {
+            get { return (double)GetValue(TickFrequencyProperty); }
+            set { SetValue(TickFrequencyProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty TickFrequencyProperty =
+            AvaloniaProperty.Register<SliderEx, double>(nameof(TickFrequency), defaultValue: 1.0);
+
+
+
+        public DoubleCollection Ticks
+        {
+            get { return (DoubleCollection)GetValue(TicksProperty); }
+            set { SetValue(TicksProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty TicksProperty =
+            AvaloniaProperty.Register<SliderEx, DoubleCollection>(nameof(Ticks), defaultValue: DoubleCollection.Empty());
+
+
+
+        public bool IsSelectionRangeEnabled
+        {
+            get { return (bool)GetValue(IsSelectionRangeEnabledProperty); }
+            set { SetValue(IsSelectionRangeEnabledProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty IsSelectionRangeEnabledProperty =
+            AvaloniaProperty.Register<SliderEx, bool>(nameof(IsSelectionRangeEnabled));
+
+
+
+        public double SelectionStart
+        {
+            get { return (double)GetValue(SelectionStartProperty); }
+            set { SetValue(SelectionStartProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty SelectionStartProperty =
+            AvaloniaProperty.Register<SliderEx, double>(nameof(SelectionStart)
+                , defaultValue: 0.0d, defaultBindingMode: Data.BindingMode.TwoWay);
+
+
+
+
+        public double SelectionEnd
+        {
+            get { return (double)GetValue(SelectionEndProperty); }
+            set { SetValue(SelectionEndProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty SelectionEndProperty =
+            AvaloniaProperty.Register<SliderEx, double>(nameof(SelectionEnd)
+                , defaultValue: 0.0d, defaultBindingMode: Data.BindingMode.TwoWay);
+
+
+
+        public bool IsMoveToPointEnabled
+        {
+            get { return (bool)GetValue(IsMoveToPointEnabledProperty); }
+            set { SetValue(IsMoveToPointEnabledProperty, value); }
+        }
+
+
+        public static readonly AvaloniaProperty IsMoveToPointEnabledProperty =
+            AvaloniaProperty.Register<SliderEx, bool>(nameof(IsMoveToPointEnabled));
+
+        public SliderEx()
+        {
+            InitializeCommands();
+
+            Minimum = 0.0d;
+            Maximum = 10.0d;
+            Value = 0;
+
+            Thumb.DragStartedEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragStarted(o, e));
+            Thumb.DragDeltaEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragDelta(o, e));
+            Thumb.DragCompletedEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragCompleted(o, e));
+
+            SelectionStartProperty.Changed.AddClassHandler<SliderEx>((o, e) => OnSelectionStartChanged(o, e));
+            SelectionEndProperty.Changed.AddClassHandler<SliderEx>((o, e) => OnSelectionEndChanged(o, e));
+            ValueProperty.Changed.AddClassHandler<SliderEx>((o, e) => OnValueChanged(o, e));
+
+        }
+
+        private void OnValueChanged(SliderEx o, AvaloniaPropertyChangedEventArgs e)
+        {
+            UpdateSelectionRangeElementPositionAndSize();
+        }
+
+        private void OnSelectionEndChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
+        {
+            slider.UpdateSelectionRangeElementPositionAndSize();
+        }
+
+        private void OnSelectionStartChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
+        {
+            double oldValue = (double)e.OldValue;
+            double newValue = (double)e.NewValue;
+            slider.UpdateSelectionRangeElementPositionAndSize();
+        }
+
+        #region Commands
+        private ICommand IncreaseLargeCommand { get; set; }
+        private ICommand IncreaseSmallCommand { get; set; }
+        private ICommand DecreaseLargeCommand { get; set; }
+        private ICommand DecreaseSmallCommand { get; set; }
+        private ICommand MinimizeValueCommand { get; set; }
+        private ICommand MaximizeValueCommand { get; set; }
+
+        void InitializeCommands()
+        {
+            IncreaseLargeCommand = ReactiveCommand.Create<object>(x => OnIncreaseLargeCommand(x), outputScheduler: RxApp.MainThreadScheduler);
+            IncreaseSmallCommand = ReactiveCommand.Create<object>(x => OnIncreaseSmallCommand(x), outputScheduler: RxApp.MainThreadScheduler);
+
+            DecreaseLargeCommand = ReactiveCommand.Create<object>(x => OnDecreaseLargeCommand(x), outputScheduler: RxApp.MainThreadScheduler);
+            DecreaseSmallCommand = ReactiveCommand.Create<object>(x => OnDecreaseSmallCommand(x), outputScheduler: RxApp.MainThreadScheduler);
+
+            MinimizeValueCommand = ReactiveCommand.Create<object>(x => OnMinimizeValueCommand(x), outputScheduler: RxApp.MainThreadScheduler);
+            MaximizeValueCommand = ReactiveCommand.Create<object>(x => OnMaximizeValueCommand(x), outputScheduler: RxApp.MainThreadScheduler);
+        }
+
+        private void OnMinimizeValueCommand(object x)
+        {
+            OnMinimizeValue();
+        }
+
+        private void OnMaximizeValueCommand(object x)
+        {
+            OnMaximizeValue();
+        }
+
+
+        private void OnDecreaseSmallCommand(object x)
+        {
+            OnDecreaseSmall();
+        }
+
+        private void OnIncreaseSmallCommand(object x)
+        {
+            OnIncreaseSmall();
+        }
+
+        private void OnDecreaseLargeCommand(object x)
+        {
+            OnDecreaseLarge();
+        }
+
+        private void OnIncreaseLargeCommand(object x)
+        {
+            OnIncreaseLarge();
+        }
+
+        #endregion
+
+        protected override void OnPointerPressed(PointerPressedEventArgs e)
+        {
+            if (IsMoveToPointEnabled && Track != null &&
+                Track.Thumb != null && Track.Thumb.IsPointerOver == false)
+            {
+                Point pt = e.GetPosition(Track);
+                double newValue = Track.ValueFromPoint(pt);
+                if (DoubleUtil.IsDoubleFinite(newValue))
+                {
+                    UpdateValue(newValue);
+                }
+
+                e.Handled = true;
+            }
+
+            if(e.MouseButton== MouseButton.Left
+                )
+            {
+                _OnMouseLeftButtonDown(e);
+            }
+
+
+            base.OnPointerPressed(e);
+        }
+
+        
+
+        private void UpdateValue(double value)
+        {
+            double snappedValue = SnapToTick(value);
+
+            if (snappedValue != Value)
+            {
+                this.SetValue(ValueProperty, Math.Max(this.Minimum, Math.Min(this.Maximum, snappedValue)));
+            }
+        }
+
+        private void OnThumbDragCompleted(SliderEx sliderEx, VectorEventArgs args)
+        {
+            sliderEx.OnThumbDragCompleted(args);
+        }
+
+        private void OnThumbDragDelta(SliderEx sliderEx, VectorEventArgs args)
+        {
+            sliderEx.OnThumbDragDelta(args);
+        }
+
+        private void OnThumbDragStarted(SliderEx sliderEx, VectorEventArgs args)
+        {
+            sliderEx.OnThumbDragStarted(args);
+        }
+
+        protected virtual void OnThumbDragStarted(VectorEventArgs args)
+        {
+            // Show AutoToolTip if needed.
+            Thumb thumb = args.Source as Thumb;
+
+            if ((thumb == null) || (this.AutoToolTipPlacement == AutoToolTipPlacement.None))
+            {
+                return;
+            }
+
+            // Save original tooltip
+            //_thumbOriginalToolTip = thumb.ToolTip;
+            //if (_autoToolTip == null)
+            //{
+            //    _autoToolTip = new ToolTip();
+            //    _autoToolTip.Placement = PlacementMode.Custom;
+            //    _autoToolTip.PlacementTarget = thumb;
+            //    _autoToolTip.CustomPopupPlacementCallback = new CustomPopupPlacementCallback(this.AutoToolTipCustomPlacementCallback);
+            //}
+
+            //thumb.ToolTip = _autoToolTip;
+            //_autoToolTip.Content = GetAutoToolTipNumber();
+            //_autoToolTip.IsOpen = true;
+            //((Popup)_autoToolTip.Parent).Reposition();
+
+        }
+
+        protected virtual void OnThumbDragDelta(VectorEventArgs e)
+        {
+            Thumb thumb = e.Source as Thumb;
+            // Convert to Track's co-ordinate
+            if (Track != null && thumb == Track.Thumb)
+            {
+                double newValue = Value + Track.ValueFromDistance(e.Vector.X, e.Vector.Y);
+                if (DoubleUtil.IsDoubleFinite(newValue))
+                {
+                    UpdateValue(newValue);
+                }
+
+                // Show AutoToolTip if needed
+                //if (this.AutoToolTipPlacement != AutoToolTipPlacement.None)
+                //{
+                //    if (_autoToolTip == null)
+                //    {
+                //        _autoToolTip = new ToolTip();
+                //    }
+
+                //    _autoToolTip.Content = GetAutoToolTipNumber();
+
+                //    if (thumb.ToolTip != _autoToolTip)
+                //    {
+                //        thumb.ToolTip = _autoToolTip;
+                //    }
+
+                //    if (!_autoToolTip.IsOpen)
+                //    {
+                //        _autoToolTip.IsOpen = true;
+                //    }
+                //    ((Popup)_autoToolTip.Parent).Reposition();
+                //}
+            }
+
+
+
+        }
+
+        protected virtual void OnThumbDragCompleted(VectorEventArgs e)
+        {
+            // Show AutoToolTip if needed.
+            Thumb thumb = e.Source as Thumb;
+
+            if ((thumb == null) || (this.AutoToolTipPlacement == AutoToolTipPlacement.None))
+            {
+                return;
+            }
+
+            //if (_autoToolTip != null)
+            //{
+            //    _autoToolTip.IsOpen = false;
+            //}
+
+            //thumb.ToolTip = _thumbOriginalToolTip;
+        }
+
+        /// <summary>
+        /// Resize and resposition the SelectionRangeElement.
+        /// </summary>
+        private void UpdateSelectionRangeElementPositionAndSize()
+        {
+            Size trackSize = new Size(0d, 0d);
+            Size thumbSize = new Size(0d, 0d);
+
+            if (Track == null || DoubleUtil.LessThan(SelectionEnd, SelectionStart))
+            {
+                return;
+            }
+
+            trackSize = Track.DesiredSize;//Track.RenderSize;
+            thumbSize = (Track.Thumb != null) ? 
+                /*Track.Thumb.RenderSize*/ 
+                Track.Thumb.DesiredSize: new Size(0d, 0d);
+
+            double range = Maximum - Minimum;
+            double valueToSize;
+
+            Layoutable rangeElement = this.SelectionRangeElement as Layoutable;
+
+            if (rangeElement == null)
+            {
+                return;
+            }
+            
+            if (Orientation == Orientation.Horizontal)
+            {
+                // Calculate part size for HorizontalSlider
+                if (DoubleUtil.AreClose(range, 0d) || (DoubleUtil.AreClose(trackSize.Width, thumbSize.Width)))
+                {
+                    valueToSize = 0d;
+                }
+                else
+                {
+                    valueToSize = Math.Max(0.0, (trackSize.Width - thumbSize.Width) / range);
+                }
+
+                rangeElement.Width = ((SelectionEnd - SelectionStart) * valueToSize);
+                if (IsDirectionReversed)
+                {
+                    Canvas.SetLeft(rangeElement, (thumbSize.Width * 0.5) + Math.Max(Maximum - SelectionEnd, 0) * valueToSize);
+                }
+                else
+                {
+                    Canvas.SetLeft(rangeElement, (thumbSize.Width * 0.5) + Math.Max(SelectionStart - Minimum, 0) * valueToSize);
+                }
+            }
+            else
+            {
+                // Calculate part size for VerticalSlider
+                if (DoubleUtil.AreClose(range, 0d) || (DoubleUtil.AreClose(trackSize.Height, thumbSize.Height)))
+                {
+                    valueToSize = 0d;
+                }
+                else
+                {
+                    valueToSize = Math.Max(0.0, (trackSize.Height - thumbSize.Height) / range);
+                }
+
+                rangeElement.Height = ((SelectionEnd - SelectionStart) * valueToSize);
+                if (IsDirectionReversed)
+                {
+                    Canvas.SetTop(rangeElement, (thumbSize.Height * 0.5) + Math.Max(SelectionStart - Minimum, 0) * valueToSize);
+                }
+                else
+                {
+                    Canvas.SetTop(rangeElement, (thumbSize.Height * 0.5) + Math.Max(Maximum - SelectionEnd, 0) * valueToSize);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Snap the input 'value' to the closest tick.
+        /// If input value is exactly in the middle of 2 surrounding ticks, it will be snapped to the tick that has greater value.
+        /// </summary>
+        /// <param name="value">Value that want to snap to closest Tick.</param>
+        /// <returns>Snapped value if IsSnapToTickEnabled is 'true'. Otherwise, returns un-snaped value.</returns>
+        private double SnapToTick(double value)
+        {
+            if (IsSnapToTickEnabled)
+            {
+                double previous = Minimum;
+                double next = Maximum;
+
+                // This property is rarely set so let's try to avoid the GetValue
+                // caching of the mutable default value
+                DoubleCollection ticks = null;
+                bool hasModifiers;
+                
+                if (GetValue(TicksProperty)
+                    != null)
+                {
+                    ticks = Ticks;
+                }
+
+                // If ticks collection is available, use it.
+                // Note that ticks may be unsorted.
+                if ((ticks != null) && (ticks.Count > 0))
+                {
+                    for (int i = 0; i < ticks.Count; i++)
+                    {
+                        double tick = ticks[i];
+                        if (DoubleUtil.AreClose(tick, value))
+                        {
+                            return value;
+                        }
+
+                        if (DoubleUtil.LessThan(tick, value) && DoubleUtil.GreaterThan(tick, previous))
+                        {
+                            previous = tick;
+                        }
+                        else if (DoubleUtil.GreaterThan(tick, value) && DoubleUtil.LessThan(tick, next))
+                        {
+                            next = tick;
+                        }
+                    }
+                }
+                else if (DoubleUtil.GreaterThan(TickFrequency, 0.0))
+                {
+                    previous = Minimum + (Math.Round(((value - Minimum) / TickFrequency)) * TickFrequency);
+                    next = Math.Min(Maximum, previous + TickFrequency);
+                }
+
+                // Choose the closest value between previous and next. If tie, snap to 'next'.
+                value = DoubleUtil.GreaterThanOrClose(value, (previous + next) * 0.5) ? next : previous;
+            }
+
+            return value;
+        }
+
+        // Sets Value = SnapToTick(value+direction), unless the result of SnapToTick is Value,
+        // then it searches for the next tick greater(if direction is positive) than value
+        // and sets Value to that tick
+        private void MoveToNextTick(double direction)
+        {
+            if (direction != 0.0)
+            {
+                double value = this.Value;
+
+                // Find the next value by snapping
+                double next = SnapToTick(Math.Max(this.Minimum, Math.Min(this.Maximum, value + direction)));
+
+                bool greaterThan = direction > 0; //search for the next tick greater than value?
+
+                // If the snapping brought us back to value, find the next tick point
+                if (next == value
+                    && !(greaterThan && value == Maximum)  // Stop if searching up if already at Max
+                    && !(!greaterThan && value == Minimum)) // Stop if searching down if already at Min
+                {
+                    // This property is rarely set so let's try to avoid the GetValue
+                    // caching of the mutable default value
+                    DoubleCollection ticks = null;
+                    bool hasModifiers;
+                    if (GetValue(TicksProperty)
+                        != null)
+                    {
+                        ticks = Ticks;
+                    }
+
+                    // If ticks collection is available, use it.
+                    // Note that ticks may be unsorted.
+                    if ((ticks != null) && (ticks.Count > 0))
+                    {
+                        for (int i = 0; i < ticks.Count; i++)
+                        {
+                            double tick = ticks[i];
+
+                            // Find the smallest tick greater than value or the largest tick less than value
+                            if ((greaterThan && DoubleUtil.GreaterThan(tick, value) && (DoubleUtil.LessThan(tick, next) || next == value))
+                             || (!greaterThan && DoubleUtil.LessThan(tick, value) && (DoubleUtil.GreaterThan(tick, next) || next == value)))
+                            {
+                                next = tick;
+                            }
+                        }
+                    }
+                    else if (DoubleUtil.GreaterThan(TickFrequency, 0.0))
+                    {
+                        // Find the current tick we are at
+                        double tickNumber = Math.Round((value - Minimum) / TickFrequency);
+
+                        if (greaterThan)
+                            tickNumber += 1.0;
+                        else
+                            tickNumber -= 1.0;
+
+                        next = Minimum + tickNumber * TickFrequency;
+                    }
+                }
+
+
+                // Update if we've found a better value
+                if (next != value)
+                {
+                    this.SetValue(ValueProperty, next);
+                }
+            }
+        }
+
+        private void _OnMouseLeftButtonDown(PointerPressedEventArgs e)
+        {
+            SliderEx sliderEx = e.Source as SliderEx;
+
+            // When someone click on the Slider's part, and it's not focusable
+            // Slider need to take the focus in order to process keyboard correctly
+            
+            //if (!sliderEx.IsKeyboardFocusWithin)
+            //{
+            //    e.Handled = sliderEx.IsFocused || e.Handled;
+            //}
+
+        }
+
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            Size size = base.ArrangeOverride(finalSize);
+
+            UpdateSelectionRangeElementPositionAndSize();
+
+            return size;
+        }
+
+        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        {
+            SelectionRangeElement = e.NameScope.Find<AvaloniaObject>(SelectionRangeElementName);
+            Track = e.NameScope.Find<Track>(TrackName);
+            //if (_autoToolTip != null)
+            //{
+            //    _autoToolTip.PlacementTarget = Track != null ? Track.Thumb : null;
+            //}
+
+
+
+
+            base.OnTemplateApplied(e);
+
+
+
+        }
+
+        /// <summary>
+        /// Call when Slider.IncreaseLarge command is invoked.
+        /// </summary>
+        protected virtual void OnIncreaseLarge()
+        {
+            MoveToNextTick(this.LargeChange);
+        }
+
+        /// <summary>
+        /// Call when Slider.DecreaseLarge command is invoked.
+        /// </summary>
+        protected virtual void OnDecreaseLarge()
+        {
+            MoveToNextTick(-this.LargeChange);
+        }
+
+        /// <summary>
+        /// Call when Slider.IncreaseSmall command is invoked.
+        /// </summary>
+        protected virtual void OnIncreaseSmall()
+        {
+            MoveToNextTick(this.SmallChange);
+        }
+
+        /// <summary>
+        /// Call when Slider.DecreaseSmall command is invoked.
+        /// </summary>
+        protected virtual void OnDecreaseSmall()
+        {
+            MoveToNextTick(-this.SmallChange);
+        }
+
+        /// <summary>
+        /// Call when Slider.MaximizeValue command is invoked.
+        /// </summary>
+        protected virtual void OnMaximizeValue()
+        {
+            this.SetValue(ValueProperty, this.Maximum);
+        }
+
+        /// <summary>
+        /// Call when Slider.MinimizeValue command is invoked.
+        /// </summary>
+        protected virtual void OnMinimizeValue()
+        {
+            this.SetValue(ValueProperty, this.Minimum);
+        }
+
+
+    }
+}

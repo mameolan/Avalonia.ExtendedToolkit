@@ -1,4 +1,4 @@
-﻿namespace Avalonia.ExtendedToolkit.Controls
+﻿namespace Avalonia.Controlz.Controls
 {
     /// <summary>
     /// Enum which describes how to position the TickBar.

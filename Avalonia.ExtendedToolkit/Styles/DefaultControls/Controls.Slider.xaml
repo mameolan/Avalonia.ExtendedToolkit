@@ -2,6 +2,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:Controlz="clr-namespace:Avalonia.Controlz.Controls;assembly=Avalonia.Controlz"
     xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
     xmlns:System="clr-namespace:System;assembly=mscorlib">
   <Styles.Resources>
@@ -119,7 +120,7 @@
             <!--MinHeight="{TemplateBinding Slider.MinHeight}"-->
             <RowDefinition Height="Auto" />
           </Grid.RowDefinitions>
-          <Controls:TickBar x:Name="TopTick"
+          <Controlz:TickBar x:Name="TopTick"
                    Grid.Row="0"
                    Height="4"
                    Fill="{TemplateBinding Foreground}"
@@ -134,7 +135,7 @@
                      SelectionEnd="{TemplateBinding SelectionEnd}"
                      SelectionStart="{TemplateBinding SelectionStart}"
           -->
-          <Controls:TickBar x:Name="BottomTick"
+          <Controlz:TickBar x:Name="BottomTick"
                    Grid.Row="2"
                    Height="4"
                    Fill="{TemplateBinding Foreground}"
@@ -254,18 +255,18 @@
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackFillDisabledBrush)}" />
   </Style>
 
-  <Style Selector="Slider:TickPlacement_TopLeft /template/ Controls|TickBar#TopTick">
+  <Style Selector="Slider:TickPlacement_TopLeft /template/ Controlz|TickBar#TopTick">
     <Setter Property="IsVisible" Value="true" />
   </Style>
 
-  <Style Selector="Slider:TickPlacement_BottomRight /template/ Controls|TickBar#BottomTick">
+  <Style Selector="Slider:TickPlacement_BottomRight /template/ Controlz|TickBar#BottomTick">
     <Setter Property="IsVisible" Value="true" />
   </Style>
 
-  <Style Selector="Slider:TickPlacement_Both /template/ Controls|TickBar#BottomTick">
+  <Style Selector="Slider:TickPlacement_Both /template/ Controlz|TickBar#BottomTick">
     <Setter Property="IsVisible" Value="true" />
   </Style>
-  <Style Selector="Slider:TickPlacement_Both /template/ Controls|TickBar#TopTick">
+  <Style Selector="Slider:TickPlacement_Both /template/ Controlz|TickBar#TopTick">
     <Setter Property="IsVisible" Value="true" />
   </Style>
 

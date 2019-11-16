@@ -1,6 +1,6 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui">
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Fonts.xaml"/>
-  
+  <StyleInclude Source="avares://Avalonia.Controlz/Styles/Generic.xaml"/>
   <!--Default Controls-->
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Buttons.Chromless.xaml"/>

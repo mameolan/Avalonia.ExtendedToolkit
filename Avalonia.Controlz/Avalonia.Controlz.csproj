@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,7 +14,7 @@
     <PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.9.0-build20191017-01" />
     <PackageReference Include="GridExtra.Avalonia" Version="0.6.1" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <Compile Update="**\*.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
@@ -24,22 +24,6 @@
     </AvaloniaResource>
     <AvaloniaResource Include="Assets\*" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
-    <ProjectReference Include="..\Avalonia.ExtendedToolkit\Avalonia.ExtendedToolkit.csproj" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Reference Include="FontAwesome.Avalonia">
-      <HintPath>..\ExternalDependencies\FontAwesome.Avalonia.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
-    <Reference Include="FontAwesome.Generate">
-      <HintPath>..\ExternalDependencies\FontAwesome.Generate.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
-  </ItemGroup>
-  
-  
+
+ 
 </Project>

@@ -1,14 +1,15 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Controlz;
 using Avalonia.Data;
-using Avalonia.ExtendedToolkit.Extensions;
+
 using Avalonia.Media;
 using Avalonia.Reactive;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Avalonia.ExtendedToolkit.Controls
+namespace Avalonia.Controlz.Controls
 {
     public class TickBar : Control
     {
@@ -496,8 +497,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             base.ApplyTemplate();
 
-            Slider parent = TemplatedParent as Slider;
-            Track track = parent?.FindChildren<Track>();
+            Avalonia.Controls.Slider parent = TemplatedParent as Avalonia.Controls.Slider;
+            Track track = null;// parent?.FindChildren<Track>();
 
 
             if (parent != null)
@@ -507,8 +508,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 //BindToTemplatedParent(IsSelectionRangeEnabledProperty, Slider.IsSelectionRangeEnabledProperty);
                 //BindToTemplatedParent(SelectionStartProperty, Slider.SelectionStartProperty);
                 //BindToTemplatedParent(SelectionEndProperty, Slider.SelectionEndProperty);
-                BindToTemplatedParent(MinimumProperty, Slider.MinimumProperty);
-                BindToTemplatedParent(MaximumProperty, Slider.MaximumProperty);
+                BindToTemplatedParent(MinimumProperty, Avalonia.Controls.Slider.MinimumProperty);
+                BindToTemplatedParent(MaximumProperty, Avalonia.Controls.Slider.MaximumProperty);
                 BindToTemplatedParent(IsDirectionReversedProperty, Track.IsDirectionReversedProperty);
 
                 if (/*!HasNonDefaultValue(ReservedSpaceProperty) &&*/ track != null)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Avalonia.ExtendedToolkit.Controls
+namespace Avalonia.Controlz.Controls
 {
     public enum TickPlacement
     {

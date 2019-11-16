@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Avalonia.ExtendedToolkit.Controls
+namespace Avalonia.Controlz
 {
-    internal static class DoubleUtil
+    public static class DoubleUtil
     {
         // Const values come from sdk\inc\crt\float.h
         internal const double DBL_EPSILON = 2.2204460492503131e-016; /* smallest such that 1.0+DBL_EPSILON != 1.0 */
@@ -254,6 +254,16 @@ namespace Avalonia.ExtendedToolkit.Controls
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Verifies if the given value is a finite number.
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static bool IsDoubleFinite(double d)
+        {
+            return !(double.IsInfinity(d) || double.IsNaN(d));
         }
 
 
