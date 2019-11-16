@@ -27,4 +27,8 @@
 
         // NOTE: if you add or remove any values in this enum, be sure to update TickBar.IsValidTickBarPlacement()
     }
+
+    
+
+
 }

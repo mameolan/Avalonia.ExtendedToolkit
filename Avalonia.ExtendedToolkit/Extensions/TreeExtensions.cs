@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using System.Linq;
+using Avalonia.Controls;
 using Avalonia.LogicalTree;
 using Avalonia.VisualTree;
 using System.Collections.Generic;
@@ -26,19 +27,24 @@ namespace Avalonia.ExtendedToolkit.Extensions
 
         public static T FindChildren<T>(this IControl control) where T : IControl
         {
-            if (control.Parent is T)
-                return (T)control.Parent;
+            //if (control.Parent is T)
+            //    return (T)control.Parent;
 
-            IControl parent = control.Parent.Parent;
+            //IControl parent = control.Parent.Parent;
 
-            while (parent != null)
-            {
-                if (parent is T)
-                    return (T)parent;
+            //while (parent != null)
+            //{
+            //    if (parent is T)
+            //        return (T)parent;
 
-                parent = parent.Parent;
-            }
-            return default(T);
+            //    parent = parent.Parent;
+            //}
+            return control.GetChildObjects().OfType<T>().FirstOrDefault();
+
+
+
+
+            //return default(T);
         }
 
         public static IEnumerable<IControl> GetChildObjects(this IControl parent, bool forceUsingTheVisualTreeHelper = false)

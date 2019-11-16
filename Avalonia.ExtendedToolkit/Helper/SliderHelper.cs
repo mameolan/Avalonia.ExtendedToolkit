@@ -1,8 +1,9 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Media;
-using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using System;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -176,6 +177,54 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             element.SetValue(ChangeValueByProperty, value);
         }
+
+
+
+        //public static readonly AttachedProperty<TickPlacement> TickPlacementProperty =
+        //    AvaloniaProperty.RegisterAttached<IControl, TickPlacement>("TickPlacement", typeof(SliderHelper));
+
+        //public static TickPlacement GetTickPlacement(IControl element)
+        //{
+        //    return element.GetValue(TickPlacementProperty);
+        //}
+
+        //public static void SetTickPlacement(IControl element, TickPlacement value)
+        //{
+        //    element.SetValue(TickPlacementProperty, value);
+        //    UpdatePseudoClass((StyledElement)element, value);
+        //}
+
+        //private static void UpdatePseudoClass(StyledElement element, TickPlacement value)
+        //{
+        //    var property = element.GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).FirstOrDefault(x => x.PropertyType == typeof(IPseudoClasses));
+
+        //    Classes propertyValue = property.GetValue(element) as Classes;
+        //    //Classes classes = new Classes(propertyValue); 
+
+
+        //    //foreach (string enumValue in Enum.GetNames(typeof(TickBarPlacement)))
+        //    //{
+        //    //    var itemToRemove = propertyValue.FirstOrDefault(x => x.Contains(enumValue));
+        //    //    if (itemToRemove != null)
+        //    //    {
+        //    //        classes.Remove(itemToRemove);
+        //    //    }
+        //    //}
+
+        //    propertyValue.Set($":TickPlacement_None", value == TickPlacement.None);
+        //    propertyValue.Set($":TickPlacement_Both",value== TickPlacement.Both);
+        //    propertyValue.Set($":TickPlacement_BottomRight", value == TickPlacement.BottomRight);
+        //    propertyValue.Set($":TickPlacement_TopLeft", value == TickPlacement.TopLeft);
+        //    //property.SetValue(element, propertyValue);
+
+
+        //}
+
+
+
+
+
+
 
         //TODO correct me
         //MouseWheelState missing since there is no such type

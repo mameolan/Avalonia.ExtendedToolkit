@@ -32,8 +32,9 @@ namespace Avalonia.ExtendedToolkit.Controls
 
 
         public static readonly AvaloniaProperty MinimumProperty =
-            RangeBase.MinimumProperty.AddOwner<TickBar>(x => x.Minimum,
-                (x, y) => x.Minimum = y, unsetValue: 0.0);
+            AvaloniaProperty.Register<TickBar, double>(nameof(Minimum), defaultValue: 0d);
+            //RangeBase.MinimumProperty.AddOwner<TickBar>(x => x.Minimum,
+            //    (x, y) => x.Minimum = y, unsetValue: 0.0);
 
 
 
@@ -45,8 +46,9 @@ namespace Avalonia.ExtendedToolkit.Controls
 
 
         public static readonly AvaloniaProperty MaximumProperty =
-            RangeBase.MaximumProperty.AddOwner<TickBar>(x => x.Maximum,
-                (x, y) => x.Maximum = y, unsetValue: 100.0);
+            AvaloniaProperty.Register<TickBar, double>(nameof(Maximum), defaultValue: 0d);
+        //RangeBase.MaximumProperty.AddOwner<TickBar>(x => x.Maximum,
+        //    (x, y) => x.Maximum = y, unsetValue: 100.0);
 
 
 
@@ -97,7 +99,8 @@ namespace Avalonia.ExtendedToolkit.Controls
 
 
         public static readonly AvaloniaProperty TickFrequencyProperty =
-            Slider.TickFrequencyProperty.AddOwner<TickBar>();
+            AvaloniaProperty.Register<TickBar, double>(nameof(TickFrequency), defaultValue: 0d);
+        //Slider.TickFrequencyProperty.AddOwner<TickBar>();
 
         //Ticks missing
 
@@ -111,7 +114,8 @@ namespace Avalonia.ExtendedToolkit.Controls
 
 
         public static readonly AvaloniaProperty IsDirectionReversedProperty =
-            Track.IsDirectionReversedProperty.AddOwner<TickBar>();
+            AvaloniaProperty.Register<TickBar, bool>(nameof(IsDirectionReversed));
+        //Track.IsDirectionReversedProperty.AddOwner<TickBar>();
 
 
 
@@ -155,7 +159,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             double progression = 1.0d;
             Point startPoint = new Point(0d, 0d);
             Point endPoint = new Point(0d, 0d);
-
+            
             // Take Thumb size in to account
             double halfReservedSpace = ReservedSpace * 0.5;
 
@@ -532,11 +536,45 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         }
 
+        static TickBar()
+        {
+            IsVisibleProperty.Changed.AddClassHandler<TickBar>((o, e) => OnIsVivibleChanged(o, e));
+            PlacementProperty.Changed.AddClassHandler<TickBar>((o, e) => OnPlacementChanged(o, e));
 
 
+        }
 
+        private static void OnPlacementChanged(TickBar o, AvaloniaPropertyChangedEventArgs e)
+        {
+            o.InvalidateVisual();
+        }
 
+        private static void OnIsVivibleChanged(TickBar o, AvaloniaPropertyChangedEventArgs e)
+        {
+            if((e.NewValue as bool?)==true)
+            {
+                o.InvalidateVisual();
+            }
+        }
 
+        public TickBar()
+        {
+            PropertyChanged += TickBar_PropertyChanged;
+        }
+        bool templateParentPropertyChangedSet = false;
 
+        private void TickBar_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
+        {
+            if(e.Property.Name==nameof(TemplatedParent)&& TemplatedParent!=null&& templateParentPropertyChangedSet==false)
+            {
+                TemplatedParent.PropertyChanged += TemplatedParent_PropertyChanged;
+                templateParentPropertyChangedSet = true;
+            }
+        }
+
+        private void TemplatedParent_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
+        {
+            
+        }
     }
 }
