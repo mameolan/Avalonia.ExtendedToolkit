@@ -120,7 +120,7 @@
             <!--MinHeight="{TemplateBinding Slider.MinHeight}"-->
             <RowDefinition Height="Auto" />
           </Grid.RowDefinitions>
-          <Controlz:TickBar x:Name="TopTick"
+          <!--<Controlz:TickBar x:Name="TopTick"
                    Grid.Row="0"
                    Height="4"
                    Fill="{TemplateBinding Foreground}"
@@ -129,13 +129,13 @@
                    Placement="Top"
                    ReservedSpace="{DynamicResource HorizontalThumbWidth}"
                    TickFrequency="{TemplateBinding TickFrequency}"
-                   IsVisible="False" />
+                   IsVisible="False" />-->
           <!--Ticks="{TemplateBinding Ticks}"
             IsSelectionRangeEnabled="{TemplateBinding IsSelectionRangeEnabled}"
                      SelectionEnd="{TemplateBinding SelectionEnd}"
                      SelectionStart="{TemplateBinding SelectionStart}"
           -->
-          <Controlz:TickBar x:Name="BottomTick"
+          <!--<Controlz:TickBar x:Name="BottomTick"
                    Grid.Row="2"
                    Height="4"
                    Fill="{TemplateBinding Foreground}"
@@ -146,7 +146,7 @@
                      ReservedSpace="{DynamicResource HorizontalThumbWidth}"
                      
                      TickFrequency="{TemplateBinding TickFrequency}"
-                   IsVisible="False" />
+                   IsVisible="False" />-->
           <!--Ticks="{TemplateBinding Ticks}"
                    IsSelectionRangeEnabled="{TemplateBinding IsSelectionRangeEnabled}"
           SelectionEnd="{TemplateBinding SelectionEnd}"
@@ -255,7 +255,7 @@
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackFillDisabledBrush)}" />
   </Style>
 
-  <Style Selector="Slider:TickPlacement_TopLeft /template/ Controlz|TickBar#TopTick">
+  <!--<Style Selector="Slider:TickPlacement_TopLeft /template/ Controlz|TickBar#TopTick">
     <Setter Property="IsVisible" Value="true" />
   </Style>
 
@@ -268,7 +268,7 @@
   </Style>
   <Style Selector="Slider:TickPlacement_Both /template/ Controlz|TickBar#TopTick">
     <Setter Property="IsVisible" Value="true" />
-  </Style>
+  </Style>-->
 
   <!--<Style.Triggers>
       <Trigger Property="Orientation" Value="Vertical">

@@ -4,10 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             xmlns:Controlz="clr-namespace:Avalonia.Controlz.Controls;assembly=Avalonia.Controlz"
              x:Class="Avalonia.ExampleApp.Views.Sliders">
   <Grid>
-    <Slider
-      />
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    
+    <StackPanel Grid.Row="0" >
+      <TextBlock Text="Avalonia Slider"/>
+      <Slider
+      />  
+    </StackPanel>
+
+    <StackPanel Grid.Row="1" >
+      <TextBlock Text="Controlz Slider Tickbar Top left"/>
+      
+      <Controlz:SliderEx TickPlacement="TopLeft"/>
+    </StackPanel>
+    
+    
+    
     
     
   </Grid>  
