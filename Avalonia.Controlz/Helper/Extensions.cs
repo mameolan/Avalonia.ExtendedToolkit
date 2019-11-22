@@ -26,7 +26,7 @@ namespace Avalonia.Controlz.Helper
             return default(T);
         }
 
-        public static T FindChildren<T>(this IControl control) where T : IControl
+        public static T FindChild<T>(this IControl control,bool forceUsingTheVisualTreeHelper = false) where T : IControl
         {
             //if (control.Parent is T)
             //    return (T)control.Parent;
@@ -40,7 +40,7 @@ namespace Avalonia.Controlz.Helper
 
             //    parent = parent.Parent;
             //}
-            return control.GetChildObjects().OfType<T>().FirstOrDefault();
+            return control.GetChildObjects(forceUsingTheVisualTreeHelper).OfType<T>().FirstOrDefault();
 
 
 
@@ -107,6 +107,28 @@ namespace Avalonia.Controlz.Helper
                 parent = VisualTree.VisualExtensions.GetVisualParent(parent);
             }
 
+        }
+
+        public static readonly AttachedProperty<Classes> ClassesProperty =
+            AvaloniaProperty.RegisterAttached<IStyledElement, Classes>(nameof(Classes), typeof(Extensions));
+
+        public static Classes GetClasses(IStyledElement element)
+        {
+            return element.GetValue(ClassesProperty);
+        }
+
+        public static void SetClasses(IStyledElement element, Classes value)
+        {
+            element.SetValue(ClassesProperty, value);
+            OnClassesChanged(element, value);
+        }
+
+        private static void OnClassesChanged(IStyledElement element, Classes value)
+        {
+            if (value != null)
+            {
+                element.Classes = value;
+            }
         }
 
 

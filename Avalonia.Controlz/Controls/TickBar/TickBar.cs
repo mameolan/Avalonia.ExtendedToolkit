@@ -184,12 +184,41 @@ namespace Avalonia.Controlz.Controls
         public static readonly AvaloniaProperty VisualYSnappingGuidelinesProperty =
             AvaloniaProperty.Register<TickBar, DoubleCollection>(nameof(VisualYSnappingGuidelines));
 
+        Size controlSize = new Size();
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            var result = base.ArrangeOverride(finalSize);
 
+            if (DoubleUtil.IsDoubleFinite(finalSize.Width))
+                controlSize = finalSize;
+            return result;
+        }
+
+        protected override Size MeasureOverride(Size availableSize)
+        {
+            if (DoubleUtil.IsDoubleFinite(Width) == false)
+            {
+                Width = controlSize.Width;
+                return new Size(controlSize.Width, Height);
+            }
+
+            var result = base.MeasureOverride(availableSize);
+            return result;
+        }
 
 
         public override void Render(DrawingContext dc)
         {
-            SliderEx sliderEx = TemplatedParent as SliderEx;
+
+
+
+
+            if (DoubleUtil.IsDoubleFinite(Width) == false)
+            {
+                this.Width = controlSize.Width;
+                //base.Render(dc);
+                //return; 
+            }
 
 
 
@@ -311,7 +340,7 @@ namespace Avalonia.Controlz.Controls
                 // This property is rarely set so let's try to avoid the GetValue
                 // caching of the mutable default value
                 DoubleCollection ticks = null;
-                
+
                 if (GetValue(TicksProperty)
                     != null)
                 {
@@ -427,7 +456,7 @@ namespace Avalonia.Controlz.Controls
                 // This property is rarely set so let's try to avoid the GetValue
                 // caching of the mutable default value
                 DoubleCollection ticks = null;
-                
+
                 if (GetValue(TicksProperty)
                     != null)
                 {
@@ -535,9 +564,9 @@ namespace Avalonia.Controlz.Controls
                     InstancedBinding instancedBinding = new InstancedBinding(sourceBinding, BindingMode.TwoWay, BindingPriority.TemplatedParent);
                     BindingOperations.Apply(this, target, instancedBinding, TemplatedParent);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    
+
                 }
                 //Bind(target, ObservableEx.SingleValue(source));
 
@@ -550,7 +579,7 @@ namespace Avalonia.Controlz.Controls
             base.ApplyTemplate();
 
             SliderEx parent = TemplatedParent as SliderEx;
-            Track track =  parent?.FindChildren<Track>();
+            Track track = parent?.FindChild<Track>();
 
 
             if (parent != null)
@@ -565,7 +594,7 @@ namespace Avalonia.Controlz.Controls
 
                 }
 
-                
+
 
                 //BindToTemplatedParent(TicksProperty, SliderEx.TicksProperty);
                 //BindToTemplatedParent(TickFrequencyProperty, SliderEx.TickFrequencyProperty);
@@ -626,7 +655,7 @@ namespace Avalonia.Controlz.Controls
 
         private void UpdateProperties(SliderEx parent)
         {
-            Width = parent.Width;
+            //Width = parent.Width;
             Ticks = parent.Ticks;
             TickFrequency = parent.TickFrequency;
             IsSelectionRangeEnabled = parent.IsSelectionRangeEnabled;
@@ -634,12 +663,26 @@ namespace Avalonia.Controlz.Controls
             SelectionEnd = parent.SelectionEnd;
             Minimum = parent.Minimum;
             Maximum = parent.Maximum;
+
+            //Track  track= parent.FindChild<Track>(true);
+            //if (track?.Thumb != null)
+            //{
+            //    if (parent.Orientation == Layout.Orientation.Horizontal)
+            //    {
+            //        ReservedSpace = track.Thumb.Width;
+            //    }
+            //    else
+            //    {
+            //        ReservedSpace = track.Thumb.Height;
+            //    }
+            //}
+
         }
 
         private void Parent_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
         {
             SliderEx parent = sender as SliderEx;
-            if(parent!=null)
+            if (parent != null)
             {
                 UpdateProperties(parent);
 
@@ -675,8 +718,8 @@ namespace Avalonia.Controlz.Controls
             }
         }
 
-        
-        
+
+
 
         private void TemplatedParent_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
         {
