@@ -210,6 +210,22 @@ namespace Avalonia.ExtendedToolkit.Controls
         public DropDownButton()
         {
             IsExpandedProperty.Changed.AddClassHandler<DropDownButton>((o, e) => IsExpandedPropertyChangedCallback(o, e));
+            MenuStyleProperty.Changed.AddClassHandler<DropDownButton>((o, e) => MenuStyleChanged(o, e));
+
+
+        }
+
+        private void MenuStyleChanged(DropDownButton o, AvaloniaPropertyChangedEventArgs e)
+        {
+            if (menu == null)
+                return;
+
+            IStyle menuStyle = e.NewValue as IStyle;
+            if (menuStyle == null)
+                return;
+
+            menu.Styles.Add(menuStyle);
+
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
@@ -268,6 +284,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 }
                 menu.Items = list;
             }
+
+            RaisePropertyChanged(MenuStyleProperty, null, MenuStyle);
 
             base.OnTemplateApplied(e);
         }

@@ -14,14 +14,18 @@
     
     <StackPanel Grid.Row="0" >
       <TextBlock Text="Avalonia Slider"/>
-      <Slider
-      />  
+      <Slider Orientation="Horizontal" Width="200"
+              />
+
+      <Slider Orientation="Vertical" Height="200"
+              />
+
     </StackPanel>
 
     <StackPanel Grid.Row="1" >
       <TextBlock Text="Controlz Slider Tickbar Top left"/>
       
-      <Controlz:SliderEx TickPlacement="TopLeft"/>
+      <Controlz:SliderEx TickPlacement="TopLeft" Width="200"/>
     </StackPanel>
     
     

@@ -85,7 +85,8 @@
     </Setter>
   </Style>
 
-  <Style Selector="Slider:horizontal">
+
+  <Style Selector="Slider">
     <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Controls.Border}" />
     <Setter Property="BorderThickness" Value="2" />
     <Setter Property="Controls:SliderHelper.ThumbFillBrush" Value="{DynamicResource MahApps.Brushes.Gray2}" />
@@ -105,6 +106,11 @@
     <!--<Setter Property="VerticalContentAlignment" Value="Stretch" />-->
     <Setter Property="Maximum" Value="100" />
     <Setter Property="Minimum" Value="0" />
+  </Style>
+
+
+
+  <Style Selector="Slider:horizontal">
     <Setter Property="MinWidth" Value="40"/>
     <Setter Property="MinHeight" Value="20"/>
     <Setter Property="Value" Value="0" />
@@ -116,7 +122,7 @@
 
           <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" MinHeight="20" />
+            <RowDefinition Height="Auto" MinHeight="20" />
             <!--MinHeight="{TemplateBinding Slider.MinHeight}"-->
             <RowDefinition Height="Auto" />
           </Grid.RowDefinitions>
@@ -153,7 +159,7 @@
                      SelectionStart="{TemplateBinding SelectionStart}"
           -->
 
-
+          <Border Name="TrackBackground" Grid.Row="1" Height="4" Margin="6,0" VerticalAlignment="Center"/>
           <Track x:Name="PART_Track" Grid.Row="1" Orientation="Horizontal">
             <Track.DecreaseButton>
               <RepeatButton x:Name="PART_DecreaseButton"
@@ -175,6 +181,7 @@
                                    BorderThickness="1 0"
                                    Classes="Slider" />
             </Track.Thumb>
+
           </Track>
         </Grid>
 
@@ -183,98 +190,236 @@
 
   </Style>
 
-  <Style Selector="Slider:pointerover /template/ Thumb#HorizontalThumb">
+  <Style Selector="Slider /template/ RepeatButton.repeattrack">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Foreground" Value="{DynamicResource ThemeBorderLowBrush}"/>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}" />
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+
+
+  <Style Selector="Slider:horizontal:pointerover /template/ Thumb#HorizontalThumb">
     <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.ThumbFillHoverBrush)}" />
   </Style>
 
-  <Style Selector="Slider:pointerover /template/ RepeatButton#PART_DecreaseButton">
+  <Style Selector="Slider:horizontal:pointerover /template/ RepeatButton#PART_DecreaseButton">
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackValueFillHoverBrush)}" />
   </Style>
 
-  <Style Selector="Slider:pointerover /template/ RepeatButton#PART_IncreaseButton">
+  <Style Selector="Slider:horizontal:pointerover /template/ RepeatButton#PART_IncreaseButton">
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackFillHoverBrush)}" />
   </Style>
 
-  <Style Selector="Slider /template/ RepeatButton#PART_DecreaseButton:pressed /template/ Thumb#HorizontalThumb">
+  <Style Selector="Slider:horizontal /template/ RepeatButton#PART_DecreaseButton:pressed /template/ Thumb#HorizontalThumb">
     <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.ThumbFillPressedBrush)}" />
   </Style>
 
-  <Style Selector="Slider /template/ RepeatButton#PART_DecreaseButton:pressed /template/ RepeatButton#PART_DecreaseButton">
+  <Style Selector="Slider:horizontal /template/ RepeatButton#PART_DecreaseButton:pressed /template/ RepeatButton#PART_DecreaseButton">
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackValueFillPressedBrush)}" />
   </Style>
 
-  <Style Selector="Slider /template/ RepeatButton#PART_DecreaseButton:pressed /template/ RepeatButton#PART_IncreaseButton">
+  <Style Selector="Slider:horizontal /template/ RepeatButton#PART_DecreaseButton:pressed /template/ RepeatButton#PART_IncreaseButton">
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackFillPressedBrush)}" />
   </Style>
 
-  <Style Selector="Slider /template/ RepeatButton#PART_IncreaseButton:pressed /template/ Thumb#HorizontalThumb">
+  <Style Selector="Slider:horizontal /template/ RepeatButton#PART_IncreaseButton:pressed /template/ Thumb#HorizontalThumb">
     <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.ThumbFillPressedBrush)}" />
   </Style>
 
-  <Style Selector="Slider /template/ RepeatButton#PART_IncreaseButton:pressed /template/ RepeatButton#PART_DecreaseButton">
+  <Style Selector="Slider:horizontal /template/ RepeatButton#PART_IncreaseButton:pressed /template/ RepeatButton#PART_DecreaseButton">
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackValueFillPressedBrush)}" />
   </Style>
 
-  <Style Selector="Slider /template/ RepeatButton#PART_IncreaseButton:pressed /template/ RepeatButton#PART_IncreaseButton">
+  <Style Selector="Slider:horizontal /template/ RepeatButton#PART_IncreaseButton:pressed /template/ RepeatButton#PART_IncreaseButton">
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackFillPressedBrush)}" />
   </Style>
 
-  <Style Selector="Slider /template/ Thumb#HorizontalThumb:pressed /template/ Thumb#HorizontalThumb">
+  <Style Selector="Slider:horizontal /template/ Thumb#HorizontalThumb:pressed /template/ Thumb#HorizontalThumb">
     <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.ThumbFillPressedBrush)}" />
   </Style>
 
-  <Style Selector="Slider /template/ Thumb#HorizontalThumb:pressed /template/ RepeatButton#PART_DecreaseButton">
+  <Style Selector="Slider:horizontal /template/ Thumb#HorizontalThumb:pressed /template/ RepeatButton#PART_DecreaseButton">
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackValueFillPressedBrush)}" />
   </Style>
 
-  <Style Selector="Slider /template/ Thumb#HorizontalThumb:pressed /template/ RepeatButton#PART_IncreaseButton">
+  <Style Selector="Slider:horizontal /template/ Thumb#HorizontalThumb:pressed /template/ RepeatButton#PART_IncreaseButton">
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackFillPressedBrush)}" />
   </Style>
 
-  <Style Selector="Slider /template/ Controls|MetroThumb#HorizontalThumb[IsDragging=true] /template/ Thumb#HorizontalThumb">
+  <Style Selector="Slider:horizontal /template/ Controls|MetroThumb#HorizontalThumb[IsDragging=true] /template/ Thumb#HorizontalThumb">
     <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.ThumbFillPressedBrush)}" />
   </Style>
 
-  <Style Selector="Slider /template/ Controls|MetroThumb#HorizontalThumb[IsDragging=true] /template/ RepeatButton#PART_DecreaseButton">
+  <Style Selector="Slider:horizontal /template/ Controls|MetroThumb#HorizontalThumb[IsDragging=true] /template/ RepeatButton#PART_DecreaseButton">
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackValueFillPressedBrush)}" />
   </Style>
 
-  <Style Selector="Slider /template/ Controls|MetroThumb#HorizontalThumb[IsDragging=true] /template/ RepeatButton#PART_IncreaseButton">
+  <Style Selector="Slider:horizontal /template/ Controls|MetroThumb#HorizontalThumb[IsDragging=true] /template/ RepeatButton#PART_IncreaseButton">
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackFillPressedBrush)}" />
   </Style>
 
-  <Style Selector="Slider:disabled /template/ Thumb#HorizontalThumb">
+  <Style Selector="Slider:horizontal:disabled /template/ Thumb#HorizontalThumb">
     <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.ThumbFillDisabledBrush)}" />
   </Style>
 
-  <Style Selector="Slider:disabled /template/ RepeatButton#PART_DecreaseButton">
+  <Style Selector="Slider:horizontal:disabled /template/ RepeatButton#PART_DecreaseButton">
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackValueFillDisabledBrush)}" />
   </Style>
 
-  <Style Selector="Slider:disabled /template/ RepeatButton#PART_IncreaseButton">
+  <Style Selector="Slider:horizontal:disabled /template/ RepeatButton#PART_IncreaseButton">
     <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackFillDisabledBrush)}" />
   </Style>
 
-  <!--<Style Selector="Slider:TickPlacement_TopLeft /template/ Controlz|TickBar#TopTick">
+  <!--<Style Selector="Slider:horizontal:TickPlacement_TopLeft /template/ Controlz|TickBar#TopTick">
     <Setter Property="IsVisible" Value="true" />
   </Style>
 
-  <Style Selector="Slider:TickPlacement_BottomRight /template/ Controlz|TickBar#BottomTick">
+  <Style Selector="Slider:horizontal:TickPlacement_BottomRight /template/ Controlz|TickBar#BottomTick">
     <Setter Property="IsVisible" Value="true" />
   </Style>
 
-  <Style Selector="Slider:TickPlacement_Both /template/ Controlz|TickBar#BottomTick">
+  <Style Selector="Slider:horizontal:TickPlacement_Both /template/ Controlz|TickBar#BottomTick">
     <Setter Property="IsVisible" Value="true" />
   </Style>
-  <Style Selector="Slider:TickPlacement_Both /template/ Controlz|TickBar#TopTick">
+  <Style Selector="Slider:horizontal:TickPlacement_Both /template/ Controlz|TickBar#TopTick">
     <Setter Property="IsVisible" Value="true" />
   </Style>-->
 
-  <!--<Style.Triggers>
-      <Trigger Property="Orientation" Value="Vertical">
-        <Setter Property="Template" Value="{DynamicResource MahApps.Templates.Slider.Vertical}" />
-      </Trigger>
-    </Style.Triggers>-->
+
+
+  <Style Selector="Slider:vertical">
+    <!--<Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Controls.Border}" />
+    <Setter Property="BorderThickness" Value="2" />
+    <Setter Property="Controls:SliderHelper.ThumbFillBrush" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+    <Setter Property="Controls:SliderHelper.ThumbFillDisabledBrush" Value="{DynamicResource MahApps.Brushes.Gray6}" />
+    <Setter Property="Controls:SliderHelper.ThumbFillHoverBrush" Value="{DynamicResource MahApps.Brushes.Gray5}" />
+    <Setter Property="Controls:SliderHelper.ThumbFillPressedBrush" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+    <Setter Property="Controls:SliderHelper.TrackFillBrush" Value="{DynamicResource MahApps.Brushes.Gray3}" />
+    <Setter Property="Controls:SliderHelper.TrackFillDisabledBrush" Value="{DynamicResource MahApps.Brushes.Gray6}" />
+    <Setter Property="Controls:SliderHelper.TrackFillHoverBrush" Value="{DynamicResource MahApps.Brushes.Gray3}" />
+    <Setter Property="Controls:SliderHelper.TrackFillPressedBrush" Value="{DynamicResource MahApps.Brushes.Gray3}" />
+    <Setter Property="Controls:SliderHelper.TrackValueFillBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Controls:SliderHelper.TrackValueFillDisabledBrush" Value="{DynamicResource MahApps.Brushes.Gray6}" />
+    <Setter Property="Controls:SliderHelper.TrackValueFillHoverBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Controls:SliderHelper.TrackValueFillPressedBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray1}" />
+    <Setter Property="Maximum" Value="100" />
+    <Setter Property="Minimum" Value="0" />-->
+    <Setter Property="MinWidth" Value="20"/>
+    <Setter Property="MinHeight" Value="40"/>
+    <!--<Setter Property="Value" Value="0" />-->
+    <Setter Property="Template" >
+      <ControlTemplate>
+        <Grid x:Name="HorizontalTemplate"
+              Background="{TemplateBinding Background}">
+          <!--HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"-->
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" MinWidth="26" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <!--<TickBar x:Name="TopTick"
+                   Grid.Column="0"
+                   Width="4"
+                   Fill="{TemplateBinding Foreground}"
+                   Placement="Left"
+                   Visibility="Collapsed" />
+          <TickBar x:Name="BottomTick"
+                   Grid.Column="2"
+                   Width="4"
+                   Fill="{TemplateBinding Foreground}"
+                   Placement="Right"
+                   Visibility="Collapsed" />-->
+          <Border Name="TrackBackground" Grid.Column="1" Width="4" Margin="0,6" HorizontalAlignment="Center"/>
+          <Track x:Name="PART_Track" Grid.Column="1" Orientation="Vertical" IsDirectionReversed="True">
+            <Track.DecreaseButton>
+              <RepeatButton x:Name="PART_DecreaseButton"
+                            Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackValueFillBrush)}"
+                            Classes="VerticalTrackValue" />
+            </Track.DecreaseButton>
+            <Track.IncreaseButton>
+              <RepeatButton x:Name="PART_IncreaseButton"
+                            Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackFillBrush)}"
+                            Classes="VerticalTrack" />
+            </Track.IncreaseButton>
+            <Track.Thumb>
+              <Controls:MetroThumb x:Name="VerticalThumb"
+                                   Width="{DynamicResource MahApps.Sizes.Slider.VerticalThumb.Width}"
+                                   Height="{DynamicResource MahApps.Sizes.Slider.VerticalThumb.Height}"
+                                   Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.ThumbFillBrush)}"
+                                   BorderThickness="0 1"
+                                   Classes="Slider" />
+            </Track.Thumb>
+          </Track>
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="Slider[Orientation=Vertical]:pointerover /template/ Controls|MetroThumb#VerticalThumb">
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.ThumbFillHoverBrush)}" />
+  </Style>
+
+  <Style Selector="Slider[Orientation=Vertical]:pointerover /template/ RepeatButton#PART_DecreaseButton">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackValueFillHoverBrush)}" />
+  </Style>
+
+  <Style Selector="Slider[Orientation=Vertical]:pointerover /template/ RepeatButton#PART_IncreaseButton">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackFillHoverBrush)}" />
+  </Style>
+
+  <Style Selector="Slider[Orientation=Vertical]:pointerover /template/ RepeatButton#PART_DecreaseButton:pressed /template/ Thumb#VerticalThumb">
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.ThumbFillPressedBrush)}" />
+  </Style>
+
+  <Style Selector="Slider[Orientation=Vertical]:pointerover /template/ RepeatButton#PART_DecreaseButton:pressed">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackValueFillPressedBrush)}" />
+  </Style>
+
+  <Style Selector="Slider[Orientation=Vertical]:pointerover /template/ RepeatButton#PART_DecreaseButton:pressed RepeatButton#PART_IncreaseButton">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackFillPressedBrush)}" />
+  </Style>
+
+  <Style Selector="Slider[Orientation=Vertical]:pointerover /template/ RepeatButton#PART_IncreaseButton:pressed /template/ Thumb#VerticalThumb">
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.ThumbFillPressedBrush)}" />
+  </Style>
+
+  <Style Selector="Slider[Orientation=Vertical]:pointerover /template/ RepeatButton#PART_IncreaseButton:pressed RepeatButton#PART_DecreaseButton">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackValueFillPressedBrush)}" />
+  </Style>
+
+  <Style Selector="Slider[Orientation=Vertical]:pointerover /template/ RepeatButton#PART_IncreaseButton:pressed">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackFillPressedBrush)}" />
+  </Style>
+
+  <Style Selector="Slider[Orientation=Vertical] /template/ Controls|MetroThumb[IsDragging=true]#VerticalThumb">
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.ThumbFillPressedBrush)}" />
+  </Style>
+
+  <Style Selector="Slider[Orientation=Vertical] /template/ Controls|MetroThumb[IsDragging=true]#VerticalThumb RepeatButton#PART_DecreaseButton">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackValueFillPressedBrush)}" />
+  </Style>
+
+  <Style Selector="Slider[Orientation=Vertical] /template/ Controls|MetroThumb[IsDragging=true]#VerticalThumb RepeatButton#PART_IncreaseButton">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackFillPressedBrush)}" />
+  </Style>
+
+  <Style Selector="Slider[Orientation=Vertical]:disabled /template/ Controls|MetroThumb">
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.ThumbFillDisabledBrush)}" />
+  </Style>
+
+  <Style Selector="Slider[Orientation=Vertical]:disabled /template/ RepeatButton#PART_DecreaseButton">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackValueFillDisabledBrush)}" />
+  </Style>
+
+  <Style Selector="Slider[Orientation=Vertical]:disabled /template/ RepeatButton#PART_IncreaseButton">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackFillDisabledBrush)}" />
+  </Style>
+
 
 
 </Styles>

@@ -8,6 +8,7 @@
               xmlns:iac="clr-namespace:Avalonia.Xaml.Interactions.Custom;assembly=Avalonia.Xaml.Interactions.Custom"
               xmlns:fontAwesome="clr-namespace:FontAwesome.Avalonia;assembly=FontAwesome.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             Name="buttonView"
              x:Class="Avalonia.ExampleApp.Views.ButtonView">
   <UserControl.Resources>
     <Thickness x:Key="ControlMargin">0 5 0 0</Thickness>
@@ -305,7 +306,6 @@
                     HorizontalAlignment="Stretch">
       <TextBlock Text="DropDownButton" Classes="DescriptionHeaderStyle" />
 
-      <TextBlock Text="Not Working" Foreground="Red" Classes="DescriptionHeaderStyle" />
       <Controls:DropDownButton Margin="5"
                                      Command="{Binding ArtistsDropDownCommand}"
                                      Content="Artists"
@@ -326,10 +326,12 @@
           </DataTemplate>
         </Controls:DropDownButton.ItemTemplate>
 
+        
+        
         <Controls:DropDownButton.MenuStyle>
           <Style Selector="MenuItem">
             <Setter Property="Header" Value="{Binding Name}"/>
-            <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:DropDownButton}}, Path=DataContext.GenreDropDownMenuItemCommand}" />
+            <Setter Property="Command" Value="{Binding ElementName=buttonView, Path=DataContext.GenreDropDownMenuItemCommand}" />
             <Setter Property="CommandParameter" Value="{Binding Name}" />
           </Style>
         </Controls:DropDownButton.MenuStyle>

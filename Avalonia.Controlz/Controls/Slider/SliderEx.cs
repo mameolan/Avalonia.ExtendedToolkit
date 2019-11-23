@@ -21,9 +21,10 @@ namespace Avalonia.Controlz.Controls
 
         internal Track Track
         { get; set; }
-        public TickBar TopTickBar { get; private set; }
-        public TickBar BottomTickBar { get; private set; }
-        public AvaloniaObject SelectionRangeElement { get; set; }
+        internal TickBar TopTickBar { get; private set; }
+        internal TickBar BottomTickBar { get; private set; }
+        internal Border TrackBackground { get; private set; }
+        internal AvaloniaObject SelectionRangeElement { get; set; }
 
 
         public Orientation Orientation
@@ -112,7 +113,7 @@ namespace Avalonia.Controlz.Controls
 
 
         public static readonly AvaloniaProperty IsSnapToTickEnabledProperty =
-            AvaloniaProperty.Register<SliderEx, bool>(nameof(IsSnapToTickEnabled), defaultValue:true);
+            AvaloniaProperty.Register<SliderEx, bool>(nameof(IsSnapToTickEnabled), defaultValue: true);
 
 
 
@@ -241,21 +242,6 @@ namespace Avalonia.Controlz.Controls
 
 
 
-        //protected override Size MeasureOverride(Size availableSize)
-        //{
-        //    if (TopTickBar != null && BottomTickBar != null)
-        //    {
-        //        TopTickBar.Measure(availableSize);
-        //        BottomTickBar.Measure(availableSize);
-        //    }
-        //    return base.MeasureOverride(availableSize);
-        //}
-
-            
-
-
-
-
         private void OnTickPlacementChanged(SliderEx o, AvaloniaPropertyChangedEventArgs e)
         {
             if (TopTickBar == null || BottomTickBar == null)
@@ -264,18 +250,22 @@ namespace Avalonia.Controlz.Controls
             //TopTickBar.Width = this.Width;
             //BottomTickBar.Width = this.Width;
 
-            //if (Track?.Thumb != null)
-            //{
-            //    switch (Orientation)
-            //    {
-            //        case Orientation.Horizontal:
-            //            TopTickBar.ReservedSpace = Track.Thumb.Width;
-            //            break;
-            //        case Orientation.Vertical:
-            //            TopTickBar.ReservedSpace = Track.Thumb.Height;
-            //            break;
-            //    }
-            //}
+            if (Track?.Thumb != null)
+            {
+                switch (Orientation)
+                {
+                    case Orientation.Horizontal:
+                        if (DoubleUtil.IsDoubleFinite(Track.Thumb.Width))
+                            TopTickBar.ReservedSpace = Track.Thumb.Width;
+                        break;
+                    case Orientation.Vertical:
+                        if (DoubleUtil.IsDoubleFinite(Track.Thumb.Height))
+                            TopTickBar.ReservedSpace = Track.Thumb.Height;
+                        break;
+                }
+            }
+
+            Track.Thumb.Classes.Set("HorizontalSliderUpThumbStyle",TickPlacement== TickPlacement.TopLeft);
 
 
 
@@ -283,13 +273,15 @@ namespace Avalonia.Controlz.Controls
             switch (tickBarPlacement)
             {
                 case TickPlacement.None:
-                    
+
                     TopTickBar.IsVisible = false;
                     BottomTickBar.IsVisible = false;
 
                     break;
                 case TickPlacement.TopLeft:
                     TopTickBar.IsVisible = true;
+                    TrackBackground.Margin = new Thickness(5, 2, 5, 0);
+                    
                     break;
                 case TickPlacement.BottomRight:
                     break;
@@ -725,7 +717,7 @@ namespace Avalonia.Controlz.Controls
         {
             Size size = base.ArrangeOverride(finalSize);
 
-            if(TopTickBar!=null)
+            if (TopTickBar != null)
             {
                 TopTickBar.Width = finalSize.Width;
             }
@@ -747,6 +739,9 @@ namespace Avalonia.Controlz.Controls
             Track = e.NameScope.Find<Track>(TrackName);
             TopTickBar = e.NameScope.Find<TickBar>("TopTick");
             BottomTickBar = e.NameScope.Find<TickBar>("BottomTick");
+
+            TrackBackground = e.NameScope.Find<Border>("TrackBackground");
+
             //if (_autoToolTip != null)
             //{
             //    _autoToolTip.PlacementTarget = Track != null ? Track.Thumb : null;
@@ -808,7 +803,7 @@ namespace Avalonia.Controlz.Controls
         {
             this.SetValue(ValueProperty, this.Minimum);
         }
-
+        
 
     }
 }
