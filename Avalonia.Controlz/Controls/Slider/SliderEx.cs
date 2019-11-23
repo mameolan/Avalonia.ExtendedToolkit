@@ -35,7 +35,7 @@ namespace Avalonia.Controlz.Controls
 
 
         public static readonly AvaloniaProperty OrientationProperty =
-            AvaloniaProperty.Register<SliderEx, Orientation>(nameof(Orientation), defaultValue: Orientation.Horizontal);
+           AvaloniaProperty.Register<SliderEx, Orientation>(nameof(Orientation), defaultValue: Orientation.Horizontal);
         //ScrollBar.OrientationProperty.AddOwner<SliderEx>();
 
 
@@ -204,32 +204,43 @@ namespace Avalonia.Controlz.Controls
         public static readonly AvaloniaProperty IsMoveToPointEnabledProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsMoveToPointEnabled));
 
+
         public SliderEx()
+        {
+            InitializeCommands();
+            PseudoClasses.Set(":vertical", Orientation == Orientation.Vertical);
+            PseudoClasses.Set(":horizontal", Orientation == Orientation.Horizontal);
+        }
+
+        static SliderEx()
         {
             //MinimumProperty.OverrideDefaultValue<SliderEx>(0);
             //MaximumProperty.OverrideDefaultValue<SliderEx>(10d);
             //ValueProperty.OverrideDefaultValue<SliderEx>(0);
-            InitializeCommands();
+
+
 
             //Minimum = 0.0d;
             //Maximum = 10.0d;
             //Value = 0;
             //MinimumProperty.AddOwner<SliderEx>();
+            //OrientationProperty.OverrideDefaultValue(typeof(SliderEx), Orientation.Horizontal);
 
 
-
-            Thumb.DragStartedEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragStarted(o, e));
-            Thumb.DragDeltaEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragDelta(o, e));
-            Thumb.DragCompletedEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragCompleted(o, e));
+            Thumb.DragStartedEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragStarted(o, e), RoutingStrategies.Bubble);
+            Thumb.DragDeltaEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragDelta(o, e), RoutingStrategies.Bubble);
+            Thumb.DragCompletedEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragCompleted(o, e), RoutingStrategies.Bubble);
 
             SelectionStartProperty.Changed.AddClassHandler<SliderEx>((o, e) => OnSelectionStartChanged(o, e));
             SelectionEndProperty.Changed.AddClassHandler<SliderEx>((o, e) => OnSelectionEndChanged(o, e));
             ValueProperty.Changed.AddClassHandler<SliderEx>((o, e) => OnValueChanged(o, e));
             TickPlacementProperty.Changed.AddClassHandler<SliderEx>((o, e) => OnTickPlacementChanged(o, e));
+            OrientationProperty.Changed.AddClassHandler<SliderEx>((o, e) => OnOrientationChanged(o, e));
+
+            //PseudoClass<SliderEx, Orientation>(OrientationProperty, o => o == Orientation.Vertical, ":vertical");
+            //PseudoClass<SliderEx, Orientation>(OrientationProperty, o => o == Orientation.Horizontal, ":horizontal");
 
 
-            PseudoClasses.Set(":horizontal", Orientation == Orientation.Horizontal);
-            PseudoClasses.Set(":vertical", Orientation == Orientation.Vertical);
             //PseudoClasses.Set(":TickPlacementTopLeft", TickPlacement== TickPlacement.TopLeft);
             //PseudoClasses.Set(":TickPlacementBottomRight", TickPlacement == TickPlacement.BottomRight);
             //PseudoClasses.Set(":TickPlacementBoth", TickPlacement == TickPlacement.Both);
@@ -240,69 +251,103 @@ namespace Avalonia.Controlz.Controls
 
         }
 
-
-
-        private void OnTickPlacementChanged(SliderEx o, AvaloniaPropertyChangedEventArgs e)
+        private static void OnOrientationChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
         {
-            if (TopTickBar == null || BottomTickBar == null)
+            //if (e.NewValue is Orientation)
+            //{
+            //    Orientation orientation = (Orientation)e.NewValue;
+            //    slider.PseudoClasses.Set(":vertical", orientation == Orientation.Vertical);
+            //    slider.PseudoClasses.Set(":horizontal", orientation == Orientation.Horizontal);
+            //}
+
+
+        }
+
+        private static void OnTickPlacementChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
+        {
+            if (slider.TopTickBar == null || slider.BottomTickBar == null)
                 return;
+
+
 
             //TopTickBar.Width = this.Width;
             //BottomTickBar.Width = this.Width;
 
-            if (Track?.Thumb != null)
+            if (slider.Track?.Thumb != null)
             {
-                switch (Orientation)
+                switch (slider.Orientation)
                 {
                     case Orientation.Horizontal:
-                        if (DoubleUtil.IsDoubleFinite(Track.Thumb.Width))
-                            TopTickBar.ReservedSpace = Track.Thumb.Width;
+                        if (DoubleUtil.IsDoubleFinite(slider.Track.Thumb.Width))
+                            slider.TopTickBar.ReservedSpace = slider.Track.Thumb.Width;
                         break;
                     case Orientation.Vertical:
-                        if (DoubleUtil.IsDoubleFinite(Track.Thumb.Height))
-                            TopTickBar.ReservedSpace = Track.Thumb.Height;
+                        if (DoubleUtil.IsDoubleFinite(slider.Track.Thumb.Height))
+                            slider.TopTickBar.ReservedSpace = slider.Track.Thumb.Height;
                         break;
                 }
             }
 
-            Track.Thumb.Classes.Set("HorizontalSliderUpThumbStyle",TickPlacement== TickPlacement.TopLeft);
-
-
+            if (slider.Orientation == Orientation.Horizontal)
+            {
+                slider.Track.Thumb.Classes.Set("HorizontalSliderUpThumbStyle", slider.TickPlacement == TickPlacement.TopLeft);
+                slider.Track.Thumb.Classes.Set("HorizontalSliderDownThumbStyle", slider.TickPlacement == TickPlacement.BottomRight);
+            }
+            else
+            {
+                slider.Track.Thumb.Classes.Set("VerticalSliderLeftThumbStyle", slider.TickPlacement == TickPlacement.TopLeft);
+                slider.Track.Thumb.Classes.Set("VerticalSliderRightThumbStyle", slider.TickPlacement == TickPlacement.BottomRight);
+            }
 
             TickPlacement tickBarPlacement = (TickPlacement)e.NewValue;
             switch (tickBarPlacement)
             {
                 case TickPlacement.None:
-
-                    TopTickBar.IsVisible = false;
-                    BottomTickBar.IsVisible = false;
-
+                    slider.TopTickBar.IsVisible = false;
+                    slider.BottomTickBar.IsVisible = false;
                     break;
                 case TickPlacement.TopLeft:
-                    TopTickBar.IsVisible = true;
-                    TrackBackground.Margin = new Thickness(5, 2, 5, 0);
-                    
+                    slider.TopTickBar.IsVisible = true;
+                    if (slider.Orientation == Orientation.Horizontal)
+                    {
+                        slider.TrackBackground.Margin = new Thickness(5, 2, 5, 0);
+                    }
+                    else
+                    {
+                        slider.TrackBackground.Margin = new Thickness(2, 5, 0, 5);
+                    }
                     break;
                 case TickPlacement.BottomRight:
+                    slider.BottomTickBar.IsVisible = true;
+                    if (slider.Orientation == Orientation.Horizontal)
+                    {
+                        slider.TrackBackground.Margin = new Thickness(5, 2, 5, 0);
+                    }
+                    else
+                    {
+                        slider.TrackBackground.Margin = new Thickness(0, 5, 2, 5);
+                    }
                     break;
                 case TickPlacement.Both:
+                    slider.TopTickBar.IsVisible = true;
+                    slider.BottomTickBar.IsVisible = true;
                     break;
             }
 
 
         }
 
-        private void OnValueChanged(SliderEx o, AvaloniaPropertyChangedEventArgs e)
-        {
-            UpdateSelectionRangeElementPositionAndSize();
-        }
-
-        private void OnSelectionEndChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
+        private static void OnValueChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
         {
             slider.UpdateSelectionRangeElementPositionAndSize();
         }
 
-        private void OnSelectionStartChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
+        private static void OnSelectionEndChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
+        {
+            slider.UpdateSelectionRangeElementPositionAndSize();
+        }
+
+        private static void OnSelectionStartChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
         {
             double oldValue = (double)e.OldValue;
             double newValue = (double)e.NewValue;
@@ -399,17 +444,17 @@ namespace Avalonia.Controlz.Controls
             }
         }
 
-        private void OnThumbDragCompleted(SliderEx sliderEx, VectorEventArgs args)
+        private static void OnThumbDragCompleted(SliderEx sliderEx, VectorEventArgs args)
         {
             sliderEx.OnThumbDragCompleted(args);
         }
 
-        private void OnThumbDragDelta(SliderEx sliderEx, VectorEventArgs args)
+        private static void OnThumbDragDelta(SliderEx sliderEx, VectorEventArgs args)
         {
             sliderEx.OnThumbDragDelta(args);
         }
 
-        private void OnThumbDragStarted(SliderEx sliderEx, VectorEventArgs args)
+        private static void OnThumbDragStarted(SliderEx sliderEx, VectorEventArgs args)
         {
             sliderEx.OnThumbDragStarted(args);
         }
@@ -754,6 +799,7 @@ namespace Avalonia.Controlz.Controls
 
 
 
+
         }
 
         /// <summary>
@@ -803,7 +849,7 @@ namespace Avalonia.Controlz.Controls
         {
             this.SetValue(ValueProperty, this.Minimum);
         }
-        
+
 
     }
 }
