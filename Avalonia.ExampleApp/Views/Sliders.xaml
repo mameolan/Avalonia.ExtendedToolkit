@@ -14,18 +14,21 @@
     
     <StackPanel Grid.Row="0" >
       <TextBlock Text="Avalonia Slider"/>
-      <!--<Slider Orientation="Horizontal" Width="400"
+      <Slider Orientation="Horizontal" Width="400"
               />
 
       <Slider Orientation="Vertical" Height="400"
-              />-->
+              />
 
     </StackPanel>
 
     <StackPanel Grid.Row="1" Margin="0,20,0,0" >
-      <!--<Controlz:SliderEx Orientation="Horizontal" TickPlacement="TopLeft" Width="400"/>-->
+      <TextBlock Text="Slider Ex"/>
+      
+      <Controlz:SliderEx Orientation="Horizontal" TickPlacement="TopLeft" Width="400"/>
 
-      <Controlz:SliderEx Orientation="Vertical" TickPlacement="Both" Height="400"/>
+      <TextBlock Text="Should be vertical"/>
+      <Controlz:SliderEx Orientation="Vertical" TickPlacement="TopLeft" Height="400"/>
       
     </StackPanel>
     

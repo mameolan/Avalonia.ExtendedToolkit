@@ -34,7 +34,7 @@ namespace Avalonia.Controlz.Controls
         }
 
 
-        public static readonly AvaloniaProperty OrientationProperty =
+        public static readonly AvaloniaProperty<Orientation> OrientationProperty =
            AvaloniaProperty.Register<SliderEx, Orientation>(nameof(Orientation), defaultValue: Orientation.Horizontal);
         //ScrollBar.OrientationProperty.AddOwner<SliderEx>();
 
@@ -224,7 +224,7 @@ namespace Avalonia.Controlz.Controls
             //Maximum = 10.0d;
             //Value = 0;
             //MinimumProperty.AddOwner<SliderEx>();
-            //OrientationProperty.OverrideDefaultValue(typeof(SliderEx), Orientation.Horizontal);
+           // OrientationProperty.OverrideDefaultValue(typeof(SliderEx), Orientation.Horizontal);
 
 
             Thumb.DragStartedEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragStarted(o, e), RoutingStrategies.Bubble);
@@ -253,12 +253,27 @@ namespace Avalonia.Controlz.Controls
 
         private static void OnOrientationChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
         {
-            //if (e.NewValue is Orientation)
-            //{
-            //    Orientation orientation = (Orientation)e.NewValue;
-            //    slider.PseudoClasses.Set(":vertical", orientation == Orientation.Vertical);
-            //    slider.PseudoClasses.Set(":horizontal", orientation == Orientation.Horizontal);
-            //}
+            if (e.NewValue is Orientation)
+            {
+                Orientation orientation = (Orientation)e.NewValue;
+                //slider.PseudoClasses.Remove(":vertical");
+                //slider.PseudoClasses.Remove(":horizontal");
+
+                //switch (orientation)
+                //{
+                //    case Orientation.Horizontal:
+                //        slider.PseudoClasses.Add(":horizontal");
+                //        break;
+                //    case Orientation.Vertical:
+                //        slider.PseudoClasses.Add(":vertical");
+                //        break;
+                //}
+
+
+
+                //slider.PseudoClasses.Set(":vertical", orientation == Orientation.Vertical);
+                //slider.PseudoClasses.Set(":horizontal", orientation == Orientation.Horizontal);
+            }
 
 
         }

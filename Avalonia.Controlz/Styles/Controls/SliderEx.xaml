@@ -782,7 +782,7 @@
 
 
 
-  <Style Selector="Controlz|SliderEx[Orientation=Horizontal]">
+  <Style Selector="Controlz|SliderEx:hotizontal">
     <Setter Property="Background"
             Value="Transparent"/>
     <Setter Property="Foreground"
@@ -867,11 +867,11 @@
     </Setter>
   </Style>
 
-  <!--<Style Selector="Controlz|SliderEx[Orientation=Horizontal][TickPlacement=TopLeft] /template/ Controlz|TickBar#TopTick">
+  <!--<Style Selector="Controlz|SliderEx:hotizontal[TickPlacement=TopLeft] /template/ Controlz|TickBar#TopTick">
     <Setter Property="IsVisible" Value="true"/>
   </Style>-->
 
-  <!--<Style Selector="Controlz|SliderEx[Orientation=Horizontal][TickPlacement=TopLeft] /template/ Thumb#Thumb">
+  <!--<Style Selector="Controlz|SliderEx:hotizontal[TickPlacement=TopLeft] /template/ Thumb#Thumb">
     <Setter Property="helper:Extensions.Classes" Value="HorizontalSliderUpThumbStyle"/>
   </Style>-->
 
@@ -936,7 +936,7 @@
 
 
 
-  <Style Selector="Controlz|SliderEx[Orientation=Vertical]">
+  <Style Selector="Controlz|SliderEx:vertical">
     <Setter Property="MinWidth" Value="20"/>
     <Setter Property="MinHeight" Value="40"/>
     <Setter Property="Template">
@@ -992,17 +992,26 @@
               <!-- MainPartsPanel -->
               <Track Name="PART_Track" Grid.Column="1" Orientation="Vertical" IsDirectionReversed="True">
                 <Track.DecreaseButton>
-                  <RepeatButton Classes="SliderRepeatButtonStyle"
+                  <RepeatButton Classes="repeattrack"
                                 Command="{x:Static Controlz:SliderEx.DecreaseLargeCommand}"/>
                 </Track.DecreaseButton>
                 <Track.IncreaseButton>
-                  <RepeatButton Classes="SliderRepeatButtonStyle"
+                  <RepeatButton Classes="repeattrack"
                                 Command="{x:Static Controlz:SliderEx.IncreaseLargeCommand}"/>
                 </Track.IncreaseButton>
-                <Track.Thumb>
+                <!--<Track.Thumb>
                   <Thumb x:Name="Thumb"
                          Classes="VerticalSliderThumbStyle"/>
-                </Track.Thumb>
+                </Track.Thumb>-->
+                <Thumb MinWidth="20" MinHeight="20">
+                  <Thumb.Template>
+                    <ControlTemplate>
+                      <Grid>
+                        <Ellipse Width="12" Height="12" Fill="{DynamicResource ThemeAccentBrush}"/>
+                      </Grid>
+                    </ControlTemplate>
+                  </Thumb.Template>
+                </Thumb>
               </Track>
             </Grid>
           </Border>
@@ -1076,5 +1085,14 @@
     <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderLowBrush}"/>
   </Style>
 
+  <Style Selector="Slider /template/ RepeatButton.repeattrack">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Foreground" Value="{DynamicResource ThemeBorderLowBrush}"/>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}" />
+      </ControlTemplate>
+    </Setter>
+  </Style>
 
 </Styles>
