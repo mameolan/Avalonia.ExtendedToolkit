@@ -352,16 +352,23 @@
   </Style>-->
 
   <!--Todo-->
-  <!--<ControlTemplate.Triggers>
-            <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}" Value="Year">
-              <Setter TargetName="PART_MonthView" Property="Visibility" Value="Hidden" />
-              <Setter TargetName="PART_YearView" Property="Visibility" Value="Visible" />
-            </DataTrigger>
-            <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}" Value="Decade">
-              <Setter TargetName="PART_MonthView" Property="Visibility" Value="Hidden" />
-              <Setter TargetName="PART_YearView" Property="Visibility" Value="Visible" />
-            </DataTrigger>
-          </ControlTemplate.Triggers>-->
+  <Style Selector="Calendar[DisplayMode=Year] /template/ CalendarItem /template/ Grid#PART_MonthView">
+    <Setter Property="IsVisible" Value="false" />
+  </Style>
+
+  <Style Selector="Calendar[DisplayMode=Year] /template/ CalendarItem /template/ Grid#PART_YearView">
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
+
+  <Style Selector="Calendar[DisplayMode=Decade] /template/ CalendarItem /template/ Grid#PART_MonthView">
+    <Setter Property="IsVisible" Value="false" />
+  </Style>
+
+  <Style Selector="Calendar[DisplayMode=Decade] /template/ CalendarItem /template/ Grid#PART_YearView">
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
+
+  
 
   <Style Selector="CalendarButton">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent4}" />
@@ -433,7 +440,7 @@
     <!--<Setter Property="CalendarButtonStyle" Value="{DynamicResource MahApps.Styles.CalendarButton}" />
     <Setter Property="CalendarDayButtonStyle" Value="{DynamicResource MahApps.Styles.CalendarDayButton}" />
     <Setter Property="CalendarItemStyle" Value="{DynamicResource MahApps.Styles.CalendarItem}" />-->
-    <!--<Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}" />-->
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}" />
     <!--<Setter Property="HorizontalContentAlignment" Value="Left" />-->
     <Setter Property="Template">
       <Setter.Value>
@@ -445,6 +452,7 @@
                           Background="{TemplateBinding Background}"
                           BorderBrush="{TemplateBinding BorderBrush}"
                           BorderThickness="{TemplateBinding BorderThickness}"
+                          
                            />
           </Grid>
         </ControlTemplate>
