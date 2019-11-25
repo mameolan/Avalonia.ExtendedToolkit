@@ -1,0 +1,143 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+
+  <Style Selector="CalendarDayButton">
+    <Setter Property="FontFamily" Value="{DynamicResource MahApps.Fonts.Content}" />
+    <Setter Property="FontSize" Value="{DynamicResource MahApps.Sizes.Font.Content}" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" /> <!--Center-->
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="MinHeight" Value="5" />
+    <Setter Property="MinWidth" Value="5" />
+    <Setter Property="Background" Value="Transparent" />
+    <!--<Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />-->
+    <!--<Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />-->
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Background="Transparent">
+            
+            <!--Opacity="0"-->
+            <Rectangle x:Name="TodayBackground"
+                       Fill="{DynamicResource MahApps.Brushes.Accent}"
+                        IsVisible="False"/>
+            
+
+            <Rectangle x:Name="SelectedBackground"
+                       Fill="{DynamicResource MahApps.Brushes.Accent4}"
+                       Opacity="0" />
+            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}" />
+            <Rectangle x:Name="HighlightBackground"
+                       Fill="{DynamicResource MahApps.Brushes.Accent4}"
+                       Opacity="0" />
+            <Path x:Name="BlackoutVisual"
+                  Margin="3"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Data="M8.1772461,11.029181 L10.433105,11.029181 L11.700684,12.801641 L12.973633,11.029181 L15.191895,11.029181 L12.844727,13.999395 L15.21875,17.060919 L12.962891,17.060919 L11.673828,15.256231 L10.352539,17.060919 L8.1396484,17.060919 L10.519043,14.042364 z"
+                  Fill="{DynamicResource MahApps.Brushes.Accent3}"
+                  Opacity="0"
+                  RenderTransformOrigin="0.5,0.5"
+                  Stretch="Fill" />
+            <ContentControl x:Name="Content"
+                              Margin="5 1 5 1"
+                              Background="{TemplateBinding Background}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              TextBlock.Foreground="{TemplateBinding Foreground}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              Content="{TemplateBinding Content}"
+                              FontSize="{TemplateBinding FontSize}"
+                              />
+            <Rectangle x:Name="FocusVisual"
+                       IsHitTestVisible="false"
+                       Stroke="{DynamicResource MahApps.Brushes.Accent3}"
+                       IsVisible="false" />
+
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="CalendarDayButton:pointerover /template/ Rectangle#HighlightBackground" >
+    <Setter Property="Opacity" Value="0.75"/>
+  </Style>
+
+  <Style Selector="CalendarDayButton:pressed /template/ Rectangle#HighlightBackground" >
+    <Setter Property="Opacity" Value="0.9"/>
+  </Style>
+
+  <Style Selector="CalendarDayButton:disabled /template/ Rectangle#HighlightBackground" >
+    <Setter Property="Opacity" Value="0"/>
+  </Style>
+
+  <Style Selector="CalendarDayButton:disabled /template/ ContentControl#Content" >
+    <Setter Property="Opacity" Value="0"/>
+  </Style>
+
+  <Style Selector="CalendarDayButton:inactive /template/ ContentControl#Content" >
+    <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}"/>
+  </Style>
+
+  <Style Selector="CalendarDayButton:blackout /template/ Path#BlackoutVisual" >
+    <Setter Property="Opacity" Value="1"/>
+  </Style>
+
+  <Style Selector="CalendarDayButton:selected /template/ Rectangle#FocusVisual" >
+    <Setter Property="IsVisible" Value="True"/>
+  </Style>
+
+  <Style Selector="CalendarDayButton:selected /template/ ContentControl#Content" >
+    <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+  </Style>
+
+  <!--<Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=IsTodayHighlighted}" Value="True" />
+  <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsToday}" Value="True" />
+  <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsSelected}" Value="True" />-->
+  <!--correct: ?-->
+
+  <Style Selector="CalendarDayButton:selected:today:dayfocused /template/ Rectangle#FocusVisual" >
+    <Setter Property="Stroke" Value="{DynamicResource MahApps.Brushes.Gray1}" />
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
+
+  <Style Selector="CalendarDayButton:selected:today:dayfocused /template/ ContentControl#Content" >
+    <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+  </Style>
+
+
+  <!--<Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}, Path=IsTodayHighlighted}" Value="True" />
+  <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsToday}" Value="True" />-->
+  <!--correct: ?-->
+
+  <Style Selector="CalendarDayButton:today:dayfocused /template/ ContentControl#Content" >
+    <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />
+  </Style>
+
+  <Style Selector="CalendarDayButton:today:dayfocused /template/ Rectangle#TodayBackground" >
+    <Setter Property="IsVisible" Value="True"/>
+    <!--<Setter Property="Opacity" Value="1" />-->
+  </Style>
+
+  <Style Selector="CalendarDayButton:today:blackout /template/ Path#BlackoutVisual" >
+    <Setter Property="Fill" Value="{DynamicResource MahApps.Brushes.Accent}" />
+  </Style>
+
+  <Style Selector="CalendarDayButton:today:blackout /template/ Rectangle#TodayBackground" >
+    <Setter Property="IsVisible" Value="True"/>
+    <Setter Property="Opacity" Value="0.5" />
+  </Style>
+
+  <Style Selector="CalendarDayButton:today" >
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+  </Style>
+  
+
+</Styles>

@@ -1,0 +1,247 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+
+  <Style Selector="Button.CalendarItemPrevious">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid Cursor="Hand">
+          <Rectangle Fill="{DynamicResource MahApps.Brushes.Accent}"
+                     Opacity="0.1"
+                     Stretch="Fill" />
+          <Path x:Name="path"
+                Width="6"
+                Height="10"
+                Margin="14 -6 0 0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Data="M288.75,232.25 L288.75,240.625 L283,236.625 z"
+                Fill="white"
+                Opacity="0.7"
+                Stretch="Fill" />
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="Button.CalendarItemPrevious:pointerover /template/ Path#path">
+    <Setter Property="Opacity" Value="1"/>
+  </Style>
+
+  <Style Selector="Button.CalendarItemPrevious:disabled /template/ Path#path">
+    <Setter Property="Opacity" Value=".5"/>
+  </Style>
+
+  <Style Selector="Button.CalendarItemNext">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid Cursor="Hand">
+          <Rectangle Fill="{DynamicResource MahApps.Brushes.Accent}"
+                     Opacity="0.1"
+                     Stretch="Fill" />
+          <Path x:Name="path"
+                Width="6"
+                Height="10"
+                Margin="0 -6 14 0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Data="M282.875,231.875 L282.875,240.375 L288.625,236 z"
+                Fill="white"
+                Opacity="0.7"
+                Stretch="Fill" />
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="Button.CalendarItemNext:pointerover /template/ Path#path">
+    <Setter Property="Opacity" Value="1"/>
+  </Style>
+
+  <Style Selector="Button.CalendarItemNext:disabled /template/ Path#path">
+    <Setter Property="Opacity" Value=".2"/>
+  </Style>
+
+  <Style Selector="Button.CalendarItemHeader">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Cursor="Hand">
+            <ContentPresenter x:Name="buttonContent"
+                              Margin="1 4 1 9"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              Opacity="0.7" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Button.CalendarItemHeader:pointerover /template/ ContentPresenter#buttonContent">
+    <Setter Property="Opacity" Value="1"/>
+  </Style>
+
+  <Style Selector="Button.CalendarItemHeader:disabled /template/ ContentPresenter#buttonContent">
+    <Setter Property="Opacity" Value=".5"/>
+  </Style>
+
+
+
+
+
+
+  <Style Selector="CalendarItem">
+    <Setter Property="Margin" Value="0 3" />
+    <Setter Property="Padding" Value="2" />
+    <Setter Property="DayTitleTemplate">
+      <Template>
+        <TextBlock Margin="0 6 0 6"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         FontWeight="Bold"
+                         Foreground="{DynamicResource MahApps.Brushes.Black}"
+                         Opacity="0.8"
+                         Text="{Binding}" />
+      </Template>
+    </Setter>
+
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid x:Name="PART_Root">
+            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    >
+              <Grid Margin="{TemplateBinding Padding}">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0"
+                      HorizontalAlignment="Stretch"
+                      Background="{DynamicResource MahApps.Brushes.Accent}">
+                  <!--PART_HeaderButton-->
+                  <Button x:Name="HeaderButton" 
+                          Grid.Row="0"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Focusable="False"
+                          FontWeight="Bold"
+                          Classes="CalendarItemHeader"
+                          />
+                  <!--PART_PreviousButton-->
+                  <Button x:Name="PreviousButton"
+                          Grid.Row="0"
+                          Width="28"
+                          Height="20"
+                          HorizontalAlignment="Left"
+                          Focusable="False"
+                          Classes="CalendarItemPrevious"
+                          />
+                  <!--PART_NextButton-->
+                  <Button x:Name="NextButton"
+                          Grid.Row="0"
+                          Width="28"
+                          Height="20"
+                          HorizontalAlignment="Right"
+                          Focusable="False"
+                           Classes="CalendarItemNext"
+                          />
+
+                </Grid>
+                <!--PART_MonthView-->
+                <Grid x:Name="MonthView"
+                      Grid.Row="1"
+                      Margin="6 -1 6 6"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      IsVisible="True">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                  </Grid.RowDefinitions>
+                </Grid>
+                <!--PART_YearView-->
+                <Grid x:Name="YearView"
+                      Grid.Row="1"
+                      Margin="6 -3 7 6"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      IsVisible="False">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                  </Grid.RowDefinitions>
+                </Grid>
+              </Grid>
+            </Border>
+            <!--PART_DisabledVisual-->
+            <Rectangle x:Name="DisabledVisual"
+                       Fill="{DynamicResource MahApps.Brushes.Controls.Disabled}"
+                       Opacity="0"
+                       Stretch="Fill"
+                       Stroke="{DynamicResource MahApps.Brushes.Controls.Disabled}"
+                       StrokeThickness="1"
+                       IsVisible="False" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="CalendarItem:disabled /template/ Rectangle#DisabledVisual">
+    <Setter Property="Opacity" Value="1"/>
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
+
+  <!--Todo-->
+  <Style Selector="Calendar[DisplayMode=Year] /template/ CalendarItem /template/ Grid#MonthView">
+    <Setter Property="IsVisible" Value="false" />
+  </Style>
+
+  <Style Selector="Calendar[DisplayMode=Year] /template/ CalendarItem /template/ Grid#YearView">
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
+
+  <Style Selector="Calendar[DisplayMode=Decade] /template/ CalendarItem /template/ Grid#MonthView">
+    <Setter Property="IsVisible" Value="false" />
+  </Style>
+
+  <Style Selector="Calendar[DisplayMode=Decade] /template/ CalendarItem /template/ Grid#YearView">
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
+
+</Styles>
