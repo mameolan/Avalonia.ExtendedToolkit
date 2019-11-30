@@ -50,8 +50,6 @@
     <ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
     <ProjectReference Include="..\Avalonia.MissingControls\Avalonia.Controlz.csproj" />
   </ItemGroup>
-
-  
   
   <Target Name="GenerateXamlFilesInner">
     <PropertyGroup>

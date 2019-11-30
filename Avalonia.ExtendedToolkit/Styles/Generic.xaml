@@ -29,7 +29,8 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Slider.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.SliderEx.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.StatusBar.xaml"/>
-  
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.TabControl.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.TabItem.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.TextBlock.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ToolTip.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.TreeView.xaml"/>
@@ -55,4 +56,5 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ProgressRing.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/TransitioningContentControl.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/MetroHeader.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Underline.xaml"/>
  </Styles>

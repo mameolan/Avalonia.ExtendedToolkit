@@ -1,0 +1,36 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit">
+
+  <Style Selector="Controls|Underline">
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.GrayNormal}" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="LineThickness" Value="1" />
+    <Setter Property="Placement" Value="Bottom" />
+    <Setter Property="UseLayoutRounding" Value="True" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border x:Name="PART_UnderlineBorder"
+                  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                  VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+            <Controls:ClipBorder Background="{TemplateBinding Background}"
+                                 BorderThickness="0"
+                                 >
+              <ContentPresenter Margin="{TemplateBinding Padding}"
+                                UseLayoutRounding="False" />
+            </Controls:ClipBorder>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+</Styles>
