@@ -40,6 +40,9 @@
   <Style Selector="Calendar[IsTodayHighlighted=true] /template/ CalendarDayButton:today">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}"/>
   </Style>
-  
+
+  <Style Selector="Calendar:disabled /template/ CalendarItem">
+    <Setter Property="IsEnabled" Value="False"/>
+  </Style>
   
 </Styles>
