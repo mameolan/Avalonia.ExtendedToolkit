@@ -3,9 +3,9 @@
 namespace Avalonia.ExtendedToolkit
 {
     /// <summary>
-    /// should be remove if avalonia supports naming of ColumnDefinition
+    /// should be remove if avalonia supports naming of rowdefinition
     /// </summary>
-    public class ColumnDefinitionExt: ColumnDefinition
+    public class RowDefinitionExt:RowDefinition
     {
         public string Name
         {
@@ -14,6 +14,6 @@ namespace Avalonia.ExtendedToolkit
         }
 
         public static readonly AvaloniaProperty NameProperty =
-            AvaloniaProperty.Register<ColumnDefinitionExt, string>(nameof(Name));
+            AvaloniaProperty.Register<RowDefinitionExt, string>(nameof(Name));
     }
 }

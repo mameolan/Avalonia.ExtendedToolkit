@@ -2,7 +2,9 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:tk="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit"
     xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+    
     xmlns:System="clr-namespace:System;assembly=mscorlib">
 
   <Style Selector="TabItem">
@@ -37,16 +39,12 @@
                   VerticalAlignment="Stretch"
                   UseLayoutRounding="True">
               <Grid.ColumnDefinitions>
-                <!--x:Name="PART_ContentLeftCol"-->
-                <!--x:Name="PART_ContentRightCol"-->
-                <ColumnDefinition  Width="Auto" />
-                <ColumnDefinition  Width="Auto" />
+                <tk:ColumnDefinitionExt Name="PART_ContentLeftCol"  Width="Auto" />
+                <tk:ColumnDefinitionExt Name="PART_ContentRightCol"  Width="Auto" />
               </Grid.ColumnDefinitions>
               <Grid.RowDefinitions>
-                <!--x:Name="PART_ContentTopRow"-->
-                <RowDefinition Height="Auto" />
-                <!--x:Name="PART_ContentBottomRow"-->
-                <RowDefinition  Height="Auto" />
+                <tk:RowDefinitionExt Name="PART_ContentTopRow" Height="Auto" />
+                <tk:RowDefinitionExt Name="PART_ContentBottomRow"  Height="Auto" />
               </Grid.RowDefinitions>
               <Controls:ContentControlEx x:Name="ContentSite"
                                          Grid.Row="0"
@@ -62,7 +60,7 @@
                                          Foreground="{TemplateBinding Foreground}"
                                          RecognizesAccessKey="True"
                                          UseLayoutRounding="False" />
-              <!--<Controls:Underline x:Name="Underline"
+              <Controls:Underline x:Name="Underline"
                                   Grid.Row="1"
                                   Grid.Column="0"
                                   HorizontalAlignment="Stretch"
@@ -72,43 +70,126 @@
                                   LineExtent="3"
                                   LineThickness="2"
                                   Placement="Bottom"
-                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />-->
+                                   />
             </Grid>
           </Border>
-          <!--<ControlTemplate.Triggers>
-            <Trigger Property="TabStripPlacement" Value="Left">
-              <Setter TargetName="ContentSite" Property="Grid.Column" Value="0" />
-              <Setter TargetName="ContentSite" Property="Grid.Row" Value="0" />
-              <Setter TargetName="PART_ContentBottomRow" Property="Height" Value="Auto" />
-              <Setter TargetName="PART_ContentLeftCol" Property="Width" Value="*" />
-              <Setter TargetName="PART_ContentRightCol" Property="Width" Value="Auto" />
-              <Setter TargetName="PART_ContentTopRow" Property="Height" Value="*" />
-            </Trigger>
-            <Trigger Property="TabStripPlacement" Value="Top">
-              <Setter TargetName="ContentSite" Property="Grid.Column" Value="0" />
-              <Setter TargetName="ContentSite" Property="Grid.Row" Value="0" />
-              <Setter TargetName="PART_ContentBottomRow" Property="Height" Value="Auto" />
-              <Setter TargetName="PART_ContentLeftCol" Property="Width" Value="*" />
-              <Setter TargetName="PART_ContentRightCol" Property="Width" Value="Auto" />
-              <Setter TargetName="PART_ContentTopRow" Property="Height" Value="*" />
-            </Trigger>
-            <Trigger Property="TabStripPlacement" Value="Right">
-              <Setter TargetName="ContentSite" Property="Grid.Column" Value="1" />
-              <Setter TargetName="ContentSite" Property="Grid.Row" Value="0" />
-              <Setter TargetName="PART_ContentBottomRow" Property="Height" Value="Auto" />
-              <Setter TargetName="PART_ContentLeftCol" Property="Width" Value="Auto" />
-              <Setter TargetName="PART_ContentRightCol" Property="Width" Value="*" />
-              <Setter TargetName="PART_ContentTopRow" Property="Height" Value="*" />
-            </Trigger>
-            <Trigger Property="TabStripPlacement" Value="Bottom">
-              <Setter TargetName="ContentSite" Property="Grid.Column" Value="0" />
-              <Setter TargetName="ContentSite" Property="Grid.Row" Value="1" />
-              <Setter TargetName="PART_ContentBottomRow" Property="Height" Value="*" />
-              <Setter TargetName="PART_ContentLeftCol" Property="Width" Value="*" />
-              <Setter TargetName="PART_ContentRightCol" Property="Width" Value="Auto" />
-              <Setter TargetName="PART_ContentTopRow" Property="Height" Value="Auto" />
-            </Trigger>
 
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!--TabStripPlacement Left-->
+
+  <Style Selector="TabItem[TabStripPlacement=Left] /template/ Controls|ContentControlEx#ContentSite">
+    <Setter Property="Grid.Column" Value="0" />
+    <Setter Property="Grid.Row" Value="0" />
+  </Style>
+
+  <Style Selector="TabItem[TabStripPlacement=Left] /template/ tk|RowDefinitionExt#PART_ContentBottomRow">
+    <Setter Property="Height" Value="Auto" />
+  </Style>
+
+  <Style Selector="TabItem[TabStripPlacement=Left] /template/ tk|ColumnDefinitionExt#PART_ContentLeftCol">
+    <Setter Property="Width" Value="*" />
+  </Style>
+
+  <Style Selector="TabItem[TabStripPlacement=Left] /template/ tk|ColumnDefinitionExt#PART_ContentRightCol">
+    <Setter Property="Width" Value="Auto" />
+  </Style>
+
+  <Style Selector="TabItem[TabStripPlacement=Left] /template/ tk|RowDefinitionExt#PART_ContentTopRow">
+    <Setter Property="Height" Value="*" />
+  </Style>
+
+  <!--TabStripPlacement Top-->
+  <Style Selector="TabItem[TabStripPlacement=Top] /template/ Controls|ContentControlEx#ContentSite">
+    <Setter Property="Grid.Column" Value="0" />
+    <Setter Property="Grid.Row" Value="0" />
+  </Style>
+
+  <Style Selector="TabItem[TabStripPlacement=Top] /template/ tk|RowDefinitionExt#PART_ContentBottomRow">
+    <Setter Property="Height" Value="Auto" />
+  </Style>
+
+  <Style Selector="TabItem[TabStripPlacement=Top] /template/ tk|ColumnDefinitionExt#PART_ContentLeftCol">
+    <Setter Property="Width" Value="*" />
+  </Style>
+
+  <Style Selector="TabItem[TabStripPlacement=Top] /template/ tk|ColumnDefinitionExt#PART_ContentRightCol">
+    <Setter Property="Width" Value="Auto" />
+  </Style>
+
+  <Style Selector="TabItem[TabStripPlacement=Top] /template/ tk|RowDefinitionExt#PART_ContentTopRow">
+    <Setter Property="Height" Value="*" />
+  </Style>
+
+  <!--TabStripPlacement Right-->
+  <Style Selector="TabItem[TabStripPlacement=Right] /template/ Controls|ContentControlEx#ContentSite">
+    <Setter Property="Grid.Column" Value="1" />
+    <Setter Property="Grid.Row" Value="0" />
+  </Style>
+
+  <Style Selector="TabItem[TabStripPlacement=Right] /template/ tk|RowDefinitionExt#PART_ContentBottomRow">
+    <Setter Property="Height" Value="Auto" />
+  </Style>
+
+  <Style Selector="TabItem[TabStripPlacement=Right] /template/ tk|ColumnDefinitionExt#PART_ContentLeftCol">
+    <Setter Property="Width" Value="Auto" />
+  </Style>
+
+  <Style Selector="TabItem[TabStripPlacement=Right] /template/ tk|ColumnDefinitionExt#PART_ContentRightCol">
+    <Setter Property="Width" Value="*" />
+  </Style>
+
+  <Style Selector="TabItem[TabStripPlacement=Right] /template/ tk|RowDefinitionExt#PART_ContentTopRow">
+    <Setter Property="Height" Value="*" />
+  </Style>
+
+  <!--TabStripPlacement Bottom-->
+  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ Controls|ContentControlEx#ContentSite">
+    <Setter Property="Grid.Column" Value="0" />
+    <Setter Property="Grid.Row" Value="1" />
+  </Style>
+
+  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ tk|RowDefinitionExt#PART_ContentBottomRow">
+    <Setter Property="Height" Value="*" />
+  </Style>
+
+  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ tk|ColumnDefinitionExt#PART_ContentLeftCol">
+    <Setter Property="Width" Value="*" />
+  </Style>
+
+  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ tk|ColumnDefinitionExt#PART_ContentRightCol">
+    <Setter Property="Width" Value="Auto" />
+  </Style>
+
+  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ tk|RowDefinitionExt#PART_ContentTopRow">
+    <Setter Property="Height" Value="Auto" />
+  </Style>
+
+  <Style Selector="TabItem:selected /template/ Controls|ContentControlEx#ContentSite">
+    <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+  </Style>
+
+  <Style Selector="TabItem:selected /template/ Controls|Underline#Underline">
+    <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:TabControlHelper.UnderlineSelectedBrush), Mode=OneWay}" />
+  </Style>
+
+  <Style Selector="TabItem[IsSelected=false] /template/ Controls|ContentControlEx#ContentSite">
+    <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.GrayNormal}" />
+  </Style>
+
+  <Style Selector="TabItem /template/ Border#Border:pointerover /template/ Controls|ContentControlEx#ContentSite">
+    <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.GrayHover}" />
+  </Style>
+
+
+  <Style Selector="TabItem /template/ Border#Border:pointerover /template/ Controls|Underline#Underline">
+    <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:TabControlHelper.UnderlineMouseOverBrush), Mode=OneWay}" />
+  </Style>
+
+  <!--<ControlTemplate.Triggers>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=(Controls:TabControlHelper.Underlined)}" Value="None">
               <Setter TargetName="Underline" Property="Visibility" Value="Collapsed" />
             </DataTrigger>
@@ -120,13 +201,7 @@
               <Setter TargetName="Underline" Property="LineThickness" Value="1" />
             </DataTrigger>
 
-            <Trigger Property="IsSelected" Value="true">
-              <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
-              <Setter TargetName="Underline" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:TabControlHelper.UnderlineSelectedBrush), Mode=OneWay}" />
-            </Trigger>
-            <Trigger Property="IsSelected" Value="false">
-              <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource MahApps.Brushes.GrayNormal}" />
-            </Trigger>
+
 
             <MultiDataTrigger>
               <MultiDataTrigger.Conditions>
@@ -142,11 +217,6 @@
               </MultiDataTrigger.Conditions>
               <Setter TargetName="Underline" Property="LineThickness" Value="2" />
             </MultiDataTrigger>
-
-            <Trigger SourceName="Border" Property="IsMouseOver" Value="True">
-              <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="{DynamicResource MahApps.Brushes.GrayHover}" />
-              <Setter TargetName="Underline" Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:TabControlHelper.UnderlineMouseOverBrush), Mode=OneWay}" />
-            </Trigger>
 
             <MultiDataTrigger>
               <MultiDataTrigger.Conditions>
@@ -399,11 +469,6 @@
               <Setter TargetName="Underline" Property="VerticalAlignment" Value="Stretch" />
             </MultiDataTrigger>
           </ControlTemplate.Triggers>-->
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-    
-    
-  </Style>
-  
+
+
 </Styles>

@@ -68,7 +68,31 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static void SetUnderlined(IControl element, UnderlinedType value)
         {
             element.SetValue(UnderlinedProperty, value);
+
+            if (value == UnderlinedType.TabPanel)
+                element.SetValue(IsTabPanelSelectedProperty, true);
+
+
         }
+
+
+
+        public static readonly AttachedProperty<bool> IsTabPanelSelectedProperty =
+            AvaloniaProperty.RegisterAttached<IControl, bool>("IsTabPanelSelected", typeof(TabControlHelper));
+
+        public static bool GetIsTabPanelSelected(IControl element)
+        {
+            return element.GetValue(IsTabPanelSelectedProperty);
+        }
+
+        public static void SetIsTabPanelSelected(IControl element, bool value)
+        {
+            element.SetValue(IsTabPanelSelectedProperty, value);
+        }
+
+
+
+
 
         public static readonly AttachedProperty<IBrush> UnderlineBrushProperty =
             AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineBrush", typeof(TabControlHelper));
@@ -138,12 +162,12 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly AttachedProperty<Dock?> UnderlinePlacementProperty =
             AvaloniaProperty.RegisterAttached<IControl, Dock?>("UnderlinePlacement", typeof(TabControlHelper));
 
-        public static Dock? GetUnderlinePlacement(Control element)
+        public static Dock? GetUnderlinePlacement(IControl element)
         {
             return element.GetValue(UnderlinePlacementProperty);
         }
 
-        public static void SetUnderlinePlacement(Control element, Dock? value)
+        public static void SetUnderlinePlacement(IControl element, Dock? value)
         {
             element.SetValue(UnderlinePlacementProperty, value);
         }
