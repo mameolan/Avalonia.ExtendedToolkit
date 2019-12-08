@@ -72,7 +72,7 @@
   </Style>
 
   <Style Selector="TabControl /template/ Controls|Underline#Underline">
-    <Setter Property="IsVisible" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Converter={StaticResource UnderlinedTypeToBoolConverter}}"/>
+    <Setter Property="IsVisible" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Converter={StaticResource UnderlinedTypeToBoolConverter}, ConverterParameter={x:Static Controls:UnderlinedType.TabPanel}}"/>
   </Style>
 
   <!--TabStripPlacement Bottom-->

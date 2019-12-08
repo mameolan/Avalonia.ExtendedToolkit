@@ -18,7 +18,8 @@ namespace Avalonia.ExtendedToolkit.Controls
     public static class TabControlHelper
     {
         public static readonly AttachedProperty<bool> CloseButtonEnabledProperty =
-            AvaloniaProperty.RegisterAttached<IControl, bool>("CloseButtonEnabled", typeof(TabControlHelper));
+            AvaloniaProperty.RegisterAttached<IControl, bool>("CloseButtonEnabled", 
+                typeof(TabControlHelper), defaultValue:false);
 
         public static bool GetCloseButtonEnabled(IControl element)
         {
@@ -69,6 +70,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             element.SetValue(UnderlinedProperty, value);
 
+            element.Classes.Add($":underlined_{value.ToString().ToLower()}");
+
             if (value == UnderlinedType.TabPanel)
                 element.SetValue(IsTabPanelSelectedProperty, true);
 
@@ -78,7 +81,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
 
         public static readonly AttachedProperty<bool> IsTabPanelSelectedProperty =
-            AvaloniaProperty.RegisterAttached<IControl, bool>("IsTabPanelSelected", typeof(TabControlHelper));
+            AvaloniaProperty.RegisterAttached<IControl, bool>("IsTabPanelSelected", typeof(TabControlHelper), defaultValue:false);
 
         public static bool GetIsTabPanelSelected(IControl element)
         {
@@ -95,7 +98,8 @@ namespace Avalonia.ExtendedToolkit.Controls
 
 
         public static readonly AttachedProperty<IBrush> UnderlineBrushProperty =
-            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineBrush", typeof(TabControlHelper));
+            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineBrush", 
+                typeof(TabControlHelper),defaultValue: (IBrush)Brushes.Transparent);
 
         public static IBrush GetUnderlineBrush(IControl element)
         {
@@ -108,7 +112,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         public static readonly AttachedProperty<IBrush> UnderlineSelectedBrushProperty =
-            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineSelectedBrush", typeof(TabControlHelper));
+            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineSelectedBrush", 
+                typeof(TabControlHelper), defaultValue: (IBrush)Brushes.Transparent);
 
         public static IBrush GetUnderlineSelectedBrush(IControl element)
         {
@@ -121,7 +126,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         public static readonly AttachedProperty<IBrush> UnderlineMouseOverBrushProperty =
-            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineMouseOverBrush", typeof(TabControlHelper));
+            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineMouseOverBrush", 
+                typeof(TabControlHelper), defaultValue: (IBrush)Brushes.Transparent);
 
         public static IBrush GetUnderlineMouseOverBrush(IControl element)
         {
@@ -134,7 +140,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         public static readonly AttachedProperty<IBrush> UnderlineMouseOverSelectedBrushProperty =
-            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineMouseOverSelectedBrush", typeof(TabControlHelper));
+            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineMouseOverSelectedBrush", 
+                typeof(TabControlHelper), defaultValue: (IBrush)Brushes.Transparent);
 
         public static IBrush GetUnderlineMouseOverSelectedBrush(IControl element)
         {
@@ -147,7 +154,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         public static readonly AttachedProperty<TransitionType> TransitionProperty =
-            AvaloniaProperty.RegisterAttached<IControl, TransitionType>("Transition", typeof(TabControlHelper));
+            AvaloniaProperty.RegisterAttached<IControl, TransitionType>("Transition", 
+                typeof(TabControlHelper), defaultValue:TransitionType.Default);
 
         public static TransitionType GetTransition(IControl element)
         {
@@ -169,6 +177,16 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public static void SetUnderlinePlacement(IControl element, Dock? value)
         {
+            string classNameSet = ":underlineplacementset";
+            string classNameNotSet = ":underlineplacementnotset";
+            if (value.HasValue && element.Classes.Contains(classNameSet) == false)
+            { 
+                element.Classes.Add(classNameSet); 
+            }else if(value.HasValue && element.Classes.Contains(classNameNotSet) == false)
+            {
+                element.Classes.Add(classNameNotSet);
+            }
+
             element.SetValue(UnderlinePlacementProperty, value);
         }
     }

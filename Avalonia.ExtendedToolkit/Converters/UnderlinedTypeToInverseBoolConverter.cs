@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Converters
 {
-    public class UnderlinedTypeToBoolConverter : IValueConverter
+    public class UnderlinedTypeToInverseBoolConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -20,12 +20,12 @@ namespace Avalonia.ExtendedToolkit.Converters
 
                 UnderlinedType underlinedType = TabControlHelper.GetUnderlined(control);
                 if (underlinedType == underlinedTypeParam)
-                    return true;
+                    return false;
             }
 
 
 
-            return false;
+            return true;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
