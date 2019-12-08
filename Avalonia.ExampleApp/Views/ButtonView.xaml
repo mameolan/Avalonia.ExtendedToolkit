@@ -151,19 +151,18 @@
                                   Height="20" Icon="Glass"/>
       </Controls:MetroButton>
       <Controls:MetroButton
-              Width="140"
+              Width="48"
               Height="48"
               Margin="4"
               IsEnabled="False"
               Classes="MetroCircleButtonStyle">
         <!--<Controls:MetroButton.ContentTemplate>
-          <DataTemplate>
+          <DataTemplate>-->
             <fontAwesome:FontAwesome Width="20"
                         Height="20" Icon="Glass"/>
-          </DataTemplate>
-          
+          <!--</DataTemplate>
         </Controls:MetroButton.ContentTemplate>-->
-        Datatemplate not working
+        <!--ContentTemplate not working-->
       </Controls:MetroButton>
 
     </StackPanel>
