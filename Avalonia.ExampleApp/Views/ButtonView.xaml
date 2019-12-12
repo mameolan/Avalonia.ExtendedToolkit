@@ -99,28 +99,7 @@
               IsEnabled="False"
                           />
     </StackPanel>
-    <!--iconPacks todo-->
-    <!--<StackPanel Margin="{StaticResource ControlMargin}"
-                        HorizontalAlignment="Center"
-                        Orientation="Horizontal">
-        <Controls:MetroToggleButton Width="48"
-                      Height="48"
-                      Margin="4"
-                      Classes="Circle">
-          <fontAwesome:FontAwesome Width="20"
-                                    Height="20" Icon="Compass"/>
-        </Controls:MetroToggleButton>
-        <Controls:MetroToggleButton Width="48"
-                                  Height="48"
-                                  Margin="4"
-                                  IsEnabled="False"
-                                  Classes="Circle">
-          <fontAwesome:FontAwesome Width="20"
-                                    Height="20" Icon="Compass"/>
-        </Controls:MetroToggleButton>
-        -->
-    <!--</StackPanel>-->
-
+   
     <StackPanel Grid.Row="0" Grid.Column="3">
       <TextBlock Text="Flat button" Classes="DescriptionHeaderStyle" />
       <Controls:MetroButton Width="100"
@@ -140,7 +119,7 @@
            
             Classes="MetroCircleButtonStyle">
         <fontAwesome:FontAwesome Width="20"
-                                  Height="20" Icon="Glass"/>
+                                  Height="20" Icon="Compass"/>
       </Controls:MetroButton>
       <Controls:MetroButton Width="48"
               Height="48"
@@ -148,7 +127,7 @@
               IsEnabled="False"
               Classes="MetroCircleButtonStyle">
         <fontAwesome:FontAwesome Width="20"
-                                  Height="20" Icon="Glass"/>
+                                  Height="20" Icon="Compass"/>
       </Controls:MetroButton>
       <Controls:MetroButton
               Width="48"
@@ -159,7 +138,7 @@
         <!--<Controls:MetroButton.ContentTemplate>
           <DataTemplate>-->
             <fontAwesome:FontAwesome Width="20"
-                        Height="20" Icon="Glass"/>
+                        Height="20" Icon="Compass"/>
           <!--</DataTemplate>
         </Controls:MetroButton.ContentTemplate>-->
         <!--ContentTemplate not working-->

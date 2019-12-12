@@ -13,6 +13,8 @@
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
     <Setter Property="BorderThickness" Value="0 0 0 0" />
+    <Setter Property="RowBackground" Value="{DynamicResource MahApps.Brushes.Accent4}" />
+    <!--<Setter Property="AlternatingRowBackground" Value="{DynamicResource MahApps.Brushes.Accent3}" />-->
     <Setter Property="DropLocationIndicatorTemplate">
       <Setter.Value>
         <Template>
