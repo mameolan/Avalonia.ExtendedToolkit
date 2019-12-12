@@ -301,14 +301,30 @@
     <Setter Property="X" Value="{Binding ElementName=ProxyElement, Path=DataContext.OpenPaneLength}"/>
   </Style>
   
+  <!---->
+  <Style Selector="Controls|SplitView[State=OpenOverlayRightToClosedStoryboard] /template/ Grid#PaneRoot">
+    <Setter Property="IsVisible" Value="true"/>
+    <Setter Property="HorizontalAlignment" Value="Right"/>
+  </Style>
+
+  <Style Selector="Controls|SplitView[State=OpenOverlayRightToClosedStoryboard] /template/ Rectangle#HCPaneBorder">
+    <Setter Property="IsVisible" Value="true"/>
+  </Style>
+
+  <Style Selector="Controls|SplitView[State=OpenOverlayRightToClosedStoryboard] /template/ TranslateTransform#PaneTransform">
+    <Setter Property="X" Value="{Binding ElementName=ProxyElement, Path=DataContext.NegativeOpenPaneLength}"/>
+  </Style>
+
+  <Style Selector="Controls|SplitView[State=OpenOverlayRightToClosedStoryboard] /template/ TranslateTransform#PaneClipRectangleTransform">
+    <Setter Property="X" Value="{Binding ElementName=ProxyElement, Path=DataContext.OpenPaneLength}"/>
+  </Style>
+  
   <!--<FrameworkElement x:Key="ProxyElement" DataContext="{TemplateBinding TemplateSettings}" />
 
               <Storyboard x:Key="OpenOverlayRightToClosedStoryboard">
-                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot" Storyboard.TargetProperty="(UIElement.Visibility)">
-                  <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
-                </ObjectAnimationUsingKeyFrames>
+                
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PaneRoot" Storyboard.TargetProperty="HorizontalAlignment">
-                  <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static HorizontalAlignment.Right}" />
+                  <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static }" />
                 </ObjectAnimationUsingKeyFrames>
                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HCPaneBorder" Storyboard.TargetProperty="HorizontalAlignment">
                   <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static HorizontalAlignment.Left}" />
