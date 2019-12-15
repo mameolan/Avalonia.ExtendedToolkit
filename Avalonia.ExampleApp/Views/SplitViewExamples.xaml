@@ -1,0 +1,175 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.SplitViewExamples">
+  <UserControl.Resources>
+    <ResourceDictionary>
+      <Color x:Key="SystemBaseMediumColor">#99FFFFFF</Color>
+
+      <SolidColorBrush x:Key="SplitViewBackgroundBrush" Opacity="1" Color="{DynamicResource SystemBaseMediumColor}" />
+
+      <!--  #Templates  -->
+
+    </ResourceDictionary>
+  </UserControl.Resources>
+
+  <UserControl.Styles>
+    <Style Selector="Controls|SplitView">
+      <Setter Property="CompactPaneLength" Value="48" />
+      <Setter Property="DisplayMode" Value="CompactOverlay" />
+      <Setter Property="IsPaneOpen" Value="False" />
+      <Setter Property="OpenPaneLength" Value="320" />
+      <Setter Property="PaneBackground" Value="{StaticResource SplitViewBackgroundBrush}" />
+    </Style>
+  </UserControl.Styles>
+
+  <Grid>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+
+    <TextBlock Grid.Row="0"
+           Grid.Column="0"
+           Grid.ColumnSpan="2"
+           HorizontalAlignment="Left"
+           Text="Simple SplitView example"
+           Classes="DescriptionHeaderStyle" />
+
+    <ContentControl Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="10 5 5 5"
+                        DataContext="{Binding ElementName=SimpleSplitview, Mode=TwoWay}"
+                        >
+      <ContentControl.Template>
+        <ControlTemplate>
+          <Grid Grid.IsSharedSizeScope="True">
+            <!--d:DataContext="{d:DesignInstance controls:SplitView}"-->
+
+
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" SharedSizeGroup="labels" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Margin="2"
+                       VerticalAlignment="Center"
+                       Text="IsOpen" />
+            <CheckBox Grid.Row="0"
+                      Grid.Column="1"
+                      Margin="2"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      IsChecked="{Binding ElementName=SimpleSplitview, Path=IsPaneOpen, Mode=TwoWay}" />
+
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0"
+                       Margin="2"
+                       VerticalAlignment="Center"
+                       Text="DisplayMode" />
+            <ComboBox Grid.Row="1"
+                      Grid.Column="1"
+                      Width="100"
+                      Margin="2"
+                      VerticalAlignment="Center"
+                      SelectedItem="{Binding ElementName=SimpleSplitview, Path=DisplayMode, Mode=TwoWay}"
+                    >
+              <Controls:SplitViewDisplayMode>Inline</Controls:SplitViewDisplayMode>
+              <Controls:SplitViewDisplayMode>Overlay</Controls:SplitViewDisplayMode>
+              <Controls:SplitViewDisplayMode>CompactInline</Controls:SplitViewDisplayMode>
+              <Controls:SplitViewDisplayMode>CompactOverlay</Controls:SplitViewDisplayMode>
+            </ComboBox>
+
+            <TextBlock Grid.Row="2"
+                       Grid.Column="0"
+                       Margin="2"
+                       VerticalAlignment="Center"
+                       Text="PanePlacement" />
+            <ComboBox Grid.Row="2"
+                      Grid.Column="1"
+                      Width="100"
+                      Margin="2"
+                      VerticalAlignment="Center"
+                      SelectedItem="{Binding ElementName=SimpleSplitview, Path=PanePlacement, Mode=TwoWay}"
+                    >
+              <Controls:SplitViewPanePlacement>Left</Controls:SplitViewPanePlacement>
+              <Controls:SplitViewPanePlacement>Right</Controls:SplitViewPanePlacement>
+            </ComboBox>
+
+            <TextBlock Grid.Row="3"
+                       Grid.Column="0"
+                       Margin="2"
+                       VerticalAlignment="Center"
+                       Text="CancelClose" />
+            <CheckBox Grid.Row="3"
+                      Grid.Column="1"
+                      Margin="2"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      IsChecked="{Binding ElementName=SimpleSplitview, Path=Tag, Mode=TwoWay}" />
+          </Grid>
+        </ControlTemplate>
+      </ContentControl.Template>
+    </ContentControl>
+
+    <Controls:SplitView x:Name="SimpleSplitview"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="5"
+                            DisplayMode="Inline"
+                            IsPaneOpen="True"
+                            OpenPaneLength="150"
+                            PaneBackground="Red"
+                            >
+            <Controls:SplitView.Pane>
+                <Grid Margin="48 0 0 0" Background="LightGreen">
+                    <TextBlock Margin="10"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               Foreground="White"
+                               Text="Pane content area"
+                               TextWrapping="Wrap" />
+                </Grid>
+            </Controls:SplitView.Pane>
+
+            <Grid Background="CornflowerBlue">
+                <TextBlock Margin="20"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="20"
+                           Foreground="White"
+                           Text="This is the main content area and should be blue"
+                           TextWrapping="Wrap" />
+            </Grid>
+
+        </Controls:SplitView>
+    
+
+
+
+  </Grid>
+
+
+
+</UserControl>

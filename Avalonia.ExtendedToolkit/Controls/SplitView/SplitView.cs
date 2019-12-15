@@ -60,7 +60,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         public static readonly AvaloniaProperty IsPaneOpenProperty =
-            AvaloniaProperty.Register<SplitView, bool>(nameof(IsPaneOpen));
+            AvaloniaProperty.Register<SplitView, bool>(nameof(IsPaneOpen), defaultValue:true);
 
         public double OpenPaneLength
         {
@@ -158,39 +158,43 @@ namespace Avalonia.ExtendedToolkit.Controls
                 this.paneClipRectangle.Rect = new Rect(0, 0, this.OpenPaneLength, (double)this.Height); // We could also use ActualHeight and subscribe to the SizeChanged property
             }
 
-            State = string.Empty;
+            var state = string.Empty;
             if (this.IsPaneOpen)
             {
-                State += "Open";
+                state += "Open";
                 switch (this.DisplayMode)
                 {
                     case SplitViewDisplayMode.CompactInline:
-                        State += "Inline";
+                        state += "Inline";
                         break;
 
                     default:
-                        State += this.DisplayMode.ToString();
+                        state += this.DisplayMode.ToString();
                         break;
                 }
 
-                State += this.PanePlacement.ToString();
+                state += this.PanePlacement.ToString();
             }
             else
             {
-                State += "Closed";
+                state += "Closed";
                 if (this.DisplayMode == SplitViewDisplayMode.CompactInline
                     || this.DisplayMode == SplitViewDisplayMode.CompactOverlay)
                 {
-                    State += "Compact";
-                    State += this.PanePlacement.ToString();
+                    state += "Compact";
+                    state += this.PanePlacement.ToString();
                 }
             }
 
-            //if (reset)
-            //{
-            //    VisualStateManager.GoToState(this, "None", animated);
-            //}
+            state += "Storyboard";
 
+            if (reset)
+            {
+                //VisualStateManager.GoToState(this, "None", animated);
+                State = "None";
+            }
+
+            State = state;
             //VisualStateManager.GoToState(this, state, animated);
         }
 
@@ -218,13 +222,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             sender?.TemplateSettings?.Update();
             sender?.ChangeVisualState(true, true);
-            throw new NotImplementedException();
+            
         }
 
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             base.OnTemplateApplied(e);
-            this.paneClipRectangle = e.NameScope.Find("PaneClipRectangle") as RectangleGeometry;
+
+            Grid grid = e.NameScope.Find<Grid>("PaneRoot");
+
+            this.paneClipRectangle = grid.Clip as RectangleGeometryExt; // .<RectangleGeometryExt>("PaneClipRectangle"); //
 
             this.lightDismissLayer = e.NameScope.Find("LightDismissLayer") as Rectangle;
             if (this.lightDismissLayer != null)

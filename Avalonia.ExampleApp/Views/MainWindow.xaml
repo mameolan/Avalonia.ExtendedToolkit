@@ -190,6 +190,13 @@
                         </Grid>
                     </ScrollViewer>
                 </TabItem>
+                <TabItem Header="Split View" Foreground="{DynamicResource MahApps.Brushes.Black}">
+                    <ScrollViewer>
+                        <Grid>
+                            <Views:SplitViewExamples/>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
                 <TabItem Header="Tiles" Foreground="{DynamicResource MahApps.Brushes.Black}">
                     <ScrollViewer>
                         <Grid>
