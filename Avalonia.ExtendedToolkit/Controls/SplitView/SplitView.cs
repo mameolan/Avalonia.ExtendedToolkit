@@ -8,7 +8,7 @@ using System;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
-    public class SplitView: ContentControl
+    public class SplitView : ContentControl
     {
         public double CompactPaneLength
         {
@@ -17,7 +17,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         public static readonly AvaloniaProperty CompactPaneLengthProperty =
-            AvaloniaProperty.Register<SplitView, double>(nameof(CompactPaneLength), defaultValue:0d);
+            AvaloniaProperty.Register<SplitView, double>(nameof(CompactPaneLength), defaultValue: 0d);
 
         //public object Content
         //{
@@ -60,7 +60,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         public static readonly AvaloniaProperty IsPaneOpenProperty =
-            AvaloniaProperty.Register<SplitView, bool>(nameof(IsPaneOpen), defaultValue:true);
+            AvaloniaProperty.Register<SplitView, bool>(nameof(IsPaneOpen), defaultValue: true);
 
         public double OpenPaneLength
         {
@@ -194,8 +194,9 @@ namespace Avalonia.ExtendedToolkit.Controls
                 State = "None";
             }
 
-            State = state;
+            SetValue(StateProperty,state);
             //VisualStateManager.GoToState(this, state, animated);
+
         }
 
         private void OnIsPaneOpenChanged(SplitView sender, AvaloniaPropertyChangedEventArgs e)
@@ -222,7 +223,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             sender?.TemplateSettings?.Update();
             sender?.ChangeVisualState(true, true);
-            
+
         }
 
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
@@ -241,8 +242,8 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             //this.ExecuteWhenLoaded(() =>
             //{
-                this.TemplateSettings.Update();
-                this.ChangeVisualState(false);
+            this.TemplateSettings.Update();
+            this.ChangeVisualState(false);
             //});
         }
 
