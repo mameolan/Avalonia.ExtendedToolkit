@@ -120,7 +120,7 @@
                                                 Height="{Binding TitleBarHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                                 HorizontalAlignment="{TemplateBinding TitleAlignment}"
                                                 HorizontalContentAlignment="Stretch"
-                                                VerticalContentAlignment="Stretch"
+                                                VerticalContentAlignment="Center"
                                                 Content="{TemplateBinding Title}"
                                                 ContentCharacterCasing="{TemplateBinding TitleCharacterCasing}"
                                                 Foreground="{TemplateBinding TitleForeground}"

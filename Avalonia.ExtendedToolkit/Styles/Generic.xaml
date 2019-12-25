@@ -34,9 +34,11 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.TextBlock.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ToolTip.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.TreeView.xaml"/>
-  
-  
+
+
   <!--Extended Controls-->
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BaseMetroDialog.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/MetroWindow.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/MetroContentControl.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/MetroThumbContentControl.xaml"/>
@@ -58,4 +60,4 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/TransitioningContentControl.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/MetroHeader.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Underline.xaml"/>
- </Styles>
+</Styles>

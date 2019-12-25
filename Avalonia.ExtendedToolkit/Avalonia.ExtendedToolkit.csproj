@@ -32,9 +32,13 @@
     <None Remove="Commanding\**" />
   </ItemGroup>
 
-  
+  <ItemGroup>
+    <AvaloniaResource Remove="Controls\Dialogs\ProgressDialog.xaml" />
+  </ItemGroup>
+
   <ItemGroup>
     <None Remove=".gitignore" />
+    <None Remove="Controls\Dialogs\ProgressDialog.xaml" />
     <None Remove="Styles\Themes\GeneratorParameters.json" />
   </ItemGroup>
 
@@ -47,9 +51,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Controls\Dialogs\ProgressDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
   </ItemGroup>
-  
+
   <Target Name="GenerateXamlFilesInner">
     <PropertyGroup>
       <XamlColorSchemeGeneratorVersion Condition="'%(PackageReference.Identity)' == 'XamlColorSchemeGenerator'">%(PackageReference.Version)</XamlColorSchemeGeneratorVersion>
