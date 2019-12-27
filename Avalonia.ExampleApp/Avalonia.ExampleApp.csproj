@@ -25,6 +25,7 @@
     <AvaloniaResource Include="Assets\*" />
   </ItemGroup>
   
+  
   <ItemGroup>
     <ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
     <ProjectReference Include="..\Avalonia.ExtendedToolkit\Avalonia.ExtendedToolkit.csproj" />

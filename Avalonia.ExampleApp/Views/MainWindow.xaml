@@ -169,6 +169,11 @@
                         <Views:DataGridView/>
                     </ScrollViewer>
                 </TabItem>
+                <TabItem Header="TreeGrid" Foreground="{DynamicResource MahApps.Brushes.Black}">
+                    <ScrollViewer>
+                        <Views:TreeGridView/>
+                    </ScrollViewer>
+                </TabItem>
                 <TabItem Header="Progress Controls" Foreground="{DynamicResource MahApps.Brushes.Black}">
                     <ScrollViewer>
                         <Grid>

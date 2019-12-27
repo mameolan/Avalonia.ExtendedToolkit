@@ -1,0 +1,56 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             xmlns:tk="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit"
+             xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.TreeGridView">
+  <UserControl.Resources>
+    <GridLength x:Key="TreeToggleWidth">20</GridLength>
+    <Converter:LevelConverter x:Key="LevelSpaceConverter" LevelWidth="{StaticResource TreeToggleWidth}"/>
+  </UserControl.Resources>
+
+  <Grid>
+    <DataGrid AutoGenerateColumns="False" Name="grid" Grid.Row="1" 
+				  >
+      <DataGrid.Columns>
+        <DataGridTemplateColumn
+					Header="Name">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="{Binding Level, Converter={StaticResource LevelSpaceConverter}, FallbackValue={StaticResource TreeToggleWidth}}"/>
+                  <ColumnDefinition Width="{StaticResource TreeToggleWidth}"/>
+                  <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!--<CheckBox
+									Grid.Column="1"
+									IsChecked="{Binding IsExpanded, Mode=TwoWay}"
+									IsVisible="{Binding HasChildren}"
+                  />-->
+
+                <Controls:MetroToggleButton x:Name="Expander"
+                              ClickMode="Press"
+                              IsChecked="{Binding IsExpanded, Mode=TwoWay}"
+                              Classes="ExpandCollapse"
+                              />
+                
+                <TextBlock
+									Grid.Column="2"
+									Text="{Binding Content}"/>
+              </Grid>
+              </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <DataGridTextColumn
+					Header="Value"
+					Binding="{Binding Value}"/>
+      </DataGrid.Columns>
+    </DataGrid>
+  </Grid>
+  
+</UserControl>
