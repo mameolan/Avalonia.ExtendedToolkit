@@ -36,6 +36,7 @@
                 <Controls:MetroToggleButton x:Name="Expander"
                               ClickMode="Press"
                               IsChecked="{Binding IsExpanded, Mode=TwoWay}"
+                              IsVisible="{Binding HasChildren}"
                               Classes="ExpandCollapse"
                               />
                 
