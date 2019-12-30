@@ -13,7 +13,7 @@
   </UserControl.Resources>
 
   <Grid>
-    <DataGrid AutoGenerateColumns="False" Name="grid" Grid.Row="1" 
+    <DataGrid AutoGenerateColumns="False" Name="grid" Grid.Row="1"
 				  >
       <DataGrid.Columns>
         <DataGridTemplateColumn
@@ -27,31 +27,31 @@
                   <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <!--<CheckBox
+                <CheckBox
 									Grid.Column="1"
 									IsChecked="{Binding IsExpanded, Mode=TwoWay}"
 									IsVisible="{Binding HasChildren}"
-                  />-->
+                  />
 
-                <Controls:MetroToggleButton x:Name="Expander"
+                <!--<Controls:MetroToggleButton x:Name="Expander"
                               ClickMode="Press"
                               IsChecked="{Binding IsExpanded, Mode=TwoWay}"
                               IsVisible="{Binding HasChildren}"
                               Classes="ExpandCollapse"
-                              />
-                
+                              />-->
+
                 <TextBlock
 									Grid.Column="2"
 									Text="{Binding Content}"/>
               </Grid>
-              </DataTemplate>
+            </DataTemplate>
           </DataGridTemplateColumn.CellTemplate>
         </DataGridTemplateColumn>
-        <DataGridTextColumn
+        <!--<DataGridTextColumn
 					Header="Value"
-					Binding="{Binding Value}"/>
+					Binding="{Binding Value}"/>-->
       </DataGrid.Columns>
     </DataGrid>
   </Grid>
-  
+
 </UserControl>

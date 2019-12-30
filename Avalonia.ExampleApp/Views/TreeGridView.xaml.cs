@@ -11,7 +11,7 @@ namespace Avalonia.ExampleApp.Views
         private const int Levels = 3;
         private const int Roots = 10;
         private const int ItemsPerLevel = 1;
-
+        private int childCount = 0;
         private int value;
         private TreeGridModel model;
 
@@ -62,8 +62,10 @@ namespace Avalonia.ExampleApp.Views
             // Create children for the item
             for (int count = 0; count < ItemsPerLevel; count++)
             {
+                childCount++;
                 // Create the child
-                Item child = new Item(String.Format("Child {0}, Level {1}", count, level), value++, hasChildren);
+                Item child = new Item(String.Format("Child {0}, Level {1}", childCount, level), value++, hasChildren);
+                
 
                 // Does the child have children?
                 if (hasChildren)
