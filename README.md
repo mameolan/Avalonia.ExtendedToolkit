@@ -1,7 +1,7 @@
 # Avalonia.ExtendedToolkit
 
 
-![alt text](github/Images/Avalonia.ExampleApp-ButtonView.png "Main application")   
+![alt text](github/Images/Avalonia.ExampleApp-Overview.gif "Main application")   
 
 
 
