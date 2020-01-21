@@ -5,6 +5,10 @@ using System;
 
 namespace Avalonia.Controlz.Controls
 {
+    // This source file is adapted from the Windows Presentation Foundation project.
+    // (https://github.com/dotnet/wpf/)
+    //
+    // Licensed to The Avalonia Project under MIT License, courtesy of The .NET Foundation.
     public class RangeBaseEx : RangeBase
     {
         public static RoutedEvent<RoutedPropertyChangedEventArgs<double>> ValueChangedEvent =

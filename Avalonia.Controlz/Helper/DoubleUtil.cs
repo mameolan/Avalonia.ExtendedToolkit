@@ -1,22 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace Avalonia.Controlz
 {
+    // This source file is adapted from the Windows Presentation Foundation project.
+    // (https://github.com/dotnet/wpf/)
+    //
+    // Licensed to The Avalonia Project under MIT License, courtesy of The .NET Foundation.
     public static class DoubleUtil
     {
         // Const values come from sdk\inc\crt\float.h
         internal const double DBL_EPSILON = 2.2204460492503131e-016; /* smallest such that 1.0+DBL_EPSILON != 1.0 */
+
         internal const float FLT_MIN = 1.175494351e-38F; /* Number close to zero, where float.MinValue is -float.MaxValue */
 
         /// <summary>
-        /// AreClose - Returns whether or not two doubles are "close".  That is, whether or 
+        /// AreClose - Returns whether or not two doubles are "close".  That is, whether or
         /// not they are within epsilon of each other.  Note that this epsilon is proportional
         /// to the numbers themselves to that AreClose survives scalar multiplication.
         /// There are plenty of ways for this to return false even for numbers which
-        /// are theoretically identical, so no code calling this should fail to work if this 
+        /// are theoretically identical, so no code calling this should fail to work if this
         /// returns false.  This is important enough to repeat:
         /// NB: NO CODE CALLING THIS FUNCTION SHOULD DEPEND ON ACCURATE RESULTS - this should be
         /// used for optimizations *only*.
@@ -42,7 +45,7 @@ namespace Avalonia.Controlz
         /// the other number.  Note that this epsilon is proportional to the numbers themselves
         /// to that AreClose survives scalar multiplication.  Note,
         /// There are plenty of ways for this to return false even for numbers which
-        /// are theoretically identical, so no code calling this should fail to work if this 
+        /// are theoretically identical, so no code calling this should fail to work if this
         /// returns false.  This is important enough to repeat:
         /// NB: NO CODE CALLING THIS FUNCTION SHOULD DEPEND ON ACCURATE RESULTS - this should be
         /// used for optimizations *only*.
@@ -57,14 +60,13 @@ namespace Avalonia.Controlz
             return (value1 < value2) && !AreClose(value1, value2);
         }
 
-
         /// <summary>
         /// GreaterThan - Returns whether or not the first double is greater than the second double.
         /// That is, whether or not the first is strictly greater than *and* not within epsilon of
         /// the other number.  Note that this epsilon is proportional to the numbers themselves
         /// to that AreClose survives scalar multiplication.  Note,
         /// There are plenty of ways for this to return false even for numbers which
-        /// are theoretically identical, so no code calling this should fail to work if this 
+        /// are theoretically identical, so no code calling this should fail to work if this
         /// returns false.  This is important enough to repeat:
         /// NB: NO CODE CALLING THIS FUNCTION SHOULD DEPEND ON ACCURATE RESULTS - this should be
         /// used for optimizations *only*.
@@ -82,10 +84,10 @@ namespace Avalonia.Controlz
         /// <summary>
         /// LessThanOrClose - Returns whether or not the first double is less than or close to
         /// the second double.  That is, whether or not the first is strictly less than or within
-        /// epsilon of the other number.  Note that this epsilon is proportional to the numbers 
+        /// epsilon of the other number.  Note that this epsilon is proportional to the numbers
         /// themselves to that AreClose survives scalar multiplication.  Note,
         /// There are plenty of ways for this to return false even for numbers which
-        /// are theoretically identical, so no code calling this should fail to work if this 
+        /// are theoretically identical, so no code calling this should fail to work if this
         /// returns false.  This is important enough to repeat:
         /// NB: NO CODE CALLING THIS FUNCTION SHOULD DEPEND ON ACCURATE RESULTS - this should be
         /// used for optimizations *only*.
@@ -103,10 +105,10 @@ namespace Avalonia.Controlz
         /// <summary>
         /// GreaterThanOrClose - Returns whether or not the first double is greater than or close to
         /// the second double.  That is, whether or not the first is strictly greater than or within
-        /// epsilon of the other number.  Note that this epsilon is proportional to the numbers 
+        /// epsilon of the other number.  Note that this epsilon is proportional to the numbers
         /// themselves to that AreClose survives scalar multiplication.  Note,
         /// There are plenty of ways for this to return false even for numbers which
-        /// are theoretically identical, so no code calling this should fail to work if this 
+        /// are theoretically identical, so no code calling this should fail to work if this
         /// returns false.  This is important enough to repeat:
         /// NB: NO CODE CALLING THIS FUNCTION SHOULD DEPEND ON ACCURATE RESULTS - this should be
         /// used for optimizations *only*.
@@ -152,7 +154,7 @@ namespace Avalonia.Controlz
 
         /// <summary>
         /// Compares two points for fuzzy equality.  This function
-        /// helps compensate for the fact that double values can 
+        /// helps compensate for the fact that double values can
         /// acquire error when operated upon
         /// </summary>
         /// <param name='point1'>The first point to compare</param>
@@ -166,7 +168,7 @@ namespace Avalonia.Controlz
 
         /// <summary>
         /// Compares two Size instances for fuzzy equality.  This function
-        /// helps compensate for the fact that double values can 
+        /// helps compensate for the fact that double values can
         /// acquire error when operated upon
         /// </summary>
         /// <param name='size1'>The first size to compare</param>
@@ -180,7 +182,7 @@ namespace Avalonia.Controlz
 
         /// <summary>
         /// Compares two Vector instances for fuzzy equality.  This function
-        /// helps compensate for the fact that double values can 
+        /// helps compensate for the fact that double values can
         /// acquire error when operated upon
         /// </summary>
         /// <param name='vector1'>The first Vector to compare</param>
@@ -194,7 +196,7 @@ namespace Avalonia.Controlz
 
         /// <summary>
         /// Compares two rectangles for fuzzy equality.  This function
-        /// helps compensate for the fact that double values can 
+        /// helps compensate for the fact that double values can
         /// acquire error when operated upon
         /// </summary>
         /// <param name='rect1'>The first rectangle to compare</param>
@@ -219,7 +221,7 @@ namespace Avalonia.Controlz
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
@@ -229,7 +231,7 @@ namespace Avalonia.Controlz
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
@@ -238,12 +240,11 @@ namespace Avalonia.Controlz
             return (0 < val) ? (int)(val + 0.5) : (int)(val - 0.5);
         }
 
-
         /// <summary>
         /// rectHasNaN - this returns true if this rect has X, Y , Height or Width as NaN.
         /// </summary>
         /// <param name='r'>The rectangle to test</param>
-        /// <returns>returns whether the Rect has NaN</returns>        
+        /// <returns>returns whether the Rect has NaN</returns>
         public static bool RectHasNaN(Rect r)
         {
             if (DoubleUtil.IsNaN(r.X)
@@ -266,7 +267,6 @@ namespace Avalonia.Controlz
             return !(double.IsInfinity(d) || double.IsNaN(d));
         }
 
-
 #if !PBTCOMPILER
 
         [StructLayout(LayoutKind.Explicit)]
@@ -279,8 +279,8 @@ namespace Avalonia.Controlz
         // The standard CLR double.IsNaN() function is approximately 100 times slower than our own wrapper,
         // so please make sure to use DoubleUtil.IsNaN() in performance sensitive code.
         // PS item that tracks the CLR improvement is DevDiv Schedule : 26916.
-        // IEEE 754 : If the argument is any value in the range 0x7ff0000000000001L through 0x7fffffffffffffffL 
-        // or in the range 0xfff0000000000001L through 0xffffffffffffffffL, the result will be NaN.         
+        // IEEE 754 : If the argument is any value in the range 0x7ff0000000000001L through 0x7fffffffffffffffL
+        // or in the range 0xfff0000000000001L through 0xffffffffffffffffL, the result will be NaN.
         public static bool IsNaN(double value)
         {
             NanUnion t = new NanUnion();
@@ -291,10 +291,7 @@ namespace Avalonia.Controlz
 
             return (exp == 0x7ff0000000000000 || exp == 0xfff0000000000000) && (man != 0);
         }
+
 #endif
-
-
-
-
     }
 }

@@ -3,6 +3,11 @@ using System;
 
 namespace Avalonia.Controlz.Controls
 {
+    // This source file is adapted from the Windows Presentation Foundation project.
+    // (https://github.com/dotnet/wpf/)
+    //
+    // Licensed to The Avalonia Project under MIT License, courtesy of The .NET Foundation.
+
     /// <summary>
     /// TabPanel is a Panel designed to handle the intricacies of laying out the tab buttons in a TabControl.  Specically, it handles:
     /// Serving as an ItemsHost for TabItems within a TabControl

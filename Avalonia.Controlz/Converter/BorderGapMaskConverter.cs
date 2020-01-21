@@ -5,10 +5,13 @@ using Avalonia.Media;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 
 namespace Avalonia.Controlz.Converters
 {
+    // This source file is adapted from the Windows Presentation Foundation project.
+    // (https://github.com/dotnet/wpf/)
+    //
+    // Licensed to The Avalonia Project under MIT License, courtesy of The .NET Foundation.
     public class BorderGapMaskConverter : IMultiValueConverter
     {
         public object Convert(IList<object> values, Type targetType, object parameter, CultureInfo culture)

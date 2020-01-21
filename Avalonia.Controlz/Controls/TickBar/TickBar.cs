@@ -1,16 +1,19 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
-using Avalonia.Controlz;
-using Avalonia.Data;
 using Avalonia.Controlz.Helper;
+using Avalonia.Data;
 using Avalonia.Media;
-using Avalonia.Reactive;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.Controlz.Controls
 {
+    /// <summary>
+    /// // This source file is adapted from the Windows Presentation Foundation project.
+    // (https://github.com/dotnet/wpf/)
+    //
+    // Licensed to The Avalonia Project under MIT License, courtesy of The .NET Foundation.
+    /// </summary>
+
     public class TickBar : Control
     {
         public IBrush Fill
@@ -19,11 +22,8 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(FillProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty FillProperty =
             AvaloniaProperty.Register<TickBar, IBrush>(nameof(Fill));
-
-
 
         public double Minimum
         {
@@ -31,13 +31,11 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(MinimumProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty MinimumProperty =
             AvaloniaProperty.Register<TickBar, double>(nameof(Minimum), defaultValue: 0d);
+
         //RangeBaseEx.MinimumProperty.AddOwner<TickBar>(x => x.Minimum,
         //    (x, y) => x.Minimum = y, unsetValue: 0.0);
-
-
 
         public double Maximum
         {
@@ -45,15 +43,11 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(MaximumProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty MaximumProperty =
             AvaloniaProperty.Register<TickBar, double>(nameof(Maximum), defaultValue: 0d);
+
         //RangeBase.MaximumProperty.AddOwner<TickBar>(x => x.Maximum,
         //    (x, y) => x.Maximum = y, unsetValue: 100.0);
-
-
-
-
 
         public double SelectionStart
         {
@@ -61,12 +55,10 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(SelectionStartProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty SelectionStartProperty =
             AvaloniaProperty.Register<TickBar, double>(nameof(SelectionStart), defaultValue: -1.0d);
+
         //slider does not have a selectionstart property
-
-
 
         public double SelectionEnd
         {
@@ -74,11 +66,8 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(SelectionEndProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty SelectionEndProperty =
             AvaloniaProperty.Register<TickBar, double>(nameof(SelectionEnd), defaultValue: -1.0d);
-
-
 
         public bool IsSelectionRangeEnabled
         {
@@ -86,11 +75,8 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IsSelectionRangeEnabledProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty IsSelectionRangeEnabledProperty =
             AvaloniaProperty.Register<TickBar, bool>(nameof(IsSelectionRangeEnabled));
-
-
 
         public double TickFrequency
         {
@@ -98,9 +84,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(TickFrequencyProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty TickFrequencyProperty =
             AvaloniaProperty.Register<TickBar, double>(nameof(TickFrequency), defaultValue: 0d);
+
         //Slider.TickFrequencyProperty.AddOwner<TickBar>();
 
         public DoubleCollection Ticks
@@ -109,13 +95,8 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(TicksProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty TicksProperty =
             AvaloniaProperty.Register<TickBar, DoubleCollection>(nameof(Ticks));
-
-
-
-
 
         public bool IsDirectionReversed
         {
@@ -123,12 +104,10 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IsDirectionReversedProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty IsDirectionReversedProperty =
             AvaloniaProperty.Register<TickBar, bool>(nameof(IsDirectionReversed));
+
         //Track.IsDirectionReversedProperty.AddOwner<TickBar>();
-
-
 
         public TickBarPlacement Placement
         {
@@ -136,12 +115,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(PlacementProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty PlacementProperty =
             AvaloniaProperty.Register<TickBar, TickBarPlacement>(nameof(Placement),
                 defaultValue: TickBarPlacement.Top);
-
-
 
         /// <summary>
         /// TickBar will use ReservedSpaceProperty for left and right spacing (for horizontal orientation) or
@@ -155,11 +131,8 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(ReservedSpaceProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty ReservedSpaceProperty =
             AvaloniaProperty.Register<TickBar, double>(nameof(ReservedSpace), defaultValue: 0d);
-
-
 
         public DoubleCollection VisualXSnappingGuidelines
         {
@@ -167,12 +140,8 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(VisualXSnappingGuidelinesProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty VisualXSnappingGuidelinesProperty =
             AvaloniaProperty.Register<TickBar, DoubleCollection>(nameof(VisualXSnappingGuidelines));
-
-
-
 
         public DoubleCollection VisualYSnappingGuidelines
         {
@@ -180,11 +149,11 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(VisualYSnappingGuidelinesProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty VisualYSnappingGuidelinesProperty =
             AvaloniaProperty.Register<TickBar, DoubleCollection>(nameof(VisualYSnappingGuidelines));
 
-        Size controlSize = new Size();
+        private Size controlSize = new Size();
+
         protected override Size ArrangeOverride(Size finalSize)
         {
             var result = base.ArrangeOverride(finalSize);
@@ -206,21 +175,14 @@ namespace Avalonia.Controlz.Controls
             return result;
         }
 
-
         public override void Render(DrawingContext dc)
         {
-
-
-
-
             if (DoubleUtil.IsDoubleFinite(Width) == false)
             {
                 this.Width = controlSize.Width;
                 //base.Render(dc);
-                //return; 
+                //return;
             }
-
-
 
             Size size = new Size(Width, Height);
             double range = Maximum - Minimum;
@@ -407,7 +369,6 @@ namespace Avalonia.Controlz.Controls
                     segments.Add(new LineSegment { Point = pt2 });
                     segments.Add(new LineSegment { Point = pt0 });
 
-
                     PathGeometry geo = new PathGeometry { Figures = new PathFigures { new PathFigure { StartPoint = pt1, Segments = segments, IsClosed = true } } };
 
                     dc.DrawGeometry(Fill, pen, geo);
@@ -420,7 +381,6 @@ namespace Avalonia.Controlz.Controls
                     segments = new PathSegments();
                     segments.Add(new LineSegment { Point = pt2 });
                     segments.Add(new LineSegment { Point = pt0 });
-
 
                     geo = new PathGeometry { Figures = new PathFigures { new PathFigure { StartPoint = pt1, Segments = segments, IsClosed = true } } };
                     dc.DrawGeometry(Fill, pen, geo);
@@ -545,8 +505,6 @@ namespace Avalonia.Controlz.Controls
                 VisualYSnappingGuidelines = yLines;
             }
             return;
-
-
         }
 
         private void BindToTemplatedParent(AvaloniaProperty target, AvaloniaProperty source)
@@ -566,13 +524,10 @@ namespace Avalonia.Controlz.Controls
                 }
                 catch (Exception ex)
                 {
-
                 }
                 //Bind(target, ObservableEx.SingleValue(source));
-
             }
         }
-
 
         public override void ApplyTemplate()
         {
@@ -580,7 +535,6 @@ namespace Avalonia.Controlz.Controls
 
             SliderEx parent = TemplatedParent as SliderEx;
             Track track = parent?.FindChild<Track>();
-
 
             if (parent != null)
             {
@@ -591,10 +545,7 @@ namespace Avalonia.Controlz.Controls
                 {
                     track.PropertyChanged += Track_PropertyChanged;
                     UpdateProperties(track);
-
                 }
-
-
 
                 //BindToTemplatedParent(TicksProperty, SliderEx.TicksProperty);
                 //BindToTemplatedParent(TickFrequencyProperty, SliderEx.TickFrequencyProperty);
@@ -621,13 +572,9 @@ namespace Avalonia.Controlz.Controls
                 //        Bind(ReservedSpaceProperty, ObservableEx.SingleValue(Thumb.HeightProperty));
                 //    }
 
-
                 //    //SetBinding(ReservedSpaceProperty, binding);
                 //}
             }
-
-
-
         }
 
         private void Track_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
@@ -676,7 +623,6 @@ namespace Avalonia.Controlz.Controls
             //        ReservedSpace = track.Thumb.Height;
             //    }
             //}
-
         }
 
         private void Parent_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
@@ -685,13 +631,7 @@ namespace Avalonia.Controlz.Controls
             if (parent != null)
             {
                 UpdateProperties(parent);
-
-
-
             }
-
-
-
         }
 
         static TickBar()
@@ -718,12 +658,8 @@ namespace Avalonia.Controlz.Controls
             }
         }
 
-
-
-
         private void TemplatedParent_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
         {
-
         }
     }
 }

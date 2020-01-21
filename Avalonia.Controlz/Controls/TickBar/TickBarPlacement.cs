@@ -1,5 +1,10 @@
 ﻿namespace Avalonia.Controlz.Controls
 {
+    // This source file is adapted from the Windows Presentation Foundation project.
+    // (https://github.com/dotnet/wpf/)
+    //
+    // Licensed to The Avalonia Project under MIT License, courtesy of The .NET Foundation.
+
     /// <summary>
     /// Enum which describes how to position the TickBar.
     /// </summary>
@@ -27,8 +32,4 @@
 
         // NOTE: if you add or remove any values in this enum, be sure to update TickBar.IsValidTickBarPlacement()
     }
-
-    
-
-
 }

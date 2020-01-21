@@ -1,9 +1,8 @@
 ﻿using Avalonia.Controls;
 using Avalonia.LogicalTree;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
 using Avalonia.VisualTree;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Avalonia.Controlz.Helper
 {
@@ -41,9 +40,6 @@ namespace Avalonia.Controlz.Helper
             //    parent = parent.Parent;
             //}
             return control.GetChildObjects(forceUsingTheVisualTreeHelper).OfType<T>().FirstOrDefault();
-
-
-
 
             //return default(T);
         }
@@ -106,7 +102,6 @@ namespace Avalonia.Controlz.Helper
                 yield return parent;
                 parent = VisualTree.VisualExtensions.GetVisualParent(parent);
             }
-
         }
 
         public static readonly AttachedProperty<Classes> ClassesProperty =
@@ -130,7 +125,5 @@ namespace Avalonia.Controlz.Helper
                 element.Classes = value;
             }
         }
-
-
     }
 }

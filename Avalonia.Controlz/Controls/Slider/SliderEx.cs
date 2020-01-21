@@ -1,31 +1,32 @@
-﻿using Avalonia.Collections;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
-using Avalonia.Controlz;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using ReactiveUI;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
 namespace Avalonia.Controlz.Controls
 {
+    /// <summary>
+    /// // This source file is adapted from the Windows Presentation Foundation project.
+    // (https://github.com/dotnet/wpf/)
+    //
+    // Licensed to The Avalonia Project under MIT License, courtesy of The .NET Foundation.
+    /// </summary>
     public class SliderEx : RangeBaseEx
     {
         private const string TrackName = "PART_Track";
         private const string SelectionRangeElementName = "PART_SelectionRange";
 
-
         internal Track Track
         { get; set; }
+
         internal TickBar TopTickBar { get; private set; }
         internal TickBar BottomTickBar { get; private set; }
         internal Border TrackBackground { get; private set; }
         internal AvaloniaObject SelectionRangeElement { get; set; }
-
 
         public Orientation Orientation
         {
@@ -33,12 +34,10 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(OrientationProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty<Orientation> OrientationProperty =
            AvaloniaProperty.Register<SliderEx, Orientation>(nameof(Orientation), defaultValue: Orientation.Horizontal);
+
         //ScrollBar.OrientationProperty.AddOwner<SliderEx>();
-
-
 
         public bool IsDirectionReversed
         {
@@ -46,12 +45,8 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IsDirectionReversedProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty IsDirectionReversedProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsDirectionReversed));
-
-
-
 
         public int Delay
         {
@@ -59,12 +54,10 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(DelayProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty DelayProperty =
             RepeatButton.DelayProperty.AddOwner<SliderEx>();
+
         //AvaloniaProperty.Register<SliderEx, int>(nameof(Delay));
-
-
 
         public int Interval
         {
@@ -72,12 +65,10 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IntervalProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty IntervalProperty =
             RepeatButton.IntervalProperty.AddOwner<SliderEx>();
+
         //AvaloniaProperty.Register<SliderEx, int>(nameof(Interval));
-
-
 
         public AutoToolTipPlacement AutoToolTipPlacement
         {
@@ -85,14 +76,11 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(AutoToolTipPlacementProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty AutoToolTipPlacementProperty =
            AvaloniaProperty.Register<SliderEx, AutoToolTipPlacement>(nameof(AutoToolTipPlacement)
                , defaultValue: AutoToolTipPlacement.None
 
                );
-
-
 
         public int AutoToolTipPrecision
         {
@@ -100,10 +88,8 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(AutoToolTipPrecisionProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty AutoToolTipPrecisionProperty =
             AvaloniaProperty.Register<SliderEx, int>(nameof(AutoToolTipPrecision), defaultValue: 0);
-
 
         public bool IsSnapToTickEnabled
         {
@@ -111,11 +97,8 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IsSnapToTickEnabledProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty IsSnapToTickEnabledProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsSnapToTickEnabled), defaultValue: true);
-
-
 
         public TickPlacement TickPlacement
         {
@@ -123,13 +106,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(TickPlacementProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty TickPlacementProperty =
             AvaloniaProperty.Register<SliderEx, TickPlacement>(nameof(TickPlacement)
                 , defaultValue: TickPlacement.None);
-
-
-
 
         public double TickFrequency
         {
@@ -137,11 +116,8 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(TickFrequencyProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty TickFrequencyProperty =
             AvaloniaProperty.Register<SliderEx, double>(nameof(TickFrequency), defaultValue: 1.0);
-
-
 
         public DoubleCollection Ticks
         {
@@ -149,11 +125,8 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(TicksProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty TicksProperty =
             AvaloniaProperty.Register<SliderEx, DoubleCollection>(nameof(Ticks), defaultValue: DoubleCollection.Empty());
-
-
 
         public bool IsSelectionRangeEnabled
         {
@@ -161,11 +134,8 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IsSelectionRangeEnabledProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty IsSelectionRangeEnabledProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsSelectionRangeEnabled));
-
-
 
         public double SelectionStart
         {
@@ -173,13 +143,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(SelectionStartProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty SelectionStartProperty =
             AvaloniaProperty.Register<SliderEx, double>(nameof(SelectionStart)
                 , defaultValue: 0.0d, defaultBindingMode: Data.BindingMode.TwoWay);
-
-
-
 
         public double SelectionEnd
         {
@@ -187,12 +153,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(SelectionEndProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty SelectionEndProperty =
             AvaloniaProperty.Register<SliderEx, double>(nameof(SelectionEnd)
                 , defaultValue: 0.0d, defaultBindingMode: Data.BindingMode.TwoWay);
-
-
 
         public bool IsMoveToPointEnabled
         {
@@ -200,10 +163,8 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IsMoveToPointEnabledProperty, value); }
         }
 
-
         public static readonly AvaloniaProperty IsMoveToPointEnabledProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsMoveToPointEnabled));
-
 
         public SliderEx()
         {
@@ -218,14 +179,11 @@ namespace Avalonia.Controlz.Controls
             //MaximumProperty.OverrideDefaultValue<SliderEx>(10d);
             //ValueProperty.OverrideDefaultValue<SliderEx>(0);
 
-
-
             //Minimum = 0.0d;
             //Maximum = 10.0d;
             //Value = 0;
             //MinimumProperty.AddOwner<SliderEx>();
            // OrientationProperty.OverrideDefaultValue(typeof(SliderEx), Orientation.Horizontal);
-
 
             Thumb.DragStartedEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragStarted(o, e), RoutingStrategies.Bubble);
             Thumb.DragDeltaEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragDelta(o, e), RoutingStrategies.Bubble);
@@ -240,15 +198,9 @@ namespace Avalonia.Controlz.Controls
             //PseudoClass<SliderEx, Orientation>(OrientationProperty, o => o == Orientation.Vertical, ":vertical");
             //PseudoClass<SliderEx, Orientation>(OrientationProperty, o => o == Orientation.Horizontal, ":horizontal");
 
-
             //PseudoClasses.Set(":TickPlacementTopLeft", TickPlacement== TickPlacement.TopLeft);
             //PseudoClasses.Set(":TickPlacementBottomRight", TickPlacement == TickPlacement.BottomRight);
             //PseudoClasses.Set(":TickPlacementBoth", TickPlacement == TickPlacement.Both);
-
-
-
-
-
         }
 
         private static void OnOrientationChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
@@ -269,21 +221,15 @@ namespace Avalonia.Controlz.Controls
                 //        break;
                 //}
 
-
-
                 //slider.PseudoClasses.Set(":vertical", orientation == Orientation.Vertical);
                 //slider.PseudoClasses.Set(":horizontal", orientation == Orientation.Horizontal);
             }
-
-
         }
 
         private static void OnTickPlacementChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
         {
             if (slider.TopTickBar == null || slider.BottomTickBar == null)
                 return;
-
-
 
             //TopTickBar.Width = this.Width;
             //BottomTickBar.Width = this.Width;
@@ -296,6 +242,7 @@ namespace Avalonia.Controlz.Controls
                         if (DoubleUtil.IsDoubleFinite(slider.Track.Thumb.Width))
                             slider.TopTickBar.ReservedSpace = slider.Track.Thumb.Width;
                         break;
+
                     case Orientation.Vertical:
                         if (DoubleUtil.IsDoubleFinite(slider.Track.Thumb.Height))
                             slider.TopTickBar.ReservedSpace = slider.Track.Thumb.Height;
@@ -321,6 +268,7 @@ namespace Avalonia.Controlz.Controls
                     slider.TopTickBar.IsVisible = false;
                     slider.BottomTickBar.IsVisible = false;
                     break;
+
                 case TickPlacement.TopLeft:
                     slider.TopTickBar.IsVisible = true;
                     if (slider.Orientation == Orientation.Horizontal)
@@ -332,6 +280,7 @@ namespace Avalonia.Controlz.Controls
                         slider.TrackBackground.Margin = new Thickness(2, 5, 0, 5);
                     }
                     break;
+
                 case TickPlacement.BottomRight:
                     slider.BottomTickBar.IsVisible = true;
                     if (slider.Orientation == Orientation.Horizontal)
@@ -343,13 +292,12 @@ namespace Avalonia.Controlz.Controls
                         slider.TrackBackground.Margin = new Thickness(0, 5, 2, 5);
                     }
                     break;
+
                 case TickPlacement.Both:
                     slider.TopTickBar.IsVisible = true;
                     slider.BottomTickBar.IsVisible = true;
                     break;
             }
-
-
         }
 
         private static void OnValueChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
@@ -370,6 +318,7 @@ namespace Avalonia.Controlz.Controls
         }
 
         #region Commands
+
         public static ICommand IncreaseLargeCommand { get; private set; }
         public static ICommand IncreaseSmallCommand { get; private set; }
         public static ICommand DecreaseLargeCommand { get; private set; }
@@ -377,7 +326,7 @@ namespace Avalonia.Controlz.Controls
         public static ICommand MinimizeValueCommand { get; private set; }
         public static ICommand MaximizeValueCommand { get; private set; }
 
-        void InitializeCommands()
+        private void InitializeCommands()
         {
             IncreaseLargeCommand = ReactiveCommand.Create<object>(x => OnIncreaseLargeCommand(x), outputScheduler: RxApp.MainThreadScheduler);
             IncreaseSmallCommand = ReactiveCommand.Create<object>(x => OnIncreaseSmallCommand(x), outputScheduler: RxApp.MainThreadScheduler);
@@ -399,7 +348,6 @@ namespace Avalonia.Controlz.Controls
             OnMaximizeValue();
         }
 
-
         private void OnDecreaseSmallCommand(object x)
         {
             OnDecreaseSmall();
@@ -420,7 +368,7 @@ namespace Avalonia.Controlz.Controls
             OnIncreaseLarge();
         }
 
-        #endregion
+        #endregion Commands
 
         protected override void OnPointerPressed(PointerPressedEventArgs e)
         {
@@ -443,11 +391,8 @@ namespace Avalonia.Controlz.Controls
                 _OnMouseLeftButtonDown(e);
             }
 
-
             base.OnPointerPressed(e);
         }
-
-
 
         private void UpdateValue(double value)
         {
@@ -498,7 +443,6 @@ namespace Avalonia.Controlz.Controls
             //_autoToolTip.Content = GetAutoToolTipNumber();
             //_autoToolTip.IsOpen = true;
             //((Popup)_autoToolTip.Parent).Reposition();
-
         }
 
         protected virtual void OnThumbDragDelta(VectorEventArgs e)
@@ -535,9 +479,6 @@ namespace Avalonia.Controlz.Controls
                 //    ((Popup)_autoToolTip.Parent).Reposition();
                 //}
             }
-
-
-
         }
 
         protected virtual void OnThumbDragCompleted(VectorEventArgs e)
@@ -649,7 +590,6 @@ namespace Avalonia.Controlz.Controls
                 // caching of the mutable default value
                 DoubleCollection ticks = null;
 
-
                 if (GetValue(TicksProperty)
                     != null)
                 {
@@ -750,7 +690,6 @@ namespace Avalonia.Controlz.Controls
                     }
                 }
 
-
                 // Update if we've found a better value
                 if (next != value)
                 {
@@ -770,7 +709,6 @@ namespace Avalonia.Controlz.Controls
             //{
             //    e.Handled = sliderEx.IsFocused || e.Handled;
             //}
-
         }
 
         protected override Size ArrangeOverride(Size finalSize)
@@ -786,7 +724,6 @@ namespace Avalonia.Controlz.Controls
             {
                 BottomTickBar.Width = finalSize.Width;
             }
-
 
             UpdateSelectionRangeElementPositionAndSize();
 
@@ -807,14 +744,8 @@ namespace Avalonia.Controlz.Controls
             //    _autoToolTip.PlacementTarget = Track != null ? Track.Thumb : null;
             //}
 
-
-
             RaisePropertyChanged(TickPlacementProperty, TickPlacement.None, TickPlacement);
             base.OnTemplateApplied(e);
-
-
-
-
         }
 
         /// <summary>
@@ -864,7 +795,5 @@ namespace Avalonia.Controlz.Controls
         {
             this.SetValue(ValueProperty, this.Minimum);
         }
-
-
     }
 }
