@@ -13,7 +13,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set {  SetValue(ContentCharacterCasingProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<CharacterCasing> ContentCharacterCasingProperty =
+        public static readonly StyledProperty<CharacterCasing> ContentCharacterCasingProperty =
             AvaloniaProperty.Register<SquareButton, CharacterCasing>(nameof(ContentCharacterCasing));
     }
 }

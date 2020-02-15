@@ -32,4 +32,5 @@
     <Setter Property="VerticalAlignment" Value="Center" />
     <Setter Property="Width" Value="16" />
   </Style>
+
 </Styles>

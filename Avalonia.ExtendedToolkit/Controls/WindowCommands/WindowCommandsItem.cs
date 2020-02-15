@@ -15,7 +15,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsSeparatorVisibleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> IsSeparatorVisibleProperty =
+        public static readonly StyledProperty<bool> IsSeparatorVisibleProperty =
             AvaloniaProperty.Register<WindowCommandsItem, bool>(nameof(IsSeparatorVisible), defaultValue: true);
 
         public WindowCommands ParentWindowCommands
@@ -24,7 +24,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ParentWindowCommandsProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<WindowCommands> ParentWindowCommandsProperty =
+        public static readonly StyledProperty<WindowCommands> ParentWindowCommandsProperty =
             AvaloniaProperty.Register<WindowCommandsItem, WindowCommands>(nameof(ParentWindowCommands));
 
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)

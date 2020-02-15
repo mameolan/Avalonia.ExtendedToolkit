@@ -8,7 +8,7 @@
             set { SetValue(TagProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<object> TagProperty =
+        public static readonly StyledProperty<object> TagProperty =
             AvaloniaProperty.Register<HamburgerMenuItemBase, object>(nameof(Tag));
     }
 }

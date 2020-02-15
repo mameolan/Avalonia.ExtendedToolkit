@@ -16,7 +16,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(FocusBorderBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<IBrush> FocusBorderBrushProperty =
+        public static readonly StyledProperty<IBrush> FocusBorderBrushProperty =
             AvaloniaProperty.Register<MetroRadioButton, IBrush>(nameof(FocusBorderBrush));
 
         public IBrush MouseOverBorderBrush
@@ -25,7 +25,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(MouseOverBorderBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<IBrush> MouseOverBorderBrushProperty =
+        public static readonly StyledProperty<IBrush> MouseOverBorderBrushProperty =
             AvaloniaProperty.Register<MetroRadioButton, IBrush>(nameof(MouseOverBorderBrush));
 
         public FlowDirection ContentDirection
@@ -34,7 +34,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ContentDirectionProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<FlowDirection> ContentDirectionProperty =
+        public static readonly StyledProperty<FlowDirection> ContentDirectionProperty =
             AvaloniaProperty.Register<MetroRadioButton, FlowDirection>(nameof(ContentDirection));
 
         private Ellipse _checkedEllipse;

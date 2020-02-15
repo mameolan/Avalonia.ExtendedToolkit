@@ -13,7 +13,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ContentCharacterCasingProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<CharacterCasing> ContentCharacterCasingProperty =
+        public static readonly StyledProperty<CharacterCasing> ContentCharacterCasingProperty =
             AvaloniaProperty.Register<ContentControlEx, CharacterCasing>(nameof(ContentCharacterCasing), defaultValue:CharacterCasing.Normal);
 
         public bool RecognizesAccessKey
@@ -22,7 +22,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(RecognizesAccessKeyProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> RecognizesAccessKeyProperty =
+        public static readonly StyledProperty<bool> RecognizesAccessKeyProperty =
             AvaloniaProperty.Register<ContentControlEx, bool>(nameof(RecognizesAccessKey));
     }
 }

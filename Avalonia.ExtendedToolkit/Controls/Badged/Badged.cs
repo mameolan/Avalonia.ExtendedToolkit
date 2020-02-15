@@ -16,7 +16,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BadgeProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<object> BadgeProperty =
+        public static readonly StyledProperty<object> BadgeProperty =
             AvaloniaProperty.Register<Badged, object>(nameof(Badge));
 
         public SolidColorBrush BadgeBackground
@@ -25,7 +25,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BadgeBackgroundProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<SolidColorBrush> BadgeBackgroundProperty =
+        public static readonly StyledProperty<SolidColorBrush> BadgeBackgroundProperty =
             AvaloniaProperty.Register<Badged, SolidColorBrush>(nameof(BadgeBackground));
 
         public SolidColorBrush BadgeForeground
@@ -34,7 +34,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BadgeForegroundProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<SolidColorBrush> BadgeForegroundProperty =
+        public static readonly StyledProperty<SolidColorBrush> BadgeForegroundProperty =
             AvaloniaProperty.Register<Badged, SolidColorBrush>(nameof(BadgeForeground));
 
         public BadgePlacementMode BadgePlacementMode
@@ -43,7 +43,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BadgePlacementModeProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<BadgePlacementMode> BadgePlacementModeProperty =
+        public static readonly StyledProperty<BadgePlacementMode> BadgePlacementModeProperty =
             AvaloniaProperty.Register<Badged, BadgePlacementMode>(nameof(BadgePlacementMode));
 
         public static readonly RoutedEvent BadgeChangedEvent =
@@ -61,7 +61,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             private set { SetValue(IsBadgeSetProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> IsBadgeSetProperty =
+        public static readonly StyledProperty<bool> IsBadgeSetProperty =
             AvaloniaProperty.Register<Badged, bool>(nameof(IsBadgeSet));
 
         private Control _badgeContainer;

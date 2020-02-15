@@ -20,7 +20,7 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
             set { SetValue(CommandProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<ICommand> CommandProperty =
+        public static readonly StyledProperty<ICommand> CommandProperty =
             AvaloniaProperty.Register<CommandTriggerAction, ICommand>(nameof(Command));
 
         public object CommandParameter
@@ -29,7 +29,7 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
             set { SetValue(CommandParameterProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<object> CommandParameterProperty =
+        public static readonly StyledProperty<object> CommandParameterProperty =
             AvaloniaProperty.Register<CommandTriggerAction, object>(nameof(CommandParameter));
 
         public CommandTriggerAction()

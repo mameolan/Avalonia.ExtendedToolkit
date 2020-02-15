@@ -8,7 +8,7 @@
             set { SetValue(GlyphProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<string> GlyphProperty =
+        public static readonly StyledProperty<string> GlyphProperty =
             AvaloniaProperty.Register<HamburgerMenuGlyphItem, string>(nameof(Glyph));
     }
 }

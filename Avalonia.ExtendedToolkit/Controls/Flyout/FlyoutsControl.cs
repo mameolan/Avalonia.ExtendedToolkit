@@ -20,7 +20,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OverrideExternalCloseButtonProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<MouseButton?> OverrideExternalCloseButtonProperty =
+        public static readonly StyledProperty<MouseButton?> OverrideExternalCloseButtonProperty =
             AvaloniaProperty.Register<FlyoutsControl, MouseButton?>(nameof(OverrideExternalCloseButton));
 
         public bool OverrideIsPinned
@@ -29,7 +29,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OverrideIsPinnedProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> OverrideIsPinnedProperty =
+        public static readonly StyledProperty<bool> OverrideIsPinnedProperty =
             AvaloniaProperty.Register<FlyoutsControl, bool>(nameof(OverrideIsPinned));
 
         public FlyoutsControl()

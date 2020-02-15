@@ -13,7 +13,7 @@ namespace Avalonia.ExtendedToolkit
             set { SetValue(NameProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<string> NameProperty =
+        public static readonly StyledProperty<string> NameProperty =
             AvaloniaProperty.Register<ColumnDefinitionExt, string>(nameof(Name));
     }
 }

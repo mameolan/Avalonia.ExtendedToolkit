@@ -12,7 +12,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(LabelProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<string> LabelProperty =
+        public static readonly StyledProperty<string> LabelProperty =
             AvaloniaProperty.Register<HamburgerMenuItem, string>(nameof(Label));
 
         public Type TargetPageType
@@ -21,7 +21,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(TargetPageTypeProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<Type> TargetPageTypeProperty =
+        public static readonly StyledProperty<Type> TargetPageTypeProperty =
             AvaloniaProperty.Register<HamburgerMenuItem, Type>(nameof(TargetPageType));
 
         public ICommand Command
@@ -30,7 +30,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CommandProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<ICommand> CommandProperty =
+        public static readonly StyledProperty<ICommand> CommandProperty =
             AvaloniaProperty.Register<HamburgerMenuItem, ICommand>(nameof(Command));
 
         public object CommandParameter
@@ -39,7 +39,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CommandParameterProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<object> CommandParameterProperty =
+        public static readonly StyledProperty<object> CommandParameterProperty =
             AvaloniaProperty.Register<HamburgerMenuItem, object>(nameof(CommandParameter));
 
         public IInputElement CommandTarget
@@ -48,7 +48,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CommandTargetProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<IInputElement> CommandTargetProperty =
+        public static readonly StyledProperty<IInputElement> CommandTargetProperty =
             AvaloniaProperty.Register<HamburgerMenuItem, IInputElement>(nameof(CommandTarget));
 
         public bool IsEnabled
@@ -57,7 +57,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsEnabledProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> IsEnabledProperty =
+        public static readonly StyledProperty<bool> IsEnabledProperty =
             AvaloniaProperty.Register<HamburgerMenuItem, bool>(nameof(IsEnabled), defaultValue:true);
 
         public object ToolTip
@@ -66,7 +66,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ToolTipProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<object> ToolTipProperty =
+        public static readonly StyledProperty<object> ToolTipProperty =
             AvaloniaProperty.Register<HamburgerMenuItem, object>(nameof(ToolTip));
 
         public HamburgerMenuItem()

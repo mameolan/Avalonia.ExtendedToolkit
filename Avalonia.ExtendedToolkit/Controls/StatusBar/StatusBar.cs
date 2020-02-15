@@ -25,7 +25,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         //}
 
 
-        //public static readonly AvaloniaProperty<bool> UsesItemContainerTemplateProperty =
+        //public static readonly StyledProperty<bool> UsesItemContainerTemplateProperty =
         //    AvaloniaProperty.Register<StatusBar, bool>(nameof(UsesItemContainerTemplate));
 
         protected override IItemContainerGenerator CreateItemContainerGenerator()

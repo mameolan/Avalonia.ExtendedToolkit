@@ -15,7 +15,7 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
             set { SetValue(IsEnabledProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> IsEnabledProperty =
+        public static readonly StyledProperty<bool> IsEnabledProperty =
             AvaloniaProperty.Register<TriggerAction, bool>(nameof(IsEnabled));
 
         public AvaloniaObject AssociatedObject => associatedObject;

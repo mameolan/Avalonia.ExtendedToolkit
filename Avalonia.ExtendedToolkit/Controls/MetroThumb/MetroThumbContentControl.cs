@@ -62,7 +62,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsDraggingProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> IsDraggingProperty =
+        public static readonly StyledProperty<bool> IsDraggingProperty =
             AvaloniaProperty.Register<MetroThumbContentControl, bool>(nameof(IsDragging));
 
         public void CancelDragAction()

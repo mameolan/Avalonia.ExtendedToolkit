@@ -16,7 +16,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(FocusBorderBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<IBrush> FocusBorderBrushProperty =
+        public static readonly StyledProperty<IBrush> FocusBorderBrushProperty =
             AvaloniaProperty.Register<MetroCheckBox, IBrush>(nameof(FocusBorderBrush));
 
         public IBrush MouseOverBorderBrush
@@ -25,7 +25,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(MouseOverBorderBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<IBrush> MouseOverBorderBrushProperty =
+        public static readonly StyledProperty<IBrush> MouseOverBorderBrushProperty =
             AvaloniaProperty.Register<MetroCheckBox, IBrush>(nameof(MouseOverBorderBrush));
 
         public bool IsIndeterminate
@@ -34,7 +34,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsIndeterminateProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> IsIndeterminateProperty =
+        public static readonly StyledProperty<bool> IsIndeterminateProperty =
             AvaloniaProperty.Register<MetroCheckBox, bool>(nameof(IsIndeterminate));
 
         public FlowDirection FlowDirection
@@ -43,7 +43,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(FlowDirectionProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<FlowDirection> FlowDirectionProperty =
+        public static readonly StyledProperty<FlowDirection> FlowDirectionProperty =
             AvaloniaProperty.Register<MetroCheckBox, FlowDirection>(nameof(FlowDirection));
 
         public FlowDirection ContentDirection
@@ -52,7 +52,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ContentDirectionProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<FlowDirection> ContentDirectionProperty =
+        public static readonly StyledProperty<FlowDirection> ContentDirectionProperty =
             AvaloniaProperty.Register<MetroCheckBox, FlowDirection>(nameof(ContentDirection));
 
         private Path _checkBoxPath;

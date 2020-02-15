@@ -32,7 +32,6 @@
     <None Remove="Commanding\**" />
   </ItemGroup>
 
-  
   <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="Styles\Themes\GeneratorParameters.json" />
@@ -49,7 +48,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
   </ItemGroup>
-  
+
   <Target Name="GenerateXamlFilesInner">
     <PropertyGroup>
       <XamlColorSchemeGeneratorVersion Condition="'%(PackageReference.Identity)' == 'XamlColorSchemeGenerator'">%(PackageReference.Version)</XamlColorSchemeGeneratorVersion>

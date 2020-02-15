@@ -17,7 +17,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ContentCharacterCasingProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<CharacterCasing> ContentCharacterCasingProperty =
+        public static readonly StyledProperty<CharacterCasing> ContentCharacterCasingProperty =
             AvaloniaProperty.Register<MetroButton, CharacterCasing>(nameof(ContentCharacterCasing));
 
         public CornerRadius CornerRadius
@@ -26,7 +26,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CornerRadiusProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<CornerRadius> CornerRadiusProperty =
+        public static readonly StyledProperty<CornerRadius> CornerRadiusProperty =
             AvaloniaProperty.Register<MetroButton, CornerRadius>(nameof(CornerRadius));
 
         public IBrush FocusBorderBrush
@@ -35,7 +35,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(FocusBorderBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<IBrush> FocusBorderBrushProperty =
+        public static readonly StyledProperty<IBrush> FocusBorderBrushProperty =
             AvaloniaProperty.Register<MetroButton, IBrush>(nameof(FocusBorderBrush));
 
         public Thickness FocusBorderThickness
@@ -44,7 +44,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set {  SetValue(FocusBorderThicknessProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<Thickness> FocusBorderThicknessProperty =
+        public static readonly StyledProperty<Thickness> FocusBorderThicknessProperty =
             AvaloniaProperty.Register<MetroButton, Thickness>(nameof(FocusBorderThickness));
 
         

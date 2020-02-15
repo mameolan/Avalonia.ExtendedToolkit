@@ -34,7 +34,7 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(OrientationProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<Orientation> OrientationProperty =
+        public static readonly StyledProperty<Orientation> OrientationProperty =
            AvaloniaProperty.Register<SliderEx, Orientation>(nameof(Orientation), defaultValue: Orientation.Horizontal);
 
         //ScrollBar.OrientationProperty.AddOwner<SliderEx>();
@@ -45,7 +45,7 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IsDirectionReversedProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> IsDirectionReversedProperty =
+        public static readonly StyledProperty<bool> IsDirectionReversedProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsDirectionReversed));
 
         public int Delay
@@ -54,7 +54,7 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(DelayProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<int> DelayProperty =
+        public static readonly StyledProperty<int> DelayProperty =
             RepeatButton.DelayProperty.AddOwner<SliderEx>();
 
         //AvaloniaProperty.Register<SliderEx, int>(nameof(Delay));
@@ -65,7 +65,7 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IntervalProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<int> IntervalProperty =
+        public static readonly StyledProperty<int> IntervalProperty =
             RepeatButton.IntervalProperty.AddOwner<SliderEx>();
 
         //AvaloniaProperty.Register<SliderEx, int>(nameof(Interval));
@@ -76,7 +76,7 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(AutoToolTipPlacementProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<AutoToolTipPlacement> AutoToolTipPlacementProperty =
+        public static readonly StyledProperty<AutoToolTipPlacement> AutoToolTipPlacementProperty =
            AvaloniaProperty.Register<SliderEx, AutoToolTipPlacement>(nameof(AutoToolTipPlacement)
                , defaultValue: AutoToolTipPlacement.None
 
@@ -88,7 +88,7 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(AutoToolTipPrecisionProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<int> AutoToolTipPrecisionProperty =
+        public static readonly StyledProperty<int> AutoToolTipPrecisionProperty =
             AvaloniaProperty.Register<SliderEx, int>(nameof(AutoToolTipPrecision), defaultValue: 0);
 
         public bool IsSnapToTickEnabled
@@ -97,7 +97,7 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IsSnapToTickEnabledProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> IsSnapToTickEnabledProperty =
+        public static readonly StyledProperty<bool> IsSnapToTickEnabledProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsSnapToTickEnabled), defaultValue: true);
 
         public TickPlacement TickPlacement
@@ -116,7 +116,7 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(TickFrequencyProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<double> TickFrequencyProperty =
+        public static readonly StyledProperty<double> TickFrequencyProperty =
             AvaloniaProperty.Register<SliderEx, double>(nameof(TickFrequency), defaultValue: 1.0);
 
         public DoubleCollection Ticks
@@ -125,7 +125,7 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(TicksProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<DoubleCollection> TicksProperty =
+        public static readonly StyledProperty<DoubleCollection> TicksProperty =
             AvaloniaProperty.Register<SliderEx, DoubleCollection>(nameof(Ticks), defaultValue: DoubleCollection.Empty());
 
         public bool IsSelectionRangeEnabled
@@ -134,7 +134,7 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IsSelectionRangeEnabledProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> IsSelectionRangeEnabledProperty =
+        public static readonly StyledProperty<bool> IsSelectionRangeEnabledProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsSelectionRangeEnabled));
 
         public double SelectionStart
@@ -143,7 +143,7 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(SelectionStartProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<double> SelectionStartProperty =
+        public static readonly StyledProperty<double> SelectionStartProperty =
             AvaloniaProperty.Register<SliderEx, double>(nameof(SelectionStart)
                 , defaultValue: 0.0d, defaultBindingMode: Data.BindingMode.TwoWay);
 
@@ -153,7 +153,7 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(SelectionEndProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<double> SelectionEndProperty =
+        public static readonly StyledProperty<double> SelectionEndProperty =
             AvaloniaProperty.Register<SliderEx, double>(nameof(SelectionEnd)
                 , defaultValue: 0.0d, defaultBindingMode: Data.BindingMode.TwoWay);
 
@@ -163,7 +163,7 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IsMoveToPointEnabledProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> IsMoveToPointEnabledProperty =
+        public static readonly StyledProperty<bool> IsMoveToPointEnabledProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsMoveToPointEnabled));
 
         public SliderEx()

@@ -31,7 +31,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ThemeProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<WindowCommandTheme> ThemeProperty =
+        public static readonly StyledProperty<WindowCommandTheme> ThemeProperty =
             AvaloniaProperty.Register<WindowCommands, WindowCommandTheme>(nameof(Theme));
 
         public ControlTemplate LightTemplate
@@ -40,7 +40,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(LightTemplateProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<ControlTemplate> LightTemplateProperty =
+        public static readonly StyledProperty<ControlTemplate> LightTemplateProperty =
             AvaloniaProperty.Register<WindowCommands, ControlTemplate>(nameof(LightTemplate));
 
         public ControlTemplate DarkTemplate
@@ -49,7 +49,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(DarkTemplateProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<ControlTemplate> DarkTemplateProperty =
+        public static readonly StyledProperty<ControlTemplate> DarkTemplateProperty =
             AvaloniaProperty.Register<WindowCommands, ControlTemplate>(nameof(DarkTemplate));
 
         public bool ShowSeparators
@@ -58,7 +58,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ShowSeparatorsProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> ShowSeparatorsProperty =
+        public static readonly StyledProperty<bool> ShowSeparatorsProperty =
             AvaloniaProperty.Register<WindowCommands, bool>(nameof(ShowSeparators));
 
         public bool ShowLastSeparator
@@ -67,7 +67,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ShowLastSeparatorProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> ShowLastSeparatorProperty =
+        public static readonly StyledProperty<bool> ShowLastSeparatorProperty =
             AvaloniaProperty.Register<WindowCommands, bool>(nameof(ShowLastSeparator));
 
         public int SeparatorHeight
@@ -76,7 +76,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(SeparatorHeightProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<int> SeparatorHeightProperty =
+        public static readonly StyledProperty<int> SeparatorHeightProperty =
             AvaloniaProperty.Register<WindowCommands, int>(nameof(SeparatorHeight), defaultValue: 15);
 
         public WindowCommands()

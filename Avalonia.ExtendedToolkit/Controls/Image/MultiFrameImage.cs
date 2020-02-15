@@ -19,7 +19,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(MultiFrameImageModeProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<MultiFrameImageMode> MultiFrameImageModeProperty =
+        public static readonly StyledProperty<MultiFrameImageMode> MultiFrameImageModeProperty =
             AvaloniaProperty.Register<MultiFrameImage, MultiFrameImageMode>(nameof(MultiFrameImageMode));
 
         private readonly List<IBitmap> _frames = new List<IBitmap>();

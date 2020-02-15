@@ -20,7 +20,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(MetroContentControlStateProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<MetroContentControlState> MetroContentControlStateProperty =
+        public static readonly StyledProperty<MetroContentControlState> MetroContentControlStateProperty =
             AvaloniaProperty.Register<MetroContentControl, MetroContentControlState>(nameof(MetroContentControlState));
 
         public bool ReverseTransition
@@ -29,7 +29,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ReverseTransitionProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> ReverseTransitionProperty =
+        public static readonly StyledProperty<bool> ReverseTransitionProperty =
             AvaloniaProperty.Register<MetroContentControl, bool>(nameof(ReverseTransition));
 
         public bool TransitionsEnabled
@@ -38,7 +38,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(TransitionsEnabledProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> TransitionsEnabledProperty =
+        public static readonly StyledProperty<bool> TransitionsEnabledProperty =
             AvaloniaProperty.Register<MetroContentControl, bool>(nameof(TransitionsEnabled), defaultValue: true);
 
         public bool OnlyLoadTransition
@@ -47,7 +47,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OnlyLoadTransitionProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<bool> OnlyLoadTransitionProperty =
+        public static readonly StyledProperty<bool> OnlyLoadTransitionProperty =
             AvaloniaProperty.Register<MetroContentControl, bool>(nameof(OnlyLoadTransition));
 
         public static readonly RoutedEvent TransitionCompletedEvent =

@@ -10,7 +10,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ThumbnailProperty, value); }
         }
 
-        public static readonly AvaloniaProperty<IBitmap> ThumbnailProperty =
+        public static readonly StyledProperty<IBitmap> ThumbnailProperty =
             AvaloniaProperty.Register<HamburgerMenuImageItem, IBitmap>(nameof(Thumbnail));
     }
 }

@@ -19,7 +19,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty<object> OptionsItemsSourceProperty =
+        public static readonly StyledProperty<object> OptionsItemsSourceProperty =
             AvaloniaProperty.Register<HamburgerMenu, object>(nameof(OptionsItemsSource));
 
 
@@ -31,7 +31,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty<IStyle> OptionsItemContainerStyleProperty =
+        public static readonly StyledProperty<IStyle> OptionsItemContainerStyleProperty =
             AvaloniaProperty.Register<HamburgerMenu, IStyle>(nameof(OptionsItemContainerStyle));
 
 
@@ -43,7 +43,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty<DataTemplate> OptionsItemTemplateProperty =
+        public static readonly StyledProperty<DataTemplate> OptionsItemTemplateProperty =
             AvaloniaProperty.Register<HamburgerMenu, DataTemplate>(nameof(OptionsItemTemplate));
 
         //OptionsItemTemplateSelector missing
@@ -57,7 +57,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty<bool> OptionsIsVisibleProperty =
+        public static readonly StyledProperty<bool> OptionsIsVisibleProperty =
             AvaloniaProperty.Register<HamburgerMenu, bool>(nameof(OptionsIsVisible), defaultValue: true);
 
 
@@ -69,7 +69,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty<object> SelectedOptionsItemProperty =
+        public static readonly StyledProperty<object> SelectedOptionsItemProperty =
             AvaloniaProperty.Register<HamburgerMenu, object>(nameof(SelectedOptionsItem), defaultBindingMode: Data.BindingMode.TwoWay);
 
 
@@ -81,7 +81,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty<int> SelectedOptionsIndexProperty =
+        public static readonly StyledProperty<int> SelectedOptionsIndexProperty =
             AvaloniaProperty.Register<HamburgerMenu, int>(nameof(SelectedOptionsIndex), defaultValue: -1, defaultBindingMode: Data.BindingMode.TwoWay);
 
 
@@ -93,7 +93,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty<ICommand> OptionsItemCommandProperty =
+        public static readonly StyledProperty<ICommand> OptionsItemCommandProperty =
             AvaloniaProperty.Register<HamburgerMenu, ICommand>(nameof(OptionsItemCommand));
 
 
@@ -105,7 +105,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty<object> OptionsItemCommandParameterProperty =
+        public static readonly StyledProperty<object> OptionsItemCommandParameterProperty =
             AvaloniaProperty.Register<HamburgerMenu, object>(nameof(OptionsItemCommandParameter));
 
         public IEnumerable OptionsItems
