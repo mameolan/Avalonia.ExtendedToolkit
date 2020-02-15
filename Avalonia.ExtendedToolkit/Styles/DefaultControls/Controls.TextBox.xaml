@@ -1,0 +1,15 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+  <Style Selector="TextBox">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Control.Background}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.Border}" />
+  </Style>
+  
+  
+  
+</Styles>
