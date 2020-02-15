@@ -23,7 +23,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ToggleSwitchStateProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ToggleSwitchStateProperty =
+        public static readonly AvaloniaProperty<ToggleSwitchState> ToggleSwitchStateProperty =
             AvaloniaProperty.Register<ToggleSwitch, ToggleSwitchState>(nameof(ToggleSwitchState));
 
         public Thickness HeaderMargin
@@ -32,7 +32,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(HeaderMarginProperty, value); }
         }
 
-        public static readonly AvaloniaProperty HeaderMarginProperty =
+        public static readonly AvaloniaProperty<Thickness> HeaderMarginProperty =
             AvaloniaProperty.Register<ToggleSwitch, Thickness>(nameof(HeaderMargin));
 
         public double HeaderFontSize
@@ -41,7 +41,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(HeaderFontSizeProperty, value); }
         }
 
-        public static readonly AvaloniaProperty HeaderFontSizeProperty =
+        public static readonly AvaloniaProperty<double> HeaderFontSizeProperty =
             AvaloniaProperty.Register<ToggleSwitch, double>(nameof(HeaderFontSize));
 
         public FontWeight HeaderFontWeight
@@ -50,7 +50,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(HeaderFontWeightProperty, value); }
         }
 
-        public static readonly AvaloniaProperty HeaderFontWeightProperty =
+        public static readonly AvaloniaProperty<FontWeight> HeaderFontWeightProperty =
             AvaloniaProperty.Register<ToggleSwitch, FontWeight>(nameof(HeaderFontWeight), defaultValue: FontWeight.Normal);
 
         public FontFamily HeaderFontFamily
@@ -59,7 +59,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(HeaderFontFamilyProperty, value); }
         }
 
-        public static readonly AvaloniaProperty HeaderFontFamilyProperty =
+        public static readonly AvaloniaProperty<FontFamily> HeaderFontFamilyProperty =
             AvaloniaProperty.Register<ToggleSwitch, FontFamily>(nameof(HeaderFontFamily));
 
         public string OnLabel
@@ -68,7 +68,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OnLabelProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OnLabelProperty =
+        public static readonly AvaloniaProperty<string> OnLabelProperty =
             AvaloniaProperty.Register<ToggleSwitch, string>(nameof(OnLabel), defaultValue: "On");
 
         public string OffLabel
@@ -77,7 +77,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OffLabelProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OffLabelProperty =
+        public static readonly AvaloniaProperty<string> OffLabelProperty =
             AvaloniaProperty.Register<ToggleSwitch, string>(nameof(OffLabel), defaultValue: "Off");
 
         public IBrush OnSwitchBrush
@@ -86,7 +86,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OnSwitchBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OnSwitchBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> OnSwitchBrushProperty =
             AvaloniaProperty.Register<ToggleSwitch, IBrush>(nameof(OnSwitchBrush));
 
         public IBrush OffSwitchBrush
@@ -95,7 +95,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OffSwitchBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OffSwitchBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> OffSwitchBrushProperty =
             AvaloniaProperty.Register<ToggleSwitch, IBrush>(nameof(OffSwitchBrush));
 
         public IBrush ThumbIndicatorBrush
@@ -104,7 +104,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ThumbIndicatorBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ThumbIndicatorBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> ThumbIndicatorBrushProperty =
             AvaloniaProperty.Register<ToggleSwitch, IBrush>(nameof(ThumbIndicatorBrush));
 
         public IBrush ThumbIndicatorDisabledBrush
@@ -113,7 +113,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ThumbIndicatorDisabledBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ThumbIndicatorDisabledBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> ThumbIndicatorDisabledBrushProperty =
             AvaloniaProperty.Register<ToggleSwitch, IBrush>(nameof(ThumbIndicatorDisabledBrush));
 
         public double ThumbIndicatorWidth
@@ -122,7 +122,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ThumbIndicatorWidthProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ThumbIndicatorWidthProperty =
+        public static readonly AvaloniaProperty<double> ThumbIndicatorWidthProperty =
             AvaloniaProperty.Register<ToggleSwitch, double>(nameof(ThumbIndicatorWidth));
 
         public bool? IsChecked
@@ -131,7 +131,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsCheckedProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsCheckedProperty =
+        public static readonly AvaloniaProperty<bool?> IsCheckedProperty =
             AvaloniaProperty.Register<ToggleSwitch, bool?>(nameof(IsChecked));
 
         public ICommand CheckChangedCommand
@@ -140,7 +140,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CheckChangedCommandProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CheckChangedCommandProperty =
+        public static readonly AvaloniaProperty<ICommand> CheckChangedCommandProperty =
             AvaloniaProperty.Register<ToggleSwitch, ICommand>(nameof(CheckChangedCommand));
 
         public ICommand CheckedCommand
@@ -149,7 +149,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CheckedCommandProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CheckedCommandProperty =
+        public static readonly AvaloniaProperty<ICommand> CheckedCommandProperty =
             AvaloniaProperty.Register<ToggleSwitch, ICommand>(nameof(CheckedCommand));
 
         public ICommand UnCheckedCommand
@@ -158,7 +158,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(UnCheckedCommandProperty, value); }
         }
 
-        public static readonly AvaloniaProperty UnCheckedCommandProperty =
+        public static readonly AvaloniaProperty<ICommand> UnCheckedCommandProperty =
             AvaloniaProperty.Register<ToggleSwitch, ICommand>(nameof(UnCheckedCommand));
 
         public object CheckChangedCommandParameter
@@ -167,7 +167,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CheckChangedCommandParameterProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CheckChangedCommandParameterProperty =
+        public static readonly AvaloniaProperty<object> CheckChangedCommandParameterProperty =
             AvaloniaProperty.Register<ToggleSwitch, object>(nameof(CheckChangedCommandParameter));
 
         public object CheckedCommandParameter
@@ -176,7 +176,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CheckedCommandParameterProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CheckedCommandParameterProperty =
+        public static readonly AvaloniaProperty<object> CheckedCommandParameterProperty =
             AvaloniaProperty.Register<ToggleSwitch, object>(nameof(CheckedCommandParameter));
 
         public object UnCheckedCommandParameter
@@ -185,7 +185,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(UnCheckedCommandParameterProperty, value); }
         }
 
-        public static readonly AvaloniaProperty UnCheckedCommandParameterProperty =
+        public static readonly AvaloniaProperty<object> UnCheckedCommandParameterProperty =
             AvaloniaProperty.Register<ToggleSwitch, object>(nameof(UnCheckedCommandParameter));
 
         public FlowDirection ContentDirection
@@ -195,7 +195,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         // LeftToRight means content left and button right and RightToLeft vise versa
-        public static readonly AvaloniaProperty ContentDirectionProperty =
+        public static readonly AvaloniaProperty<FlowDirection> ContentDirectionProperty =
             AvaloniaProperty.Register<ToggleSwitch, FlowDirection>(nameof(ContentDirection), defaultValue: FlowDirection.LeftToRight);
 
         public Thickness ContentPadding
@@ -204,7 +204,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ContentPaddingProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ContentPaddingProperty =
+        public static readonly AvaloniaProperty<Thickness> ContentPaddingProperty =
             AvaloniaProperty.Register<ToggleSwitch, Thickness>(nameof(ContentPadding), defaultValue: new Thickness());
 
         public IStyle ToggleSwitchButtonStyle
@@ -213,7 +213,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ToggleSwitchButtonStyleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ToggleSwitchButtonStyleProperty =
+        public static readonly AvaloniaProperty<IStyle> ToggleSwitchButtonStyleProperty =
             AvaloniaProperty.Register<ToggleSwitch, IStyle>(nameof(ToggleSwitchButtonStyle));
 
         public event EventHandler<RoutedEventArgs> Checked;

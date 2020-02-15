@@ -14,7 +14,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty IsDraggingProperty =
+        public static readonly AvaloniaProperty<bool> IsDraggingProperty =
             AvaloniaProperty.Register <MetroThumb, bool>(nameof(IsDragging));
 
 

@@ -8,7 +8,7 @@
             set { SetValue(IconProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IconProperty =
+        public static readonly AvaloniaProperty<object> IconProperty =
             AvaloniaProperty.Register<HamburgerMenuIconItem, object>(nameof(Icon));
     }
 }

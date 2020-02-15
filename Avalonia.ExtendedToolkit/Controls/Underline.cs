@@ -20,7 +20,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty PlacementProperty =
+        public static readonly AvaloniaProperty<Dock> PlacementProperty =
             AvaloniaProperty.Register<Underline, Dock>(nameof(Placement));
 
 
@@ -32,7 +32,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty LineThicknessProperty =
+        public static readonly AvaloniaProperty<double> LineThicknessProperty =
             AvaloniaProperty.Register<Underline, double>(nameof(LineThickness),defaultValue: 1d);
 
 
@@ -44,7 +44,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty LineExtentProperty =
+        public static readonly AvaloniaProperty<double> LineExtentProperty =
             AvaloniaProperty.Register<Underline, double>(nameof(LineExtent),defaultValue: double.NaN);
 
 

@@ -68,7 +68,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty IsContentVisibleProperty =
+        public static readonly AvaloniaProperty<bool> IsContentVisibleProperty =
             AvaloniaProperty.Register<BusyIndicator, bool>(nameof(IsContentVisible));
 
 
@@ -80,7 +80,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsBusyProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsBusyProperty =
+        public static readonly AvaloniaProperty<bool> IsBusyProperty =
             AvaloniaProperty.Register<BusyIndicator, bool>(nameof(IsBusy));
 
         public object BusyContent
@@ -89,7 +89,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BusyContentProperty, value); }
         }
 
-        public static readonly AvaloniaProperty BusyContentProperty =
+        public static readonly AvaloniaProperty<object> BusyContentProperty =
             AvaloniaProperty.Register<BusyIndicator, object>(nameof(BusyContent));
 
         public DataTemplate BusyContentTemplate
@@ -98,7 +98,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BusyContentTemplateProperty, value); }
         }
 
-        public static readonly AvaloniaProperty BusyContentTemplateProperty =
+        public static readonly AvaloniaProperty<DataTemplate> BusyContentTemplateProperty =
             AvaloniaProperty.Register<BusyIndicator, DataTemplate>(nameof(BusyContentTemplate));
 
         public TimeSpan DisplayAfter
@@ -107,7 +107,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(DisplayAfterProperty, value); }
         }
 
-        public static readonly AvaloniaProperty DisplayAfterProperty =
+        public static readonly AvaloniaProperty<TimeSpan> DisplayAfterProperty =
             AvaloniaProperty.Register<BusyIndicator, TimeSpan>(nameof(DisplayAfter),
                 defaultValue: TimeSpan.FromSeconds(0.1));
 
@@ -117,26 +117,26 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(FocusAfterBusyProperty, value); }
         }
 
-        public static readonly AvaloniaProperty FocusAfterBusyProperty =
+        public static readonly AvaloniaProperty<Control> FocusAfterBusyProperty =
             AvaloniaProperty.Register<BusyIndicator, Control>(nameof(FocusAfterBusy));
 
-        public Style OverlayStyle
+        public IStyle OverlayStyle
         {
-            get { return (Style)GetValue(OverlayStyleProperty); }
+            get { return (IStyle)GetValue(OverlayStyleProperty); }
             set { SetValue(OverlayStyleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OverlayStyleProperty =
-            AvaloniaProperty.Register<BusyIndicator, Style>(nameof(OverlayStyle));
+        public static readonly AvaloniaProperty<IStyle> OverlayStyleProperty =
+            AvaloniaProperty.Register<BusyIndicator, IStyle>(nameof(OverlayStyle));
 
-        public Style ProgressBarStyle
+        public IStyle ProgressBarStyle
         {
-            get { return (Style)GetValue(ProgressBarStyleProperty); }
+            get { return (IStyle)GetValue(ProgressBarStyleProperty); }
             set { SetValue(ProgressBarStyleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ProgressBarStyleProperty =
-            AvaloniaProperty.Register<BusyIndicator, Style>(nameof(ProgressBarStyle));
+        public static readonly AvaloniaProperty<IStyle> ProgressBarStyleProperty =
+            AvaloniaProperty.Register<BusyIndicator, IStyle>(nameof(ProgressBarStyle));
 
         private void DisplayAfterTimerElapsed(object sender, EventArgs e)
         {

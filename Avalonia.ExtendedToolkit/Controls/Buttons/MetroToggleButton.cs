@@ -14,7 +14,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CornerRadiusProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CornerRadiusProperty =
+        public static readonly AvaloniaProperty<CornerRadius> CornerRadiusProperty =
             AvaloniaProperty.Register<MetroToggleButton, CornerRadius>(nameof(CornerRadius));
 
         public Thickness FocusBorderThickness
@@ -23,7 +23,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(FocusBorderThicknessProperty, value); }
         }
 
-        public static readonly AvaloniaProperty FocusBorderThicknessProperty =
+        public static readonly AvaloniaProperty<Thickness> FocusBorderThicknessProperty =
             AvaloniaProperty.Register<MetroToggleButton, Thickness>(nameof(FocusBorderThickness));
 
         public SolidColorBrush FocusBorderBrush
@@ -32,7 +32,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(FocusBorderBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty FocusBorderBrushProperty =
+        public static readonly AvaloniaProperty<SolidColorBrush> FocusBorderBrushProperty =
             AvaloniaProperty.Register<MetroToggleButton, SolidColorBrush>(nameof(FocusBorderBrush));
 
         public CharacterCasing ContentCharacterCasing
@@ -41,7 +41,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ContentCharacterCasingProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ContentCharacterCasingProperty =
+        public static readonly AvaloniaProperty<CharacterCasing> ContentCharacterCasingProperty =
             AvaloniaProperty.Register<MetroToggleButton, CharacterCasing>(nameof(ContentCharacterCasing));
     }
 }

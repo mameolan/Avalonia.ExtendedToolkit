@@ -19,7 +19,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BorderThicknessProperty, value); }
         }
 
-        public static readonly AvaloniaProperty BorderThicknessProperty =
+        public static readonly AvaloniaProperty<Thickness> BorderThicknessProperty =
             AvaloniaProperty.Register<ClipBorder, Thickness>(nameof(BorderThickness), defaultValue: new Thickness());
 
         public CornerRadius CornerRadius
@@ -28,7 +28,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CornerRadiusProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CornerRadiusProperty =
+        public static readonly AvaloniaProperty<CornerRadius> CornerRadiusProperty =
             AvaloniaProperty.Register<ClipBorder, CornerRadius>(nameof(CornerRadius), defaultValue: new CornerRadius());
 
         public IBrush BorderBrush
@@ -37,7 +37,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BorderBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty BorderBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> BorderBrushProperty =
             AvaloniaProperty.Register<ClipBorder, IBrush>(nameof(BorderBrush));
 
         public IBrush Background
@@ -46,7 +46,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BackgroundProperty, value); }
         }
 
-        public static readonly AvaloniaProperty BackgroundProperty =
+        public static readonly AvaloniaProperty<IBrush> BackgroundProperty =
             AvaloniaProperty.Register<ClipBorder, IBrush>(nameof(Background));
 
         public bool OptimizeClipRendering
@@ -55,7 +55,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OptimizeClipRenderingProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OptimizeClipRenderingProperty =
+        public static readonly AvaloniaProperty<bool> OptimizeClipRenderingProperty =
             AvaloniaProperty.Register<ClipBorder, bool>(nameof(OptimizeClipRendering), defaultValue: true);
 
         protected override Size MeasureOverride(Size constraint)

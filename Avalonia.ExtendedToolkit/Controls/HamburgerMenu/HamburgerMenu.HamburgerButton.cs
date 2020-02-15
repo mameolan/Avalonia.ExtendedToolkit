@@ -17,7 +17,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty HamburgerWidthProperty =
+        public static readonly AvaloniaProperty<double> HamburgerWidthProperty =
             AvaloniaProperty.Register<HamburgerMenu, double>(nameof(HamburgerWidth), defaultValue: 48.0);
 
 
@@ -29,7 +29,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty HamburgerHeightProperty =
+        public static readonly AvaloniaProperty<double> HamburgerHeightProperty =
             AvaloniaProperty.Register<HamburgerMenu, double>(nameof(HamburgerHeight), defaultValue: 48.0);
 
 
@@ -41,7 +41,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty HamburgerMarginProperty =
+        public static readonly AvaloniaProperty<Thickness> HamburgerMarginProperty =
             AvaloniaProperty.Register<HamburgerMenu, Thickness>(nameof(HamburgerMargin));
 
 
@@ -53,7 +53,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty HamburgerIsVisibleProperty =
+        public static readonly AvaloniaProperty<bool> HamburgerIsVisibleProperty =
             AvaloniaProperty.Register<HamburgerMenu, bool>(nameof(HamburgerIsVisible), defaultValue: true);
 
 
@@ -65,7 +65,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty HamburgerButtonStyleProperty =
+        public static readonly AvaloniaProperty<IStyle> HamburgerButtonStyleProperty =
             AvaloniaProperty.Register<HamburgerMenu, IStyle>(nameof(HamburgerButtonStyle));
 
 
@@ -77,7 +77,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty HamburgerButtonTemplateProperty =
+        public static readonly AvaloniaProperty<DataTemplate> HamburgerButtonTemplateProperty =
             AvaloniaProperty.Register<HamburgerMenu, DataTemplate>(nameof(HamburgerButtonTemplate));
 
 
@@ -89,7 +89,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty HamburgerMenuHeaderTemplateProperty =
+        public static readonly AvaloniaProperty<DataTemplate> HamburgerMenuHeaderTemplateProperty =
             AvaloniaProperty.Register<HamburgerMenu, DataTemplate>(nameof(HamburgerMenuHeaderTemplate));
 
 

@@ -18,7 +18,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(LightMinButtonStyleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty LightMinButtonStyleProperty =
+        public static readonly AvaloniaProperty<IStyle> LightMinButtonStyleProperty =
             AvaloniaProperty.Register<WindowButtonCommands, IStyle>(nameof(LightMinButtonStyle));
 
         public IStyle LightMaxButtonStyle
@@ -27,7 +27,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(LightMaxButtonStyleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty LightMaxButtonStyleProperty =
+        public static readonly AvaloniaProperty<IStyle> LightMaxButtonStyleProperty =
             AvaloniaProperty.Register<WindowButtonCommands, IStyle>(nameof(LightMaxButtonStyle));
 
         public IStyle LightCloseButtonStyle
@@ -36,7 +36,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(LightCloseButtonStyleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty LightCloseButtonStyleProperty =
+        public static readonly AvaloniaProperty<IStyle> LightCloseButtonStyleProperty =
             AvaloniaProperty.Register<WindowButtonCommands, IStyle>(nameof(LightCloseButtonStyle));
 
         public IStyle DarkMinButtonStyle
@@ -45,7 +45,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(DarkMinButtonStyleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty DarkMinButtonStyleProperty =
+        public static readonly AvaloniaProperty<IStyle> DarkMinButtonStyleProperty =
             AvaloniaProperty.Register<WindowButtonCommands, IStyle>(nameof(DarkMinButtonStyle));
 
         public IStyle DarkMaxButtonStyle
@@ -54,7 +54,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(DarkMaxButtonStyleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty DarkMaxButtonStyleProperty =
+        public static readonly AvaloniaProperty<IStyle> DarkMaxButtonStyleProperty =
             AvaloniaProperty.Register<WindowButtonCommands, IStyle>(nameof(DarkMaxButtonStyle));
 
         public IStyle DarkCloseButtonStyle
@@ -63,7 +63,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(DarkCloseButtonStyleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty DarkCloseButtonStyleProperty =
+        public static readonly AvaloniaProperty<IStyle> DarkCloseButtonStyleProperty =
             AvaloniaProperty.Register<WindowButtonCommands, IStyle>(nameof(DarkCloseButtonStyle));
 
         public WindowCommandTheme Theme
@@ -72,7 +72,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ThemeProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ThemeProperty =
+        public static readonly AvaloniaProperty<WindowCommandTheme> ThemeProperty =
             AvaloniaProperty.Register<WindowButtonCommands, WindowCommandTheme>(nameof(Theme), WindowCommandTheme.Light);
 
         public string Minimize
@@ -81,7 +81,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(MinimizeProperty, value); }
         }
 
-        public static readonly AvaloniaProperty MinimizeProperty =
+        public static readonly AvaloniaProperty<string> MinimizeProperty =
             AvaloniaProperty.Register<WindowButtonCommands, string>(nameof(Minimize));
 
         public string Maximize
@@ -90,7 +90,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(MaximizeProperty, value); }
         }
 
-        public static readonly AvaloniaProperty MaximizeProperty =
+        public static readonly AvaloniaProperty<string> MaximizeProperty =
             AvaloniaProperty.Register<WindowButtonCommands, string>(nameof(Maximize));
 
         public string Close
@@ -99,7 +99,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CloseProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CloseProperty =
+        public static readonly AvaloniaProperty<string> CloseProperty =
             AvaloniaProperty.Register<WindowButtonCommands, string>(nameof(Close));
 
         public string Restore
@@ -108,7 +108,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(RestoreProperty, value); }
         }
 
-        public static readonly AvaloniaProperty RestoreProperty =
+        public static readonly AvaloniaProperty<string> RestoreProperty =
             AvaloniaProperty.Register<WindowButtonCommands, string>(nameof(Restore));
 
         public bool IsCloseButtonEnabled
@@ -117,7 +117,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             private set { SetValue(IsCloseButtonEnabledProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsCloseButtonEnabledProperty =
+        public static readonly AvaloniaProperty<bool> IsCloseButtonEnabledProperty =
             AvaloniaProperty.Register<WindowButtonCommands, bool>(nameof(IsCloseButtonEnabled));
 
         public bool IsAnyDialogOpen
@@ -126,7 +126,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             private set { SetValue(IsAnyDialogOpenProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsAnyDialogOpenProperty =
+        public static readonly AvaloniaProperty<bool> IsAnyDialogOpenProperty =
             AvaloniaProperty.Register<WindowButtonCommands, bool>(nameof(IsAnyDialogOpen));
 
         public bool IsCloseButtonEnabledWithDialog
@@ -135,7 +135,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             private set { SetValue(IsCloseButtonEnabledWithDialogProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsCloseButtonEnabledWithDialogProperty =
+        public static readonly AvaloniaProperty<bool> IsCloseButtonEnabledWithDialogProperty =
             AvaloniaProperty.Register<WindowButtonCommands, bool>(nameof(IsCloseButtonEnabledWithDialog));
 
         public WindowState WindowState
@@ -144,7 +144,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(WindowStateProperty, value); }
         }
 
-        public static readonly AvaloniaProperty WindowStateProperty =
+        public static readonly AvaloniaProperty<WindowState> WindowStateProperty =
             AvaloniaProperty.Register<WindowButtonCommands, WindowState>(nameof(WindowState));
 
         public WindowButtonCommands()

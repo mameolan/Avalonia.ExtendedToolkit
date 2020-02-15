@@ -10,7 +10,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CompactPaneGridLengthProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CompactPaneGridLengthProperty =
+        public static readonly AvaloniaProperty<GridLength> CompactPaneGridLengthProperty =
             AvaloniaProperty.Register<SplitViewTemplateSettings, GridLength>(nameof(CompactPaneGridLength));
 
         public double NegativeOpenPaneLength
@@ -19,7 +19,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(NegativeOpenPaneLengthProperty, value); }
         }
 
-        public static readonly AvaloniaProperty NegativeOpenPaneLengthProperty =
+        public static readonly AvaloniaProperty<double> NegativeOpenPaneLengthProperty =
             AvaloniaProperty.Register<SplitViewTemplateSettings, double>(nameof(NegativeOpenPaneLength), defaultValue: 0d);
 
         public double NegativeOpenPaneLengthMinusCompactLength
@@ -28,7 +28,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(NegativeOpenPaneLengthMinusCompactLengthProperty, value); }
         }
 
-        public static readonly AvaloniaProperty NegativeOpenPaneLengthMinusCompactLengthProperty =
+        public static readonly AvaloniaProperty<double> NegativeOpenPaneLengthMinusCompactLengthProperty =
             AvaloniaProperty.Register<SplitViewTemplateSettings, double>(nameof(NegativeOpenPaneLengthMinusCompactLength), defaultValue: 0d);
 
         public GridLength OpenPaneGridLength
@@ -37,7 +37,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OpenPaneGridLengthProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OpenPaneGridLengthProperty =
+        public static readonly AvaloniaProperty<GridLength> OpenPaneGridLengthProperty =
             AvaloniaProperty.Register<SplitViewTemplateSettings, GridLength>(nameof(OpenPaneGridLength));
 
         public double OpenPaneLength
@@ -46,7 +46,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OpenPaneLengthProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OpenPaneLengthProperty =
+        public static readonly AvaloniaProperty<double> OpenPaneLengthProperty =
             AvaloniaProperty.Register<SplitViewTemplateSettings, double>(nameof(OpenPaneLength), defaultValue: 0d);
 
         public double OpenPaneLengthMinusCompactLength
@@ -55,7 +55,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OpenPaneLengthMinusCompactLengthProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OpenPaneLengthMinusCompactLengthProperty =
+        public static readonly AvaloniaProperty<double> OpenPaneLengthMinusCompactLengthProperty =
             AvaloniaProperty.Register<SplitViewTemplateSettings, double>(nameof(OpenPaneLengthMinusCompactLength), defaultValue: 0d);
 
         internal SplitView Owner { get; }

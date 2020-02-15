@@ -16,7 +16,7 @@ namespace Avalonia.ExtendedToolkit
         }
 
 
-        public static readonly AvaloniaProperty NameProperty =
+        public static readonly AvaloniaProperty<string> NameProperty =
             AvaloniaProperty.Register<RectangleGeometryExt, string>(nameof(Name));
 
 

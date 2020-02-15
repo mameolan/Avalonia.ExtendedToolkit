@@ -24,7 +24,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty OpenPaneLengthProperty =
+        public static readonly AvaloniaProperty<double> OpenPaneLengthProperty =
             AvaloniaProperty.Register<HamburgerMenu, double>(nameof(OpenPaneLength), defaultValue: 240.0);
 
 
@@ -36,7 +36,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty PanePlacementProperty =
+        public static readonly AvaloniaProperty<SplitViewPanePlacement> PanePlacementProperty =
             AvaloniaProperty.Register<HamburgerMenu, SplitViewPanePlacement>(nameof(PanePlacement), defaultValue: SplitViewPanePlacement.Left);
 
 
@@ -48,7 +48,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty DisplayModeProperty =
+        public static readonly AvaloniaProperty<SplitViewDisplayMode> DisplayModeProperty =
             AvaloniaProperty.Register<HamburgerMenu, SplitViewDisplayMode>(nameof(DisplayMode), defaultValue: SplitViewDisplayMode.CompactInline);
 
 
@@ -61,7 +61,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty CompactPaneLengthProperty =
+        public static readonly AvaloniaProperty<double> CompactPaneLengthProperty =
             AvaloniaProperty.Register<HamburgerMenu, double>(nameof(CompactPaneLength), defaultValue: 48.0);
 
 
@@ -73,7 +73,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty PaneMarginProperty =
+        public static readonly AvaloniaProperty<Thickness> PaneMarginProperty =
             AvaloniaProperty.Register<HamburgerMenu, Thickness>(nameof(PaneMargin));
 
 
@@ -85,7 +85,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty PaneHeaderMarginProperty =
+        public static readonly AvaloniaProperty<Thickness> PaneHeaderMarginProperty =
             AvaloniaProperty.Register<HamburgerMenu, Thickness>(nameof(PaneHeaderMargin));
 
 
@@ -97,7 +97,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty PaneBackgroundProperty =
+        public static readonly AvaloniaProperty<IBrush> PaneBackgroundProperty =
             AvaloniaProperty.Register<HamburgerMenu, IBrush>(nameof(PaneBackground));
 
 
@@ -109,7 +109,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty PaneForegroundProperty =
+        public static readonly AvaloniaProperty<IBrush> PaneForegroundProperty =
             AvaloniaProperty.Register<HamburgerMenu, IBrush>(nameof(PaneForeground));
 
 
@@ -121,7 +121,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty IsPaneOpenProperty =
+        public static readonly AvaloniaProperty<bool> IsPaneOpenProperty =
             AvaloniaProperty.Register<HamburgerMenu, bool>(nameof(IsPaneOpen));
 
 
@@ -134,7 +134,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty ItemsSourceProperty =
+        public static readonly AvaloniaProperty<object> ItemsSourceProperty =
             AvaloniaProperty.Register<HamburgerMenu, object>(nameof(ItemsSource));
 
 
@@ -146,7 +146,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty ItemContainerStyleProperty =
+        public static readonly AvaloniaProperty<IStyle> ItemContainerStyleProperty =
             AvaloniaProperty.Register<HamburgerMenu, IStyle>(nameof(ItemContainerStyle));
 
 
@@ -158,7 +158,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty SeparatorItemContainerStyleProperty =
+        public static readonly AvaloniaProperty<IStyle> SeparatorItemContainerStyleProperty =
             AvaloniaProperty.Register<HamburgerMenu, IStyle>(nameof(SeparatorItemContainerStyle));
 
 
@@ -171,7 +171,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty ItemTemplateProperty =
+        public static readonly AvaloniaProperty<DataTemplate> ItemTemplateProperty =
             AvaloniaProperty.Register<HamburgerMenu, DataTemplate>(nameof(ItemTemplate));
 
         //ItemTemplateSelector missing
@@ -186,7 +186,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty SelectedItemProperty =
+        public static readonly AvaloniaProperty<object> SelectedItemProperty =
             AvaloniaProperty.Register<HamburgerMenu, object>(nameof(SelectedItem), defaultBindingMode: Data.BindingMode.TwoWay);
 
 
@@ -199,7 +199,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty SelectedIndexProperty =
+        public static readonly AvaloniaProperty<int> SelectedIndexProperty =
             AvaloniaProperty.Register<HamburgerMenu, int>(nameof(SelectedIndex), defaultValue:-1, defaultBindingMode: Data.BindingMode.TwoWay);
 
 
@@ -212,7 +212,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty ContentTransitionProperty =
+        public static readonly AvaloniaProperty<TransitionType> ContentTransitionProperty =
             AvaloniaProperty.Register<HamburgerMenu, TransitionType>(nameof(ContentTransition), defaultValue: TransitionType.Normal);
 
 
@@ -224,7 +224,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty ItemCommandProperty =
+        public static readonly AvaloniaProperty<ICommand> ItemCommandProperty =
             AvaloniaProperty.Register<HamburgerMenu, ICommand>(nameof(ItemCommand));
 
 
@@ -236,7 +236,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty ItemCommandParameterProperty =
+        public static readonly AvaloniaProperty<object> ItemCommandParameterProperty =
             AvaloniaProperty.Register<HamburgerMenu, object>(nameof(ItemCommandParameter));
 
 
@@ -248,7 +248,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty VerticalScrollBarOnLeftSideProperty =
+        public static readonly AvaloniaProperty<bool> VerticalScrollBarOnLeftSideProperty =
             AvaloniaProperty.Register<HamburgerMenu, bool>(nameof(VerticalScrollBarOnLeftSide));
 
 
@@ -260,7 +260,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty ShowSelectionIndicatorProperty =
+        public static readonly AvaloniaProperty<bool> ShowSelectionIndicatorProperty =
             AvaloniaProperty.Register<HamburgerMenu, bool>(nameof(ShowSelectionIndicator));
 
 
@@ -272,7 +272,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty ItemFocusVisualStyleProperty =
+        public static readonly AvaloniaProperty<IStyle> ItemFocusVisualStyleProperty =
             AvaloniaProperty.Register<HamburgerMenu, IStyle>(nameof(ItemFocusVisualStyle));
 
         /// <summary>

@@ -15,7 +15,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ContentCharacterCasingProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ContentCharacterCasingProperty =
+        public static readonly AvaloniaProperty<CharacterCasing> ContentCharacterCasingProperty =
             AvaloniaProperty.Register<MetroGroupBox, CharacterCasing>(nameof(ContentCharacterCasing));
 
 
@@ -27,7 +27,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty HeaderFontSizeProperty =
+        public static readonly AvaloniaProperty<double> HeaderFontSizeProperty =
             AvaloniaProperty.Register<MetroGroupBox, double>(nameof(HeaderFontSize), defaultValue: 12);
 
 
@@ -39,7 +39,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty HeaderForegroundProperty =
+        public static readonly AvaloniaProperty<IBrush> HeaderForegroundProperty =
             AvaloniaProperty.Register<MetroGroupBox, IBrush>(nameof(HeaderForeground));
 
 
@@ -51,7 +51,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty HeaderFontFamilyProperty =
+        public static readonly AvaloniaProperty<FontFamily> HeaderFontFamilyProperty =
             AvaloniaProperty.Register<MetroGroupBox, FontFamily>(nameof(HeaderFontFamily), defaultValue: FontFamily.Default);
 
 
@@ -63,7 +63,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty HeaderFontWeightProperty =
+        public static readonly AvaloniaProperty<FontWeight> HeaderFontWeightProperty =
             AvaloniaProperty.Register<MetroGroupBox, FontWeight>(nameof(HeaderFontWeight), defaultValue: FontWeight.Normal);
 
 

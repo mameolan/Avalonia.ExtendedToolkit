@@ -37,7 +37,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty IsTransitioningProperty =
+        public static readonly AvaloniaProperty<bool> IsTransitioningProperty =
             AvaloniaProperty.Register<TransitioningContentControl, bool>(nameof(IsTransitioning));
 
 
@@ -49,7 +49,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty TransitionProperty =
+        public static readonly AvaloniaProperty<TransitionType> TransitionProperty =
             AvaloniaProperty.Register<TransitioningContentControl, TransitionType>(nameof(Transition), defaultValue: TransitionType.Default);
 
 
@@ -61,7 +61,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty RestartTransitionOnContentChangeProperty =
+        public static readonly AvaloniaProperty<bool> RestartTransitionOnContentChangeProperty =
             AvaloniaProperty.Register<TransitioningContentControl, bool>(nameof(RestartTransitionOnContentChange));
 
 
@@ -73,7 +73,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty CustomVisualStatesNameProperty =
+        public static readonly AvaloniaProperty<string> CustomVisualStatesNameProperty =
             AvaloniaProperty.Register<TransitioningContentControl, string>(nameof(CustomVisualStatesName), defaultValue: "CustomTransition");
 
 

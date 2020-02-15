@@ -1,6 +1,7 @@
 ﻿using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Data;
 using Avalonia.ExtendedToolkit.Extensions;
 using Avalonia.Interactivity;
 using System;
@@ -34,7 +35,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ItemsSourceProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ItemsSourceProperty =
+        public static readonly AvaloniaProperty<IEnumerable> ItemsSourceProperty =
             AvaloniaProperty.Register<Wizard, IEnumerable>(nameof(ItemsSource));
 
         public object BackButtonContent
@@ -43,7 +44,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BackButtonContentProperty, value); }
         }
 
-        public static readonly AvaloniaProperty BackButtonContentProperty =
+        public static readonly AvaloniaProperty<object> BackButtonContentProperty =
             AvaloniaProperty.Register<Wizard, object>(nameof(BackButtonContent), defaultValue: "< Back");
 
         public bool IsBackButtonVisible
@@ -52,7 +53,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsBackButtonVisibleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsBackButtonVisibleProperty =
+        public static readonly AvaloniaProperty<bool> IsBackButtonVisibleProperty =
             AvaloniaProperty.Register<Wizard, bool>(nameof(IsBackButtonVisible), defaultValue: true);
 
         public bool CanCancel
@@ -61,7 +62,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CanCancelProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CanCancelProperty =
+        public static readonly AvaloniaProperty<bool> CanCancelProperty =
             AvaloniaProperty.Register<Wizard, bool>(nameof(CanCancel), defaultValue: true);
 
         public bool CancelButtonClosesWindow
@@ -70,7 +71,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CancelButtonClosesWindowProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CancelButtonClosesWindowProperty =
+        public static readonly AvaloniaProperty<bool> CancelButtonClosesWindowProperty =
             AvaloniaProperty.Register<Wizard, bool>(nameof(CancelButtonClosesWindow), defaultValue: true);
 
         public object CancelButtonContent
@@ -79,7 +80,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CancelButtonContentProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CancelButtonContentProperty =
+        public static readonly AvaloniaProperty<object> CancelButtonContentProperty =
             AvaloniaProperty.Register<Wizard, object>(nameof(CancelButtonContent), defaultValue: "Cancel");
 
         public bool IsCancelButtonVisible
@@ -88,7 +89,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsCancelButtonVisibleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsCancelButtonVisibleProperty =
+        public static readonly AvaloniaProperty<bool> IsCancelButtonVisibleProperty =
             AvaloniaProperty.Register<Wizard, bool>(nameof(IsCancelButtonVisible), defaultValue: true);
 
         public bool CanFinish
@@ -97,7 +98,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CanFinishProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CanFinishProperty =
+        public static readonly AvaloniaProperty<bool> CanFinishProperty =
             AvaloniaProperty.Register<Wizard, bool>(nameof(CanFinish), defaultValue: false);
 
         public bool CanHelp
@@ -106,7 +107,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CanHelpProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CanHelpProperty =
+        public static readonly AvaloniaProperty<bool> CanHelpProperty =
             AvaloniaProperty.Register<Wizard, bool>(nameof(CanHelp), defaultValue: true);
 
         public bool CanSelectNextPage
@@ -115,7 +116,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CanSelectNextPageProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CanSelectNextPageProperty =
+        public static readonly AvaloniaProperty<bool> CanSelectNextPageProperty =
             AvaloniaProperty.Register<Wizard, bool>(nameof(CanSelectNextPage), defaultValue: true);
 
         public bool CanSelectPreviousPage
@@ -124,7 +125,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CanSelectPreviousPageProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CanSelectPreviousPageProperty =
+        public static readonly AvaloniaProperty<bool> CanSelectPreviousPageProperty =
             AvaloniaProperty.Register<Wizard, bool>(nameof(CanSelectPreviousPage), defaultValue: true);
 
         public WizardPage CurrentPage
@@ -133,7 +134,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CurrentPageProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CurrentPageProperty =
+        public static readonly AvaloniaProperty<WizardPage> CurrentPageProperty =
             AvaloniaProperty.Register<Wizard, WizardPage>(nameof(CurrentPage));
 
         public IWizardPageVM CurrentWizardPageVM
@@ -142,7 +143,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CurrentWizardPageVMProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CurrentWizardPageVMProperty =
+        public static readonly AvaloniaProperty<IWizardPageVM> CurrentWizardPageVMProperty =
             AvaloniaProperty.Register<Wizard, IWizardPageVM>(nameof(CurrentWizardPageVM));
 
         private void OnCurrentPageChanged(Wizard o, AvaloniaPropertyChangedEventArgs e)
@@ -165,7 +166,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ExteriorPanelMinWidthProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ExteriorPanelMinWidthProperty =
+        public static readonly AvaloniaProperty<double> ExteriorPanelMinWidthProperty =
             AvaloniaProperty.Register<Wizard, double>(nameof(ExteriorPanelMinWidth), defaultValue: 165.0);
 
         public bool FinishButtonClosesWindow
@@ -174,7 +175,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(FinishButtonClosesWindowProperty, value); }
         }
 
-        public static readonly AvaloniaProperty FinishButtonClosesWindowProperty =
+        public static readonly AvaloniaProperty<bool> FinishButtonClosesWindowProperty =
             AvaloniaProperty.Register<Wizard, bool>(nameof(FinishButtonClosesWindow), defaultValue: true);
 
         public object FinishButtonContent
@@ -183,7 +184,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(FinishButtonContentProperty, value); }
         }
 
-        public static readonly AvaloniaProperty FinishButtonContentProperty =
+        public static readonly AvaloniaProperty<object> FinishButtonContentProperty =
             AvaloniaProperty.Register<Wizard, object>(nameof(FinishButtonContent), defaultValue: "Finish");
 
         public bool IsFinishButtonVisible
@@ -192,7 +193,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsFinishButtonVisibleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsFinishButtonVisibleProperty =
+        public static readonly AvaloniaProperty<bool> IsFinishButtonVisibleProperty =
             AvaloniaProperty.Register<Wizard, bool>(nameof(IsFinishButtonVisible), defaultValue: false);
 
         public object HelpButtonContent
@@ -201,7 +202,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(HelpButtonContentProperty, value); }
         }
 
-        public static readonly AvaloniaProperty HelpButtonContentProperty =
+        public static readonly AvaloniaProperty<object> HelpButtonContentProperty =
             AvaloniaProperty.Register<Wizard, object>(nameof(HelpButtonContent), defaultValue: "Help");
 
         public bool IsHelpButtonVisible
@@ -210,7 +211,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsHelpButtonVisibleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsHelpButtonVisibleProperty =
+        public static readonly AvaloniaProperty<bool> IsHelpButtonVisibleProperty =
             AvaloniaProperty.Register<Wizard, bool>(nameof(IsHelpButtonVisible), defaultValue: true);
 
         public object NextButtonContent
@@ -219,7 +220,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(NextButtonContentProperty, value); }
         }
 
-        public static readonly AvaloniaProperty NextButtonContentProperty =
+        public static readonly AvaloniaProperty<object> NextButtonContentProperty =
             AvaloniaProperty.Register<Wizard, object>(nameof(NextButtonContent), defaultValue: "Next >");
 
         public bool IsNextButtonVisible
@@ -228,7 +229,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsNextButtonVisibleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsNextButtonVisibleProperty =
+        public static readonly AvaloniaProperty<bool> IsNextButtonVisibleProperty =
             AvaloniaProperty.Register<Wizard, bool>(nameof(IsNextButtonVisible), defaultValue: true);
 
         public ICommand CancelCommand
@@ -237,7 +238,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CancelCommandProperty, value); }
         }
 
-        public static readonly AvaloniaProperty CancelCommandProperty =
+        public static readonly AvaloniaProperty<ICommand> CancelCommandProperty =
             AvaloniaProperty.Register<Wizard, ICommand>(nameof(CancelCommand));
 
         public ICommand FinishCommand
@@ -246,7 +247,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(FinishCommandProperty, value); }
         }
 
-        public static readonly AvaloniaProperty FinishCommandProperty =
+        public static readonly AvaloniaProperty<ICommand> FinishCommandProperty =
             AvaloniaProperty.Register<Wizard, ICommand>(nameof(FinishCommand));
 
         public ICommand HelpCommand
@@ -255,7 +256,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(HelpCommandProperty, value); }
         }
 
-        public static readonly AvaloniaProperty HelpCommandProperty =
+        public static readonly AvaloniaProperty<ICommand> HelpCommandProperty =
             AvaloniaProperty.Register<Wizard, ICommand>(nameof(HelpCommand));
 
         public ICommand NextPageCommand
@@ -264,7 +265,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(NextPageCommandProperty, value); }
         }
 
-        public static readonly AvaloniaProperty NextPageCommandProperty =
+        public static readonly AvaloniaProperty<ICommand> NextPageCommandProperty =
             AvaloniaProperty.Register<Wizard, ICommand>(nameof(NextPageCommand));
 
         public ICommand PreviousPageCommand
@@ -273,7 +274,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(PreviousPageCommandProperty, value); }
         }
 
-        public static readonly AvaloniaProperty PreviousPageCommandProperty =
+        public static readonly AvaloniaProperty<ICommand> PreviousPageCommandProperty =
             AvaloniaProperty.Register<Wizard, ICommand>(nameof(PreviousPageCommand));
 
         //public static RoutedCommand CancelCommand { get; } =
@@ -294,10 +295,10 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             Items = new AvaloniaList<WizardPage>();
 
-            CurrentPageProperty.Changed.AddClassHandler<Wizard>((o, e) => OnCurrentPageChanged(o, e));
-            ItemsPanelProperty.Changed.AddClassHandler<Wizard>((o, e) => OnItemChanged(o, e));
-            ItemsSourceProperty.Changed.AddClassHandler<Wizard>((o, e) => OnItemSourceChanged(o, e));
-            CurrentWizardPageVMProperty.Changed.AddClassHandler<Wizard>((o, e) => OnCurrentWizardPageVM(o, e));
+            CurrentPageProperty.Changed.AddClassHandler((Action<Wizard, AvaloniaPropertyChangedEventArgs>)((o, e) => OnCurrentPageChanged(o, e)));
+            ItemsPanelProperty.Changed.AddClassHandler((Action<Wizard, AvaloniaPropertyChangedEventArgs>)((o, e) => OnItemChanged(o, e)));
+            ItemsSourceProperty.Changed.AddClassHandler((Action<Wizard, AvaloniaPropertyChangedEventArgs>)((o, e) => OnItemSourceChanged(o, e)));
+            CurrentWizardPageVMProperty.Changed.AddClassHandler((Action<Wizard, AvaloniaPropertyChangedEventArgs>)((o, e) => OnCurrentWizardPageVM(o, e)));
 
             this.Initialized += (o, e) =>
             {
@@ -359,13 +360,13 @@ namespace Avalonia.ExtendedToolkit.Controls
                 CurrentPage = Items.OfType<WizardPage>().FirstOrDefault();
         }
 
-        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
+        protected override void OnPropertyChanged<T>(AvaloniaProperty<T> property, Optional<T> oldValue, BindingValue<T> newValue, BindingPriority priority)
         {
-            base.OnPropertyChanged(e);
-            if ((e.Property.Name == nameof(CanSelectNextPage)) || (e.Property.Name == nameof(CanHelp))
-            || (e.Property.Name == nameof(CanFinish)) || (e.Property.Name == nameof(CanCancel))
-            || (e.Property.Name == nameof(CanSelectPreviousPage))
-            || (e.Property.Name == nameof(CurrentPage))
+            base.OnPropertyChanged(property, oldValue, newValue, priority);
+            if ((property.Name == nameof(CanSelectNextPage)) || (property.Name == nameof(CanHelp))
+            || (property.Name == nameof(CanFinish)) || (property.Name == nameof(CanCancel))
+            || (property.Name == nameof(CanSelectPreviousPage))
+            || (property.Name == nameof(CurrentPage))
             )
             {
                 //CommandManager.InvalidateRequerySuggested();

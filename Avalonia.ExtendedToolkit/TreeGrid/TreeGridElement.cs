@@ -18,7 +18,7 @@ namespace Avalonia.ExtendedToolkit
             set { SetValue(HasChildrenProperty, value); }
         }
 
-        public static readonly AvaloniaProperty HasChildrenProperty =
+        public static readonly AvaloniaProperty<bool> HasChildrenProperty =
             AvaloniaProperty.Register<TreeGridElement, bool>(nameof(HasChildren));
 
         public bool IsExpanded
@@ -27,7 +27,7 @@ namespace Avalonia.ExtendedToolkit
             set { SetValue(IsExpandedProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsExpandedProperty =
+        public static readonly AvaloniaProperty<bool> IsExpandedProperty =
             AvaloniaProperty.Register<TreeGridElement, bool>(nameof(IsExpanded));
 
         public int Level
@@ -36,7 +36,7 @@ namespace Avalonia.ExtendedToolkit
             set { SetValue(LevelProperty, value); }
         }
 
-        public static readonly AvaloniaProperty LevelProperty =
+        public static readonly AvaloniaProperty<int> LevelProperty =
             AvaloniaProperty.Register<TreeGridElement, int>(nameof(Level), defaultValue: 0);
 
         public TreeGridElement Parent { get; private set; }

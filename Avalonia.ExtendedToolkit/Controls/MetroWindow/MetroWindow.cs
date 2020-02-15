@@ -27,7 +27,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ShowIconOnTitleBarProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ShowIconOnTitleBarProperty =
+        public static readonly AvaloniaProperty<bool> ShowIconOnTitleBarProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(ShowIconOnTitleBar), defaultValue: true);
 
         //edgemode is skipped
@@ -38,7 +38,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ShowTitleBarProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ShowTitleBarProperty =
+        public static readonly AvaloniaProperty<bool> ShowTitleBarProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(ShowTitleBar), defaultValue: true);
 
         public bool ShowDialogsOverTitleBar
@@ -47,7 +47,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ShowDialogsOverTitleBarProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ShowDialogsOverTitleBarProperty =
+        public static readonly AvaloniaProperty<bool> ShowDialogsOverTitleBarProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(ShowDialogsOverTitleBar), defaultValue: true);
 
         public bool IsAnyDialogOpen
@@ -56,7 +56,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             private set { SetValue(IsAnyDialogOpenProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsAnyDialogOpenProperty =
+        public static readonly AvaloniaProperty<bool> IsAnyDialogOpenProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(IsAnyDialogOpen));
 
         public bool ShowMinButton
@@ -65,7 +65,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ShowMinButtonProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ShowMinButtonProperty =
+        public static readonly AvaloniaProperty<bool> ShowMinButtonProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(ShowMinButton), defaultValue: true);
 
         public bool ShowMaxRestoreButton
@@ -74,7 +74,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ShowMaxRestoreButtonProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ShowMaxRestoreButtonProperty =
+        public static readonly AvaloniaProperty<bool> ShowMaxRestoreButtonProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(ShowMaxRestoreButton), defaultValue: true);
 
         public bool ShowCloseButton
@@ -83,7 +83,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ShowCloseButtonProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ShowCloseButtonProperty =
+        public static readonly AvaloniaProperty<bool> ShowCloseButtonProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(ShowCloseButton), defaultValue: true);
 
         public bool IsMinButtonEnabled
@@ -92,7 +92,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             private set { SetValue(IsMinButtonEnabledProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsMinButtonEnabledProperty =
+        public static readonly AvaloniaProperty<bool> IsMinButtonEnabledProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(IsMinButtonEnabled), defaultValue: true);
 
         public bool IsMaxRestoreButtonEnabled
@@ -101,7 +101,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             private set { SetValue(IsMaxRestoreButtonEnabledProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsMaxRestoreButtonEnabledProperty =
+        public static readonly AvaloniaProperty<bool> IsMaxRestoreButtonEnabledProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(IsMaxRestoreButtonEnabled), defaultValue: true);
 
         public bool IsCloseButtonEnabled
@@ -110,7 +110,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             private set { SetValue(IsCloseButtonEnabledProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsCloseButtonEnabledProperty =
+        public static readonly AvaloniaProperty<bool> IsCloseButtonEnabledProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(IsCloseButtonEnabled), defaultValue: true);
 
         //system menu skpped
@@ -121,7 +121,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(TitleBarHeightProperty, value); }
         }
 
-        public static readonly AvaloniaProperty TitleBarHeightProperty =
+        public static readonly AvaloniaProperty<int> TitleBarHeightProperty =
             AvaloniaProperty.Register<MetroWindow, int>(nameof(TitleBarHeight), defaultValue: 30);
 
         public CharacterCasing TitleCharacterCasing
@@ -130,7 +130,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(TitleCharacterCasingProperty, value); }
         }
 
-        public static readonly AvaloniaProperty TitleCharacterCasingProperty =
+        public static readonly AvaloniaProperty<CharacterCasing> TitleCharacterCasingProperty =
             AvaloniaProperty.Register<MetroWindow, CharacterCasing>(nameof(TitleCharacterCasing),
                 defaultValue: CharacterCasing.Upper);
 
@@ -140,7 +140,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(TitleAlignmentProperty, value); }
         }
 
-        public static readonly AvaloniaProperty TitleAlignmentProperty =
+        public static readonly AvaloniaProperty<HorizontalAlignment> TitleAlignmentProperty =
             AvaloniaProperty.Register<MetroWindow, HorizontalAlignment>(nameof(TitleAlignment), defaultValue: HorizontalAlignment.Stretch);
 
         public bool SaveWindowPosition
@@ -149,7 +149,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(SaveWindowPositionProperty, value); }
         }
 
-        public static readonly AvaloniaProperty SaveWindowPositionProperty =
+        public static readonly AvaloniaProperty<bool> SaveWindowPositionProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(SaveWindowPosition));
 
 
@@ -160,7 +160,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(TitleForegroundProperty, value); }
         }
 
-        public static readonly AvaloniaProperty TitleForegroundProperty =
+        public static readonly AvaloniaProperty<IBrush> TitleForegroundProperty =
             AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(TitleForeground));
 
         public bool WindowTransitionsEnabled
@@ -169,7 +169,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(WindowTransitionsEnabledProperty, value); }
         }
 
-        public static readonly AvaloniaProperty WindowTransitionsEnabledProperty =
+        public static readonly AvaloniaProperty<bool> WindowTransitionsEnabledProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(WindowTransitionsEnabled), defaultValue: true);
 
         public IBrush WindowTitleBrush
@@ -178,7 +178,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(WindowTitleBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty WindowTitleBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> WindowTitleBrushProperty =
             AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(WindowTitleBrush), defaultValue: (IBrush)Brushes.Transparent);
 
         public IBrush NonActiveWindowTitleBrush
@@ -187,7 +187,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(NonActiveWindowTitleBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty NonActiveWindowTitleBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> NonActiveWindowTitleBrushProperty =
             AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(NonActiveWindowTitleBrush), defaultValue: (IBrush)Brushes.Gray);
 
         public IBrush NonActiveBorderBrush
@@ -196,7 +196,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(NonActiveBorderBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty NonActiveBorderBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> NonActiveBorderBrushProperty =
             AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(NonActiveBorderBrush), defaultValue: (IBrush)Brushes.Gray);
 
         public IBrush GlowBrush
@@ -205,7 +205,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(GlowBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty GlowBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> GlowBrushProperty =
             AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(GlowBrush));
 
         public IBrush NonActiveGlowBrush
@@ -214,7 +214,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(NonActiveGlowBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty NonActiveGlowBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> NonActiveGlowBrushProperty =
             AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(NonActiveGlowBrush));
 
         public IBrush OverlayBrush
@@ -223,7 +223,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OverlayBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OverlayBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> OverlayBrushProperty =
             AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(OverlayBrush));
 
         public double OverlayOpacity
@@ -232,7 +232,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OverlayOpacityProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OverlayOpacityProperty =
+        public static readonly AvaloniaProperty<double> OverlayOpacityProperty =
             AvaloniaProperty.Register<MetroWindow, double>(nameof(OverlayOpacity), defaultValue: 0.7d);
 
         public bool OverlayFadeIn
@@ -241,7 +241,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OverlayFadeInProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OverlayFadeInProperty =
+        public static readonly AvaloniaProperty<bool> OverlayFadeInProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(OverlayFadeIn));
 
         public bool OverlayFadeOut
@@ -250,7 +250,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OverlayFadeOutProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OverlayFadeOutProperty =
+        public static readonly AvaloniaProperty<bool> OverlayFadeOutProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(OverlayFadeOut));
 
         public bool IgnoreTaskbarOnMaximize
@@ -259,7 +259,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IgnoreTaskbarOnMaximizeProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IgnoreTaskbarOnMaximizeProperty =
+        public static readonly AvaloniaProperty<bool> IgnoreTaskbarOnMaximizeProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(IgnoreTaskbarOnMaximize));
 
         public Thickness ResizeBorderThickness
@@ -268,7 +268,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ResizeBorderThicknessProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ResizeBorderThicknessProperty =
+        public static readonly AvaloniaProperty<Thickness> ResizeBorderThicknessProperty =
             AvaloniaProperty.Register<MetroWindow, Thickness>(nameof(ResizeBorderThickness), defaultValue: new Thickness(6D));
 
         public bool KeepBorderOnMaximize
@@ -277,7 +277,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(KeepBorderOnMaximizeProperty, value); }
         }
 
-        public static readonly AvaloniaProperty KeepBorderOnMaximizeProperty =
+        public static readonly AvaloniaProperty<bool> KeepBorderOnMaximizeProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(KeepBorderOnMaximize), defaultValue: true);
 
         public bool TryToBeFlickerFree
@@ -286,7 +286,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(TryToBeFlickerFreeProperty, value); }
         }
 
-        public static readonly AvaloniaProperty TryToBeFlickerFreeProperty =
+        public static readonly AvaloniaProperty<bool> TryToBeFlickerFreeProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(TryToBeFlickerFree));
 
         public DataTemplate IconTemplate
@@ -295,7 +295,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IconTemplateProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IconTemplateProperty =
+        public static readonly AvaloniaProperty<DataTemplate> IconTemplateProperty =
             AvaloniaProperty.Register<MetroWindow, DataTemplate>(nameof(IconTemplate));
 
         public DataTemplate TitleTemplate
@@ -304,7 +304,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(TitleTemplateProperty, value); }
         }
 
-        public static readonly AvaloniaProperty TitleTemplateProperty =
+        public static readonly AvaloniaProperty<DataTemplate> TitleTemplateProperty =
             AvaloniaProperty.Register<MetroWindow, DataTemplate>(nameof(TitleTemplate));
 
         public IBrush FlyoutOverlayBrush
@@ -313,7 +313,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(FlyoutOverlayBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty FlyoutOverlayBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> FlyoutOverlayBrushProperty =
             AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(FlyoutOverlayBrush));
 
         public FlyoutsControl Flyouts
@@ -322,7 +322,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(FlyoutsProperty, value); }
         }
 
-        public static readonly AvaloniaProperty FlyoutsProperty =
+        public static readonly AvaloniaProperty<FlyoutsControl> FlyoutsProperty =
             AvaloniaProperty.Register<MetroWindow, FlyoutsControl>(nameof(Flyouts));
 
         /// <summary>
@@ -342,7 +342,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public bool IsChromeVisible
         {
-            get => GetValue(IsChromeVisibleProperty);
+            get => (bool)GetValue(IsChromeVisibleProperty);
             set => SetValue(IsChromeVisibleProperty, value);
         }
 
@@ -351,7 +351,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public Control TitleBarContent
         {
-            get => GetValue(TitleBarContentProperty);
+            get => (Control)GetValue(TitleBarContentProperty);
             set => SetValue(TitleBarContentProperty, value);
         }
 
@@ -406,7 +406,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(LeftWindowCommandsProperty, value); }
         }
 
-        public static readonly AvaloniaProperty LeftWindowCommandsProperty =
+        public static readonly AvaloniaProperty<WindowCommands> LeftWindowCommandsProperty =
             AvaloniaProperty.Register<MetroWindow, WindowCommands>(nameof(LeftWindowCommands));
 
         public WindowCommands RightWindowCommands
@@ -415,7 +415,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(RightWindowCommandsProperty, value); }
         }
 
-        public static readonly AvaloniaProperty RightWindowCommandsProperty =
+        public static readonly AvaloniaProperty<WindowCommands> RightWindowCommandsProperty =
             AvaloniaProperty.Register<MetroWindow, WindowCommands>(nameof(RightWindowCommands));
 
         public WindowButtonCommands WindowButtonCommands
@@ -424,7 +424,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(WindowButtonCommandsProperty, value); }
         }
 
-        public static readonly AvaloniaProperty WindowButtonCommandsProperty =
+        public static readonly AvaloniaProperty<WindowButtonCommands> WindowButtonCommandsProperty =
             AvaloniaProperty.Register<MetroWindow, WindowButtonCommands>(nameof(WindowButtonCommands));
 
         public WindowCommandsOverlayBehavior LeftWindowCommandsOverlayBehavior
@@ -433,7 +433,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(LeftWindowCommandsOverlayBehaviorProperty, value); }
         }
 
-        public static readonly AvaloniaProperty LeftWindowCommandsOverlayBehaviorProperty =
+        public static readonly AvaloniaProperty<WindowCommandsOverlayBehavior> LeftWindowCommandsOverlayBehaviorProperty =
             AvaloniaProperty.Register<MetroWindow, WindowCommandsOverlayBehavior>(nameof(LeftWindowCommandsOverlayBehavior), defaultValue: WindowCommandsOverlayBehavior.Never);
 
         public WindowCommandsOverlayBehavior RightWindowCommandsOverlayBehavior
@@ -442,7 +442,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(RightWindowCommandsOverlayBehaviorProperty, value); }
         }
 
-        public static readonly AvaloniaProperty RightWindowCommandsOverlayBehaviorProperty =
+        public static readonly AvaloniaProperty<WindowCommandsOverlayBehavior> RightWindowCommandsOverlayBehaviorProperty =
             AvaloniaProperty.Register<MetroWindow, WindowCommandsOverlayBehavior>(nameof(RightWindowCommandsOverlayBehavior), defaultValue: WindowCommandsOverlayBehavior.Never);
 
         public OverlayBehavior WindowButtonCommandsOverlayBehavior
@@ -451,7 +451,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(WindowButtonCommandsOverlayBehaviorProperty, value); }
         }
 
-        public static readonly AvaloniaProperty WindowButtonCommandsOverlayBehaviorProperty =
+        public static readonly AvaloniaProperty<OverlayBehavior> WindowButtonCommandsOverlayBehaviorProperty =
             AvaloniaProperty.Register<MetroWindow, OverlayBehavior>(nameof(WindowButtonCommandsOverlayBehavior), defaultValue: OverlayBehavior.Always);
 
         public OverlayBehavior IconOverlayBehavior
@@ -460,7 +460,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IconOverlayBehaviorProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IconOverlayBehaviorProperty =
+        public static readonly AvaloniaProperty<OverlayBehavior> IconOverlayBehaviorProperty =
             AvaloniaProperty.Register<MetroWindow, OverlayBehavior>(nameof(IconOverlayBehavior), OverlayBehavior.Never);
 
         public bool UseNoneWindowStyle
@@ -469,7 +469,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(UseNoneWindowStyleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty UseNoneWindowStyleProperty =
+        public static readonly AvaloniaProperty<bool> UseNoneWindowStyleProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(UseNoneWindowStyle));
 
         public SolidColorBrush OverrideDefaultWindowCommandsBrush
@@ -478,7 +478,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OverrideDefaultWindowCommandsBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OverrideDefaultWindowCommandsBrushProperty =
+        public static readonly AvaloniaProperty<SolidColorBrush> OverrideDefaultWindowCommandsBrushProperty =
             AvaloniaProperty.Register<MetroWindow, SolidColorBrush>(nameof(OverrideDefaultWindowCommandsBrush));
 
         public bool IsWindowDraggable
@@ -487,7 +487,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsWindowDraggableProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsWindowDraggableProperty =
+        public static readonly AvaloniaProperty<bool> IsWindowDraggableProperty =
             AvaloniaProperty.Register<MetroWindow, bool>(nameof(IsWindowDraggable), defaultValue: true);
 
         Type IStyleable.StyleKey => typeof(MetroWindow);

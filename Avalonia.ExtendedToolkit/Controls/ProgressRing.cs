@@ -24,7 +24,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty BindableWidthProperty =
+        public static readonly AvaloniaProperty<double> BindableWidthProperty =
             AvaloniaProperty.Register<ProgressRing, double>(nameof(BindableWidth));
 
 
@@ -36,7 +36,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty IsActiveProperty =
+        public static readonly AvaloniaProperty<bool> IsActiveProperty =
             AvaloniaProperty.Register<ProgressRing, bool>(nameof(IsActive), defaultValue: true);
 
 
@@ -48,7 +48,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty IsLargeProperty =
+        public static readonly AvaloniaProperty<bool> IsLargeProperty =
             AvaloniaProperty.Register<ProgressRing, bool>(nameof(IsLarge), defaultValue: true);
 
 
@@ -60,7 +60,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty MaxSideLengthProperty =
+        public static readonly AvaloniaProperty<double> MaxSideLengthProperty =
             AvaloniaProperty.Register<ProgressRing, double>(nameof(MaxSideLength), defaultValue: default(double));
 
 
@@ -73,7 +73,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty EllipseDiameterProperty =
+        public static readonly AvaloniaProperty<double> EllipseDiameterProperty =
             AvaloniaProperty.Register<ProgressRing, double>(nameof(EllipseDiameter));
 
 
@@ -85,7 +85,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty EllipseOffsetProperty =
+        public static readonly AvaloniaProperty<Thickness> EllipseOffsetProperty =
             AvaloniaProperty.Register<ProgressRing, Thickness>(nameof(EllipseOffset));
 
 
@@ -97,7 +97,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty EllipseDiameterScaleProperty =
+        public static readonly AvaloniaProperty<double> EllipseDiameterScaleProperty =
             AvaloniaProperty.Register<ProgressRing, double>(nameof(EllipseDiameterScale), defaultValue: 1D);
 
 

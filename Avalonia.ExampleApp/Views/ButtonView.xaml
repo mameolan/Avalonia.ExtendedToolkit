@@ -6,7 +6,6 @@
               xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
               xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
               xmlns:iac="clr-namespace:Avalonia.Xaml.Interactions.Custom;assembly=Avalonia.Xaml.Interactions.Custom"
-              xmlns:fontAwesome="clr-namespace:FontAwesome.Avalonia;assembly=FontAwesome.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              Name="buttonView"
              x:Class="Avalonia.ExampleApp.Views.ButtonView">
@@ -14,7 +13,7 @@
     <Thickness x:Key="ControlMargin">0 5 0 0</Thickness>
   </UserControl.Resources>
   <Grid>
-
+    <!--xmlns:fontAwesome="clr-namespace:FontAwesome.Avalonia;assembly=FontAwesome.Avalonia"-->
     <Grid.ColumnDefinitions>
       <ColumnDefinition />
       <ColumnDefinition />
@@ -118,16 +117,16 @@
             Margin="4"
            
             Classes="MetroCircleButtonStyle">
-        <fontAwesome:FontAwesome Width="20"
-                                  Height="20" Icon="Compass"/>
+        <!--<fontAwesome:FontAwesome Width="20"
+                                  Height="20" Icon="Compass"/>-->
       </Controls:MetroButton>
       <Controls:MetroButton Width="48"
               Height="48"
               Margin="4"
               IsEnabled="False"
               Classes="MetroCircleButtonStyle">
-        <fontAwesome:FontAwesome Width="20"
-                                  Height="20" Icon="Compass"/>
+        <!--<fontAwesome:FontAwesome Width="20"
+                                  Height="20" Icon="Compass"/>-->
       </Controls:MetroButton>
       <Controls:MetroButton
               Width="48"
@@ -137,8 +136,8 @@
               Classes="MetroCircleButtonStyle">
         <!--<Controls:MetroButton.ContentTemplate>
           <DataTemplate>-->
-            <fontAwesome:FontAwesome Width="20"
-                        Height="20" Icon="Compass"/>
+            <!--<fontAwesome:FontAwesome Width="20"
+                        Height="20" Icon="Compass"/>-->
           <!--</DataTemplate>
         </Controls:MetroButton.ContentTemplate>-->
         <!--ContentTemplate not working-->
@@ -290,7 +289,7 @@
                                      Items="{Binding Artists}"
                                >
         <Controls:DropDownButton.Icon>
-          <fontAwesome:FontAwesome Icon="Music"/>
+          <!--<fontAwesome:FontAwesome Icon="Music"/>-->
         </Controls:DropDownButton.Icon>
       </Controls:DropDownButton>
 
@@ -315,7 +314,7 @@
         </Controls:DropDownButton.MenuStyle>
 
         <Controls:DropDownButton.Icon>
-          <fontAwesome:FontAwesome Margin="6" Icon="Music" />
+          <!--<fontAwesome:FontAwesome Margin="6" Icon="Music" />-->
         </Controls:DropDownButton.Icon>
       </Controls:DropDownButton>
 

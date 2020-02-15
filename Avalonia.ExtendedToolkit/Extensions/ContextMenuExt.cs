@@ -19,7 +19,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsOpenProperty, value); }
         }
 
-        public static readonly AvaloniaProperty IsOpenProperty =
+        public static readonly AvaloniaProperty<bool> IsOpenProperty =
             AvaloniaProperty.Register<ContentControlEx, bool>(nameof(IsOpen));
 
         public new void Open(Control control)

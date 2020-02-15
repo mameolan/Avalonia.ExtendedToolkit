@@ -30,7 +30,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(StyleProperty, value); }
         }
 
-        public static readonly AvaloniaProperty StyleProperty =
+        public static readonly AvaloniaProperty<IStyle> StyleProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, IStyle>(nameof(Style));
 
         public IBrush OnSwitchBrush
@@ -39,7 +39,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OnSwitchBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OnSwitchBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> OnSwitchBrushProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, IBrush>(nameof(OnSwitchBrush));
 
         public IBrush OffSwitchBrush
@@ -48,7 +48,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OffSwitchBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty OffSwitchBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> OffSwitchBrushProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, IBrush>(nameof(OffSwitchBrush));
 
         public IBrush ThumbIndicatorBrush
@@ -57,7 +57,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ThumbIndicatorBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ThumbIndicatorBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> ThumbIndicatorBrushProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, IBrush>(nameof(ThumbIndicatorBrush));
 
         public IBrush ThumbIndicatorDisabledBrush
@@ -66,7 +66,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ThumbIndicatorDisabledBrushProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ThumbIndicatorDisabledBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> ThumbIndicatorDisabledBrushProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, IBrush>(nameof(ThumbIndicatorDisabledBrush));
 
         public double ThumbIndicatorWidth
@@ -75,7 +75,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ThumbIndicatorWidthProperty, value); }
         }
 
-        public static readonly AvaloniaProperty ThumbIndicatorWidthProperty =
+        public static readonly AvaloniaProperty<double> ThumbIndicatorWidthProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, double>(nameof(ThumbIndicatorWidth), defaultValue: 13d);
 
         static ToggleSwitchButton()

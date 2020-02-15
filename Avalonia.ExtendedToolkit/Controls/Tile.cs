@@ -17,7 +17,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty TitleProperty =
+        public static readonly AvaloniaProperty<string> TitleProperty =
             AvaloniaProperty.Register<Tile, string>(nameof(Title));
 
 
@@ -29,7 +29,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty HorizontalTitleAlignmentProperty =
+        public static readonly AvaloniaProperty<HorizontalAlignment> HorizontalTitleAlignmentProperty =
             AvaloniaProperty.Register<Tile, HorizontalAlignment>(nameof(HorizontalTitleAlignment)
                 , defaultValue: HorizontalAlignment.Left);
 
@@ -42,7 +42,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty VerticalTitleAlignmentProperty =
+        public static readonly AvaloniaProperty<VerticalAlignment> VerticalTitleAlignmentProperty =
             AvaloniaProperty.Register<Tile, VerticalAlignment>(nameof(VerticalTitleAlignment)
                 , defaultValue: VerticalAlignment.Bottom);
 
@@ -55,7 +55,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty CountProperty =
+        public static readonly AvaloniaProperty<string> CountProperty =
             AvaloniaProperty.Register<Tile, string>(nameof(Count));
 
 
@@ -67,7 +67,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty KeepDraggingProperty =
+        public static readonly AvaloniaProperty<bool> KeepDraggingProperty =
             AvaloniaProperty.Register<Tile, bool>(nameof(KeepDragging));
 
 
@@ -79,7 +79,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty TiltFactorProperty =
+        public static readonly AvaloniaProperty<int> TiltFactorProperty =
             AvaloniaProperty.Register<Tile, int>(nameof(TiltFactor), defaultValue: 5);
 
 
@@ -91,7 +91,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty TitleFontSizeProperty =
+        public static readonly AvaloniaProperty<double> TitleFontSizeProperty =
             AvaloniaProperty.Register<Tile, double>(nameof(TitleFontSize), defaultValue: 16d);
 
 
@@ -103,7 +103,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty CountFontSizeProperty =
+        public static readonly AvaloniaProperty<double> CountFontSizeProperty =
             AvaloniaProperty.Register<Tile, double>(nameof(CountFontSize), defaultValue: 28d);
 
 
@@ -116,7 +116,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
 
-        public static readonly AvaloniaProperty MouseOverBorderBrushProperty =
+        public static readonly AvaloniaProperty<IBrush> MouseOverBorderBrushProperty =
             AvaloniaProperty.Register<Tile, IBrush>(nameof(MouseOverBorderBrush));
 
         public Tile()
