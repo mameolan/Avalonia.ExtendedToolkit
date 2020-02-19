@@ -38,7 +38,7 @@
         </Style>
     </Controls:MetroWindow.Styles>
 
-    <Controls:MetroWindow.RightWindowCommands>
+    <!--<Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands ShowLastSeparator="False">
             <Controls:WindowCommandsItem Background="Green" IsVisible="True">
                 <Controls:MetroButton 
@@ -48,7 +48,7 @@
             </Controls:WindowCommandsItem>
             
         </Controls:WindowCommands>
-    </Controls:MetroWindow.RightWindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>-->
 
     <!--<Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl >
@@ -195,13 +195,14 @@
                         </Grid>
                     </ScrollViewer>
                 </TabItem>
-                <TabItem Header="Split View" Foreground="{DynamicResource MahApps.Brushes.Black}">
+                <TabItem Header="Hamburger Menu" Foreground="{DynamicResource MahApps.Brushes.Black}">
                     <ScrollViewer>
                         <Grid>
-                            <Views:SplitViewExamples/>
+                            <Views:HamburgerMenuView/>
                         </Grid>
                     </ScrollViewer>
                 </TabItem>
+                
                 <TabItem Header="Tiles" Foreground="{DynamicResource MahApps.Brushes.Black}">
                     <ScrollViewer>
                         <Grid>
@@ -209,7 +210,13 @@
                         </Grid>
                     </ScrollViewer>
                 </TabItem>
-                
+                <TabItem Header="Split View" Foreground="{DynamicResource MahApps.Brushes.Black}">
+                    <ScrollViewer>
+                        <Grid>
+                            <Views:SplitViewExamples/>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
             </TabControl>
 
 

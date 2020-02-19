@@ -1,0 +1,59 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+        >
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/HamburgerMenu/ButtonStyle.xaml"/>
+
+  <Style Selector="Controls|HamburgerMenuItem">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:HamburgerMenu}}, Path=MenuItemForeground}"/>
+    <Setter Property="SelectionIndicatorColor" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:HamburgerMenu}}, Path=SelectionIndicatorColor}"/>
+
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Button Classes="HamburgerMenu" x:Name="ListBoxItemButton" 
+                  Command="{TemplateBinding SelectionCommand}"
+                  HorizontalContentAlignment="Stretch" 
+                  VerticalContentAlignment="Stretch"
+                  >
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <Grid Grid.ColumnSpan="2">
+                <Grid Background="Transparent" Margin="0" Width="300">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition/>
+                  </Grid.ColumnDefinitions>
+                  <Grid Grid.Column="1">
+                    <TextBlock Text="{TemplateBinding Text}" Margin="10,0,0,0"
+                               HorizontalAlignment="Left" VerticalAlignment="Center"
+                               FontSize="18"
+                               Foreground="{TemplateBinding Foreground}"
+                               />
+                  </Grid>
+                  <Grid Grid.Column="0">
+                    <Image Source="{TemplateBinding Icon}" Margin="10,5,5,5"/>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid Name="ItemSelectedIndicator"  Grid.Column="0" Background="{TemplateBinding SelectionIndicatorColor}" IsVisible="False" />
+            </Grid>
+          </Button>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|HamburgerMenuItem[IsSelected=true] /template/ Grid#ItemSelectedIndicator">
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
+
+  <Style Selector="Controls|HamburgerMenuItem /template/ Button#ListBoxItemButton:selected">
+    <Setter Property="Foreground" Value="Green"/>
+  </Style>
+
+</Styles>

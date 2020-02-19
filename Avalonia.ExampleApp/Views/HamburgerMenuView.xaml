@@ -1,0 +1,29 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             x:Class="Avalonia.ExampleApp.Views.HamburgerMenuView">
+  <Grid>
+    <Controls:HamburgerMenu Margin="10" Background="Black"
+                            MenuIconColor="White"
+                            SelectionIndicatorColor="White"
+                            MenuItemForeground="White"
+                            HorizontalAlignment="Left">
+      <Controls:HamburgerMenu.Content>
+        <Controls:HamburgerMenuItem Icon="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.favorite.png" Text="Home"/>
+        <Controls:HamburgerMenuItem Icon="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.search.png" Text="Search"/>
+        <Controls:HamburgerMenuItem Icon="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.favorite.png" Text="Likes"/>
+        <Controls:HamburgerMenuItem Icon="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.list.png" Text="Lists"/>
+        <Controls:HamburgerMenuItem Icon="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.person.png" Text="Profile"/>
+
+      </Controls:HamburgerMenu.Content>
+
+
+    </Controls:HamburgerMenu>
+    
+    
+    
+  </Grid>
+</UserControl>

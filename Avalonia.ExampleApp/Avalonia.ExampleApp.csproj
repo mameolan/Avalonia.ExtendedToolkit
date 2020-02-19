@@ -25,6 +25,15 @@
     <AvaloniaResource Include="Assets\*" />
   </ItemGroup>
   
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\HamburgerMenu\favorite.png" />
+    <EmbeddedResource Include="Assets\HamburgerMenu\home.png" />
+    <EmbeddedResource Include="Assets\HamburgerMenu\list.png" />
+    <EmbeddedResource Include="Assets\HamburgerMenu\person.png" />
+    <EmbeddedResource Include="Assets\HamburgerMenu\search.png" />
+  </ItemGroup>
+  
+  
   
   <ItemGroup>
     <ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
@@ -41,6 +50,5 @@
       <Private>true</Private>
     </Reference>
   </ItemGroup>
-  
   
 </Project>

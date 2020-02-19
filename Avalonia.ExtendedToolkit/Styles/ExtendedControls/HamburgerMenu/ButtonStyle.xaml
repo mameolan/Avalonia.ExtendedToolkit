@@ -1,0 +1,95 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        >
+  <Styles.Resources>
+    <!-- Fill Brushes -->
+
+    <SolidColorBrush x:Key="NormalBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="HorizontalNormalBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="LightBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="HorizontalLightBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="DarkBrush" Color="#40000000" />
+    <SolidColorBrush x:Key="PressedBrush" Color="#80FFFFFF" />
+    <SolidColorBrush x:Key="DisabledForegroundBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="Transparent" />
+
+    <!-- Border Brushes -->
+
+    <SolidColorBrush x:Key="NormalBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="HorizontalNormalBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="PressedBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="DefaultedBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="DisabledBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="SolidBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="LightBorderBrush" Color="Transparent" />
+
+    <!-- Miscellaneous Brushes -->
+    <!--<SolidColorBrush x:Key="GlyphBrush" Color="#444" />-->
+    <SolidColorBrush x:Key="LightColorBrush" Color="Transparent" />
+  </Styles.Resources>
+
+  <Style Selector="Button.HamburgerMenu">
+    <Setter Property="MinHeight" Value="23"/>
+    <Setter Property="MinWidth" Value="75"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border
+                  x:Name="Border"
+                  CornerRadius="0"
+                  BorderThickness="0"
+                  Background="{StaticResource NormalBrush}"
+                  BorderBrush="{StaticResource NormalBorderBrush}">
+            <ContentPresenter
+                Margin="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Content="{TemplateBinding Content}"
+                ContentTemplate="{TemplateBinding ContentTemplate}"
+                
+                />
+          </Border>
+
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!--Not available-->
+  <!--<Style Selector="Button.HamburgerMenu[IsKeyboardFocused=true] /template/ Border#Border">
+    <Setter Property="BorderBrush" Value="{StaticResource DefaultedBorderBrush}" />
+  </Style>-->
+
+  <Style Selector="Button.HamburgerMenu[IsDefault=true] /template/ Border#Border">
+    <Setter Property="BorderBrush" Value="{StaticResource DefaultedBorderBrush}" />
+  </Style>
+
+  <Style Selector="Button.HamburgerMenu[IsPointerOver=true] /template/ Border#Border">
+    <Setter Property="Background" Value="{StaticResource DarkBrush}" />
+  </Style>
+
+  <Style Selector="Button.HamburgerMenu[IsPressed=true] /template/ Border#Border">
+    <Setter Property="Background" Value="Green" />
+    <Setter Property="BorderBrush" Value="Green" />
+  </Style>
+
+  <Style Selector="Button.HamburgerMenu:pressed  /template/ ContentPresenter">
+    <Setter Property="Background" Value="Green"/>
+  </Style>
+
+  <Style Selector="Button.HamburgerMenu:pointerover  /template/ ContentPresenter">
+    <Setter Property="Background" Value="LightGreen"/>
+  </Style>
+  
+  
+  <Style Selector="Button.HamburgerMenu[IsEnabled=false] /template/ Border#Border">
+    <Setter Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
+    <Setter Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" />
+  </Style>
+
+  <Style Selector="Button.HamburgerMenu[IsEnabled=false]">
+    <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
+  </Style>
+</Styles>

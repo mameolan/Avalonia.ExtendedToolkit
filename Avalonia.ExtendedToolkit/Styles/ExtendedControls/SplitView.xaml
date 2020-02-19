@@ -136,15 +136,15 @@
     </Setter>
   </Style>
 
-  <Style Selector="Controls|SplitView[State=ClosedToOpenOverlayLeft] /template/ Grid#PaneRoot">
+  <Style Selector="Controls|SplitView[State=ClosedToOpenOverlayLeftStoryBoard] /template/ Grid#PaneRoot">
     <Setter Property="IsVisible" Value="True"/>
   </Style>
 
-  <Style Selector="Controls|SplitView[State=ClosedToOpenOverlayLeft] /template/ Rectangle#HCPaneBorder">
+  <Style Selector="Controls|SplitView[State=ClosedToOpenOverlayLeftStoryBoard] /template/ Rectangle#HCPaneBorder">
     <Setter Property="IsVisible" Value="True"/>
   </Style>
 
-  <Style Selector="Controls|SplitView[State=ClosedToOpenOverlayLeft] /template/ TranslateTransform#PaneTransform">
+  <Style Selector="Controls|SplitView[State=ClosedToOpenOverlayLeftStoryBoard] /template/ TranslateTransform#PaneTransform">
     <Style.Animations>
       <Animation Duration="0:0:0.35">
         <KeyFrame Cue="0%">
@@ -157,7 +157,7 @@
     </Style.Animations>
   </Style>
 
-  <Style Selector="Controls|SplitView[State=ClosedToOpenOverlayLeft] /template/ TranslateTransform#PaneClipRectangleTransform">
+  <Style Selector="Controls|SplitView[State=ClosedToOpenOverlayLeftStoryBoard] /template/ TranslateTransform#PaneClipRectangleTransform">
     <Style.Animations>
       <Animation Duration="0:0:0.35">
         <KeyFrame Cue="0%">
@@ -170,7 +170,7 @@
     </Style.Animations>
   </Style>
 
-  <Style Selector="Controls|SplitView[State=ClosedToOpenOverlayLeft] /template/ Rectangle#LightDismissLayer">
+  <Style Selector="Controls|SplitView[State=ClosedToOpenOverlayLeftStoryBoard] /template/ Rectangle#LightDismissLayer">
     <Setter Property="IsVisible" Value="true"/>
   </Style>
 

@@ -48,6 +48,10 @@
 
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BusyIndicator.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Badget.xaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/HamburgerMenu/HamburgerMenu.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/HamburgerMenu/HamburgerMenuItem.xaml"/>
+    
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Wizard.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ContentControlEx.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/DropDownButton.xaml"/>
