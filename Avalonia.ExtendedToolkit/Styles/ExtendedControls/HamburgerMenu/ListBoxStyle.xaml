@@ -8,13 +8,15 @@
       <Setter.Value>
         <ControlTemplate>
           <ScrollViewer>
-            <ItemsPresenter Margin="0"
+                <ItemsPresenter Margin="0"
                 Items="{TemplateBinding Items}"
+                ItemsPanel="{TemplateBinding ItemsPanel}"
+                ItemTemplate="{TemplateBinding ItemTemplate}"
                             />
           </ScrollViewer>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
-  
+
 </Styles>

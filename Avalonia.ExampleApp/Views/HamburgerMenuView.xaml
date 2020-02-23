@@ -4,25 +4,52 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             xmlns:Views="clr-namespace:Avalonia.ExampleApp.Views;assembly=Avalonia.ExampleApp"
              x:Class="Avalonia.ExampleApp.Views.HamburgerMenuView">
   <Grid>
-    <Controls:HamburgerMenu Margin="10" Background="Black"
-                            MenuIconColor="White"
-                            SelectionIndicatorColor="White"
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+    <Controls:HamburgerMenu Margin="10" Grid.Column="0"
                             MenuItemForeground="White"
                             HorizontalAlignment="Left">
       <Controls:HamburgerMenu.Content>
-        <Controls:HamburgerMenuItem Icon="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.favorite.png" Text="Home"/>
-        <Controls:HamburgerMenuItem Icon="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.search.png" Text="Search"/>
-        <Controls:HamburgerMenuItem Icon="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.favorite.png" Text="Likes"/>
-        <Controls:HamburgerMenuItem Icon="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.list.png" Text="Lists"/>
-        <Controls:HamburgerMenuItem Icon="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.person.png" Text="Profile"/>
+        <Controls:HamburgerMenuItem IconBlack="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.home-white.png"
+                                    IconLight="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.home-black.png"
+                                    Text="Home"
+                                    SelectionCommand="{Binding HamburgerMenuHomeCommand}"
+                                    />
+        <Controls:HamburgerMenuItem IconBlack="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.search-white.png"
+                                    IconLight="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.search-black.png"
+                                    Text="Search"
+                                    SelectionCommand="{Binding HamburgerMenuSearchCommand}"
+                                    />
+        <Controls:HamburgerMenuItem IconBlack="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.favorite-white.png"
+                                    IconLight="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.favorite-black.png"
+                                    Text="Likes"
+                                    SelectionCommand="{Binding HamburgerMenuLikesCommand}"
+                                    />
+        <Controls:HamburgerMenuItem IconBlack="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.list-white.png"
+                                    IconLight="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.list-black.png"
+                                    Text="Lists"
+                                    SelectionCommand="{Binding HamburgerMenuListsCommand}"
+                                    />
+        <Controls:HamburgerMenuItem IconBlack="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.person-white.png"
+                                    IconLight="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.person-black.png"
+                                    Text="Profile"
+                                    SelectionCommand="{Binding HamburgerMenuProfileCommand}"
+                                    />
 
       </Controls:HamburgerMenu.Content>
 
 
     </Controls:HamburgerMenu>
-    
+
+    <ContentControl Grid.Column="1"
+          Content="{Binding CurrentHamburgerMenuContent}"                    
+                    />
+
     
     
   </Grid>

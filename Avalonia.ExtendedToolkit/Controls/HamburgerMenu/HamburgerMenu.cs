@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Media;
 using System.Collections.Specialized;
+using System.Linq;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -59,37 +60,35 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         public static readonly StyledProperty<int> SelectedIndexProperty =
-            AvaloniaProperty.Register<HamburgerMenu, int>(nameof(SelectedIndex), defaultValue:1);
+            AvaloniaProperty.Register<HamburgerMenu, int>(nameof(SelectedIndex), defaultValue:0);
 
         public HamburgerMenu()
         {
             Content = new AvaloniaList<HamburgerMenuItem>();
-            //ContentProperty.Changed.AddClassHandler<HamburgerMenu>((o, e) => OnHamburgerManuItemsAdded(o, e));
             Content.CollectionChanged += Content_CollectionChanged;
-
-            IsOpenProperty.Changed.AddClassHandler<HamburgerMenu>((o, e) => IsOpenChanged(o, e));
-        }
-
-        private void IsOpenChanged(HamburgerMenu o, AvaloniaPropertyChangedEventArgs e)
-        {
-            if(e.NewValue is bool)
-            {
-                //bool val = (bool)e.NewValue;
-
-                //Animation animation = new Animation();
-
-                //animation.Duration = TimeSpan.FromSeconds(2);
-                //KeyFrame keyFrame = new KeyFrame();
-                //keyFrame.SetValue(WidthProperty, 300);
-                //animation.Children.Add(keyFrame);
-                ////animation.Apply(o, null, null, () => { int i= 0; });
-
-                //animation.RunAsync(this);
-            }
         }
 
         private void Content_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
+            if (e.NewItems != null)
+            {
+                foreach (var item in e.NewItems.OfType<HamburgerMenuItem>())
+                {
+                    item.PropertyChanged += MenuItem_PropertyChanged;
+                }
+            }
+            if (e.OldItems != null)
+            {
+            }
+        }
+
+        private void MenuItem_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
+        {
+            if (e.Property.Name == "IsSelected")
+            {
+                HamburgerMenuItem menuItem = sender as HamburgerMenuItem;
+                SelectedIndex = Content.IndexOf(menuItem);
+            }
         }
     }
 }

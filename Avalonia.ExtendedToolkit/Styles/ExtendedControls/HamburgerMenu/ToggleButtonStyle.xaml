@@ -1,5 +1,6 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
         >
   <Style Selector="ToggleButton.HamburgerMenu">
     <!--Do not set is checked otherwise app is crashing (?)-->
@@ -7,7 +8,7 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
-          <Grid >
+          <Grid x:Name="mainGrid">
             <Border x:Name="contentBorder" BorderThickness="1" Margin="3">
               <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
                                 Content="{TemplateBinding Content}"
@@ -30,9 +31,7 @@
   </Style>
 
   <Style Selector="ToggleButton.HamburgerMenu:pointerover  /template/ Border#contentBorder">
-    <Setter Property="Background" Value="LightGreen"/>
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:HamburgerMenu}}, Path=SelectionIndicatorColor, Mode=OneWay}"/>
   </Style>
-
-  
 
 </Styles>

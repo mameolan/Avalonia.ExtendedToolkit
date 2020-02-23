@@ -17,6 +17,15 @@ namespace Avalonia.ExampleApp.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+
+        private object _currentHamburgerMenuContent;
+
+        public object CurrentHamburgerMenuContent
+        {
+            get { return _currentHamburgerMenuContent; }
+            set { this.RaiseAndSetIfChanged(ref _currentHamburgerMenuContent, value); }
+        }
+
         private ObservableCollection<Album> _albums;
         public ObservableCollection<Album> Albums
         {
@@ -42,6 +51,17 @@ namespace Avalonia.ExampleApp.ViewModels
         public ICommand ShowBusyIndicator { get; }
 
         public ICommand OpenWizardCommand { get; }
+
+        public ICommand HamburgerMenuHomeCommand { get; }
+
+        public ICommand HamburgerMenuSearchCommand { get; }
+
+        public ICommand HamburgerMenuLikesCommand { get; }
+
+        public ICommand HamburgerMenuListsCommand { get; }
+
+        public ICommand HamburgerMenuProfileCommand { get; }
+
 
 
         private bool myIsBusy;
@@ -181,6 +201,39 @@ namespace Avalonia.ExampleApp.ViewModels
             SelectedColorScheme = ColorSchemes.FirstOrDefault(x => x.Name == ThemeManager.Instance.SelectedTheme.ColorScheme);
             SelectedBaseColor = ThemeManager.Instance.SelectedBaseColor;
             SelectedTheme = ThemeManager.Instance.SelectedTheme;
+
+
+            CurrentHamburgerMenuContent = new HamburgerMenuHomeView();
+            HamburgerMenuHomeCommand = ReactiveCommand.Create<object>(x => ExecuteHamburgerMenuHomeCommand(x), outputScheduler: RxApp.MainThreadScheduler);
+            HamburgerMenuSearchCommand = ReactiveCommand.Create<object>(x => ExecuteHamburgerMenuSearchCommand(x), outputScheduler: RxApp.MainThreadScheduler);
+            HamburgerMenuLikesCommand = ReactiveCommand.Create<object>(x => ExecuteHamburgerMenuLikesCommand(x), outputScheduler: RxApp.MainThreadScheduler);
+            HamburgerMenuListsCommand = ReactiveCommand.Create<object>(x => ExecuteHamburgerMenuListsCommand(x), outputScheduler: RxApp.MainThreadScheduler);
+            HamburgerMenuProfileCommand = ReactiveCommand.Create<object>(x => ExecuteHamburgerMenuProfileCommand(x), outputScheduler: RxApp.MainThreadScheduler);
+        }
+
+        private void ExecuteHamburgerMenuProfileCommand(object x)
+        {
+            CurrentHamburgerMenuContent = new HamburgerMenuProfileView();
+        }
+
+        private void ExecuteHamburgerMenuListsCommand(object x)
+        {
+            CurrentHamburgerMenuContent = new HamburgerMenuListView();
+        }
+
+        private void ExecuteHamburgerMenuLikesCommand(object x)
+        {
+            CurrentHamburgerMenuContent = new HamburgerMenuLikeView();
+        }
+
+        private void ExecuteHamburgerMenuSearchCommand(object x)
+        {
+            CurrentHamburgerMenuContent = new HamburgerMenuSearchView();
+        }
+
+        private void ExecuteHamburgerMenuHomeCommand(object x)
+        {
+            CurrentHamburgerMenuContent = new HamburgerMenuHomeView();
         }
 
         private void ExecuteOpenWizardCommand(object x)
