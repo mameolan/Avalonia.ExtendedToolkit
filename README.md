@@ -46,8 +46,7 @@ Please have a look at the example app how to use the controls.
 2. Flyout
 3. Sliders with Markers (vertical only not working)
 4. SplitView
-5. Hamburger Menu (depends on SplitView).
-6. TreeGrid has to many subitems (perhabs not my fault: [Issue 3393](https://github.com/AvaloniaUI/Avalonia/issues/3393)).
+5. TreeGrid has to many subitems.
 
 ### Style rework
 
