@@ -1,7 +1,15 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         >
+  <Styles.Resources>
+    
+      <sys:Double x:Key="MinimizedSize">50</sys:Double>
+      <sys:Double x:Key="MaximizedSize">300</sys:Double>
+  
+  </Styles.Resources>
+  
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/HamburgerMenu/ListBoxStyle.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/HamburgerMenu/ToggleButtonStyle.xaml"/>
 
@@ -52,10 +60,12 @@
       <Animation Duration="0:0:0.2" FillMode="Forward">
         <!--set init value otherwise it does not work-->
         <KeyFrame Cue="0%">
-          <Setter Property="Width" Value="50"/>
+          <!--Setting over a property does not work right now-->
+          <Setter Property="Width" Value="{StaticResource MinimizedSize}"/>
         </KeyFrame>
         <KeyFrame Cue="100%">
-          <Setter Property="Width" Value="300"/>
+          <!--Setting over a property does not work right now-->
+          <Setter Property="Width" Value="{StaticResource MaximizedSize}"/>
         </KeyFrame>
       </Animation>
     </Style.Animations>
@@ -66,15 +76,16 @@
       <Animation Duration="0:0:0.2">
         <!--set init value otherwise it does not work-->
         <KeyFrame Cue="0%">
-          <Setter Property="Width" Value="300"/>
+          <!--Setting over a property does not work right now-->
+          <Setter Property="Width" Value="{StaticResource MaximizedSize}"/>
         </KeyFrame>
         <KeyFrame Cue="100%">
-          <Setter Property="Width" Value="50"/>
+          <!--Setting over a property does not work right now-->
+          <Setter Property="Width" Value="{StaticResource MinimizedSize}"/>
         </KeyFrame>
       </Animation>
     </Style.Animations>
   </Style>
-
 
 
 </Styles>

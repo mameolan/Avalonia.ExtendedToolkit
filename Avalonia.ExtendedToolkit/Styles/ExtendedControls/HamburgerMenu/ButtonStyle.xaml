@@ -3,8 +3,32 @@
         xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
         >
   <Styles.Resources>
+    <!-- Fill Brushes -->
+
     <SolidColorBrush x:Key="NormalBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="HorizontalNormalBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="LightBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="HorizontalLightBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="DarkBrush" Color="#40000000" />
+    <SolidColorBrush x:Key="PressedBrush" Color="#80FFFFFF" />
+    <SolidColorBrush x:Key="DisabledForegroundBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="Transparent" />
+
+    <!-- Border Brushes -->
+
     <SolidColorBrush x:Key="NormalBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="HorizontalNormalBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="PressedBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="DefaultedBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="DisabledBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="SolidBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="LightBorderBrush" Color="Transparent" />
+
+    <!-- Miscellaneous Brushes -->
+    <!--<SolidColorBrush x:Key="GlyphBrush" Color="#444" />-->
+    <SolidColorBrush x:Key="LightColorBrush" Color="Transparent" />
   </Styles.Resources>
 
   <Style Selector="Button.HamburgerMenu">

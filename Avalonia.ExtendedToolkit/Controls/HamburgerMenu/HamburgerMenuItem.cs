@@ -5,6 +5,9 @@ using System.Windows.Input;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// ported from https://github.com/alicanerdogan/HamburgerMenu
+    /// </summary>
     public class HamburgerMenuItem : ListBoxItem
     {
         private const string ImageCtrlName = "menuImage";
@@ -60,23 +63,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             ThemeManager.Instance.IsThemeChanged += OnThemeChanged;
 
-            IsSelectedProperty.Changed.AddClassHandler<HamburgerMenuItem>((o, e) => IsSelectedChanged(o, e));
         }
 
-        private void IsSelectedChanged(HamburgerMenuItem o, AvaloniaPropertyChangedEventArgs e)
-        {
-            if (e.NewValue is bool)
-            {
-                if ((bool)e.NewValue)
-                {
-                    Background = new SolidColorBrush(Colors.Green);
-                }
-                else
-                {
-                    Background = new SolidColorBrush(Colors.Red);
-                }
-            }
-        }
+        
 
         private void OnThemeChanged(object sender, OnThemeChangedEventArgs e)
         {

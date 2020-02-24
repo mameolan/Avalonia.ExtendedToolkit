@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// ported from https://github.com/alicanerdogan/HamburgerMenu
+    /// </summary>
     public class HamburgerMenu: ContentControl
     {
         public new AvaloniaList<HamburgerMenuItem> Content
@@ -61,6 +64,35 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public static readonly StyledProperty<int> SelectedIndexProperty =
             AvaloniaProperty.Register<HamburgerMenu, int>(nameof(SelectedIndex), defaultValue:0);
+
+
+        //Setting over a property does not work right now
+        //public double MaximizedSize
+        //{
+        //    get { return (double)GetValue(MaximizedSizeProperty); }
+        //    set { SetValue(MaximizedSizeProperty, value); }
+        //}
+
+
+        //public static readonly StyledProperty<double> MaximizedSizeProperty =
+        //    AvaloniaProperty.Register<HamburgerMenu, double>(nameof(MaximizedSize), defaultValue: 300d);
+
+
+        //Setting over a property does not work right now
+        //public double MinimizedSize
+        //{
+        //    get { return (double)GetValue(MinimizedSizeProperty); }
+        //    set { SetValue(MinimizedSizeProperty, value); }
+        //}
+
+
+        //public static readonly StyledProperty<double> MinimizedSizeProperty =
+        //    AvaloniaProperty.Register<HamburgerMenu, double>(nameof(MinimizedSize), defaultValue: 50d);
+
+
+
+
+
 
         public HamburgerMenu()
         {
