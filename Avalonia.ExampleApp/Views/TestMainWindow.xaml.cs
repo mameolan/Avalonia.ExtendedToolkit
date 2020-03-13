@@ -9,9 +9,6 @@ namespace Avalonia.ExampleApp.Views
         public TestMainWindow()
         {
             this.InitializeComponent();
-#if DEBUG
-            this.AttachDevTools();
-#endif
         }
 
         private void InitializeComponent()
