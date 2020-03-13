@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using Avalonia.ExampleApp.ViewModels;
 using Avalonia.ExampleApp.Views;
 using Avalonia.ExtendedToolkit;
@@ -13,30 +13,30 @@ namespace Avalonia.ExampleApp
         // Initialization code. Don't use any Avalonia, third-party APIs or any
         // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
         // yet and stuff might break.
-        public static void Main(string[] args) => BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+        public static int Main(string[] args)
+        {
 
-        //public static void Main(string[] args) => BuildAvaloniaApp().Start(AppMain, args);
+            AppBuilder appBuilder = null;
 
-        //private static void AppMain(Application app, string[] args)
-        //{
-        //    var vm = new MainWindowViewModel();
-        //    MainWindowView mainWindow = new MainWindowView();
-        //    mainWindow.DataContext = vm;
-        //    MetroWindow metroWindow = new MetroWindow();
-        //    metroWindow.Content = mainWindow;
-        //    ThemeManager.Instance.EnableTheme(metroWindow);
-        //    app.Run(metroWindow);
-        //}
+            if(args.Contains("testing"))
+            {
+                appBuilder = AppBuilder.Configure<AppTesting>();
+            }
+            else
+            {
+                appBuilder = AppBuilder.Configure<App>();
+            }
 
-
-        // Avalonia configuration, don't remove; also used by visual designer.
-        public static AppBuilder BuildAvaloniaApp()
-            => AppBuilder.Configure<App>()
-                .UsePlatformDetect()
+            appBuilder.UsePlatformDetect()
                 .UseSkia()
                 .UseReactiveUI()
                 //.UseDataGrid()
                 .LogToDebug();
 
+
+            return appBuilder.StartWithClassicDesktopLifetime(args);
+
+        }
+        
     }
 }
