@@ -1,0 +1,29 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit">
+  <Styles.Resources>
+    <LinearGradientBrush x:Key="mouseOverBtnBrush" StartPoint="0,0" EndPoint="0,1">
+      <GradientStop Color="#FFEAF6FD" Offset="0" />
+      <GradientStop Color="#FFD7EFFC" Offset="0.5" />
+      <GradientStop Color="#FFBDE6FD" Offset="0.5" />
+      <GradientStop Color="#FFA6D9F4" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="mousePressedBtnBrush" StartPoint="0,0" EndPoint="0,1">
+      <GradientStop Color="#FFC2E4F6" Offset="0" />
+      <GradientStop Color="#FFC2E4F6" Offset="0.5" />
+      <GradientStop Color="#FFA9D9F2" Offset="0.5" />
+      <GradientStop Color="#FF90CBEB" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GradientBorderBrush" StartPoint="0,0" EndPoint="0,1">
+      <GradientStop Color="White" Offset="0" />
+      <GradientStop Color="#FFCECECE" Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="borderBrush" Color="#C0000000" />
+    <SolidColorBrush x:Key="borderShadowBrush" Color="#60000000" />
+
+    <Geometry x:Key="RightArrow">M0,0 L5,3.5 0,7 z</Geometry>
+    <Geometry x:Key="DownArrow">M0,3 L7,3 3.5,7 z</Geometry>
+    <Geometry x:Key="OverflowArrow">F1 M7,0 L4,3 7,6 M3,0 L0,3 3,6</Geometry>
+  </Styles.Resources>
+  
+</Styles>

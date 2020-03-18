@@ -1,0 +1,148 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib">
+  <Styles.Resources>
+    <sys:TimeSpan x:Key="animTime">0:0:0.20</sys:TimeSpan>
+  </Styles.Resources>
+
+  <Style Selector="Controls|OdcExpander">
+    <Setter Property="Background" Value="{DynamicResource OdcExpander.Brushes.Background}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource OdcExpander.Brushes.Border}" />
+    <Setter Property="HeaderBackground" Value="{DynamicResource OdcExpander.Brushes.HeaderBackground}" />
+    <Setter Property="MouseOverHeaderBackground" Value="{DynamicResource OdcExpander.Brushes.MouseOverHeaderBackground}" />
+    <Setter Property="MouseOverHeaderForeground" Value="{DynamicResource OdcExpander.Brushes.MouseOverHeaderForeground}" />
+    <!--<Setter Property="odc:KeyTip.Stop" Value="false" />
+    <Setter Property="odc:KeyTip.YOffset" Value="2" />
+    <Setter Property="odc:KeyTip.XOffset" Value="-24" />-->
+    <Setter Property="HeaderBorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="0" />
+    <Setter Property="ShowEllipse" Value="True" />
+    <Setter Property="BorderThickness" Value="1,0,1,1" />
+    <Setter Property="Padding" Value="8" />
+
+    <Setter Property="Template">
+
+      <Setter.Value>
+        <ControlTemplate>
+          <LayoutTransformControl x:Name="layoutTransform">
+            <Border BorderThickness="{TemplateBinding HeaderBorderThickness}"
+                    Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    x:Name="border">
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Controls:OdcExpanderHeader x:Name="PART_HEADER" Grid.Row="0" Content="{TemplateBinding Header}"
+                        IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent},Path=IsExpanded}"
+                        ContentTemplate="{TemplateBinding HeaderTemplate}"
+                        Background="{TemplateBinding HeaderBackground}"
+                        ShowEllipse="{TemplateBinding ShowEllipse}"
+                        CornerRadius="{TemplateBinding CornerRadius}" Image="{TemplateBinding Image}" />
+                <Border x:Name="panel" Grid.Row="1" ZIndex="-1" Margin="0,-1,0,0"
+                        Opacity="{Binding ElementName=decorator, Path=AnimationOpacity}"
+                        Background="{TemplateBinding Background}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                  <!--<Controls:AnimationDecorator x:Name="decorator" VerticalAlignment="Top"
+                        Duration="{StaticResource animTime}" MinHeight="{TemplateBinding MinHeight}"
+                        MaxHeight="{TemplateBinding MaxHeight}" Height="{TemplateBinding Height}"
+                        IsExpanded="{Binding RelativeSource={RelativeSource TemplatedParent},Path=IsExpanded}">-->
+                  <StackPanel x:Name="stackContent"
+                          MinHeight="{TemplateBinding MinHeight}"
+                          MaxHeight="{TemplateBinding MaxHeight}"
+                          Height="{TemplateBinding Height}">
+                    <!--IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent},Path=IsExpanded}"-->
+
+                    <Border Padding="{TemplateBinding Padding}"
+                          VerticalAlignment="Top">
+                    <ContentPresenter Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                  </Border>
+                  </StackPanel>
+                <!--</Controls:AnimationDecorator>-->
+                </Border>
+              </Grid>
+
+              <!--<Border.LayoutTransform>
+              <ScaleTransform x:Name="scaleT" ScaleY="1" />
+            </Border.LayoutTransform>-->
+            </Border>
+            <LayoutTransformControl.LayoutTransform>
+              <Controls:ScaleTransformEx x:Name="scaleT"  ScaleY="1" />
+            </LayoutTransformControl.LayoutTransform>
+          </LayoutTransformControl>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|OdcExpander[IsHeaderVisible=False] /template/ Controls|OdcExpanderHeader#PART_HEADER">
+    <Setter Property="IsVisible" Value="false" />
+  </Style>
+
+  <Style Selector="Controls|OdcExpander /template/ Controls|OdcExpanderHeader#PART_HEADER[IsPointerOver=true]">
+    <Setter Property="Foreground"
+                      Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=MouseOverHeaderForeground}" />
+    <Setter Property="Background"
+                      Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=MouseOverHeaderBackground}" />
+  </Style>
+
+  <Style Selector="Controls|OdcExpander[IsPressed=true][HasPressedBackground=True] /template/ Controls|OdcExpanderHeader#PART_HEADER">
+    <Setter Property="Background"
+                      Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=PressedHeaderBackground}" />
+  </Style>
+
+  <Style Selector="Controls|OdcExpander[IsMinimized=false] /template/ Controls|ScaleTransformEx#scaleT">
+    <Style.Animations>
+      <Animation Duration="{StaticResource animTime}">
+        <KeyFrame Cue="0%">
+          <Setter Property="ScaleY" Value="0" />
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="ScaleY" Value="1" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|OdcExpander[IsMinimized=true] /template/  Controls|ScaleTransformEx#scaleT">
+    <Style.Animations>
+      <Animation Duration="{StaticResource animTime}">
+        <KeyFrame Cue="0%">
+          <Setter Property="ScaleY" Value="1" />
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="ScaleY" Value="0" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|OdcExpander[IsExpanded=false]">
+    <Setter Property="VerticalAlignment" Value="Top" />
+  </Style>
+
+  
+  
+  <Style Selector="Controls|OdcExpander[IsExpanded=false] /template/ StackPanel#stackContent">
+    <Setter Property="Height" Value="{TemplateBinding MinHeight}" />
+    
+  </Style>
+
+  
+  
+  <!--<ControlTemplate.Triggers>
+
+          <ControlTemplate.Resources>
+            <Style TargetType="{x:Type TreeViewItem}">
+              <Setter Property="Template"
+                      Value="{DynamicResource {ComponentResourceKey odc:Skins, TreeViewItemTemplate}}" />
+            </Style>
+            <Style TargetType="{x:Type ListViewItem}">
+              <Setter Property="Template"
+                      Value="{DynamicResource {ComponentResourceKey odc:Skins, ListViewItemTemplate}}" />
+            </Style>
+          </ControlTemplate.Resources>-->
+</Styles>

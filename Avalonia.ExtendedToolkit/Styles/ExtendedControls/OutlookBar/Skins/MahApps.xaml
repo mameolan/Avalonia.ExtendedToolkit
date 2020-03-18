@@ -1,0 +1,48 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Styles.Resources>
+
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.White}" x:Key="Odc.Brushes.White" />
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Black}" x:Key="Odc.Brushes.Border" />
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.AccentBase}" x:Key="Odc.Brushes.Image" />
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.AccentBase}" x:Key="Odc.Brushes.LightBackground" />
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.IdealForeground}" x:Key="Odc.Brushes.Foreground" />
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Black}" x:Key="Odc.Brushes.Path.Stroke" />
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.White}" x:Key="Odc.Brushes.Path.Fill" />
+
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent2}" x:Key="Odc.Brushes.HighlightButton" />
+
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent2}" x:Key="OdcExpander.Brushes.Background" />
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.White}" x:Key="OdcExpander.Brushes.Border" />
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent3}" x:Key="OdcExpander.Brushes.HeaderBackground" />
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent2}" x:Key="OdcExpander.Brushes.MouseOverHeaderBackground" />
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent3}" x:Key="OdcExpander.Brushes.MouseOverHeaderForeground" />
+
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.White}" x:Key="OdcExpanderHeader.Brushes.Border" />
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.White}" x:Key="OdcExpanderHeader.Brushes.TextForeground" />
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.White}" x:Key="OdcExpanderHeader.Brushes.Foreground" />
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent2}" x:Key="OdcExpanderHeader.Brushes.Background" />
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent2}" x:Key="OdcExpanderHeader.Brushes.Ellipse.Stroke" />
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent2}" x:Key="OdcExpanderHeader.Brushes.Ellipse.Fill" />
+
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent2}" x:Key="Odc.Brushes.HighlightedExpanderHeader" />
+
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent2}" x:Key="Odc.Brushes.OutlookbarHeader" />
+
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent2}" x:Key="Odc.Brushes.SectionButtonGradient" />
+
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent3}" x:Key="Odc.Brushes.SelectedButtonGradient" />
+
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent3}" x:Key="Odc.Brushes.SelectedButton" />
+
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent2}" x:Key="Odc.Brushes.HighlightButtonGradient" />
+
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent2}" x:Key="Odc.Brushes.ItemSelectedBackground" />
+
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent2}" x:Key="Odc.Brushes.ItemSelectedBorder" />
+
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent2}" x:Key="Odc.Brushes.ItemMouseOverBorder" />
+
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent3}" x:Key="Odc.Brushes.ItemMouseOverBackground" />
+  </Styles.Resources>
+</Styles>

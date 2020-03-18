@@ -1,0 +1,99 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Styles.Resources>
+
+    <Color x:Key="Odc.Colors.White">#FFFFFFFF</Color>
+    <Color x:Key="Odc.Colors.Border">#FFC7CBD1</Color>
+    <Color x:Key="Odc.Colors.Image">#FF313431</Color>
+    <Color x:Key="Odc.Colors.LightBackground">#FFD8DBDF</Color>
+    <Color x:Key="Odc.Colors.Foreground">#FF000000</Color>
+
+    <Color x:Key="Odc.Colors.HighlightButton">#FFFFD76A</Color>
+
+    <Color x:Key="OdcExpander.Colors.Background">#40808080</Color>
+    <Color x:Key="OdcExpander.Colors.Border">#60404040</Color>
+    <Color x:Key="OdcExpander.Colors.HeaderBackground">#40A0A0A0</Color>
+    <Color x:Key="OdcExpander.Colors.MouseOverHeaderBackground">#60FFFFFF</Color>
+    <Color x:Key="OdcExpander.Colors.MouseOverHeaderForeground">#F0000000</Color>
+
+    <Color x:Key="OdcExpanderHeader.Colors.Border">#80FFFFFF</Color>
+    <Color x:Key="OdcExpanderHeader.Colors.Foreground">#F0000000</Color>
+    <Color x:Key="OdcExpanderHeader.Colors.Background">#60808080</Color>
+    <Color x:Key="OdcExpanderHeader.Colors.Ellipse.Stroke">#30000000</Color>
+    <Color x:Key="OdcExpanderHeader.Colors.Ellipse.Fill">#E0FFFFFF</Color>
+
+    <SolidColorBrush Color="{StaticResource Odc.Colors.White}" x:Key="Odc.Brushes.White" />
+    <SolidColorBrush Color="{StaticResource Odc.Colors.Border}" x:Key="Odc.Brushes.Border" />
+    <SolidColorBrush Color="{StaticResource Odc.Colors.Image}" x:Key="Odc.Brushes.Image" />
+    <SolidColorBrush Color="{StaticResource Odc.Colors.LightBackground}" x:Key="Odc.Brushes.LightBackground" />
+    <SolidColorBrush Color="{StaticResource Odc.Colors.Foreground}" x:Key="Odc.Brushes.Foreground" />
+    <SolidColorBrush Color="{StaticResource Odc.Colors.LightBackground}" x:Key="Odc.Brushes.Path.Stroke" />
+    <SolidColorBrush Color="{StaticResource Odc.Colors.Foreground}" x:Key="Odc.Brushes.Path.Fill" />
+
+    <SolidColorBrush Color="{StaticResource Odc.Colors.HighlightButton}" x:Key="Odc.Brushes.HighlightButton" />
+
+    <SolidColorBrush Color="{StaticResource OdcExpander.Colors.Background}" x:Key="OdcExpander.Brushes.Background" />
+    <SolidColorBrush Color="{StaticResource OdcExpander.Colors.Border}" x:Key="OdcExpander.Brushes.Border" />
+    <SolidColorBrush Color="{StaticResource OdcExpander.Colors.HeaderBackground}" x:Key="OdcExpander.Brushes.HeaderBackground" />
+    <SolidColorBrush Color="{StaticResource OdcExpander.Colors.MouseOverHeaderBackground}" x:Key="OdcExpander.Brushes.MouseOverHeaderBackground" />
+    <SolidColorBrush Color="{StaticResource OdcExpander.Colors.MouseOverHeaderForeground}" x:Key="OdcExpander.Brushes.MouseOverHeaderForeground" />
+
+    <SolidColorBrush Color="{StaticResource OdcExpanderHeader.Colors.Border}" x:Key="OdcExpanderHeader.Brushes.Border" />
+    <SolidColorBrush Color="{StaticResource OdcExpanderHeader.Colors.Foreground}" x:Key="OdcExpanderHeader.Brushes.Foreground" />
+    <SolidColorBrush Color="{StaticResource OdcExpanderHeader.Colors.Background}" x:Key="OdcExpanderHeader.Brushes.Background" />
+    <SolidColorBrush Color="{StaticResource OdcExpanderHeader.Colors.Ellipse.Stroke}" x:Key="OdcExpanderHeader.Brushes.Ellipse.Stroke" />
+    <SolidColorBrush Color="{StaticResource OdcExpanderHeader.Colors.Ellipse.Fill}" x:Key="OdcExpanderHeader.Brushes.Ellipse.Fill" />
+
+    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" x:Key="Odc.Brushes.HighlightedExpanderHeader">
+        <GradientStop Color="#FFDADFE6" Offset="0" />
+        <GradientStop Color="White" Offset="0.5" />
+        <GradientStop Color="#FFDADFE6" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" x:Key="Odc.Brushes.OutlookbarHeader">
+        <GradientStop Color="#FFF0F1F2" Offset="0" />
+        <GradientStop Color="#FFBDC1C8" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" x:Key="Odc.Brushes.SectionButtonGradient">
+        <GradientStop Color="#FFF8F8F9" Offset="0" />
+        <GradientStop Color="#FFDFE2E4" Offset="0.4" />
+        <GradientStop Color="#FFC7CBD1" Offset="0.4" />
+        <GradientStop Color="#FFDBDEE2" Offset="1" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush Color="#FFFFAB3F" x:Key="Odc.Brushes.SelectedButton" />
+
+    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" x:Key="Odc.Brushes.HighlightButtonGradient">
+        <GradientStop Color="#FFFFFEE4" Offset="0" />
+        <GradientStop Color="#FFFFBB6E" Offset="0.4" />
+        <GradientStop Color="#FFFFAB3F" Offset="0.4" />
+        <GradientStop Color="#FFFEE17A"  Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" x:Key="Odc.Brushes.SelectedButtonGradient">
+        <GradientStop Color="#FFFFFCDE" Offset="0" />
+        <GradientStop Color="#FFFFEAAD" Offset="0.4" />
+        <GradientStop Color="#FFFFD76A" Offset="0.4" />
+        <GradientStop Color="#FFFFE69E"  Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="Odc.Brushes.ItemSelectedBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#FFF8F8F9" Offset="0" />
+        <GradientStop Color="#FFDFE2E4" Offset="0.4" />
+        <GradientStop Color="#FFC7CBD1" Offset="0.4" />
+        <GradientStop Color="#FFDBDEE2" Offset="1" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="Odc.Brushes.ItemSelectedBorder" Color="#FFC7CBD1" />
+
+    <SolidColorBrush x:Key="Odc.Brushes.ItemMouseOverBorder" Color="#A0C8B280" />
+
+    <LinearGradientBrush x:Key="Odc.Brushes.ItemMouseOverBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#A0FFFDDC" Offset="0" />
+        <GradientStop Color="#A0FFE797" Offset="0.4" />
+        <GradientStop Color="#A0FFD754" Offset="0.4" />
+        <GradientStop Color="#A0FFE89F" Offset="1" />
+    </LinearGradientBrush>
+  </Styles.Resources>
+ </Styles>

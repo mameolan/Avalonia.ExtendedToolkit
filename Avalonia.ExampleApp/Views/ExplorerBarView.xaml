@@ -1,0 +1,99 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             xmlns:model="clr-namespace:Avalonia.ExampleApp.Model;assembly=Avalonia.ExampleApp"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.ExplorerBarView">
+  <Grid>
+    <Grid.Resources>
+      <DataTemplate DataType="{x:Type model:FolderItem}" x:Key="folder">
+        <TextBlock Text="{Binding Folder}"/>
+      </DataTemplate>
+    </Grid.Resources>
+
+    <Grid.Styles>
+      <Style Selector="Controls|BreadcrumbItem">
+        <Setter Property="Image" Value="/Assets/Web.png"/>
+        <Setter Property="HeaderTemplate" Value="{StaticResource folder}"/>
+      </Style>
+    </Grid.Styles>
+    
+    <Grid.RowDefinitions>
+      <RowDefinition Height="40"/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+
+    <Controls:BreadcrumbBar Grid.ColumnSpan="2"  x:Name="breadcrumb"
+      Focusable="True" Path="Computer\C:\"
+      >
+      <Controls:BreadcrumbBar.Buttons>
+        <Button x:Name="btnBreadAnimate" >Animate</Button>
+        <Button x:Name="btnBreadBreadcrump" >Breadcrumb</Button>
+      </Controls:BreadcrumbBar.Buttons>
+      <Controls:BreadcrumbBar.DropDownItems>
+        <TextBlock Text="C:\Windows"/>
+        <TextBlock Text="C:\Windows\System32"/>
+        <TextBlock Text="C:\Users"/>
+      </Controls:BreadcrumbBar.DropDownItems>
+
+      
+      <Controls:BreadcrumbItem Header="Desktop">
+        <Controls:BreadcrumbItem.Items>
+          <Controls:BreadcrumbItem Header="Computer"/>
+          <Controls:BreadcrumbItem Header="Network"/>
+          <Controls:BreadcrumbItem Header="Control Panel"/>
+          <Controls:BreadcrumbItem Header="Recylce bin" />
+        </Controls:BreadcrumbItem.Items>
+      </Controls:BreadcrumbItem>
+    </Controls:BreadcrumbBar>
+
+    <Controls:ExplorerBar Grid.Row="1" Grid.Column="0" x:Name="explorerBar"
+                                >
+      <Controls:ExplorerBar.Items>
+        <Controls:OdcExpander Classes="ExplorerBar" Header="System Tasks"
+                            Image="/Assets/AlignTableCellMiddleCenterHS.png"
+                          x:Name="expander1" IsExpanded="True"
+                                >
+          <StackPanel>
+            <TextBlock Text="View system information" Margin="0,0,0,4" x:Name="text1" />
+            <TextBlock Text="Add or remove programs" Margin="0,4,0,4" x:Name="text2" />
+            <TextBlock Text="Change Settings" Margin="0,4,0,4" x:Name="text3"/>
+            <Separator/>
+            <TextBlock Text="{Binding Path, ElementName=bar}" Margin="0,4,0,0"/>
+          </StackPanel>
+
+
+        </Controls:OdcExpander>
+
+
+      </Controls:ExplorerBar.Items>
+
+
+
+    </Controls:ExplorerBar>
+
+    <StackPanel Grid.Row="1" Grid.Column="1" >
+      <Controls:OdcExpander Header="My Expander" >
+        <StackPanel>
+          <Button Margin="0,0,0,4">Steel Blue</Button>
+          <Button Margin="0,4,0,0">Gold</Button>
+        </StackPanel>
+      </Controls:OdcExpander>
+      <!--<StackPanel.Background>
+              <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <LinearGradientBrush.GradientStops>
+                  <GradientStop Color="AliceBlue" Offset="0"/>
+                  <GradientStop Color="Orange" Offset="0.5"/>
+                  <GradientStop Color="OrangeRed" Offset="1"/>
+                </LinearGradientBrush.GradientStops>
+              </LinearGradientBrush>
+            </StackPanel.Background>-->
+    </StackPanel>
+  </Grid>
+</UserControl>

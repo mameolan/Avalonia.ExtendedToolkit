@@ -63,4 +63,15 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/TransitioningContentControl.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/MetroHeader.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Underline.xaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/OutlookBar/OutlookBar.xaml" />
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/OutlookBar/OutlookSection.xaml" />
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ExplorerBar/ExplorerBar.xaml" />
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BreadcrumbBar/BreadcrumbBar.xaml" />
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BreadcrumbBar/BreadcrumbButton.xaml" />
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BreadcrumbBar/BreadcrumbItem.xaml" />
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/AeroChrome.xaml"/>
+  
  </Styles>

@@ -1,0 +1,94 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.OutlookBarView">
+  <DockPanel>
+    <Controls:OutlookBar DockPanel.Dock="Left"  Name="outlook1"   Header="OutlookBar"
+                         IsCloseButtonVisible="False"
+                         MaxNumberOfButtons="2"
+                         Width="300"
+                         SelectedSectionIndex="0"
+                         IsButtonSplitterVisible="True" IsOverflowVisible="True"
+                          IsPopupVisible="False" ShowSideButtons="True" ShowButtons="True"
+                         >
+      <Controls:OutlookBar.Items>
+
+        <Controls:OutlookSection Header="Mail" Image="/Assets/Web.png" >
+          <Controls:OdcExpander Header="Number of Buttons"
+                                Margin="0" ShowEllipse="False" IsExpanded="True"
+                >
+            <StackPanel Height="30">
+              <Button Background="Azure" Margin="4">Show More Buttons</Button>
+              <Button Margin="4">Show Fewer Buttons</Button>
+            </StackPanel>
+          </Controls:OdcExpander>
+        </Controls:OutlookSection>
+
+        <Controls:OutlookSection Header="Calendar" Content="Hello World" Image="/Assets/AlignTableCellMiddleCenterHS.png"/>
+
+        <Controls:OutlookSection Header="Contacts" Image="/Assets/Web.png">
+          <Controls:OutlookSection.Content>
+            <StackPanel Focusable="False">
+              <Controls:OdcExpander Header="Lorem Ipsum" Classes="odcHeader">
+                <StackPanel>
+                  <TextBlock Text="Lorem ipsum dolor " />
+                  <TextBlock Text="Sit amet, at urna," />
+                  <TextBlock Text="Sed mauris morbi sem" />
+                  <TextBlock Text="Nec sit. Accumsan" />
+                </StackPanel>
+              </Controls:OdcExpander>
+            </StackPanel>
+          </Controls:OutlookSection.Content>
+        </Controls:OutlookSection>
+
+
+
+      </Controls:OutlookBar.Items>
+      <Controls:OutlookBar.OverflowMenuItems>
+        <MenuItem Header="Hello" />
+        <Separator/>
+        <MenuItem Header="World" />
+      </Controls:OutlookBar.OverflowMenuItems>
+      <Controls:OutlookBar.OptionButtons>
+        <ToggleButton Width="40" Content="One" />
+        <Button Width="100">Two Buttons</Button>
+      </Controls:OutlookBar.OptionButtons>
+
+    </Controls:OutlookBar>
+
+    <Controls:OutlookBar DockPanel.Dock="Right" x:Name="bar2" DockPosition="Right" ShowButtons="False"
+                       IsCloseButtonVisible="True"
+                Width="200"  Margin="0,4,4,4">
+
+
+
+      <Controls:OutlookBar.Items>
+        <Controls:OutlookSection Header="To-Do Bar">
+          <Controls:OutlookSection.Content>
+            <Grid MinHeight="100">
+              <TextBlock Text="This could be the content" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </Grid>
+          </Controls:OutlookSection.Content>
+
+        </Controls:OutlookSection>
+      </Controls:OutlookBar.Items>
+    </Controls:OutlookBar>
+
+    <!--Background="{DynamicResource RibbonWindowBgBrush}"
+      BorderBrush="{DynamicResource RibbonBorderBrush}"
+      TextBlock.Foreground="{DynamicResource WindowForegroundBrush}"-->
+    <Border BorderThickness="1"
+                Margin="2,4,2,4" MaxWidth="200" MinWidth="200">
+      <StackPanel>
+        <TextBlock x:Name="label" Text="Custom Area" TextBlock.FontStyle="Italic" TextBlock.FontSize="16"
+                VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <ToggleButton x:Name="check3">Toggle1</ToggleButton>
+        <ToggleButton IsChecked="{Binding IsChecked, ElementName=check3}">Toggle2</ToggleButton>
+      </StackPanel>
+    </Border>
+
+  </DockPanel>
+</UserControl>

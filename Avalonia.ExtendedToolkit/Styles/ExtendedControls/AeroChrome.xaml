@@ -1,0 +1,71 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit">
+  
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BreadcrumbBar/Brushes.xaml" />
+
+  <Style Selector="Controls|AeroChrome">
+    <Setter Property="MouseOverBackground" Value="{DynamicResource mouseOverBtnBrush}" />
+    <Setter Property="MousePressedBackground" Value="{DynamicResource mousePressedBtnBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource borderBrush}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Margin="{TemplateBinding Padding}">
+            <Border x:Name="mouseOverBtn" Opacity="0" 
+                    Background="{TemplateBinding MouseOverBackground}"
+                    Focusable="False"
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}">
+              <Border x:Name="innerButton" BorderThickness="1" BorderBrush="White" />
+            </Border>
+            <Border x:Name="mouseDownBtn" 
+                    Opacity="0" 
+                    Background="{TemplateBinding MousePressedBackground}"
+                    Focusable="False"
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}">
+              <Border x:Name="innerButton2" 
+                      BorderThickness="1.2,1.2,0,0" 
+                      BorderBrush="{DynamicResource borderShadowBrush}" />
+            </Border>
+            <ContentPresenter 
+                    x:Name="content"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Focusable="False"
+                    Margin="4,2,4,2"
+                    Content="{TemplateBinding Content}"
+                    ContentTemplate="{TemplateBinding ContentTemplate}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+      
+    </Setter>
+    
+  </Style>
+
+  <Style Selector="Controls|AeroChrome[RenderMouseOver=true] /template/ Border#mouseDownBtn">
+    <Style.Animations>
+      <Animation Duration="0:0:0.15" FillMode="Forward">
+        <KeyFrame Cue="100">
+          <Setter Property="Opacity" Value="1"/>
+        </KeyFrame>
+      </Animation>
+      <Animation Duration="0:0:0.15" FillMode="Backward">
+        <KeyFrame Cue="100">
+          <Setter Property="Opacity" Value="0"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|AeroChrome[RenderPressed=true] /template/ Border#mouseDownBtn">
+    <Setter Property="Opacity" Value="1" />
+  </Style>
+
+  <Style Selector="Controls|AeroChrome[RenderPressed=true] /template/ ContentPresenter#content">
+    <Setter Property="Margin" Value="5,3,3,1" />
+  </Style>
+    
+</Styles>

@@ -26,6 +26,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\AlignTableCellMiddleCenterHS.png" />
+    <None Remove="Assets\openfolderHS.png" />
+    <None Remove="Assets\Web.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\AlignTableCellMiddleCenterHS.png" />
     <EmbeddedResource Include="Assets\HamburgerMenu\favorite-black.png" />
     <EmbeddedResource Include="Assets\HamburgerMenu\favorite-white.png" />
     <EmbeddedResource Include="Assets\HamburgerMenu\home-black.png" />
@@ -36,6 +43,8 @@
     <EmbeddedResource Include="Assets\HamburgerMenu\person-white.png" />
     <EmbeddedResource Include="Assets\HamburgerMenu\search-black.png" />
     <EmbeddedResource Include="Assets\HamburgerMenu\search-white.png" />
+    <EmbeddedResource Include="Assets\openfolderHS.png" />
+    <EmbeddedResource Include="Assets\Web.png" />
   </ItemGroup>
 
   <ItemGroup>

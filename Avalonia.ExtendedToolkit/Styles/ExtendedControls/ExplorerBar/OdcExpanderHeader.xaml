@@ -1,0 +1,68 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit">
+  <Style Selector="Controls|OdcExpanderHeader">
+    <Setter Property="CollapseGeometry" Value="M0.5,0.5 L4.0,4.0 7.5,0.5 M0.5,4.5 L4.0,8.0 7.5,4.5" />
+    <Setter Property="CornerRadius" Value="8,8,0,0" />
+    <Setter Property="BorderBrush" Value="{DynamicResource OdcExpanderHeader.Brushes.Border}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Foreground" Value="{DynamicResource OdcExpanderHeader.Brushes.Foreground}" />
+    <Setter Property="Height" Value="24" />
+    <Setter Property="Background" Value="{DynamicResource OdcExpanderHeader.Brushes.Background}" />
+    <Setter Property="CircleButtonStroke" Value="{DynamicResource OdcExpanderHeader.Brushes.Ellipse.Stroke}" />
+    <Setter Property="CircleButtonFill" Value="{DynamicResource OdcExpanderHeader.Brushes.Ellipse.Fill}" />
+    <Setter Property="CircleButtonForeground" Value="{DynamicResource Odc.Brushes.Foreground}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                  CornerRadius="{TemplateBinding CornerRadius}"
+                  BorderThickness="{TemplateBinding BorderThickness}">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+              </Grid.ColumnDefinitions>
+              <StackPanel Margin="6,0,6,0" Orientation="Horizontal" VerticalAlignment="Center">
+                <Image
+                        Source="{TemplateBinding Image}"
+                        VerticalAlignment="Center" Stretch="Fill" MaxWidth="16" MaxHeight="16" />
+                <ContentPresenter Grid.Column="0" Content="{TemplateBinding Content}" x:Name="content"
+                        VerticalAlignment="Center" TextBlock.FontWeight="Bold"
+                                  TextBlock.Foreground="{DynamicResource OdcExpanderHeader.Brushes.TextForeground}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}" Margin="4,0,0,0" />
+              </StackPanel>
+              <Grid Grid.Column="1" Margin="0,0,4,0" x:Name="circleButton" VerticalAlignment="Center">
+                <Ellipse Name="circle" Width="16.5" Height="16.5" 
+                        Stroke="{TemplateBinding CircleButtonStroke}"
+                        StrokeThickness="1.5" IsVisible="True"
+                        Fill="{TemplateBinding CircleButtonFill}">
+                </Ellipse>
+                <Path x:Name="path" StrokeThickness="1.1"
+                        Data="{TemplateBinding CollapseGeometry}" 
+                        Stroke="{TemplateBinding CircleButtonForeground}"
+                        VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None">
+                </Path>
+              </Grid>
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|OdcExpanderHeader[ShowEllipse=false] /template/ Ellipse#circle">
+    <Setter Property="IsVisible" Value="false" />
+  </Style>
+
+  <Style Selector="Controls|OdcExpanderHeader[IsChecked=true][HasExpandGeometry=true] /template/ Path#path">
+    <Setter Property="Data"
+                      Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ExpandGeometry}" />
+  </Style>
+
+  <Style Selector="Controls|OdcExpanderHeader[IsChecked=true] /template/ Path#path">
+    <Setter Property="RenderTransform">
+      <RotateTransform Angle="180" />
+    </Setter>
+  </Style>
+</Styles>
