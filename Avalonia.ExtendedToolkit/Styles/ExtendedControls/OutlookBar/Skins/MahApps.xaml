@@ -1,8 +1,11 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ex="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit"
+        >
   <Styles.Resources>
+    <!--colors will be replaced by the mahapps theme-->
 
-    <SolidColorBrush Color="{StaticResource MahApps.Colors.White}" x:Key="Odc.Brushes.White" />
+    <!--<SolidColorBrush Color="{StaticResource MahApps.Colors.White}" x:Key="Odc.Brushes.White" />
     <SolidColorBrush Color="{StaticResource MahApps.Colors.Black}" x:Key="Odc.Brushes.Border" />
     <SolidColorBrush Color="{StaticResource MahApps.Colors.AccentBase}" x:Key="Odc.Brushes.Image" />
     <SolidColorBrush Color="{StaticResource MahApps.Colors.AccentBase}" x:Key="Odc.Brushes.LightBackground" />
@@ -43,6 +46,6 @@
 
     <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent2}" x:Key="Odc.Brushes.ItemMouseOverBorder" />
 
-    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent3}" x:Key="Odc.Brushes.ItemMouseOverBackground" />
+    <SolidColorBrush Color="{StaticResource MahApps.Colors.Accent3}" x:Key="Odc.Brushes.ItemMouseOverBackground" />-->
   </Styles.Resources>
 </Styles>

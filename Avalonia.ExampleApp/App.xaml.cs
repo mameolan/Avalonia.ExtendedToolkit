@@ -24,11 +24,6 @@ namespace Avalonia.ExampleApp
         {
             var vm = new MainWindowViewModel();
 
-            //MainWindowView mainWindowView = new MainWindowView();
-            //mainWindowView.DataContext = vm;
-            //MetroWindow mainWindow = new MetroWindow();
-            //mainWindow.Content = mainWindowView;
-
             MainWindow mainWindow = new MainWindow();
             mainWindow.DataContext = vm;
 
@@ -37,8 +32,9 @@ namespace Avalonia.ExampleApp
             //else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
             //    singleViewLifetime.MainView = new MainView();
 
+            SkinManager.Instance.EnableSkin(mainWindow);
             ThemeManager.Instance.EnableTheme(mainWindow);
-
+            
 
             base.OnFrameworkInitializationCompleted();
         }

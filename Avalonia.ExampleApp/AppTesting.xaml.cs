@@ -32,7 +32,9 @@ namespace Avalonia.ExampleApp
             //else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
             //    singleViewLifetime.MainView = new MainView();
 
+
             ThemeManager.Instance.EnableTheme(mainWindow);
+            SkinManager.Instance.EnableSkin(mainWindow);
             base.OnFrameworkInitializationCompleted();
         }
 

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceKeys>
+  <ResourceKey ColorKey="MahApps.Colors.White"       Key="Odc.Brushes.White" />
+  <ResourceKey ColorKey="MahApps.Colors.Black"       Key="Odc.Brushes.Border" />
+  <ResourceKey ColorKey="MahApps.Colors.AccentBase" Key="Odc.Brushes.Image" />
+  <ResourceKey ColorKey="MahApps.Colors.AccentBase" Key="Odc.Brushes.LightBackground" />
+  <ResourceKey ColorKey="MahApps.Colors.IdealForeground" Key="Odc.Brushes.Foreground" />
+  <ResourceKey ColorKey="MahApps.Colors.Black" Key="Odc.Brushes.Path.Stroke" />
+  <ResourceKey ColorKey="MahApps.Colors.White" Key="Odc.Brushes.Path.Fill" />
+
+  <ResourceKey ColorKey="MahApps.Colors.Accent2" Key="Odc.Brushes.HighlightButton" />
+
+  <ResourceKey ColorKey="MahApps.Colors.Accent2" Key="OdcExpander.Brushes.Background" />
+  <ResourceKey ColorKey="MahApps.Colors.White" Key="OdcExpander.Brushes.Border" />
+  <ResourceKey ColorKey="MahApps.Colors.Accent3" Key="OdcExpander.Brushes.HeaderBackground" />
+  <ResourceKey ColorKey="MahApps.Colors.Accent2" Key="OdcExpander.Brushes.MouseOverHeaderBackground" />
+  <ResourceKey ColorKey="MahApps.Colors.Accent3" Key="OdcExpander.Brushes.MouseOverHeaderForeground" />
+
+  <ResourceKey ColorKey="MahApps.Colors.White" Key="OdcExpanderHeader.Brushes.Border" />
+  <ResourceKey ColorKey="MahApps.Colors.White" Key="OdcExpanderHeader.Brushes.TextForeground" />
+  <ResourceKey ColorKey="MahApps.Colors.White" Key="OdcExpanderHeader.Brushes.Foreground" />
+  <ResourceKey ColorKey="MahApps.Colors.Accent2" Key="OdcExpanderHeader.Brushes.Background" />
+  <ResourceKey ColorKey="MahApps.Colors.Accent2" Key="OdcExpanderHeader.Brushes.Ellipse.Stroke" />
+  <ResourceKey ColorKey="MahApps.Colors.Accent2" Key="OdcExpanderHeader.Brushes.Ellipse.Fill" />
+
+  <ResourceKey ColorKey="MahApps.Colors.Accent2" Key="Odc.Brushes.HighlightedExpanderHeader" />
+
+  <ResourceKey ColorKey="MahApps.Colors.Accent2" Key="Odc.Brushes.OutlookbarHeader" />
+
+  <ResourceKey ColorKey="MahApps.Colors.Accent2" Key="Odc.Brushes.SectionButtonGradient" />
+
+  <ResourceKey ColorKey="MahApps.Colors.Accent3" Key="Odc.Brushes.SelectedButtonGradient" />
+
+  <ResourceKey ColorKey="MahApps.Colors.Accent3" Key="Odc.Brushes.SelectedButton" />
+
+  <ResourceKey ColorKey="MahApps.Colors.Accent2" Key="Odc.Brushes.HighlightButtonGradient" />
+
+  <ResourceKey ColorKey="MahApps.Colors.Accent2" Key="Odc.Brushes.ItemSelectedBackground" />
+
+  <ResourceKey ColorKey="MahApps.Colors.Accent2" Key="Odc.Brushes.ItemSelectedBorder" />
+
+  <ResourceKey ColorKey="MahApps.Colors.Accent2" Key="Odc.Brushes.ItemMouseOverBorder" />
+
+  <ResourceKey ColorKey="MahApps.Colors.Accent3" Key="Odc.Brushes.ItemMouseOverBackground" />
+</ResourceKeys>

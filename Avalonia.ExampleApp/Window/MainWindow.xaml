@@ -89,15 +89,6 @@
                         <Setter Property="Content" Value="{Binding .}"/>
                     </Style>
                 </ComboBox.Styles>
-                <i:Interaction.Behaviors>
-                    <!--<behaviors:CommandSelectedChangedBehavior Command="{Binding ChangeBaseColorsCommand}"
-                                                    />-->
-                    <!--<ia:EventTriggerBehavior EventName="SelectionChanged" SourceObject="{Binding cmbThemes}">
-            <ia:InvokeCommandAction Command="{Binding ElementName=mainWindow, Path=DataContext.ChangeBaseColorsCommand}"
-                                    CommandParameter="{Binding ElementName=cmbThemes, Path=SelectedItem}"
-                                      />
-          </ia:EventTriggerBehavior>-->
-                </i:Interaction.Behaviors>
             </ComboBox>
 
             <TextBlock Margin="10,0,0,0" Text="Color Schemes" Foreground="{DynamicResource MahApps.Brushes.Black}"/>

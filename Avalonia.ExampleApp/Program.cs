@@ -10,15 +10,22 @@ namespace Avalonia.ExampleApp
 {
     class Program
     {
+        private static string[] currentArgs = null; 
+
         // Initialization code. Don't use any Avalonia, third-party APIs or any
         // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
         // yet and stuff might break.
         public static int Main(string[] args)
         {
+            currentArgs = args;
+            AppBuilder appBuilder = BuildAvaloniaApp();
+            return appBuilder.StartWithClassicDesktopLifetime(args);
+        }
 
+        public static AppBuilder BuildAvaloniaApp()
+        {
             AppBuilder appBuilder = null;
-
-            if(args.Contains("testing"))
+            if (currentArgs?.Contains("testing")==true)
             {
                 appBuilder = AppBuilder.Configure<AppTesting>();
             }
@@ -34,9 +41,9 @@ namespace Avalonia.ExampleApp
                 .LogToDebug();
 
 
-            return appBuilder.StartWithClassicDesktopLifetime(args);
-
+            return appBuilder;
         }
-        
+
+
     }
 }

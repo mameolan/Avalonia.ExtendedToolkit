@@ -27,9 +27,11 @@
           </Controls:OdcExpander>
         </Controls:OutlookSection>
 
-        <Controls:OutlookSection Header="Calendar" Content="Hello World" Image="/Assets/AlignTableCellMiddleCenterHS.png"/>
+        <!--Image="/Assets/AlignTableCellMiddleCenterHS.png"-->
+        <Controls:OutlookSection Header="Calendar" Content="Hello World" />
 
-        <Controls:OutlookSection Header="Contacts" Image="/Assets/Web.png">
+        <!--Image="/Assets/Web.png"-->
+        <Controls:OutlookSection Header="Contacts" >
           <Controls:OutlookSection.Content>
             <StackPanel Focusable="False">
               <Controls:OdcExpander Header="Lorem Ipsum" Classes="odcHeader">

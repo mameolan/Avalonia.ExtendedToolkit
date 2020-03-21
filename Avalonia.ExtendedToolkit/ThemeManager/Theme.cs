@@ -38,21 +38,21 @@ namespace Avalonia.ExtendedToolkit
         /// <summary>
         /// Initializes a new instance.
         /// </summary>
-        /// <param name="resourceDictionary">The ResourceDictionary of the theme.</param>
-        public Theme(IStyle resourceDictionary)
+        /// <param name="style">The ResourceDictionary of the theme.</param>
+        public Theme(IStyle style)
         {
-            this.Resources = resourceDictionary ?? throw new ArgumentNullException(nameof(resourceDictionary));
+            this.ThemeStyle = style ?? throw new ArgumentNullException(nameof(style));
 
             object result;
-            resourceDictionary.TryGetResource(ThemeNameKey, out result);
+            style.TryGetResource(ThemeNameKey, out result);
             this.Name = (string)result;
-            resourceDictionary.TryGetResource(ThemeDisplayNameKey, out result);
+            style.TryGetResource(ThemeDisplayNameKey, out result);
             this.DisplayName = (string)result;
-            resourceDictionary.TryGetResource(ThemeBaseColorSchemeKey, out result);
+            style.TryGetResource(ThemeBaseColorSchemeKey, out result);
             this.BaseColorScheme = (string)result;
-            resourceDictionary.TryGetResource(ThemeColorSchemeKey, out result);
+            style.TryGetResource(ThemeColorSchemeKey, out result);
             this.ColorScheme = (string)result;
-            resourceDictionary.TryGetResource(ThemeShowcaseBrushKey, out result);
+            style.TryGetResource(ThemeShowcaseBrushKey, out result);
             this.ShowcaseBrush = (SolidColorBrush)result;
         }
 
@@ -65,9 +65,9 @@ namespace Avalonia.ExtendedToolkit
         }
 
         /// <summary>
-        /// The ResourceDictionary that represents this application theme.
+        /// The Style that represents this application theme.
         /// </summary>
-        public IStyle Resources { get; }
+        public IStyle ThemeStyle { get; }
 
         /// <summary>
         /// Gets the name of the theme.

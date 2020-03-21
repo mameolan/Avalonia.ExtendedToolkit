@@ -232,12 +232,12 @@ namespace Avalonia.ExtendedToolkit
                       var result = window.CheckAccess();
                       if (index == -1)
                       {
-                          window.Styles.Add(x.Resources);
+                          window.Styles.Add(x.ThemeStyle);
                       }
                       else
                       {
                           window.Styles.Remove(item);
-                          window.Styles.Add(x.Resources);
+                          window.Styles.Add(x.ThemeStyle);
                       }
                   });
 
@@ -279,16 +279,6 @@ namespace Avalonia.ExtendedToolkit
 
             try
             {
-                //var assets= AvaloniaLocator.Current.GetService<IAssetLoader>();
-                //var assembly = typeof(ThemeManager).Assembly;
-                ////assets.SetDefaultAssembly(assembly);
-                //////resm:Avalonia.Visuals.UnitTests.Assets.MyFont-*.ttf?assembly=Avalonia.Visuals.UnitTests#MyFont
-                //var baseUri = new Uri("resm:Styles?assembly=Avalonia.ExtendedToolkit");
-                //var folderUri = new Uri("avares://Avalonia.ExtendedToolkit/Styles/Themes/*.xaml", UriKind.RelativeOrAbsolute);
-                //var test= assets.GetAssets(folderUri, baseUri);
-                //var coumt = test.ToList();
-                //var test= assets.Open(folderUri);
-
                 var assembly = typeof(ThemeManager).Assembly;
                 string resourceName = assembly.GetManifestResourceNames().FirstOrDefault(x => x.Contains(GeneratedParameterFile));
                 GeneratorParameters generatorParameters = null;
@@ -343,7 +333,7 @@ namespace Avalonia.ExtendedToolkit
             int index = styles.GetThemeStyleIndex(item);
             if(index==-1)
             {
-                styles.Add(theme.Resources);
+                styles.Add(theme.ThemeStyle);
             }
             else
             {
@@ -455,7 +445,7 @@ namespace Avalonia.ExtendedToolkit
 
             if (item != null)
             {
-                return themes.FirstOrDefault(x => x.Resources == item);
+                return themes.FirstOrDefault(x => x.ThemeStyle == item);
             }
 
             return null;
@@ -467,7 +457,7 @@ namespace Avalonia.ExtendedToolkit
 
             if (item != null)
             {
-                return themes.FirstOrDefault(x => x.Resources == item);
+                return themes.FirstOrDefault(x => x.ThemeStyle == item);
             }
 
             return null;

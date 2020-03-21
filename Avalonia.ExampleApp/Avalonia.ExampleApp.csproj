@@ -25,12 +25,7 @@
     <AvaloniaResource Include="Assets\*" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Assets\AlignTableCellMiddleCenterHS.png" />
-    <None Remove="Assets\openfolderHS.png" />
-    <None Remove="Assets\Web.png" />
-  </ItemGroup>
-
+  
   <ItemGroup>
     <EmbeddedResource Include="Assets\AlignTableCellMiddleCenterHS.png" />
     <EmbeddedResource Include="Assets\HamburgerMenu\favorite-black.png" />

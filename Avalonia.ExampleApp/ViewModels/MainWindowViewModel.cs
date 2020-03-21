@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
 using System.Windows.Input;
 
@@ -61,8 +62,6 @@ namespace Avalonia.ExampleApp.ViewModels
         public ICommand HamburgerMenuListsCommand { get; }
 
         public ICommand HamburgerMenuProfileCommand { get; }
-
-
 
         private bool myIsBusy;
 
@@ -157,6 +156,40 @@ namespace Avalonia.ExampleApp.ViewModels
             }
         }
 
+        private Skin _selectedSkin;
+
+        public Skin SelectedSkin
+        {
+            get { return _selectedSkin; }
+            set
+            {
+
+                this.RaiseAndSetIfChanged(ref _selectedSkin, value);
+            }
+        }
+
+        private ReadOnlyObservableCollection<Skin> _skins;
+
+        public ReadOnlyObservableCollection<Skin> Skins
+        {
+            get { return _skins; }
+            private set
+            {
+                this.RaiseAndSetIfChanged(ref _skins, value);
+            }
+        }
+
+        private FolderItem _folder;
+
+        public FolderItem Folder
+        {
+            get { return _folder; }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _folder, value);
+            }
+        }
+
 
 
 
@@ -184,6 +217,19 @@ namespace Avalonia.ExampleApp.ViewModels
                 ThemeManager.Instance.SelectedBaseColor = ThemeManager.Instance.BaseColors.FirstOrDefault();
             }
 
+            Skins = SkinManager.Instance.Skins;
+
+            if (SkinManager.Instance.SelectedSkin == null)
+            {
+                SkinManager.Instance.SelectedSkin = SkinManager.Instance.Skins.FirstOrDefault();
+            }
+
+            SelectedSkin = SkinManager.Instance.SelectedSkin;
+
+            this.WhenAnyValue(x => x.SelectedSkin).Where(x=> x!=null).Subscribe(x => 
+            {
+                SkinManager.Instance.SelectedSkin = x;
+            });
 
             ChangeColorSchemeCommand = ReactiveCommand.Create<object>(x => ExecuteChangeColorSchemeCommand(x), outputScheduler: RxApp.MainThreadScheduler);
 
@@ -210,6 +256,8 @@ namespace Avalonia.ExampleApp.ViewModels
             HamburgerMenuListsCommand = ReactiveCommand.Create<object>(x => ExecuteHamburgerMenuListsCommand(x), outputScheduler: RxApp.MainThreadScheduler);
             HamburgerMenuProfileCommand = ReactiveCommand.Create<object>(x => ExecuteHamburgerMenuProfileCommand(x), outputScheduler: RxApp.MainThreadScheduler);
         }
+
+       
 
         private void ExecuteHamburgerMenuProfileCommand(object x)
         {
