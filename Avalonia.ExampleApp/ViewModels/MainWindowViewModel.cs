@@ -168,7 +168,8 @@ namespace Avalonia.ExampleApp.ViewModels
             get { return mySelectedTheme; }
             set
             {
-                this.RaiseAndSetIfChanged(ref mySelectedTheme, value); ;
+                this.RaiseAndSetIfChanged(ref mySelectedTheme, value);
+                ;
             }
         }
 
@@ -222,16 +223,10 @@ namespace Avalonia.ExampleApp.ViewModels
             ColorSchemes = ThemeManager.Instance.ColorSchemes;
             BaseColors = ThemeManager.Instance.BaseColors;
 
-            ThemeManager.Instance.IsThemeChanged+=(o,e)=>
-                {
-
-                    if (BrushResources.Count() == 0)
-                    {
-                        BrushResources = FindBrushResources();
-                    }
-
-
-                };
+            ThemeManager.Instance.IsThemeChanged += (o, e) =>
+                  {
+                      BrushResources = FindBrushResources();
+                  };
 
 
             if (ThemeManager.Instance.SelectedTheme == null)
@@ -403,7 +398,7 @@ namespace Avalonia.ExampleApp.ViewModels
 
                 var resources = style.Resources.Keys.Cast<object>()
                                      .Where(key => style.Resources[key] is SolidColorBrush)
-                                     .Select(key=> new BrushResource { Key=key.ToString(), Brush= style.Resources[key]  as SolidColorBrush})
+                                     .Select(key => new BrushResource { Key = key.ToString(), Brush = style.Resources[key] as SolidColorBrush })
                                      .OrderBy(s => s.Key)
                                      .ToList();
 
