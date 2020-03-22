@@ -10,7 +10,7 @@ namespace Avalonia.ExampleApp
 {
     class Program
     {
-        private static string[] currentArgs = null; 
+        private static string[] currentArgs = null;
 
         // Initialization code. Don't use any Avalonia, third-party APIs or any
         // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
@@ -25,7 +25,7 @@ namespace Avalonia.ExampleApp
         public static AppBuilder BuildAvaloniaApp()
         {
             AppBuilder appBuilder = null;
-            if (currentArgs?.Contains("testing")==true)
+            if (currentArgs?.Contains("testing") == true)
             {
                 appBuilder = AppBuilder.Configure<AppTesting>();
             }

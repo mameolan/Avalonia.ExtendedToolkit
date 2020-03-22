@@ -34,9 +34,9 @@
               </StackPanel>
               <Grid Grid.Column="1" Margin="0,0,4,0" x:Name="circleButton" VerticalAlignment="Center">
                 <Ellipse Name="circle" Width="16.5" Height="16.5" 
-                        Stroke="{TemplateBinding CircleButtonStroke}"
+                        Stroke="Transparent"
                         StrokeThickness="1.5" IsVisible="True"
-                        Fill="{TemplateBinding CircleButtonFill}">
+                        >
                 </Ellipse>
                 <Path x:Name="path" StrokeThickness="1.1"
                         Data="{TemplateBinding CollapseGeometry}" 
@@ -55,6 +55,11 @@
     <Setter Property="IsVisible" Value="false" />
   </Style>
 
+  <Style Selector="Controls|OdcExpanderHeader:pointerover /template/ Ellipse#circle">
+    <Setter Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=CircleButtonFill}" />
+  </Style>
+  
+  
   <Style Selector="Controls|OdcExpanderHeader[IsChecked=true][HasExpandGeometry=true] /template/ Path#path">
     <Setter Property="Data"
                       Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ExpandGeometry}" />
