@@ -16,6 +16,8 @@ using System.Xml;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/jogibear9988/OdysseyWPF.git
+
     [DebuggerDisplay("Header: {Header}")]       
     public class BreadcrumbItem : SelectingItemsControl 
     {

@@ -19,6 +19,8 @@ using System.Windows.Input;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/jogibear9988/OdysseyWPF.git
+
     public partial class OutlookBar : HeaderedItemsControl
     {
         public Type StyleKey => typeof(OutlookBar);

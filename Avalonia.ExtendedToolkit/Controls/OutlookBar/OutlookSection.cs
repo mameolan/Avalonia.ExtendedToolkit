@@ -6,6 +6,8 @@ using System;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/jogibear9988/OdysseyWPF.git
+
     public class OutlookSection : HeaderedContentControl
     {
         public Type StyleKey => typeof(OutlookSection);
