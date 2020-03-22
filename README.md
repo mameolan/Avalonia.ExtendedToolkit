@@ -7,7 +7,17 @@
 
 Avalonia.ExtendedTool wants to port some controls from the WPF to Avalonia.
 
-Most styles where taken from  [MahApps](https://github.com/MahApps/MahApps.Metro) library. The styles are incomplete or have to be fixed.
+Most styles / ideas where taken from:
+
+- [MahApps Toolkit](https://github.com/MahApps/MahApps.Metro) 
+- [Extended WPF Toolkit](https://github.com/xceedsoftware/wpftoolkit)
+- [WPF Toolkit (Microsoft)](https://github.com/dotnet/wpf)
+
+etc.
+
+
+
+The styles are incomplete or have to be fixed.
 
 Please have a look at the example app how to use the controls.
 
@@ -43,12 +53,16 @@ Please have a look at the example app how to use the controls.
 
 
 1. Progress Ring
-2. Flyout
-3. Sliders with Markers (vertical only not working)
-4. SplitView
-5. TreeGrid has to many subitems.
 
-### Style rework
+2. Flyout
+
+3. SplitView
+
+4. TreeGrid has to many subitems.
+
+   
+
+### Rework to do
 
 ------
 
@@ -63,6 +77,8 @@ Please have a look at the example app how to use the controls.
 3. Datagrid style is not correct.
 
 4. Some Controls have properties which cannot be used in Avalonia i.e. DropDownButton.
+
+5. BreadcrumbBar has strange behaviours with the context menu.
 
    
 
@@ -105,8 +121,6 @@ Mahapp Related:
 Future Controls (if motivated):
 
 1. DataGrid with "group by"-Control
-
-2. Accordion
 
 3. AutoSelect TextBlox
 
