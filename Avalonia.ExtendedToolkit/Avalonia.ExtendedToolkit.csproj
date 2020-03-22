@@ -42,11 +42,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Behaviours\" />
+    <ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
+    <Folder Include="Behaviours\" />
   </ItemGroup>
 
   <Target Name="GenerateXamlFilesInner">

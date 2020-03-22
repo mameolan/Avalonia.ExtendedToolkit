@@ -63,6 +63,9 @@
           <Views:ExplorerBarView/>
         </TabItem>
 
+        <TabItem Header="Colors">
+          <Views:ColorExample/>
+        </TabItem>
       </TabControl>
       
     </Grid>

@@ -35,6 +35,7 @@ namespace Avalonia.ExampleApp
 
             ThemeManager.Instance.EnableTheme(mainWindow);
             SkinManager.Instance.EnableSkin(mainWindow);
+            
             base.OnFrameworkInitializationCompleted();
         }
 

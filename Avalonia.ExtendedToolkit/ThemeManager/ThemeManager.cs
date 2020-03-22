@@ -439,7 +439,7 @@ namespace Avalonia.ExtendedToolkit
             return Themes.FirstOrDefault(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
-        internal Theme DetectTheme(Window window)
+        public Theme DetectTheme(Window window)
         {
             var item = window.Styles.GetThemeStyle();
 

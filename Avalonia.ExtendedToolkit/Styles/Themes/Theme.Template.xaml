@@ -111,44 +111,44 @@
     <!--Skin Color start-->
     <SolidColorBrush Color="{{MahApps.Colors.White}}" x:Key="Odc.Brushes.White" />
     <SolidColorBrush Color="{{MahApps.Colors.Black}}" x:Key="Odc.Brushes.Border" />
-    <SolidColorBrush Color="{{MahApps.Colors.AccentBase}}" x:Key="Odc.Brushes.Image" />
-    <SolidColorBrush Color="{{MahApps.Colors.AccentBase}}" x:Key="Odc.Brushes.LightBackground" />
-    <SolidColorBrush Color="{{MahApps.Colors.IdealForeground}}" x:Key="Odc.Brushes.Foreground" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="Odc.Brushes.Image" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="Odc.Brushes.LightBackground" />
+    <SolidColorBrush Color="{{MahApps.Colors.Black}}" x:Key="Odc.Brushes.Foreground" />
     <SolidColorBrush Color="{{MahApps.Colors.Black}}" x:Key="Odc.Brushes.Path.Stroke" />
-    <SolidColorBrush Color="{{MahApps.Colors.White}}" x:Key="Odc.Brushes.Path.Fill" />
+    <SolidColorBrush Color="{{MahApps.Colors.Black}}" x:Key="Odc.Brushes.Path.Fill" />
 
-    <SolidColorBrush Color="{{MahApps.Colors.Accent2}}" x:Key="Odc.Brushes.HighlightButton" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="Odc.Brushes.HighlightButton" />
 
-    <SolidColorBrush Color="{{MahApps.Colors.Accent2}}" x:Key="OdcExpander.Brushes.Background" />
-    <SolidColorBrush Color="{{MahApps.Colors.White}}" x:Key="OdcExpander.Brushes.Border" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="OdcExpander.Brushes.Background" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="OdcExpander.Brushes.Border" />
     <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="OdcExpander.Brushes.HeaderBackground" />
-    <SolidColorBrush Color="{{MahApps.Colors.Accent2}}" x:Key="OdcExpander.Brushes.MouseOverHeaderBackground" />
-    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="OdcExpander.Brushes.MouseOverHeaderForeground" />
+    <SolidColorBrush Color="{{MahApps.Colors.AccentBase}}" x:Key="OdcExpander.Brushes.MouseOverHeaderBackground" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent2}}" x:Key="OdcExpander.Brushes.MouseOverHeaderForeground" />
 
     <SolidColorBrush Color="{{MahApps.Colors.White}}" x:Key="OdcExpanderHeader.Brushes.Border" />
     <SolidColorBrush Color="{{MahApps.Colors.White}}" x:Key="OdcExpanderHeader.Brushes.TextForeground" />
-    <SolidColorBrush Color="{{MahApps.Colors.White}}" x:Key="OdcExpanderHeader.Brushes.Foreground" />
-    <SolidColorBrush Color="{{MahApps.Colors.Accent2}}" x:Key="OdcExpanderHeader.Brushes.Background" />
-    <SolidColorBrush Color="{{MahApps.Colors.Accent2}}" x:Key="OdcExpanderHeader.Brushes.Ellipse.Stroke" />
-    <SolidColorBrush Color="{{MahApps.Colors.Accent2}}" x:Key="OdcExpanderHeader.Brushes.Ellipse.Fill" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="OdcExpanderHeader.Brushes.Foreground" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="OdcExpanderHeader.Brushes.Background" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="OdcExpanderHeader.Brushes.Ellipse.Stroke" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="OdcExpanderHeader.Brushes.Ellipse.Fill" />
 
-    <SolidColorBrush Color="{{MahApps.Colors.Accent2}}" x:Key="Odc.Brushes.HighlightedExpanderHeader" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="Odc.Brushes.HighlightedExpanderHeader" />
 
-    <SolidColorBrush Color="{{MahApps.Colors.Accent2}}" x:Key="Odc.Brushes.OutlookbarHeader" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="Odc.Brushes.OutlookbarHeader" />
 
-    <SolidColorBrush Color="{{MahApps.Colors.Accent2}}" x:Key="Odc.Brushes.SectionButtonGradient" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="Odc.Brushes.SectionButtonGradient" />
 
     <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="Odc.Brushes.SelectedButtonGradient" />
 
     <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="Odc.Brushes.SelectedButton" />
 
-    <SolidColorBrush Color="{{MahApps.Colors.Accent2}}" x:Key="Odc.Brushes.HighlightButtonGradient" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="Odc.Brushes.HighlightButtonGradient" />
 
-    <SolidColorBrush Color="{{MahApps.Colors.Accent2}}" x:Key="Odc.Brushes.ItemSelectedBackground" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="Odc.Brushes.ItemSelectedBackground" />
 
-    <SolidColorBrush Color="{{MahApps.Colors.Accent2}}" x:Key="Odc.Brushes.ItemSelectedBorder" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="Odc.Brushes.ItemSelectedBorder" />
 
-    <SolidColorBrush Color="{{MahApps.Colors.Accent2}}" x:Key="Odc.Brushes.ItemMouseOverBorder" />
+    <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="Odc.Brushes.ItemMouseOverBorder" />
 
     <SolidColorBrush Color="{{MahApps.Colors.Accent3}}" x:Key="Odc.Brushes.ItemMouseOverBackground" />
     <!--Skin Color end-->

@@ -30,7 +30,7 @@
     </Grid.ColumnDefinitions>
 
     <Controls:BreadcrumbBar Grid.ColumnSpan="2"  x:Name="breadcrumb"
-      Focusable="True" Path="Computer\C:\"
+      Focusable="True" Path="Computer\C:\" Margin="5"
       >
       <Controls:BreadcrumbBar.Buttons>
         <Button x:Name="btnBreadAnimate" >Animate</Button>
@@ -61,11 +61,11 @@
                           x:Name="expander1" IsExpanded="True"
                                 >
           <StackPanel>
-            <TextBlock Text="View system information" Margin="0,0,0,4" x:Name="text1" />
-            <TextBlock Text="Add or remove programs" Margin="0,4,0,4" x:Name="text2" />
-            <TextBlock Text="Change Settings" Margin="0,4,0,4" x:Name="text3"/>
+            <TextBlock Foreground="Black" Text="View system information" Margin="0,0,0,4" x:Name="text1" />
+            <TextBlock Foreground="Black" Text="Add or remove programs" Margin="0,4,0,4" x:Name="text2" />
+            <TextBlock Foreground="Black" Text="Change Settings" Margin="0,4,0,4" x:Name="text3"/>
             <Separator/>
-            <TextBlock Text="{Binding Path, ElementName=bar}" Margin="0,4,0,0"/>
+            <TextBlock Foreground="Black" Text="{Binding Path, ElementName=bar}" Margin="0,4,0,0"/>
           </StackPanel>
 
 

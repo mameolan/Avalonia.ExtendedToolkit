@@ -193,7 +193,7 @@ namespace Avalonia.ExtendedToolkit
                 skinsInternal.Add(new Skin(item, skinStyle));
             }
 
-            SelectedSkin = skinsInternal.FirstOrDefault();
+            SelectedSkin = skinsInternal.FirstOrDefault(x=> x.SkinType== SkinType.MahApps);
         }
     }
 }

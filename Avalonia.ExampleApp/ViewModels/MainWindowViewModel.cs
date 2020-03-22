@@ -1,8 +1,12 @@
-﻿using Avalonia.Controls.ApplicationLifetimes;
+﻿using Avalonia.Collections;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.ExampleApp.Model;
 using Avalonia.ExampleApp.Views;
 using Avalonia.ExtendedToolkit;
 using Avalonia.ExtendedToolkit.Controls;
+using Avalonia.Markup.Xaml.Styling;
+using Avalonia.Media;
+using Avalonia.Styling;
 using Avalonia.Threading;
 using ReactiveUI;
 using System;
@@ -68,7 +72,7 @@ namespace Avalonia.ExampleApp.ViewModels
         public bool IsBusy
         {
             get { return myIsBusy; }
-            set { this.RaiseAndSetIfChanged(ref myIsBusy , value); }
+            set { this.RaiseAndSetIfChanged(ref myIsBusy, value); }
         }
 
         private bool myIsToggleSwitchVisible;
@@ -79,6 +83,18 @@ namespace Avalonia.ExampleApp.ViewModels
             set { this.RaiseAndSetIfChanged(ref myIsToggleSwitchVisible, value); }
         }
 
+        private AvaloniaList<BrushResource> _brushResources = new AvaloniaList<BrushResource>();
+        public AvaloniaList<BrushResource> BrushResources
+        {
+            get
+            {
+                return _brushResources;
+            }
+            private set
+            {
+                this.RaiseAndSetIfChanged(ref _brushResources, value);
+            }
+        }
 
 
 
@@ -206,6 +222,17 @@ namespace Avalonia.ExampleApp.ViewModels
             ColorSchemes = ThemeManager.Instance.ColorSchemes;
             BaseColors = ThemeManager.Instance.BaseColors;
 
+            ThemeManager.Instance.IsThemeChanged+=(o,e)=>
+                {
+
+                    if (BrushResources.Count() == 0)
+                    {
+                        BrushResources = FindBrushResources();
+                    }
+
+
+                };
+
 
             if (ThemeManager.Instance.SelectedTheme == null)
             {
@@ -226,10 +253,10 @@ namespace Avalonia.ExampleApp.ViewModels
 
             SelectedSkin = SkinManager.Instance.SelectedSkin;
 
-            this.WhenAnyValue(x => x.SelectedSkin).Where(x=> x!=null).Subscribe(x => 
-            {
-                SkinManager.Instance.SelectedSkin = x;
-            });
+            this.WhenAnyValue(x => x.SelectedSkin).Where(x => x != null).Subscribe(x =>
+               {
+                   SkinManager.Instance.SelectedSkin = x;
+               });
 
             ChangeColorSchemeCommand = ReactiveCommand.Create<object>(x => ExecuteChangeColorSchemeCommand(x), outputScheduler: RxApp.MainThreadScheduler);
 
@@ -255,9 +282,13 @@ namespace Avalonia.ExampleApp.ViewModels
             HamburgerMenuLikesCommand = ReactiveCommand.Create<object>(x => ExecuteHamburgerMenuLikesCommand(x), outputScheduler: RxApp.MainThreadScheduler);
             HamburgerMenuListsCommand = ReactiveCommand.Create<object>(x => ExecuteHamburgerMenuListsCommand(x), outputScheduler: RxApp.MainThreadScheduler);
             HamburgerMenuProfileCommand = ReactiveCommand.Create<object>(x => ExecuteHamburgerMenuProfileCommand(x), outputScheduler: RxApp.MainThreadScheduler);
+
+
+
+
         }
 
-       
+
 
         private void ExecuteHamburgerMenuProfileCommand(object x)
         {
@@ -289,7 +320,7 @@ namespace Avalonia.ExampleApp.ViewModels
             MetroWindow metroWindow = new MetroWindow();
             ThemeManager.Instance.EnableTheme(metroWindow);
             metroWindow.Content = new WizardWithCloseView();
-            
+
 
             metroWindow.ShowDialog((Application.Current.
                 ApplicationLifetime as IClassicDesktopStyleApplicationLifetime).MainWindow).ConfigureAwait(false);
@@ -336,6 +367,12 @@ namespace Avalonia.ExampleApp.ViewModels
                     break;
             }
 
+            if (BrushResources.Count == 0)
+            {
+                BrushResources = FindBrushResources();
+            }
+
+
         }
 
         private void ExecuteChangeBaseColorsCommand(object item)
@@ -350,6 +387,30 @@ namespace Avalonia.ExampleApp.ViewModels
             ColorScheme colorScheme = item as ColorScheme;
             ThemeManager.Instance.ChangeColorScheme(colorScheme);
             SelectedColorScheme = colorScheme;
+        }
+
+        private AvaloniaList<BrushResource> FindBrushResources()
+        {
+            IClassicDesktopStyleApplicationLifetime desktopLifetime =
+                Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime;
+
+            if (desktopLifetime != null
+                && desktopLifetime.MainWindow != null
+                )
+            {
+                var theme = ThemeManager.Instance.DetectTheme(desktopLifetime.MainWindow);
+                Style style = ((theme.ThemeStyle as StyleInclude).Loaded as Style);
+
+                var resources = style.Resources.Keys.Cast<object>()
+                                     .Where(key => style.Resources[key] is SolidColorBrush)
+                                     .Select(key=> new BrushResource { Key=key.ToString(), Brush= style.Resources[key]  as SolidColorBrush})
+                                     .OrderBy(s => s.Key)
+                                     .ToList();
+
+                return new AvaloniaList<BrushResource>(resources);
+            }
+
+            return new AvaloniaList<BrushResource>();
         }
 
 

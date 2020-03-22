@@ -21,7 +21,7 @@
                                 Margin="0" ShowEllipse="False" IsExpanded="True"
                 >
             <StackPanel Height="30">
-              <Button Background="Azure" Margin="4">Show More Buttons</Button>
+              <Button Margin="4">Show More Buttons</Button>
               <Button Margin="4">Show Fewer Buttons</Button>
             </StackPanel>
           </Controls:OdcExpander>
