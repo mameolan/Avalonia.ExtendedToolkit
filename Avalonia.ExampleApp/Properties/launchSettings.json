@@ -1,8 +1,7 @@
 {
   "profiles": {
     "Avalonia.ExampleApp": {
-      "commandName": "Project",
-      "commandLineArgs": "testing"
+      "commandName": "Project"
     }
   }
 }

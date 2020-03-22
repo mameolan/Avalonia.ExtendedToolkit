@@ -10,10 +10,24 @@ namespace Avalonia.Controlz.Converters
 {
     // This source file is adapted from the Windows Presentation Foundation project.
     // (https://github.com/dotnet/wpf/)
-    //
-    // Licensed to The Avalonia Project under MIT License, courtesy of The .NET Foundation.
+
+    /// <summary>
+    /// BorderGapMaskConverter class
+    /// </summary>
     public class BorderGapMaskConverter : IMultiValueConverter
     {
+
+        /// <summary>
+        /// Convert a value.
+        /// </summary>
+        /// <param name="values"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// Converted value.
+        /// Visual Brush that is used as the opacity mask for the Border
+        /// in the style for GroupBox.
+        /// <returns></returns>
         public object Convert(IList<object> values, Type targetType, object parameter, CultureInfo culture)
         {
             //

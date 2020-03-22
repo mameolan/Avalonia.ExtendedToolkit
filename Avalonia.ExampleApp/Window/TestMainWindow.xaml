@@ -3,6 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+        xmlns:Controlz="clr-namespace:Avalonia.Controlz.Controls;assembly=Avalonia.Controlz"
         xmlns:Views="clr-namespace:Avalonia.ExampleApp.Views;assembly=Avalonia.ExampleApp"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Avalonia.ExampleApp.Views.TestMainWindow"
@@ -54,7 +55,12 @@
       
     </StackPanel>
     <Grid DockPanel.Dock="Bottom">
-      <TabControl>
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      
+      <TabControl Grid.Row="0">
         <TabItem Header="Outlook Bar">
           <Views:OutlookBarView/>
         </TabItem>
@@ -67,6 +73,9 @@
           <Views:ColorExample/>
         </TabItem>
       </TabControl>
+
+      <Controlz:SliderEx Margin="10" Grid.Row="1" TickPlacement="Both"></Controlz:SliderEx>
+      
       
     </Grid>
     

@@ -8,31 +8,24 @@
     /// </summary>
     public enum TickPlacement
     {
-        //
-        // Zusammenfassung:
-        //     Es werden keine Teilstriche angezeigt.
+        /// <summary>
+        /// No TickMark
+        /// </summary>
         None = 0,
 
-        //
-        // Zusammenfassung:
-        //     Teilstriche werden bei einem horizontalen System.Windows.Controls.Slider über
-        //     dem System.Windows.Controls.Primitives.Track und bei einem vertikalen System.Windows.Controls.Slider
-        //     links vom System.Windows.Controls.Primitives.Track angezeigt.
+        /// <summary>
+        /// Show TickMark above the Track (for HorizontalSlider), or left of the Track (for VerticalSlider)
+        /// </summary>
         TopLeft = 1,
 
-        //
-        // Zusammenfassung:
-        //     Teilstriche werden bei einem horizontalen System.Windows.Controls.Slider unter
-        //     dem System.Windows.Controls.Primitives.Track und bei einem vertikalen System.Windows.Controls.Slider
-        //     rechts vom System.Windows.Controls.Primitives.Track angezeigt.
+        /// <summary>
+        /// Show TickMark below the Track (for HorizontalSlider), or right of the Track (for VerticalSlider)
+        /// </summary>
         BottomRight = 2,
 
-        //
-        // Zusammenfassung:
-        //     Teilstriche werden bei einem horizontalen System.Windows.Controls.Slider über
-        //     und unter dem System.Windows.Controls.Primitives.Track und bei einem vertikalen
-        //     System.Windows.Controls.Slider links und rechts vom System.Windows.Controls.Primitives.Track
-        //     angezeigt.
+        /// <summary>
+        /// Show TickMark on both side of the Track
+        /// </summary>
         Both = 3
     }
 }

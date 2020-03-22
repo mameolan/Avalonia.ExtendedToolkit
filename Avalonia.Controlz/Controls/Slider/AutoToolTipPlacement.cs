@@ -8,6 +8,7 @@ namespace Avalonia.Controlz.Controls
     // (https://github.com/dotnet/wpf/)
     //
     // Licensed to The Avalonia Project under MIT License, courtesy of The .NET Foundation.
+
     /// <summary>
     /// Placement options for Slider's AutoToolTip
     /// </summary>

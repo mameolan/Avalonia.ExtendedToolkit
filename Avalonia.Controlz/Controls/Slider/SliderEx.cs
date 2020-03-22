@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
@@ -9,11 +10,12 @@ using System.Windows.Input;
 
 namespace Avalonia.Controlz.Controls
 {
-    /// <summary>
-    /// // This source file is adapted from the Windows Presentation Foundation project.
+    
+    // This source file is adapted from the Windows Presentation Foundation project.
     // (https://github.com/dotnet/wpf/)
-    //
-    // Licensed to The Avalonia Project under MIT License, courtesy of The .NET Foundation.
+    
+    /// <summary>
+    /// slider with a tickbar
     /// </summary>
     public class SliderEx : RangeBaseEx
     {
@@ -166,11 +168,12 @@ namespace Avalonia.Controlz.Controls
         public static readonly StyledProperty<bool> IsMoveToPointEnabledProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsMoveToPointEnabled));
 
+
         public SliderEx()
         {
             InitializeCommands();
-            PseudoClasses.Set(":vertical", Orientation == Orientation.Vertical);
-            PseudoClasses.Set(":horizontal", Orientation == Orientation.Horizontal);
+            
+            UpdatePseudoClassesForOrientation(Orientation);
         }
 
         static SliderEx()
@@ -183,17 +186,19 @@ namespace Avalonia.Controlz.Controls
             //Maximum = 10.0d;
             //Value = 0;
             //MinimumProperty.AddOwner<SliderEx>();
-           // OrientationProperty.OverrideDefaultValue(typeof(SliderEx), Orientation.Horizontal);
+        
+
+            
 
             Thumb.DragStartedEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragStarted(o, e), RoutingStrategies.Bubble);
             Thumb.DragDeltaEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragDelta(o, e), RoutingStrategies.Bubble);
             Thumb.DragCompletedEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragCompleted(o, e), RoutingStrategies.Bubble);
 
-            SelectionStartProperty.Changed.AddClassHandler<SliderEx>((o, e) => OnSelectionStartChanged(o, e));
-            SelectionEndProperty.Changed.AddClassHandler<SliderEx>((o, e) => OnSelectionEndChanged(o, e));
-            ValueProperty.Changed.AddClassHandler<SliderEx>((o, e) => OnValueChanged(o, e));
-            TickPlacementProperty.Changed.AddClassHandler<SliderEx>((o, e) => OnTickPlacementChanged(o, e));
-            OrientationProperty.Changed.AddClassHandler<SliderEx>((o, e) => OnOrientationChanged(o, e));
+            SelectionStartProperty.Changed.AddClassHandler((Action<SliderEx, AvaloniaPropertyChangedEventArgs>)((o, e) => OnSelectionStartChanged(o, e)));
+            SelectionEndProperty.Changed.AddClassHandler((Action<SliderEx, AvaloniaPropertyChangedEventArgs>)((o, e) => OnSelectionEndChanged(o, e)));
+            ValueProperty.Changed.AddClassHandler((Action<SliderEx, AvaloniaPropertyChangedEventArgs>)((o, e) => OnValueChanged(o, e)));
+            TickPlacementProperty.Changed.AddClassHandler((Action<SliderEx, AvaloniaPropertyChangedEventArgs>)((o, e) => OnTickPlacementChanged(o, e)));
+            //OrientationProperty.Changed.AddClassHandler<SliderEx>((o, e) => OnOrientationChanged(o, e));
 
             //PseudoClass<SliderEx, Orientation>(OrientationProperty, o => o == Orientation.Vertical, ":vertical");
             //PseudoClass<SliderEx, Orientation>(OrientationProperty, o => o == Orientation.Horizontal, ":horizontal");
@@ -203,32 +208,14 @@ namespace Avalonia.Controlz.Controls
             //PseudoClasses.Set(":TickPlacementBoth", TickPlacement == TickPlacement.Both);
         }
 
-        private static void OnOrientationChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
-        {
-            if (e.NewValue is Orientation)
-            {
-                Orientation orientation = (Orientation)e.NewValue;
-                //slider.PseudoClasses.Remove(":vertical");
-                //slider.PseudoClasses.Remove(":horizontal");
-
-                //switch (orientation)
-                //{
-                //    case Orientation.Horizontal:
-                //        slider.PseudoClasses.Add(":horizontal");
-                //        break;
-                //    case Orientation.Vertical:
-                //        slider.PseudoClasses.Add(":vertical");
-                //        break;
-                //}
-
-                //slider.PseudoClasses.Set(":vertical", orientation == Orientation.Vertical);
-                //slider.PseudoClasses.Set(":horizontal", orientation == Orientation.Horizontal);
-            }
-        }
+        
 
         private static void OnTickPlacementChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
         {
             if (slider.TopTickBar == null || slider.BottomTickBar == null)
+                return;
+
+            if (slider.Orientation == Orientation.Vertical)
                 return;
 
             //TopTickBar.Width = this.Width;
@@ -369,6 +356,20 @@ namespace Avalonia.Controlz.Controls
         }
 
         #endregion Commands
+
+        protected override void OnPropertyChanged<T>(AvaloniaProperty<T> property, Optional<T> oldValue, BindingValue<T> newValue, BindingPriority priority)
+        {
+            if (property == OrientationProperty)
+            {
+                UpdatePseudoClassesForOrientation(newValue.GetValueOrDefault<Orientation>());
+            }
+        }
+
+        private void UpdatePseudoClassesForOrientation(Orientation o)
+        {
+            PseudoClasses.Set(":vertical", o == Orientation.Vertical);
+            PseudoClasses.Set(":horizontal", o == Orientation.Horizontal);
+        }
 
         protected override void OnPointerPressed(PointerPressedEventArgs e)
         {
