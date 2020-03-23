@@ -45,7 +45,7 @@ namespace Avalonia.ExtendedToolkit
         public ObservableCollection<TreeGridElement> Children
         { get; private set; } = new ObservableCollection<TreeGridElement>();
 
-        public static RoutedEvent<RoutedEventArgs> ExpandingEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> ExpandingEvent =
                     RoutedEvent.Register<TreeGridElement, RoutedEventArgs>(nameof(ExpandingEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Expanding
@@ -60,7 +60,7 @@ namespace Avalonia.ExtendedToolkit
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> ExpandedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> ExpandedEvent =
                     RoutedEvent.Register<TreeGridElement, RoutedEventArgs>(nameof(ExpandedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Expanded
@@ -75,7 +75,7 @@ namespace Avalonia.ExtendedToolkit
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> CollapsingEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> CollapsingEvent =
                     RoutedEvent.Register<TreeGridElement, RoutedEventArgs>(nameof(CollapsingEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Collapsing
@@ -90,7 +90,7 @@ namespace Avalonia.ExtendedToolkit
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> CollapsedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> CollapsedEvent =
                     RoutedEvent.Register<TreeGridElement, RoutedEventArgs>(nameof(CollapsedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Collapsed

@@ -155,7 +155,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void ResetSeparators(bool reset = true)
         {
-            if (Items.OfType<object>().Count() == 0)
+            if (Items.OfType<object>().Any()==false)
             {
                 return;
             }

@@ -147,7 +147,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
 
 
-        public static RoutedEvent<RoutedEventArgs> SelectedItemChangedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> SelectedItemChangedEvent =
                     RoutedEvent.Register<BreadcrumbButton, RoutedEventArgs>(nameof(OnSelectedItemChanged), RoutingStrategies.Bubble);
 
         public event EventHandler SelectedItemChanged
@@ -162,7 +162,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> ClickEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> ClickEvent =
                     RoutedEvent.Register<BreadcrumbButton, RoutedEventArgs>(nameof(Click), RoutingStrategies.Bubble);
 
         public event EventHandler Click

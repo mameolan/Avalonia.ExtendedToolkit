@@ -215,7 +215,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> EnterEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> EnterEvent =
             RoutedEvent.Register<WizardPage, RoutedEventArgs>(nameof(EnterEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Enter
@@ -230,7 +230,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> LeaveEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> LeaveEvent =
             RoutedEvent.Register<WizardPage, RoutedEventArgs>(nameof(LeaveEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Leave

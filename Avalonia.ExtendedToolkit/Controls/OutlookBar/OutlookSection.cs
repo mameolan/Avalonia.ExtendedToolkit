@@ -45,7 +45,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> IsMaximizedProperty =
             AvaloniaProperty.Register<OutlookSection, bool>(nameof(IsMaximized), defaultValue: true);
 
-        public static RoutedEvent<RoutedEventArgs> ClickEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> ClickEvent =
                     RoutedEvent.Register<OutlookSection, RoutedEventArgs>(nameof(ClickEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Click

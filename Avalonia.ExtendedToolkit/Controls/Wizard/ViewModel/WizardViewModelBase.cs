@@ -223,7 +223,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 //lets use an index to find the next page
                 var currentIndex = WizardPages.IndexOf(CurrentPage);
                 var nextPageIndex = currentIndex + 1;
-                if (nextPageIndex < WizardPages.Count())
+                if (nextPageIndex < WizardPages.Count)
                     exists = true;
 
                 return exists;

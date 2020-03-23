@@ -11,7 +11,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         private PixelPoint startDragScreenPoint;
         private PixelPoint? oldDragScreenPoint;
 
-        public static RoutedEvent<VectorEventArgs> DragStartedEvent =
+        public static readonly RoutedEvent<VectorEventArgs> DragStartedEvent =
             RoutedEvent.Register<MetroThumbContentControl, VectorEventArgs>(nameof(DragStartedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler<VectorEventArgs> DragStarted
@@ -26,7 +26,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<VectorEventArgs> DragDeltaEvent =
+        public static readonly RoutedEvent<VectorEventArgs> DragDeltaEvent =
             RoutedEvent.Register<MetroThumbContentControl, VectorEventArgs>(nameof(DragDeltaEvent), RoutingStrategies.Bubble);
 
         public event EventHandler<VectorEventArgs> DragDelta
@@ -41,7 +41,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<VectorEventArgs> DragCompletedEvent =
+        public static readonly RoutedEvent<VectorEventArgs> DragCompletedEvent =
             RoutedEvent.Register<MetroThumbContentControl, VectorEventArgs>(nameof(DragCompletedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler<VectorEventArgs> DragCompleted
@@ -93,8 +93,9 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         protected override void OnPointerPressed(PointerPressedEventArgs e)
         {
-            //what does the warning tell me? UpdateKind?
-            if (e.MouseButton != MouseButton.Left)
+            var properties = e.GetCurrentPoint(this).Properties;
+
+            if (properties.IsLeftButtonPressed == false)
                 return;
 
             if (!this.IsDragging)
@@ -148,7 +149,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
                 var args = new VectorEventArgs()
                 {
-                    Handled=false,
+                    Handled = false,
                     RoutedEvent = DragCompletedEvent,
                     Vector = new Vector(horizontalChange, verticalChange)
                 };

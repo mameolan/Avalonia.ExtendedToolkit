@@ -156,7 +156,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> IsPressedProperty =
             AvaloniaProperty.Register<OdcExpander, bool>(nameof(IsPressed));
                
-        public static RoutedEvent<RoutedEventArgs> ExpandedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> ExpandedEvent =
                     RoutedEvent.Register<OdcExpander, RoutedEventArgs>(nameof(ExpandedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Expanded
@@ -171,7 +171,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> CollapsedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> CollapsedEvent =
                     RoutedEvent.Register<OdcExpander, RoutedEventArgs>(nameof(CollapsedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Collapsed
@@ -186,7 +186,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> MinimizedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> MinimizedEvent =
                     RoutedEvent.Register<OdcExpander, RoutedEventArgs>(nameof(MinimizedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Minimized
@@ -201,7 +201,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> MaximizedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> MaximizedEvent =
                     RoutedEvent.Register<OdcExpander, RoutedEventArgs>(nameof(MaximizedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Maximized

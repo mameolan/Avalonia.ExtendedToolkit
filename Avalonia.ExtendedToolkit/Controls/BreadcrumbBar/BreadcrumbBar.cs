@@ -277,7 +277,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public ICommand SelectRootCommand { get; private set; }
 
-        public static RoutedEvent<RoutedEventArgs> BreadcrumbItemDropDownOpenedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> BreadcrumbItemDropDownOpenedEvent =
                     RoutedEvent.Register<BreadcrumbBar, RoutedEventArgs>(nameof(BreadcrumbItemDropDownOpenedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler BreadcrumbItemDropDownOpened
@@ -292,7 +292,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> BreadcrumbItemDropDownClosedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> BreadcrumbItemDropDownClosedEvent =
                     RoutedEvent.Register<BreadcrumbBar, RoutedEventArgs>(nameof(BreadcrumbItemDropDownClosedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler BreadcrumbItemDropDownClosed
@@ -307,7 +307,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> ProgressValueChangedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> ProgressValueChangedEvent =
                     RoutedEvent.Register<BreadcrumbBar, RoutedEventArgs>(nameof(ProgressValueChangedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler ProgressValueChanged
@@ -322,7 +322,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<ApplyPropertiesEventArgs> ApplyPropertiesEvent =
+        public static readonly RoutedEvent<ApplyPropertiesEventArgs> ApplyPropertiesEvent =
                     RoutedEvent.Register<BreadcrumbBar, ApplyPropertiesEventArgs>(nameof(ApplyPropertiesEvent), RoutingStrategies.Bubble);
 
         public event ApplyPropertiesEventHandler ApplyProperties
@@ -337,7 +337,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> SelectedBreadcrumbChangedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> SelectedBreadcrumbChangedEvent =
                     RoutedEvent.Register<BreadcrumbBar, RoutedEventArgs>(nameof(SelectedBreadcrumbChangedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler SelectedBreadcrumbChanged
@@ -352,7 +352,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> PathChangedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> PathChangedEvent =
                     RoutedEvent.Register<BreadcrumbBar, RoutedEventArgs>(nameof(PathChangedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler PathChanged
@@ -370,7 +370,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         // <summary>
         /// Occurs before acessing the Items property of a BreadcrumbItem. This event can be used to populate the Items on demand.
         /// </summary>
-        public static RoutedEvent<BreadcrumbItemEventArgs> PopulateItemsEvent =
+        public static readonly RoutedEvent<BreadcrumbItemEventArgs> PopulateItemsEvent =
                     RoutedEvent.Register<BreadcrumbBar, BreadcrumbItemEventArgs>(nameof(PopulateItemsEvent), RoutingStrategies.Bubble);
 
         public event BreadcrumbItemEventHandler PopulateItems
@@ -385,7 +385,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> PathConversionEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> PathConversionEvent =
                     RoutedEvent.Register<BreadcrumbBar, RoutedEventArgs>(nameof(PathConversionEvent), RoutingStrategies.Bubble);
 
         public event EventHandler PathConversion

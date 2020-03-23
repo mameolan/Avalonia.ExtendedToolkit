@@ -11,7 +11,7 @@ namespace Avalonia.Controlz.Controls
     // Licensed to The Avalonia Project under MIT License, courtesy of The .NET Foundation.
     public class RangeBaseEx : RangeBase
     {
-        public static RoutedEvent<RoutedPropertyChangedEventArgs<double>> ValueChangedEvent =
+        public static readonly RoutedEvent<RoutedPropertyChangedEventArgs<double>> ValueChangedEvent =
                     RoutedEvent.Register<RangeBaseEx, RoutedPropertyChangedEventArgs<double>>(nameof(ValueChangedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler<RoutedPropertyChangedEventArgs<double>> ValueChanged

@@ -13,7 +13,5 @@ namespace Avalonia.ExtendedToolkit.Controls
         event EventHandler<VectorEventArgs> DragCompleted;
 
         event EventHandler<RoutedEventArgs> DoubleTapped;
-
-        event EventHandler<PointerReleasedEventArgs> PointerReleased;
     }
 }

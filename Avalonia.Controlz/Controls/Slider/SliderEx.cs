@@ -10,12 +10,14 @@ using System.Windows.Input;
 
 namespace Avalonia.Controlz.Controls
 {
-    
+
     // This source file is adapted from the Windows Presentation Foundation project.
     // (https://github.com/dotnet/wpf/)
-    
+
     /// <summary>
     /// slider with a tickbar
+    /// 
+    /// TODO AutoTooltip missing and some commented code.
     /// </summary>
     public class SliderEx : RangeBaseEx
     {
@@ -23,13 +25,19 @@ namespace Avalonia.Controlz.Controls
         private const string SelectionRangeElementName = "PART_SelectionRange";
 
         internal Track Track
-        { get; set; }
+        {
+            get;
+            set;
+        }
 
         internal TickBar TopTickBar { get; private set; }
         internal TickBar BottomTickBar { get; private set; }
         internal Border TrackBackground { get; private set; }
         internal AvaloniaObject SelectionRangeElement { get; set; }
 
+        /// <summary>
+        /// Get/Set Orientation property
+        /// </summary>
         public Orientation Orientation
         {
             get { return (Orientation)GetValue(OrientationProperty); }
@@ -41,6 +49,9 @@ namespace Avalonia.Controlz.Controls
 
         //ScrollBar.OrientationProperty.AddOwner<SliderEx>();
 
+        /// <summary>
+        /// Get/Set IsDirectionReversed property
+        /// </summary>
         public bool IsDirectionReversed
         {
             get { return (bool)GetValue(IsDirectionReversedProperty); }
@@ -50,6 +61,10 @@ namespace Avalonia.Controlz.Controls
         public static readonly StyledProperty<bool> IsDirectionReversedProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsDirectionReversed));
 
+        /// <summary>
+        /// Specifies the amount of time, in milliseconds, to wait before repeating begins.
+        /// Must be non-negative.
+        /// </summary>
         public int Delay
         {
             get { return (int)GetValue(DelayProperty); }
@@ -61,6 +76,10 @@ namespace Avalonia.Controlz.Controls
 
         //AvaloniaProperty.Register<SliderEx, int>(nameof(Delay));
 
+        /// <summary>
+        /// Specifies the amount of time, in milliseconds, between repeats once repeating starts.
+        /// Must be non-negative
+        /// </summary>
         public int Interval
         {
             get { return (int)GetValue(IntervalProperty); }
@@ -72,6 +91,9 @@ namespace Avalonia.Controlz.Controls
 
         //AvaloniaProperty.Register<SliderEx, int>(nameof(Interval));
 
+        /// <summary>
+        ///     AutoToolTipPlacement property specifies the placement of the AutoToolTip
+        /// </summary>
         public AutoToolTipPlacement AutoToolTipPlacement
         {
             get { return (AutoToolTipPlacement)GetValue(AutoToolTipPlacementProperty); }
@@ -84,6 +106,9 @@ namespace Avalonia.Controlz.Controls
 
                );
 
+        /// <summary>
+        ///     Get or set number of decimal digits of Slider's Value shown in AutoToolTip
+        /// </summary>
         public int AutoToolTipPrecision
         {
             get { return (int)GetValue(AutoToolTipPrecisionProperty); }
@@ -93,6 +118,9 @@ namespace Avalonia.Controlz.Controls
         public static readonly StyledProperty<int> AutoToolTipPrecisionProperty =
             AvaloniaProperty.Register<SliderEx, int>(nameof(AutoToolTipPrecision), defaultValue: 0);
 
+        /// <summary>
+        ///     When 'true', Slider will automatically move the Thumb (and/or change current value) to the closest TickMark.
+        /// </summary>
         public bool IsSnapToTickEnabled
         {
             get { return (bool)GetValue(IsSnapToTickEnabledProperty); }
@@ -102,6 +130,11 @@ namespace Avalonia.Controlz.Controls
         public static readonly StyledProperty<bool> IsSnapToTickEnabledProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsSnapToTickEnabled), defaultValue: true);
 
+        /// <summary>
+        ///     Slider uses this value to determine where to show the Ticks.
+        /// When Ticks is not 'null', Slider will ignore 'TickFrequency', and draw only TickMarks
+        /// that specified in Ticks collection.
+        /// </summary>
         public TickPlacement TickPlacement
         {
             get { return (TickPlacement)GetValue(TickPlacementProperty); }
@@ -112,6 +145,11 @@ namespace Avalonia.Controlz.Controls
             AvaloniaProperty.Register<SliderEx, TickPlacement>(nameof(TickPlacement)
                 , defaultValue: TickPlacement.None);
 
+        /// <summary>
+        ///     Slider uses this value to determine where to show the Ticks.
+        /// When Ticks is not 'null', Slider will ignore 'TickFrequency', and draw only TickMarks
+        /// that specified in Ticks collection.
+        /// </summary>
         public double TickFrequency
         {
             get { return (double)GetValue(TickFrequencyProperty); }
@@ -121,6 +159,11 @@ namespace Avalonia.Controlz.Controls
         public static readonly StyledProperty<double> TickFrequencyProperty =
             AvaloniaProperty.Register<SliderEx, double>(nameof(TickFrequency), defaultValue: 1.0);
 
+        /// <summary>
+        ///     Slider uses this value to determine where to show the Ticks.
+        /// When Ticks is not 'null', Slider will ignore 'TickFrequency', and draw only TickMarks
+        /// that specified in Ticks collection.
+        /// </summary>
         public DoubleCollection Ticks
         {
             get { return (DoubleCollection)GetValue(TicksProperty); }
@@ -130,6 +173,9 @@ namespace Avalonia.Controlz.Controls
         public static readonly StyledProperty<DoubleCollection> TicksProperty =
             AvaloniaProperty.Register<SliderEx, DoubleCollection>(nameof(Ticks), defaultValue: DoubleCollection.Empty());
 
+        /// <summary>
+        ///     Enable or disable selection support on Slider
+        /// </summary>
         public bool IsSelectionRangeEnabled
         {
             get { return (bool)GetValue(IsSelectionRangeEnabledProperty); }
@@ -139,6 +185,9 @@ namespace Avalonia.Controlz.Controls
         public static readonly StyledProperty<bool> IsSelectionRangeEnabledProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsSelectionRangeEnabled));
 
+        /// <summary>
+        ///     Get or set starting value of selection.
+        /// </summary>
         public double SelectionStart
         {
             get { return (double)GetValue(SelectionStartProperty); }
@@ -149,6 +198,9 @@ namespace Avalonia.Controlz.Controls
             AvaloniaProperty.Register<SliderEx, double>(nameof(SelectionStart)
                 , defaultValue: 0.0d, defaultBindingMode: Data.BindingMode.TwoWay);
 
+        /// <summary>
+        ///     Get or set dending value of selection.
+        /// </summary>
         public double SelectionEnd
         {
             get { return (double)GetValue(SelectionEndProperty); }
@@ -159,6 +211,11 @@ namespace Avalonia.Controlz.Controls
             AvaloniaProperty.Register<SliderEx, double>(nameof(SelectionEnd)
                 , defaultValue: 0.0d, defaultBindingMode: Data.BindingMode.TwoWay);
 
+        /// <summary>
+        ///     Enable or disable Move-To-Point support on Slider.
+        ///     Move-To-Point feature, enables Slider to immediately move the Thumb directly to the location where user
+        /// clicked the Mouse.
+        /// </summary>
         public bool IsMoveToPointEnabled
         {
             get { return (bool)GetValue(IsMoveToPointEnabledProperty); }
@@ -168,28 +225,22 @@ namespace Avalonia.Controlz.Controls
         public static readonly StyledProperty<bool> IsMoveToPointEnabledProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsMoveToPointEnabled));
 
-
+        /// <summary>
+        /// initilize the command 
+        /// and pseudoclass
+        /// </summary>
         public SliderEx()
         {
             InitializeCommands();
-            
+
             UpdatePseudoClassesForOrientation(Orientation);
         }
 
+        /// This is the static constructor for the Slider class.  It
+        /// simply registers the appropriate class handlers for the input
+        /// devices, and defines a default style sheet.
         static SliderEx()
         {
-            //MinimumProperty.OverrideDefaultValue<SliderEx>(0);
-            //MaximumProperty.OverrideDefaultValue<SliderEx>(10d);
-            //ValueProperty.OverrideDefaultValue<SliderEx>(0);
-
-            //Minimum = 0.0d;
-            //Maximum = 10.0d;
-            //Value = 0;
-            //MinimumProperty.AddOwner<SliderEx>();
-        
-
-            
-
             Thumb.DragStartedEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragStarted(o, e), RoutingStrategies.Bubble);
             Thumb.DragDeltaEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragDelta(o, e), RoutingStrategies.Bubble);
             Thumb.DragCompletedEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragCompleted(o, e), RoutingStrategies.Bubble);
@@ -198,23 +249,17 @@ namespace Avalonia.Controlz.Controls
             SelectionEndProperty.Changed.AddClassHandler((Action<SliderEx, AvaloniaPropertyChangedEventArgs>)((o, e) => OnSelectionEndChanged(o, e)));
             ValueProperty.Changed.AddClassHandler((Action<SliderEx, AvaloniaPropertyChangedEventArgs>)((o, e) => OnValueChanged(o, e)));
             TickPlacementProperty.Changed.AddClassHandler((Action<SliderEx, AvaloniaPropertyChangedEventArgs>)((o, e) => OnTickPlacementChanged(o, e)));
-            //OrientationProperty.Changed.AddClassHandler<SliderEx>((o, e) => OnOrientationChanged(o, e));
-
-            //PseudoClass<SliderEx, Orientation>(OrientationProperty, o => o == Orientation.Vertical, ":vertical");
-            //PseudoClass<SliderEx, Orientation>(OrientationProperty, o => o == Orientation.Horizontal, ":horizontal");
-
-            //PseudoClasses.Set(":TickPlacementTopLeft", TickPlacement== TickPlacement.TopLeft);
-            //PseudoClasses.Set(":TickPlacementBottomRight", TickPlacement == TickPlacement.BottomRight);
-            //PseudoClasses.Set(":TickPlacementBoth", TickPlacement == TickPlacement.Both);
         }
 
-        
+
 
         private static void OnTickPlacementChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
         {
             if (slider.TopTickBar == null || slider.BottomTickBar == null)
                 return;
 
+            //strange behaviour in the view
+            //right now we skip this
             if (slider.Orientation == Orientation.Vertical)
                 return;
 
@@ -306,11 +351,33 @@ namespace Avalonia.Controlz.Controls
 
         #region Commands
 
+        /// <summary>
+        /// Increase Slider value
+        /// </summary>
         public static ICommand IncreaseLargeCommand { get; private set; }
+        /// <summary>
+        /// Increase Slider value
+        /// </summary>
         public static ICommand IncreaseSmallCommand { get; private set; }
+
+        /// <summary>
+        /// Decrease Slider value
+        /// </summary>
         public static ICommand DecreaseLargeCommand { get; private set; }
+
+        /// <summary>
+        /// Decrease Slider value
+        /// </summary>
         public static ICommand DecreaseSmallCommand { get; private set; }
+
+        /// <summary>
+        /// Set Slider value to mininum
+        /// </summary>
         public static ICommand MinimizeValueCommand { get; private set; }
+
+        /// <summary>
+        /// Set Slider value to maximum
+        /// </summary>
         public static ICommand MaximizeValueCommand { get; private set; }
 
         private void InitializeCommands()
@@ -357,6 +424,14 @@ namespace Avalonia.Controlz.Controls
 
         #endregion Commands
 
+        /// <summary>
+        /// updates the pseudo classes
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="property"></param>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
+        /// <param name="priority"></param>
         protected override void OnPropertyChanged<T>(AvaloniaProperty<T> property, Optional<T> oldValue, BindingValue<T> newValue, BindingPriority priority)
         {
             if (property == OrientationProperty)
@@ -365,6 +440,10 @@ namespace Avalonia.Controlz.Controls
             }
         }
 
+        /// <summary>
+        /// sets the pseudo class for orientation
+        /// </summary>
+        /// <param name="o"></param>
         private void UpdatePseudoClassesForOrientation(Orientation o)
         {
             PseudoClasses.Set(":vertical", o == Orientation.Vertical);
@@ -373,6 +452,8 @@ namespace Avalonia.Controlz.Controls
 
         protected override void OnPointerPressed(PointerPressedEventArgs e)
         {
+            var result = e.GetCurrentPoint(this);
+
             if (IsMoveToPointEnabled && Track != null &&
                 Track.Thumb != null && Track.Thumb.IsPointerOver == false)
             {
@@ -386,8 +467,7 @@ namespace Avalonia.Controlz.Controls
                 e.Handled = true;
             }
 
-            if (e.MouseButton == MouseButton.Left
-                )
+            if (result.Properties.IsLeftButtonPressed)
             {
                 _OnMouseLeftButtonDown(e);
             }

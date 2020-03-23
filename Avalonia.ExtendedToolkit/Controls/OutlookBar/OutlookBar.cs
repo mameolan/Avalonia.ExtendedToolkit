@@ -315,7 +315,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<Classes> OptionToggleButtonClassesProperty =
             AvaloniaProperty.Register<OutlookBar, Classes>(nameof(OptionToggleButtonClasses));
 
-        public static RoutedEvent<RoutedEventArgs> CollapsedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> CollapsedEvent =
                     RoutedEvent.Register<OutlookBar, RoutedEventArgs>(nameof(CollapsedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Collapsed
@@ -330,7 +330,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> ExpandedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> ExpandedEvent =
                     RoutedEvent.Register<OutlookBar, RoutedEventArgs>(nameof(ExpandedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Expanded
@@ -345,7 +345,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> PopupOpenedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> PopupOpenedEvent =
                     RoutedEvent.Register<OutlookBar, RoutedEventArgs>(nameof(PopupOpenedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler PopupOpened
@@ -360,7 +360,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> PopupClosedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> PopupClosedEvent =
                     RoutedEvent.Register<OutlookBar, RoutedEventArgs>(nameof(PopupClosedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler PopupClosed
@@ -375,7 +375,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> SelectedSectionChangedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> SelectedSectionChangedEvent =
                     RoutedEvent.Register<OutlookBar, RoutedEventArgs>(nameof(SelectedSectionChangedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler SelectedSectionChanged

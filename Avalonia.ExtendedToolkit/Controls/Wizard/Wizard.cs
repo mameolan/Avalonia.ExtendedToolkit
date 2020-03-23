@@ -302,7 +302,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             this.Initialized += (o, e) =>
             {
-                if (Items.OfType<object>().Count() > 0 && CurrentPage == null)
+                if (Items.OfType<object>().Any() && CurrentPage == null)
                     CurrentPage = Items.OfType<WizardPage>().FirstOrDefault();
             };
 
@@ -551,7 +551,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             return result;
         }
 
-        public static RoutedEvent<RoutedEventArgs> CancelEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> CancelEvent =
             RoutedEvent.Register<Wizard, RoutedEventArgs>(nameof(CancelEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Cancel
@@ -566,7 +566,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> PageChangedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> PageChangedEvent =
             RoutedEvent.Register<Wizard, RoutedEventArgs>(nameof(PageChangedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler PageChanged
@@ -581,7 +581,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> FinishEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> FinishEvent =
             RoutedEvent.Register<Wizard, RoutedEventArgs>(nameof(FinishEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Finish
@@ -596,7 +596,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> HelpEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> HelpEvent =
             RoutedEvent.Register<Wizard, RoutedEventArgs>(nameof(HelpEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Help
@@ -613,7 +613,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public delegate void NextRoutedEventHandler(object sender, RoutedEventArgs e);
 
-        public static RoutedEvent<RoutedEventArgs> NextEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> NextEvent =
             RoutedEvent.Register<Wizard, RoutedEventArgs>(nameof(NextEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Next
@@ -630,7 +630,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public delegate void PreviousRoutedEventHandler(object sender, RoutedEventArgs e);
 
-        public static RoutedEvent<RoutedEventArgs> PreviousEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> PreviousEvent =
             RoutedEvent.Register<Wizard, RoutedEventArgs>(nameof(PreviousEvent), RoutingStrategies.Bubble);
 
         public event EventHandler Previous

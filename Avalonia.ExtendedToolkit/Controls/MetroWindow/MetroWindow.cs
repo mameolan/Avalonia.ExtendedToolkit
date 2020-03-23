@@ -355,7 +355,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set => SetValue(TitleBarContentProperty, value);
         }
 
-        public static RoutedEvent<RoutedEventArgs> FlyoutsStatusChangedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> FlyoutsStatusChangedEvent =
             RoutedEvent.Register<MetroWindow, RoutedEventArgs>(nameof(FlyoutsStatusChangedEvent), RoutingStrategies.Bubble);
 
         public event DragStartedEventHandler FlyoutsStatusChanged
@@ -370,7 +370,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> SizeChangedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> SizeChangedEvent =
             RoutedEvent.Register<MetroWindow, RoutedEventArgs>(nameof(SizeChangedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler SizeChanged
@@ -385,7 +385,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> WindowTransitionCompletedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> WindowTransitionCompletedEvent =
             RoutedEvent.Register<MetroWindow, RoutedEventArgs>(nameof(FlyoutsStatusChangedEvent), RoutingStrategies.Bubble);
 
         public event DragStartedEventHandler WindowTransitionCompleted

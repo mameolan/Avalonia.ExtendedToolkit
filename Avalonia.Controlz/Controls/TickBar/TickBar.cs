@@ -14,8 +14,14 @@ namespace Avalonia.Controlz.Controls
     // Licensed to The Avalonia Project under MIT License, courtesy of The .NET Foundation.
     /// </summary>
 
+    /// <summary>
+    /// TickBar is an element that use for drawing Slider's Ticks.
+    /// </summary>
     public class TickBar : Control
     {
+        /// <summary>
+        /// fill brush
+        /// </summary>
         public IBrush Fill
         {
             get { return (IBrush)GetValue(FillProperty); }
@@ -25,6 +31,9 @@ namespace Avalonia.Controlz.Controls
         public static readonly StyledProperty<IBrush> FillProperty =
             AvaloniaProperty.Register<TickBar, IBrush>(nameof(Fill));
 
+        /// <summary>
+        /// Logical position where the Minimum Tick will be drawn
+        /// </summary>
         public double Minimum
         {
             get { return (double)GetValue(MinimumProperty); }
@@ -37,6 +46,9 @@ namespace Avalonia.Controlz.Controls
         //RangeBaseEx.MinimumProperty.AddOwner<TickBar>(x => x.Minimum,
         //    (x, y) => x.Minimum = y, unsetValue: 0.0);
 
+        /// <summary>
+        /// Logical position where the Maximum Tick will be drawn
+        /// </summary>
         public double Maximum
         {
             get { return (double)GetValue(MaximumProperty); }
@@ -49,6 +61,9 @@ namespace Avalonia.Controlz.Controls
         //RangeBase.MaximumProperty.AddOwner<TickBar>(x => x.Maximum,
         //    (x, y) => x.Maximum = y, unsetValue: 100.0);
 
+        /// <summary>
+        /// Logical position where the SelectionStart Tick will be drawn
+        /// </summary>
         public double SelectionStart
         {
             get { return (double)GetValue(SelectionStartProperty); }
@@ -60,6 +75,9 @@ namespace Avalonia.Controlz.Controls
 
         //slider does not have a selectionstart property
 
+        /// <summary>
+        /// Logical position where the SelectionEnd Tick will be drawn
+        /// </summary>
         public double SelectionEnd
         {
             get { return (double)GetValue(SelectionEndProperty); }
@@ -69,6 +87,9 @@ namespace Avalonia.Controlz.Controls
         public static readonly StyledProperty<double> SelectionEndProperty =
             AvaloniaProperty.Register<TickBar, double>(nameof(SelectionEnd), defaultValue: -1.0d);
 
+        /// <summary>
+        /// IsSelectionRangeEnabled specifies whether to draw SelectionStart Tick and SelectionEnd Tick or not.
+        /// </summary>
         public bool IsSelectionRangeEnabled
         {
             get { return (bool)GetValue(IsSelectionRangeEnabledProperty); }
@@ -78,6 +99,9 @@ namespace Avalonia.Controlz.Controls
         public static readonly StyledProperty<bool> IsSelectionRangeEnabledProperty =
             AvaloniaProperty.Register<TickBar, bool>(nameof(IsSelectionRangeEnabled));
 
+        /// <summary>
+        /// TickFrequency property defines how the tick will be drawn.
+        /// </summary>
         public double TickFrequency
         {
             get { return (double)GetValue(TickFrequencyProperty); }
@@ -89,6 +113,11 @@ namespace Avalonia.Controlz.Controls
 
         //Slider.TickFrequencyProperty.AddOwner<TickBar>();
 
+        /// <summary>
+        /// The Ticks property contains collection of value of type Double which
+        /// are the logical positions use to draw the ticks.
+        /// The property value is a <see cref="DoubleCollection" />.
+        /// </summary>
         public DoubleCollection Ticks
         {
             get { return (DoubleCollection)GetValue(TicksProperty); }
@@ -98,6 +127,13 @@ namespace Avalonia.Controlz.Controls
         public static readonly StyledProperty<DoubleCollection> TicksProperty =
             AvaloniaProperty.Register<TickBar, DoubleCollection>(nameof(Ticks));
 
+        /// <summary>
+        /// The IsDirectionReversed property defines the direction of value incrementation.
+        /// By default, if Tick's orientation is Horizontal, ticks will be drawn from left to right.
+        /// (And, bottom to top for Vertical orientation).
+        /// If IsDirectionReversed is 'true' the direction of the drawing will be in opposite direction.
+        /// Ticks property contains collection of value of type Double which
+        /// </summary>
         public bool IsDirectionReversed
         {
             get { return (bool)GetValue(IsDirectionReversedProperty); }
@@ -109,6 +145,11 @@ namespace Avalonia.Controlz.Controls
 
         //Track.IsDirectionReversedProperty.AddOwner<TickBar>();
 
+        /// <summary>
+        /// Placement property specified how the Tick will be placed.
+        /// This property affects the way ticks are drawn.
+        /// This property has type of <see cref="TickBarPlacement" />.
+        /// </summary>
         public TickBarPlacement Placement
         {
             get { return (TickBarPlacement)GetValue(PlacementProperty); }
@@ -133,6 +174,7 @@ namespace Avalonia.Controlz.Controls
 
         public static readonly StyledProperty<double> ReservedSpaceProperty =
             AvaloniaProperty.Register<TickBar, double>(nameof(ReservedSpace), defaultValue: 0d);
+
 
         public DoubleCollection VisualXSnappingGuidelines
         {

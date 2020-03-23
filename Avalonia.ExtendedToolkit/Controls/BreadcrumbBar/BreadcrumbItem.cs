@@ -200,7 +200,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedPropertyChangedEventArgs<object>> DropDownPressedChangedEvent =
+        public static readonly RoutedEvent<RoutedPropertyChangedEventArgs<object>> DropDownPressedChangedEvent =
                     RoutedEvent.Register<BreadcrumbItem, RoutedPropertyChangedEventArgs<object>>(nameof(DropDownPressedChangedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler<object> DropDownPressedChanged
@@ -215,7 +215,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedPropertyChangedEventArgs<object>> TraceChangedEvent =
+        public static readonly RoutedEvent<RoutedPropertyChangedEventArgs<object>> TraceChangedEvent =
                     RoutedEvent.Register<BreadcrumbItem, RoutedPropertyChangedEventArgs<object>>(nameof(TraceChangedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler<object> TraceChanged
@@ -230,7 +230,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> OverflowChangedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> OverflowChangedEvent =
                     RoutedEvent.Register<BreadcrumbItem, RoutedEventArgs>(nameof(OverflowChangedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler OverflowChanged

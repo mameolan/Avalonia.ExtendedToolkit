@@ -27,7 +27,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private Point? dragStartedMousePos = null;
 
-        public static RoutedEvent<RoutedEventArgs> IsOpenChangedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> IsOpenChangedEvent =
             RoutedEvent.Register<Flyout, RoutedEventArgs>(nameof(IsOpenChangedEvent), RoutingStrategies.Bubble);
 
         public event EventHandler IsOpenChanged
@@ -42,7 +42,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public static RoutedEvent<RoutedEventArgs> ClosingFinishedEvent =
+        public static readonly RoutedEvent<RoutedEventArgs> ClosingFinishedEvent =
             RoutedEvent.Register<Flyout, RoutedEventArgs>(nameof(ClosingFinishedEvent), RoutingStrategies.Bubble);
 
         private DispatcherTimer autoCloseTimer;
