@@ -3,6 +3,9 @@ using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// AttachedProperty for buttons
+    /// </summary>
     public static class ButtonHelper
     {
         public static readonly AttachedProperty<CharacterCasing> ContentCharacterCasingProperty =

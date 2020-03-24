@@ -6,6 +6,13 @@ namespace Avalonia.Controlz.EventArgs
     // (https://github.com/dotnet/wpf/)
     //
 
+    /// <summary>
+    ///     This delegate must used by handlers of the RoutedPropertyChangedEvent event.
+    /// </summary>
+    /// <param name="sender">The current element along the event's route.</param>
+    /// <param name="e">The event arguments containing additional information about the event.</param>
+    /// <returns>Nothing.</returns>
+    public delegate void RoutedPropertyChangedEventHandler<T>(object sender, RoutedPropertyChangedEventArgs<T> e);
 
     /// <summary>
     /// This RoutedPropertyChangedEventArgs class contains old and new value when 

@@ -1,4 +1,8 @@
-﻿using Avalonia.Collections;
+﻿using System;
+using System.Collections;
+using System.Diagnostics;
+using System.Xml;
+using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
@@ -8,18 +12,16 @@ using Avalonia.Layout;
 using Avalonia.LogicalTree;
 using Avalonia.Markup.Xaml.Templates;
 using Avalonia.Media;
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Xml;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
     //ported from https://github.com/jogibear9988/OdysseyWPF.git
 
-    [DebuggerDisplay("Header: {Header}")]       
-    public class BreadcrumbItem : SelectingItemsControl 
+    /// <summary>
+    /// A breadcrumb item that is part of a BreadcrumbBar and contains a BreadcrumbButton and nested child BreadcrumbItems.
+    /// </summary>
+    [DebuggerDisplay("Header: {Header}")]
+    public class BreadcrumbItem : SelectingItemsControl
     {
         private const string partHeader = "PART_Header";
         private const string partSelected = "PART_Selected";
@@ -29,6 +31,9 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public Type StyleKey => typeof(BreadcrumbItem);
 
+        /// <summary>
+        /// Gets or sets wheter the dropdown button is pressed.
+        /// </summary>
         public bool IsDropDownPressed
         {
             get { return (bool)GetValue(IsDropDownPressedProperty); }
@@ -38,6 +43,11 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> IsDropDownPressedProperty =
             AvaloniaProperty.Register<BreadcrumbItem, bool>(nameof(IsDropDownPressed));
 
+        /// <summary>
+        /// Gets whether the breadcrumb item is overflowed which means it is not
+        /// visible in the breadcrumb bar but in the
+        /// drop down menu of the breadcrumb bar.
+        /// </summary>
         public bool IsOverflow
         {
             get { return (bool)GetValue(IsOverflowProperty); }
@@ -47,6 +57,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> IsOverflowProperty =
             AvaloniaProperty.Register<BreadcrumbItem, bool>(nameof(IsOverflow));
 
+        /// <summary>
+        /// Gets or sets whether the button is visible.
+        /// </summary>
         public bool IsButtonVisible
         {
             get { return (bool)GetValue(IsButtonVisibleProperty); }
@@ -56,6 +69,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> IsButtonVisibleProperty =
             AvaloniaProperty.Register<BreadcrumbItem, bool>(nameof(IsButtonVisible), defaultValue: true);
 
+        /// <summary>
+        /// Gets or sets whether the Image is visible.
+        /// </summary>
         public bool IsImageVisible
         {
             get { return (bool)GetValue(IsImageVisibleProperty); }
@@ -65,6 +81,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> IsImageVisibleProperty =
             AvaloniaProperty.Register<BreadcrumbItem, bool>(nameof(IsImageVisible));
 
+        /// <summary>
+        /// Set to true, to collapse the item if SelectedItem is not null. otherwise false.
+        /// </summary>
         public bool IsRoot
         {
             get { return (bool)GetValue(IsRootProperty); }
@@ -74,6 +93,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> IsRootProperty =
             AvaloniaProperty.Register<BreadcrumbItem, bool>(nameof(IsRoot));
 
+        /// <summary>
+        /// Gets the selected BreadcrumbItem.
+        /// </summary>
         public BreadcrumbItem SelectedBreadcrumb
         {
             get { return (BreadcrumbItem)GetValue(SelectedBreadcrumbProperty); }
@@ -92,6 +114,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<IDataTemplate> OverflowItemTemplateProperty =
             AvaloniaProperty.Register<BreadcrumbItem, IDataTemplate>(nameof(OverflowItemTemplate));
 
+        /// <summary>
+        /// Gets or sets the image that is used to display this item.
+        /// </summary>
         public IImage Image
         {
             get { return (IImage)GetValue(ImageProperty); }
@@ -101,6 +126,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<IImage> ImageProperty =
             AvaloniaProperty.Register<BreadcrumbItem, IImage>(nameof(Image));
 
+        /// <summary>
+        /// Gets or sets the Trace of the breadcrumb
+        /// </summary>
         public object Trace
         {
             get { return (object)GetValue(TraceProperty); }
@@ -110,6 +138,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<object> TraceProperty =
             AvaloniaProperty.Register<BreadcrumbItem, object>(nameof(Trace));
 
+        /// <summary>
+        /// Gets or sets the header for the breadcrumb item.
+        /// </summary>
         public object Header
         {
             get { return (object)GetValue(HeaderProperty); }
@@ -119,6 +150,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<object> HeaderProperty =
             AvaloniaProperty.Register<BreadcrumbItem, object>(nameof(Header));
 
+        /// <summary>
+        /// Gets or sets the header template.
+        /// </summary>
         public DataTemplate HeaderTemplate
         {
             get { return (DataTemplate)GetValue(HeaderTemplateProperty); }
@@ -159,6 +193,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// returns the DataContext if not null
+        /// else this is returned
+        /// </summary>
         public object Data
         {
             get
@@ -167,8 +205,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        //public DataTemplateSelector BreadcrumbTemplateSelector { get; set; }
-
+        /// <summary>
+        /// DataTemplate of the Breadcrumb item
+        /// </summary>
         public DataTemplate BreadcrumbItemTemplate { get; set; }
 
         /// <summary>
@@ -203,7 +242,10 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly RoutedEvent<RoutedPropertyChangedEventArgs<object>> DropDownPressedChangedEvent =
                     RoutedEvent.Register<BreadcrumbItem, RoutedPropertyChangedEventArgs<object>>(nameof(DropDownPressedChangedEvent), RoutingStrategies.Bubble);
 
-        public event EventHandler<object> DropDownPressedChanged
+        /// <summary>
+        /// Occurs when the IsDropDownPressed property is changed.
+        /// </summary>
+        public event RoutedPropertyChangedEventHandler<object> DropDownPressedChanged
         {
             add
             {
@@ -218,7 +260,10 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly RoutedEvent<RoutedPropertyChangedEventArgs<object>> TraceChangedEvent =
                     RoutedEvent.Register<BreadcrumbItem, RoutedPropertyChangedEventArgs<object>>(nameof(TraceChangedEvent), RoutingStrategies.Bubble);
 
-        public event EventHandler<object> TraceChanged
+        /// <summary>
+        /// Occurs when the Trace property is changed.
+        /// </summary>
+        public event RoutedPropertyChangedEventHandler<object> TraceChanged
         {
             add
             {
@@ -272,7 +317,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             return item;
         }
 
-
+        /// <summary>
+        /// creates the initial Breadcrumb item
+        /// </summary>
+        /// <param name="dataContext"></param>
+        /// <returns></returns>
         internal static BreadcrumbItem CreateInitialItem(object dataContext)
         {
             BreadcrumbItem item = dataContext as BreadcrumbItem;
@@ -282,13 +331,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 item.Items = dataContext as IEnumerable;
             }
             return item;
-        }
-
-
-
-        protected override void ItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            base.ItemsCollectionChanged(sender, e);
         }
 
         private void HeaderPropertyChanged(BreadcrumbItem sender, AvaloniaPropertyChangedEventArgs e)
@@ -310,6 +352,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             item.OnSelectedBreadcrumbChanged(e.OldValue, e.NewValue);
         }
 
+        /// <summary>
+        /// Occurs when the Overflow property is changed.
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="e"></param>
         private void OverflowPropertyChanged(BreadcrumbItem o, AvaloniaPropertyChangedEventArgs e)
         {
             BreadcrumbItem item = o as BreadcrumbItem;
@@ -325,8 +372,13 @@ namespace Avalonia.ExtendedToolkit.Controls
             RaiseEvent(args);
         }
 
-        bool lastValue = false;
+        private bool lastValue = false;
 
+        /// <summary>
+        /// Occurs when the IsDropDownPressed property is changed.
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="e"></param>
         private void DropDownPressedPropertyChanged(BreadcrumbItem o, AvaloniaPropertyChangedEventArgs e)
         {
             if (e.NewValue is bool)
@@ -334,8 +386,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 bool value = (bool)e.NewValue;
                 if (lastValue == value)
                     return;
-
-
 
                 BreadcrumbItem item = o as BreadcrumbItem;
                 item.OnDropDownPressedChanged();
@@ -378,6 +428,11 @@ namespace Avalonia.ExtendedToolkit.Controls
         //    return item;
         //}
 
+        /// <summary>
+        /// Perform a special measurement that checks whether to collapse the header.
+        /// </summary>
+        /// <param name="constraint"></param>
+        /// <returns></returns>
         protected override Size MeasureOverride(Size constraint)
         {
             if (SelectedItem != null)
@@ -532,7 +587,8 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void ApplyProperties(object item)
         {
-            ApplyPropertiesEventArgs e = new ApplyPropertiesEventArgs(item, this, BreadcrumbBar.ApplyPropertiesEvent);
+            ApplyPropertiesEventArgs e = new ApplyPropertiesEventArgs
+                (item, this, BreadcrumbBar.ApplyPropertiesEvent);
             e.Image = Image;
             e.Trace = Trace;
             e.TraceValue = TraceValue;

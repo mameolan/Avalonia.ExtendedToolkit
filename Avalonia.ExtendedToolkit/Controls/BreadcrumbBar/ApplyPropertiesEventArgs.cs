@@ -3,9 +3,9 @@ using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
-    public delegate void ApplyPropertiesEventHandler(object sender, ApplyPropertiesEventArgs e);
     //ported from https://github.com/jogibear9988/OdysseyWPF.git
 
+    public delegate void ApplyPropertiesEventHandler(object sender, ApplyPropertiesEventArgs e);
 
     public class ApplyPropertiesEventArgs: RoutedEventArgs
     {

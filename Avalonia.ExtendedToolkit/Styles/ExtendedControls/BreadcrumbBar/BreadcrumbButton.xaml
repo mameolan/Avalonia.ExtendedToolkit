@@ -144,7 +144,7 @@
     <Setter Property="IsVisible" Value="False"/>
   </Style>
 
-  <Style Selector="Controls|BreadcrumbButton[Image={x:Null}] /template/ Image#image">
+  <Style Selector="Controls|BreadcrumbButton[HasImage=false] /template/ Image#image">
     <Setter Property="IsVisible" Value="False"/>
   </Style>
 
@@ -154,7 +154,7 @@
     <Setter Property="BorderBrush" Value="Transparent" />
   </Style>
 
-  <Style Selector="Controls|BreadcrumbButton[Header={x:Null}][IsImageVisible=false][Image={x:Null}] /template/ Controls|AeroChrome#button">
+  <Style Selector="Controls|BreadcrumbButton[Header={x:Null}][IsImageVisible=false][HasImage=false] /template/ Controls|AeroChrome#button">
     <Setter Property="IsVisible" Value="False"/>
   </Style>
 

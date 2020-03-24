@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Shapes;
 using Avalonia.Media;
@@ -10,6 +11,8 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class MetroCheckBox : CheckBox
     {
+        public Type StyleKey => typeof(MetroCheckBox);
+
         public IBrush FocusBorderBrush
         {
             get { return (IBrush)GetValue(FocusBorderBrushProperty); }

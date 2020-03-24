@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls.Primitives;
+﻿using System;
+using Avalonia.Controls.Primitives;
 using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls
@@ -8,6 +9,8 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class MetroToggleButton : ToggleButton
     {
+        public Type StyleKey => typeof(MetroToggleButton);
+
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }

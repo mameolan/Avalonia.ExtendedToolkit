@@ -1,11 +1,14 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
 using Avalonia.Media;
-using System;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
     //ported from https://github.com/jogibear9988/OdysseyWPF.git
 
+    /// <summary>
+    /// extended button with image properties
+    /// </summary>
     public class ImageButton : Button
     {
         public Type StyleKey => typeof(ImageButton);

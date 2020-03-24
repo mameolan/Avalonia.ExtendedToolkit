@@ -1,10 +1,17 @@
-﻿using Avalonia.Data.Converters;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using Avalonia.Data.Converters;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/xceedsoftware/wpftoolkit
+
+    /// <summary>
+    /// Multiconverter
+    /// - First value contentwidth
+    /// - Second value parent minwidth
+    /// </summary>
     public class ProgressBarWidthConverter : IMultiValueConverter
     {
         public object Convert(IList<object> values, Type targetType, object parameter, CultureInfo culture)

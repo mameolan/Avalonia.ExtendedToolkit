@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -7,6 +8,8 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class SquareButton : Button
     {
+        public Type StyleKey => typeof(SquareButton);
+
         public CharacterCasing ContentCharacterCasing
         {
             get { return (CharacterCasing)GetValue(ContentCharacterCasingProperty); }

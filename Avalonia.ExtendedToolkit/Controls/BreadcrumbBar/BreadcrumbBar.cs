@@ -1,423 +1,27 @@
-﻿using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
-using Avalonia.Controls.Templates;
-using Avalonia.Data;
-using Avalonia.Input;
-using Avalonia.Interactivity;
-using Avalonia.LogicalTree;
-using Avalonia.Markup.Xaml.Templates;
-using Avalonia.Media;
-using ReactiveUI;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Windows.Input;
+using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
+using Avalonia.Data;
+using Avalonia.Input;
+using Avalonia.Interactivity;
+using Avalonia.LogicalTree;
+using Avalonia.Media;
+using ReactiveUI;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
     //ported from https://github.com/jogibear9988/OdysseyWPF.git
 
-    public class BreadcrumbBar : ContentControl, IAddChild
+    /// <summary>
+    /// A breadcrumb bar the contains breadcrumb items, a dropdown control, additional buttons and a progress bar.
+    /// </summary>
+    public partial class BreadcrumbBar : ContentControl, IAddChild
     {
-        private const string partComboBox = "PART_ComboBox";
-        private const string partRoot = "PART_Root";
-
-        private ComboBox comboBox;
-        private BreadcrumbButton rootButton;
-
-        /// <summary>
-        /// On initializing, it is possible that the Path property is set before the RootItem property, thus the declarative xaml Path would be overwritten by settings the
-        /// RootItem property later. To avoid this affect, setting the Path also sets initPath on initializing and after initializing, the Path is restored by this value:
-        /// </summary>
-        private string initPath;
-
-        public Type StyleKey => typeof(BreadcrumbBar);
-
-        private ObservableCollection<Button> buttons = new ObservableCollection<Button>();
-
-        /// <summary>
-        /// Gets the collection of buttons to appear on the right of the breadcrumb bar.
-        /// </summary>
-        public ObservableCollection<Button> Buttons
-        {
-            get { return buttons; }
-        }
-
-        /// <summary>
-        /// Gets or sets the DropDownItems for the combobox.
-        /// </summary>
-        public IEnumerable DropDownItems
-        {
-            get { return comboBoxControlItems.Items; }
-        }
-
-        // A helper class to store the DropDownItems since ItemCollection has no public creator:
-        private ItemsControl comboBoxControlItems;
-
-        private ObservableCollection<object> traces;
-
-        public bool HideRootNode
-        {
-            get { return (bool)GetValue(HideRootNodeProperty); }
-            set { SetValue(HideRootNodeProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> HideRootNodeProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, bool>(nameof(HideRootNode), defaultValue: true);
-
-        public bool HasDropDownItems
-        {
-            get { return (bool)GetValue(HasDropDownItemsProperty); }
-            set { SetValue(HasDropDownItemsProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> HasDropDownItemsProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, bool>(nameof(HasDropDownItems));
-
-        public ItemsPanelTemplate DropDownItemsPanel
-        {
-            get { return (ItemsPanelTemplate)GetValue(DropDownItemsPanelProperty); }
-            set { SetValue(DropDownItemsPanelProperty, value); }
-        }
-
-        public static readonly StyledProperty<ItemsPanelTemplate> DropDownItemsPanelProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, ItemsPanelTemplate>(nameof(DropDownItemsPanel));
-
-        public bool IsRootSelected
-        {
-            get { return (bool)GetValue(IsRootSelectedProperty); }
-            set { SetValue(IsRootSelectedProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsRootSelectedProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, bool>(nameof(IsRootSelected), defaultValue: true);
-
-        public IDataTemplate DropDownItemTemplate
-        {
-            get { return (IDataTemplate)GetValue(DropDownItemTemplateProperty); }
-            set { SetValue(DropDownItemTemplateProperty, value); }
-        }
-
-        public static readonly StyledProperty<IDataTemplate> DropDownItemTemplateProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, IDataTemplate>(nameof(DropDownItemTemplate));
-
-        public bool IsEditable
-        {
-            get { return (bool)GetValue(IsEditableProperty); }
-            set { SetValue(IsEditableProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsEditableProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, bool>(nameof(IsEditable), defaultValue: true);
-
-        
-        public IDataTemplate OverflowItemTemplate
-        {
-            get { return (IDataTemplate)GetValue(OverflowItemTemplateProperty); }
-            set { SetValue(OverflowItemTemplateProperty, value); }
-        }
-
-        public static readonly StyledProperty<IDataTemplate> OverflowItemTemplateProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, IDataTemplate>(nameof(OverflowItemTemplate));
-
-        public IEnumerable CollapsedTraces
-        {
-            get { return (IEnumerable)GetValue(CollapsedTracesProperty); }
-            set { SetValue(CollapsedTracesProperty, value); }
-        }
-
-        public static readonly StyledProperty<IEnumerable> CollapsedTracesProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, IEnumerable>(nameof(CollapsedTraces));
-
-        public object Root
-        {
-            get { return (object)GetValue(RootProperty); }
-            set { SetValue(RootProperty, value); }
-        }
-
-        public static readonly StyledProperty<object> RootProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, object>(nameof(Root));
-
-        public object SelectedItem
-        {
-            get { return (object)GetValue(SelectedItemProperty); }
-            set { SetValue(SelectedItemProperty, value); }
-        }
-
-        public static readonly StyledProperty<object> SelectedItemProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, object>(nameof(SelectedItem));
-
-        public BreadcrumbItem SelectedBreadcrumb
-        {
-            get { return (BreadcrumbItem)GetValue(SelectedBreadcrumbProperty); }
-            set { SetValue(SelectedBreadcrumbProperty, value); }
-        }
-
-        public static readonly StyledProperty<BreadcrumbItem> SelectedBreadcrumbProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, BreadcrumbItem>(nameof(SelectedBreadcrumb));
-
-        public bool IsOverflowPressed
-        {
-            get { return (bool)GetValue(IsOverflowPressedProperty); }
-            set { SetValue(IsOverflowPressedProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsOverflowPressedProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, bool>(nameof(IsOverflowPressed));
-
-        public BreadcrumbItem RootItem
-        {
-            get { return (BreadcrumbItem)GetValue(RootItemProperty); }
-            set { SetValue(RootItemProperty, value); }
-        }
-
-        public static readonly StyledProperty<BreadcrumbItem> RootItemProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, BreadcrumbItem>(nameof(RootItem));
-
-        
-        public IDataTemplate BreadcrumbItemTemplate
-        {
-            get { return (IDataTemplate)GetValue(BreadcrumbItemTemplateProperty); }
-            set { SetValue(BreadcrumbItemTemplateProperty, value); }
-        }
-
-        public static readonly StyledProperty<IDataTemplate> BreadcrumbItemTemplateProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, IDataTemplate>(nameof(BreadcrumbItemTemplate));
-
-        public ButtonMode OverflowMode
-        {
-            get { return (ButtonMode)GetValue(OverflowModeProperty); }
-            set { SetValue(OverflowModeProperty, value); }
-        }
-
-        public static readonly StyledProperty<ButtonMode> OverflowModeProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, ButtonMode>(nameof(OverflowMode), defaultValue: ButtonMode.Overflow);
-
-        public bool IsDropDownOpen
-        {
-            get { return (bool)GetValue(IsDropDownOpenProperty); }
-            set { SetValue(IsDropDownOpenProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsDropDownOpenProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, bool>(nameof(IsDropDownOpen));
-
-        public string SeparatorString
-        {
-            get { return (string)GetValue(SeparatorStringProperty); }
-            set { SetValue(SeparatorStringProperty, value); }
-        }
-
-        public static readonly StyledProperty<string> SeparatorStringProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, string>(nameof(SeparatorString), defaultValue: System.IO.Path.DirectorySeparatorChar.ToString());
-
-        public string PathBinding
-        {
-            get { return (string)GetValue(PathBindingProperty); }
-            set { SetValue(PathBindingProperty, value); }
-        }
-
-        public static readonly StyledProperty<string> PathBindingProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, string>(nameof(PathBinding));
-
-        public string Path
-        {
-            get { return (string)GetValue(PathProperty); }
-            set { SetValue(PathProperty, value); }
-        }
-
-        public static readonly StyledProperty<string> PathProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, string>(nameof(Path), defaultValue: string.Empty);
-
-        public int SelectedDropDownIndex
-        {
-            get { return (int)GetValue(SelectedDropDownIndexProperty); }
-            set { SetValue(SelectedDropDownIndexProperty, value); }
-        }
-
-        public static readonly StyledProperty<int> SelectedDropDownIndexProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, int>(nameof(SelectedDropDownIndex), defaultValue: -1);
-
-        public double ProgressValue
-        {
-            get { return (double)GetValue(ProgressValueProperty); }
-            set { SetValue(ProgressValueProperty, value); }
-        }
-
-        public static readonly StyledProperty<double> ProgressValueProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, double>(nameof(ProgressValue), defaultValue: 0.0d,
-                coerce: (o, e) => { return CoerceProgressValue(o, e); });
-
-        public double ProgressMaximum
-        {
-            get { return (double)GetValue(ProgressMaximumProperty); }
-            set { SetValue(ProgressMaximumProperty, value); }
-        }
-
-        public static readonly StyledProperty<double> ProgressMaximumProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, double>(nameof(ProgressMaximum), defaultValue: 100d
-                , coerce: (o, e) => { return CoerceProgressMaximum(o, e); });
-
-        public double ProgressMinimum
-        {
-            get { return (double)GetValue(ProgressMinimumProperty); }
-            set { SetValue(ProgressMinimumProperty, value); }
-        }
-
-        public static readonly StyledProperty<double> ProgressMinimumProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, double>(nameof(ProgressMinimum), defaultValue: 0.0d
-                , coerce: (o, e) => { return CoerceProgressMinimum(o, e); });
-
-        public ICommand ShowDropDownCommand { get; private set; }
-
-        public ICommand SelectTraceCommand { get; private set; }
-
-        public ICommand SelectRootCommand { get; private set; }
-
-        public static readonly RoutedEvent<RoutedEventArgs> BreadcrumbItemDropDownOpenedEvent =
-                    RoutedEvent.Register<BreadcrumbBar, RoutedEventArgs>(nameof(BreadcrumbItemDropDownOpenedEvent), RoutingStrategies.Bubble);
-
-        public event EventHandler BreadcrumbItemDropDownOpened
-        {
-            add
-            {
-                AddHandler(BreadcrumbItemDropDownOpenedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(BreadcrumbItemDropDownOpenedEvent, value);
-            }
-        }
-
-        public static readonly RoutedEvent<RoutedEventArgs> BreadcrumbItemDropDownClosedEvent =
-                    RoutedEvent.Register<BreadcrumbBar, RoutedEventArgs>(nameof(BreadcrumbItemDropDownClosedEvent), RoutingStrategies.Bubble);
-
-        public event EventHandler BreadcrumbItemDropDownClosed
-        {
-            add
-            {
-                AddHandler(BreadcrumbItemDropDownClosedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(BreadcrumbItemDropDownClosedEvent, value);
-            }
-        }
-
-        public static readonly RoutedEvent<RoutedEventArgs> ProgressValueChangedEvent =
-                    RoutedEvent.Register<BreadcrumbBar, RoutedEventArgs>(nameof(ProgressValueChangedEvent), RoutingStrategies.Bubble);
-
-        public event EventHandler ProgressValueChanged
-        {
-            add
-            {
-                AddHandler(ProgressValueChangedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(ProgressValueChangedEvent, value);
-            }
-        }
-
-        public static readonly RoutedEvent<ApplyPropertiesEventArgs> ApplyPropertiesEvent =
-                    RoutedEvent.Register<BreadcrumbBar, ApplyPropertiesEventArgs>(nameof(ApplyPropertiesEvent), RoutingStrategies.Bubble);
-
-        public event ApplyPropertiesEventHandler ApplyProperties
-        {
-            add
-            {
-                AddHandler(ApplyPropertiesEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(ApplyPropertiesEvent, value);
-            }
-        }
-
-        public static readonly RoutedEvent<RoutedEventArgs> SelectedBreadcrumbChangedEvent =
-                    RoutedEvent.Register<BreadcrumbBar, RoutedEventArgs>(nameof(SelectedBreadcrumbChangedEvent), RoutingStrategies.Bubble);
-
-        public event EventHandler SelectedBreadcrumbChanged
-        {
-            add
-            {
-                AddHandler(SelectedBreadcrumbChangedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(SelectedBreadcrumbChangedEvent, value);
-            }
-        }
-
-        public static readonly RoutedEvent<RoutedEventArgs> PathChangedEvent =
-                    RoutedEvent.Register<BreadcrumbBar, RoutedEventArgs>(nameof(PathChangedEvent), RoutingStrategies.Bubble);
-
-        public event EventHandler PathChanged
-        {
-            add
-            {
-                AddHandler(PathChangedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(PathChangedEvent, value);
-            }
-        }
-
-        // <summary>
-        /// Occurs before acessing the Items property of a BreadcrumbItem. This event can be used to populate the Items on demand.
-        /// </summary>
-        public static readonly RoutedEvent<BreadcrumbItemEventArgs> PopulateItemsEvent =
-                    RoutedEvent.Register<BreadcrumbBar, BreadcrumbItemEventArgs>(nameof(PopulateItemsEvent), RoutingStrategies.Bubble);
-
-        public event BreadcrumbItemEventHandler PopulateItems
-        {
-            add
-            {
-                AddHandler(PopulateItemsEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(PopulateItemsEvent, value);
-            }
-        }
-
-        public static readonly RoutedEvent<RoutedEventArgs> PathConversionEvent =
-                    RoutedEvent.Register<BreadcrumbBar, RoutedEventArgs>(nameof(PathConversionEvent), RoutingStrategies.Bubble);
-
-        public event EventHandler PathConversion
-        {
-            add
-            {
-                AddHandler(PathConversionEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(PathConversionEvent, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets the number of the first breadcrumb to hide in the path if descending breadcrumbs are selected.
-        /// </summary>
-        private int BreadcrumbsToHide
-        {
-            get { return HideRootNode ? 1 : 0; }
-        }
-
-        /// <summary>
-        /// Gets or sets the TraceBinding property that will be set to every child BreadcrumbItem. This is not a dependency property!
-        /// </summary>
-        public Binding TraceBinding { get; set; }
-
-        /// <summary>
-        /// Gets or sets the ImageBinding property that will be set to every child BreadcrumbItem. This is not a dependency property!
-        /// </summary>
-        public Binding ImageBinding { get; set; }
-
         public BreadcrumbBar()
         {
             RootProperty.Changed.AddClassHandler<BreadcrumbBar>(((o, e) => OnRootPropertyChanged(o, e)));
@@ -450,14 +54,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             traces.Add(null);
 
             this.PointerPressed += OnMouseDown;
-        }
-
-        static BreadcrumbBar()
-        {
-            //BorderThicknessProperty.OverrideDefaultValue<BreadcrumbBar>(new Thickness(1));
-            //BorderThicknessProperty.OverrideDefaultValue<BreadcrumbBar>(new Thickness(1));
-            //Color c = new Color(255, 245, 245, 245);
-            //BackgroundProperty.OverrideDefaultValue<BreadcrumbBar>(new SolidColorBrush(c));
         }
 
         private void breadcrumbItemSelectedItemChanged(object sender, RoutedEventArgs e)
@@ -517,7 +113,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 // that was pressed is not the drop down button of the combobox:
                 if (/*this.IsKeyboardFocusWithin &&*/ (e.Source is BreadcrumbButton))
                 {
-                    //   this.Focus();
+                    //todo test if enabled
+                    //this.Focus();
                 }
             }
         }
@@ -604,6 +201,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             return value;
         }
 
+        /// <summary>
+        /// calls CheckOverflowImage
+        /// </summary>
+        /// <param name="finalSize"></param>
+        /// <returns></returns>
         protected override Size ArrangeOverride(Size finalSize)
         {
             var size = base.ArrangeOverride(finalSize);
@@ -735,7 +337,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <param name="path">The traces separated by the SepearatorString property.</param>
         private bool BuildBreadcrumbsFromPath(string newPath)
         {
-            PathConversionEventArgs e = new PathConversionEventArgs(PathConversionEventArgs.ConversionMode.EditToDisplay, newPath, Root, PathConversionEvent);
+            PathConversionEventArgs e = new PathConversionEventArgs(ConversionMode.EditToDisplay, newPath, Root, PathConversionEvent);
             RaiseEvent(e);
             newPath = e.DisplayPath;
 
@@ -907,18 +509,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             bar.OnRootChanged(bar, e.OldValue, e.NewValue);
         }
 
-        protected override void OnInitialized()
-        {
-            base.OnInitialized();
-
-            //if (Root == null)
-            //{
-            //    Root = Content as BreadcrumbItem;
-
-            //}
-        }
-
-
         /// <summary>
         /// Occurs when the Root property is changed.
         /// </summary>
@@ -954,7 +544,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                     {
                         root = BreadcrumbItem.CreateInitialItem(newValue);
                     }
-                    
                 }
                 if (root != null)
                 {
@@ -967,7 +556,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 RootItem = root;
                 if (root != null)
                 {
-
                     //bool result = LogicalTree.LogicalExtensions.GetLogicalParent(root as ILogical) == null;
                     ////if (LogicalTree.LogicalExtensions.GetLogicalParent(root as ILogical) == null)
                     //{
@@ -1026,7 +614,6 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             //};
 
-
             if (comboBox != null)
             {
                 //comboBox.DropDownClosed += new EventHandler(comboBox_DropDownClosed);
@@ -1044,15 +631,11 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             BreadcrumbItem breadcrumbItem = Content as BreadcrumbItem;
 
-
-
             _isInitial = true;
             RaisePropertyChanged(RootProperty, null,new BindingValue<object>( breadcrumbItem.Items));
             _isInitial = false;
 
-
             //RaisePropertyChanged(PathProperty, string.Empty, Path);
-
         }
 
         private void rootButton_Click(object sender, PointerPressedEventArgs e)
@@ -1060,7 +643,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             SetInputState();
         }
 
-        bool _oldValue = true;
+        private bool _oldValue = true;
         private static bool _isInitial;
 
         private void ComboBox_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
@@ -1072,14 +655,10 @@ namespace Avalonia.ExtendedToolkit.Controls
                 PseudoClasses.Set(":comboBoxIsVisible", comboBox.IsVisible);
             }
 
-
             if (e.Property.Name == nameof(ComboBox.IsDropDownOpen))
             {
-
-
                 if (_oldValue == comboBox.IsDropDownOpen)
                     return;
-
 
                 if (comboBox.IsDropDownOpen == false)
                 {
@@ -1087,7 +666,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 }
                 else
                 {
-
                 }
 
                 _oldValue = comboBox.IsDropDownOpen;
@@ -1128,7 +706,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             if (comboBox != null && IsEditable)
             {
+                //todo check
                 //comboBox.Text = Path;
+
                 comboBox.IsVisible = true;
                 comboBox.Focus();
             }
@@ -1141,7 +721,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         public string GetEditPath()
         {
             string displayPath = GetDisplayPath();
-            PathConversionEventArgs e = new PathConversionEventArgs(PathConversionEventArgs.ConversionMode.DisplayToEdit, displayPath, Root, PathConversionEvent);
+            PathConversionEventArgs e = new PathConversionEventArgs(ConversionMode.DisplayToEdit, displayPath, Root, PathConversionEvent);
             RaiseEvent(e);
             return e.EditPath;
         }
@@ -1161,7 +741,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 sb.Insert(0, item.TraceValue);
                 item = item.ParentBreadcrumbItem;
             }
-            PathConversionEventArgs e = new PathConversionEventArgs(PathConversionEventArgs.ConversionMode.DisplayToEdit, sb.ToString(), Root, PathConversionEvent);
+            PathConversionEventArgs e = new PathConversionEventArgs(ConversionMode.DisplayToEdit, sb.ToString(), Root, PathConversionEvent);
             RaiseEvent(e);
             return e.EditPath;
         }

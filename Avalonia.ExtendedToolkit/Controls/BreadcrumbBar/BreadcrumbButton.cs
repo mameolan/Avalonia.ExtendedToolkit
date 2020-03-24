@@ -1,4 +1,9 @@
-﻿using Avalonia.Collections;
+﻿using System;
+using System.Collections;
+using System.Diagnostics;
+using System.Linq;
+using System.Windows.Input;
+using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
@@ -7,17 +12,14 @@ using Avalonia.Markup.Xaml.Templates;
 using Avalonia.Media;
 using Avalonia.VisualTree;
 using ReactiveUI;
-using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Linq;
-using System.Windows.Input;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
     //ported from https://github.com/jogibear9988/OdysseyWPF.git
 
+    /// <summary>
+    /// A breadcrumb button is part of a BreadcrumbItem and contains  a header and a dropdown button.
+    /// </summary>
     public class BreadcrumbButton : HeaderedItemsControl
     {
         private ContextMenu contextMenu;
@@ -36,15 +38,30 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public ICommand SelectCommand { get; private set; }
 
-        public object Image
+        /// <summary>
+        /// Gets or sets the Image of the BreadcrumbButton.
+        /// </summary>
+        public IImage Image
         {
-            get { return (object)GetValue(ImageProperty); }
+            get { return (IImage)GetValue(ImageProperty); }
             set { SetValue(ImageProperty, value); }
         }
 
-        public static readonly StyledProperty<object> ImageProperty =
-            AvaloniaProperty.Register<BreadcrumbButton, object>(nameof(Image));
+        public static readonly StyledProperty<IImage> ImageProperty =
+            AvaloniaProperty.Register<BreadcrumbButton, IImage>(nameof(Image));
 
+        public bool HasImage
+        {
+            get { return (bool)GetValue(HasImageProperty); }
+            set { SetValue(HasImageProperty, value); }
+        }
+
+        public static readonly StyledProperty<bool> HasImageProperty =
+            AvaloniaProperty.Register<BreadcrumbButton, bool>(nameof(HasImage));
+
+        /// <summary>
+        /// Gets or sets the selectedItem.
+        /// </summary>
         public object SelectedItem
         {
             get { return (object)GetValue(SelectedItemProperty); }
@@ -54,6 +71,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<object> SelectedItemProperty =
             AvaloniaProperty.Register<BreadcrumbButton, object>(nameof(SelectedItem));
 
+        /// <summary>
+        /// Gets or sets the ButtonMode for the BreadcrumbButton.
+        /// </summary>
         public ButtonMode Mode
         {
             get { return (ButtonMode)GetValue(ModeProperty); }
@@ -63,6 +83,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<ButtonMode> ModeProperty =
             AvaloniaProperty.Register<BreadcrumbButton, ButtonMode>(nameof(Mode), defaultValue: ButtonMode.Breadcrumb);
 
+        /// <summary>
+        /// Gets or sets whether the button is pressed.
+        /// </summary>
         public bool IsPressed
         {
             get { return (bool)GetValue(IsPressedProperty); }
@@ -72,6 +95,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> IsPressedProperty =
             AvaloniaProperty.Register<BreadcrumbButton, bool>(nameof(IsPressed));
 
+        /// <summary>
+        /// Gets or sets whether the drop down button is pressed.
+        /// </summary>
         public bool IsDropDownPressed
         {
             get { return (bool)GetValue(IsDropDownPressedProperty); }
@@ -81,6 +107,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> IsDropDownPressedProperty =
             AvaloniaProperty.Register<BreadcrumbButton, bool>(nameof(IsDropDownPressed));
 
+        /// <summary>
+        /// Gets or sets whether the drop down button is visible.
+        /// </summary>
         public bool IsDropDownVisible
         {
             get { return (bool)GetValue(IsDropDownVisibleProperty); }
@@ -90,21 +119,21 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> IsDropDownVisibleProperty =
             AvaloniaProperty.Register<BreadcrumbButton, bool>(nameof(IsDropDownVisible), defaultValue: true);
 
-
-
+        /// <summary>
+        /// Gets or sets the DataTemplate for the drop down items.
+        /// </summary>
         public DataTemplate DropDownContentTemplate
         {
             get { return (DataTemplate)GetValue(DropDownContentTemplateProperty); }
             set { SetValue(DropDownContentTemplateProperty, value); }
         }
 
-
         public static readonly StyledProperty<DataTemplate> DropDownContentTemplateProperty =
             AvaloniaProperty.Register<BreadcrumbButton, DataTemplate>(nameof(DropDownContentTemplate));
 
-
-
-
+        /// <summary>
+        /// Gets or sets whether the button is visible.
+        /// </summary>
         public bool IsButtonVisible
         {
             get { return (bool)GetValue(IsButtonVisibleProperty); }
@@ -114,6 +143,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> IsButtonVisibleProperty =
             AvaloniaProperty.Register<BreadcrumbButton, bool>(nameof(IsButtonVisible), defaultValue: true);
 
+        /// <summary>
+        /// Gets or sets whether the Image is visible
+        /// </summary>
         public bool IsImageVisible
         {
             get { return (bool)GetValue(IsImageVisibleProperty); }
@@ -123,6 +155,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> IsImageVisibleProperty =
             AvaloniaProperty.Register<BreadcrumbButton, bool>(nameof(IsImageVisible), defaultValue: true);
 
+        /// <summary>
+        /// Gets or sets whether to use visual background style on MouseOver and/or MouseDown.
+        /// </summary>
         public bool EnableVisualButtonStyle
         {
             get { return (bool)GetValue(EnableVisualButtonStyleProperty); }
@@ -132,24 +167,24 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> EnableVisualButtonStyleProperty =
             AvaloniaProperty.Register<BreadcrumbButton, bool>(nameof(EnableVisualButtonStyle), defaultValue: true);
 
-
-
+        /// <summary>
+        /// returns true if items.count > 0
+        /// </summary>
         public bool HasItems
         {
             get { return (bool)GetValue(HasItemsProperty); }
-            set { SetValue(HasItemsProperty, value); }
+            private set { SetValue(HasItemsProperty, value); }
         }
-
 
         public static readonly StyledProperty<bool> HasItemsProperty =
             AvaloniaProperty.Register<BreadcrumbButton, bool>(nameof(HasItems));
 
-
-
-
         public static readonly RoutedEvent<RoutedEventArgs> SelectedItemChangedEvent =
                     RoutedEvent.Register<BreadcrumbButton, RoutedEventArgs>(nameof(OnSelectedItemChanged), RoutingStrategies.Bubble);
 
+        /// <summary>
+        /// Occurs when the SelectedItem is changed.
+        /// </summary>
         public event EventHandler SelectedItemChanged
         {
             add
@@ -165,6 +200,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly RoutedEvent<RoutedEventArgs> ClickEvent =
                     RoutedEvent.Register<BreadcrumbButton, RoutedEventArgs>(nameof(Click), RoutingStrategies.Bubble);
 
+        /// <summary>
+        /// Occurs when the Button is clicked.
+        /// </summary>
         public event EventHandler Click
         {
             add
@@ -177,15 +215,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        protected override void ItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            HasItems = Items.OfType<Object>().Count() > 0;
-            base.ItemsCollectionChanged(sender, e);
-        }
-
-
         public BreadcrumbButton()
         {
+            ImageProperty.Changed.AddClassHandler<BreadcrumbButton>((o, e) => OnImageChanged(o, e));
+            ItemsProperty.Changed.AddClassHandler<BreadcrumbButton>((o, e) => OnItemsCollectionChanged(o, e));
+
             SelectedItemProperty.Changed.AddClassHandler<BreadcrumbButton>(((o, e) => OnSelectedItemChanged(o, e)));
             IsDropDownPressedProperty.Changed.AddClassHandler<BreadcrumbButton>(((o, e) => OverflowPressedChanged(o, e)));
 
@@ -196,13 +230,21 @@ namespace Avalonia.ExtendedToolkit.Controls
                 , canExecute: openOverflowCommandCanExecute
                 , outputScheduler: RxApp.MainThreadScheduler);
 
-            
-
             this.KeyBindings.Add(new KeyBinding() { Command = SelectCommand, Gesture = new KeyGesture(Key.Enter) });
             this.KeyBindings.Add(new KeyBinding() { Command = SelectCommand, Gesture = new KeyGesture(Key.Space) });
 
             this.KeyBindings.Add(new KeyBinding() { Command = OpenOverflowCommand, Gesture = new KeyGesture(Key.Down) });
             this.KeyBindings.Add(new KeyBinding() { Command = OpenOverflowCommand, Gesture = new KeyGesture(Key.Up) });
+        }
+
+        private void OnItemsCollectionChanged(BreadcrumbButton o, AvaloniaPropertyChangedEventArgs e)
+        {
+            HasItems = Items == null ? false : Items.OfType<object>().Count() > 0;
+        }
+
+        private void OnImageChanged(BreadcrumbButton o, AvaloniaPropertyChangedEventArgs e)
+        {
+            HasImage = e.NewValue is IImage;
         }
 
         protected override void ItemsChanged(AvaloniaPropertyChangedEventArgs e)
@@ -217,21 +259,17 @@ namespace Avalonia.ExtendedToolkit.Controls
 
                 if (currentItems.Count == 0)
                 {
-                //    dropPanel.ContextMenu.IsVisible = false;
+                    //    dropPanel.ContextMenu.IsVisible = false;
                     return;
                 }
 
                 contextMenu.ItemTemplate = ItemTemplate;
-
-
 
                 //if (contextMenu.IsOpen)
                 //    contextMenu.Close();
 
                 var items = new AvaloniaList<object>();
                 contextMenu.Items = new AvaloniaList<object>();
-
-
 
                 foreach (object item in Items)
                 {
@@ -269,10 +307,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                         {
                             Debug.WriteLine("Error [contextMenu_Opened]: item is not a MenuItem or Seperator");
                         }
-
                     }
                 }
-
 
                 contextMenu.Items = items;
 
@@ -280,15 +316,12 @@ namespace Avalonia.ExtendedToolkit.Controls
                 //{
                 //    contextMenu.Open(dropPanel);
                 //}
-
             }
-
-
         }
-
 
         private void OverflowPressedChanged(BreadcrumbButton o, AvaloniaPropertyChangedEventArgs e)
         {
+            //todo check
             if (contextMenu != null)
             {
                 if (contextMenu.Items.OfType<object>().Count() == 0)
@@ -305,7 +338,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 //    contextMenu.Close();
                 //}
 
-
                 if (val)
                 {
                     if (contextMenu.ItemCount > 0)
@@ -317,17 +349,14 @@ namespace Avalonia.ExtendedToolkit.Controls
                         }
                         catch
                         {
-
                         }
                     }
-
                 }
                 else
                 {
                     contextMenu.Close();
                 }
             }
-
 
             o.OnOverflowPressedChanged();
         }
@@ -380,8 +409,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             base.OnPointerReleased(e);
         }
 
-        
-
         private void OnSelectedItemChanged(BreadcrumbButton button, object e)
         {
             if (button.IsInitialized)
@@ -425,7 +452,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 //contextMenu.Opened += new RoutedEventHandler(contextMenu_Opened);
                 contextMenu.PropertyChanged += ContextMenu_PropertyChanged;
                 //contextMenu.Items = Items;
-
             }
             if (dropDownBtn != null)
             {
@@ -435,7 +461,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             base.OnTemplateApplied(e);
 
             RaisePropertyChanged(ItemsProperty, null, new Data.BindingValue<IEnumerable>(Items));
-
         }
 
         private void dropDownBtn_MouseDown(object sender, EventArgs e)
@@ -457,7 +482,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 //already parent exception
             }
-
         }
 
         private void ContextMenu_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
@@ -466,7 +490,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 ContextMenu contextMenu = sender as ContextMenu;
 
-                var parent= VisualTree.VisualExtensions.GetVisualParent<BreadcrumbBar>(this.Parent);
+                var parent = VisualTree.VisualExtensions.GetVisualParent<BreadcrumbBar>(this.Parent);
 
                 if (contextMenu.IsOpen)
                 {
@@ -478,7 +502,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 {
                     //contextMenu.Focusable = false;
                 }
-
             }
         }
 
@@ -492,7 +515,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             var items = new AvaloniaList<object>(); //contextMenu.Items.OfType<object>().ToList();
 
             var currentItems = Items.OfType<object>().ToList();
-            
+
             //foreach (object item in Items)
             //{
             //    if (!(item is MenuItem) && !(item is Separator))
@@ -531,7 +554,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             //}
 
             //contextMenu.Items = items;
-                        //contextMenu.Placement = PlacementMode.Relative;
+            //contextMenu.Placement = PlacementMode.Relative;
             //contextMenu.PlacementTarget = dropDownBtn;
             //contextMenu.VerticalOffset = dropDownBtn.Height;
         }
@@ -545,9 +568,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             if (bi == null)
             {
                 BreadcrumbItem parent = TemplatedParent as BreadcrumbItem;
-                if (parent != null) bi = parent.ContainerFromItem(item);
+                if (parent != null)
+                    bi = parent.ContainerFromItem(item);
             }
-            if (bi != null) menuItem.Header = bi.TraceValue;
+            if (bi != null)
+                menuItem.Header = bi.TraceValue;
 
             Image image = new Image();
             image.Source = bi != null ? bi.Image : null;
@@ -561,22 +586,22 @@ namespace Avalonia.ExtendedToolkit.Controls
             menuItem.Icon = image;
 
             menuItem.Click += item_Click;// += new RoutedEventHandler(item_Click);
-            if (item != null && item.Equals(SelectedItem)) menuItem.FontWeight = FontWeight.Bold;
+            if (item != null && item.Equals(SelectedItem))
+                menuItem.FontWeight = FontWeight.Bold;
             menuItem.ItemTemplate = ItemTemplate;
             //menuItem.ItemTemplateSelector = ItemTemplateSelector;
             //contextMenu.Items.OfType<object>().ToList().Add(menuItem);
             return menuItem;
         }
 
-        private void BreadcrumbItem_PointerPressed(object sender, PointerPressedEventArgs e)
-        {
-            BreadcrumbItem item = e.Source as BreadcrumbItem;
-            object dataItem = item.DataContext;
-            RemoveSelectedItem(dataItem);
-            SelectedItem = dataItem;
+        //private void BreadcrumbItem_PointerPressed(object sender, PointerPressedEventArgs e)
+        //{
+        //    BreadcrumbItem item = e.Source as BreadcrumbItem;
+        //    object dataItem = item.DataContext;
+        //    RemoveSelectedItem(dataItem);
+        //    SelectedItem = dataItem;
 
-
-        }
+        //}
 
         private void item_Click(object sender, RoutedEventArgs e)
         {
@@ -596,7 +621,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <param name="dataItem"></param>
         private void RemoveSelectedItem(object dataItem)
         {
-            if (dataItem != null && dataItem.Equals(SelectedItem)) SelectedItem = null;
+            if (dataItem != null && dataItem.Equals(SelectedItem))
+                SelectedItem = null;
         }
     }
 }

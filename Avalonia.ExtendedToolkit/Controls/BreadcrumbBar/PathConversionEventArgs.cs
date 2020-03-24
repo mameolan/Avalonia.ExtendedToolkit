@@ -11,23 +11,6 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class PathConversionEventArgs : RoutedEventArgs
     {
-        //TODO: Rename PathConverionMode to LogicalToVisual and VisualToLogical
-        /// <summary>
-        /// Specifies what property to convert.
-        /// </summary>
-        public enum ConversionMode
-        {
-            /// <summary>
-            /// Convert the display path to edit path.
-            /// </summary>
-            DisplayToEdit,
-
-            /// <summary>
-            /// convert the edit path to display path.
-            /// </summary>
-            EditToDisplay,
-        }
-
         /// <summary>
         /// Gets or sets the display path.
         /// </summary>

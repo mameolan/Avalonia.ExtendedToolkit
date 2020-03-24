@@ -9,7 +9,7 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class MetroButton : Button
     {
-        public Type StyleKey => typeof(Button);
+        public Type StyleKey => typeof(MetroButton);
 
         public CharacterCasing ContentCharacterCasing
         {

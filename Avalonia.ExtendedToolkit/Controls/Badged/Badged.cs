@@ -6,10 +6,18 @@ using System;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //from ControlzEx
+
+
     public class Badged : ContentControl
     {
         public const string BadgeContainerPartName = "PART_BadgeContainer";
 
+        public Type StyleKey => typeof(Badged);
+
+        /// <summary>
+        /// Gets or sets the Badge content to display.
+        /// </summary>
         public object Badge
         {
             get { return (object)GetValue(BadgeProperty); }
@@ -19,6 +27,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<object> BadgeProperty =
             AvaloniaProperty.Register<Badged, object>(nameof(Badge));
 
+        /// <summary>
+        /// Gets or sets the background brush for the Badge.
+        /// </summary>
         public SolidColorBrush BadgeBackground
         {
             get { return (SolidColorBrush)GetValue(BadgeBackgroundProperty); }
@@ -28,6 +39,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<SolidColorBrush> BadgeBackgroundProperty =
             AvaloniaProperty.Register<Badged, SolidColorBrush>(nameof(BadgeBackground));
 
+        /// <summary>
+        /// Gets or sets the foreground brush for the Badge.
+        /// </summary>
         public SolidColorBrush BadgeForeground
         {
             get { return (SolidColorBrush)GetValue(BadgeForegroundProperty); }
@@ -37,6 +51,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<SolidColorBrush> BadgeForegroundProperty =
             AvaloniaProperty.Register<Badged, SolidColorBrush>(nameof(BadgeForeground));
 
+        /// <summary>
+        /// Gets or sets the placement of the Badge relative to its content.
+        /// </summary>
         public BadgePlacementMode BadgePlacementMode
         {
             get { return (BadgePlacementMode)GetValue(BadgePlacementModeProperty); }
@@ -45,6 +62,34 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public static readonly StyledProperty<BadgePlacementMode> BadgePlacementModeProperty =
             AvaloniaProperty.Register<Badged, BadgePlacementMode>(nameof(BadgePlacementMode));
+
+        /// <summary>
+        /// Gets or sets a margin which can be used to make minor adjustments to the placement of the Badge.
+        /// </summary>
+        public Thickness BadgeMargin
+        {
+            get { return (Thickness)GetValue(BadgeMarginProperty); }
+            set { SetValue(BadgeMarginProperty, value); }
+        }
+
+
+        public static readonly StyledProperty<Thickness> BadgeMarginProperty =
+            AvaloniaProperty.Register<Badged, Thickness>(nameof(BadgeMargin));
+
+        /// <summary>
+        /// Indicates whether the Badge has content to display.
+        /// </summary>
+        public bool IsBadgeSet
+        {
+            get { return (bool)GetValue(IsBadgeSetProperty); }
+            private set { SetValue(IsBadgeSetProperty, value); }
+        }
+
+        public static readonly StyledProperty<bool> IsBadgeSetProperty =
+            AvaloniaProperty.Register<Badged, bool>(nameof(IsBadgeSet));
+
+
+
 
         public static readonly RoutedEvent BadgeChangedEvent =
             RoutedEvent.Register<Badged, RoutedPropertyChangedEventArgs<object>>(nameof(BadgeChanged), RoutingStrategies.Bubble);
@@ -55,14 +100,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             remove { RemoveHandler(BadgeChangedEvent, value); }
         }
 
-        public bool IsBadgeSet
-        {
-            get { return (bool)GetValue(IsBadgeSetProperty); }
-            private set { SetValue(IsBadgeSetProperty, value); }
-        }
 
-        public static readonly StyledProperty<bool> IsBadgeSetProperty =
-            AvaloniaProperty.Register<Badged, bool>(nameof(IsBadgeSet));
+
+
+        
 
         private Control _badgeContainer;
 
@@ -71,18 +112,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             BadgeProperty.Changed.AddClassHandler<Badged>((o, e) => OnBadgeChanged(o, e));
         }
 
-        private void OnBadgeChanged(Badged o, AvaloniaPropertyChangedEventArgs e)
+        private void OnBadgeChanged(Badged badged, AvaloniaPropertyChangedEventArgs e)
         {
-            var instance = o;
+            badged.IsBadgeSet = !string.IsNullOrWhiteSpace(e.NewValue as string) || (e.NewValue != null && !(e.NewValue is string));
 
-            instance.IsBadgeSet = !string.IsNullOrWhiteSpace(e.NewValue as string) || (e.NewValue != null && !(e.NewValue is string));
-
-            //todo
             var args = new RoutedPropertyChangedEventArgs<object>(
                 e.OldValue,
                 e.NewValue)
             { RoutedEvent = BadgeChangedEvent };
-            instance.RaiseEvent(args);
+            badged.RaiseEvent(args);
         }
 
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
@@ -96,7 +134,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             return base.MeasureOverride(availableSize);
         }
 
-        //is not working on avalonia
+        //is not working in avalonia
         //protected override Size ArrangeOverride(Size arrangeBounds)
         //{
         //    var result = base.ArrangeOverride(arrangeBounds);

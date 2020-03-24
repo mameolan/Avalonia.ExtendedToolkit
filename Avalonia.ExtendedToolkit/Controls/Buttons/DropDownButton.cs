@@ -19,9 +19,12 @@ namespace Avalonia.ExtendedToolkit.Controls
         private Button clickButton;
         private ContextMenu menu;
 
+        public Type StyleKey => typeof(DropDownButton);
+
+
         public static readonly RoutedEvent<RoutedEventArgs> ClickEvent =
                     RoutedEvent.Register<DropDownButton, RoutedEventArgs>(nameof(ClickEvent), RoutingStrategies.Bubble);
-
+        
         public event EventHandler Click
         {
             add
