@@ -2,6 +2,8 @@
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/MahApps/MahApps.Metro
+
     /// <summary>
     /// contentcontrol with special properties
     /// </summary>

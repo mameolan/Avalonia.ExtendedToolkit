@@ -7,11 +7,20 @@ using System.Threading.Tasks;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/jogibear9988/OdysseyWPF.git
+
+    /// <summary>
+    /// a decorator with an animation
+    /// does not work.
+    /// </summary>
     public class AnimationDecorator : Decorator
     {
         private double targetHeight = 0;
         private bool animating = false;
 
+        /// <summary>
+        /// Specify whether to apply opactiy animation.
+        /// </summary>
         public bool OpacityAnimation
         {
             get { return (bool)GetValue(OpacityAnimationProperty); }
@@ -21,6 +30,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> OpacityAnimationProperty =
             AvaloniaProperty.Register<AnimationDecorator, bool>(nameof(OpacityAnimation), defaultValue: true);
 
+        /// <summary>
+        /// Gets or sets whether the decorator is expanded or collapsed.
+        /// </summary>
         public bool IsExpanded
         {
             get { return (bool)GetValue(IsExpandedProperty); }
@@ -30,6 +42,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> IsExpandedProperty =
             AvaloniaProperty.Register<AnimationDecorator, bool>(nameof(IsExpanded), defaultValue: true);
 
+        /// <summary>
+        /// Specify whether to apply animation when IsExpanded is changed.
+        /// </summary>
         public IAnimation HeightAnimation
         {
             get { return (IAnimation)GetValue(HeightAnimationProperty); }
@@ -39,6 +54,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<IAnimation> HeightAnimationProperty =
             AvaloniaProperty.Register<AnimationDecorator, IAnimation>(nameof(HeightAnimation));
 
+        /// <summary>
+        /// Gets or sets the duration for the animation.
+        /// </summary>
         public TimeSpan Duration
         {
             get { return (TimeSpan)GetValue(DurationProperty); }
@@ -49,6 +67,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             AvaloniaProperty.Register<AnimationDecorator, TimeSpan>(
                 nameof(Duration), defaultValue: TimeSpan.FromMilliseconds(250));
 
+
+        /// <summary>
+        /// Gets or sets the Opacity for animation. 
+        /// This dependency property can be used to modify the opacity of an outer control.
+        /// </summary>
         public double AnimationOpacity
         {
             get { return (double)GetValue(AnimationOpacityProperty); }
@@ -58,6 +81,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<double> AnimationOpacityProperty =
             AvaloniaProperty.Register<AnimationDecorator, double>(nameof(AnimationOpacity), defaultValue: (double)1.0);
 
+        /// <summary>
+        /// A helper value for the current state while in animation.
+        /// </summary>
         public double HeightOffset
         {
             get { return (double)GetValue(HeightOffsetProperty); }
@@ -67,6 +93,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<double> HeightOffsetProperty =
             AvaloniaProperty.Register<AnimationDecorator, double>(nameof(HeightOffset), defaultValue: 0.0d);
 
+        /// <summary>
+        /// A helper value for the current state while in animation.
+        /// </summary>
         public double YOffset
         {
             get { return (double)GetValue(YOffsetProperty); }
@@ -134,12 +163,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 animating = true;
 
-                if (YOffset > 0) YOffset = 0;
-                if (-YOffset > Child.DesiredSize.Height) YOffset = -Child.DesiredSize.Height;
+                if (YOffset > 0)
+                    YOffset = 0;
+                if (-YOffset > Child.DesiredSize.Height)
+                    YOffset = -Child.DesiredSize.Height;
                 Animation.Animation animation = HeightAnimation as Animation.Animation;
-                if (animation == null) animation = CreateAnimation();
+                if (animation == null)
+                    animation = CreateAnimation();
 
-                animation.FillMode = expanded? FillMode.Forward: FillMode.Backward;
+                animation.FillMode = expanded ? FillMode.Forward : FillMode.Backward;
 
                 double val = expanded ? 0 : -Child.DesiredSize.Height;
 
@@ -184,7 +216,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                     //this.BeginAnimation(AnimationDecorator.AnimationOpacityProperty, animation);
                 }
 
-                await Task.WhenAll(new Task[] { animation.RunAsync(this) }).ContinueWith(x=>
+                await Task.WhenAll(new Task[] { animation.RunAsync(this) }).ContinueWith(x =>
                 {
                     animating = false;
                 });
@@ -213,7 +245,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             double delta = targetHeight - h;
             Animation.Animation animation = HeightAnimation as Animation.Animation;
-            if (animation == null) animation = CreateAnimation();
+            if (animation == null)
+                animation = CreateAnimation();
             targetHeight = h;
             //animation.From = delta;
             //animation.To = 0;
@@ -234,7 +267,8 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         protected override Size MeasureOverride(Size constraint)
         {
-            if (Child == null) return new Size(0, 0);
+            if (Child == null)
+                return new Size(0, 0);
             Size size;
             if (double.IsInfinity(constraint.Height))
             {
@@ -252,7 +286,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                         }
                     }
                 }
-                else targetHeight = childHeight;
+                else
+                    targetHeight = childHeight;
 
                 double w = IsExpanded ? Child.DesiredSize.Width : 0;
                 size = new Size(w, Math.Max(0d, childHeight + YOffset + HeightOffset + deltaHeight));
@@ -265,13 +300,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 (Child as Control).IsEnabled = size.Height > 0;
             }
-            if (size.Height == 0) this.AnimationOpacity = 0;
+            if (size.Height == 0)
+                this.AnimationOpacity = 0;
             return size;
         }
 
         protected override Size ArrangeOverride(Size arrangeSize)
         {
-            if (Child == null) return arrangeSize;
+            if (Child == null)
+                return arrangeSize;
 
             Child.Arrange(new Rect(0d, YOffset, arrangeSize.Width, Child.DesiredSize.Height));
             Double h = Math.Max(0, Child.DesiredSize.Height + YOffset);

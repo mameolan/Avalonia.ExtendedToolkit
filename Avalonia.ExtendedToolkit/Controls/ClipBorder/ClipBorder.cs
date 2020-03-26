@@ -1,9 +1,43 @@
-﻿using Avalonia.Controls;
+﻿// Copyright (c) 2017 Ratish Philip 
+//
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal 
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is 
+// furnished to do so, subject to the following conditions: 
+// 
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software. 
+// 
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE. 
+//
+// This file is part of the WPFSpark project: https://github.com/ratishphilip/wpfspark
+//
+// WPFSpark v1.3.1
+// 
+
+using Avalonia.Controls;
 using Avalonia.Media;
 using System;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/MahApps/MahApps.Metro
+
+    /// <summary>
+    /// Represents a border whose contents are clipped within the bounds
+    /// of the border. The border may have rounded corners.
+    /// </summary>
     public class ClipBorder : Decorator
     {
         #region Fields
@@ -13,6 +47,10 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         #endregion Fields
 
+        /// <summary>
+        /// Gets or sets the BorderThickness property. This dependency property 
+        /// indicates the BorderThickness.
+        /// </summary>
         public Thickness BorderThickness
         {
             get { return (Thickness)GetValue(BorderThicknessProperty); }
@@ -22,6 +60,10 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<Thickness> BorderThicknessProperty =
             AvaloniaProperty.Register<ClipBorder, Thickness>(nameof(BorderThickness), defaultValue: new Thickness());
 
+        /// <summary>
+        /// Gets or sets the CornerRadius property. This dependency property 
+        /// indicates the CornerRadius of the border.
+        /// </summary>
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
@@ -31,6 +73,10 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<CornerRadius> CornerRadiusProperty =
             AvaloniaProperty.Register<ClipBorder, CornerRadius>(nameof(CornerRadius), defaultValue: new CornerRadius());
 
+        /// <summary>
+        /// Gets or sets the BorderBrush property. This dependency property 
+        /// indicates the BorderBrush with which the Border is drawn.
+        /// </summary>
         public IBrush BorderBrush
         {
             get { return (IBrush)GetValue(BorderBrushProperty); }
@@ -40,6 +86,10 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<IBrush> BorderBrushProperty =
             AvaloniaProperty.Register<ClipBorder, IBrush>(nameof(BorderBrush));
 
+        /// <summary>
+        /// Gets or sets the Background property. This dependency property 
+        /// indicates the Background with which the Background is drawn.
+        /// </summary>
         public IBrush Background
         {
             get { return (IBrush)GetValue(BackgroundProperty); }
@@ -49,6 +99,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<IBrush> BackgroundProperty =
             AvaloniaProperty.Register<ClipBorder, IBrush>(nameof(Background));
 
+        /// <summary>
+        /// Gets or sets the OptimizeClipRendering property. This dependency property 
+        /// indicates whether the rendering of the clip should be optimized. When set to true,
+        /// In order to optimize the rendering of the clipped Child,
+        /// the background is rendered with the same brush as the border. Any other brush set for
+        /// the background will be ignored. The Child will be rendered on top of it. 
+        /// This is done to prevent any gaps between the border the the clipped Child (this is 
+        /// evidently visible if both the Border and the Child are of same color).
+        /// This works best when the Child does not have any level of transparency and is opaque.
+        /// </summary>
         public bool OptimizeClipRendering
         {
             get { return (bool)GetValue(OptimizeClipRenderingProperty); }
@@ -58,6 +118,15 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> OptimizeClipRenderingProperty =
             AvaloniaProperty.Register<ClipBorder, bool>(nameof(OptimizeClipRendering), defaultValue: true);
 
+        /// <summary>
+        /// Updates DesiredSize of the ClipBorder.  Called by parent UIElement.  This is the first pass of layout.
+        /// </summary>
+        /// <remarks>
+        /// Border determines its desired size it needs from the specified border the child: its sizing
+        /// properties, margin, and requested size.
+        /// </remarks>
+        /// <param name="constraint">Constraint size is an "upper limit" that the return value should not exceed.</param>
+        /// <returns>The Decorator's desired size.</returns>
         protected override Size MeasureOverride(Size constraint)
         {
             var child = Child;
@@ -96,6 +165,12 @@ namespace Avalonia.ExtendedToolkit.Controls
             return desiredSize;
         }
 
+        /// <summary>
+        /// ClipBorder computes the position of its single child and applies its child's alignments to the child.
+        /// 
+        /// </summary>
+        /// <param name="finalSize">The size reserved for this element by the parent</param>
+        /// <returns>The actual ink area of the element, typically the same as finalSize</returns>
         protected override Size ArrangeOverride(Size finalSize)
         {
             var borders = BorderThickness;
@@ -164,6 +239,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             return finalSize;
         }
 
+        /// <summary>
+        /// Here the ClipBorder's Child, Border and Background are rendered.
+        /// </summary>
+        /// <param name="dc">Drawing Context</param>
         public override void Render(DrawingContext dc)
         {
             var borders = BorderThickness;

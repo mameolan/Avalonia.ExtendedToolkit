@@ -1,4 +1,8 @@
-﻿using Avalonia.Collections;
+﻿using System;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Windows.Input;
+using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
@@ -7,13 +11,14 @@ using Avalonia.Layout;
 using Avalonia.Markup.Xaml.Templates;
 using Avalonia.Media;
 using Avalonia.Styling;
-using System;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Windows.Input;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/MahApps/MahApps.Metro
+
+    /// <summary>
+    /// button with a menu
+    /// </summary>
     public class DropDownButton : ItemsControl
     {
         private Button clickButton;
@@ -21,10 +26,245 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public Type StyleKey => typeof(DropDownButton);
 
+        /// <summary>
+        /// Indicates whether the Menu is visible.
+        /// </summary>
+        public bool IsExpanded
+        {
+            get { return (bool)GetValue(IsExpandedProperty); }
+            set { SetValue(IsExpandedProperty, value); }
+        }
+
+        public static readonly StyledProperty<bool> IsExpandedProperty =
+            AvaloniaProperty.Register<DropDownButton, bool>(nameof(IsExpanded));
+
+        /// <summary>
+        /// Gets or sets an extra tag.
+        /// </summary>
+        public object ExtraTag
+        {
+            get { return (object)GetValue(ExtraTagProperty); }
+            set { SetValue(ExtraTagProperty, value); }
+        }
+
+        public static readonly StyledProperty<object> ExtraTagProperty =
+            AvaloniaProperty.Register<DropDownButton, object>(nameof(ExtraTag));
+
+        /// <summary>
+        /// Gets or sets the dimension of children stacking.
+        /// </summary>
+        public Orientation Orientation
+        {
+            get { return (Orientation)GetValue(OrientationProperty); }
+            set { SetValue(OrientationProperty, value); }
+        }
+
+        public static readonly StyledProperty<Orientation> OrientationProperty =
+            AvaloniaProperty.Register<DropDownButton, Orientation>(nameof(Orientation));
+
+        /// <summary>
+        ///  Gets or sets the Content used to generate the icon part.
+        /// </summary>
+        public object Icon
+        {
+            get { return (object)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
+        }
+
+        public static readonly StyledProperty<object> IconProperty =
+            AvaloniaProperty.Register<DropDownButton, object>(nameof(Icon));
+
+        /// <summary>
+        /// Gets or sets the ContentTemplate used to display the content of the icon part.
+        /// </summary>
+        public DataTemplate IconTemplate
+        {
+            get { return (DataTemplate)GetValue(IconTemplateProperty); }
+            set { SetValue(IconTemplateProperty, value); }
+        }
+
+        public static readonly StyledProperty<DataTemplate> IconTemplateProperty =
+            AvaloniaProperty.Register<DropDownButton, DataTemplate>(nameof(IconTemplate));
+
+        /// <summary>
+        /// Get or sets the Command property.
+        /// </summary>
+        public ICommand Command
+        {
+            get { return (ICommand)GetValue(CommandProperty); }
+            set { SetValue(CommandProperty, value); }
+        }
+
+        public static readonly StyledProperty<ICommand> CommandProperty =
+            AvaloniaProperty.Register<DropDownButton, ICommand>(nameof(Command));
+
+        /// <summary>
+        /// Gets or sets the target element on which to fire the command.
+        /// </summary>
+        public IInputElement CommandTarget
+        {
+            get { return (IInputElement)GetValue(CommandTargetProperty); }
+            set { SetValue(CommandTargetProperty, value); }
+        }
+
+        public static readonly StyledProperty<IInputElement> CommandTargetProperty =
+            AvaloniaProperty.Register<DropDownButton, IInputElement>(nameof(CommandTarget));
+
+        /// <summary>
+        /// Reflects the parameter to pass to the CommandProperty upon execution.
+        /// </summary>
+        public object CommandParameter
+        {
+            get { return (object)GetValue(CommandParameterProperty); }
+            set { SetValue(CommandParameterProperty, value); }
+        }
+
+        public static readonly StyledProperty<object> CommandParameterProperty =
+            AvaloniaProperty.Register<DropDownButton, object>(nameof(CommandParameter));
+
+        /// <summary>
+        /// Gets or sets the Content of this control..
+        /// </summary>
+        public object Content
+        {
+            get { return (object)GetValue(ContentProperty); }
+            set { SetValue(ContentProperty, value); }
+        }
+
+        public static readonly StyledProperty<object> ContentProperty =
+            AvaloniaProperty.Register<DropDownButton, object>(nameof(Content));
+
+        /// <summary>
+        /// ContentTemplate is the template used to display the content of the control.
+        /// </summary>
+        public DataTemplate ContentTemplate
+        {
+            get { return (DataTemplate)GetValue(ContentTemplateProperty); }
+            set { SetValue(ContentTemplateProperty, value); }
+        }
+
+        public static readonly StyledProperty<DataTemplate> ContentTemplateProperty =
+            AvaloniaProperty.Register<DropDownButton, DataTemplate>(nameof(ContentTemplate));
+
+        //ContentTemplateSelector missing
+
+        /// <summary>
+        /// ContentStringFormat is the format used to display the content of the control as a string
+        /// </summary>
+        /// <remarks>
+        /// This property is ignored if <seealso cref="ContentTemplate"/> is set.
+        /// </remarks>
+        public string ContentStringFormat
+        {
+            get { return (string)GetValue(ContentStringFormatProperty); }
+            set { SetValue(ContentStringFormatProperty, value); }
+        }
+
+        public static readonly StyledProperty<string> ContentStringFormatProperty =
+            AvaloniaProperty.Register<DropDownButton, string>(nameof(ContentStringFormat));
+
+        /// <summary>
+        /// Gets/sets the button style.
+        /// </summary>
+        public IStyle ButtonStyle
+        {
+            get { return (IStyle)GetValue(ButtonStyleProperty); }
+            set { SetValue(ButtonStyleProperty, value); }
+        }
+
+        public static readonly StyledProperty<IStyle> ButtonStyleProperty =
+            AvaloniaProperty.Register<DropDownButton, IStyle>(nameof(ButtonStyle));
+
+        /// <summary>
+        /// Gets/sets the menu style.
+        /// </summary>
+        public IStyle MenuStyle
+        {
+            get { return (IStyle)GetValue(MenuStyleProperty); }
+            set { SetValue(MenuStyleProperty, value); }
+        }
+
+        public static readonly StyledProperty<IStyle> MenuStyleProperty =
+            AvaloniaProperty.Register<DropDownButton, IStyle>(nameof(MenuStyle));
+
+        /// <summary>
+        /// Gets/sets the brush of the button arrow icon.
+        /// </summary>
+        public IBrush ArrowBrush
+        {
+            get { return (IBrush)GetValue(ArrowBrushProperty); }
+            set { SetValue(ArrowBrushProperty, value); }
+        }
+
+        public static readonly StyledProperty<IBrush> ArrowBrushProperty =
+            AvaloniaProperty.Register<DropDownButton, IBrush>(nameof(ArrowBrush));
+
+        /// <summary>
+        /// Gets/sets the brush of the button arrow icon if the mouse is over the drop down button.
+        /// </summary>
+        public IBrush ArrowMouseOverBrush
+        {
+            get { return (IBrush)GetValue(ArrowMouseOverBrushProperty); }
+            set { SetValue(ArrowMouseOverBrushProperty, value); }
+        }
+
+        public static readonly StyledProperty<IBrush> ArrowMouseOverBrushProperty =
+            AvaloniaProperty.Register<DropDownButton, IBrush>(nameof(ArrowMouseOverBrush));
+
+        /// <summary>
+        /// Gets/sets the brush of the button arrow icon if the arrow button is pressed.
+        /// </summary>
+        public IBrush ArrowPressedBrush
+        {
+            get { return (IBrush)GetValue(ArrowPressedBrushProperty); }
+            set { SetValue(ArrowPressedBrushProperty, value); }
+        }
+
+        public static readonly StyledProperty<IBrush> ArrowPressedBrushProperty =
+            AvaloniaProperty.Register<DropDownButton, IBrush>(nameof(ArrowPressedBrush));
+
+        /// <summary>
+        /// Gets/sets the visibility of the button arrow icon.
+        /// </summary>
+        public bool IsArrowVisible
+        {
+            get { return (bool)GetValue(IsArrowVisibleProperty); }
+            set { SetValue(IsArrowVisibleProperty, value); }
+        }
+
+        public static readonly StyledProperty<bool> IsArrowVisibleProperty =
+            AvaloniaProperty.Register<DropDownButton, bool>(nameof(IsArrowVisible), defaultValue: true);
+
+        /// <summary>
+        /// cornerradius of this control
+        /// </summary>
+        public CornerRadius CornerRadius
+        {
+            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+
+        public static readonly StyledProperty<CornerRadius> CornerRadiusProperty =
+            AvaloniaProperty.Register<DropDownButton, CornerRadius>(nameof(CornerRadius));
+
+        /// <summary>
+        /// CharacterCasing of this control
+        /// </summary>
+        public CharacterCasing ContentCharacterCasing
+        {
+            get { return (CharacterCasing)GetValue(ContentCharacterCasingProperty); }
+            set { SetValue(ContentCharacterCasingProperty, value); }
+        }
+
+        public static readonly StyledProperty<CharacterCasing> ContentCharacterCasingProperty =
+            AvaloniaProperty.Register<DropDownButton, CharacterCasing>(nameof(ContentCharacterCasing));
 
         public static readonly RoutedEvent<RoutedEventArgs> ClickEvent =
                     RoutedEvent.Register<DropDownButton, RoutedEventArgs>(nameof(ClickEvent), RoutingStrategies.Bubble);
-        
+
+        /// <summary>
+        /// handles the button click event
+        /// </summary>
         public event EventHandler Click
         {
             add
@@ -37,187 +277,17 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        public bool IsExpanded
-        {
-            get { return (bool)GetValue(IsExpandedProperty); }
-            set { SetValue(IsExpandedProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsExpandedProperty =
-            AvaloniaProperty.Register<DropDownButton, bool>(nameof(IsExpanded));
-
-        public object ExtraTag
-        {
-            get { return (object)GetValue(ExtraTagProperty); }
-            set { SetValue(ExtraTagProperty, value); }
-        }
-
-        public static readonly StyledProperty<object> ExtraTagProperty =
-            AvaloniaProperty.Register<DropDownButton, object>(nameof(ExtraTag));
-
-        public Orientation Orientation
-        {
-            get { return (Orientation)GetValue(OrientationProperty); }
-            set { SetValue(OrientationProperty, value); }
-        }
-
-        public static readonly StyledProperty<Orientation> OrientationProperty =
-            AvaloniaProperty.Register<DropDownButton, Orientation>(nameof(Orientation));
-
-        public object Icon
-        {
-            get { return (object)GetValue(IconProperty); }
-            set { SetValue(IconProperty, value); }
-        }
-
-        public static readonly StyledProperty<object> IconProperty =
-            AvaloniaProperty.Register<DropDownButton, object>(nameof(Icon));
-
-        public DataTemplate IconTemplate
-        {
-            get { return (DataTemplate)GetValue(IconTemplateProperty); }
-            set { SetValue(IconTemplateProperty, value); }
-        }
-
-        public static readonly StyledProperty<DataTemplate> IconTemplateProperty =
-            AvaloniaProperty.Register<DropDownButton, DataTemplate>(nameof(IconTemplate));
-
-        public ICommand Command
-        {
-            get { return (ICommand)GetValue(CommandProperty); }
-            set { SetValue(CommandProperty, value); }
-        }
-
-        public static readonly StyledProperty<ICommand> CommandProperty =
-            AvaloniaProperty.Register<DropDownButton, ICommand>(nameof(Command));
-
-        public IInputElement CommandTarget
-        {
-            get { return (IInputElement)GetValue(CommandTargetProperty); }
-            set { SetValue(CommandTargetProperty, value); }
-        }
-
-        public static readonly StyledProperty<IInputElement> CommandTargetProperty =
-            AvaloniaProperty.Register<DropDownButton, IInputElement>(nameof(CommandTarget));
-
-        public object CommandParameter
-        {
-            get { return (object)GetValue(CommandParameterProperty); }
-            set { SetValue(CommandParameterProperty, value); }
-        }
-
-        public static readonly StyledProperty<object> CommandParameterProperty =
-            AvaloniaProperty.Register<DropDownButton, object>(nameof(CommandParameter));
-
-        public object Content
-        {
-            get { return (object)GetValue(ContentProperty); }
-            set { SetValue(ContentProperty, value); }
-        }
-
-        public static readonly StyledProperty<object> ContentProperty =
-            AvaloniaProperty.Register<DropDownButton, object>(nameof(Content));
-
-        public DataTemplate ContentTemplate
-        {
-            get { return (DataTemplate)GetValue(ContentTemplateProperty); }
-            set { SetValue(ContentTemplateProperty, value); }
-        }
-
-        public static readonly StyledProperty<DataTemplate> ContentTemplateProperty =
-            AvaloniaProperty.Register<DropDownButton, DataTemplate>(nameof(ContentTemplate));
-
-        //ContentTemplateSelector missing
-
-        public string ContentStringFormat
-        {
-            get { return (string)GetValue(ContentStringFormatProperty); }
-            set { SetValue(ContentStringFormatProperty, value); }
-        }
-
-        public static readonly StyledProperty<string> ContentStringFormatProperty =
-            AvaloniaProperty.Register<DropDownButton, string>(nameof(ContentStringFormat));
-
-        public IStyle ButtonStyle
-        {
-            get { return (IStyle)GetValue(ButtonStyleProperty); }
-            set { SetValue(ButtonStyleProperty, value); }
-        }
-
-        public static readonly StyledProperty<IStyle> ButtonStyleProperty =
-            AvaloniaProperty.Register<DropDownButton, IStyle>(nameof(ButtonStyle));
-
-        public IStyle MenuStyle
-        {
-            get { return (IStyle)GetValue(MenuStyleProperty); }
-            set { SetValue(MenuStyleProperty, value); }
-        }
-
-        public static readonly StyledProperty<IStyle> MenuStyleProperty =
-            AvaloniaProperty.Register<DropDownButton, IStyle>(nameof(MenuStyle));
-
-        public IBrush ArrowBrush
-        {
-            get { return (IBrush)GetValue(ArrowBrushProperty); }
-            set { SetValue(ArrowBrushProperty, value); }
-        }
-
-        public static readonly StyledProperty<IBrush> ArrowBrushProperty =
-            AvaloniaProperty.Register<DropDownButton, IBrush>(nameof(ArrowBrush));
-
-        public IBrush ArrowMouseOverBrush
-        {
-            get { return (IBrush)GetValue(ArrowMouseOverBrushProperty); }
-            set { SetValue(ArrowMouseOverBrushProperty, value); }
-        }
-
-        public static readonly StyledProperty<IBrush> ArrowMouseOverBrushProperty =
-            AvaloniaProperty.Register<DropDownButton, IBrush>(nameof(ArrowMouseOverBrush));
-
-        public IBrush ArrowPressedBrush
-        {
-            get { return (IBrush)GetValue(ArrowPressedBrushProperty); }
-            set { SetValue(ArrowPressedBrushProperty, value); }
-        }
-
-        public static readonly StyledProperty<IBrush> ArrowPressedBrushProperty =
-            AvaloniaProperty.Register<DropDownButton, IBrush>(nameof(ArrowPressedBrush));
-
-        public bool IsArrowVisible
-        {
-            get { return (bool)GetValue(IsArrowVisibleProperty); }
-            set { SetValue(IsArrowVisibleProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsArrowVisibleProperty =
-            AvaloniaProperty.Register<DropDownButton, bool>(nameof(IsArrowVisible));
-
-        public CornerRadius CornerRadius
-        {
-            get { return (CornerRadius)GetValue(CornerRadiusProperty); }
-            set { SetValue(CornerRadiusProperty, value); }
-        }
-
-        public static readonly StyledProperty<CornerRadius> CornerRadiusProperty =
-            AvaloniaProperty.Register<DropDownButton, CornerRadius>(nameof(CornerRadius));
-
-        public CharacterCasing ContentCharacterCasing
-        {
-            get { return (CharacterCasing)GetValue(ContentCharacterCasingProperty); }
-            set { SetValue(ContentCharacterCasingProperty, value); }
-        }
-
-        public static readonly StyledProperty<CharacterCasing> ContentCharacterCasingProperty =
-            AvaloniaProperty.Register<DropDownButton, CharacterCasing>(nameof(ContentCharacterCasing));
-
         public DropDownButton()
         {
             IsExpandedProperty.Changed.AddClassHandler<DropDownButton>((o, e) => IsExpandedPropertyChangedCallback(o, e));
             MenuStyleProperty.Changed.AddClassHandler<DropDownButton>((o, e) => MenuStyleChanged(o, e));
-
-
         }
 
+        /// <summary>
+        /// sets the MenuStyle if menu is not null
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="e"></param>
         private void MenuStyleChanged(DropDownButton o, AvaloniaPropertyChangedEventArgs e)
         {
             if (menu == null)
@@ -228,9 +298,14 @@ namespace Avalonia.ExtendedToolkit.Controls
                 return;
 
             menu.Styles.Add(menuStyle);
-
         }
 
+        /// <summary>
+        /// raises the clickevent
+        /// opens the menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
             this.SetValue(IsExpandedProperty, true);
@@ -280,7 +355,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             this.InitializeVisualElementsContainer();
             if (this.menu != null && this.Items != null /*&& this.ItemsSource == null*/)
             {
-                var list= new AvaloniaList<object>();
+                var list = new AvaloniaList<object>();
                 foreach (var newItem in this.Items)
                 {
                     this.TryRemoveVisualFromOldTree(newItem);
@@ -310,6 +385,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             //}
         }
 
+        /// <summary>
+        /// sets the events for this control
+        /// </summary>
         private void InitializeVisualElementsContainer()
         {
             this.PointerReleased -= DropDownButtonMouseRightButtonUp;
@@ -326,12 +404,24 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// Get element from name. If it exist then element instance return, if not, new will be created
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="e"></param>
+        /// <param name="partName"></param>
+        /// <returns></returns>
         private T EnforceInstance<T>(TemplateAppliedEventArgs e, string partName) where T : class, new()
         {
             T element = e.NameScope.Find<T>(partName) ?? new T();
             return element;
         }
 
+        /// <summary>
+        /// somehow not executed !!!!!!
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected override void ItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             base.ItemsCollectionChanged(sender, e);

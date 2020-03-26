@@ -1,6 +1,6 @@
 ﻿namespace Avalonia.ExtendedToolkit.Controls
 {
-    //from ControlzEx
+    //ported from https://github.com/ControlzEx/ControlzEx
 
     /// <summary>
     /// placment for the badge

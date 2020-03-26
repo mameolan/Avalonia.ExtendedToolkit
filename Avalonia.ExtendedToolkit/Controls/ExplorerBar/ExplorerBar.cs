@@ -8,7 +8,12 @@ using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
-    public class ExplorerBar : ItemsControl
+    //ported from https://github.com/jogibear9988/OdysseyWPF.git
+
+    /// <summary>
+    /// explorerbar implementation
+    /// </summary>
+    public partial class ExplorerBar : ItemsControl
     {
         /// <summary>
         /// The default value for the <see cref="ItemsControl.ItemsPanel"/> property.

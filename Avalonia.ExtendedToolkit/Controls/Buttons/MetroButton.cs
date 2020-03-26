@@ -1,6 +1,6 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
 using Avalonia.Media;
-using System;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -46,8 +46,5 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public static readonly StyledProperty<Thickness> FocusBorderThicknessProperty =
             AvaloniaProperty.Register<MetroButton, Thickness>(nameof(FocusBorderThickness));
-
-        
-
     }
 }
