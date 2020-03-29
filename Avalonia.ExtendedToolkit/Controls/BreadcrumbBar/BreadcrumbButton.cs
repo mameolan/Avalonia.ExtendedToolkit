@@ -10,6 +10,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml.Templates;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using Avalonia.VisualTree;
 using ReactiveUI;
 
@@ -41,14 +42,14 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Gets or sets the Image of the BreadcrumbButton.
         /// </summary>
-        public IImage Image
+        public IBitmap Image
         {
-            get { return (IImage)GetValue(ImageProperty); }
+            get { return (IBitmap)GetValue(ImageProperty); }
             set { SetValue(ImageProperty, value); }
         }
 
-        public static readonly StyledProperty<IImage> ImageProperty =
-            AvaloniaProperty.Register<BreadcrumbButton, IImage>(nameof(Image));
+        public static readonly StyledProperty<IBitmap> ImageProperty =
+            AvaloniaProperty.Register<BreadcrumbButton, IBitmap>(nameof(Image));
 
         public bool HasImage
         {
@@ -244,7 +245,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void OnImageChanged(BreadcrumbButton o, AvaloniaPropertyChangedEventArgs e)
         {
-            HasImage = e.NewValue is IImage;
+            HasImage = e.NewValue is IBitmap;
         }
 
         protected override void ItemsChanged(AvaloniaPropertyChangedEventArgs e)
@@ -460,7 +461,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             base.OnTemplateApplied(e);
 
-            RaisePropertyChanged(ItemsProperty, null, new Data.BindingValue<IEnumerable>(Items));
+            RaisePropertyChanged(ItemsProperty, null, Items);
         }
 
         private void dropDownBtn_MouseDown(object sender, EventArgs e)

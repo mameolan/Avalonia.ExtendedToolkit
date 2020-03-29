@@ -91,16 +91,16 @@ namespace Avalonia.ExtendedToolkit.Controls
                 CurrentPage = Items.OfType<WizardPage>().FirstOrDefault();
         }
 
-        protected override void OnPropertyChanged<T>(AvaloniaProperty<T> property, Optional<T> oldValue, BindingValue<T> newValue, BindingPriority priority)
+        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
         {
-            base.OnPropertyChanged(property, oldValue, newValue, priority);
+            base.OnPropertyChanged(e);
             if (
-                    property.Name == nameof(CanSelectNextPage)
-                    || (property.Name == nameof(CanHelp))
-                    || (property.Name == nameof(CanFinish))
-                    || (property.Name == nameof(CanCancel))
-                    || (property.Name == nameof(CanSelectPreviousPage))
-                    || (property.Name == nameof(CurrentPage))
+                    e.Property.Name == nameof(CanSelectNextPage)
+                    || (e.Property.Name == nameof(CanHelp))
+                    || (e.Property.Name == nameof(CanFinish))
+                    || (e.Property.Name == nameof(CanCancel))
+                    || (e.Property.Name == nameof(CanSelectPreviousPage))
+                    || (e.Property.Name == nameof(CurrentPage))
                 )
             {
                 CancelCommand?.CanExecute(CanCancel);

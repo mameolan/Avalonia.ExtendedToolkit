@@ -432,13 +432,15 @@ namespace Avalonia.Controlz.Controls
         /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
         /// <param name="priority"></param>
-        protected override void OnPropertyChanged<T>(AvaloniaProperty<T> property, Optional<T> oldValue, BindingValue<T> newValue, BindingPriority priority)
+        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
         {
-            if (property == OrientationProperty)
+            base.OnPropertyChanged(e);
+            if (e.Property == OrientationProperty)
             {
-                UpdatePseudoClassesForOrientation(newValue.GetValueOrDefault<Orientation>());
+                UpdatePseudoClassesForOrientation((Orientation)e.NewValue);
             }
         }
+
 
         /// <summary>
         /// sets the pseudo class for orientation

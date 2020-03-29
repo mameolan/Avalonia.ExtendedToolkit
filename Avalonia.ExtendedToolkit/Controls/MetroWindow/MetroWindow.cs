@@ -9,6 +9,7 @@ using Avalonia.ExtendedToolkit.Extensions;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
+using Avalonia.LogicalTree;
 using Avalonia.Styling;
 using Avalonia.VisualTree;
 
@@ -166,8 +167,24 @@ namespace Avalonia.ExtendedToolkit.Controls
                 {
                     Flyouts = new FlyoutsControl();
                 }
+
+
+
             }
-         
+
+        }
+
+        protected override void OnOpened(EventArgs e)
+        {
+            base.OnOpened(e);
+
+#warning remove this hack if drawing is fixed
+            //workaround for so the window is correctly displayed
+
+            var tempState = this.WindowState;
+            this.WindowState = WindowState.Maximized;
+            this.WindowState = tempState;
+
         }
 
         private void OnWidthChanged(MetroWindow o, AvaloniaPropertyChangedEventArgs e)
