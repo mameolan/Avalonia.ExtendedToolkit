@@ -16,12 +16,12 @@
         <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
         <Setter Property="HeaderTemplate">
           <Setter.Value>
-            <Template>
+            <DataTemplate>
               <StackPanel Orientation="Vertical" UseLayoutRounding="True">
                 <TextBlock Margin="0 4 0 4" Text="{Binding}" />
                 <Separator Background="AliceBlue" />
               </StackPanel>
-            </Template>
+            </DataTemplate>
           </Setter.Value>
         </Setter>
       </Style>
