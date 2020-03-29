@@ -27,10 +27,10 @@ jobs:
       uses: rohith/publish-nuget@v2.2.0
       with:
         PROJECT_FILE_PATH: Avalonia.ExtendedToolkit/Avalonia.ExtendedToolkit.csproj
-        #NUGET_KEY: # optional
+        NUGET_KEY: $NUGET_API_KEY
     - name: Publish NuGet
       uses: rohith/publish-nuget@v2.2.0
       with:
         PROJECT_FILE_PATH: Avalonia.Controlz/Avalonia.Controlz.csproj
-        #NUGET_KEY: # optional
+        NUGET_KEY: $NUGET_API_KEY
     
