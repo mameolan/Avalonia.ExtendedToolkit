@@ -363,7 +363,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 }
                 menu.Items = list;
             }
-            this.RaisePropertyChanged<IStyle>(MenuStyleProperty, null, new Data.BindingValue<IStyle>(MenuStyle));
+            this.RaisePropertyChanged(MenuStyleProperty, null, MenuStyle);
             //RaisePropertyChanged<IStyle>(MenuStyleProperty, null, MenuStyle);
             //this.OnPropertyChanged<IStyle>(MenuStyleProperty, null, new Data.BindingValue<IStyle>( MenuStyle), Data.BindingPriority.Style);
         }

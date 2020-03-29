@@ -1,6 +1,7 @@
 ﻿using System;
 using Avalonia.Controls;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -31,13 +32,13 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<double> ImageHeightProperty =
             AvaloniaProperty.Register<ImageButton, double>(nameof(ImageHeight));
 
-        public IImage Image
+        public IBitmap Image
         {
-            get { return (IImage)GetValue(ImageProperty); }
+            get { return (IBitmap)GetValue(ImageProperty); }
             set { SetValue(ImageProperty, value); }
         }
 
-        public static readonly StyledProperty<IImage> ImageProperty =
-            AvaloniaProperty.Register<ImageButton, IImage>(nameof(Image));
+        public static readonly StyledProperty<IBitmap> ImageProperty =
+            AvaloniaProperty.Register<ImageButton, IBitmap>(nameof(Image));
     }
 }
