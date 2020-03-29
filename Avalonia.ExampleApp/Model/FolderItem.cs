@@ -8,7 +8,7 @@ namespace Avalonia.ExampleApp.Model
     public class FolderItem
     {
         public string Folder { get; set; }
-        public IImage Image { get; set; }
+        public IBitmap Image { get; set; }
 
         public FolderItem()
         {
