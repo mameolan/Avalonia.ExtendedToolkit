@@ -1,16 +1,16 @@
-﻿using Avalonia.Controls;
-using Avalonia.ExtendedToolkit.Extensions;
-using Avalonia.Markup.Xaml.Styling;
-using Avalonia.Styling;
-using Newtonsoft.Json;
-using ReactiveUI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
+using Avalonia.Controls;
+using Avalonia.ExtendedToolkit.Extensions;
+using Avalonia.Markup.Xaml.Styling;
+using Avalonia.Styling;
+using Newtonsoft.Json;
+using ReactiveUI;
 using XamlColorSchemeGenerator;
 
 namespace Avalonia.ExtendedToolkit
@@ -241,7 +241,6 @@ namespace Avalonia.ExtendedToolkit
                       }
                   });
 
-                  
                   //ObserveOn(RxApp.MainThreadScheduler)
 
                   disposableForSelectedBaseColor = this.WhenAnyValue(x => x.SelectedBaseColor).Where(x => x != null).Subscribe(selectedBaseColor =>

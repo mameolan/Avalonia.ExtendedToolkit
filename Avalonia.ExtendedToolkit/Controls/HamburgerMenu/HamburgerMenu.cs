@@ -1,8 +1,9 @@
-﻿using Avalonia.Collections;
-using Avalonia.Controls;
-using Avalonia.Media;
+﻿using System;
 using System.Collections.Specialized;
 using System.Linq;
+using Avalonia.Collections;
+using Avalonia.Controls;
+using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -11,6 +12,8 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class HamburgerMenu: ContentControl
     {
+        public Type StyleKey => typeof(HamburgerMenu);
+
         public new AvaloniaList<HamburgerMenuItem> Content
         {
             get { return (AvaloniaList<HamburgerMenuItem>)GetValue(ContentProperty); }
@@ -65,7 +68,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<int> SelectedIndexProperty =
             AvaloniaProperty.Register<HamburgerMenu, int>(nameof(SelectedIndex), defaultValue:0);
 
-
         //Setting over a property does not work right now
         //public double MaximizedSize
         //{
@@ -73,10 +75,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         //    set { SetValue(MaximizedSizeProperty, value); }
         //}
 
-
         //public static readonly StyledProperty<double> MaximizedSizeProperty =
         //    AvaloniaProperty.Register<HamburgerMenu, double>(nameof(MaximizedSize), defaultValue: 300d);
-
 
         //Setting over a property does not work right now
         //public double MinimizedSize
@@ -85,14 +85,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         //    set { SetValue(MinimizedSizeProperty, value); }
         //}
 
-
         //public static readonly StyledProperty<double> MinimizedSizeProperty =
         //    AvaloniaProperty.Register<HamburgerMenu, double>(nameof(MinimizedSize), defaultValue: 50d);
-
-
-
-
-
 
         public HamburgerMenu()
         {

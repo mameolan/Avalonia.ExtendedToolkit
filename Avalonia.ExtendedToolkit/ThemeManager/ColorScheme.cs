@@ -1,5 +1,5 @@
-﻿using Avalonia.Media;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit
 {
@@ -20,7 +20,7 @@ namespace Avalonia.ExtendedToolkit
         /// <summary>
         /// Initializes a new instance.
         /// </summary>
-        public ColorScheme(string name, Brush showcaseBrush)
+        public ColorScheme(string name, IBrush showcaseBrush)
         {
             this.Name = name;
             this.ShowcaseBrush = showcaseBrush;
@@ -34,7 +34,7 @@ namespace Avalonia.ExtendedToolkit
         /// <summary>
         /// Gets the showcase brush for this color scheme.
         /// </summary>
-        public Brush ShowcaseBrush { get; }
+        public IBrush ShowcaseBrush { get; }
 
         public override string ToString()
         {

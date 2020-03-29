@@ -1,6 +1,6 @@
-﻿using Avalonia.Input;
-using System;
+﻿using System;
 using System.Windows.Input;
+using Avalonia.Input;
 
 namespace Avalonia.ExtendedToolkit.TriggerExtensions
 {

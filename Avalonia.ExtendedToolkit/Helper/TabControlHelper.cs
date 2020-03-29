@@ -1,6 +1,6 @@
-﻿using Avalonia.Controls;
+﻿using System.Windows.Input;
+using Avalonia.Controls;
 using Avalonia.Media;
-using System.Windows.Input;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -18,7 +18,7 @@ namespace Avalonia.ExtendedToolkit.Controls
     public static class TabControlHelper
     {
         public static readonly AttachedProperty<bool> CloseButtonEnabledProperty =
-            AvaloniaProperty.RegisterAttached<IControl, bool>("CloseButtonEnabled", 
+            AvaloniaProperty.RegisterAttached<IControl, bool>("CloseButtonEnabled",
                 typeof(TabControlHelper), defaultValue:false);
 
         public static bool GetCloseButtonEnabled(IControl element)
@@ -74,11 +74,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             if (value == UnderlinedType.TabPanel)
                 element.SetValue(IsTabPanelSelectedProperty, true);
-
-
         }
-
-
 
         public static readonly AttachedProperty<bool> IsTabPanelSelectedProperty =
             AvaloniaProperty.RegisterAttached<IControl, bool>("IsTabPanelSelected", typeof(TabControlHelper), defaultValue:false);
@@ -93,12 +89,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             element.SetValue(IsTabPanelSelectedProperty, value);
         }
 
-
-
-
-
         public static readonly AttachedProperty<IBrush> UnderlineBrushProperty =
-            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineBrush", 
+            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineBrush",
                 typeof(TabControlHelper),defaultValue: (IBrush)Brushes.Transparent);
 
         public static IBrush GetUnderlineBrush(IControl element)
@@ -112,7 +104,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         public static readonly AttachedProperty<IBrush> UnderlineSelectedBrushProperty =
-            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineSelectedBrush", 
+            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineSelectedBrush",
                 typeof(TabControlHelper), defaultValue: (IBrush)Brushes.Transparent);
 
         public static IBrush GetUnderlineSelectedBrush(IControl element)
@@ -126,7 +118,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         public static readonly AttachedProperty<IBrush> UnderlineMouseOverBrushProperty =
-            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineMouseOverBrush", 
+            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineMouseOverBrush",
                 typeof(TabControlHelper), defaultValue: (IBrush)Brushes.Transparent);
 
         public static IBrush GetUnderlineMouseOverBrush(IControl element)
@@ -140,7 +132,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         public static readonly AttachedProperty<IBrush> UnderlineMouseOverSelectedBrushProperty =
-            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineMouseOverSelectedBrush", 
+            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineMouseOverSelectedBrush",
                 typeof(TabControlHelper), defaultValue: (IBrush)Brushes.Transparent);
 
         public static IBrush GetUnderlineMouseOverSelectedBrush(IControl element)
@@ -154,7 +146,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         public static readonly AttachedProperty<TransitionType> TransitionProperty =
-            AvaloniaProperty.RegisterAttached<IControl, TransitionType>("Transition", 
+            AvaloniaProperty.RegisterAttached<IControl, TransitionType>("Transition",
                 typeof(TabControlHelper), defaultValue:TransitionType.Default);
 
         public static TransitionType GetTransition(IControl element)
@@ -180,8 +172,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             string classNameSet = ":underlineplacementset";
             string classNameNotSet = ":underlineplacementnotset";
             if (value.HasValue && element.Classes.Contains(classNameSet) == false)
-            { 
-                element.Classes.Add(classNameSet); 
+            {
+                element.Classes.Add(classNameSet);
             }else if(value.HasValue && element.Classes.Contains(classNameNotSet) == false)
             {
                 element.Classes.Add(classNameNotSet);

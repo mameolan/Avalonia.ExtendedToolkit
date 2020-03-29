@@ -1,8 +1,8 @@
-﻿using Avalonia.Controls.Primitives;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Avalonia.Controls.Primitives;
 using Avalonia.ExtendedToolkit.Controls;
 using Avalonia.Media;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Avalonia.ExtendedToolkit.Extensions
 {
@@ -94,7 +94,7 @@ namespace Avalonia.ExtendedToolkit.Extensions
             window.ChangeAllWindowButtonCommandsBrush(flyout.Foreground, flyout.Position);
         }
 
-        private static void ChangeAllWindowCommandsBrush(this MetroWindow window, Brush brush)
+        private static void ChangeAllWindowCommandsBrush(this MetroWindow window, IBrush brush)
         {
             // set the theme based on color lightness
             var theme = brush.NeedLightTheme() ? WindowCommandTheme.Light : WindowCommandTheme.Dark;

@@ -1,15 +1,10 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Media;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
     public static class ItemHelper
     {
-
-
         public static readonly AttachedProperty<IBrush> ActiveSelectionBackgroundBrushProperty =
             AvaloniaProperty.RegisterAttached<IControl, IBrush>("ActiveSelectionBackgroundBrush", typeof(ItemHelper));
 
@@ -139,6 +134,5 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             element.SetValue(DisabledForegroundBrushProperty, value);
         }
-
     }
 }

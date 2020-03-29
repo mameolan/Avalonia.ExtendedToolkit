@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
@@ -21,7 +19,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         private OdcExpanderHeader _header;
 
         public Type StyleKey => typeof(OdcExpander);
-
 
         public IBrush HeaderBorderBrush
         {

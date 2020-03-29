@@ -1,14 +1,18 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
-using System;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/xceedsoftware/wpftoolkit
+
     public class WizardPage : ContentControl, IWizardPage
     {
+        public Type StyleKey => typeof(WizardPage);
+
         public bool IsBackButtonVisible
         {
             get { return (bool)GetValue(IsBackButtonVisibleProperty); }

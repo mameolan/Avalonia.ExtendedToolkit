@@ -1,5 +1,7 @@
 ﻿namespace Avalonia.ExtendedToolkit
 {
+    //ported from https://github.com/MahApps/MahApps.Metro
+
     public enum ThicknessSideType
     {
         /// <summary>

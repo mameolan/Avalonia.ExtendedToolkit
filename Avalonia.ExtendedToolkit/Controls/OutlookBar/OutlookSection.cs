@@ -1,8 +1,8 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Media;
-using System;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -11,7 +11,6 @@ namespace Avalonia.ExtendedToolkit.Controls
     public class OutlookSection : HeaderedContentControl
     {
         public Type StyleKey => typeof(OutlookSection);
-
 
         /// <summary>
         /// Gets or sets the OutlookBar to which this Section is assigned.

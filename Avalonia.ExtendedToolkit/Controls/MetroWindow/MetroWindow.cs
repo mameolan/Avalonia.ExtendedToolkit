@@ -1,4 +1,7 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Shapes;
@@ -6,492 +9,18 @@ using Avalonia.ExtendedToolkit.Extensions;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
-using Avalonia.Markup.Xaml.Templates;
-using Avalonia.Media;
 using Avalonia.Styling;
 using Avalonia.VisualTree;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/MahApps/MahApps.Metro
+
     /// <summary>
     /// Interaction logic for <see cref="MetroWindow"/> xaml.
     /// </summary>
     public partial class MetroWindow : Window, IStyleable
     {
-        public bool ShowIconOnTitleBar
-        {
-            get { return (bool)GetValue(ShowIconOnTitleBarProperty); }
-            set { SetValue(ShowIconOnTitleBarProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> ShowIconOnTitleBarProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(ShowIconOnTitleBar), defaultValue: true);
-
-        //edgemode is skipped
-
-        public bool ShowTitleBar
-        {
-            get { return (bool)GetValue(ShowTitleBarProperty); }
-            set { SetValue(ShowTitleBarProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> ShowTitleBarProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(ShowTitleBar), defaultValue: true);
-
-        public bool ShowDialogsOverTitleBar
-        {
-            get { return (bool)GetValue(ShowDialogsOverTitleBarProperty); }
-            set { SetValue(ShowDialogsOverTitleBarProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> ShowDialogsOverTitleBarProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(ShowDialogsOverTitleBar), defaultValue: true);
-
-        public bool IsAnyDialogOpen
-        {
-            get { return (bool)GetValue(IsAnyDialogOpenProperty); }
-            private set { SetValue(IsAnyDialogOpenProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsAnyDialogOpenProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(IsAnyDialogOpen));
-
-        public bool ShowMinButton
-        {
-            get { return (bool)GetValue(ShowMinButtonProperty); }
-            set { SetValue(ShowMinButtonProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> ShowMinButtonProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(ShowMinButton), defaultValue: true);
-
-        public bool ShowMaxRestoreButton
-        {
-            get { return (bool)GetValue(ShowMaxRestoreButtonProperty); }
-            set { SetValue(ShowMaxRestoreButtonProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> ShowMaxRestoreButtonProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(ShowMaxRestoreButton), defaultValue: true);
-
-        public bool ShowCloseButton
-        {
-            get { return (bool)GetValue(ShowCloseButtonProperty); }
-            set { SetValue(ShowCloseButtonProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> ShowCloseButtonProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(ShowCloseButton), defaultValue: true);
-
-        public bool IsMinButtonEnabled
-        {
-            get { return (bool)GetValue(IsMinButtonEnabledProperty); }
-            private set { SetValue(IsMinButtonEnabledProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsMinButtonEnabledProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(IsMinButtonEnabled), defaultValue: true);
-
-        public bool IsMaxRestoreButtonEnabled
-        {
-            get { return (bool)GetValue(IsMaxRestoreButtonEnabledProperty); }
-            private set { SetValue(IsMaxRestoreButtonEnabledProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsMaxRestoreButtonEnabledProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(IsMaxRestoreButtonEnabled), defaultValue: true);
-
-        public bool IsCloseButtonEnabled
-        {
-            get { return (bool)GetValue(IsCloseButtonEnabledProperty); }
-            private set { SetValue(IsCloseButtonEnabledProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsCloseButtonEnabledProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(IsCloseButtonEnabled), defaultValue: true);
-
-        //system menu skpped
-
-        public int TitleBarHeight
-        {
-            get { return (int)GetValue(TitleBarHeightProperty); }
-            set { SetValue(TitleBarHeightProperty, value); }
-        }
-
-        public static readonly StyledProperty<int> TitleBarHeightProperty =
-            AvaloniaProperty.Register<MetroWindow, int>(nameof(TitleBarHeight), defaultValue: 30);
-
-        public CharacterCasing TitleCharacterCasing
-        {
-            get { return (CharacterCasing)GetValue(TitleCharacterCasingProperty); }
-            set { SetValue(TitleCharacterCasingProperty, value); }
-        }
-
-        public static readonly StyledProperty<CharacterCasing> TitleCharacterCasingProperty =
-            AvaloniaProperty.Register<MetroWindow, CharacterCasing>(nameof(TitleCharacterCasing),
-                defaultValue: CharacterCasing.Upper);
-
-        public HorizontalAlignment TitleAlignment
-        {
-            get { return (HorizontalAlignment)GetValue(TitleAlignmentProperty); }
-            set { SetValue(TitleAlignmentProperty, value); }
-        }
-
-        public static readonly StyledProperty<HorizontalAlignment> TitleAlignmentProperty =
-            AvaloniaProperty.Register<MetroWindow, HorizontalAlignment>(nameof(TitleAlignment), defaultValue: HorizontalAlignment.Stretch);
-
-        public bool SaveWindowPosition
-        {
-            get { return (bool)GetValue(SaveWindowPositionProperty); }
-            set { SetValue(SaveWindowPositionProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> SaveWindowPositionProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(SaveWindowPosition));
-
-
-
-        public IBrush TitleForeground
-        {
-            get { return (IBrush)GetValue(TitleForegroundProperty); }
-            set { SetValue(TitleForegroundProperty, value); }
-        }
-
-        public static readonly StyledProperty<IBrush> TitleForegroundProperty =
-            AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(TitleForeground));
-
-        public bool WindowTransitionsEnabled
-        {
-            get { return (bool)GetValue(WindowTransitionsEnabledProperty); }
-            set { SetValue(WindowTransitionsEnabledProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> WindowTransitionsEnabledProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(WindowTransitionsEnabled), defaultValue: true);
-
-        public IBrush WindowTitleBrush
-        {
-            get { return (IBrush)GetValue(WindowTitleBrushProperty); }
-            set { SetValue(WindowTitleBrushProperty, value); }
-        }
-
-        public static readonly StyledProperty<IBrush> WindowTitleBrushProperty =
-            AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(WindowTitleBrush), defaultValue: (IBrush)Brushes.Transparent);
-
-        public IBrush NonActiveWindowTitleBrush
-        {
-            get { return (IBrush)GetValue(NonActiveWindowTitleBrushProperty); }
-            set { SetValue(NonActiveWindowTitleBrushProperty, value); }
-        }
-
-        public static readonly StyledProperty<IBrush> NonActiveWindowTitleBrushProperty =
-            AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(NonActiveWindowTitleBrush), defaultValue: (IBrush)Brushes.Gray);
-
-        public IBrush NonActiveBorderBrush
-        {
-            get { return (IBrush)GetValue(NonActiveBorderBrushProperty); }
-            set { SetValue(NonActiveBorderBrushProperty, value); }
-        }
-
-        public static readonly StyledProperty<IBrush> NonActiveBorderBrushProperty =
-            AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(NonActiveBorderBrush), defaultValue: (IBrush)Brushes.Gray);
-
-        public IBrush GlowBrush
-        {
-            get { return (IBrush)GetValue(GlowBrushProperty); }
-            set { SetValue(GlowBrushProperty, value); }
-        }
-
-        public static readonly StyledProperty<IBrush> GlowBrushProperty =
-            AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(GlowBrush));
-
-        public IBrush NonActiveGlowBrush
-        {
-            get { return (IBrush)GetValue(NonActiveGlowBrushProperty); }
-            set { SetValue(NonActiveGlowBrushProperty, value); }
-        }
-
-        public static readonly StyledProperty<IBrush> NonActiveGlowBrushProperty =
-            AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(NonActiveGlowBrush));
-
-        public IBrush OverlayBrush
-        {
-            get { return (IBrush)GetValue(OverlayBrushProperty); }
-            set { SetValue(OverlayBrushProperty, value); }
-        }
-
-        public static readonly StyledProperty<IBrush> OverlayBrushProperty =
-            AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(OverlayBrush));
-
-        public double OverlayOpacity
-        {
-            get { return (double)GetValue(OverlayOpacityProperty); }
-            set { SetValue(OverlayOpacityProperty, value); }
-        }
-
-        public static readonly StyledProperty<double> OverlayOpacityProperty =
-            AvaloniaProperty.Register<MetroWindow, double>(nameof(OverlayOpacity), defaultValue: 0.7d);
-
-        public bool OverlayFadeIn
-        {
-            get { return (bool)GetValue(OverlayFadeInProperty); }
-            set { SetValue(OverlayFadeInProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> OverlayFadeInProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(OverlayFadeIn));
-
-        public bool OverlayFadeOut
-        {
-            get { return (bool)GetValue(OverlayFadeOutProperty); }
-            set { SetValue(OverlayFadeOutProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> OverlayFadeOutProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(OverlayFadeOut));
-
-        public bool IgnoreTaskbarOnMaximize
-        {
-            get { return (bool)GetValue(IgnoreTaskbarOnMaximizeProperty); }
-            set { SetValue(IgnoreTaskbarOnMaximizeProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IgnoreTaskbarOnMaximizeProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(IgnoreTaskbarOnMaximize));
-
-        public Thickness ResizeBorderThickness
-        {
-            get { return (Thickness)GetValue(ResizeBorderThicknessProperty); }
-            set { SetValue(ResizeBorderThicknessProperty, value); }
-        }
-
-        public static readonly StyledProperty<Thickness> ResizeBorderThicknessProperty =
-            AvaloniaProperty.Register<MetroWindow, Thickness>(nameof(ResizeBorderThickness), defaultValue: new Thickness(6D));
-
-        public bool KeepBorderOnMaximize
-        {
-            get { return (bool)GetValue(KeepBorderOnMaximizeProperty); }
-            set { SetValue(KeepBorderOnMaximizeProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> KeepBorderOnMaximizeProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(KeepBorderOnMaximize), defaultValue: true);
-
-        public bool TryToBeFlickerFree
-        {
-            get { return (bool)GetValue(TryToBeFlickerFreeProperty); }
-            set { SetValue(TryToBeFlickerFreeProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> TryToBeFlickerFreeProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(TryToBeFlickerFree));
-
-        public DataTemplate IconTemplate
-        {
-            get { return (DataTemplate)GetValue(IconTemplateProperty); }
-            set { SetValue(IconTemplateProperty, value); }
-        }
-
-        public static readonly StyledProperty<DataTemplate> IconTemplateProperty =
-            AvaloniaProperty.Register<MetroWindow, DataTemplate>(nameof(IconTemplate));
-
-        public DataTemplate TitleTemplate
-        {
-            get { return (DataTemplate)GetValue(TitleTemplateProperty); }
-            set { SetValue(TitleTemplateProperty, value); }
-        }
-
-        public static readonly StyledProperty<DataTemplate> TitleTemplateProperty =
-            AvaloniaProperty.Register<MetroWindow, DataTemplate>(nameof(TitleTemplate));
-
-        public IBrush FlyoutOverlayBrush
-        {
-            get { return (IBrush)GetValue(FlyoutOverlayBrushProperty); }
-            set { SetValue(FlyoutOverlayBrushProperty, value); }
-        }
-
-        public static readonly StyledProperty<IBrush> FlyoutOverlayBrushProperty =
-            AvaloniaProperty.Register<MetroWindow, IBrush>(nameof(FlyoutOverlayBrush));
-
-        public FlyoutsControl Flyouts
-        {
-            get { return (FlyoutsControl)GetValue(FlyoutsProperty); }
-            set { SetValue(FlyoutsProperty, value); }
-        }
-
-        public static readonly StyledProperty<FlyoutsControl> FlyoutsProperty =
-            AvaloniaProperty.Register<MetroWindow, FlyoutsControl>(nameof(Flyouts));
-
-        /// <summary>
-        /// Defines the <see cref="IsChromeVisible"/> property.
-        /// </summary>
-        public static readonly StyledProperty<bool> IsChromeVisibleProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(IsChromeVisible), true);
-
-        /// <summary>
-        /// Defines the <see cref="TitleBarContent"/> property.
-        /// </summary>
-        public static readonly StyledProperty<Control> TitleBarContentProperty =
-            AvaloniaProperty.Register<MetroWindow, Control>(nameof(TitleBarContent));
-
-        /// <summary>
-        ///  Gets or sets the flag indicating whether chrome is visible.
-        /// </summary>
-        public bool IsChromeVisible
-        {
-            get => (bool)GetValue(IsChromeVisibleProperty);
-            set => SetValue(IsChromeVisibleProperty, value);
-        }
-
-        /// <summary>
-        ///  Gets or sets the title bar content control.
-        /// </summary>
-        public Control TitleBarContent
-        {
-            get => (Control)GetValue(TitleBarContentProperty);
-            set => SetValue(TitleBarContentProperty, value);
-        }
-
-        public static readonly RoutedEvent<RoutedEventArgs> FlyoutsStatusChangedEvent =
-            RoutedEvent.Register<MetroWindow, RoutedEventArgs>(nameof(FlyoutsStatusChangedEvent), RoutingStrategies.Bubble);
-
-        public event DragStartedEventHandler FlyoutsStatusChanged
-        {
-            add
-            {
-                AddHandler(FlyoutsStatusChangedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(FlyoutsStatusChangedEvent, value);
-            }
-        }
-
-        public static readonly RoutedEvent<RoutedEventArgs> SizeChangedEvent =
-            RoutedEvent.Register<MetroWindow, RoutedEventArgs>(nameof(SizeChangedEvent), RoutingStrategies.Bubble);
-
-        public event EventHandler SizeChanged
-        {
-            add
-            {
-                AddHandler(SizeChangedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(SizeChangedEvent, value);
-            }
-        }
-
-        public static readonly RoutedEvent<RoutedEventArgs> WindowTransitionCompletedEvent =
-            RoutedEvent.Register<MetroWindow, RoutedEventArgs>(nameof(FlyoutsStatusChangedEvent), RoutingStrategies.Bubble);
-
-        public event DragStartedEventHandler WindowTransitionCompleted
-        {
-            add
-            {
-                AddHandler(WindowTransitionCompletedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(WindowTransitionCompletedEvent, value);
-            }
-        }
-
-        public WindowCommands LeftWindowCommands
-        {
-            get { return (WindowCommands)GetValue(LeftWindowCommandsProperty); }
-            set { SetValue(LeftWindowCommandsProperty, value); }
-        }
-
-        public static readonly StyledProperty<WindowCommands> LeftWindowCommandsProperty =
-            AvaloniaProperty.Register<MetroWindow, WindowCommands>(nameof(LeftWindowCommands));
-
-        public WindowCommands RightWindowCommands
-        {
-            get { return (WindowCommands)GetValue(RightWindowCommandsProperty); }
-            set { SetValue(RightWindowCommandsProperty, value); }
-        }
-
-        public static readonly StyledProperty<WindowCommands> RightWindowCommandsProperty =
-            AvaloniaProperty.Register<MetroWindow, WindowCommands>(nameof(RightWindowCommands));
-
-        public WindowButtonCommands WindowButtonCommands
-        {
-            get { return (WindowButtonCommands)GetValue(WindowButtonCommandsProperty); }
-            set { SetValue(WindowButtonCommandsProperty, value); }
-        }
-
-        public static readonly StyledProperty<WindowButtonCommands> WindowButtonCommandsProperty =
-            AvaloniaProperty.Register<MetroWindow, WindowButtonCommands>(nameof(WindowButtonCommands));
-
-        public WindowCommandsOverlayBehavior LeftWindowCommandsOverlayBehavior
-        {
-            get { return (WindowCommandsOverlayBehavior)GetValue(LeftWindowCommandsOverlayBehaviorProperty); }
-            set { SetValue(LeftWindowCommandsOverlayBehaviorProperty, value); }
-        }
-
-        public static readonly StyledProperty<WindowCommandsOverlayBehavior> LeftWindowCommandsOverlayBehaviorProperty =
-            AvaloniaProperty.Register<MetroWindow, WindowCommandsOverlayBehavior>(nameof(LeftWindowCommandsOverlayBehavior), defaultValue: WindowCommandsOverlayBehavior.Never);
-
-        public WindowCommandsOverlayBehavior RightWindowCommandsOverlayBehavior
-        {
-            get { return (WindowCommandsOverlayBehavior)GetValue(RightWindowCommandsOverlayBehaviorProperty); }
-            set { SetValue(RightWindowCommandsOverlayBehaviorProperty, value); }
-        }
-
-        public static readonly StyledProperty<WindowCommandsOverlayBehavior> RightWindowCommandsOverlayBehaviorProperty =
-            AvaloniaProperty.Register<MetroWindow, WindowCommandsOverlayBehavior>(nameof(RightWindowCommandsOverlayBehavior), defaultValue: WindowCommandsOverlayBehavior.Never);
-
-        public OverlayBehavior WindowButtonCommandsOverlayBehavior
-        {
-            get { return (OverlayBehavior)GetValue(WindowButtonCommandsOverlayBehaviorProperty); }
-            set { SetValue(WindowButtonCommandsOverlayBehaviorProperty, value); }
-        }
-
-        public static readonly StyledProperty<OverlayBehavior> WindowButtonCommandsOverlayBehaviorProperty =
-            AvaloniaProperty.Register<MetroWindow, OverlayBehavior>(nameof(WindowButtonCommandsOverlayBehavior), defaultValue: OverlayBehavior.Always);
-
-        public OverlayBehavior IconOverlayBehavior
-        {
-            get { return (OverlayBehavior)GetValue(IconOverlayBehaviorProperty); }
-            set { SetValue(IconOverlayBehaviorProperty, value); }
-        }
-
-        public static readonly StyledProperty<OverlayBehavior> IconOverlayBehaviorProperty =
-            AvaloniaProperty.Register<MetroWindow, OverlayBehavior>(nameof(IconOverlayBehavior), OverlayBehavior.Never);
-
-        public bool UseNoneWindowStyle
-        {
-            get { return (bool)GetValue(UseNoneWindowStyleProperty); }
-            set { SetValue(UseNoneWindowStyleProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> UseNoneWindowStyleProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(UseNoneWindowStyle));
-
-        public SolidColorBrush OverrideDefaultWindowCommandsBrush
-        {
-            get { return (SolidColorBrush)GetValue(OverrideDefaultWindowCommandsBrushProperty); }
-            set { SetValue(OverrideDefaultWindowCommandsBrushProperty, value); }
-        }
-
-        public static readonly StyledProperty<SolidColorBrush> OverrideDefaultWindowCommandsBrushProperty =
-            AvaloniaProperty.Register<MetroWindow, SolidColorBrush>(nameof(OverrideDefaultWindowCommandsBrush));
-
-        public bool IsWindowDraggable
-        {
-            get { return (bool)GetValue(IsWindowDraggableProperty); }
-            set { SetValue(IsWindowDraggableProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsWindowDraggableProperty =
-            AvaloniaProperty.Register<MetroWindow, bool>(nameof(IsWindowDraggable), defaultValue: true);
-
-        Type IStyleable.StyleKey => typeof(MetroWindow);
-
         private void ToggleWindowState()
         {
             var oldValue = WindowState;
@@ -537,6 +66,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <inheritdoc/>
         protected override void OnPointerPressed(PointerPressedEventArgs e)
         {
+            if (Design.IsDesignMode)
+                return;
+
             if (_topHorizontalGrip != null && _topHorizontalGrip.IsPointerOver)
             {
                 BeginResizeDrag(WindowEdge.North, e);
@@ -585,6 +117,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <inheritdoc/>
         protected override void OnPointerReleased(PointerReleasedEventArgs e)
         {
+            if (Design.IsDesignMode)
+                return;
+
             _mouseDown = false;
             base.OnPointerReleased(e);
         }
@@ -626,13 +161,13 @@ namespace Avalonia.ExtendedToolkit.Controls
                 ThemeManager.Instance.IsThemeChanged += ThemeManagerOnIsThemeChanged;
 
                 SetVisibiltyForAllTitleElements();
-            }
-            if (Flyouts == null)
-            {
-                Flyouts = new FlyoutsControl();
-            }
 
-
+                if (Flyouts == null)
+                {
+                    Flyouts = new FlyoutsControl();
+                }
+            }
+         
         }
 
         private void OnWidthChanged(MetroWindow o, AvaloniaPropertyChangedEventArgs e)
@@ -749,6 +284,9 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void SetVisibiltyForAllTitleElements()
         {
+            if (Design.IsDesignMode)
+                return;
+
             this.SetVisibiltyForIcon();
             var newVisibility = this.TitleBarHeight > 0 && this.ShowTitleBar && !this.UseNoneWindowStyle ? true : false;
 
@@ -989,7 +527,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 window.WindowState = WindowState.Normal;
 
-                ///var pointerPress=new 
+                ///var pointerPress=new
 
                 try
                 {
@@ -1069,8 +607,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             metroActiveDialogContainer = e.NameScope.Find<Grid>(PART_MetroActiveDialogContainer);
             metroInactiveDialogContainer = e.NameScope.Find<Grid>(PART_MetroInactiveDialogsContainer);
             flyoutModal = e.NameScope.Find<Rectangle>(PART_FlyoutModal);
+            flyoutModal.PointerPressed += FlyoutsPreviewMouseDown;
             //flyoutModal.MouseDown += FlyoutsPreviewMouseDown;
-            //this.PreviewMouseDown += FlyoutsPreviewMouseDown;
+            this.PointerPressed += FlyoutsPreviewMouseDown;
 
             _icon = e.NameScope.Find<ContentControl>(PART_Icon);
             _titleBar = e.NameScope.Find<ContentControl>(PART_TitleBar);
@@ -1082,7 +621,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             var metroContentControl = e.NameScope.Find<MetroContentControl>(PART_Content);
             if (metroContentControl != null)
             {
-                metroContentControl.TransitionCompleted += (sender, args) => this.RaiseEvent(new RoutedEventArgs(WindowTransitionCompletedEvent));
+                if (Design.IsDesignMode == false)
+                {
+                    metroContentControl.TransitionCompleted += (sender, args) => this.RaiseEvent(new RoutedEventArgs(WindowTransitionCompletedEvent));
+                }
             }
 
             _topHorizontalGrip = e.NameScope.Find<Grid>(PART_TopHorizontalGrip);
@@ -1094,6 +636,45 @@ namespace Avalonia.ExtendedToolkit.Controls
             _bottomLeftGrip = e.NameScope.Find<Grid>(PART_BottomLeftGrip);
             _topRightGrip = e.NameScope.Find<Grid>(PART_TopRightGrip);
             _bottomRightGrip = e.NameScope.Find<Grid>(PART_BottomRightGrip);
+        }
+
+        private void FlyoutsPreviewMouseDown(object sender, PointerPressedEventArgs e)
+        {
+            var element = (e.Source as IControl);
+            if (element != null)
+            {
+                // no preview if we just clicked these elements
+                if (element.TryFindParent<Flyout>() != null
+                    || Equals(element, this.overlayBox)
+                    //|| element.TryFindParent<BaseMetroDialog>() != null
+                    || Equals(element.TryFindParent<ContentControl>(), this.Icon)
+                    || element.TryFindParent<WindowCommands>() != null
+                    || element.TryFindParent<WindowButtonCommands>() != null)
+                {
+                    return;
+                }
+            }
+
+            //don't know how to do this in avalonia e.ChangedButton
+            //miaaing in the event.
+
+            //if (Flyouts.OverrideExternalCloseButton == null)
+            //{
+            //    foreach (var flyout in Flyouts.GetFlyouts().
+            //        Where(x => x.IsOpen && x.ExternalCloseButton == e.ChangedButton
+            //        && (!x.IsPinned || Flyouts.OverrideIsPinned)))
+            //    {
+            //        flyout.IsOpen = false;
+            //    }
+            //}
+            //else if (Flyouts.OverrideExternalCloseButton == e.ChangedButton)
+            //{
+            //    foreach (var flyout in Flyouts.GetFlyouts().Where(x => x.IsOpen &&
+            //    (!x.IsPinned || Flyouts.OverrideIsPinned)))
+            //    {
+            //        flyout.IsOpen = false;
+            //    }
+            //}
         }
     }
 }

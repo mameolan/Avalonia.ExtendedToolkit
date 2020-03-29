@@ -1,10 +1,8 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using System.Globalization;
+using Avalonia.Controls;
 using Avalonia.Data.Converters;
 using Avalonia.ExtendedToolkit.Controls;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Converters
 {
@@ -17,13 +15,10 @@ namespace Avalonia.ExtendedToolkit.Converters
             {
                 UnderlinedType underlinedTypeParam = (UnderlinedType)parameter;
 
-
                 UnderlinedType underlinedType = TabControlHelper.GetUnderlined(control);
                 if (underlinedType == underlinedTypeParam)
                     return true;
             }
-
-
 
             return false;
         }

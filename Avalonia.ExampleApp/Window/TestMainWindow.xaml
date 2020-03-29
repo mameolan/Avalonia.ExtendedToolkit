@@ -8,14 +8,18 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Avalonia.ExampleApp.Views.TestMainWindow"
         Title="TestMainWindow">
+
+ 
+
+
   <DockPanel>
     <DockPanel.Styles>
       <Style Selector="TextBlock">
         <Setter Property="VerticalAlignment" Value="Center"/>
       </Style>
-             
+
     </DockPanel.Styles>
-    
+
     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="35">
       <TextBlock Text="Themes" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
       <ComboBox Name="cmbThemes" Margin="10,1,0,1" Items="{Binding BaseColors}"
@@ -52,32 +56,12 @@
 
         </ComboBox.ItemTemplate>
       </ComboBox>
-      
+
     </StackPanel>
     <Grid DockPanel.Dock="Bottom">
-      <Grid.RowDefinitions>
-        <RowDefinition/>
-        <RowDefinition/>
-      </Grid.RowDefinitions>
-      
-      <TabControl Grid.Row="0">
-        <TabItem Header="Outlook Bar">
-          <Views:OutlookBarView/>
-        </TabItem>
-
-        <TabItem Header="Explorer Bar">
-          <Views:ExplorerBarView/>
-        </TabItem>
-
-        <TabItem Header="Colors">
-          <Views:ColorExample/>
-        </TabItem>
-      </TabControl>
-
-      <Controlz:SliderEx Margin="10" Grid.Row="1" TickPlacement="Both"></Controlz:SliderEx>
       
       
     </Grid>
-    
+
   </DockPanel>
 </Window>

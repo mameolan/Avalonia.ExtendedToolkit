@@ -1,5 +1,5 @@
-﻿using Avalonia.Collections;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using Avalonia.Collections;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {

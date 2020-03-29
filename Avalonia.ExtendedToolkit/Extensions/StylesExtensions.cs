@@ -1,6 +1,6 @@
-﻿using Avalonia.Markup.Xaml.Styling;
+﻿using System.Linq;
+using Avalonia.Markup.Xaml.Styling;
 using Avalonia.Styling;
-using System.Linq;
 
 namespace Avalonia.ExtendedToolkit.Extensions
 {

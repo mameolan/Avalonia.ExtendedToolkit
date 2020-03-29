@@ -1,17 +1,18 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/MahApps/MahApps.Metro
+
     public class TransitioningContentControl : ContentControl
     {
         //internal const string PresentationGroup = "PresentationStates";
         //internal const string NormalState = "Normal";
         internal const string PreviousContentPresentationSitePartName = "PreviousContentPresentationSite";
+
         internal const string CurrentContentPresentationSitePartName = "CurrentContentPresentationSite";
 
         private ContentPresenter currentContentPresentationSite;
@@ -22,25 +23,19 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public const TransitionType DefaultTransitionState = TransitionType.Default;
 
-
-
         public bool IsTransitioning
         {
             get { return (bool)GetValue(IsTransitioningProperty); }
-            private set 
+            private set
             {
-
                 this.allowIsTransitioningPropertyWrite = true;
                 SetValue(IsTransitioningProperty, value);
                 this.allowIsTransitioningPropertyWrite = false;
             }
         }
 
-
         public static readonly StyledProperty<bool> IsTransitioningProperty =
             AvaloniaProperty.Register<TransitioningContentControl, bool>(nameof(IsTransitioning));
-
-
 
         public TransitionType Transition
         {
@@ -48,11 +43,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(TransitionProperty, value); }
         }
 
-
         public static readonly StyledProperty<TransitionType> TransitionProperty =
             AvaloniaProperty.Register<TransitioningContentControl, TransitionType>(nameof(Transition), defaultValue: TransitionType.Default);
-
-
 
         public bool RestartTransitionOnContentChange
         {
@@ -60,11 +52,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(RestartTransitionOnContentChangeProperty, value); }
         }
 
-
         public static readonly StyledProperty<bool> RestartTransitionOnContentChangeProperty =
             AvaloniaProperty.Register<TransitioningContentControl, bool>(nameof(RestartTransitionOnContentChange));
-
-
 
         public string CustomVisualStatesName
         {
@@ -72,12 +61,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CustomVisualStatesNameProperty, value); }
         }
 
-
         public static readonly StyledProperty<string> CustomVisualStatesNameProperty =
             AvaloniaProperty.Register<TransitioningContentControl, string>(nameof(CustomVisualStatesName), defaultValue: "CustomTransition");
-
-
-
 
         public TransitioningContentControl()
         {
@@ -176,7 +161,6 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
-
             if (this.IsTransitioning)
             {
                 this.AbortTransition();
@@ -212,7 +196,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             //}
 
             //VisualStateManager.GoToState(this, NormalState, false);
-            
         }
 
         public void ReloadTransition()
@@ -281,20 +264,28 @@ namespace Avalonia.ExtendedToolkit.Controls
                 default:
                 case TransitionType.Default:
                     return "DefaultTransition";
+
                 case TransitionType.Normal:
                     return "Normal";
+
                 case TransitionType.Up:
                     return "UpTransition";
+
                 case TransitionType.Down:
                     return "DownTransition";
+
                 case TransitionType.Right:
                     return "RightTransition";
+
                 case TransitionType.RightReplace:
                     return "RightReplaceTransition";
+
                 case TransitionType.Left:
                     return "LeftTransition";
+
                 case TransitionType.LeftReplace:
                     return "LeftReplaceTransition";
+
                 case TransitionType.Custom:
                     return this.CustomVisualStatesName;
             }

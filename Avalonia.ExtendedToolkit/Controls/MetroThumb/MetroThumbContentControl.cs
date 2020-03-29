@@ -1,12 +1,19 @@
-﻿using Avalonia.Input;
-using Avalonia.Interactivity;
-using System;
+﻿using System;
 using System.Diagnostics;
+using Avalonia.Input;
+using Avalonia.Interactivity;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/MahApps/MahApps.Metro
+
+    /// <summary>
+    /// The MetroThumbContentControl control can be used for titles or something else and enables basic drag movement functionality.
+    /// </summary>
     public class MetroThumbContentControl : ContentControlEx, IMetroThumb
     {
+        public new Type StyleKey => typeof(MetroThumbContentControl);
+
         private Point startDragPoint;
         private PixelPoint startDragScreenPoint;
         private PixelPoint? oldDragScreenPoint;
@@ -56,6 +63,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// Indicates that the left mouse button is pressed and is over the MetroThumbContentControl.
+        /// </summary>
         public bool IsDragging
         {
             get { return (bool)GetValue(IsDraggingProperty); }

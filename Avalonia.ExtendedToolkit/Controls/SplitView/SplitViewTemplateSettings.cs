@@ -2,8 +2,18 @@
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/MahApps/MahApps.Metro
+
+    /// <summary>
+    /// Provides calculated values that can be referenced as TemplatedParent
+    /// sources when defining templates for a <see cref="SplitView" />.
+    /// Not intended for general use.
+    /// </summary>
     public class SplitViewTemplateSettings : AvaloniaObject
     {
+        /// <summary>
+        /// Gets the <see cref="SplitView.CompactPaneLength" /> value as a GridLength.
+        /// </summary>
         public GridLength CompactPaneGridLength
         {
             get { return (GridLength)GetValue(CompactPaneGridLengthProperty); }
@@ -13,6 +23,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<GridLength> CompactPaneGridLengthProperty =
             AvaloniaProperty.Register<SplitViewTemplateSettings, GridLength>(nameof(CompactPaneGridLength));
 
+        /// <summary>
+        /// Gets the negative of the <see cref="SplitView.OpenPaneLength" /> value.
+        /// </summary>
         public double NegativeOpenPaneLength
         {
             get { return (double)GetValue(NegativeOpenPaneLengthProperty); }
@@ -22,6 +35,11 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<double> NegativeOpenPaneLengthProperty =
             AvaloniaProperty.Register<SplitViewTemplateSettings, double>(nameof(NegativeOpenPaneLength), defaultValue: 0d);
 
+        /// <summary>
+        /// Gets the negative of the value calculated by subtracting the
+        /// <see cref="SplitView.CompactPaneLength" /> value from
+        /// the <see cref="SplitView.OpenPaneLength" /> value.
+        /// </summary>
         public double NegativeOpenPaneLengthMinusCompactLength
         {
             get { return (double)GetValue(NegativeOpenPaneLengthMinusCompactLengthProperty); }
@@ -29,8 +47,12 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         public static readonly StyledProperty<double> NegativeOpenPaneLengthMinusCompactLengthProperty =
-            AvaloniaProperty.Register<SplitViewTemplateSettings, double>(nameof(NegativeOpenPaneLengthMinusCompactLength), defaultValue: 0d);
+            AvaloniaProperty.Register<SplitViewTemplateSettings, double>
+            (nameof(NegativeOpenPaneLengthMinusCompactLength), defaultValue: 0d);
 
+        /// <summary>
+        /// Gets the <see cref="SplitView.OpenPaneLength" /> value as a GridLength.
+        /// </summary>
         public GridLength OpenPaneGridLength
         {
             get { return (GridLength)GetValue(OpenPaneGridLengthProperty); }
@@ -40,6 +62,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<GridLength> OpenPaneGridLengthProperty =
             AvaloniaProperty.Register<SplitViewTemplateSettings, GridLength>(nameof(OpenPaneGridLength));
 
+        /// <summary>
+        /// Gets the <see cref="SplitView.OpenPaneLength" /> value.
+        /// </summary>
         public double OpenPaneLength
         {
             get { return (double)GetValue(OpenPaneLengthProperty); }
@@ -47,8 +72,13 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         public static readonly StyledProperty<double> OpenPaneLengthProperty =
-            AvaloniaProperty.Register<SplitViewTemplateSettings, double>(nameof(OpenPaneLength), defaultValue: 0d);
+            AvaloniaProperty.Register<SplitViewTemplateSettings, double>(nameof(OpenPaneLength)
+                , defaultValue: 0d);
 
+        /// <summary>
+        /// Gets a value calculated by subtracting the <see cref="SplitView.CompactPaneLength" />
+        /// value from the <see cref="SplitView.OpenPaneLength" /> value.
+        /// </summary>
         public double OpenPaneLengthMinusCompactLength
         {
             get { return (double)GetValue(OpenPaneLengthMinusCompactLengthProperty); }

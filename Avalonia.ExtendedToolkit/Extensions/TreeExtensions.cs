@@ -1,8 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Avalonia.Controls;
 using Avalonia.LogicalTree;
 using Avalonia.VisualTree;
-using System.Collections.Generic;
 
 namespace Avalonia.ExtendedToolkit.Extensions
 {
@@ -40,9 +40,6 @@ namespace Avalonia.ExtendedToolkit.Extensions
             //    parent = parent.Parent;
             //}
             return control.GetChildObjects().OfType<T>().FirstOrDefault();
-
-
-
 
             //return default(T);
         }
@@ -105,9 +102,6 @@ namespace Avalonia.ExtendedToolkit.Extensions
                 yield return parent;
                 parent = VisualTree.VisualExtensions.GetVisualParent(parent);
             }
-
         }
-
-
     }
 }

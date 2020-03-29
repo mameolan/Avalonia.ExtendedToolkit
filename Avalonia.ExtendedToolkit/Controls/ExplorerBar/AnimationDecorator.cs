@@ -1,9 +1,9 @@
-﻿using Avalonia.Animation;
-using Avalonia.Controls;
-using Avalonia.Styling;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Avalonia.Animation;
+using Avalonia.Controls;
+using Avalonia.Styling;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -67,9 +67,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             AvaloniaProperty.Register<AnimationDecorator, TimeSpan>(
                 nameof(Duration), defaultValue: TimeSpan.FromMilliseconds(250));
 
-
         /// <summary>
-        /// Gets or sets the Opacity for animation. 
+        /// Gets or sets the Opacity for animation.
         /// This dependency property can be used to modify the opacity of an outer control.
         /// </summary>
         public double AnimationOpacity

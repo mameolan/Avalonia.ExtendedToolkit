@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 
 namespace Avalonia.ExtendedToolkit
 {
-	public class TreeGridFlatModel : ObservableCollection<TreeGridElement>
+    public class TreeGridFlatModel : ObservableCollection<TreeGridElement>
     {
         private const string ModificationError = "The collection cannot be modified by the user.";
 

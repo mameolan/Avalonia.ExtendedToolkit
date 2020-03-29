@@ -1,7 +1,7 @@
-﻿using Avalonia.Controls;
-using Avalonia.Data.Converters;
-using System;
+﻿using System;
 using System.Globalization;
+using Avalonia.Controls;
+using Avalonia.Data.Converters;
 
 namespace Avalonia.ExtendedToolkit.Converters
 {
@@ -11,12 +11,10 @@ namespace Avalonia.ExtendedToolkit.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-
             double result= ((int)value * LevelWidth.Value);
 
-
             // Return the width multiplied by the level
-            return new GridLength(result); 
+            return new GridLength(result);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

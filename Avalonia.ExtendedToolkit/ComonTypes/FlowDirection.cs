@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Avalonia.ExtendedToolkit.Controls
+﻿namespace Avalonia.ExtendedToolkit.Controls
 {
     // This source file is adapted from the Windows Presentation Foundation project.
     // (https://github.com/dotnet/wpf/)

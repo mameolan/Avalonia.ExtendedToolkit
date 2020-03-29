@@ -1,8 +1,12 @@
-﻿using Avalonia.Collections;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Linq;
+using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Generators;
 using Avalonia.Controls.Primitives;
-using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
@@ -10,12 +14,6 @@ using Avalonia.LogicalTree;
 using Avalonia.Media;
 using Avalonia.Styling;
 using ReactiveUI;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Windows.Input;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -23,373 +21,6 @@ namespace Avalonia.ExtendedToolkit.Controls
 
     public partial class OutlookBar : HeaderedItemsControl
     {
-        public Type StyleKey => typeof(OutlookBar);
-
-        private Popup popup;
-        private ToggleButton btnMenu;
-        private const string partMinimizedButtonContainer = "PART_MinimizedContainer";
-        private const string partPopup = "PART_Popup";
-        private AvaloniaList<ILogical> _logicalChildren = new AvaloniaList<ILogical>();
-        private Control _minimizedButtonContainer;
-
-        //Workaround remember size from ArrangeOverride
-        private Size _finalSize = new Size();
-
-        private ObservableCollection<OutlookSection> _maximizedSections;
-        private ObservableCollection<OutlookSection> _minimizedSections;
-        private ObservableCollection<object> _overflowMenu;
-        private ObservableCollection<Button> _optionButtons;
-
-        private static readonly FuncTemplate<IPanel> DefaultPanel =
-            new FuncTemplate<IPanel>(() => new VirtualizingStackPanel() { HorizontalAlignment = HorizontalAlignment.Stretch });
-
-        public ObservableCollection<OutlookSection> SideButtons
-        {
-            get { return (ObservableCollection<OutlookSection>)GetValue(SideButtonsProperty); }
-            private set { SetValue(SideButtonsProperty, value); }
-        }
-
-        public static readonly StyledProperty<ObservableCollection<OutlookSection>> SideButtonsProperty =
-            AvaloniaProperty.Register<OutlookBar, ObservableCollection<OutlookSection>>(nameof(SideButtons));
-
-        public ObservableCollection<OutlookSection> MaximizedSections
-        {
-            get { return (ObservableCollection<OutlookSection>)GetValue(MaximizedSectionsProperty); }
-            private set { SetValue(MaximizedSectionsProperty, value); }
-        }
-
-        public static readonly StyledProperty<ObservableCollection<OutlookSection>> MaximizedSectionsProperty =
-            AvaloniaProperty.Register<OutlookBar, ObservableCollection<OutlookSection>>(nameof(MaximizedSections));
-
-        public ObservableCollection<OutlookSection> MinimizedSections
-        {
-            get { return (ObservableCollection<OutlookSection>)GetValue(MinimizedSectionsProperty); }
-            private set { SetValue(MinimizedSectionsProperty, value); }
-        }
-
-        public static readonly StyledProperty<ObservableCollection<OutlookSection>> MinimizedSectionsProperty =
-            AvaloniaProperty.Register<OutlookBar, ObservableCollection<OutlookSection>>(nameof(MinimizedSections));
-
-        public ObservableCollection<object> OverflowMenuItems
-        {
-            get { return (ObservableCollection<object>)GetValue(OverflowMenuItemsProperty); }
-            set { SetValue(OverflowMenuItemsProperty, value); }
-        }
-
-        public static readonly StyledProperty<ObservableCollection<object>> OverflowMenuItemsProperty =
-            AvaloniaProperty.Register<OutlookBar, ObservableCollection<object>>(nameof(OverflowMenuItems));
-
-        public ObservableCollection<Button> OptionButtons
-        {
-            get { return (ObservableCollection<Button>)GetValue(OptionButtonsProperty); }
-            set { SetValue(OptionButtonsProperty, value); }
-        }
-
-        public static readonly StyledProperty<ObservableCollection<Button>> OptionButtonsProperty =
-            AvaloniaProperty.Register<OutlookBar, ObservableCollection<Button>>(nameof(OptionButtons));
-
-        public bool ShowSideButtons
-        {
-            get { return (bool)GetValue(ShowSideButtonsProperty); }
-            set { SetValue(ShowSideButtonsProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> ShowSideButtonsProperty =
-            AvaloniaProperty.Register<OutlookBar, bool>(nameof(ShowSideButtons), defaultValue: true);
-
-        public bool IsMaximized
-        {
-            get { return (bool)GetValue(IsMaximizedProperty); }
-            set { SetValue(IsMaximizedProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsMaximizedProperty =
-            AvaloniaProperty.Register<OutlookBar, bool>(nameof(IsMaximized), defaultValue: true);
-
-        public double MinimizedWidth
-        {
-            get { return (double)GetValue(MinimizedWidthProperty); }
-            set { SetValue(MinimizedWidthProperty, value); }
-        }
-
-        public static readonly StyledProperty<double> MinimizedWidthProperty =
-            AvaloniaProperty.Register<OutlookBar, double>(nameof(MinimizedWidth), defaultValue: 32d);
-
-        public double MaximizedWidth
-        {
-            get { return (double)GetValue(MaximizedWidthProperty); }
-            set { SetValue(MaximizedWidthProperty, value); }
-        }
-
-        public static readonly StyledProperty<double> MaximizedWidthProperty =
-            AvaloniaProperty.Register<OutlookBar, double>(nameof(MaximizedWidth), defaultValue: 300d);
-
-        /// <summary>
-        /// Gets or sets how to align template of the OutlookBar.
-        /// Currently, only Left or Right is supported!
-        /// </summary>
-        public HorizontalAlignment DockPosition
-        {
-            get { return (HorizontalAlignment)GetValue(DockPositionProperty); }
-            set { SetValue(DockPositionProperty, value); }
-        }
-
-        public static readonly StyledProperty<HorizontalAlignment> DockPositionProperty =
-            AvaloniaProperty.Register<OutlookBar, HorizontalAlignment>(nameof(DockPosition), defaultValue: HorizontalAlignment.Left);
-
-        public int MaxNumberOfButtons
-        {
-            get { return (int)GetValue(MaxNumberOfButtonsProperty); }
-            set { SetValue(MaxNumberOfButtonsProperty, value); }
-        }
-
-        public static readonly StyledProperty<int> MaxNumberOfButtonsProperty =
-            AvaloniaProperty.Register<OutlookBar, int>(nameof(MaxNumberOfButtons), defaultValue: int.MaxValue);
-
-        public bool IsPopupVisible
-        {
-            get { return (bool)GetValue(IsPopupVisibleProperty); }
-            set { SetValue(IsPopupVisibleProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsPopupVisibleProperty =
-            AvaloniaProperty.Register<OutlookBar, bool>(nameof(IsPopupVisible), defaultValue: false);
-
-        public int SelectedSectionIndex
-        {
-            get { return (int)GetValue(SelectedSectionIndexProperty); }
-            set { SetValue(SelectedSectionIndexProperty, value); }
-        }
-
-        public static readonly StyledProperty<int> SelectedSectionIndexProperty =
-            AvaloniaProperty.Register<OutlookBar, int>(nameof(SelectedSectionIndex), defaultValue: 0);
-
-        public OutlookSection SelectedSection
-        {
-            get { return (OutlookSection)GetValue(SelectedSectionProperty); }
-            set { SetValue(SelectedSectionProperty, value); }
-        }
-
-        public static readonly StyledProperty<OutlookSection> SelectedSectionProperty =
-            AvaloniaProperty.Register<OutlookBar, OutlookSection>(nameof(SelectedSection));
-
-        internal object SectionContent
-        {
-            get { return (object)GetValue(SectionContentProperty); }
-            set { SetValue(SectionContentProperty, value); }
-        }
-
-        public static readonly StyledProperty<object> SectionContentProperty =
-            AvaloniaProperty.Register<OutlookBar, object>(nameof(SectionContent));
-
-        internal object CollapsedSectionContent
-        {
-            get { return (object)GetValue(CollapsedSectionContentProperty); }
-            set { SetValue(CollapsedSectionContentProperty, value); }
-        }
-
-        public static readonly StyledProperty<object> CollapsedSectionContentProperty =
-            AvaloniaProperty.Register<OutlookBar, object>(nameof(CollapsedSectionContent));
-
-        public bool IsOverflowVisible
-        {
-            get { return (bool)GetValue(IsOverflowVisibleProperty); }
-            set { SetValue(IsOverflowVisibleProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsOverflowVisibleProperty =
-            AvaloniaProperty.Register<OutlookBar, bool>(nameof(IsOverflowVisible), defaultValue: false);
-
-        public ICommand CollapseCommand
-        {
-            get; private set;
-        }
-
-        public ICommand StartDraggingCommand
-        {
-            get; private set;
-        }
-
-        public ICommand ShowPopupCommand
-        {
-            get; private set;
-        }
-
-        public ICommand ResizeCommand
-        {
-            get; private set;
-        }
-
-        public ICommand CloseCommand
-        {
-            get; private set;
-        }
-
-        public double ButtonHeight
-        {
-            get { return (double)GetValue(ButtonHeightProperty); }
-            set { SetValue(ButtonHeightProperty, value); }
-        }
-
-        public static readonly StyledProperty<double> ButtonHeightProperty =
-            AvaloniaProperty.Register<OutlookBar, double>(nameof(ButtonHeight), defaultValue: 28.0d);
-
-        public double PopupWidth
-        {
-            get { return (double)GetValue(PopupWidthProperty); }
-            set { SetValue(PopupWidthProperty, value); }
-        }
-
-        public static readonly StyledProperty<double> PopupWidthProperty =
-            AvaloniaProperty.Register<OutlookBar, double>(nameof(PopupWidth), defaultValue: (double)double.NaN);
-
-        public bool IsButtonSplitterVisible
-        {
-            get { return (bool)GetValue(IsButtonSplitterVisibleProperty); }
-            set { SetValue(IsButtonSplitterVisibleProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsButtonSplitterVisibleProperty =
-            AvaloniaProperty.Register<OutlookBar, bool>(nameof(IsButtonSplitterVisible), defaultValue: true);
-
-        public bool ShowButtons
-        {
-            get { return (bool)GetValue(ShowButtonsProperty); }
-            set { SetValue(ShowButtonsProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> ShowButtonsProperty =
-            AvaloniaProperty.Register<OutlookBar, bool>(nameof(ShowButtons), defaultValue: true);
-
-        public bool CanResize
-        {
-            get { return (bool)GetValue(CanResizeProperty); }
-            set { SetValue(CanResizeProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> CanResizeProperty =
-            AvaloniaProperty.Register<OutlookBar, bool>(nameof(CanResize), defaultValue: true);
-
-        public bool IsCloseButtonVisible
-        {
-            get { return (bool)GetValue(IsCloseButtonVisibleProperty); }
-            set { SetValue(IsCloseButtonVisibleProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsCloseButtonVisibleProperty =
-           AvaloniaProperty.Register<OutlookBar, bool>(nameof(IsCloseButtonVisible), defaultValue: true);
-
-        public object NavigationPaneText
-        {
-            get { return (object)GetValue(NavigationPaneTextProperty); }
-            set { SetValue(NavigationPaneTextProperty, value); }
-        }
-
-        public static readonly StyledProperty<object> NavigationPaneTextProperty =
-            AvaloniaProperty.Register<OutlookBar, object>(nameof(NavigationPaneText), defaultValue: "Navigation Pane");
-
-        public Classes OdcExpanderClasses
-        {
-            get { return (Classes)GetValue(OdcExpanderClassesProperty); }
-            set { SetValue(OdcExpanderClassesProperty, value); }
-        }
-
-        public static readonly StyledProperty<Classes> OdcExpanderClassesProperty =
-            AvaloniaProperty.Register<OutlookBar, Classes>(nameof(OdcExpanderClasses));
-
-        public Classes OptionButtonClasses
-        {
-            get { return (Classes)GetValue(OptionButtonClassesProperty); }
-            set { SetValue(OptionButtonClassesProperty, value); }
-        }
-
-        public static readonly StyledProperty<Classes> OptionButtonClassesProperty =
-            AvaloniaProperty.Register<OutlookBar, Classes>(nameof(OptionButtonClasses));
-
-        public Classes OptionToggleButtonClasses
-        {
-            get { return (Classes)GetValue(OptionToggleButtonClassesProperty); }
-            set { SetValue(OptionToggleButtonClassesProperty, value); }
-        }
-
-        public static readonly StyledProperty<Classes> OptionToggleButtonClassesProperty =
-            AvaloniaProperty.Register<OutlookBar, Classes>(nameof(OptionToggleButtonClasses));
-
-        public static readonly RoutedEvent<RoutedEventArgs> CollapsedEvent =
-                    RoutedEvent.Register<OutlookBar, RoutedEventArgs>(nameof(CollapsedEvent), RoutingStrategies.Bubble);
-
-        public event EventHandler Collapsed
-        {
-            add
-            {
-                AddHandler(CollapsedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(CollapsedEvent, value);
-            }
-        }
-
-        public static readonly RoutedEvent<RoutedEventArgs> ExpandedEvent =
-                    RoutedEvent.Register<OutlookBar, RoutedEventArgs>(nameof(ExpandedEvent), RoutingStrategies.Bubble);
-
-        public event EventHandler Expanded
-        {
-            add
-            {
-                AddHandler(ExpandedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(ExpandedEvent, value);
-            }
-        }
-
-        public static readonly RoutedEvent<RoutedEventArgs> PopupOpenedEvent =
-                    RoutedEvent.Register<OutlookBar, RoutedEventArgs>(nameof(PopupOpenedEvent), RoutingStrategies.Bubble);
-
-        public event EventHandler PopupOpened
-        {
-            add
-            {
-                AddHandler(PopupOpenedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(PopupOpenedEvent, value);
-            }
-        }
-
-        public static readonly RoutedEvent<RoutedEventArgs> PopupClosedEvent =
-                    RoutedEvent.Register<OutlookBar, RoutedEventArgs>(nameof(PopupClosedEvent), RoutingStrategies.Bubble);
-
-        public event EventHandler PopupClosed
-        {
-            add
-            {
-                AddHandler(PopupClosedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(PopupClosedEvent, value);
-            }
-        }
-
-        public static readonly RoutedEvent<RoutedEventArgs> SelectedSectionChangedEvent =
-                    RoutedEvent.Register<OutlookBar, RoutedEventArgs>(nameof(SelectedSectionChangedEvent), RoutingStrategies.Bubble);
-
-        public event EventHandler SelectedSectionChanged
-        {
-            add
-            {
-                AddHandler(SelectedSectionChangedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(SelectedSectionChangedEvent, value);
-            }
-        }
-
         protected new IAvaloniaList<ILogical> LogicalChildren
         {
             get
@@ -773,7 +404,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void SelectedSectionPropertyChanged(OutlookBar bar, AvaloniaPropertyChangedEventArgs e)
         {
-            bar.OnSelectedSectionChanged((OutlookSection)e.NewValue);
+            bar.OnSelectedSectionChanged(e.OldValue as OutlookSection, (OutlookSection)e.NewValue);
         }
 
         private void SelectedIndexPropertyChanged(OutlookBar bar, AvaloniaPropertyChangedEventArgs e)
@@ -954,7 +585,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Occurs when the SelectedSection has changed.
         /// </summary>
-        protected virtual void OnSelectedSectionChanged(OutlookSection newSection)
+        protected virtual void OnSelectedSectionChanged(OutlookSection oldSection, OutlookSection newSection)
         {
             var items = Items.OfType<OutlookSection>().ToList();
             for (int index = 0; index < items.Count; index++)
@@ -969,8 +600,9 @@ namespace Avalonia.ExtendedToolkit.Controls
                     CollapsedSectionContent = IsMaximized ? null : section.Content;
                 }
             }
-            //RaiseEvent(new RoutedPropertyChangedEventArgs<OutlookSection>(oldSection, newSection, SelectedSectionChangedEvent));
-            RaiseEvent(new RoutedEventArgs(SelectedSectionChangedEvent));
+
+            RaiseEvent(new RoutedPropertyChangedEventArgs<OutlookSection>(oldSection, newSection, SelectedSectionChangedEvent));
+            //RaiseEvent(new RoutedEventArgs(SelectedSectionChangedEvent));
         }
 
         protected override void OnInitialized()

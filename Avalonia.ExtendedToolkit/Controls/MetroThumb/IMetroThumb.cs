@@ -1,9 +1,11 @@
-﻿using Avalonia.Input;
+﻿using System;
+using Avalonia.Input;
 using Avalonia.Interactivity;
-using System;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/MahApps/MahApps.Metro
+
     public interface IMetroThumb : IInputElement
     {
         event EventHandler<VectorEventArgs> DragStarted;

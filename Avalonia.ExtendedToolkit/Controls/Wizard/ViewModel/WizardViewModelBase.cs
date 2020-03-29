@@ -1,7 +1,7 @@
-﻿using Avalonia.Collections;
-using ReactiveUI;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows.Input;
+using Avalonia.Collections;
+using ReactiveUI;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {

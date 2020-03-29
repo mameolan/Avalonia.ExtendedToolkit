@@ -1,134 +1,21 @@
-﻿using Avalonia.Collections;
+﻿using System;
+using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Shapes;
 using Avalonia.LogicalTree;
-using Avalonia.Media;
-using System;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
-    public class SplitView : ContentControl
+    //ported from https://github.com/MahApps/MahApps.Metro
+
+    /// <summary>
+    ///     Represents a container with two views; one view for the main content and another
+    ///     view that is typically used for
+    ///     navigation commands.
+    /// </summary>
+    public partial class SplitView : ContentControl
     {
-        public double CompactPaneLength
-        {
-            get { return (double)GetValue(CompactPaneLengthProperty); }
-            set { SetValue(CompactPaneLengthProperty, value); }
-        }
-
-        public static readonly StyledProperty<double> CompactPaneLengthProperty =
-            AvaloniaProperty.Register<SplitView, double>(nameof(CompactPaneLength), defaultValue: 0d);
-
-        //public object Content
-        //{
-        //    get { return (object)GetValue(ContentProperty); }
-        //    set { SetValue(ContentProperty, value); }
-        //}
-
-        //public static readonly StyledProperty<object> ContentProperty =
-        //    AvaloniaProperty.Register<SplitView, object>(nameof(Content));
-
-
-
-
-        internal string State
-        {
-            get { return (string)GetValue(StateProperty); }
-            set { SetValue(StateProperty, value); }
-        }
-
-
-        internal static readonly StyledProperty<string> StateProperty =
-            AvaloniaProperty.Register<SplitView, string>(nameof(State));
-
-
-
-
-        public SplitViewDisplayMode DisplayMode
-        {
-            get { return (SplitViewDisplayMode)GetValue(DisplayModeProperty); }
-            set { SetValue(DisplayModeProperty, value); }
-        }
-
-        public static readonly StyledProperty<SplitViewDisplayMode> DisplayModeProperty =
-            AvaloniaProperty.Register<SplitView, SplitViewDisplayMode>(nameof(DisplayMode), defaultValue: SplitViewDisplayMode.Overlay);
-
-        public bool IsPaneOpen
-        {
-            get { return (bool)GetValue(IsPaneOpenProperty); }
-            set { SetValue(IsPaneOpenProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsPaneOpenProperty =
-            AvaloniaProperty.Register<SplitView, bool>(nameof(IsPaneOpen), defaultValue: true);
-
-        public double OpenPaneLength
-        {
-            get { return (double)GetValue(OpenPaneLengthProperty); }
-            set { SetValue(OpenPaneLengthProperty, value); }
-        }
-
-        public static readonly StyledProperty<double> OpenPaneLengthProperty =
-            AvaloniaProperty.Register<SplitView, double>(nameof(OpenPaneLength), defaultValue: 0d);
-
-        public object Pane
-        {
-            get { return (object)GetValue(PaneProperty); }
-            set { SetValue(PaneProperty, value); }
-        }
-
-        public static readonly StyledProperty<object> PaneProperty =
-            AvaloniaProperty.Register<SplitView, object>(nameof(Pane));
-
-        public IBrush PaneBackground
-        {
-            get { return (IBrush)GetValue(PaneBackgroundProperty); }
-            set { SetValue(PaneBackgroundProperty, value); }
-        }
-
-        public static readonly StyledProperty<IBrush> PaneBackgroundProperty =
-            AvaloniaProperty.Register<SplitView, IBrush>(nameof(PaneBackground));
-
-        public IBrush PaneForeground
-        {
-            get { return (IBrush)GetValue(PaneForegroundProperty); }
-            set { SetValue(PaneForegroundProperty, value); }
-        }
-
-        public static readonly StyledProperty<IBrush> PaneForegroundProperty =
-            AvaloniaProperty.Register<SplitView, IBrush>(nameof(PaneForeground));
-
-        public SplitViewPanePlacement PanePlacement
-        {
-            get { return (SplitViewPanePlacement)GetValue(PanePlacementProperty); }
-            set { SetValue(PanePlacementProperty, value); }
-        }
-
-        public static readonly StyledProperty<SplitViewPanePlacement> PanePlacementProperty =
-            AvaloniaProperty.Register<SplitView, SplitViewPanePlacement>(nameof(PanePlacement), defaultValue: SplitViewPanePlacement.Left);
-
-        public SplitViewTemplateSettings TemplateSettings
-        {
-            get { return (SplitViewTemplateSettings)GetValue(TemplateSettingsProperty); }
-            set { SetValue(TemplateSettingsProperty, value); }
-        }
-
-        public static readonly StyledProperty<SplitViewTemplateSettings> TemplateSettingsProperty =
-            AvaloniaProperty.Register<SplitView, SplitViewTemplateSettings>(nameof(TemplateSettings));
-
-        private Rectangle lightDismissLayer;
-        private RectangleGeometry paneClipRectangle;
-
-        /// <summary>
-        ///     Occurs when the <see cref="SplitView" /> pane is closed.
-        /// </summary>
-        public event EventHandler PaneClosed;
-
-        /// <summary>
-        ///     Occurs when the <see cref="SplitView" /> pane is closing.
-        /// </summary>
-        public event EventHandler<SplitViewPaneClosingEventArgs> PaneClosing;
-
         public SplitView()
         {
             CompactPaneLengthProperty.Changed.AddClassHandler<SplitView>((o, e) => OnMetricsChanged(o, e));
@@ -194,9 +81,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 State = "None";
             }
 
-            SetValue(StateProperty,state);
+            SetValue(StateProperty, state);
             //VisualStateManager.GoToState(this, state, animated);
-
         }
 
         private void OnIsPaneOpenChanged(SplitView sender, AvaloniaPropertyChangedEventArgs e)
@@ -223,7 +109,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             sender?.TemplateSettings?.Update();
             sender?.ChangeVisualState(true, true);
-
         }
 
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)

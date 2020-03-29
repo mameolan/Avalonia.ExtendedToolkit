@@ -1,19 +1,30 @@
-﻿using Avalonia.Controls;
-using Avalonia.Controls.Generators;
-using Avalonia.Controls.Templates;
-using Avalonia.Input;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
+using Avalonia.Controls;
+using Avalonia.Controls.Generators;
+using Avalonia.ExtendedToolkit.Extensions;
+using Avalonia.Input;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/MahApps/MahApps.Metro
+
+    /// <summary>
+    /// A FlyoutsControl is for displaying flyouts in a MetroWindow.
+    /// <see cref="MetroWindow"/>
+    /// </summary>
     public class FlyoutsControl : ItemsControl
     {
-        private static readonly FuncTemplate<IPanel> DefaultPanel =
-            new FuncTemplate<IPanel>(() => new VirtualizingStackPanel());
+        //private static readonly FuncTemplate<IPanel> DefaultPanel =
+        //    new FuncTemplate<IPanel>(() => new VirtualizingStackPanel());
 
+        /// <summary>
+        /// Gets/sets whether
+        /// <see cref="Avalonia.ExtendedToolkit.Controls.Flyout.ExternalCloseButton"/>
+        /// is ignored and all flyouts behave as if it was set to the value of this property.
+        /// </summary>
         public MouseButton? OverrideExternalCloseButton
         {
             get { return (MouseButton?)GetValue(OverrideExternalCloseButtonProperty); }
@@ -23,6 +34,11 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<MouseButton?> OverrideExternalCloseButtonProperty =
             AvaloniaProperty.Register<FlyoutsControl, MouseButton?>(nameof(OverrideExternalCloseButton));
 
+        /// <summary>
+        /// Gets/sets whether
+        /// <see cref="Avalonia.ExtendedToolkit.Controls.Flyout.IsPinned"/>
+        /// is ignored and all flyouts behave as if it was set false.
+        /// </summary>
         public bool OverrideIsPinned
         {
             get { return (bool)GetValue(OverrideIsPinnedProperty); }
@@ -35,40 +51,45 @@ namespace Avalonia.ExtendedToolkit.Controls
         public FlyoutsControl()
         {
             //ItemsPanelProperty.OverrideDefaultValue<FlyoutsControl>(DefaultPanel);
-            //ItemsProperty.AddOwner<FlyoutsControl>((o,e)=> ONi)
+            ItemsProperty.Changed.AddClassHandler<FlyoutsControl>((o, e) => OnItemsChaned(o, e));
+        }
+
+        private void OnItemsChaned(FlyoutsControl o, AvaloniaPropertyChangedEventArgs e)
+        {
+            this.IsVisible = true;
         }
 
         protected override IItemContainerGenerator CreateItemContainerGenerator()
         {
-            var itemContainer= new ItemContainerGenerator<Flyout>(
-               this,
-               Flyout.ContentProperty,
-               Flyout.ContentTemplateProperty);
-
-            itemContainer.Materialized += ItemContainer_Materialized;
-            itemContainer.Dematerialized += ItemContainer_Dematerialized;
-            itemContainer.Recycled += ItemContainer_Recycled;
-
-            return itemContainer;
-            //return new ItemContainerGenerator(this);
+            return new FlyoutContainerGenerator(this);
         }
 
-        private void ItemContainer_Recycled(object sender, ItemContainerEventArgs e)
+        /// <summary>
+        /// called from the <see cref="FlyoutContainerGenerator.CreateContainer(object)"/> only.
+        /// </summary>
+        /// <param name="flyout"></param>
+        internal void AttachHandlers(Flyout flyout)
         {
+            flyout.IsOpenChanged -= FlyoutStatusChanged;
+            flyout.FlyoutThemeChanged -= FlyoutStatusChanged;
+
+            flyout.IsOpenChanged += FlyoutStatusChanged;
+            flyout.FlyoutThemeChanged += FlyoutStatusChanged;
+
+            //var isOpenNotifier = new PropertyChangeNotifier(flyout, Flyout.IsOpenProperty);
+            //isOpenNotifier.ValueChanged += FlyoutStatusChanged;
+            //flyout.IsOpenPropertyChangeNotifier = isOpenNotifier;
+
+            //var themeNotifier = new PropertyChangeNotifier(flyout, Flyout.FlyoutThemeProperty);
+            //themeNotifier.ValueChanged += FlyoutStatusChanged;
+            //flyout.ThemePropertyChangeNotifier = themeNotifier;
         }
 
-        private void ItemContainer_Dematerialized(object sender, ItemContainerEventArgs e)
+        private void FlyoutStatusChanged(object sender, EventArgs e)
         {
-        }
+            var flyout = this.GetFlyout(sender); //Get the flyout that raised the handler.
 
-        private void ItemContainer_Materialized(object sender, ItemContainerEventArgs e)
-        {
-        }
-
-        protected override void ItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            base.ItemsCollectionChanged(sender, e);
-            this.IsVisible = true;
+            this.HandleFlyoutStatusChange(flyout, this.TryFindParent<MetroWindow>());
         }
 
         internal void HandleFlyoutStatusChange(Flyout flyout, MetroWindow parentWindow)

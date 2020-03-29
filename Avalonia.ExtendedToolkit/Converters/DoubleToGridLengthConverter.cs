@@ -1,9 +1,7 @@
-﻿using Avalonia.Controls;
-using Avalonia.Data.Converters;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Globalization;
-using System.Text;
+using Avalonia.Controls;
+using Avalonia.Data.Converters;
 
 namespace Avalonia.ExtendedToolkit.Converters
 {
@@ -14,8 +12,6 @@ namespace Avalonia.ExtendedToolkit.Converters
             if(value is double)
             {
                 return new GridLength((double)value);
-
-
             }
 
             return new GridLength();

@@ -1,7 +1,7 @@
-﻿using Avalonia.Markup.Xaml.Styling;
+﻿using System;
+using Avalonia.Markup.Xaml.Styling;
 using Avalonia.Media;
 using Avalonia.Styling;
-using System;
 
 namespace Avalonia.ExtendedToolkit
 {
@@ -92,7 +92,7 @@ namespace Avalonia.ExtendedToolkit
         /// <summary>
         /// Gets a brush which can be used to showcase this theme.
         /// </summary>
-        public SolidColorBrush ShowcaseBrush { get; }
+        public IBrush ShowcaseBrush { get; }
 
         //public override string ToString()
         //{

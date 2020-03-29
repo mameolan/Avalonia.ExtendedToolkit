@@ -1,13 +1,17 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using System.Collections.Generic;
+using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
-using System;
-using System.Collections.Generic;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/MahApps/MahApps.Metro
+
     public class MultiFrameImage : Image
     {
+        public Type StyleKey => typeof(MultiFrameImage);
+
         public MultiFrameImage()
         {
             SourceProperty.Changed.AddClassHandler<MultiFrameImage>((o, e) => OnSourceChanged(o, e));

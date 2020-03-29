@@ -1,10 +1,8 @@
-﻿using Avalonia.Controls;
-using Avalonia.Data.Converters;
-using System;
-using System.Linq;
-using System.Collections.Generic;
+﻿using System;
 using System.Globalization;
-using System.Text;
+using System.Linq;
+using Avalonia.Controls;
+using Avalonia.Data.Converters;
 using Avalonia.ExtendedToolkit.Extensions;
 
 namespace Avalonia.ExtendedToolkit.Converters
@@ -26,8 +24,6 @@ namespace Avalonia.ExtendedToolkit.Converters
         {
             return AvaloniaProperty.UnsetValue;
         }
-
-
     }
 
     public static class TreeViewItemExtensions
@@ -37,5 +33,4 @@ namespace Avalonia.ExtendedToolkit.Converters
             return item.GetAncestors().TakeWhile(e => !(e is TreeView)).OfType<TreeViewItem>().Count();
         }
     }
-
 }

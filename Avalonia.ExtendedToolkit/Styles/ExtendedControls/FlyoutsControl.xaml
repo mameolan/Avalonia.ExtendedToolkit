@@ -18,7 +18,11 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
-          <ItemsPresenter />
+          <ItemsPresenter
+              Items="{TemplateBinding Items}"
+              ItemsPanel="{TemplateBinding ItemsPanel}"
+              ItemTemplate="{TemplateBinding ItemTemplate}"
+            />
         </ControlTemplate>
       </Setter.Value>
     </Setter>

@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -9,6 +10,8 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class ContentControlEx : ContentControl
     {
+        public Type StyleKey => typeof(ContentControlEx);
+
         public CharacterCasing ContentCharacterCasing
         {
             get { return (CharacterCasing)GetValue(ContentCharacterCasingProperty); }

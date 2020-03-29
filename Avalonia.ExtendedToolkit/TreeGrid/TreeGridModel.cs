@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 
 namespace Avalonia.ExtendedToolkit
 {
-	public class TreeGridModel : ObservableCollection<TreeGridElement>
+    public class TreeGridModel : ObservableCollection<TreeGridElement>
     {
 		public TreeGridFlatModel FlatModel { get; private set; }
 

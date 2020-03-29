@@ -2,7 +2,9 @@
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
-    public class ClosingWindowEventHandlerArgs : EventArgs
+    //ported from https://github.com/MahApps/MahApps.Metro
+
+    public class ClosingWindowEventArgs : EventArgs
     {
         public bool Cancelled { get; set; }
     }

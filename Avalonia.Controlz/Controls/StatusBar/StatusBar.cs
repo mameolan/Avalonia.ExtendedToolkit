@@ -1,11 +1,8 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Controls.Generators;
 using Avalonia.Controls.Templates;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Avalonia.ExtendedToolkit.Controls
+namespace Avalonia.Controlz.Controls
 {
     public class StatusBar : ItemsControl
     {
@@ -14,16 +11,14 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         static StatusBar()
         {
-            ItemsPanelProperty.OverrideDefaultValue<StatusBar>(DefaultPanel); 
+            ItemsPanelProperty.OverrideDefaultValue<StatusBar>(DefaultPanel);
         }
-
 
         //public bool UsesItemContainerTemplate
         //{
         //    get { return (bool)GetValue(UsesItemContainerTemplateProperty); }
         //    set { SetValue(UsesItemContainerTemplateProperty, value); }
         //}
-
 
         //public static readonly StyledProperty<bool> UsesItemContainerTemplateProperty =
         //    AvaloniaProperty.Register<StatusBar, bool>(nameof(UsesItemContainerTemplate));
@@ -37,7 +32,5 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             return itemContainer;
         }
-
-
     }
 }

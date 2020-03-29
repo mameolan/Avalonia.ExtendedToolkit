@@ -1,0 +1,149 @@
+﻿<Controls:MetroWindow xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             xmlns:Views="clr-namespace:Avalonia.ExampleApp.Views;assembly=Avalonia.ExampleApp"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Window.FlyoutDemoWindow">
+  <Controls:MetroWindow.Flyouts>
+    <Controls:FlyoutsControl x:Name="flyoutsControl">
+      <Controls:Flyout
+                             Controls:ControlsHelper.ContentCharacterCasing="Upper"
+                             Controls:ControlsHelper.HeaderFontFamily="Segoe Script"
+                             AreAnimationsEnabled="True"
+                             FocusedElement="{Binding ElementName=firstTB}"
+                             Header="Settings"
+                             Position="Right"
+               
+        >
+        <Grid Margin="10">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <StackPanel>
+            <TextBlock Grid.Row="0" Text="Something above the ScrollPanel" />
+            <TextBlock Grid.Row="0" Text="This Flyout animates its opacity when opening and closing." />
+          </StackPanel>
+          <TabControl Grid.Row="1" >
+            <TabItem Header="Settings">
+              <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel Orientation="Vertical">
+                  <TextBox x:Name="firstTB"  Watermark="TextBox 01"/>
+                  <TextBox Margin="0 5 0 0"  Watermark="TextBox 02"/>
+                  <TextBox Margin="0 5 0 0"  Watermark="TextBox 03"/>
+                  <TextBox Margin="0 5 0 0"  Watermark="TextBox 04"/>
+                  <TextBox Margin="0 5 0 0"  Watermark="TextBox 05"/>
+                  <TextBox Margin="0 5 0 0"  Watermark="TextBox 06"/>
+                  <TextBox Margin="0 5 0 0"  Watermark="TextBox 07"/>
+                  <TextBox Margin="0 5 0 0"  Watermark="TextBox 08"/>
+                  <TextBox Margin="0 5 0 0"  Watermark="TextBox 09"/>
+                  <TextBox Margin="0 5 0 0"  Watermark="TextBox 10"/>
+                </StackPanel>
+              </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Empty" />
+          </TabControl>
+          <UniformGrid Grid.Row="2"
+                                 Margin="10"
+                                 Columns="2">
+            <Button Margin="10"
+                                Content="Create"
+                                 />
+            <!--Style="{DynamicResource MahApps.Styles.Button.Square}"-->
+            <Button Margin="10"
+                                Content="Cancel"
+                                 />
+            <!--Style="{DynamicResource MahApps.Styles.Button.Square}"-->
+          </UniformGrid>
+        </Grid>
+      </Controls:Flyout>
+    </Controls:FlyoutsControl>
+  </Controls:MetroWindow.Flyouts>
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   Margin="10"
+                   FontSize="30"
+                   Text="Some Flyout Tests..."
+                    Foreground="{DynamicResource MahApps.Brushes.Black}"
+               />
+
+    <StackPanel Grid.Row="1"
+                    Grid.Column="0"
+                    MinWidth="200"
+                    Margin="5"
+                    HorizontalAlignment="Center">
+      <Controls:MetroButton Margin="2"
+              Name="btnShowFirst"
+              Content="Show 1" />
+      <Controls:MetroButton Margin="2"
+              Name="btnShowSecond"
+              Content="Show 2" />
+      <Controls:MetroButton Margin="2"
+              Name="btnShowThird"
+              Content="Show 3" />
+      <Controls:MetroButton Margin="2"
+              Name="btnShowAccent"
+              Content="Accent" />
+      <Controls:MetroButton Margin="2"
+              Name="btnShowInverse"
+              Content="Inverse" />
+      <Controls:MetroButton Margin="2"
+              Name="btnShowAdapt"
+              Content="Adapt" />
+      <Controls:MetroButton Margin="2"
+              Name="btnShowSettings"
+              Content="Settings" />
+      <Controls:MetroButton Margin="2"
+              Name="btnShowModal"
+              Content="Modal" />
+      <Controls:MetroButton Margin="2"
+              Name="btnShowAppBar"
+              Content="AppBar" />
+      <Controls:MetroButton Margin="2"
+              Name="btnShowDynamicFlyout"
+              Content="Dynamic" />
+      <Controls:MetroButton Margin="2"
+              Name="btnShowAutoCloseFlyout"
+              Content="AutoClose" />
+    </StackPanel>
+
+    <StackPanel Grid.Row="1"
+    Grid.Column="2"
+    MinWidth="120"
+    Margin="5"
+    HorizontalAlignment="Center"
+    Grid.IsSharedSizeScope="True">
+
+      <Controls:MetroButton Margin="2 10 2 2"
+                      Name="btnShowLeft"
+                      Content="Show Left" />
+      <Controls:MetroButton Margin="2"
+              Name="btnShowCustomTop"
+              Content="Show Custom Top" />
+      <Controls:MetroButton Margin="2"
+              Name="btnShowTop"
+              Content="Show Top" />
+      <Controls:MetroButton Margin="2"
+              Name="btnShowBottom"
+              Content="Show Bottom" />
+    </StackPanel>
+  </Grid>
+
+
+</Controls:MetroWindow>

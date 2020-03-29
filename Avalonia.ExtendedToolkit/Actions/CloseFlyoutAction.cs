@@ -1,10 +1,11 @@
 ﻿using Avalonia.ExtendedToolkit.Controls;
 using Avalonia.ExtendedToolkit.TriggerExtensions;
 using Avalonia.VisualTree;
-using Avalonia.Xaml.Interactivity;
 
 namespace Avalonia.ExtendedToolkit.Actions
 {
+    //ported from https://github.com/MahApps/MahApps.Metro
+
     public class CloseFlyoutAction : CommandTriggerAction
     {
         private Flyout associatedFlyout;

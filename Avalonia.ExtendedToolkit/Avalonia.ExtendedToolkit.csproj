@@ -18,7 +18,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="XamlColorSchemeGenerator" Version="3.0.0.31" >
+    <PackageReference Include="XamlColorSchemeGenerator" Version="3.0.0.31">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
   </ItemGroup>
@@ -39,6 +39,7 @@
     <None Remove="Commanding\**" />
   </ItemGroup>
 
+  
   <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="Styles\Themes\GeneratorParameters.json" />
@@ -56,6 +57,7 @@
     <Folder Include="Behaviours\" />
   </ItemGroup>
 
+  
   <!--<Target Name="GenerateXamlFilesInner">
     <PropertyGroup>
       <XamlColorSchemeGeneratorVersion Condition="'%(PackageReference.Identity)' == 'XamlColorSchemeGenerator'">%(PackageReference.Version)</XamlColorSchemeGeneratorVersion>

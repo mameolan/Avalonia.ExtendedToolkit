@@ -1,10 +1,6 @@
-﻿using Avalonia.Controls;
-using Avalonia.Controls.Generators;
+﻿using System;
+using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -21,13 +17,11 @@ namespace Avalonia.ExtendedToolkit.Controls
         private static readonly FuncTemplate<IPanel> DefaultPanel =
             new FuncTemplate<IPanel>(() => new VirtualizingStackPanel());
 
-
         public Type StyleKey => typeof(ExplorerBar);
 
         static ExplorerBar()
         {
             ItemsPanelProperty.OverrideDefaultValue<ExplorerBar>(DefaultPanel);
         }
-
     }
 }

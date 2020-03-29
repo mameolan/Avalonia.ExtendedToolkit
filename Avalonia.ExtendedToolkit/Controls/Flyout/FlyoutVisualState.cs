@@ -1,6 +1,6 @@
 ﻿namespace Avalonia.ExtendedToolkit.Controls
 {
-    public enum FlyoutVisualStates
+    public enum FlyoutVisualState
     {
         Default,
         Hide,

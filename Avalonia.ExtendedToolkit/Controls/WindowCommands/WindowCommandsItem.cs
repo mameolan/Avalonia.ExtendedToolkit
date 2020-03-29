@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.ExtendedToolkit.Extensions;
 
@@ -9,6 +10,11 @@ namespace Avalonia.ExtendedToolkit.Controls
         private const string PART_ContentPresenter = "PART_ContentPresenter";
         private const string PART_Separator = "PART_Separator";
 
+        public Type StyleKey => typeof(WindowCommandsItem);
+
+        /// <summary>
+        /// Gets or sets the value indicating whether to show the separator.
+        /// </summary>
         public bool IsSeparatorVisible
         {
             get { return (bool)GetValue(IsSeparatorVisibleProperty); }

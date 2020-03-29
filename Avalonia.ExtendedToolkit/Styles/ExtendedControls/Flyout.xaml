@@ -21,24 +21,26 @@
                   VerticalAlignment="Bottom"
                   DockPanel.Dock="Left"
                   Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=Foreground}"
+                  TextBlock.Foreground="Green"
                   IsDefault="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonIsCancel}"
                   IsVisible="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=CloseButtonIsVisible}">
             <i:Interaction.Behaviors>
-              <!--<ia:EventTriggerBehavior EventName="Click" SourceObject="{Binding #PART_BackButton}">
-              <actions:CloseFlyoutAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommand, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommandParameter, Mode=OneWay}" />
-            </ia:EventTriggerBehavior>-->
               <!--<i:EventTrigger EventName="Click">
-              <actions:CloseFlyoutAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommand, Mode=OneWay}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommandParameter, Mode=OneWay}" />
-            </i:EventTrigger>-->
+                <actions:CloseFlyoutAction 
+                  Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommand, Mode=OneWay}" 
+                  CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:Flyout}}, Path=CloseCommandParameter, Mode=OneWay}" />
+              </i:EventTrigger>-->
             </i:Interaction.Behaviors>
-            <!---->
-            <ContentControl
 
+            <ContentControl
+                            Content="M19,34V42H43.75L33.75,52H44.25L58.25,38L44.25,24H33.75L43.75,34H19Z"
                             Width="20"
                             Height="20"
-                            Content=">" />
-            <!--Classes="PathIcon" Content="M19,34V42H43.75L33.75,52H44.25L58.25,38L44.25,24H33.75L43.75,34H19Z"-->
-            <!--Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}"-->
+                            Classes="PathIcon"
+                            TextBlock.Foreground="AliceBlue"
+                            
+                             />
+            <!-- Content=">"-->
             <!--FlowDirection="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:Flyout}}, Path=FlowDirection}"-->
           </Controls:MetroButton>
         </LayoutTransformControl>
@@ -92,7 +94,7 @@
   </Styles.Resources>
 
   <Style Selector="Controls|Flyout">
-    <!--<Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Flyout.Background}" />-->
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Flyout.Background}" />
     <Setter Property="Background" Value="AliceBlue" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="HeaderFontSize" Value="{DynamicResource MahApps.Sizes.Font.FlyoutHeader}" />
@@ -102,33 +104,44 @@
     <Setter Property="VerticalAlignment" Value="Stretch" />
     <Setter Property="IsVisible" Value="false" />
     <Setter Property="HeaderTemplate" Value="{StaticResource MahApps.Templates.FlyoutHeader}" />
-
+    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
+
           <Border x:Name="PART_Root"
                 Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
-                BorderThickness="{TemplateBinding BorderThickness}">
+                BorderThickness="{TemplateBinding BorderThickness}"
+              >
             <Border.RenderTransform>
               <TranslateTransform />
             </Border.RenderTransform>
             <VisualLayerManager>
-              <DockPanel  Focusable="False" Background="AliceBlue">
-                <Controls:MetroThumbContentControl x:Name="PART_Header"
-                                                       Content="{TemplateBinding Header}"
-                                                       ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                                       DockPanel.Dock="Top"
-                                                       RecognizesAccessKey="True"
-                                                       UseLayoutRounding="False" />
+              <DockPanel  Focusable="False">
+                <Controls:MetroThumbContentControl
+                    x:Name="PART_Header"
+                    Content="{TemplateBinding Header}"
+                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                    DockPanel.Dock="Top"
+                    RecognizesAccessKey="True"
+                    UseLayoutRounding="False"
+                    FontFamily="{TemplateBinding Controls:ControlsHelper.HeaderFontFamily}"
+                    FontSize="{TemplateBinding Controls:ControlsHelper.HeaderFontSize}"
+                    FontWeight="{TemplateBinding Controls:ControlsHelper.HeaderFontWeight}"
+                    Padding="{TemplateBinding Controls:ControlsHelper.HeaderMargin}"
+                    ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent},
+                    Path=(Controls:ControlsHelper.ContentCharacterCasing)}"/>
                 <!--
-                 FontFamily="{TemplateBinding Controls:ControlsHelper.HeaderFontFamily}"
-                                                       FontSize="{TemplateBinding Controls:ControlsHelper.HeaderFontSize}"
-                                                       FontWeight="{TemplateBinding Controls:ControlsHelper.HeaderFontWeight}"
-                Padding="{TemplateBinding Controls:ControlsHelper.HeaderMargin}"
-                ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.ContentCharacterCasing)}"-->
+                 
+                                                       
+                                                       
+                
+                -->
                 <ContentPresenter x:Name="PART_Content"
                                 Content="{TemplateBinding Content}"
+                                  
                                 DockPanel.Dock="Bottom" />
               </DockPanel>
             </VisualLayerManager>
@@ -248,7 +261,9 @@
 
   <!--<Style Selector="Controls|Flyout[Position=Top] /template/ Controls|MetroButton#PART_BackButton">
     <Setter Property="RenderTransform">
-      --><!--LayoutTransform--><!--
+      -->
+  <!--LayoutTransform-->
+  <!--
       <Setter.Value>
         <RotateTransform Angle="-90" />
       </Setter.Value>
@@ -265,7 +280,9 @@
 
   <!--<Style Selector="Controls|Flyout[Position=Bottom] /template/ Controls|MetroButton#PART_BackButton">
     <Setter Property="RenderTransform">
-      --><!--LayoutTransform--><!--
+      -->
+  <!--LayoutTransform-->
+  <!--
       <Setter.Value>
         <RotateTransform Angle="90" />
       </Setter.Value>

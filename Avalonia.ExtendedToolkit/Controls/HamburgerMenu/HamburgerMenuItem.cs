@@ -1,7 +1,8 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using System.Windows.Input;
+using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Media;
-using System.Windows.Input;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -10,6 +11,8 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class HamburgerMenuItem : ListBoxItem
     {
+        public Type StyleKey => typeof(HamburgerMenuItem);
+
         private const string ImageCtrlName = "menuImage";
         private Image _imageCtl;
         private string _lastSelectedBaseColorScheme;
@@ -62,10 +65,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         public HamburgerMenuItem()
         {
             ThemeManager.Instance.IsThemeChanged += OnThemeChanged;
-
         }
-
-        
 
         private void OnThemeChanged(object sender, OnThemeChangedEventArgs e)
         {

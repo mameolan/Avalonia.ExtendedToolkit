@@ -4,49 +4,149 @@
     xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
     xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit">
 
-  <Style Selector="Controls|WindowCommands">
+
+  <Style Selector="Button.WindowCommands">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Background="{TemplateBinding Background}">
+            <Controls:ContentControlEx x:Name="PART_ContentControlEx"
+                                       Padding="{TemplateBinding Padding}"
+                                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       Content="{TemplateBinding Content}"
+                                       ContentCharacterCasing="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:WindowCommands}}, Path=(Controls:ControlsHelper.ContentCharacterCasing), Mode=OneWay}"
+                                       ContentTemplate="{TemplateBinding ContentTemplate}"
+                                       Opacity="0.5"
+                                       RecognizesAccessKey="True"
+                                       />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+
+  </Style>
+
+  <Style Selector="Button.WindowCommands:pointerover /template/ Controls|ContentControlEx">
+    <Setter Property="Opacity" Value="1" />
+  </Style>
+
+  <Style Selector="ToggleButton.WindowCommands">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Background="{TemplateBinding Background}">
+            <Controls:ContentControlEx x:Name="PART_ContentControlEx"
+                                       Padding="{TemplateBinding Padding}"
+                                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       Content="{TemplateBinding Content}"
+                                       ContentCharacterCasing="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:WindowCommands}}, Path=(Controls:ControlsHelper.ContentCharacterCasing), Mode=OneWay}"
+                                       ContentTemplate="{TemplateBinding ContentTemplate}"
+                                       Opacity="0.5"
+                                       RecognizesAccessKey="True"
+                                       />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="ToggleButton.WindowCommands:checked /template/ Controls|ContentControlEx">
+    <Setter Property="Opacity" Value="0.8" />
+  </Style>
+
+  <Style Selector="ToggleButton.WindowCommands:pointerover /template/ Controls|ContentControlEx">
+    <Setter Property="Opacity" Value="1" />
+  </Style>
+
+  <Style Selector="ContentControl:WindowCommands">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.TransparentWhite}" />
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}, Path=(TextBlock.Foreground), Mode=OneWay}" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="Padding" Value="8 0" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+  </Style>
 
-    <!--<Setter Property="Controls:ControlsHelper.ContentCharacterCasing" Value="Normal" />-->
-    <!--<Setter Property="DarkTemplate">
-    </Setter>-->
-    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
-    <Setter Property="HorizontalAlignment" Value="Stretch" />
+  <Style Selector="ContentControl:WindowCommands:disabled">
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray4}" />
+  </Style>
 
-    <!--<Setter Property="LightTemplate" Value="{StaticResource MahApps.Templates.WindowCommands.Light}" />
-    <Setter Property="Template" Value="{StaticResource MahApps.Templates.WindowCommands.Light}" />-->
-    <Setter Property="VerticalAlignment" Value="Stretch" />
+  <Style Selector="ToggleButton.ToolBarOverflow">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.TransparentWhite}" />
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}, Path=(TextBlock.Foreground), Mode=OneWay}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ToggleButton}">
+          <Grid Name="Bd"
+                Background="{TemplateBinding Background}"
+                >
+            <Path Name="Arrow"
+                  Margin="4"
+                  VerticalAlignment="Bottom"
+                  Data="M 0 0 L 6 0 3 3 Z"
+                  Fill="{TemplateBinding Foreground}" />
+            <ContentPresenter />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="ToggleButton.ToolBarOverflow:pointerover /template/ Path#Arrow">
+    <Setter Property="Fill" Value="White" />
+  </Style>
+
+  <Style Selector="ToggleButton.ToolBarOverflow:pointerover /template/ Grid#Bd">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+  </Style>
+
+
+  <!--<Trigger Property="IsKeyboardFocused" Value="true">
+    <Setter TargetName="Arrow" Property="Fill" Value="White" />
+    <Setter TargetName="Bd" Property="Background" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+  </Trigger>-->
+
+  <Style Selector="ToggleButton.ToolBarOverflow:checked /template/ Path#Arrow">
+    <Setter Property="Fill" Value="White" />
+  </Style>
+
+  <Style Selector="ToggleButton.ToolBarOverflow:checked /template/ Grid#Bd">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+  </Style>
+
+  <Style Selector="ToggleButton.ToolBarOverflow:disabled /template/ Path#Arrow">
+    <Setter Property="Fill" Value="{DynamicResource MahApps.Brushes.DarkIdealForegroundDisabled}" />
+  </Style>
+
+  <Style Selector="Controls|WindowCommands.Light">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
           <DockPanel>
-            <Controls:MetroToggleButton x:Name="PART_ToggleButton"
+            <ToggleButton x:Name="PART_ToggleButton"
                           ClickMode="Press"
                           DockPanel.Dock="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(DockPanel.Dock), Mode=OneWay}"
                           IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsOverflowOpen, Mode=TwoWay}"
-                          IsEnabled="False"
-                          IsVisible="False"
-                          MinWidth="100"
-                                        >
-              <!--Style="{StaticResource MahApps.Styles.ToggleButton.ToolBarOverflow}"-->
+                          IsEnabled="false"
+                          Classes="ToolBarOverflow"
+                          IsVisible="False">
               <Popup x:Name="OverflowPopup"
-                     
                      Focusable="false"
                      IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsOverflowOpen}"
-                     
-                     
+                     PlacementMode="Bottom"
                      StaysOpen="false">
-                <!--AllowsTransparency="true"
-                Placement="Bottom"
-                PopupAnimation="Slide"
-                -->
-
+                <!--PopupAnimation="Slide"-->
                 <Grid x:Name="DropDownBorder" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=Background, Mode=OneWay}">
                   <Panel x:Name="PART_ToolBarOverflowPanel"
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Stretch"
                                         Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=WindowTitleBrush, Mode=OneWay}"
-                                        Focusable="true"/>
+                                        Focusable="true"
+                                        KeyboardNavigation.TabNavigation="Cycle"
+                                        />
+                  <!--KeyboardNavigation.DirectionalNavigation="Cycle"-->
+
                   <!--<ToolBarOverflowPanel x:Name="PART_ToolBarOverflowPanel"
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Stretch"
@@ -55,28 +155,20 @@
                                         Focusable="true"
                                         KeyboardNavigation.DirectionalNavigation="Cycle"
                                         KeyboardNavigation.TabNavigation="Cycle" />-->
+
                 </Grid>
               </Popup>
-            </Controls:MetroToggleButton>
+            </ToggleButton>
 
             <Panel x:Name="PART_ToolBarPanel"
                           Margin="0"
                           Background="{TemplateBinding Background}"
-              />
+                          />
             <!--<ToolBarPanel x:Name="PART_ToolBarPanel"
                           Margin="0"
                           Background="{TemplateBinding Background}"
                           IsItemsHost="true" />-->
-
-
           </DockPanel>
-
-          <!--<ControlTemplate.Triggers>
-            <Trigger Property="HasOverflowItems" Value="true">
-              <Setter TargetName="PART_ToggleButton" Property="IsEnabled" Value="true" />
-              <Setter TargetName="PART_ToggleButton" Property="Visibility" Value="Visible" />
-            </Trigger>
-          </ControlTemplate.Triggers>-->
 
           <!--<ControlTemplate.Resources>
             <ResourceDictionary>
@@ -100,10 +192,180 @@
             </ResourceDictionary>
           </ControlTemplate.Resources>-->
         </ControlTemplate>
-
       </Setter.Value>
     </Setter>
   </Style>
+
+  <!--todo after toolbar is implemented-->
+  <!--<Style Selector="Controls|WindowCommands.Light[HasOverflowItems=true]">
+  
+  </Style>-->
+
+  <!--<ControlTemplate.Triggers>
+            <Trigger Property="HasOverflowItems" Value="true">
+              <Setter TargetName="PART_ToggleButton" Property="IsEnabled" Value="true" />
+              <Setter TargetName="PART_ToggleButton" Property="Visibility" Value="Visible" />
+            </Trigger>
+          </ControlTemplate.Triggers>-->
+
+
+  <Style Selector="Controls|WindowCommands.Dark">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <DockPanel>
+            <ToggleButton x:Name="PART_ToggleButton"
+                          ClickMode="Press"
+                          DockPanel.Dock="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(DockPanel.Dock), Mode=OneWay}"
+                          IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsOverflowOpen, Mode=TwoWay}"
+                          IsEnabled="false"
+                          Classes="ToolBarOverflow"
+                          IsVisible="False">
+              <Popup x:Name="OverflowPopup"
+                     Focusable="false"
+                     IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsOverflowOpen}"
+                     PlacementMode="Bottom"
+                     StaysOpen="false">
+                <!--PopupAnimation="Slide"-->
+
+                <Grid x:Name="DropDownBorder" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=Background, Mode=OneWay}">
+                  <Panel x:Name="PART_ToolBarOverflowPanel"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=WindowTitleBrush, Mode=OneWay}"
+                                        Focusable="true"
+                                        KeyboardNavigation.TabNavigation="Cycle" />
+                  <!--KeyboardNavigation.DirectionalNavigation="Cycle"-->
+
+                  <!--<ToolBarOverflowPanel x:Name="PART_ToolBarOverflowPanel"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=WindowTitleBrush, Mode=OneWay}"
+                                        FocusVisualStyle="{x:Null}"
+                                        Focusable="true"
+                                        KeyboardNavigation.DirectionalNavigation="Cycle"
+                                        KeyboardNavigation.TabNavigation="Cycle" />-->
+                </Grid>
+              </Popup>
+            </ToggleButton>
+            <Panel x:Name="PART_ToolBarPanel"
+                          Margin="0"
+                          Background="{TemplateBinding Background}"
+                          />
+            <!--<ToolBarPanel x:Name="PART_ToolBarPanel"
+                          Margin="0"
+                          Background="{TemplateBinding Background}"
+                          IsItemsHost="true" />-->
+          </DockPanel>
+
+
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!--<ControlTemplate.Triggers>
+            <Trigger Property="HasOverflowItems" Value="true">
+              <Setter TargetName="PART_ToggleButton" Property="IsEnabled" Value="true" />
+              <Setter TargetName="PART_ToggleButton" Property="Visibility" Value="Visible" />
+            </Trigger>
+          </ControlTemplate.Triggers>-->
+
+  <!--<ControlTemplate.Resources>
+            <ResourceDictionary>
+              <Style BasedOn="{StaticResource MahApps.Styles.Control.WindowCommands}" TargetType="{x:Type Button}">
+                <Setter Property="Template" Value="{StaticResource MahApps.Templates.Button.WindowCommands}" />
+                <Style.Triggers>
+                  <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                  </Trigger>
+                </Style.Triggers>
+              </Style>
+              <Style BasedOn="{StaticResource MahApps.Styles.Control.WindowCommands}" TargetType="{x:Type ToggleButton}">
+                <Setter Property="Template" Value="{StaticResource MahApps.Templates.ToggleButton.WindowCommands}" />
+                <Style.Triggers>
+                  <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                  </Trigger>
+                </Style.Triggers>
+              </Style>
+
+              <Style x:Key="{x:Static ToolBar.ButtonStyleKey}"
+                     BasedOn="{StaticResource MahApps.Styles.Control.WindowCommands}"
+                     TargetType="{x:Type Button}">
+                <Setter Property="Template" Value="{StaticResource MahApps.Templates.Button.WindowCommands}" />
+                <Style.Triggers>
+                  <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                  </Trigger>
+                </Style.Triggers>
+              </Style>
+              <Style x:Key="{x:Static ToolBar.ToggleButtonStyleKey}"
+                     BasedOn="{StaticResource MahApps.Styles.Control.WindowCommands}"
+                     TargetType="{x:Type ToggleButton}">
+                <Setter Property="Template" Value="{StaticResource MahApps.Templates.ToggleButton.WindowCommands}" />
+                <Style.Triggers>
+                  <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                  </Trigger>
+                </Style.Triggers>
+              </Style>
+            </ResourceDictionary>
+          </ControlTemplate.Resources>-->
+
+  <Style Selector="Controls|WindowCommandsItem">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=ParentWindowCommands.Foreground, Mode=OneWay}" />
+    <!--<Setter Property="IsTabStop" Value="False" />-->
+    <Setter Property="MinHeight" Value="{Binding RelativeSource={RelativeSource Self}, Path=ParentWindowCommands.ParentWindow.TitleBarHeight, Mode=OneWay}" />
+    <Setter Property="Padding" Value="1 0" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <StackPanel HorizontalAlignment="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:WindowCommandsItem}}, Path=ParentWindowCommands.HorizontalContentAlignment, Mode=OneWay}"
+                      VerticalAlignment="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:WindowCommandsItem}}, Path=ParentWindowCommands.VerticalContentAlignment, Mode=OneWay}"
+                      Orientation="Horizontal">
+            <ContentPresenter x:Name="PART_ContentPresenter"
+                              Margin="{TemplateBinding Padding}"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                           />
+            <Rectangle x:Name="PART_Separator"
+                       Width="1"
+                       Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:WindowCommandsItem}}, Path=ParentWindowCommands.SeparatorHeight, Mode=OneWay}"
+                       Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:WindowCommandsItem}}, Path=ParentWindowCommands.Foreground, Mode=OneWay}"
+                       IsHitTestVisible="False"
+                       Opacity="0.25"
+                       UseLayoutRounding="True" />
+          </StackPanel>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|WindowCommandsItem[IsSeparatorVisible=false] /template/ Rectangle#PART_Separator">
+    <Setter  Property="IsVisible" Value="False" />
+  </Style>
+
+
+
+
+  <Style Selector="Controls|WindowCommands">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.TransparentWhite}" />
+    <Setter Property="Controls:ControlsHelper.ContentCharacterCasing" Value="Normal" />
+    
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="DarkClasses" Value="Dark" />
+    <Setter Property="LightClasses" Value="Light"/>
+    <Setter Property="Classes" Value="Light" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+  </Style>
+
+  <Style Selector="Controls|WindowCommands[ShowTitleBar=true]">
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
+  </Style>
+
+
 
   <!--<Style Selector="Controls|WindowCommands[Overflow=true]">
     

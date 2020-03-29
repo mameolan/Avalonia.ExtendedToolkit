@@ -1,11 +1,11 @@
 ﻿<Styles
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:Controlz="clr-namespace:Avalonia.Controlz.Controls;assembly=Avalonia.Controlz"
     xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
     xmlns:System="clr-namespace:System;assembly=mscorlib">
 
-  <Style Selector="Controls|StatusBarItem">
+  <Style Selector="Controlz|StatusBarItem">
     <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
     <Setter Property="HorizontalContentAlignment" Value="Left" />
     <Setter Property="Padding" Value="3" />
@@ -27,7 +27,7 @@
     </Setter>
   </Style>
 
-  <Style Selector="Controls|StatusBarItem:disabled">
+  <Style Selector="Controlz|StatusBarItem:disabled">
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}" />
   </Style>
   

@@ -2,6 +2,8 @@
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/MahApps/MahApps.Metro
+
     [Flags]
     public enum OverlayBehavior
     {

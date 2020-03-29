@@ -1,10 +1,9 @@
-﻿using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
-using Avalonia.Interactivity;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using Avalonia.Controls.Primitives;
+using Avalonia.Interactivity;
 
 namespace Avalonia.ExtendedToolkit
 {

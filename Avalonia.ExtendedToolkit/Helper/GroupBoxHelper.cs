@@ -1,8 +1,5 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Media;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -20,7 +17,5 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             element.SetValue(HeaderForegroundProperty, value);
         }
-
-
     }
 }

@@ -1,301 +1,31 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using System.Linq;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.ExtendedToolkit.Extensions;
-
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Styling;
 using Avalonia.Threading;
-using System;
-using System.Linq;
-using System.Windows.Input;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
-    public class Flyout : HeaderedContentControl
+    //ported from https://github.com/MahApps/MahApps.Metro
+
+    /// <summary>
+    /// A sliding panel control that is hosted in a MetroWindow via a FlyoutsControl.
+    /// <see cref="MetroWindow"/>
+    /// <seealso cref="FlyoutsControl"/>
+    /// </summary>
+    public partial class Flyout : HeaderedContentControl
     {
-        private IControl flyoutRoot;
-        private IControl flyoutHeader;
-        private IControl flyoutContent;
-        //KeyFrameExt hideFrame;
-        //KeyFrameExt hideFrameY;
-        //KeyFrameExt showFrame;
-        //KeyFrameExt showFrameY;
-        //KeyFrameExt fadeOutFrame;
-
-        private Point? dragStartedMousePos = null;
-
-        public static readonly RoutedEvent<RoutedEventArgs> IsOpenChangedEvent =
-            RoutedEvent.Register<Flyout, RoutedEventArgs>(nameof(IsOpenChangedEvent), RoutingStrategies.Bubble);
-
-        public event EventHandler IsOpenChanged
-        {
-            add
-            {
-                AddHandler(IsOpenChangedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(IsOpenChangedEvent, value);
-            }
-        }
-
-        public static readonly RoutedEvent<RoutedEventArgs> ClosingFinishedEvent =
-            RoutedEvent.Register<Flyout, RoutedEventArgs>(nameof(ClosingFinishedEvent), RoutingStrategies.Bubble);
-
-        private DispatcherTimer autoCloseTimer;
-
-        public event EventHandler ClosingFinished
-        {
-            add
-            {
-                AddHandler(IsOpenChangedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(IsOpenChangedEvent, value);
-            }
-        }
-
-        public Position Position
-        {
-            get { return (Position)GetValue(PositionProperty); }
-            set { SetValue(PositionProperty, value); }
-        }
-
-        public static readonly StyledProperty<Position> PositionProperty =
-            AvaloniaProperty.Register<Flyout, Position>(nameof(Position), defaultValue: Position.Left);
-
-        public FlyoutVisualStates FlyoutVisualStates
-        {
-            get { return (FlyoutVisualStates)GetValue(FlyoutVisualStatesProperty); }
-            set { SetValue(FlyoutVisualStatesProperty, value); }
-        }
-
-        public static readonly StyledProperty<FlyoutVisualStates> FlyoutVisualStatesProperty =
-            AvaloniaProperty.Register<Flyout, FlyoutVisualStates>(nameof(FlyoutVisualStates));
-
-        public bool IsPinned
-        {
-            get { return (bool)GetValue(IsPinnedProperty); }
-            set { SetValue(IsPinnedProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsPinnedProperty =
-            AvaloniaProperty.Register<Flyout, bool>(nameof(IsPinned), defaultValue: true);
-
-        public bool IsOpen
-        {
-            get { return (bool)GetValue(IsOpenProperty); }
-            set { SetValue(IsOpenProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsOpenProperty =
-            AvaloniaProperty.Register<Flyout, bool>(nameof(IsOpen), defaultBindingMode: Data.BindingMode.TwoWay);
-
-        public bool AnimateOnPositionChange
-        {
-            get { return (bool)GetValue(AnimateOnPositionChangeProperty); }
-            set { SetValue(AnimateOnPositionChangeProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> AnimateOnPositionChangeProperty =
-            AvaloniaProperty.Register<Flyout, bool>(nameof(AnimateOnPositionChange), defaultValue: true);
-
-        public bool AnimateOpacity
-        {
-            get { return (bool)GetValue(AnimateOpacityProperty); }
-            set { SetValue(AnimateOpacityProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> AnimateOpacityProperty =
-            AvaloniaProperty.Register<Flyout, bool>(nameof(AnimateOpacity));
-
-        public bool IsModal
-        {
-            get { return (bool)GetValue(IsModalProperty); }
-            set { SetValue(IsModalProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsModalProperty =
-            AvaloniaProperty.Register<Flyout, bool>(nameof(IsModal));
-
-        public ICommand CloseCommand
-        {
-            get { return (ICommand)GetValue(CloseCommandProperty); }
-            set { SetValue(CloseCommandProperty, value); }
-        }
-
-        public static readonly StyledProperty<ICommand> CloseCommandProperty =
-            AvaloniaProperty.Register<Flyout, ICommand>(nameof(CloseCommand));
-
-        public object CloseCommandParameter
-        {
-            get { return (object)GetValue(CloseCommandParameterProperty); }
-            set { SetValue(CloseCommandParameterProperty, value); }
-        }
-
-        public static readonly StyledProperty<object> CloseCommandParameterProperty =
-            AvaloniaProperty.Register<Flyout, object>(nameof(CloseCommandParameter));
-
-        public FlyoutTheme FlyoutTheme
-        {
-            get { return (FlyoutTheme)GetValue(FlyoutThemeProperty); }
-            set { SetValue(FlyoutThemeProperty, value); }
-        }
-
-        public static readonly StyledProperty<FlyoutTheme> FlyoutThemeProperty =
-            AvaloniaProperty.Register<Flyout, FlyoutTheme>(nameof(FlyoutTheme), defaultValue: FlyoutTheme.Dark);
-
-        public MouseButton ExternalCloseButton
-        {
-            get { return (MouseButton)GetValue(ExternalCloseButtonProperty); }
-            set { SetValue(ExternalCloseButtonProperty, value); }
-        }
-
-        public static readonly StyledProperty<MouseButton> ExternalCloseButtonProperty =
-            AvaloniaProperty.Register<Flyout, MouseButton>(nameof(ExternalCloseButton), defaultValue: MouseButton.Left);
-
-        public bool CloseButtonIsVisible
-        {
-            get { return (bool)GetValue(CloseButtonIsVisibleProperty); }
-            set { SetValue(CloseButtonIsVisibleProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> CloseButtonIsVisibleProperty =
-            AvaloniaProperty.Register<Flyout, bool>(nameof(CloseButtonIsVisible), defaultValue: true);
-
-        public bool CloseButtonIsCancel
-        {
-            get { return (bool)GetValue(CloseButtonIsCancelProperty); }
-            set { SetValue(CloseButtonIsCancelProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> CloseButtonIsCancelProperty =
-            AvaloniaProperty.Register<Flyout, bool>(nameof(CloseButtonIsCancel));
-
-        public bool TitleIsVisible
-        {
-            get { return (bool)GetValue(TitleIsVisibleProperty); }
-            set { SetValue(TitleIsVisibleProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> TitleIsVisibleProperty =
-            AvaloniaProperty.Register<Flyout, bool>(nameof(TitleIsVisible), defaultValue: true);
-
-        public bool AreAnimationsEnabled
-        {
-            get { return (bool)GetValue(AreAnimationsEnabledProperty); }
-            set { SetValue(AreAnimationsEnabledProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> AreAnimationsEnabledProperty =
-            AvaloniaProperty.Register<Flyout, bool>(nameof(AreAnimationsEnabled), defaultValue: true);
-
-        public IControl FocusedElement
-        {
-            get { return (IControl)GetValue(FocusedElementProperty); }
-            set { SetValue(FocusedElementProperty, value); }
-        }
-
-        public static readonly StyledProperty<IControl> FocusedElementProperty =
-            AvaloniaProperty.Register<Flyout, IControl>(nameof(FocusedElement));
-
-        public bool AllowFocusElement
-        {
-            get { return (bool)GetValue(AllowFocusElementProperty); }
-            set { SetValue(AllowFocusElementProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> AllowFocusElementProperty =
-            AvaloniaProperty.Register<Flyout, bool>(nameof(AllowFocusElement), defaultValue: true);
-
-        public bool IsAutoCloseEnabled
-        {
-            get { return (bool)GetValue(IsAutoCloseEnabledProperty); }
-            set { SetValue(IsAutoCloseEnabledProperty, value); }
-        }
-
-        public static readonly StyledProperty<bool> IsAutoCloseEnabledProperty =
-            AvaloniaProperty.Register<Flyout, bool>(nameof(IsAutoCloseEnabled));
-
-        public long AutoCloseInterval
-        {
-            get { return (long)GetValue(AutoCloseIntervalProperty); }
-            set { SetValue(AutoCloseIntervalProperty, value); }
-        }
-
-        public static readonly StyledProperty<long> AutoCloseIntervalProperty =
-            AvaloniaProperty.Register<Flyout, long>(nameof(AutoCloseInterval), defaultValue: 5000L);
-
-        //internal PropertyChangeNotifier IsOpenPropertyChangeNotifier { get; set; }
-        //internal PropertyChangeNotifier ThemePropertyChangeNotifier { get; set; }
-
-        public double HeaderFontSize
-        {
-            get { return (double)GetValue(HeaderFontSizeProperty); }
-            set { SetValue(HeaderFontSizeProperty, value); }
-        }
-
-        public static readonly StyledProperty<double> HeaderFontSizeProperty =
-            AvaloniaProperty.Register<Flyout, double>(nameof(HeaderFontSize));
-
-        public Thickness HeaderMargin
-        {
-            get { return (Thickness)GetValue(HeaderMarginProperty); }
-            set { SetValue(HeaderMarginProperty, value); }
-        }
-
-        public static readonly StyledProperty<Thickness> HeaderMarginProperty =
-            AvaloniaProperty.Register<Flyout, Thickness>(nameof(HeaderMargin));
-
-        public double HideFrameTranslateTransformX
-        {
-            get { return (double)GetValue(HideFrameTranslateTransformXProperty); }
-            set { SetValue(HideFrameTranslateTransformXProperty, value); }
-        }
-
-        public static readonly StyledProperty<double> HideFrameTranslateTransformXProperty =
-            AvaloniaProperty.Register<Flyout, double>(nameof(HideFrameTranslateTransformX), defaultValue:0);
-
-        public double HideFrameTranslateTransformY
-        {
-            get { return (double)GetValue(HideFrameTranslateTransformYProperty); }
-            set { SetValue(HideFrameTranslateTransformYProperty, value); }
-        }
-
-        public static readonly StyledProperty<double> HideFrameTranslateTransformYProperty =
-            AvaloniaProperty.Register<Flyout, double>(nameof(HideFrameTranslateTransformY), defaultValue: 0);
-
-        public double FadeOutFrameOpacity
-        {
-            get { return (double)GetValue(FadeOutFrameOpacityProperty); }
-            set { SetValue(FadeOutFrameOpacityProperty, value); }
-        }
-
-        public static readonly StyledProperty<double> FadeOutFrameOpacityProperty =
-            AvaloniaProperty.Register<Flyout, double>(nameof(FadeOutFrameOpacity), defaultValue: 0);
-
-        public double ShowFrameTranslateTransformX
-        {
-            get { return (double)GetValue(ShowFrameTranslateTransformXProperty); }
-            set { SetValue(ShowFrameTranslateTransformXProperty, value); }
-        }
-
-        public static readonly StyledProperty<double> ShowFrameTranslateTransformXProperty =
-            AvaloniaProperty.Register<Flyout, double>(nameof(ShowFrameTranslateTransformX), defaultValue: 0);
-
-        public double ShowFrameTranslateTransformY
-        {
-            get { return (double)GetValue(ShowFrameTranslateTransformYProperty); }
-            set { SetValue(ShowFrameTranslateTransformYProperty, value); }
-        }
-
-        public static readonly StyledProperty<double> ShowFrameTranslateTransformYProperty =
-            AvaloniaProperty.Register<Flyout, double>(nameof(ShowFrameTranslateTransformY), defaultValue: 0);
-
+        /// <summary>
+        /// initilaze classhandlers
+        /// autoclose timer
+        /// </summary>
         public Flyout()
         {
             PositionProperty.Changed.AddClassHandler<Flyout>((o, e) => PositionChanged(o, e));
@@ -306,10 +36,33 @@ namespace Avalonia.ExtendedToolkit.Controls
             ThemeManager.Instance.IsThemeChanged += (o, e) => { UpdateFlyoutTheme(); };
             InitializeAutoCloseTimer();
             IsOpenProperty.Changed.AddClassHandler<Flyout>((o, e) => IsOpenedChanged(o, e));
+
+            WidthProperty.Changed.AddClassHandler<Flyout>((o,e)=> SizeChanged(o,e));
+            HeightProperty.Changed.AddClassHandler<Flyout>((o, e) => SizeChanged(o, e));
+        }
+
+        private void SizeChanged(Flyout o, AvaloniaPropertyChangedEventArgs e)
+        {
+            if(e.Property.Name== nameof(Width))
+            {
+                _currentSize=new Size((double)e.NewValue, _currentSize.Height);
+            }
+            else
+            {
+                _currentSize = new Size(_currentSize.Width, (double)e.NewValue);
+            }
         }
 
         private MetroWindow parentWindow;
+        private Size _currentSize;
+
         private MetroWindow ParentWindow => this.parentWindow ?? (this.parentWindow = this.TryFindParent<MetroWindow>());
+
+        protected override Size MeasureOverride(Size availableSize)
+        {
+            _currentSize = availableSize;
+            return base.MeasureOverride(availableSize);
+        }
 
         private void InitializeAutoCloseTimer()
         {
@@ -349,7 +102,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         internal void ChangeFlyoutTheme(Theme windowTheme)
         {
-            ApplyTemplate();
+            //ApplyTemplate();
 
             // Beware: Über-dumb code ahead!
             switch (this.FlyoutTheme)
@@ -368,7 +121,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                     var inverseTheme = ThemeManager.Instance.GetInverseTheme(windowTheme);
 
                     if (inverseTheme == null)
-                        throw new InvalidOperationException("The inverse flyout theme only works if the window theme abides the naming convention. " +
+                        throw new InvalidOperationException("The inverse flyout theme only works if the window" +
+                                                             " theme abides the naming convention. " +
                                                             "See ThemeManager.GetInverseAppTheme for more infos");
 
                     ThemeManager.Instance.ApplyThemeResourcesFromTheme(this.Styles, inverseTheme);
@@ -376,12 +130,17 @@ namespace Avalonia.ExtendedToolkit.Controls
                     break;
 
                 case FlyoutTheme.Dark:
-                    ThemeManager.Instance.ApplyThemeResourcesFromTheme(this.Styles, ThemeManager.Instance.Themes.First(x => x.BaseColorScheme == ThemeManager.BaseColorDark && x.ColorScheme == windowTheme.ColorScheme));
+                    ThemeManager.Instance.ApplyThemeResourcesFromTheme(this.Styles,
+                        ThemeManager.Instance.Themes.First(x => x.BaseColorScheme == ThemeManager.BaseColorDark
+                        && x.ColorScheme == windowTheme.ColorScheme));
+
                     this.OverrideFlyoutResources(this.Styles);
                     break;
 
                 case FlyoutTheme.Light:
-                    ThemeManager.Instance.ApplyThemeResourcesFromTheme(this.Styles, ThemeManager.Instance.Themes.First(x => x.BaseColorScheme == ThemeManager.BaseColorLight && x.ColorScheme == windowTheme.ColorScheme));
+                    ThemeManager.Instance.ApplyThemeResourcesFromTheme(this.Styles,
+                        ThemeManager.Instance.Themes.First(x => x.BaseColorScheme == ThemeManager.BaseColorLight
+                        && x.ColorScheme == windowTheme.ColorScheme));
                     this.OverrideFlyoutResources(this.Styles);
                     break;
             }
@@ -391,10 +150,12 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             var fromColorKey = accent ? "MahApps.Colors.Highlight" : "MahApps.Colors.Flyout";
             var item= styles.GetThemeStyle();
+            styles.Remove(item);
 
             ResourceDictionary resources = (item.Loaded as Style).Resources as ResourceDictionary;
 
             var fromColor = (Color)item.FindResource(fromColorKey);
+
             resources["MahApps.Colors.White"] = fromColor;
             resources["MahApps.Colors.Flyout"] = fromColor;
 
@@ -432,6 +193,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 resources["MahApps.Brushes.Highlight"] = newBrush;
                 resources["MahApps.Brushes.Highlight"] = newBrush;
             }
+
+            styles.Add(item);
 
             //resources.EndInit();
         }
@@ -490,15 +253,15 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
-            this.flyoutRoot = e.NameScope.Find<IControl>("PART_Root");
+            this.flyoutRoot = e.NameScope.Find<Border>("PART_Root");
             if (this.flyoutRoot == null)
             {
                 return;
             }
 
-            this.flyoutHeader = e.NameScope.Find<IControl>("PART_Header");
+            this.flyoutHeader = e.NameScope.Find<MetroThumbContentControl>("PART_Header");
             this.flyoutHeader?.ApplyTemplate();
-            this.flyoutContent = e.NameScope.Find<IControl>("PART_Content");
+            this.flyoutContent = e.NameScope.Find<ContentPresenter>("PART_Content");
 
             var thumbContentControl = this.flyoutHeader as IMetroThumb;
             if (thumbContentControl != null)
@@ -536,6 +299,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             base.OnTemplateApplied(e);
             UpdateOpacityChange();
+            UpdateFlyoutTheme();
             this.ApplyAnimation(this.Position, this.AnimateOpacity);
         }
 
@@ -620,7 +384,16 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
 
             // I mean, we don't need this anymore, because we use ActualWidth and ActualHeight of the flyoutRoot
-            this.flyoutRoot.Measure(new Size(Double.PositiveInfinity, Double.PositiveInfinity));
+            this.flyoutRoot.Measure(new Size(_currentSize.Width, _currentSize.Height));
+            if (double.IsNaN(flyoutRoot.Height))
+            {
+                flyoutRoot.Height = _currentSize.Height;
+            }
+
+            if (double.IsNaN(flyoutRoot.Width))
+            {
+                flyoutRoot.Width = _currentSize.Width;
+            }
 
             if (!animateOpacity)
             {
@@ -788,6 +561,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         private void ThemeChanged(Flyout flyout, AvaloniaPropertyChangedEventArgs e)
         {
             flyout.UpdateFlyoutTheme();
+            flyout.RaiseEvent(new RoutedEventArgs(FlyoutThemeChangedEvent));
         }
 
         private void AnimateOpacityChanged(Flyout flyout, AvaloniaPropertyChangedEventArgs e)
@@ -832,7 +606,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                             //}
                         }
 
-                        FlyoutVisualStates = (bool)e.NewValue == false ? FlyoutVisualStates.Hide : FlyoutVisualStates.Show;
+                        FlyoutVisualStates = (bool)e.NewValue == false ? FlyoutVisualState.Hide : FlyoutVisualState.Show;
 
                         //VisualStateManager.GoToState(flyout, (bool)e.NewValue == false ? "Hide" : "Show", true);
                     }
@@ -853,7 +627,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                             flyout.Hide();
                         }
 
-                        FlyoutVisualStates = (bool)e.NewValue == false ? FlyoutVisualStates.HideDirect : FlyoutVisualStates.ShowDirect;
+                        FlyoutVisualStates = (bool)e.NewValue == false ? FlyoutVisualState.HideDirect : FlyoutVisualState.ShowDirect;
                         //VisualStateManager.GoToState(flyout, (bool)e.NewValue == false ? "HideDirect" : "ShowDirect", true);
                     }
                 }
@@ -862,7 +636,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             };
 
             ////flyout.Dispatcher.BeginInvoke(DispatcherPriority.Background, openedChangedAction);
-            Dispatcher.UIThread.InvokeAsync(openedChangedAction, DispatcherPriority.Background);
+            Dispatcher.UIThread.InvokeAsync(openedChangedAction, DispatcherPriority.Render);
         }
 
         private void Hide()
@@ -898,7 +672,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 flyout.ApplyAnimation((Position)e.NewValue, flyout.AnimateOpacity);
                 //VisualStateManager.GoToState(flyout, "Hide", true);
-                FlyoutVisualStates = FlyoutVisualStates.Hide;
+                FlyoutVisualStates = FlyoutVisualState.Hide;
             }
             else
             {
@@ -909,7 +683,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 flyout.ApplyAnimation((Position)e.NewValue, flyout.AnimateOpacity);
                 //VisualStateManager.GoToState(flyout, "Show", true);
-                FlyoutVisualStates = FlyoutVisualStates.Show;
+                FlyoutVisualStates = FlyoutVisualState.Show;
             }
         }
     }

@@ -29,14 +29,14 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<Thickness> FocusBorderThicknessProperty =
             AvaloniaProperty.Register<MetroToggleButton, Thickness>(nameof(FocusBorderThickness));
 
-        public SolidColorBrush FocusBorderBrush
+        public IBrush FocusBorderBrush
         {
-            get { return (SolidColorBrush)GetValue(FocusBorderBrushProperty); }
+            get { return (IBrush)GetValue(FocusBorderBrushProperty); }
             set { SetValue(FocusBorderBrushProperty, value); }
         }
 
-        public static readonly StyledProperty<SolidColorBrush> FocusBorderBrushProperty =
-            AvaloniaProperty.Register<MetroToggleButton, SolidColorBrush>(nameof(FocusBorderBrush));
+        public static readonly StyledProperty<IBrush> FocusBorderBrushProperty =
+            AvaloniaProperty.Register<MetroToggleButton, IBrush>(nameof(FocusBorderBrush));
 
         public CharacterCasing ContentCharacterCasing
         {

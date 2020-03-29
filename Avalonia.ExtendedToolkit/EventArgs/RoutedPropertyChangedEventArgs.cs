@@ -4,7 +4,6 @@ namespace Avalonia.ExtendedToolkit.Controls
 {
     // This source file is adapted from the Windows Presentation Foundation project.
     // (https://github.com/dotnet/wpf/)
-    
 
     /// <summary>
     ///     This delegate must used by handlers of the RoutedPropertyChangedEvent event.
@@ -15,7 +14,7 @@ namespace Avalonia.ExtendedToolkit.Controls
     public delegate void RoutedPropertyChangedEventHandler<T>(object sender, RoutedPropertyChangedEventArgs<T> e);
 
     /// <summary>
-    /// This RoutedPropertyChangedEventArgs class contains old and new value when 
+    /// This RoutedPropertyChangedEventArgs class contains old and new value when
     /// RoutedPropertyChangedEvent is raised.
     /// </summary>
     /// <seealso cref="RoutedEventArgs" />

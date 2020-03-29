@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Avalonia.ExtendedToolkit.Controls
+﻿namespace Avalonia.ExtendedToolkit.Controls
 {
     public enum MetroContentControlState
     {
@@ -11,6 +7,5 @@ namespace Avalonia.ExtendedToolkit.Controls
         AfterUnLoaded,
         AfterLoadedReverse,
         AfterLoaded,
-
     }
 }

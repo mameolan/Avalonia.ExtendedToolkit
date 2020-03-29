@@ -1,7 +1,7 @@
-﻿using Avalonia.Data.Converters;
-using Avalonia.Markup.Xaml;
-using System;
+﻿using System;
 using System.Globalization;
+using Avalonia.Data.Converters;
+using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExtendedToolkit.Converters
 {

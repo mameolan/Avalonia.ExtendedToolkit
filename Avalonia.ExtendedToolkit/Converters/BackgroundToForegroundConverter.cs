@@ -1,8 +1,8 @@
-﻿using Avalonia.Data.Converters;
-using Avalonia.Media;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using Avalonia.Data.Converters;
+using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Converters
 {

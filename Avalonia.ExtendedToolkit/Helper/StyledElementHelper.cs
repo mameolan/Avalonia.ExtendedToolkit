@@ -1,5 +1,4 @@
-﻿using System;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Styling;
 
 namespace Avalonia.ExtendedToolkit.Controls
@@ -27,9 +26,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 styledElement.Styles.Add(style);
             }
         }
-
-
-
 
         public static readonly AttachedProperty<Classes> ClassesProperty =
             AvaloniaProperty.RegisterAttached<IStyledElement, Classes>(nameof(Classes), typeof(StyledElementHelper));

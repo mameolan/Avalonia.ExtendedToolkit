@@ -1,19 +1,19 @@
-﻿using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
+using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/MahApps/MahApps.Metro
+
     public class ProgressRing : TemplatedControl
     {
         private const string PseudoClass_Large = ":large";
         private const string PseudoClass_Small = ":small";
         private const string PseudoClass_Active = ":active";
         private const string PseudoClass_Inactive = ":inactive";
-
-
 
         private List<Action> _deferredActions = new List<Action>();
 
@@ -23,11 +23,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BindableWidthProperty, value); }
         }
 
-
         public static readonly StyledProperty<double> BindableWidthProperty =
             AvaloniaProperty.Register<ProgressRing, double>(nameof(BindableWidth));
-
-
 
         public bool IsActive
         {
@@ -35,11 +32,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsActiveProperty, value); }
         }
 
-
         public static readonly StyledProperty<bool> IsActiveProperty =
             AvaloniaProperty.Register<ProgressRing, bool>(nameof(IsActive), defaultValue: true);
-
-
 
         public bool IsLarge
         {
@@ -47,11 +41,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsLargeProperty, value); }
         }
 
-
         public static readonly StyledProperty<bool> IsLargeProperty =
             AvaloniaProperty.Register<ProgressRing, bool>(nameof(IsLarge), defaultValue: true);
-
-
 
         public double MaxSideLength
         {
@@ -59,12 +50,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(MaxSideLengthProperty, value); }
         }
 
-
         public static readonly StyledProperty<double> MaxSideLengthProperty =
             AvaloniaProperty.Register<ProgressRing, double>(nameof(MaxSideLength), defaultValue: default(double));
-
-
-
 
         public double EllipseDiameter
         {
@@ -72,11 +59,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(EllipseDiameterProperty, value); }
         }
 
-
         public static readonly StyledProperty<double> EllipseDiameterProperty =
             AvaloniaProperty.Register<ProgressRing, double>(nameof(EllipseDiameter));
-
-
 
         public Thickness EllipseOffset
         {
@@ -84,11 +68,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(EllipseOffsetProperty, value); }
         }
 
-
         public static readonly StyledProperty<Thickness> EllipseOffsetProperty =
             AvaloniaProperty.Register<ProgressRing, Thickness>(nameof(EllipseOffset));
-
-
 
         public double EllipseDiameterScale
         {
@@ -96,13 +77,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(EllipseDiameterScaleProperty, value); }
         }
 
-
         public static readonly StyledProperty<double> EllipseDiameterScaleProperty =
             AvaloniaProperty.Register<ProgressRing, double>(nameof(EllipseDiameterScale), defaultValue: 1D);
-
-
-
-
 
         static ProgressRing()
         {
@@ -112,8 +88,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             WidthProperty.Changed.AddClassHandler<ProgressRing>((o, e) => OnSizeChanged(o, e));
             HeightProperty.Changed.AddClassHandler<ProgressRing>((o, e) => OnSizeChanged(o, e));
             IsLargeProperty.Changed.AddClassHandler<ProgressRing>((o, e) => IsLargeChangedCallback(o, e));
-
-            
         }
 
         private static void IsLargeChangedCallback(ProgressRing ring, AvaloniaPropertyChangedEventArgs e)
@@ -138,7 +112,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 {
                     ring.SetValue(ProgressRing.IsActiveProperty, true);
                 }
-
             }
         }
 
@@ -158,7 +131,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             this.PseudoClasses.Set(PseudoClass_Active, IsActive);
             this.PseudoClasses.Set(PseudoClass_Inactive, IsActive == false);
 
-
             //if (IsActive)
             //{  /*action = () =>*/
             //    this.PseudoClasses.Add(PseudoClass_Active);
@@ -177,12 +149,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             //    action();
         }
 
-
         private static void BindableWidthCallback(ProgressRing ring, AvaloniaPropertyChangedEventArgs e)
         {
             //var action = new Action(() =>
             //{
-
                 ring.SetEllipseDiameter((double)e.NewValue);
                 ring.SetEllipseOffset((double)e.NewValue);
                 ring.SetMaxSideLength((double)e.NewValue);
@@ -192,7 +162,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             //    ring._deferredActions.Add(action);
             //else
             //    action();
-
         }
 
         private void SetMaxSideLength(double width)
@@ -216,7 +185,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             this.PseudoClasses.Remove(PseudoClass_Small);
 
             Action action;
-
 
             this.PseudoClasses.Set(PseudoClass_Large, IsLarge);
             this.PseudoClasses.Set(PseudoClass_Small, IsLarge==false);
@@ -245,9 +213,29 @@ namespace Avalonia.ExtendedToolkit.Controls
                 }
             }
             _deferredActions = null;
-            
         }
 
+        public override void Render(DrawingContext context)
+        {
+            if(IsLarge)
+            {
+                this.PseudoClasses.Set(PseudoClass_Large, IsLarge);
+            }
+            else
+            {
+                this.PseudoClasses.Set(PseudoClass_Small, IsLarge == false);
+            }
 
+            if(IsActive)
+            {
+                this.PseudoClasses.Set(PseudoClass_Active, IsActive);
+            }
+            else
+            {
+                this.PseudoClasses.Set(PseudoClass_Inactive, IsActive == false);
+            }
+
+            base.Render(context);
+        }
     }
 }

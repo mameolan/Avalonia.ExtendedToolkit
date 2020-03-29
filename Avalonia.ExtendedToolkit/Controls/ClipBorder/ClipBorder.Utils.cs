@@ -1,6 +1,6 @@
-﻿using Avalonia.Media;
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
+using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {

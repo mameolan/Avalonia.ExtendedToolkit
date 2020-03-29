@@ -1,9 +1,9 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using System.Linq;
+using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
-using System;
-using System.Linq;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -47,7 +47,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             _popup.SetValue(Popup.ChildProperty, null);
 
             ((ISetLogicalParent)_popup).SetParent(control);
-            
 
             _popup.Child = this;
             _popup.IsOpen = true;

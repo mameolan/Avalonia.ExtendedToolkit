@@ -1,8 +1,8 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Media;
-using System;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -11,6 +11,8 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class MetroContentControl : ContentControl
     {
+        public Type StyleKey => typeof(MetroContentControl);
+
         private bool transitionLoaded;
         private Grid _root;
 

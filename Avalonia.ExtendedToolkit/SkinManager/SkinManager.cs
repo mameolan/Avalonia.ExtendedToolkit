@@ -1,14 +1,12 @@
-﻿using Avalonia.Controls;
-using Avalonia.Markup.Xaml.Styling;
-using Avalonia.Media;
-using Avalonia.Platform;
-using Avalonia.Styling;
-using ReactiveUI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
+using Avalonia.Controls;
+using Avalonia.Markup.Xaml.Styling;
+using Avalonia.Styling;
+using ReactiveUI;
 
 namespace Avalonia.ExtendedToolkit
 {
@@ -24,7 +22,7 @@ namespace Avalonia.ExtendedToolkit
         private const string MahAppsStylePrefix = "MahApps";
 
         private const string FormatedStyleResource = "avares://Avalonia.ExtendedToolkit/Styles/Skins/{0}Skin.xaml";
-        
+
         private static object _lockObject = new object();
 
         private List<WindowBase> registeredWindows = new List<WindowBase>();
@@ -45,6 +43,7 @@ namespace Avalonia.ExtendedToolkit
         }
 
         private Skin _selectedSkin;
+
         /// <summary>
         /// Current selected skin
         /// </summary>
@@ -73,6 +72,7 @@ namespace Avalonia.ExtendedToolkit
         }
 
         private static SkinManager _instance;
+
         /// <summary>
         /// instance of the skin manager
         /// </summary>
@@ -101,7 +101,6 @@ namespace Avalonia.ExtendedToolkit
             skins = new ReadOnlyObservableCollection<Skin>(skinsInternal);
 
             ThemeManager.Instance.IsThemeChanged += ThemeManager_ThemeChanged;
-
         }
 
         private void ThemeManager_ThemeChanged(object sender, OnThemeChangedEventArgs e)

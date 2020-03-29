@@ -19,6 +19,9 @@
         /// </summary>
         Dark,
 
+        /// <summary>
+        /// The light theme.
+        /// </summary>
         Light,
 
         /// <summary>

@@ -1,6 +1,6 @@
-﻿using Avalonia.Animation;
+﻿using System;
+using Avalonia.Animation;
 using Avalonia.Xaml.Interactivity;
-using System;
 
 namespace Avalonia.ExtendedToolkit.TriggerExtensions
 {

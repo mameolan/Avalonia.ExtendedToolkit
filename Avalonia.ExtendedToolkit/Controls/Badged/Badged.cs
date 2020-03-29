@@ -1,15 +1,14 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Media;
-using System;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
     //ported from https://github.com/ControlzEx/ControlzEx
-    //and 
+    //and
     //ported from https://github.com/MahApps/MahApps.Metro
-
 
     public class Badged : ContentControl
     {
@@ -32,26 +31,26 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Gets or sets the background brush for the Badge.
         /// </summary>
-        public SolidColorBrush BadgeBackground
+        public IBrush BadgeBackground
         {
-            get { return (SolidColorBrush)GetValue(BadgeBackgroundProperty); }
+            get { return (IBrush)GetValue(BadgeBackgroundProperty); }
             set { SetValue(BadgeBackgroundProperty, value); }
         }
 
-        public static readonly StyledProperty<SolidColorBrush> BadgeBackgroundProperty =
-            AvaloniaProperty.Register<Badged, SolidColorBrush>(nameof(BadgeBackground));
+        public static readonly StyledProperty<IBrush> BadgeBackgroundProperty =
+            AvaloniaProperty.Register<Badged, IBrush>(nameof(BadgeBackground));
 
         /// <summary>
         /// Gets or sets the foreground brush for the Badge.
         /// </summary>
-        public SolidColorBrush BadgeForeground
+        public IBrush BadgeForeground
         {
-            get { return (SolidColorBrush)GetValue(BadgeForegroundProperty); }
+            get { return (IBrush)GetValue(BadgeForegroundProperty); }
             set { SetValue(BadgeForegroundProperty, value); }
         }
 
-        public static readonly StyledProperty<SolidColorBrush> BadgeForegroundProperty =
-            AvaloniaProperty.Register<Badged, SolidColorBrush>(nameof(BadgeForeground));
+        public static readonly StyledProperty<IBrush> BadgeForegroundProperty =
+            AvaloniaProperty.Register<Badged, IBrush>(nameof(BadgeForeground));
 
         /// <summary>
         /// Gets or sets the placement of the Badge relative to its content.
@@ -74,7 +73,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BadgeMarginProperty, value); }
         }
 
-
         public static readonly StyledProperty<Thickness> BadgeMarginProperty =
             AvaloniaProperty.Register<Badged, Thickness>(nameof(BadgeMargin));
 
@@ -90,9 +88,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> IsBadgeSetProperty =
             AvaloniaProperty.Register<Badged, bool>(nameof(IsBadgeSet));
 
-
-
-
         public static readonly RoutedEvent BadgeChangedEvent =
             RoutedEvent.Register<Badged, RoutedPropertyChangedEventArgs<object>>(nameof(BadgeChanged), RoutingStrategies.Bubble);
 
@@ -101,11 +96,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             add { AddHandler(BadgeChangedEvent, value); }
             remove { RemoveHandler(BadgeChangedEvent, value); }
         }
-
-
-
-
-        
 
         private Control _badgeContainer;
 

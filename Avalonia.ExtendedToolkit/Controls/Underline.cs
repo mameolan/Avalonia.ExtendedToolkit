@@ -1,17 +1,15 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/MahApps/MahApps.Metro
+
     public class Underline: ContentControl
     {
         public const string UnderlineBorderPartName = "PART_UnderlineBorder";
         private Border _underlineBorder;
-
-
 
         public Dock Placement
         {
@@ -19,11 +17,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(PlacementProperty, value); }
         }
 
-
         public static readonly StyledProperty<Dock> PlacementProperty =
             AvaloniaProperty.Register<Underline, Dock>(nameof(Placement));
-
-
 
         public double LineThickness
         {
@@ -31,11 +26,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(LineThicknessProperty, value); }
         }
 
-
         public static readonly StyledProperty<double> LineThicknessProperty =
             AvaloniaProperty.Register<Underline, double>(nameof(LineThickness),defaultValue: 1d);
-
-
 
         public double LineExtent
         {
@@ -43,13 +35,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(LineExtentProperty, value); }
         }
 
-
         public static readonly StyledProperty<double> LineExtentProperty =
             AvaloniaProperty.Register<Underline, double>(nameof(LineExtent),defaultValue: double.NaN);
-
-
-
-
 
         public Underline()
         {
@@ -65,10 +52,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             ApplyBorderProperties();
         }
 
-
-
-
-
         private void ApplyBorderProperties(Underline o, AvaloniaPropertyChangedEventArgs e)
         {
             o.ApplyBorderProperties();
@@ -81,7 +64,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 return;
             }
 
-            
             this._underlineBorder.Height = Double.NaN;
             this._underlineBorder.Width = Double.NaN;
             this._underlineBorder.BorderThickness = new Thickness();
@@ -91,18 +73,22 @@ namespace Avalonia.ExtendedToolkit.Controls
                     this._underlineBorder.Width = this.LineExtent;
                     this._underlineBorder.BorderThickness = new Thickness(this.LineThickness, 0d, 0d, 0d);
                     break;
+
                 case Dock.Top:
                     this._underlineBorder.Height = this.LineExtent;
                     this._underlineBorder.BorderThickness = new Thickness(0d, this.LineThickness, 0d, 0d);
                     break;
+
                 case Dock.Right:
                     this._underlineBorder.Width = this.LineExtent;
                     this._underlineBorder.BorderThickness = new Thickness(0d, 0d, this.LineThickness, 0d);
                     break;
+
                 case Dock.Bottom:
                     this._underlineBorder.Height = this.LineExtent;
                     this._underlineBorder.BorderThickness = new Thickness(0d, 0d, 0d, this.LineThickness);
                     break;
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }
