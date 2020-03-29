@@ -23,7 +23,7 @@
     <Controls:MetroButton Grid.Row="0"
       Grid.Column="0"
       Content="Show  BusyIndicator"
-      Command="{Binding ShowBusyIndicator}"
+      Command="{Binding ShowBusyIndicatorCommand}"
       Width="130"
       Height="35"
       HorizontalAlignment="Left"

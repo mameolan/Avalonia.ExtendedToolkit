@@ -2,6 +2,7 @@
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.ExampleApp.Model;
 using Avalonia.ExampleApp.Views;
+using Avalonia.ExampleApp.Window;
 using Avalonia.ExtendedToolkit;
 using Avalonia.ExtendedToolkit.Controls;
 using Avalonia.Markup.Xaml.Styling;
@@ -53,7 +54,9 @@ namespace Avalonia.ExampleApp.ViewModels
 
         public ICommand ChangeBaseColorsCommand { get; }
 
-        public ICommand ShowBusyIndicator { get; }
+        public ICommand ShowBusyIndicatorCommand { get; }
+
+        public ICommand ShowFlyoutDemoCommand { get; }
 
         public ICommand OpenWizardCommand { get; }
 
@@ -263,8 +266,11 @@ namespace Avalonia.ExampleApp.ViewModels
             GenreDropDownMenuItemCommand = ReactiveCommand.Create<object>(x => ExecuteGenreDropDownMenuItemCommand(x), outputScheduler: RxApp.MainThreadScheduler);
 
 
-            ShowBusyIndicator = ReactiveCommand.Create<object>(x => ExecuteShowBusyIndicator(x), outputScheduler: RxApp.MainThreadScheduler);
+            ShowBusyIndicatorCommand = ReactiveCommand.Create<object>(x => ExecuteShowBusyIndicator(x), outputScheduler: RxApp.MainThreadScheduler);
             OpenWizardCommand = ReactiveCommand.Create<object>(x => ExecuteOpenWizardCommand(x), outputScheduler: RxApp.MainThreadScheduler);
+
+            ShowFlyoutDemoCommand = ReactiveCommand.Create<object>(x => ExecuteShowFlyoutDemo(x), outputScheduler: RxApp.MainThreadScheduler);
+
 
             SelectedColorScheme = ColorSchemes.FirstOrDefault(x => x.Name == ThemeManager.Instance.SelectedTheme.ColorScheme);
             SelectedBaseColor = ThemeManager.Instance.SelectedBaseColor;
@@ -283,7 +289,12 @@ namespace Avalonia.ExampleApp.ViewModels
 
         }
 
-
+        private void ExecuteShowFlyoutDemo(object x)
+        {
+            FlyoutDemoWindow window = new FlyoutDemoWindow();
+            window.ShowDialog((Application.Current.
+                ApplicationLifetime as IClassicDesktopStyleApplicationLifetime).MainWindow).ConfigureAwait(false);
+        }
 
         private void ExecuteHamburgerMenuProfileCommand(object x)
         {

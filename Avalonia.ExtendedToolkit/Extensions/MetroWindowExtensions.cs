@@ -63,7 +63,7 @@ namespace Avalonia.ExtendedToolkit.Extensions
             }
 
             // calculate brush color lightness
-            var color = ((SolidColorBrush)brush).Color;
+            var color = ((ISolidColorBrush)brush).Color;
 
             var r = color.R / 255.0f;
             var g = color.G / 255.0f;

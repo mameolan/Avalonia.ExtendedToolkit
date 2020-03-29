@@ -59,7 +59,8 @@
 
     </StackPanel>
     <Grid DockPanel.Dock="Bottom">
-      
+
+      <Button Command="{Binding ShowFlyoutDemoCommand}" Content="Open File Demo"/>
       
     </Grid>
 
