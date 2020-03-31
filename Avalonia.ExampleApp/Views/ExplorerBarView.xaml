@@ -56,10 +56,14 @@
     <Controls:ExplorerBar Grid.Row="1" Grid.Column="0" x:Name="explorerBar"
                                 >
       <Controls:ExplorerBar.Items>
-        <Controls:OdcExpander Classes="ExplorerBar" Header="System Tasks"
+        <Controls:OdcExpander Classes="ExplorerBar" 
                             Image="/Assets/AlignTableCellMiddleCenterHS.png"
+                              Foreground="Black"
                           x:Name="expander1" IsExpanded="True"
                                 >
+          <Controls:OdcExpander.Header>
+            <TextBlock Text="System Tasks" Foreground="Black"/>
+          </Controls:OdcExpander.Header>
           <StackPanel>
             <TextBlock Foreground="Black" Text="View system information" Margin="0,0,0,4" x:Name="text1" />
             <TextBlock Foreground="Black" Text="Add or remove programs" Margin="0,4,0,4" x:Name="text2" />
