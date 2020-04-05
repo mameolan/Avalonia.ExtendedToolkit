@@ -1,0 +1,22 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
+    >
+  <Style Selector="design|CategorizedLayout">
+    <Setter Property="Background" Value="{Binding Background}"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <design:CategoryItemsLayout Grid.IsSharedSizeScope="True" 
+                                        Items="{Binding Categories}" 
+                                        Background="{Binding ItemsBackground}"/>
+          </ScrollViewer>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  
+</Styles>

@@ -1,0 +1,147 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid;assembly=Avalonia.ExtendedToolkit"
+    xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
+    xmlns:controls="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converter="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters;assembly=Avalonia.ExtendedToolkit"
+    xmlns:controlz="clr-namespace:Avalonia.Controlz.Controls;assembly=Avalonia.Controlz"
+    >
+  <Styles.Resources>
+    <local:NamedColorList x:Key="NamedColorList"/>
+    <converter:NullValueConverter x:Key="NullValueConverter"/>
+    <converter:EnumValueConverter x:Key="enumValueConverter"/>
+    <converter:MultiBooleanToIsVisibleConverter x:Key="multiBooleanToVisibilityConverter"/>
+    <converter:ExpanderHeaderWidthConverter x:Key="expanderHeaderWidthConverter"/>
+
+    <DataTemplate x:Key="{x:Static local:EditorKeys.ComplexPropertyEditorKey}">
+      <Expander>
+        <Expander.Header>
+          <TextBox Text="{Binding Value, Mode=OneWay}" IsEnabled="False"
+                   Width="{Binding RelativeSource=
+                   {RelativeSource Mode=FindAncestor, AncestorType={x:Type Expander}}, 
+                   Mode=OneWay, Path=ActualWidth, Converter={StaticResource expanderHeaderWidthConverter}, 
+                   ConverterParameter=-29}"/>
+        </Expander.Header>
+        <design:PropertyItemsLayout Grid.IsSharedSizeScope="True" Items="{Binding SubProperties}"/>
+      </Expander>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{x:Static local:EditorKeys.DefaultCategoryEditorKey}">
+      <design:PropertyItemsLayout Items="{Binding Properties}"/>
+    </DataTemplate>
+
+    <!--Note that commit on typing cannot work together with the roolback since every keystroke is committed and the roolback value is lost-->
+    <DataTemplate x:Key="{x:Static local:EditorKeys.DefaultEditorKey}">
+      <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"-->
+      <TextBox x:Name="PART_editor"
+        Text="{Binding StringValue, Mode=TwoWay}"
+        IsReadOnly="{Binding IsReadOnly}"
+        local:TextBoxExtender.CommitOnEnter="true"
+        local:TextBoxExtender.RollbackOnEscape="true"
+        local:TextBoxExtender.CommitOnTyping="false"
+			/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{x:Static local:EditorKeys.EnumEditorKey}">
+      <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"
+        Style="{DynamicResource {x:Type ComboBox}}"
+    -->
+      <controls:EnumDropdown x:Name="PART_editor"
+        PropertyValue="{Binding}"
+        IsEnabled="{Binding IsEditable}">
+        <controls:EnumDropdown.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding Path=., Converter={StaticResource enumValueConverter}}" />
+          </DataTemplate>
+        </controls:EnumDropdown.ItemTemplate>
+      </controls:EnumDropdown>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{x:Static local:EditorKeys.BooleanEditorKey}">
+      <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"-->
+      <CheckBox x:Name="PART_editor" IsChecked="{Binding Value}" IsEnabled="{Binding IsEditable}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{x:Static local:EditorKeys.FontFamilyEditorKey}">
+      <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"
+      (?) How to get installed fonts:
+      Items="{Binding Source={x:Static Fonts.SystemFontFamilies}}"
+-->
+      <ComboBox x:Name="PART_editor"
+        SelectedItem="{Binding Value}"
+      
+        IsEnabled="{Binding IsEditable}">
+        <ComboBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding}" FontFamily="{Binding}"/>
+          </DataTemplate>
+        </ComboBox.ItemTemplate>
+      </ComboBox>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{x:Static local:EditorKeys.NamedColorEditorKey}" DataType="{x:Type local:NamedColor}">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Fill="{Binding Brush}" Grid.Column="0" Width="100" Height="20" Margin="2" HorizontalAlignment="Center"/>
+        <TextBlock x:Name="PART_editor" Margin="5,2,2,2" Text="{Binding Name}" Grid.Column="1" HorizontalAlignment="Center"/>
+      </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{x:Static local:EditorKeys.BrushEditorKey}">
+      <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"
+        Text="{Binding Path=StringValue, Mode=TwoWay, Converter={StaticResource NullValueConverter}}"
+        SelectedValuePath="Name"
+        IsEditable="{Binding IsEditable}"
+      -->
+      <ComboBox x:Name="PART_editor"
+        Items="{Binding Source={StaticResource NamedColorList}}"
+        ItemTemplate="{DynamicResource {x:Static local:EditorKeys.NamedColorEditorKey}}"
+        IsEnabled="{Binding IsEditable}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{x:Static local:EditorKeys.SliderEditorKey}">
+
+      <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"-->
+      <controlz:SliderEx x:Name="PART_editor"
+                Value="{Binding Value}"
+                Minimum="{Binding ParentProperty.Metadata[NumberRange].Minimum, FallbackValue=0}"
+                Maximum="{Binding ParentProperty.Metadata[NumberRange].Maximum, FallbackValue=100}"
+                TickFrequency="{Binding ParentProperty.Metadata[NumberRange].Tick, FallbackValue=1}"
+                AutoToolTipPrecision="{Binding ParentProperty.Metadata[NumberRange].Precision, FallbackValue=0}"
+                AutoToolTipPlacement="BottomRight"
+                IsDirectionReversed="False"
+                IsMoveToPointEnabled="True"
+                IsSnapToTickEnabled="False"
+                IsEnabled="{Binding IsEditable}"
+            />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{x:Static local:EditorKeys.PasswordEditorKey}">
+      <!--local:PasswordBoxExtender.BindPassword="true"
+      local:PasswordBoxExtender.BoundPassword="{Binding StringValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
+
+      <TextBox PasswordChar="*"
+      x:Name="PART_editor"
+      IsEnabled="{Binding IsEditable}"
+      />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{x:Static local:EditorKeys.DoubleEditorKey}">
+      <controls:DoubleEditor x:Name="PART_editor"
+          Value="{Binding Value, Mode=TwoWay}"
+          Minimum="{Binding ParentProperty.Metadata[NumberRange].Minimum}"
+          Maximum="{Binding ParentProperty.Metadata[NumberRange].Maximum}"
+          DefaultChange="{Binding ParentProperty.Metadata[NumberRange].Tick}"
+          MaxPrecision="{Binding ParentProperty.Metadata[NumberRange].Precision}"
+          IsEnabled="{Binding IsEditable}"
+        />
+    </DataTemplate>
+
+  </Styles.Resources>
+
+
+</Styles>

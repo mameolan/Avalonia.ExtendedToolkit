@@ -615,8 +615,8 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         /// <summary>
         /// When a BreadcrumbItem is selected from a dropdown menu, the SelectedItem of the new selected item must be set to null.
-        /// Since no event is raised when a DependencyProperty is assigned to it's current value, this cannot be recognized at this place,
-        /// therefore the SelectedItem DependencyProperty must previously set to null before setting it to it's new value to raise event
+        /// Since no event is raised when a AvaloniaProperty is assigned to it's current value, this cannot be recognized at this place,
+        /// therefore the SelectedItem AvaloniaProperty must previously set to null before setting it to it's new value to raise event
         /// when SelectedItem is changed:
         /// </summary>
         /// <param name="dataItem"></param>

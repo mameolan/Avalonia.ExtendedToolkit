@@ -57,8 +57,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         private ObservableCollection<object> traces;
 
         /// <summary>
-        /// Gets or sets wether the root node is removed from the breadcrumb bar if any child node is selected.
-        /// This is a dependency property.
+        /// Gets or sets wether the root node is removed from the breadcrumb bar if
+        /// any child node is selected.
         /// </summary>
         public bool HideRootNode
         {

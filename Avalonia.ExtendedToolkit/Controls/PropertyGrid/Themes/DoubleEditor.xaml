@@ -1,0 +1,31 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:controls="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls;assembly=Avalonia.ExtendedToolkit"
+    >
+  <Style Selector="controls|DoubleEditor">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="0.5*"/>
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="PART_editor" Grid.ColumnSpan="2" Text="{Binding Path=Value, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+            <Rectangle x:Name="PART_dragger"  Stroke="Transparent" Fill="Transparent" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="controls|DoubleEditor:pointerover /template/ Rectangle#PART_dragger">
+    <Setter Property="Cursor" Value="SizeAll"/>
+  </Style>
+
+  <Style Selector="controls|DoubleEditor[IsDragging=true]">
+    <Setter Property="Cursor" Value="SizeAll"/>
+  </Style>
+    
+</Styles>

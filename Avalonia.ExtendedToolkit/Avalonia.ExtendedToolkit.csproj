@@ -39,13 +39,14 @@
     <None Remove="Commanding\**" />
   </ItemGroup>
 
-  
   <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="Styles\Themes\GeneratorParameters.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Controls\PropertyGrid\Themes\Images\clear.png" />
+    <EmbeddedResource Include="Controls\PropertyGrid\Themes\Images\search.png" />
     <EmbeddedResource Include="Styles\Themes\GeneratorParameters.json" />
   </ItemGroup>
 
@@ -57,7 +58,6 @@
     <Folder Include="Behaviours\" />
   </ItemGroup>
 
-  
   <Target Name="GenerateXamlFilesInner">
     <PropertyGroup>
       <XamlColorSchemeGeneratorVersion Condition="'%(PackageReference.Identity)' == 'XamlColorSchemeGenerator'">%(PackageReference.Version)</XamlColorSchemeGeneratorVersion>

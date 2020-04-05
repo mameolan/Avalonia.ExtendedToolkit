@@ -60,7 +60,9 @@
     </StackPanel>
     <Grid DockPanel.Dock="Bottom">
 
-      <Button Command="{Binding ShowFlyoutDemoCommand}" Content="Open File Demo"/>
+      <!--<Button Command="{Binding ShowFlyoutDemoCommand}" Content="Open File Demo"/>-->
+      <Views:PropertyGridExample/>
+      
       
     </Grid>
 

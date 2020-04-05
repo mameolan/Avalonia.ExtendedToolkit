@@ -1,0 +1,16 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters;assembly=Avalonia.ExtendedToolkit"
+    >
+  <Styles.Resources>
+    <!--<converters:NullOrEmptyStringConverter x:Key="nullOrEmptyStringConverter"/>
+    <converters:EnumValueConverter x:Key="enumValueConverter"/>-->
+    
+    
+    
+  </Styles.Resources>
+ 
+  
+</Styles>

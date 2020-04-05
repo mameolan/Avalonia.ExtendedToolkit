@@ -73,5 +73,7 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BreadcrumbBar/BreadcrumbItem.xaml" />
 
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/AeroChrome.xaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/PropertyGrid/Themes/Generic.xaml"/>
   
  </Styles>

@@ -1,0 +1,15 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    >
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/PropertyGrid/Themes/EditorResources.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/PropertyGrid/Themes/SearchTextBox.xaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/PropertyGrid/Themes/DoubleEditor.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/PropertyGrid/Themes/PropertyGrid.xaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/PropertyGrid/Design/AlphabeticalLayout.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/PropertyGrid/Design/CategorizedLayout.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Controls/PropertyGrid/Design/TabbedLayout.xaml"/>
+  
+</Styles>
