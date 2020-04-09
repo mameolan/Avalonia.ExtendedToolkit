@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
 {
-
     /// <summary>
     /// Combobox control to present enumeration classes.
     /// </summary>
@@ -14,14 +9,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
     {
         private bool _wrappedEvents;
 
-
-
         public PropertyItemValue PropertyValue
         {
             get { return (PropertyItemValue)GetValue(PropertyValueProperty); }
             set { SetValue(PropertyValueProperty, value); }
         }
-
 
         public static readonly StyledProperty<PropertyItemValue> PropertyValueProperty =
             AvaloniaProperty.Register<EnumDropdown, PropertyItemValue>(nameof(PropertyValue));
@@ -69,7 +61,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             dropdown.SelectedItem = newValue.Value;
             dropdown.Items = newValue.ParentProperty.StandardValues;
             dropdown.WrapEventHandlers(newValue);
-
         }
 
         private void WrapEventHandlers(PropertyItemValue target)
@@ -84,9 +75,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
         }
 
         // TODO: Provide a dedicated ValueChanged event not to listen to everything (performance increase)
-        void ValuePropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void ValuePropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Value")
+            if (e.Property == PropertyItemValue.ValueProperty)
             {
                 if (SelectedItem != PropertyValue.Value)
                     SelectedItem = PropertyValue.Value;
@@ -103,9 +94,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             target.PropertyChanged -= ValuePropertyChanged;
             _wrappedEvents = false;
         }
-
-        
-
-
     }
 }

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Controls.Generators;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
-using System.Linq;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 {
@@ -15,7 +12,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             : base(owner, ContentControl.ContentProperty, ContentControl.ContentTemplateProperty)
         {
             Owner = owner;
-
         }
 
         public new TabbedLayout Owner { get; }
@@ -26,7 +22,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 
             if (item == Owner)
                 return base.CreateContainer(element);
-
 
             var tab = element as TabbedLayoutItem;
             if (tab != null)
@@ -68,9 +63,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
                 //tab.IsVisibleChanged += OnTabVisibilityChanged;
                 tab.PropertyChanged += Tab_PropertyChanged;
             }
-
-
-
 
             return base.CreateContainer(element);
         }
@@ -118,7 +110,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
                     Owner.SelectedIndex++;
             }
         }
-
-
     }
 }

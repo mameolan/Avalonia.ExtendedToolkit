@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
@@ -21,6 +20,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// </summary>
         public GridEntryCollection()
         { }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GridEntryCollection&lt;T&gt;"/> class.
         /// </summary>
@@ -36,36 +36,36 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         }
 
         /// <summary>
-        /// Searches the entire sorted GridEntryCollection&lt;T&gt; for an element using the specified comparer 
+        /// Searches the entire sorted GridEntryCollection&lt;T&gt; for an element using the specified comparer
         /// and returns the zero-based index of the element.
         /// </summary>
         /// <param name="item">The object to locate. The value can be null for reference types.</param>
         /// <returns>
-        /// The zero-based index of item in the sorted GridEntryCollection&lt;T&gt;, 
+        /// The zero-based index of item in the sorted GridEntryCollection&lt;T&gt;,
         /// if item is found; otherwise, a negative number that is the bitwise complement
         /// of the index of the next element that is larger than item or, if there is
         /// no larger element, the bitwise complement of GridEntryCollection&lt;T&gt;.Count.
-        /// </returns>  
+        /// </returns>
         public int BinarySearch(T item)
         {
             return ((List<T>)Items).BinarySearch(item);
         }
 
         /// <summary>
-        /// Searches the entire sorted GridEntryCollection&lt;T&gt; for an element using the specified comparer 
+        /// Searches the entire sorted GridEntryCollection&lt;T&gt; for an element using the specified comparer
         /// and returns the zero-based index of the element.
         /// </summary>
         /// <param name="item">The object to locate. The value can be null for reference types.</param>
         /// <param name="comparer">
-        /// The System.Collections.Generic.IComparer&lt;T&gt; implementation to use when comparing elements.  
+        /// The System.Collections.Generic.IComparer&lt;T&gt; implementation to use when comparing elements.
         /// -or- null to use the default comparer System.Collections.Generic.Comparer&lt;T&gt;.Default.
         /// </param>
         /// <returns>
-        /// The zero-based index of item in the sorted GridEntryCollection&lt;T&gt;, 
+        /// The zero-based index of item in the sorted GridEntryCollection&lt;T&gt;,
         /// if item is found; otherwise, a negative number that is the bitwise complement
         /// of the index of the next element that is larger than item or, if there is
         /// no larger element, the bitwise complement of GridEntryCollection&lt;T&gt;.Count.
-        /// </returns>    
+        /// </returns>
         public int BinarySearch(T item, IComparer<T> comparer)
         {
             return ((List<T>)Items).BinarySearch(item, comparer);
@@ -75,7 +75,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// Sorts the elements in the entire collection using the specified comparer.
         /// </summary>
         /// <param name="comparer">
-        /// The System.Collections.Generic.IComparer&lt;T&gt; implementation to use when comparing elements.  
+        /// The System.Collections.Generic.IComparer&lt;T&gt; implementation to use when comparing elements.
         /// -or- null to use the default comparer System.Collections.Generic.Comparer&lt;T&gt;.Default.
         /// </param>
         public void Sort(IComparer<T> comparer)
@@ -154,7 +154,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             EncacheItem(item);
             base.SetItem(index, item);
         }
-        #endregion
+
+        #endregion ObservableCollection implementation
 
         /// <summary>
         /// Gets the item with the specified name or null if no item with the name specified was found.

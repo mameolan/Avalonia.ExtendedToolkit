@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Avalonia.Controls;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils;
 using Avalonia.Markup.Xaml.Templates;
@@ -15,6 +13,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         public Type StyleKey => typeof(GridEntryContainer);
 
         private ResourceLocator _resourceLocator = new ResourceLocator();
+
         /// <summary>
         /// Gets or sets the resource locator.
         /// </summary>
@@ -24,8 +23,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             get { return _resourceLocator; }
             set { _resourceLocator = value; }
         }
-
-
 
         public static readonly AttachedProperty<GridEntryContainer> ParentContainerProperty =
             AvaloniaProperty.RegisterAttached<GridEntryContainer, Control, GridEntryContainer>("ParentContainer");
@@ -40,14 +37,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             element.SetValue(ParentContainerProperty, value);
         }
 
-
-
         public GridEntry Entry
         {
             get { return (GridEntry)GetValue(EntryProperty); }
             set { SetValue(EntryProperty, value); }
         }
-
 
         public static readonly StyledProperty<GridEntry> EntryProperty =
             AvaloniaProperty.Register<GridEntryContainer, GridEntry>(nameof(Entry));
@@ -81,9 +75,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 
             return ResourceLocator.GetResource(editor.InlineTemplate) as DataTemplate;
         }
-
-
-
-
     }
 }

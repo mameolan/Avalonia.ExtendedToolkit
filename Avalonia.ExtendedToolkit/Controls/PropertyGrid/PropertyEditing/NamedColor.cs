@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
@@ -10,7 +8,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
     /// </summary>
     public sealed class NamedColor
     {
-        
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
@@ -28,9 +25,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// </summary>
         /// <value>The brush.</value>
         public Brush Brush { get; private set; }
-        
 
-        
         /// <summary>
         /// Initializes a new instance of the <see cref="NamedColor"/> class.
         /// </summary>
@@ -45,9 +40,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             Color = color;
             Brush = (Brush)new SolidColorBrush(color);
         }
-        
 
-     
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </summary>
@@ -58,6 +51,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         {
             return Name;
         }
-     
     }
 }

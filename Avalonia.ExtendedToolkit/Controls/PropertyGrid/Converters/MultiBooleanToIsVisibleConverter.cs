@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using Avalonia.Data.Converters;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters

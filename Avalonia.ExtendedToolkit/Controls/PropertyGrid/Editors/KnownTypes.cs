@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Numerics;
-using System.Text;
 using Avalonia.Input;
 using Avalonia.Media;
 
@@ -32,11 +30,13 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         {
             public static readonly Type Geometry = typeof(Geometry);
             public static readonly Type CornerRadius = typeof(CornerRadius);
+
             //public static readonly Type Point3D = typeof(Point3D);
             //public static readonly Type Point4D = typeof(Point4D);
             //public static readonly Type Point3DCollection = typeof(Point3DCollection);
             //public static readonly Type Matrix3D = typeof(Matrix3D);
             public static readonly Type Quaternion = typeof(Quaternion);
+
             //public static readonly Type Rect3D = typeof(Rect3D);
             //public static readonly Type Size3D = typeof(Size3D);
             //public static readonly Type Vector3D = typeof(Vector3D);
@@ -44,12 +44,15 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             //public static readonly Type PointCollection = typeof(PointCollection);
             //public static readonly Type VectorCollection = typeof(VectorCollection);
             public static readonly Type Point = typeof(Point);
+
             public static readonly Type Rect = typeof(Rect);
             public static readonly Type Size = typeof(Size);
             public static readonly Type Thickness = typeof(Thickness);
             public static readonly Type Vector = typeof(Vector);
+
             //public static readonly Type FontStretch = typeof(FontStretch);
             public static readonly Type FontStyle = typeof(FontStyle);
+
             public static readonly Type FontWeight = typeof(FontWeight);
             public static readonly Type FontFamily = typeof(FontFamily);
             public static readonly Type Cursor = typeof(Cursor);

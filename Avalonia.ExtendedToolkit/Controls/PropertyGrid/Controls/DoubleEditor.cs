@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using System.Windows.Input;
-using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml.Templates;
 using ReactiveUI;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
 {
-
     /// <summary>
     /// Simple Expression Blend like double editor.
     /// </summary>
@@ -29,12 +24,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
         private KeyModifiers _currentKeyModifiers;
         private const double DragTolerance = 2.0;
 
-        
-
         public ICommand Increase { get; }
 
         public ICommand Decrease { get; }
-
 
         //[TypeConverter(typeof(LengthConverter))]
         public double Value
@@ -43,11 +35,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(ValueProperty, value); }
         }
 
-
         public static readonly StyledProperty<double> ValueProperty =
             AvaloniaProperty.Register<DoubleEditor, double>(nameof(Value), defaultValue: 0d);
-
-
 
         public double SmallChange
         {
@@ -55,11 +44,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(SmallChangeProperty, value); }
         }
 
-
         public static readonly StyledProperty<double> SmallChangeProperty =
             AvaloniaProperty.Register<DoubleEditor, double>(nameof(SmallChange), defaultValue: 1.0d);
-
-
 
         public double LargeChange
         {
@@ -67,11 +53,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(LargeChangeProperty, value); }
         }
 
-
         public static readonly StyledProperty<double> LargeChangeProperty =
             AvaloniaProperty.Register<DoubleEditor, double>(nameof(LargeChange), defaultValue: 1.0d);
-
-
 
         public double DefaultChange
         {
@@ -79,11 +62,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(DefaultChangeProperty, value); }
         }
 
-
         public static readonly StyledProperty<double> DefaultChangeProperty =
             AvaloniaProperty.Register<DoubleEditor, double>(nameof(DefaultChange), defaultValue: 1.0d);
-
-
 
         public double Minimum
         {
@@ -91,11 +71,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(MinimumProperty, value); }
         }
 
-
         public static readonly StyledProperty<double> MinimumProperty =
             AvaloniaProperty.Register<DoubleEditor, double>(nameof(Minimum), defaultValue: 0.0d);
-
-
 
         public double Maximum
         {
@@ -103,11 +80,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(MaximumProperty, value); }
         }
 
-
         public static readonly StyledProperty<double> MaximumProperty =
             AvaloniaProperty.Register<DoubleEditor, double>(nameof(Maximum), defaultValue: double.MaxValue);
-
-
 
         public int MaxPrecision
         {
@@ -115,12 +89,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(MaxPrecisionProperty, value); }
         }
 
-
         public static readonly StyledProperty<int> MaxPrecisionProperty =
             AvaloniaProperty.Register<DoubleEditor, int>(nameof(MaxPrecision), defaultValue: 0);
-
-
-
 
         public bool IsDragging
         {
@@ -128,11 +98,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(IsDraggingProperty, value); }
         }
 
-
         public static readonly StyledProperty<bool> IsDraggingProperty =
             AvaloniaProperty.Register<DoubleEditor, bool>(nameof(IsDragging));
-
-
 
         public PropertyDescriptor PropertyDescriptor
         {
@@ -140,18 +107,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(PropertyDescriptorProperty, value); }
         }
 
-
         public static readonly StyledProperty<PropertyDescriptor> PropertyDescriptorProperty =
             AvaloniaProperty.Register<DoubleEditor, PropertyDescriptor>(nameof(PropertyDescriptor));
-
-
-
-
-
-
-
-
-
 
         public static readonly RoutedEvent<RoutedEventArgs> PropertyEditingStartedEvent =
                     RoutedEvent.Register<DoubleEditor, RoutedEventArgs>
@@ -171,8 +128,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
                 RemoveHandler(PropertyEditingStartedEvent, value);
             }
         }
-
-
 
         public static readonly RoutedEvent<RoutedEventArgs> PropertyEditingFinishedEvent =
                     RoutedEvent.Register<DoubleEditor, RoutedEventArgs>(nameof(PropertyEditingFinishedEvent), RoutingStrategies.Bubble);
@@ -204,14 +159,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             MinimumProperty.Changed.AddClassHandler<DoubleEditor>((o, e) => OnMinimumChanged(o, e));
             MaximumProperty.Changed.AddClassHandler<DoubleEditor>((o, e) => OnMaximumChanged(o, e));
             IsDraggingProperty.Changed.AddClassHandler<DoubleEditor>((o, e) => OnIsDraggingChanged(o, e));
-        
-            
         }
 
-
         /// <summary>
-        /// Invoked when an unhandled attached event reaches an element in its route 
-        /// that is derived from this class. 
+        /// Invoked when an unhandled attached event reaches an element in its route
+        /// that is derived from this class.
         /// Implement this method to add class handling for this event.
         /// </summary>
         /// <param name="e">The that contains the event data. This event data reports details
@@ -232,14 +184,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
 
                 e.Handled = true;
             }
-
-
-            
         }
 
-
         /// <summary>
-        /// Invoked when an unhandled attached event reaches an element in its route 
+        /// Invoked when an unhandled attached event reaches an element in its route
         /// that is derived from this class. Implement this method to add class handling for this event.
         /// </summary>
         /// <param name="e">The that contains the event data.</param>
@@ -281,12 +229,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             }
         }
 
-
         /// <summary>
-        /// Invoked when an unhandled routed event reaches an element in its route that is 
+        /// Invoked when an unhandled routed event reaches an element in its route that is
         /// derived from this class. Implement this method to add class handling for this event.
         /// </summary>
-        /// <param name="e">The that contains the event data. The event data reports that 
+        /// <param name="e">The that contains the event data. The event data reports that
         /// the mouse button was released.</param>
         protected override void OnPointerReleased(PointerReleasedEventArgs e)
         {
@@ -306,12 +253,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             base.OnKeyDown(e);
 
             _currentKeyModifiers = e.KeyModifiers;
-
-
         }
-
-
-
 
         private void OnIsDraggingChanged(DoubleEditor doubleEditor, AvaloniaPropertyChangedEventArgs e)
         {
@@ -320,12 +262,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
 
         private void OnMaximumChanged(DoubleEditor doubleEditor, AvaloniaPropertyChangedEventArgs e)
         {
-            
         }
 
         private void OnMinimumChanged(DoubleEditor doubleEditor, AvaloniaPropertyChangedEventArgs e)
         {
-            
         }
 
         private void ValueChanged(DoubleEditor doubleEditor, AvaloniaPropertyChangedEventArgs e)
@@ -371,7 +311,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             if ((_currentKeyModifiers & KeyModifiers.Control) != KeyModifiers.None)
             {
                 chageValue *= SmallChange;
-
             }
             // On Mouse Click & Shift Key Press
             else if ((_currentKeyModifiers & KeyModifiers.Shift) != KeyModifiers.None)
@@ -382,7 +321,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             {
                 chageValue *= DefaultChange;
             }
-
 
             _changeOffset += chageValue;
             double newValue = _changeValue + _changeOffset;
@@ -413,6 +351,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
         {
             RaiseEvent(new PropertyEditingEventArgs(PropertyEditingFinishedEvent, this, PropertyDescriptor));
         }
-
     }
 }

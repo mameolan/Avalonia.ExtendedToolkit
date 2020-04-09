@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
+﻿namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
     /// <summary>
     /// Defines modes for property visualization.
@@ -13,10 +9,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// Show all properties.
         /// </summary>
         All,
+
         /// <summary>
         /// Show dependency properties only.
         /// </summary>
         Dependency,
+
         /// <summary>
         /// Show native CLR properties only.
         /// </summary>

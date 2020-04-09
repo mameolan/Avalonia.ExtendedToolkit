@@ -1,6 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using Avalonia.Markup.Xaml.Styling;
+using Avalonia.Markup.Xaml.Templates;
+using Avalonia.Styling;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
@@ -9,7 +11,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
     /// </summary>
     public class CategoryEditor : Editor
     {
-        public Type StyleKey => typeof(CategoryEditor);
+        public new Type StyleKey => typeof(CategoryEditor);
 
         public Type DeclaringType
         {
@@ -17,18 +19,14 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             set { SetValue(DeclaringTypeProperty, value); }
         }
 
-
         public static readonly StyledProperty<Type> DeclaringTypeProperty =
             AvaloniaProperty.Register<CategoryEditor, Type>(nameof(DeclaringType));
-
-
 
         public string CategoryName
         {
             get { return (string)GetValue(CategoryNameProperty); }
             set { SetValue(CategoryNameProperty, value); }
         }
-
 
         public static readonly StyledProperty<string> CategoryNameProperty =
             AvaloniaProperty.Register<CategoryEditor, string>(nameof(CategoryName));
@@ -38,7 +36,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// </summary>
         public CategoryEditor()
         {
-
         }
 
         /// <summary>
@@ -56,10 +53,20 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
             DeclaringType = declaringType;
             CategoryName = categoryName;
-            InlineTemplate = inlineTemplate;
+
+            var genericStyle = Application.Current.Styles.OfType<StyleInclude>().FirstOrDefault(styleInclude => styleInclude.
+                         Source.AbsoluteUri.StartsWith("avares://Avalonia.ExtendedToolkit/Styles/Generic.xaml"));
+
+            var result=(genericStyle.Loaded as Styles)?.OfType<StyleInclude>()
+                    .FirstOrDefault(styleInclude => styleInclude.
+                         Source.AbsoluteUri.EndsWith("PropertyGrid/EditorResources.xaml"));
+
+            result.Loaded.TryGetResource(inlineTemplate, out object resourceValue);
+
+            DataTemplate dataTemplate = resourceValue as DataTemplate;
+
+
+            InlineTemplate = dataTemplate;// inlineTemplate;
         }
-
-
-
     }
 }

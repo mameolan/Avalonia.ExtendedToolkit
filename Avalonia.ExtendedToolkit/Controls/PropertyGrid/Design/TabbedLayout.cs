@@ -97,7 +97,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 
         private void ItemContainerGenerator_Materialized(object sender, ItemContainerEventArgs e)
         {
-            
         }
 
         private IObservable<bool> CanClosePropertyTab()
@@ -242,8 +241,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         //        tab.IsVisibleChanged += OnTabVisibilityChanged;
         //    }
         //}
-
-        
 
         internal GridEntry GetFirstVisibleEntry()
         {

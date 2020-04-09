@@ -15,8 +15,7 @@ namespace Avalonia.ExampleApp.Model
     {
         public object CurrentComponent { get; set; }
 
-
-
+        [Category("Brushes")]
         public BrushInfo[] ObjectBrushes
         {
             get { return (BrushInfo[])GetValue(ObjectBrushesProperty); }
@@ -26,7 +25,6 @@ namespace Avalonia.ExampleApp.Model
         /// <summary>
         /// Gets or sets the ObjectBrushes property.  
         /// </summary>
-        [Category("Brushes")]
         public static readonly StyledProperty<BrushInfo[]> ObjectBrushesProperty =
             AvaloniaProperty.Register<BrushProxy, BrushInfo[]>(nameof(ObjectBrushes));
 

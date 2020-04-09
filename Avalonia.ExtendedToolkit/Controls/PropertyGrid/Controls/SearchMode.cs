@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
+﻿namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
 {
     /// <summary>
     /// Defines the search behavior of <see cref="SearchTextBox"/>.
@@ -13,6 +9,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
         /// Immediatelly fire search.
         /// </summary>
         Instant,
+
         /// <summary>
         /// Fire search with a delay.
         /// </summary>

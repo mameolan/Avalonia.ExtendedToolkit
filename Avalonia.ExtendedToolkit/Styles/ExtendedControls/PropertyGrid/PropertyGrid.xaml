@@ -1,0 +1,37 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:local="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid;assembly=Avalonia.ExtendedToolkit"
+    xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
+    xmlns:controls="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converter="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters;assembly=Avalonia.ExtendedToolkit"
+    >
+  <Styles.Resources>
+    <converter:MultiBooleanToIsVisibleConverter x:Key="multiBooleanToVisibilityConverter"/>
+  </Styles.Resources>
+
+  <Style Selector="local|PropertyGrid">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <DockPanel LastChildFill="True" Background="{TemplateBinding Background}">
+            <controls:SearchTextBox DockPanel.Dock="Top"
+                                    Text="{Binding Path=PropertyFilter, RelativeSource={RelativeSource TemplatedParent}}"
+                                    IsVisible="{TemplateBinding PropertyFilterIsVisible}"
+                                    Foreground="AliceBlue"
+                                    />
+
+            <!--<Border DockPanel.Dock="Bottom" Height="70" Margin="2">-->
+            <!--<TextBlock x:Name="DescriptionBlock"  Margin="5" Foreground="DimGray" TextWrapping="Wrap" TextTrimming="WordEllipsis" Text="{TemplateBinding CurrentDescription}"/>-->
+            <!--<TextBox x:Name="DescriptionBlock"  TextWrapping="Wrap" IsReadOnly="True" Text="{TemplateBinding CurrentDescription}"/>
+            </Border>-->
+            <ContentControl  Content="{TemplateBinding Layout}"
+                               TextBlock.Foreground="{TemplateBinding Foreground}"/>
+
+          </DockPanel>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+</Styles>

@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Data;
 
@@ -9,7 +8,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     /// <summary>
     /// Defines a content presenter control for a Property editor.
     /// </summary>
-    public sealed class PropertyEditorContentPresenter : ContentPresenter
+    public sealed class PropertyEditorContentPresenter : ContentControl
     {
         public Type StyleKey => typeof(PropertyEditorContentPresenter);
 
@@ -18,22 +17,26 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         /// </summary>
         public PropertyEditorContentPresenter()
         {
+            string parentContainerProperty = nameof(GridEntryContainer.ParentContainerProperty)
+                                                    .Replace("Property", string.Empty);
+            string entryProperty = nameof(GridEntryContainer.EntryProperty).Replace("Property", string.Empty);
+
             var contentBinding = new Binding
             {
                 RelativeSource = new RelativeSource(RelativeSourceMode.Self),
-#warning todo path
+                Path = $"{parentContainerProperty}.{entryProperty}"
                 //Path = new PropertyPath("(0).(1).PropertyValue", new[] { GridEntryContainer.ParentContainerProperty, GridEntryContainer.EntryProperty })
             };
 
             var contentTemplateBinding = new Binding
             {
                 RelativeSource = new RelativeSource(RelativeSourceMode.Self),
-#warning todo path
+                Path = $"{parentContainerProperty}..EditorTemplate"
                 //Path = new PropertyPath("(0).EditorTemplate", new[] { GridEntryContainer.ParentContainerProperty })
             };
 
-            //Bind(ContentProperty,contentBinding);
-            //Bind(ContentTemplateProperty, contentTemplateBinding);
+            this.Bind(ContentProperty,contentBinding);
+            this.Bind(ContentTemplateProperty, contentTemplateBinding);
         }
     }
 }

@@ -5,7 +5,7 @@
              xmlns:pg="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid;assembly=Avalonia.ExtendedToolkit"
              xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
              xmlns:panel="clr-namespace:Avalonia.ExtendedToolkit.Controls.Panels;assembly=Avalonia.ExtendedToolkit"
-             
+             xmlns:Model="clr-namespace:Avalonia.ExampleApp.Model;assembly=Avalonia.ExampleApp"
              xmlns:Views="clr-namespace:Avalonia.ExampleApp.Views;assembly=Avalonia.ExampleApp"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.PropertyGridExample">
@@ -26,6 +26,11 @@
     </Style>
 
     <Style Selector="design|TabbedLayout">
+      <Setter Property="Background" Value="YellowGreen"/>
+      <Setter Property="Width" Value="100"/>
+      <Setter Property="Height" Value="100"/>
+      
+      
       <Setter Property="Template">
         <Setter.Value>
           <ControlTemplate>
@@ -65,7 +70,7 @@
       <Setter Property="ItemTemplate">
       <Setter.Value>
         <DataTemplate>
-          <Grid Margin="-10" Background="#0f00">
+          <Grid Margin="-10" Background="Green">
             <TextBlock Margin="4" Text="{Binding Header}"/>
           </Grid>
         </DataTemplate>
@@ -83,7 +88,7 @@
         <Setter.Value>
           <ControlTemplate>
             <Border x:Name="Border" Background="Transparent" BorderBrush="Transparent" BorderThickness="0,1,0,0" Margin="0,-1,0,0">
-              <Grid>
+              <Grid Background="Green">
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="Auto" />
                   <ColumnDefinition Width="Auto" />
@@ -246,7 +251,7 @@
   </UserControl.Styles>
 
   <UserControl.Resources>
-    <Views:BrushList x:Key="BrushList"/>
+    <Model:BrushList x:Key="BrushList"/>
 
     <DataTemplate x:Key="mydata">
 
@@ -297,7 +302,8 @@
                      Grid.Column="1"
                      PropertyDisplayMode="All"
                      ShowAttachedProperties="False"
-                     ShowReadOnlyProperties="False">
+                     ShowReadOnlyProperties="False"
+                     >
       <!--<pg:PropertyGrid.Resources>
         <ResourceDictionary>
           <ResourceDictionary.MergedDictionaries>
@@ -307,15 +313,32 @@
       </pg:PropertyGrid.Resources>-->
       <pg:PropertyGrid.Layout>
 
-        <design:CategorizedLayout/>
+        <design:CategorizedLayout Background="Green" BorderThickness="2"
+                                  Width="{Binding ElementName=propertyGrid, Path=Width}"
+                                  Height="{Binding ElementName=propertyGrid, Path=Height}"
+                                  />
 
       </pg:PropertyGrid.Layout>
       <pg:PropertyGrid.Editors>
 
-        <!--DeclaringType="{x:Type local:BrushProxy}"-->
-        <pg:CategoryEditor
+        <!---->
+        <pg:CategoryEditor DeclaringType="{x:Type Model:BrushProxy}"
                           CategoryName="Brushes"
-                          InlineTemplate="{StaticResource  mydata}"/>
+                           Background="Yellow"
+                                  Width="100"
+                                  Height="100"
+                           >
+        <pg:CategoryEditor.InlineTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding}"/>  
+          </DataTemplate>
+        </pg:CategoryEditor.InlineTemplate>
+        
+        
+        </pg:CategoryEditor>
+      <!--InlineTemplate="{StaticResource mydata}"-->
+      
+      
       </pg:PropertyGrid.Editors>
 
 

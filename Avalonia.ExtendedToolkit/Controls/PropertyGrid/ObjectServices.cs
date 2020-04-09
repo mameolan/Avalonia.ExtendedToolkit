@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Internal;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes;
@@ -37,7 +36,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         private static readonly string[] StringConverterMembers = { "Content", "Header", "ToolTip", "Tag" };
 
         #region DefaultStringConverter
+
         private static StringConverter _defaultStringConverter;
+
         public static StringConverter DefaultStringConverter
         {
             get
@@ -47,18 +48,24 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 return _defaultStringConverter;
             }
         }
-        #endregion
+
+        #endregion DefaultStringConverter
 
         #region DefaultFontStretchConverterDecorator
+
         private static FontStretchConverterDecorator _defaultFontStretchConverterDecorator;
+
         public static FontStretchConverterDecorator DefaultFontStretchConverterDecorator
         {
             get { return _defaultFontStretchConverterDecorator ?? (_defaultFontStretchConverterDecorator = new FontStretchConverterDecorator()); }
         }
-        #endregion
+
+        #endregion DefaultFontStretchConverterDecorator
 
         #region DefaultFontStyleConverterDecorator
+
         private static FontStyleConverterDecorator _DefaultFontStyleConverterDecorator;
+
         public static FontStyleConverterDecorator DefaultFontStyleConverterDecorator
         {
             get
@@ -68,15 +75,19 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 return _DefaultFontStyleConverterDecorator;
             }
         }
-        #endregion
+
+        #endregion DefaultFontStyleConverterDecorator
 
         #region DefaultFontWeightConverterDecorator
+
         private static FontWeightConverterDecorator _defaultFontWeightConverterDecorator;
+
         public static FontWeightConverterDecorator DefaultFontWeightConverterDecorator
         {
             get { return _defaultFontWeightConverterDecorator ?? (_defaultFontWeightConverterDecorator = new FontWeightConverterDecorator()); }
         }
-        #endregion
+
+        #endregion DefaultFontWeightConverterDecorator
 
         [Obsolete("This member will be superceded by PropertyItem.SerializationCulture in the next versions of component", false)]
         public static CultureInfo GetSerializationCulture(Type propertyType)
@@ -168,7 +179,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             return merged;
         }
 
-        #endregion
+        #endregion MultiSelected Objects Support
 
         internal static object GetUnwrappedObject(object currentObject)
         {

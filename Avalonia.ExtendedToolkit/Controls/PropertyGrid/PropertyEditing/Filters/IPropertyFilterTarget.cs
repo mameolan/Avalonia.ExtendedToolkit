@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
@@ -23,7 +21,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <summary>
         /// Checks whether the entry matches the filtering predicate.
         /// </summary>
-        /// <param name="predicate">The filtering predicate.</param>    
+        /// <param name="predicate">The filtering predicate.</param>
         /// <returns><c>true</c> if entry matches filter; otherwise, <c>false</c>.</returns>
         bool MatchesPredicate(PropertyFilterPredicate predicate);
 

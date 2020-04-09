@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
 {
     public static class MetadataRepository
     {
         private class PropertySet : Dictionary<string, PropertyData> { }
+
         private class AttributeSet : Dictionary<string, HashSet<Attribute>> { }
 
         private static readonly Dictionary<Type, PropertySet> Properties = new Dictionary<Type, PropertySet>();
@@ -16,7 +16,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
         private static readonly Dictionary<Type, HashSet<Attribute>> TypeAttributes = new Dictionary<Type, HashSet<Attribute>>();
 
         private static readonly Attribute[] PropertyFilter = new Attribute[] { new PropertyFilterAttribute(PropertyFilterOptions.SetValues | PropertyFilterOptions.UnsetValues | PropertyFilterOptions.Valid) };
-
 
         public static void Clear()
         {
@@ -36,8 +35,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
                 throw new ArgumentNullException("target");
 
             PropertySet result;
-            if (!Properties.TryGetValue(target.GetType(), out result))
+            Properties.TryGetValue(target.GetType(), out result);
+#warning change it back
+            if(result==null|| result.Count==0)
+            {
                 result = CollectProperties(target);
+            }
 
             return result.Values;
         }
@@ -87,7 +90,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
             {
                 result = new PropertySet();
 
-                foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(target, PropertyFilter))
+                foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(target)
+                    /*, PropertyFilter)*/)
                 {
                     result.Add(descriptor.Name, new PropertyData(descriptor));
                     CollectAttributes(target, descriptor);
@@ -175,7 +179,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
 
             return Enumerable.Empty<Attribute>();
         }
-
-        
     }
 }

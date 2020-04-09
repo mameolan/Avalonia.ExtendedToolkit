@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using Avalonia.Data.Converters;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
@@ -56,7 +54,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
             bool isNull = (parameter != null) ? stringValue == (string)parameter : stringValue == NullString;
             return (isNull) ? null : value;
         }
-
-     
     }
 }

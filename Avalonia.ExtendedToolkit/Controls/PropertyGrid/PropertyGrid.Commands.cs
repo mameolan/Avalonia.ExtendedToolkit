@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using ReactiveUI;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
@@ -38,7 +35,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             HideFilterCommand = ReactiveCommand.Create(() => OnHideFilterCommand(), outputScheduler: RxApp.MainThreadScheduler);
             ToggleFilterCommand= ReactiveCommand.Create(() => OnToggleFilterCommand(), outputScheduler: RxApp.MainThreadScheduler);
             ShowDialogEditorCommand = ReactiveCommand.Create<object>(x => OnShowDialogEditor(x), outputScheduler: RxApp.MainThreadScheduler);
-
         }
 
         private void OnShowDialogEditor(object sender)

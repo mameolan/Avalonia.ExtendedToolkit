@@ -4,9 +4,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Windows.Input;
 using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
@@ -17,527 +14,11 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.VisualTree;
-using ReactiveUI;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
-    public partial class PropertyGrid : TemplatedControl, INotifyPropertyChanged
+    public partial class PropertyGrid : TemplatedControl
     {
-        public Type StyleKey => typeof(PropertyGrid);
-
-        private static Attribute[] DefaultPropertiesFilter = new Attribute[]
-        {
-            new PropertyFilterAttribute(
-            PropertyFilterOptions.SetValues
-            | PropertyFilterOptions.UnsetValues
-            | PropertyFilterOptions.Valid)
-        };
-
-        private List<BrowsablePropertyAttribute> browsableProperties = new List<BrowsablePropertyAttribute>();
-        private List<BrowsableCategoryAttribute> browsableCategories = new List<BrowsableCategoryAttribute>();
-
-        private object[] currentObjects;
-
-        private EditorCollection _Editors = new EditorCollection();
-        /// <summary>
-        /// Gets the editors collection.
-        /// </summary>
-        /// <value>The editors collection.</value>
-        public EditorCollection Editors
-        {
-            get { return _Editors; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance has properties.
-        /// </summary>
-        /// <value>
-        /// 	<c>true</c> if this instance has properties; otherwise, <c>false</c>.
-        /// </value>
-        public bool HasProperties
-        {
-            get { return _properties != null && _properties.Count > 0; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance has categories.
-        /// </summary>
-        /// <value>
-        /// 	<c>true</c> if this instance has categories; otherwise, <c>false</c>.
-        /// </value>
-        public bool HasCategories
-        {
-            get { return _categories != null && _categories.Count > 0; }
-        }
-
-
-
-        public string CurrentDescription
-        {
-            get { return (string)GetValue(CurrentDescriptionProperty); }
-            set { SetValue(CurrentDescriptionProperty, value); }
-        }
-
-
-        public static readonly StyledProperty<string> CurrentDescriptionProperty =
-            AvaloniaProperty.Register<PropertyGrid, string>(nameof(CurrentDescription)
-                , defaultValue: string.Empty);
-
-
-
-        /// <summary>
-        /// Gets or sets the brush for items background.
-        /// </summary>
-        /// <value>The items background brush.</value>
-        public Brush ItemsBackground
-        {
-            get { return (Brush)GetValue(ItemsBackgroundProperty); }
-            set { SetValue(ItemsBackgroundProperty, value); }
-        }
-
-
-        public static readonly StyledProperty<Brush> ItemsBackgroundProperty =
-            AvaloniaProperty.Register<PropertyGrid, Brush>(nameof(ItemsBackground));
-
-
-
-        /// <summary>
-        /// Gets or sets the items foreground brush.
-        /// </summary>
-        /// <value>The items foreground brush.</value>
-        public IBrush ItemsForeground
-        {
-            get { return (IBrush)GetValue(ItemsForegroundProperty); }
-            set { SetValue(ItemsForegroundProperty, value ); }
-        }
-
-
-        public static readonly StyledProperty<IBrush> ItemsForegroundProperty =
-            AvaloniaProperty.Register<PropertyGrid, IBrush>(nameof(ItemsForeground));
-
-
-
-        /// <summary>
-        /// Gets or sets the layout to be used to display properties.
-        /// </summary>
-        /// <value>The layout to be used to display properties.</value>
-        public Control Layout
-        {
-            get { return (Control)GetValue(LayoutProperty); }
-            set { SetValue(LayoutProperty, value); }
-        }
-
-
-        public static readonly StyledProperty<Control> LayoutProperty =
-            AvaloniaProperty.Register<PropertyGrid, Control>(nameof(Layout), defaultValue: default(AlphabeticalLayout));
-
-        /// <summary>
-        /// Gets or sets the selected object.
-        /// </summary>
-        /// <value>The selected object.</value>
-        public object SelectedObject
-        {
-            get { return (currentObjects != null && currentObjects.Length != 0) ? currentObjects[0] : null; }
-            set { SelectedObjects = (value == null) ? new object[0] : new[] { value }; }
-        }
-
-        /// <summary>
-        /// Gets or sets the selected objects.
-        /// </summary>
-        /// <value>The selected objects.</value>
-        public object[] SelectedObjects
-        {
-            get { return (currentObjects == null) ? new object[0] : (object[])currentObjects.Clone(); }
-            set
-            {
-                // Ensure there are no nulls in the array
-                VerifySelectedObjects(value);
-                
-                var sameSelection = false;
-
-                // Check whether new selection is the same as was previously defined
-                if (currentObjects != null && value != null && currentObjects.Length == value.Length)
-                {
-                    sameSelection = true;
-
-                    for (var i = 0; i < value.Length && sameSelection; i++)
-                    {
-                        if (currentObjects[i] != value[i])
-                            sameSelection = false;
-                    }
-                }
-
-                if (!sameSelection)
-                {
-                    // Assign new objects and reload
-                    if (value == null)
-                    {
-                        currentObjects = new object[0];
-                        DoReload();
-                    }
-                    else
-                    {
-                        // process single selection
-                        if (value.Length == 1 && currentObjects != null && currentObjects.Length == 1)
-                        {
-                            var oldValue = (currentObjects != null && currentObjects.Length > 0) ? currentObjects[0] : null;
-                            var newValue = (value.Length > 0) ? value[0] : null;
-
-                            currentObjects = (object[])value.Clone();
-
-                            if (oldValue != null && newValue != null && oldValue.GetType().Equals(newValue.GetType()))
-                                SwapSelectedObject(newValue);
-                            else
-                            {
-                                DoReload();
-                            }
-                        }
-                        // process multiple selection
-                        else
-                        {
-                            currentObjects = (object[])value.Clone();
-                            DoReload();
-                        }
-                    }
-
-                    OnPropertyChanged("SelectedObjects");
-                    OnPropertyChanged("SelectedObject");
-                    OnSelectedObjectsChanged();
-                }
-                else
-                {
-                    // TODO: Swap multiple objects here? Guess nothing can be done in this case...
-                }
-            }
-        }
-
-        private GridEntryCollection<PropertyItem> _properties;
-        /// <summary>
-        /// Gets or sets the properties of the selected object(s).
-        /// </summary>
-        /// <value>The properties of the selected object(s).</value>
-        public GridEntryCollection<PropertyItem> Properties
-        {
-            get { return _properties; }
-            private set
-            {
-                if (_properties == value)
-                    return;
-
-                if (_properties != null)
-                {
-                    foreach (var item in _properties)
-                    {
-                        UnhookPropertyChanged(item);
-                        item.Dispose();
-                    }
-                }
-
-                if (value != null)
-                {
-                    _properties = value;
-
-                    if (PropertyComparer != null)
-                        _properties.Sort(PropertyComparer);
-
-                    foreach (var item in _properties)
-                        HookPropertyChanged(item);
-                }
-
-                OnPropertyChanged("Properties");
-                OnPropertyChanged("HasProperties");
-                OnPropertyChanged("BrowsableProperties");
-            }
-        }
-
-        /// <summary>
-        /// Enumerates the properties that should be visible for user
-        /// </summary>
-        public IEnumerable<PropertyItem> BrowsableProperties
-        {
-            get
-            {
-                if (_properties != null)
-                {
-                    foreach (var property in _properties)
-                        if (property.IsBrowsable)
-                            yield return property;
-                }
-            }
-        }
-
-        private IComparer<PropertyItem> _propertyComparer;
-
-        /// <summary>
-        /// Gets or sets the default property comparer.
-        /// </summary>
-        /// <value>The default property comparer.</value>
-        public IComparer<PropertyItem> PropertyComparer
-        {
-            get { return _propertyComparer ?? (_propertyComparer = new PropertyItemComparer()); }
-            set
-            {
-                if (_propertyComparer == value)
-                    return;
-                _propertyComparer = value;
-
-                if (_properties != null)
-                    _properties.Sort(_propertyComparer);
-
-                OnPropertyChanged("PropertyComparer");
-            }
-        }
-
-        private IComparer<CategoryItem> _categoryComparer;
-
-        /// <summary>
-        /// Gets or sets the default category comparer.
-        /// </summary>
-        /// <value>The default category comparer.</value>
-        public IComparer<CategoryItem> CategoryComparer
-        {
-            get { return _categoryComparer ?? (_categoryComparer = new CategoryItemComparer()); }
-            set
-            {
-                if (_categoryComparer == value)
-                    return;
-                _categoryComparer = value;
-
-                if (_categories != null)
-                    _categories.Sort(_categoryComparer);
-
-                OnPropertyChanged("Categories");
-            }
-        }
-
-        private GridEntryCollection<CategoryItem> _categories;
-        /// <summary>
-        /// Gets or sets the categories of the selected object(s).
-        /// </summary>
-        /// <value>The categories of the selected object(s).</value>
-        public GridEntryCollection<CategoryItem> Categories
-        {
-            get { return _categories; }
-            private set
-            {
-                if (_categories == value)
-                    return;
-                _categories = value;
-
-                if (CategoryComparer != null)
-                    _categories.Sort(CategoryComparer);
-
-                OnPropertyChanged("Categories");
-                OnPropertyChanged("HasCategories");
-                OnPropertyChanged("BrowsableCategories");
-            }
-        }
-
-        /// <summary>
-        /// Enumerates the categories that should be visible for user.
-        /// </summary>
-        public IEnumerable<CategoryItem> BrowsableCategories
-        {
-            get
-            {
-                if (_categories != null)
-                {
-                    foreach (var category in _categories)
-                        if (category.IsBrowsable)
-                            yield return category;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether read-only properties should be displayed.
-        /// </summary>
-        /// <value>
-        /// 	<c>true</c> if read-only properties should be displayed; otherwise, 
-        /// 	<c>false</c>. Default is <c>false</c>.
-        /// </value>
-        public bool ShowReadOnlyProperties
-        {
-            get { return (bool)GetValue(ShowReadOnlyPropertiesProperty); }
-            set { SetValue(ShowReadOnlyPropertiesProperty, value); }
-        }
-
-
-        public static readonly StyledProperty<bool> ShowReadOnlyPropertiesProperty =
-            AvaloniaProperty.Register<PropertyGrid, bool>(nameof(ShowReadOnlyProperties));
-
-
-        /// <summary>
-        /// Gets or sets a value indicating whether attached properties should be displayed.
-        /// </summary>
-        /// <value>
-        /// 	<c>true</c> if attached properties should be displayed; otherwise, <c>false</c>. Default is <c>false</c>.
-        /// </value>
-        public bool ShowAttachedProperties
-        {
-            get { return (bool)GetValue(ShowAttachedPropertiesProperty); }
-            set { SetValue(ShowAttachedPropertiesProperty, value); }
-        }
-
-
-        public static readonly StyledProperty<bool> ShowAttachedPropertiesProperty =
-            AvaloniaProperty.Register<PropertyGrid, bool>(nameof(ShowAttachedProperties));
-
-
-        /// <summary>
-        /// Gets or sets the property filter. 
-        /// </summary>
-        /// <value>The property filter.</value>
-        public string PropertyFilter
-        {
-            get { return (string)GetValue(PropertyFilterProperty); }
-            set { SetValue(PropertyFilterProperty, value); }
-        }
-
-
-        public static readonly StyledProperty<string> PropertyFilterProperty =
-            AvaloniaProperty.Register<PropertyGrid, string>(nameof(PropertyFilter)
-                , defaultValue: string.Empty
-                , defaultBindingMode: Data.BindingMode.TwoWay
-                );
-
-
-        /// <summary>
-        /// Gets or sets the property filter visibility state.
-        /// </summary>
-        /// <value>The property filter visibility state.</value>
-        public bool PropertyFilterIsVisible
-        {
-            get { return (bool)GetValue(PropertyFilterIsVisibleProperty); }
-            set { SetValue(PropertyFilterIsVisibleProperty, value); }
-        }
-
-
-        public static readonly StyledProperty<bool> PropertyFilterIsVisibleProperty =
-            AvaloniaProperty.Register<PropertyGrid, bool>(nameof(PropertyFilterIsVisible)
-                , defaultValue: true);
-
-
-        /// <summary>
-        /// Gets or sets the property display mode.
-        /// </summary>
-        /// <value>The property display mode.</value>
-        public PropertyDisplayMode PropertyDisplayMode
-        {
-            get { return (PropertyDisplayMode)GetValue(PropertyDisplayModeProperty); }
-            set { SetValue(PropertyDisplayModeProperty, value); }
-        }
-
-
-        public static readonly StyledProperty<PropertyDisplayMode> PropertyDisplayModeProperty =
-            AvaloniaProperty.Register<PropertyGrid, PropertyDisplayMode>(nameof(PropertyDisplayMode)
-                , defaultValue: PropertyDisplayMode.All);
-
-
-
-
-
-
-
-        /// <summary>
-        /// Occurs when selected objects are changed.
-        /// </summary>
-        public event EventHandler SelectedObjectsChanged;
-
-        /// <summary>
-        /// Called when selected objects were changed.
-        /// </summary>
-        protected virtual void OnSelectedObjectsChanged()
-        {
-            var handler = SelectedObjectsChanged;
-            if (handler != null)
-                handler(this, EventArgs.Empty);
-        }
-
-
-        public static readonly RoutedEvent<PropertyEditingEventArgs> PropertyEditingStartedEvent =
-                    RoutedEvent.Register<PropertyGrid, PropertyEditingEventArgs>
-            (nameof(PropertyEditingStartedEvent), RoutingStrategies.Bubble);
-
-        /// <summary>
-        /// Occurs when property editing is started.
-        /// </summary>
-        /// <remarks>
-        /// This event is intended to be used in customization scenarios. 
-        /// It is not used by PropertyGrid control directly.
-        /// </remarks>
-        public event PropertyEditingEventHandler PropertyEditingStarted
-        {
-            add
-            {
-                AddHandler(PropertyEditingStartedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(PropertyEditingStartedEvent, value);
-            }
-        }
-
-
-
-        public static readonly RoutedEvent<PropertyEditingEventArgs> PropertyEditingFinishedEvent =
-                    RoutedEvent.Register<PropertyGrid, PropertyEditingEventArgs>
-            (nameof(PropertyEditingFinishedEvent), RoutingStrategies.Bubble);
-
-        /// <summary>
-        /// Occurs when property editing is finished.
-        /// </summary>
-        /// <remarks>
-        /// This event is intended to be used in customization scenarios. 
-        /// It is not used by PropertyGrid control directly.
-        /// </remarks>
-        public event PropertyEditingEventHandler PropertyEditingFinished
-        {
-            add
-            {
-                AddHandler(PropertyEditingFinishedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(PropertyEditingFinishedEvent, value);
-            }
-        }
-
-
-
-        public static readonly RoutedEvent<RoutedEventArgs> PropertyValueChangedEvent =
-                    RoutedEvent.Register<PropertyGrid, RoutedEventArgs>(nameof(PropertyValueChangedEvent), RoutingStrategies.Bubble);
-
-        /// <summary>
-        /// Occurs when property item value is changed.
-        /// </summary>
-        public event EventHandler PropertyValueChanged
-        {
-            add
-            {
-                AddHandler(PropertyValueChangedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(PropertyValueChangedEvent, value);
-            }
-        }
-
-        private void RaisePropertyValueChangedEvent(PropertyItem property, object oldValue)
-        {
-            var args = new PropertyValueChangedEventArgs(PropertyValueChangedEvent, property, oldValue);
-            RaiseEvent(args);
-        }
-
-
-
-
-
-        static PropertyGrid()
-        {
-            //DefaultStyleKeyProperty.OverrideMetadata(ThisType, new FrameworkPropertyMetadata(ThisType));
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="PropertyGrid"/> class.
         /// </summary>
@@ -555,14 +36,19 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
             // Wire command bindings
 
+            InitializeCommandBindings();
+            CurrentDescriptionProperty.Changed.AddClassHandler((Action<PropertyGrid, AvaloniaPropertyChangedEventArgs>)((o, e) => OnCurrentDescriptionChanged(o, e)));
+            LayoutProperty.Changed.AddClassHandler((Action<PropertyGrid, AvaloniaPropertyChangedEventArgs>)((o, e) => OnLayoutChanged(o, e)));
+            ShowReadOnlyPropertiesProperty.Changed.AddClassHandler((Action<PropertyGrid, AvaloniaPropertyChangedEventArgs>)((o, e) => OnShowReadOnlyPropertiesChanged(o, e)));
+            ShowAttachedPropertiesProperty.Changed.AddClassHandler((Action<PropertyGrid, AvaloniaPropertyChangedEventArgs>)((o, e) => OnShowAttachedPropertiesChanged(o, e)));
+            PropertyFilterProperty.Changed.AddClassHandler((Action<PropertyGrid, AvaloniaPropertyChangedEventArgs>)((o, e) => OnPropertyFilterChanged(o, e)));
+            PropertyDisplayModeProperty.Changed.AddClassHandler((Action<PropertyGrid, AvaloniaPropertyChangedEventArgs>)((o, e) => OnPropertyDisplayModePropertyChanged(o, e)));
+        }
 
-            //InitializeCommandBindings();
-            CurrentDescriptionProperty.Changed.AddClassHandler<PropertyGrid>((o, e) => OnCurrentDescriptionChanged(o, e));
-            LayoutProperty.Changed.AddClassHandler<PropertyGrid>((o, e) => OnLayoutChanged(o, e));
-            ShowReadOnlyPropertiesProperty.Changed.AddClassHandler<PropertyGrid>((o, e) => OnShowReadOnlyPropertiesChanged(o, e));
-            ShowAttachedPropertiesProperty.Changed.AddClassHandler<PropertyGrid>((o, e) => OnShowAttachedPropertiesChanged(o, e));
-            PropertyFilterProperty.Changed.AddClassHandler<PropertyGrid>((o, e) => OnPropertyFilterChanged(o, e));
-            PropertyDisplayModeProperty.Changed.AddClassHandler<PropertyGrid>((o, e) => OnPropertyDisplayModePropertyChanged(o, e));
+        private void RaisePropertyValueChangedEvent(PropertyItem property, object oldValue)
+        {
+            var args = new PropertyValueChangedEventArgs(PropertyValueChangedEvent, property, oldValue);
+            RaiseEvent(args);
         }
 
         internal CategoryItem CreateCategory(CategoryAttribute attribute)
@@ -577,6 +63,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
             // Create a new CategoryItem
             var categoryItem = new CategoryItem(this, attribute);
+            categoryItem.Editor = GetEditor(categoryItem);
             categoryItem.IsBrowsable = ShouldDisplayCategory(categoryItem.Name);
 
             // Return resulting item
@@ -587,8 +74,20 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         {
             // Check browsable restrictions
             //if (!ShoudDisplayProperty(descriptor)) return null;
-#warning todo
-            var dpDescriptor = null as PropertyDescriptor; //DependencyPropertyDescriptor.FromProperty(descriptor);
+
+
+            //DependencyPropertyDescriptor.FromProperty(descriptor);
+            var dpDescriptor = TypeDescriptor.GetProperties(this.SelectedObject).OfType<PropertyDescriptor>().
+                FirstOrDefault(x => x.Name == descriptor.Name && x.PropertyType == descriptor.PropertyType);
+
+            //try again with SelectedObjects
+            if(descriptor==null)
+            {
+                dpDescriptor = TypeDescriptor.GetProperties(this.SelectedObjects).OfType<PropertyDescriptor>().
+                FirstOrDefault(x => x.Name == descriptor.Name && x.PropertyType == descriptor.PropertyType);
+            }
+
+            
             // Provide additional checks for dependency properties
             if (dpDescriptor != null)
             {
@@ -615,10 +114,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             // Check whether property is browsable and add it to the collection
             // if (!descriptor.IsBrowsable) return null;
 
-            //PropertyItem item = new PropertyItem(this, this.SelectedObject, descriptor);      
+            //PropertyItem item = new PropertyItem(this, this.SelectedObject, descriptor);
 
-            var item = (currentObjects.Length > 1)
-              ? new PropertyItem(this, currentObjects, descriptor)
+            var item = (SelectedObjects.Length > 1)
+              ? new PropertyItem(this, SelectedObjects, descriptor)
               : new PropertyItem(this, SelectedObject, descriptor);
 
             //item.OverrideIsBrowsable(new bool?(ShoudDisplayProperty(descriptor)));
@@ -798,7 +297,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
-
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if (e.Key == Key.Tab && e.Source is AvaloniaObject)//tabbing over the property editors
@@ -858,7 +356,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 if (index >= spanel.Children.Count)
                     index = 0;
 
-
                 var next = VisualTree.VisualExtensions.GetVisualChildren(spanel).ElementAt(index) as PropertyContainer;//  VisualTreeHelper.GetChild(spanel, index) as PropertyContainer;//this has always a Grid as visual child
 
                 var grid = FindVisualChild<Grid>(next);
@@ -870,9 +367,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                         return final as Control;
                     else
                         return GetTabElement(final, delta);
-
                 }
-
             }
             return null;
         }
@@ -888,6 +383,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 return FindVisualParent<T>(parent as IVisual);
             return null;
         }
+
         private static T FindVisualChild<T>(IVisual element) where T : class
         {
             if (element == null)
@@ -901,7 +397,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             {
                 for (var i = 0; i < children.Count(); i++)
                 {
-
                     //object child = VisualTreeHelper.GetChild(element, i);
                     object child = children.ElementAt(i);
 
@@ -920,7 +415,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
             return null;
         }
-
 
         private void OnPropertyDisplayModePropertyChanged(PropertyGrid propertyGrid, AvaloniaPropertyChangedEventArgs e)
         {
@@ -957,11 +451,25 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 propertyGrid.DoReload();
         }
 
+        Size _size = new Size();
+        protected override Size MeasureOverride(Size availableSize)
+        {
+            _size = availableSize;
+            return base.MeasureOverride(availableSize);
+        }
+
+
         private void OnLayoutChanged(PropertyGrid propertyGrid, AvaloniaPropertyChangedEventArgs e)
         {
-            var layoutContainer = e.NewValue as Control;
+            var layoutContainer = e.NewValue as TemplatedControl;
             if (layoutContainer != null)
+            {
+                layoutContainer.MinWidth = 10;
+                layoutContainer.MinHeight = 10;
+                layoutContainer.Background = new SolidColorBrush(Colors.Green);
                 layoutContainer.DataContext = propertyGrid;
+            }
+
         }
 
         private void OnCurrentDescriptionChanged(PropertyGrid o, AvaloniaPropertyChangedEventArgs e)
@@ -987,37 +495,40 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             CurrentDescription = descri == null ? "" : descri.ToString();
         }
 
+        ///// <summary>
+        ///// Occurs when a property value changes.
+        ///// </summary>
+        //public new event PropertyChangedEventHandler PropertyChanged;
 
+        ///// <summary>
+        ///// Called when property value changes.
+        ///// </summary>
+        ///// <param name="propertyName">Name of the property.</param>
+        //protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
+        //{
+        //    var handler = PropertyChanged;
+        //    if (handler != null)
+        //        handler(this, new PropertyChangedEventArgs(propertyName));
+        //}
 
-
-
-
-        /// <summary>
-        /// Occurs when a property value changes.
-        /// </summary>
-        public new event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Called when property value changes.
-        /// </summary>
-        /// <param name="propertyName">Name of the property.</param>
-        protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
+        protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
         {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
+            base.OnAttachedToVisualTree(e);
+            this.InvalidateMeasure();
+            this.InvalidateArrange();
+            this.InvalidateVisual();
+            RaisePropertyChanged(LayoutProperty, null, Layout);
+            DoReload();
         }
 
+        //protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        //{
+        //    base.OnTemplateApplied(e);
+        //    //OnPropertyChanged(nameof(SelectedObject));
+        //    //OnPropertyChanged(nameof(SelectedObjects));
 
 
-
-
-
-
-
-
-
-
+        //}
 
         private void DoReload()
         {
@@ -1037,19 +548,19 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 browsableProperties = new List<BrowsablePropertyAttribute>(propertyAttributes);
 
                 // Collect categories and properties
-                var properties = CollectProperties(currentObjects);
+                var properties = CollectProperties(SelectedObjects);
 
                 // TODO: This needs more elegant implementation
                 var categories = new GridEntryCollection<CategoryItem>(CollectCategories(properties));
-                if (_categories != null && _categories.Count > 0)
-                    CopyCategoryFrom(_categories, categories);
+                if (Categories != null && Categories.Count > 0)
+                    CopyCategoryFrom(Categories, categories);
 
                 // Fetch and apply category orders
                 var categoryOrders = PropertyGridUtils.GetAttributes<CategoryOrderAttribute>(SelectedObject);
                 foreach (var orderAttribute in categoryOrders)
                 {
                     var category = categories[orderAttribute.Category];
-                    // don't apply Order if it was applied before (Order equals zero or more), 
+                    // don't apply Order if it was applied before (Order equals zero or more),
                     // so the first discovered Order value for the same category wins
                     if (category != null && category.Order < 0)
                         category.Order = orderAttribute.Order;
@@ -1057,7 +568,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
                 Categories = categories; //new CategoryCollection(CollectCategories(properties));
                 Properties = new GridEntryCollection<PropertyItem>(properties);
-
             }
         }
 
@@ -1092,5 +602,14 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             item.ValueChanged -= OnPropertyItemValueChanged;
         }
 
+        /// <summary>
+        /// Called when selected objects were changed.
+        /// </summary>
+        protected virtual void OnSelectedObjectsChanged()
+        {
+            var handler = SelectedObjectsChanged;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
     }
 }

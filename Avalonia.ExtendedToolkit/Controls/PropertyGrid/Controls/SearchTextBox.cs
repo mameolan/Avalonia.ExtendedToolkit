@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Media;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 
@@ -23,37 +20,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
 
         public Type StyleKey => typeof(SearchTextBox);
 
-
-        /// <summary>
-        /// Gets or sets the label text.
-        /// </summary>
-        /// <value>The label text.</value>
-        public string LabelText
-        {
-            get { return (string)GetValue(LabelTextProperty); }
-            set { SetValue(LabelTextProperty, value); }
-        }
-
-
-        public static readonly StyledProperty<string> LabelTextProperty =
-            AvaloniaProperty.Register<SearchTextBox, string>(nameof(LabelText));
-
-
-        /// <summary>
-        /// Gets or sets the color of the label text.
-        /// </summary>
-        /// <value>The color of the label text.</value>
-        public Brush LabelTextColor
-        {
-            get { return (Brush)GetValue(LabelTextColorProperty); }
-            set { SetValue(LabelTextColorProperty, value); }
-        }
-
-
-        public static readonly StyledProperty<Brush> LabelTextColorProperty =
-            AvaloniaProperty.Register<SearchTextBox, Brush>(nameof(LabelTextColor));
-
-
         /// <summary>
         /// Gets or sets the search mode.
         /// </summary>
@@ -63,11 +29,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(SearchModeProperty, value); }
         }
 
-
         public static readonly StyledProperty<SearchMode> SearchModeProperty =
             AvaloniaProperty.Register<SearchTextBox, SearchMode>(nameof(SearchMode)
                 , defaultValue: SearchMode.Instant);
-
 
         /// <summary>
         /// Gets a value indicating whether this instance has text.
@@ -80,10 +44,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(HasTextProperty, value); }
         }
 
-
         public static readonly StyledProperty<bool> HasTextProperty =
             AvaloniaProperty.Register<SearchTextBox, bool>(nameof(HasText));
-
 
         /// <summary>
         /// Gets or sets a value indicating whether mouse left button is down.
@@ -97,10 +59,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(IsMouseLeftButtonDownProperty, value); }
         }
 
-
         public static readonly StyledProperty<bool> IsMouseLeftButtonDownProperty =
             AvaloniaProperty.Register<SearchTextBox, bool>(nameof(IsMouseLeftButtonDown));
-
 
         /// <summary>
         /// Gets or sets the search event time delay.
@@ -112,19 +72,13 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(SearchEventTimeDelayProperty, value); }
         }
 
-
         public static readonly StyledProperty<TimeSpan> SearchEventTimeDelayProperty =
             AvaloniaProperty.Register<SearchTextBox, TimeSpan>(nameof(SearchEventTimeDelay)
                 , defaultValue: TimeSpan.FromMilliseconds(500));
 
-
-
-
-
         public static readonly RoutedEvent<RoutedEventArgs> SearchEvent =
                     RoutedEvent.Register<SearchTextBox, RoutedEventArgs>(nameof(SearchEvent),
                         RoutingStrategies.Bubble);
-
 
         /// <summary>
         /// Occurs when search is performed.
@@ -141,10 +95,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             }
         }
 
-
-
-
-
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchTextBox"/> class.
         /// </summary>
@@ -153,10 +103,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             _searchEventDelayTimer = new DispatcherTimer { Interval = SearchEventTimeDelay };
             _searchEventDelayTimer.Tick += OnSeachEventDelayTimerTick;
 
-            SearchEventTimeDelayProperty.Changed.AddClassHandler((Action<SearchTextBox, AvaloniaPropertyChangedEventArgs>)((o, e) => OnSearchEventTimeDelayChanged(o, e)));
-            TextProperty.Changed.AddClassHandler((Action<SearchTextBox, AvaloniaPropertyChangedEventArgs>)((o, e) => OnTextChanged(o, e)));
-
+            SearchEventTimeDelayProperty.Changed.AddClassHandler<SearchTextBox>(((o, e) => OnSearchEventTimeDelayChanged(o, e)));
+            TextProperty.Changed.AddClassHandler<SearchTextBox>(((o, e) => OnTextChanged(o, e)));
         }
+
         /// <summary>
         /// Is called when content in this editing control changes.
         /// </summary>
@@ -171,12 +121,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             }
         }
 
-        void OnSeachEventDelayTimerTick(object o, EventArgs e)
+        private void OnSeachEventDelayTimerTick(object o, EventArgs e)
         {
             _searchEventDelayTimer.Stop();
             RaiseSearchEvent();
         }
-
 
         private void OnSearchEventTimeDelayChanged(SearchTextBox searchTextBox, AvaloniaPropertyChangedEventArgs e)
         {
@@ -198,8 +147,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
                 ;
             }
             base.OnTemplateApplied(e);
-
-
         }
 
         private void IconBorderMouseLeave(object sender, Input.PointerEventArgs e)
@@ -229,7 +176,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             }
 
             IsMouseLeftButtonDown = false;
-
         }
 
         private void IconBorderMouseLeftButtonDown(object sender, Input.PointerPressedEventArgs e)
@@ -243,13 +189,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             {
                 IsMouseLeftButtonDown = false;
             }
-
         }
 
-
         /// <summary>
-        /// Invoked whenever an unhandled <see cref="InputElement.KeyDown"/> 
-        /// attached routed event reaches an element derived from this class in its route. 
+        /// Invoked whenever an unhandled <see cref="InputElement.KeyDown"/>
+        /// attached routed event reaches an element derived from this class in its route.
         /// Implement this method to add class handling for this event.
         /// </summary>
         /// <param name="e">Provides data about the event.</param>
@@ -276,9 +220,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             RaiseEvent(args);
         }
 
-
         /// <summary>
-        /// Called when one or more of the avalonia properties 
+        /// Called when one or more of the avalonia properties
         /// that exist on the element have had their effective values changed.
         /// </summary>
         /// <param name="e">Arguments for the associated event.</param>
@@ -291,8 +234,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
 
             base.OnPropertyChanged(e);
         }
-
-
-
     }
 }

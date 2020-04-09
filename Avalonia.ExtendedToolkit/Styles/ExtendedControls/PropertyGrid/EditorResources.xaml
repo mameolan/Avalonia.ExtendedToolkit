@@ -117,6 +117,7 @@
                 IsMoveToPointEnabled="True"
                 IsSnapToTickEnabled="False"
                 IsEnabled="{Binding IsEditable}"
+                         
             />
     </DataTemplate>
 

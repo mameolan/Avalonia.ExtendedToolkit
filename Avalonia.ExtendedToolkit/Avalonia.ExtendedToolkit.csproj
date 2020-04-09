@@ -45,8 +45,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Controls\PropertyGrid\Themes\Images\clear.png" />
-    <EmbeddedResource Include="Controls\PropertyGrid\Themes\Images\search.png" />
+    <EmbeddedResource Include="Styles\ExtendedControls\PropertyGrid\Images\clear.png" />
+    <EmbeddedResource Include="Styles\ExtendedControls\PropertyGrid\Images\search.png" />
     <EmbeddedResource Include="Styles\Themes\GeneratorParameters.json" />
   </ItemGroup>
 

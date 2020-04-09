@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Avalonia.Controls;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
@@ -22,11 +20,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             set { SetValue(CanCloseProperty, value); }
         }
 
-
         public static readonly StyledProperty<bool> CanCloseProperty =
             AvaloniaProperty.Register<TabbedLayoutItem, bool>(nameof(CanClose));
-
-
-
     }
 }

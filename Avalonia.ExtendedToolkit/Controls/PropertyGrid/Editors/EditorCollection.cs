@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
+using Avalonia.Collections;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
     /// <summary>
     /// Defines a collection of value Editors (Type, Category and Property editors).
     /// </summary>
-    public class EditorCollection : Collection<Editor>
+    public class EditorCollection : AvaloniaList<Editor>
     {
         private static readonly Dictionary<Type, Editor> Cache = new Dictionary<Type, Editor>
     {

@@ -8,7 +8,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Internal
 {
@@ -17,13 +16,13 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Internal
     {
         // Fields
         private TriState canReset;
+
         private MultiMergeCollection collection;
         private PropertyDescriptor[] descriptors;
         private TriState localizable;
         private TriState readOnly;
         private Hashtable handlers;
         private bool internalValueSet = false;
-
 
         // Methods
         public MergedPropertyDescriptor(PropertyDescriptor[] descriptors)

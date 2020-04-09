@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
 {
@@ -23,6 +21,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
         }
 
         #region TypeConverter implementation
+
         /// <summary>
         /// Returns whether this converter can convert an object of the given type to the type of this converter, using the specified context.
         /// </summary>
@@ -98,6 +97,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
         {
             return true;
         }
-        #endregion
+
+        #endregion TypeConverter implementation
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using Avalonia.Data.Converters;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
@@ -16,8 +14,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
         /// Specifies the default offset that should be used in case no parameter is provided. By default is -25.0
         /// </summary>
         public const double DefaultOffset = -25.0;
-
-        
 
         /// <summary>
         /// Converts a value.
@@ -58,7 +54,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
 
             return width - DefaultOffset;
         }
-
-        
     }
 }

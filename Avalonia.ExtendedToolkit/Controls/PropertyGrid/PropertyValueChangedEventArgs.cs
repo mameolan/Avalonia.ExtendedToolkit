@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Avalonia.Interactivity;
+﻿using Avalonia.Interactivity;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
@@ -20,11 +17,13 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// </summary>
         /// <value>The old value.</value>
         public object OldValue { get; private set; }
+
         /// <summary>
         /// Gets the new value.
         /// </summary>
         /// <value>The new value.</value>
         public object NewValue { get; private set; }
+
         /// <summary>
         /// Gets the property.
         /// </summary>

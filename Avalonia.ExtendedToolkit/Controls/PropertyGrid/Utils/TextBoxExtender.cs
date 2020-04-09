@@ -31,7 +31,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
             var wasBound = (bool)(e.OldValue);
             var needToBind = (bool)(e.NewValue);
-            
+
             if (wasBound)
                 textBox.KeyUp -= TextBoxCommitValue;
 
@@ -217,7 +217,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             if (prop.IsLeftButtonPressed == false)
                 return;
 
-            //if (!tb.IsKeyboardFocusWithin) //todo: don't now right now how to check
+            //if (!tb.IsKeyboardFocusWithin) //todo: don't know right now how to check
             {
                 e.Handled = true;
                 tb.Focus();

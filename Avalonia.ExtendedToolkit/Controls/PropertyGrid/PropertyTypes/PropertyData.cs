@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
@@ -12,8 +11,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
     // It will be able in future creating dynamic objects without using reflection
     public class PropertyData : IEquatable<PropertyData>
     {
-        
-
         private static readonly List<Type> CultureInvariantTypes = new List<Type>
     {
       KnownTypes.Wpf.CornerRadius,
@@ -36,8 +33,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
     };
 
         private static readonly string[] StringConverterMembers = { "Content", "Header", "ToolTip", "Tag" };
-
-        
 
         public PropertyDescriptor Descriptor { get; private set; }
 
@@ -113,6 +108,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         }
 
         private CultureInfo _SerializationCulture;
+
         public CultureInfo SerializationCulture
         {
             get
@@ -133,7 +129,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             Descriptor = descriptor;
         }
 
-        
         public override int GetHashCode()
         {
             return Descriptor.GetHashCode();
@@ -145,15 +140,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             return (data != null) ? Descriptor.Equals(data.Descriptor) : false;
         }
 
-     
-
-     
-
         public bool Equals(PropertyData other)
         {
             return Descriptor.Equals(other.Descriptor);
         }
-
-     
     }
 }

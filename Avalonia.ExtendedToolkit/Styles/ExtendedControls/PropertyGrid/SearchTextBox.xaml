@@ -1,0 +1,161 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls;assembly=Avalonia.ExtendedToolkit"
+    >
+
+  <Styles.Resources>
+    <SolidColorBrush x:Key="SearchTextBox_Background" Color="White" />
+    <SolidColorBrush x:Key="SearchTextBox_Foreground" Color="Black" />
+    <LinearGradientBrush x:Key="SearchTextBox_Border" StartPoint="0,0" EndPoint="0,1">
+      <GradientStop Color="#FFABADB3" Offset="0.05" />
+      <GradientStop Color="#FFE2E3EA" Offset="0.07" />
+      <GradientStop Color="#FFE3E9EF" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="SearchTextBox_BorderMouseOver" StartPoint="0,0" EndPoint="0,1">
+      <GradientStop Color="#FF5C97C1" Offset="0.05" />
+      <GradientStop Color="#FFB9D7EB" Offset="0.07" />
+      <GradientStop Color="#FFC7E2F1" Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="SearchTextBox_SearchIconBorder" Color="White" />
+    <SolidColorBrush x:Key="SearchTextBox_SearchIconBackground" Color="White" />
+    <LinearGradientBrush x:Key="SearchTextBox_SearchIconBorder_MouseOver" StartPoint="0,0" EndPoint="0,1" >
+      <GradientStop Color="#FFFFFFFF" Offset="0" />
+      <GradientStop Color="#FFE5F4FC" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="SearchTextBox_SearchIconBackground_MouseOver" StartPoint="0,0" EndPoint="0,1" >
+      <GradientStop Color="#FFE7F5FD" Offset="0" />
+      <GradientStop Color="#FFD2EDFC" Offset="0.5" />
+      <GradientStop Color="#FFB6E3FD" Offset="0.51" />
+      <GradientStop Color="#FF9DD5F3" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="SearchTextBox_SearchIconBorder_MouseDown" StartPoint="0,0" EndPoint="0,1" >
+      <GradientStop Color="#FFFFFFFF" Offset="0" />
+      <GradientStop Color="#FFE5F4FC" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="SearchTextBox_SearchIconBackground_MouseDown" StartPoint="0,0" EndPoint="0,1" >
+      <GradientStop Color="#FFE7F5FD" Offset="0" />
+      <GradientStop Color="#FFD2EDFC" Offset="0.5" />
+      <GradientStop Color="#FFB6E3FD" Offset="0.51" />
+      <GradientStop Color="#FF9DD5F3" Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="SearchTextBox_LabelTextColor" Color="Gray" />
+  </Styles.Resources>
+
+  <Style Selector="Controls|SearchTextBox">
+    <Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderMidBrush}"/>
+    <Setter Property="BorderThickness" Value="{DynamicResource ThemeBorderThickness}"/>
+    <Setter Property="SelectionBrush" Value="{DynamicResource HighlightBrush}"/>
+    <Setter Property="SelectionForegroundBrush" Value="{DynamicResource HighlightForegroundBrush}"/>
+    <Setter Property="Padding" Value="4"/>
+    <Setter Property="Watermark" Value="Search" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border Name="border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+            <DockPanel Margin="{TemplateBinding Padding}"
+                       >
+              <!--HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"-->
+
+
+              <TextBlock Name="floatingWatermark"
+                         Foreground="{DynamicResource ThemeAccentBrush}"
+                         FontSize="{DynamicResource FontSizeSmall}"
+                         Text="{TemplateBinding Watermark}"
+                         DockPanel.Dock="Top">
+                <TextBlock.IsVisible>
+                  <MultiBinding Converter="{x:Static BoolConverters.And}">
+                    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                             Path="UseFloatingWatermark"/>
+                    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                             Path="Text"
+                             Converter="{x:Static StringConverters.IsNotNullOrEmpty}"/>
+                  </MultiBinding>
+                </TextBlock.IsVisible>
+              </TextBlock>
+
+              <DataValidationErrors>
+                <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                              VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
+
+                  <Panel>
+                    <TextBlock Name="watermark"
+                               Opacity="0.5"
+                               Text="{TemplateBinding Watermark}"
+                               IsVisible="{TemplateBinding Text, Converter={x:Static StringConverters.IsNullOrEmpty}}"/>
+                    <TextPresenter Name="PART_TextPresenter"
+                                   Text="{TemplateBinding Text, Mode=TwoWay}"
+                                   CaretIndex="{TemplateBinding CaretIndex}"
+                                   SelectionStart="{TemplateBinding SelectionStart}"
+                                   SelectionEnd="{TemplateBinding SelectionEnd}"
+                                   TextAlignment="{TemplateBinding TextAlignment}"
+                                   TextWrapping="{TemplateBinding TextWrapping}"
+                                   PasswordChar="{TemplateBinding PasswordChar}"
+                                   SelectionBrush="{TemplateBinding SelectionBrush}"
+                                   SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                                   CaretBrush="{TemplateBinding CaretBrush}"/>
+                  </Panel>
+                </ScrollViewer>
+              </DataValidationErrors>
+            </DockPanel>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="TextBox:pointerover /template/ Border#border">
+    <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderHighBrush}"/>
+  </Style>
+  <Style Selector="TextBox:focus /template/ Border#border">
+    <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderHighBrush}"/>
+  </Style>
+  <Style Selector="TextBox:error /template/ Border#border">
+    <Setter Property="BorderBrush" Value="{DynamicResource ErrorBrush}"/>
+  </Style>
+  <Style Selector="TextBox /template/ DockPanel">
+    <Setter Property="Cursor" Value="IBeam" />
+  </Style>
+  <Style Selector="TextBox:disabled /template/ Border#border">
+      <Setter Property="Opacity" Value="{DynamicResource ThemeDisabledOpacity}" />
+  </Style>
+
+  <!--<Style Selector="Controls|SearchTextBox:pointerover">
+    <Setter Property="BorderBrush" Value="{StaticResource SearchTextBox_BorderMouseOver}" />
+  </Style>
+
+  --><!--<Trigger Property="IsKeyboardFocusWithin" Value="True">
+    <Setter Property="BorderBrush" Value="{StaticResource SearchTextBox_BorderMouseOver}" />
+  </Trigger>--><!--
+
+  <Style Selector="Controls|SearchTextBox[HasText=true] /template/ TextBlock#LabelText">
+    <Setter Property="IsVisible" Value="false" />
+  </Style>
+
+  <Style Selector="Controls|SearchTextBox[HasText=true][SearchMode=Instant] /template/ Image#SearchIcon">
+    --><!--<Setter Property="Source" Value="/Controls/PropertyGrid/Themes/Images/clear.png" />--><!--
+  </Style>
+
+  <Style Selector="Controls|SearchTextBox[HasText=true] /template/ Border#PART_SearchIconBorder:pointerover">
+    <Setter Property="BorderBrush"
+            Value="{StaticResource SearchTextBox_SearchIconBorder_MouseOver}" />
+    <Setter Property="Background"
+            Value="{StaticResource SearchTextBox_SearchIconBackground_MouseOver}" />
+  </Style>
+
+  <Style Selector="Controls|SearchTextBox[HasText=true][IsMouseLeftButtonDown=true] /template/ Border#PART_SearchIconBorder:pointerover">
+    <Setter Property="Padding"
+                     Value="2,0,0,0" />
+    <Setter Property="BorderBrush"
+            Value="{StaticResource SearchTextBox_SearchIconBorder_MouseOver}" />
+    <Setter Property="Background"
+            Value="{StaticResource SearchTextBox_SearchIconBackground_MouseOver}" />
+  </Style>-->
+  
+
+</Styles>

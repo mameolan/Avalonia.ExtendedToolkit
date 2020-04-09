@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 {
@@ -16,7 +14,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         /// </summary>
         static PropertyContainer()
         {
-     
         }
 
         /// <summary>

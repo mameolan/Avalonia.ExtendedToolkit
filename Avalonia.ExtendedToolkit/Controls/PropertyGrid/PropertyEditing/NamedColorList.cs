@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Reflection;
-using System.Text;
 using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
@@ -33,7 +30,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 nc = new NamedColor(pi.Name, (Color)pi.GetValue(null, null));
                 Add(nc);
             }
-
         }
     }
 }

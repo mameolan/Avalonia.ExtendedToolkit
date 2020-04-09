@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Text;
 using Avalonia.Data.Converters;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
@@ -13,7 +11,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
         /// Default string presenting a null value.
         /// </summary>
         public const string NullValueString = "(null)";
-
 
         /// <summary>
         /// Converts a value.
@@ -33,7 +30,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
                 var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
                 return ((attributes.Length > 0) && (!String.IsNullOrEmpty(attributes[0].Description))) ? attributes[0].Description : value.ToString();
             }
-            // return (null) in case enum value is not assigned...       
+            // return (null) in case enum value is not assigned...
             // this is mainly for dependency properties as DP property may contain undefined enum
             // native CLR properties will always assign it according to the first value
             if (value == null)
@@ -45,7 +42,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
                 return value.ToString();
             }
         }
-
 
         /// <summary>
         /// Converts a value.

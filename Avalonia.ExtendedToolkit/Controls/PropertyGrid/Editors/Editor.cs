@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 
@@ -13,9 +11,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
     {
         public Type StyleKey => typeof(Editor);
 
-
         /// <summary>
-        /// Gets or sets the inline template. 
+        /// Gets or sets the inline template.
         /// Can be either DataTemplate or ComponentResourceKey object.
         /// </summary>
         /// <value>The inline template.</value>
@@ -25,13 +22,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             set { SetValue(InlineTemplateProperty, value); }
         }
 
-
         public static readonly StyledProperty<object> InlineTemplateProperty =
             AvaloniaProperty.Register<Editor, object>(nameof(InlineTemplate));
 
-
         /// <summary>
-        /// Gets or sets the extended template. 
+        /// Gets or sets the extended template.
         /// Can be either DataTemplate or ComponentResourceKey object.
         /// </summary>
         /// <value>The extended template.</value>
@@ -41,10 +36,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             set { SetValue(ExtendedTemplateProperty, value); }
         }
 
-
         public static readonly StyledProperty<object> ExtendedTemplateProperty =
             AvaloniaProperty.Register<Editor, object>(nameof(ExtendedTemplate));
-
 
         /// <summary>
         /// Gets or sets the dialog template.
@@ -56,10 +49,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             set { SetValue(DialogTemplateProperty, value); }
         }
 
-
         public static readonly StyledProperty<object> DialogTemplateProperty =
             AvaloniaProperty.Register<Editor, object>(nameof(DialogTemplate));
-
 
         /// <summary>
         /// Shows the dialog for editing property value.
@@ -70,6 +61,14 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         {
         }
 
+        public Editor()
+        {
+            InlineTemplateProperty.Changed.AddClassHandler<Editor>((o, e) => OnEditorTemplateChanged(o, e));
+        }
 
+        private void OnEditorTemplateChanged(Editor editor, AvaloniaPropertyChangedEventArgs e)
+        {
+            editor.OnTemplateChanged(e);
+        }
     }
 }

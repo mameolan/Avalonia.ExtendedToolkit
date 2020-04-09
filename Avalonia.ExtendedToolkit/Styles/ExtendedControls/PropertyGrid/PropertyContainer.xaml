@@ -1,0 +1,45 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:local="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid;assembly=Avalonia.ExtendedToolkit"
+    xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
+    xmlns:controls="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converter="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters;assembly=Avalonia.ExtendedToolkit"
+    >
+  <Styles.Resources>
+    <converter:MultiBooleanToIsVisibleConverter x:Key="multiBooleanToVisibilityConverter"/>
+  </Styles.Resources>
+
+  <Style Selector="design|PropertyContainer">
+    <Setter Property="IsVisible">
+      <Setter.Value>
+        <MultiBinding Converter="{StaticResource multiBooleanToVisibilityConverter}" Mode="OneWay">
+          <Binding Path="IsBrowsable"/>
+          <Binding Path="MatchesFilter"/>
+        </MultiBinding>
+      </Setter.Value>
+    </Setter>
+    <!--<Setter Property="ToolTip" Value="{Binding Entry.ToolTip, RelativeSource={RelativeSource Self}}" />-->
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Margin="4">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" SharedSizeGroup="PropertyNameSizeGroup"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <design:PropertyNameTextBlock Grid.Column="0" Margin="0,0,8,0"
+                                          Text="{Binding DisplayName, Mode=OneTime}"
+                                          Foreground="{Binding ItemsForeground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:PropertyGrid}}}"
+                                          />
+            <design:PropertyEditorContentPresenter Grid.Column="1" VerticalAlignment="Center"
+                          Content="{TemplateBinding Content}"
+                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                          />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+</Styles>

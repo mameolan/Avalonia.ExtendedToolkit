@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
@@ -21,19 +19,15 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             set { SetValue(EditedTypeProperty, value); }
         }
 
-
         public static readonly StyledProperty<Type> EditedTypeProperty =
             AvaloniaProperty.Register<TypeEditor, Type>(nameof(EditedType));
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TypeEditor"/> class.
         /// </summary>
         public TypeEditor()
         {
-
         }
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TypeEditor"/> class.
@@ -47,8 +41,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <param name="editedType">The type of the object editor is bound to.</param>
         /// <param name="inlineTemplate">The inline template for UI presentation. Can be either a DataTemplate or ComponentResourceKey object.</param>
         public TypeEditor(Type editedType, object inlineTemplate) : this(editedType, inlineTemplate, null) { }
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TypeEditor"/> class.
@@ -66,6 +58,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             InlineTemplate = inlineTemplate;
             ExtendedTemplate = extendedTemplate;
         }
-
     }
 }

@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
     /// <summary>
     /// Provides value editing service for a property value.
     /// </summary>
-    public class PropertyEditor : Editor    
+    public class PropertyEditor : Editor
     {
-
         /// <summary>
         /// Gets or sets type of the object containing edited property.
         /// </summary>
@@ -20,12 +17,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             set { SetValue(DeclaringTypeProperty, value); }
         }
 
-
         public static readonly StyledProperty<Type> DeclaringTypeProperty =
             AvaloniaProperty.Register<PropertyEditor, Type>(nameof(DeclaringType));
-
-
-
 
         public string PropertyName
         {
@@ -33,13 +26,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             set { SetValue(PropertyNameProperty, value); }
         }
 
-
         public static readonly StyledProperty<string> PropertyNameProperty =
             AvaloniaProperty.Register<PropertyEditor, string>(nameof(PropertyName));
-
-
-
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PropertyEditor"/> class.
@@ -76,6 +64,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         {
             InlineTemplate = inlineTemplate;
         }
-
     }
 }

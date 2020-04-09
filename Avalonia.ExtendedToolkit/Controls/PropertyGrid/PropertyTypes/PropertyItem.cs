@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
@@ -12,7 +10,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
     public class PropertyItem : GridEntry, IPropertyFilterTarget
     {
         private readonly PropertyItemValue _parentValue;
-        private PropertyItemValue _value;
 
         private readonly object _component;
         private object _unwrappedComponent;
@@ -35,7 +32,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <param name="predicate">The filtering predicate.</param>
         /// <returns>
         /// 	<c>true</c> if entry matches predicate; otherwise, <c>false</c>.
-        /// </returns>        
+        /// </returns>
         public override bool MatchesPredicate(PropertyFilterPredicate predicate)
         {
             if (predicate == null)
@@ -60,18 +57,37 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             get { return _parentValue; }
         }
 
-        // <summary>
-        /// Gets the property value.
-        /// </summary>
-        /// <value>The property value.</value>
+        //private PropertyItemValue _value;
+        //// <summary>
+        ///// Gets the property value.
+        ///// </summary>
+        ///// <value>The property value.</value>
+        //public PropertyItemValue PropertyValue
+        //{
+        //    get
+        //    {
+        //        if (_value == null)
+        //            _value = CreatePropertyValueInstance();
+        //        return _value;
+        //    }
+        //}
+
+        public static readonly DirectProperty<PropertyItem, PropertyItemValue> PropertyValueProperty =
+                AvaloniaProperty.RegisterDirect<PropertyItem, PropertyItemValue>(
+                    nameof(PropertyValue),
+                    o => o.PropertyValue);
+
+        private PropertyItemValue _propertyValue;
+
         public PropertyItemValue PropertyValue
         {
             get
             {
-                if (_value == null)
-                    _value = CreatePropertyValueInstance();
-                return _value;
+                if (_propertyValue == null)
+                    PropertyValue = CreatePropertyValueInstance();
+                return _propertyValue;
             }
+            private set { SetAndRaise(PropertyValueProperty, ref _propertyValue, value); }
         }
 
         /// <summary>
@@ -83,7 +99,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             return new PropertyItemValue(this);
         }
 
-        
         /// <summary>
         /// Gets PropertyDescriptor instance for the underlying property.
         /// </summary>
@@ -134,7 +149,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         private void ComponentValueChanged(object sender, EventArgs e)
         {
-            OnPropertyChanged("PropertyValue");
+            //OnPropertyChanged("PropertyValue");
+            RaisePropertyChanged(PropertyValueProperty, null, PropertyValue);
         }
 
         /// <summary>
@@ -149,36 +165,58 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 handler(this, oldValue, newValue);
         }
 
-        
+        //private string _displayName;
+        ///// <summary>
+        ///// Gets the display name for the property.
+        ///// </summary>
+        ///// <value></value>
+        ///// <returns>
+        ///// The display name for the property.
+        ///// </returns>
+        //public string DisplayName
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(_displayName))
+        //            _displayName = GetDisplayName();
+
+        //        return _displayName;
+        //    }
+        //    set
+        //    {
+        //        if (_displayName == value)
+        //            return;
+        //        _displayName = value;
+        //        OnPropertyChanged("DisplayName");
+        //    }
+        //}
+
+        public static readonly DirectProperty<PropertyItem, string> DisplayNameProperty =
+                AvaloniaProperty.RegisterDirect<PropertyItem, string>(
+                    nameof(DisplayName),
+                    o => o.DisplayName);
+
         private string _displayName;
-        /// <summary>
-        /// Gets the display name for the property.
-        /// </summary>
-        /// <value></value>
-        /// <returns>
-        /// The display name for the property.
-        /// </returns>
+
         public string DisplayName
         {
             get
             {
                 if (string.IsNullOrEmpty(_displayName))
-                    _displayName = GetDisplayName();
-
+                    DisplayName = GetDisplayName();
                 return _displayName;
             }
+
             set
             {
                 if (_displayName == value)
                     return;
-                _displayName = value;
-                OnPropertyChanged("DisplayName");
+                SetAndRaise(DisplayNameProperty, ref _displayName, value);
             }
         }
-        
 
-        
         private readonly string _categoryName;
+
         /// <summary>
         /// Gets the name of the category that this property resides in.
         /// </summary>
@@ -190,15 +228,34 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         {
             get { return _categoryName; }
         }
-        
+
+        //private string _description;
+        ///// <summary>
+        ///// Gets the description of the encapsulated property.
+        ///// </summary>
+        ///// <value></value>
+        ///// <returns>
+        ///// The description of the encapsulated property.
+        ///// </returns>
+        //public string Description
+        //{
+        //    get { return _description; }
+        //    set
+        //    {
+        //        if (_description == value)
+        //            return;
+        //        _description = value;
+        //        OnPropertyChanged("Description");
+        //    }
+        //}
+
+        public static readonly DirectProperty<PropertyItem, string> DescriptionProperty =
+                AvaloniaProperty.RegisterDirect<PropertyItem, string>(
+                    nameof(Description),
+                    o => o.Description);
+
         private string _description;
-        /// <summary>
-        /// Gets the description of the encapsulated property.
-        /// </summary>
-        /// <value></value>
-        /// <returns>
-        /// The description of the encapsulated property.
-        /// </returns>
+
         public string Description
         {
             get { return _description; }
@@ -206,16 +263,13 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             {
                 if (_description == value)
                     return;
-                _description = value;
-                OnPropertyChanged("Description");
+                SetAndRaise(DescriptionProperty, ref _description, value);
             }
         }
-        
 
-        
         /// <summary>
         /// Gets a value indicating whether the encapsulated property is an advanced property.
-        /// </summary>    
+        /// </summary>
         /// <returns>true if the encapsulated property is an advanced property; otherwise, false.</returns>
         // TODO: move intilialization to ctor
         public bool IsAdvanced
@@ -226,9 +280,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 return browsable != null && browsable.State == EditorBrowsableState.Advanced;
             }
         }
-        
 
         private readonly bool _isLocalizable;
+
         /// <summary>
         /// Gets a value indicating whether the encapsulated property is localizable.
         /// </summary>
@@ -239,14 +293,33 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         {
             get { return _isLocalizable; }
         }
-        
+
+        //private bool _isReadOnly;
+        ///// <summary>
+        ///// Gets a value indicating whether the encapsulated property is read-only.
+        ///// </summary>
+        ///// <value></value>
+        ///// <returns>true if the encapsulated property is read-only; otherwise, false.
+        ///// </returns>
+        //public bool IsReadOnly
+        //{
+        //    get { return _isReadOnly; }
+        //    set
+        //    {
+        //        if (_isReadOnly == value)
+        //            return;
+        //        _isReadOnly = value;
+        //        OnPropertyChanged("IsReadOnly");
+        //    }
+        //}
+
+        public static readonly DirectProperty<PropertyItem, bool> IsReadOnlyProperty =
+                AvaloniaProperty.RegisterDirect<PropertyItem, bool>(
+                    nameof(IsReadOnly),
+                    o => o.IsReadOnly);
+
         private bool _isReadOnly;
-        /// <summary>
-        /// Gets a value indicating whether the encapsulated property is read-only.
-        /// </summary>
-        /// <value></value>
-        /// <returns>true if the encapsulated property is read-only; otherwise, false.
-        /// </returns>
+
         public bool IsReadOnly
         {
             get { return _isReadOnly; }
@@ -254,11 +327,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             {
                 if (_isReadOnly == value)
                     return;
-                _isReadOnly = value;
-                OnPropertyChanged("IsReadOnly");
+
+                SetAndRaise(IsReadOnlyProperty, ref _isReadOnly, value);
             }
         }
-        
 
         /// <summary>
         /// Gets the type of the encapsulated property.
@@ -276,7 +348,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 return _descriptor.PropertyType;
             }
         }
-        
 
         /// <summary>
         /// Gets the standard values that the encapsulated property supports.
@@ -295,7 +366,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 return new ArrayList(0);
             }
         }
-        
+
         /// <summary>
         /// Gets the component the property belongs to.
         /// </summary>
@@ -304,7 +375,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         {
             get { return _component; }
         }
-        
+
         /// <summary>
         /// Gets the component the property belongs to.
         /// </summary>
@@ -315,7 +386,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         {
             get { return _unwrappedComponent ?? (_unwrappedComponent = ObjectServices.GetUnwrappedObject(_component)); }
         }
-
 
         /// <summary>
         /// Gets the tool tip.
@@ -388,8 +458,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             get { throw new NotImplementedException(); }
         }
 
-
-
         /// <summary>
         /// Gets a value indicating whether this instance is collection.
         /// </summary>
@@ -412,7 +480,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             var oldValue = GetValue();
             _descriptor.ResetValue(_component);
             OnValueChanged(oldValue, GetValue());
-            OnPropertyChanged("PropertyValue");
+            RaisePropertyChanged(PropertyValueProperty, null, PropertyValue);
+            //OnPropertyChanged("PropertyValue");
         }
 
         /// <summary>
@@ -435,7 +504,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             // Check whether underlying dependency property passes validation
             if (!IsValidAvaloniaPropertyValue(_descriptor, value))
             {
-                OnPropertyChanged("PropertyValue");
+                //OnPropertyChanged("PropertyValue");
+                RaisePropertyChanged(PropertyValueProperty, null, PropertyValue);
                 return;
             }
 
@@ -478,7 +548,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             {
                 // TODO: Provide error feedback!
             }
-            OnPropertyChanged("PropertyValue");
+            //OnPropertyChanged("PropertyValue");
+            RaisePropertyChanged(PropertyValueProperty, null, PropertyValue);
         }
 
         /// <summary>
@@ -497,8 +568,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
-
-
         /// <summary>
         /// Gets the attribute bound to property.
         /// </summary>
@@ -511,9 +580,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             return Attributes[typeof(T)] as T;
         }
 
-
-
-        
         private static object GetViaCustomTypeDescriptor(object obj, PropertyDescriptor descriptor)
         {
             var customTypeDescriptor = obj as ICustomTypeDescriptor;
@@ -526,7 +592,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <param name="value">The value.</param>
         /// <returns>
         /// 	<c>true</c> if value can be applied for the property; otherwise, <c>false</c>.
-        /// </returns>  
+        /// </returns>
         public bool Validate(object value)
         {
             return IsValidAvaloniaPropertyValue(_descriptor, value);
@@ -556,12 +622,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             // Try getting Parenthesize attribute
             var attr = GetAttribute<ParenthesizePropertyNameAttribute>();
 
-            // if property needs parenthesizing then apply parenthesis to resulting display name      
+            // if property needs parenthesizing then apply parenthesis to resulting display name
             return (attr != null && attr.NeedParenthesis)
               ? "(" + _descriptor.DisplayName + ")"
               : _descriptor.DisplayName;
         }
-        
+
         //public void SetPropertySouce(object source)
         //{
         //  if (source == null) throw new ArgumentNullException("source");
@@ -574,6 +640,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         //    OnPropertyChanged("PropertyValue");
         //  }
         //}
-
     }
 }

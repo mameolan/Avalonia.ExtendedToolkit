@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Avalonia.Controls;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml.Templates;
@@ -12,7 +10,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     /// </summary>
     public class ExtendedPropertyEditorTab : TabbedLayoutItem
     {
-        public Type StyleKey => typeof(ExtendedPropertyEditorTab);
+        public new Type StyleKey => typeof(ExtendedPropertyEditorTab);
 
         //private readonly ResourceLocator _resourceLocator = new ResourceLocator();
 
@@ -27,7 +25,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         /// </summary>
         static ExtendedPropertyEditorTab()
         {
-            
         }
 
         /// <summary>
@@ -89,7 +86,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
                 return dataTemplate;
 
             return null;
-#warning todo 
+#warning todo
             //var resourceKey = template as ComponentResourceKey;
             //if (resourceKey == null)
             //    return null;

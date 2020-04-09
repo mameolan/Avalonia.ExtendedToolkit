@@ -1,61 +1,98 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
     /// <summary>
     /// Provides a wrapper around property value to be used at presentation level.
     /// </summary>
-    public class PropertyItemValue : INotifyPropertyChanged
+    public class PropertyItemValue : AvaloniaObject //: INotifyPropertyChanged
     {
-        private readonly PropertyItem _property;
-
         /// <summary>
         /// Occurs when exception is raised at Property Value.
         /// <remarks>This event is reserved for future implementations.</remarks>
         /// </summary>
         public event EventHandler<ValueExceptionEventArgs> PropertyValueException;
+
         /// <summary>
         /// Occurs when root value is changed.
         /// <remarks>This event is reserved for future implementations.</remarks>
         /// </summary>
         public event EventHandler RootValueChanged;
+
         /// <summary>
-        /// Occurs when sub property changed.    
+        /// Occurs when sub property changed.
         /// </summary>
         public event EventHandler SubPropertyChanged;
 
-        /// <summary>
-        /// Gets the parent property.
-        /// </summary>
-        /// <value>The parent property.</value>
+        //private readonly PropertyItem _property;
+        ///// <summary>
+        ///// Gets the parent property.
+        ///// </summary>
+        ///// <value>The parent property.</value>
+        //public PropertyItem ParentProperty
+        //{
+        //    get { return _property; }
+        //}
+
+        public static readonly DirectProperty<PropertyItemValue, PropertyItem> ParentPropertyProperty =
+                AvaloniaProperty.RegisterDirect<PropertyItemValue, PropertyItem>(
+                    nameof(ParentProperty),
+                    o => o.ParentProperty);
+
+        private PropertyItem _parentProperty;
+
         public PropertyItem ParentProperty
         {
-            get { return _property; }
+            get { return _parentProperty; }
+            private set { SetAndRaise(ParentPropertyProperty, ref _parentProperty, value); }
         }
 
-        private readonly GridEntryCollection<PropertyItem> _subProperties = new GridEntryCollection<PropertyItem>();
+        //private readonly GridEntryCollection<PropertyItem> _subProperties = new GridEntryCollection<PropertyItem>();
+        //public GridEntryCollection<PropertyItem> SubProperties
+        //{
+        //    get { return _subProperties; }
+        //}
+
+        public static readonly DirectProperty<PropertyItemValue, GridEntryCollection<PropertyItem>> SubPropertiesProperty =
+                AvaloniaProperty.RegisterDirect<PropertyItemValue, GridEntryCollection<PropertyItem>>(
+                    nameof(SubProperties),
+                    o => o.SubProperties);
+
+        private GridEntryCollection<PropertyItem> _subProperties = new GridEntryCollection<PropertyItem>();
+
         public GridEntryCollection<PropertyItem> SubProperties
         {
             get { return _subProperties; }
+            private set { SetAndRaise(SubPropertiesProperty, ref _subProperties, value); }
         }
 
-        private readonly bool _hasSubProperties;
-        /// <summary>
-        /// Gets a value indicating whether encapsulated value has sub-properties.
-        /// </summary>
-        /// <remarks>This property is reserved for future implementations.</remarks>
-        /// <value>
-        /// 	<c>true</c> if this instance has sub properties; otherwise, <c>false</c>.
-        /// </value>
+        //private readonly bool _hasSubProperties;
+        ///// <summary>
+        ///// Gets a value indicating whether encapsulated value has sub-properties.
+        ///// </summary>
+        ///// <remarks>This property is reserved for future implementations.</remarks>
+        ///// <value>
+        ///// 	<c>true</c> if this instance has sub properties; otherwise, <c>false</c>.
+        ///// </value>
+        //public bool HasSubProperties
+        //{
+        //    get { return _hasSubProperties; }
+        //}
+
+        public static readonly DirectProperty<PropertyItemValue, bool> HasSubPropertiesProperty =
+                AvaloniaProperty.RegisterDirect<PropertyItemValue, bool>(
+                    nameof(HasSubProperties),
+                    o => o.HasSubProperties);
+
+        private bool _hasSubProperties;
+
         public bool HasSubProperties
         {
             get { return _hasSubProperties; }
+            private set { SetAndRaise(HasSubPropertiesProperty, ref _hasSubProperties, value); }
         }
 
         /// <summary>
@@ -66,18 +103,18 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         {
             if (property == null)
                 throw new ArgumentNullException("property");
-            this._property = property;
+            ParentProperty = property;
 
-            _hasSubProperties = property.Converter.GetPropertiesSupported();
+            HasSubProperties = property.Converter.GetPropertiesSupported();
 
-            if (_hasSubProperties)
+            if (HasSubProperties)
             {
                 object value = property.GetValue();
 
                 PropertyDescriptorCollection descriptors = property.Converter.GetProperties(value);
                 foreach (PropertyDescriptor d in descriptors)
                 {
-                    _subProperties.Add(new PropertyItem(property.Owner, value, d));
+                    SubProperties.Add(new PropertyItem(property.Owner, value, d));
                     // TODO: Move to PropertyData as a public property
                     NotifyParentPropertyAttribute notifyParent = d.Attributes[KnownTypes.Attributes.NotifyParentPropertyAttribute] as NotifyParentPropertyAttribute;
                     if (notifyParent != null && notifyParent.NotifyParent)
@@ -87,19 +124,20 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 }
             }
 
-            this._property.PropertyChanged += new PropertyChangedEventHandler(ParentPropertyChanged);
+            this.ParentProperty.PropertyChanged += ParentPropertyChanged;
         }
 
-
-        void ParentPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void ParentPropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(PropertyItem.PropertyValue))
+            if (e.Property.Name == nameof(PropertyItem.PropertyValue))
                 NotifyRootValueChanged();
 
-            if (e.PropertyName == nameof(PropertyItem.IsReadOnly))
+            if (e.Property.Name == nameof(PropertyItem.IsReadOnly))
             {
-                OnPropertyChanged(nameof(PropertyItem.IsReadOnly));
-                OnPropertyChanged(nameof(IsEditable));
+                //OnPropertyChanged(nameof(PropertyItem.IsReadOnly));
+                RaisePropertyChanged(PropertyItem.IsReadOnlyProperty, !ParentProperty.IsReadOnly, ParentProperty.IsReadOnly);
+                //OnPropertyChanged(nameof(IsEditable));
+                RaisePropertyChanged(IsEditableProperty, !IsEditable, IsEditable);
             }
         }
 
@@ -109,10 +147,28 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <value>
         /// 	<c>true</c> if this instance can convert from string; otherwise, <c>false</c>.
         /// </value>
+        //public bool CanConvertFromString
+        //{
+        //    get
+        //    {
+        //        return (((_property.Converter != null)
+        //          && _property.Converter.CanConvertFrom(typeof(string))) && !_property.IsReadOnly);
+        //    }
+        //}
+
+        public static readonly DirectProperty<PropertyItemValue, bool> CanConvertFromStringProperty =
+                AvaloniaProperty.RegisterDirect<PropertyItemValue, bool>(
+                    nameof(CanConvertFromString),
+                    o => o.CanConvertFromString);
+
         public bool CanConvertFromString
         {
-            get { return (((_property.Converter != null) 
-                    && _property.Converter.CanConvertFrom(typeof(string))) && !_property.IsReadOnly); }
+            get
+            {
+                return (((_parentProperty.Converter != null)
+                  && _parentProperty.Converter.CanConvertFrom(typeof(string)))
+                  && !_parentProperty.IsReadOnly);
+            }
         }
 
         /// <summary>
@@ -120,7 +176,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// </summary>
         public void ClearValue()
         {
-            _property.ClearValue();
+            _parentProperty.ClearValue();
         }
 
         /// <summary>
@@ -130,14 +186,14 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <returns>Value instance</returns>
         protected object ConvertStringToValue(string value)
         {
-            if (_property.PropertyType == typeof(string))
+            if (_parentProperty.PropertyType == typeof(string))
                 return value;
             //if (value.Length == 0) return null;
             if (string.IsNullOrEmpty(value))
                 return null;
-            if (!_property.Converter.CanConvertFrom(typeof(string)))
+            if (!_parentProperty.Converter.CanConvertFrom(typeof(string)))
                 throw new InvalidOperationException("Value to String conversion is not supported!");
-            return _property.Converter.ConvertFromString(null, GetSerializationCulture(), value);
+            return _parentProperty.Converter.ConvertFromString(null, GetSerializationCulture(), value);
         }
 
         /// <summary>
@@ -155,7 +211,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             if (collectionValue != null)
                 return collectionValue;
 
-            var converter = this._property.Converter;
+            var converter = this._parentProperty.Converter;
             if (converter.CanConvertTo(typeof(string)))
                 collectionValue = converter.ConvertToString(null, GetSerializationCulture(), value);
             else
@@ -174,7 +230,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <returns>Property value</returns>
         protected object GetValueCore()
         {
-            return this._property.GetValue();
+            return this._parentProperty.GetValue();
         }
 
         /// <summary>
@@ -183,9 +239,19 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <value>
         /// 	<c>true</c> if encapsulated property value is collection; otherwise, <c>false</c>.
         /// </value>
+        //public bool IsCollection
+        //{
+        //    get { return _property.IsCollection; }
+        //}
+
+        public static readonly DirectProperty<PropertyItemValue, bool> IsCollectionProperty =
+                AvaloniaProperty.RegisterDirect<PropertyItemValue, bool>(
+                    nameof(IsCollection),
+                    o => o.IsCollection);
+
         public bool IsCollection
         {
-            get { return _property.IsCollection; }
+            get { return _parentProperty.IsCollection; }
         }
 
         /// <summary>
@@ -194,9 +260,19 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <value>
         /// 	<c>true</c> if encapsulated property value is default value; otherwise, <c>false</c>.
         /// </value>
+        //public bool IsDefaultValue
+        //{
+        //    get { return _property.IsDefaultValue; }
+        //}
+
+        public static readonly DirectProperty<PropertyItemValue, bool> IsDefaultValueProperty =
+                AvaloniaProperty.RegisterDirect<PropertyItemValue, bool>(
+                    nameof(IsDefaultValue),
+                    o => o.IsDefaultValue);
+
         public bool IsDefaultValue
         {
-            get { return _property.IsDefaultValue; }
+            get { return _parentProperty.IsDefaultValue; }
         }
 
         /// <summary>
@@ -205,7 +281,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <param name="value">The value.</param>
         protected void SetValueCore(object value)
         {
-            _property.SetValue(value);
+            _parentProperty.SetValue(value);
         }
 
         // TODO: AvaloniaProperty validation should be placed here
@@ -216,7 +292,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         protected void ValidateValue(object valueToValidate)
         {
             //throw new NotImplementedException();
-            // Do nothing            
+            // Do nothing
         }
 
         private void SetValueImpl(object value)
@@ -254,6 +330,50 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// Gets or sets the string representation of the value.
         /// </summary>
         /// <value>The string value.</value>
+        //public string StringValue
+        //{
+        //    get
+        //    {
+        //        string str = string.Empty;
+        //        if (CatchExceptions)
+        //        {
+        //            try
+        //            {
+        //                str = ConvertValueToString(Value);
+        //            }
+        //            catch (Exception exception)
+        //            {
+        //                OnPropertyValueException(new ValueExceptionEventArgs("Cannot convert value to string", this, ValueExceptionSource.Get, exception));
+        //            }
+        //            return str;
+        //        }
+        //        return ConvertValueToString(Value);
+        //    }
+        //    set
+        //    {
+        //        if (CatchExceptions)
+        //        {
+        //            try
+        //            {
+        //                Value = ConvertStringToValue(value);
+        //            }
+        //            catch (Exception exception)
+        //            {
+        //                OnPropertyValueException(new ValueExceptionEventArgs("Cannot create value from string", this, ValueExceptionSource.Set, exception));
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Value = ConvertStringToValue(value);
+        //        }
+        //    }
+        //}
+
+        public static readonly DirectProperty<PropertyItemValue, string> StringValueProperty =
+                AvaloniaProperty.RegisterDirect<PropertyItemValue, string>(
+                    nameof(StringValue),
+                    o => o.StringValue);
+
         public string StringValue
         {
             get
@@ -297,6 +417,50 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// Gets or sets the value.
         /// </summary>
         /// <value>The value.</value>
+        //public object Value
+        //{
+        //    get
+        //    {
+        //        object valueCore = null;
+        //        if (CatchExceptions)
+        //        {
+        //            try
+        //            {
+        //                valueCore = GetValueCore();
+        //            }
+        //            catch (Exception exception)
+        //            {
+        //                OnPropertyValueException(new ValueExceptionEventArgs("Value Get Failed", this, ValueExceptionSource.Get, exception));
+        //            }
+        //            return valueCore;
+        //        }
+        //        return GetValueCore();
+        //    }
+        //    set
+        //    {
+        //        if (CatchExceptions)
+        //        {
+        //            try
+        //            {
+        //                SetValueImpl(value);
+        //            }
+        //            catch (Exception exception)
+        //            {
+        //                OnPropertyValueException(new ValueExceptionEventArgs("Value Set Failed", this, ValueExceptionSource.Set, exception));
+        //            }
+        //        }
+        //        else
+        //        {
+        //            SetValueImpl(value);
+        //        }
+        //    }
+        //}
+
+        public static readonly DirectProperty<PropertyItemValue, object> ValueProperty =
+                AvaloniaProperty.RegisterDirect<PropertyItemValue, object>(
+                    nameof(Value),
+                    o => o.Value);
+
         public object Value
         {
             get
@@ -336,17 +500,25 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
-
-
         /// <summary>
         /// Gets a value indicating whether encapsulated property value is read only.
         /// </summary>
         /// <value>
         /// 	<c>true</c> if this instance is read only; otherwise, <c>false</c>.
         /// </value>
+        //public bool IsReadOnly
+        //{
+        //    get { return _property.IsReadOnly; }
+        //}
+
+        public static readonly DirectProperty<PropertyItemValue, bool> IsReadOnlyProperty =
+                AvaloniaProperty.RegisterDirect<PropertyItemValue, bool>(
+                    nameof(IsReadOnly),
+                    o => o.IsReadOnly);
+
         public bool IsReadOnly
         {
-            get { return _property.IsReadOnly; }
+            get { return _parentProperty.IsReadOnly; }
         }
 
         /// <summary>
@@ -355,12 +527,20 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <value>
         /// 	<c>true</c> if this instance is editable; otherwise, <c>false</c>.
         /// </value>
+        //public bool IsEditable
+        //{
+        //    get { return !_property.IsReadOnly; }
+        //}
+
+        public static readonly DirectProperty<PropertyItemValue, bool> IsEditableProperty =
+                AvaloniaProperty.RegisterDirect<PropertyItemValue, bool>(
+                    nameof(IsEditable),
+                    o => o.IsEditable);
+
         public bool IsEditable
         {
-            get { return !_property.IsReadOnly; }
+            get { return !_parentProperty.IsReadOnly; }
         }
-
-        
 
         /// <summary>
         /// Gets the serialization culture.
@@ -368,46 +548,61 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <returns>Culture to serialize value.</returns>
         protected virtual CultureInfo GetSerializationCulture()
         {
-            return ObjectServices.GetSerializationCulture(_property.PropertyType);
+            return ObjectServices.GetSerializationCulture(_parentProperty.PropertyType);
         }
 
-        
+        ///// <summary>
+        ///// Occurs when a property value changes.
+        ///// </summary>
+        //public event PropertyChangedEventHandler PropertyChanged;
 
-        /// <summary>
-        /// Occurs when a property value changes.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Called when property value is changed.
-        /// </summary>
-        /// <param name="propertyName">Name of the property.</param>
-        protected void OnPropertyChanged([CallerMemberName]string propertyName=null)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
+        ///// <summary>
+        ///// Called when property value is changed.
+        ///// </summary>
+        ///// <param name="propertyName">Name of the property.</param>
+        //protected void OnPropertyChanged([CallerMemberName]string propertyName=null)
+        //{
+        //    if (PropertyChanged != null)
+        //        PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        //}
 
         /// <summary>
         /// Notifies the root value changed.
         /// </summary>
         protected virtual void NotifyRootValueChanged()
         {
-            OnPropertyChanged("IsDefaultValue");
-            OnPropertyChanged("IsMixedValue");
-            OnPropertyChanged("IsCollection");
-            OnPropertyChanged("Collection");
-            OnPropertyChanged("HasSubProperties");
-            OnPropertyChanged("SubProperties");
-            OnPropertyChanged("Source");
-            OnPropertyChanged("CanConvertFromString");
+            //OnPropertyChanged("IsDefaultValue");
+            RaisePropertyChanged(IsDefaultValueProperty, !IsDefaultValue, IsDefaultValue);
+
+            //does not exist
+            //OnPropertyChanged("IsMixedValue");
+
+            //OnPropertyChanged("IsCollection");
+            RaisePropertyChanged(IsCollectionProperty, !IsCollection, IsCollection);
+
+            //does not exist
+            //OnPropertyChanged("Collection");
+
+            //OnPropertyChanged("HasSubProperties");
+            RaisePropertyChanged(HasSubPropertiesProperty, !HasSubProperties, HasSubProperties);
+
+            //OnPropertyChanged("SubProperties");
+            RaisePropertyChanged(SubPropertiesProperty, null, SubProperties);
+
+            //does not exist
+            //OnPropertyChanged("Source");
+
+            //OnPropertyChanged("CanConvertFromString");
+            RaisePropertyChanged(CanConvertFromStringProperty, !CanConvertFromString, CanConvertFromString);
+
             NotifyValueChanged();
             OnRootValueChanged();
         }
 
         private void NotifyStringValueChanged()
         {
-            OnPropertyChanged("StringValue");
+            //OnPropertyChanged("StringValue");
+            RaisePropertyChanged(StringValueProperty, null, CanConvertFromString);
         }
 
         /// <summary>
@@ -421,7 +616,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         private void NotifyValueChanged()
         {
-            OnPropertyChanged("Value");
+            //OnPropertyChanged("Value");
+            RaisePropertyChanged(ValueProperty, null, Value);
             NotifyStringValueChanged();
         }
 
@@ -438,6 +634,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             if (handler != null)
                 handler(this, EventArgs.Empty);
         }
-
     }
 }

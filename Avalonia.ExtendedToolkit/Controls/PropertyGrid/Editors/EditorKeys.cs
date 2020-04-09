@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
+﻿namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
     /// <summary>
     /// Contains a set of editor keys.
@@ -85,7 +81,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// Gets the default complex property editor key.
         /// </summary>
         public static string ComplexPropertyEditorKey { get { return _ComplexPropertyEditorKey; } }
-
-
     }
 }

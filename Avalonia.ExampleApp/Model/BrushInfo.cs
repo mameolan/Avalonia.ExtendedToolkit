@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Reflection;
 using System.Text;
 using Avalonia.Media;
@@ -16,9 +17,7 @@ namespace Avalonia.ExampleApp.Model
         public string Name { get; set; }
         public PropertyInfo Info { get; set; }
         public object Component { get; set; }
-
-
-
+        
         public IBrush ObjectBrush
         {
             get { return (IBrush)GetValue(ObjectBrushProperty); }

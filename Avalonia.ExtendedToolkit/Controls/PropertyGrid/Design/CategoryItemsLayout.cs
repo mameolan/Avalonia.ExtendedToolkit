@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using Avalonia.Controls;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 {
@@ -12,6 +11,4 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         public Type StyleKey => typeof(CategoryItemsLayout);
 
     }
-
-
 }

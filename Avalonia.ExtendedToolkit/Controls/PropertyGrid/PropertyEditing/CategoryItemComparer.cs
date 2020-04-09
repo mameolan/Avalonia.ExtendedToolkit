@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
@@ -41,7 +40,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
             return leftOrder.CompareTo(rightOrder);
         }
-
-     
     }
 }

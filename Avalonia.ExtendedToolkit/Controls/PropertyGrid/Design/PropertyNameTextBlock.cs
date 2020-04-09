@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Avalonia.Controls;
 using Avalonia.Input;
 
@@ -9,7 +7,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     /// <summary>
     /// Specifies a property name presenter.
     /// </summary>
-    public sealed class PropertyNameTextBlock : TextBlock
+    public sealed class PropertyNameTextBlock : TextBox
     {
         public Type StyleKey => typeof(PropertyNameTextBlock);
 
@@ -18,9 +16,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         /// </summary>
         public PropertyNameTextBlock()
         {
+            IsReadOnly = true;
             //TextTrimming = TextTrimming.CharacterEllipsis;
-            TextWrapping = Media.TextWrapping.NoWrap;
+            //TextWrapping = Media.TextWrapping.NoWrap;
             TextAlignment = Media.TextAlignment.Right;
+            HorizontalAlignment = Layout.HorizontalAlignment.Stretch;
             VerticalAlignment = Layout.VerticalAlignment.Center;
             ClipToBounds = true;
 

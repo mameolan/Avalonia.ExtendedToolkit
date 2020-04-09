@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Internal
 {
@@ -10,7 +8,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Internal
     internal static class MathUtil
     {
         /// <summary>
-        /// Validates the string passed by parsing it as int and checking if it is inside the bounds specified 
+        /// Validates the string passed by parsing it as int and checking if it is inside the bounds specified
         /// then the resulting int will be incremented/decremented
         /// </summary>
         /// <param name="num">The string to parse as int and increment/decrement</param>

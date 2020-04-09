@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Controls.Generators;
+using Avalonia.Controls.Templates;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 {
@@ -12,12 +10,35 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     /// <typeparam name="T">The type of elements in the control.</typeparam>
     public abstract class GridEntryLayout<T> : ItemsControl where T : GridEntryContainer, new()
     {
-        
+        /// <summary>
+        /// The default value for the <see cref="ItemsControl.ItemsPanel"/> property.
+        /// </summary>
+        private static readonly FuncTemplate<IPanel> DefaultPanel =
+            new FuncTemplate<IPanel>(() => new VirtualizingStackPanel());
+
+        static GridEntryLayout()
+        {
+            ItemsPanelProperty.OverrideDefaultValue<GridEntryLayout<T>>(DefaultPanel);
+        }
+
+        public GridEntryLayout()
+        {
+            ItemContainerGenerator.Materialized += ItemContainerGenerator_Materialized;
+        }
+
+        private void ItemContainerGenerator_Materialized(object sender, ItemContainerEventArgs e)
+        {
+            
+        }
 
         protected override IItemContainerGenerator CreateItemContainerGenerator()
         {
-            return base.CreateItemContainerGenerator();
+            var result = new GridEntryLayoutContainer<T>(this);
+            return result;
         }
+
+        
+
 #warning todo
         ///// <summary>
         ///// Creates or identifies the element that is used to display the given item.

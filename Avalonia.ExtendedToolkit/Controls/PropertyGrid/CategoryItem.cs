@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
@@ -18,10 +17,29 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <value>The attribute.</value>
         public Attribute Attribute { get; set; }
 
+        //private int _order = -1;
+        ///// <summary>
+        ///// Gets or sets the order of the category.
+        ///// </summary>
+        //public int Order
+        //{
+        //    get { return _order; }
+        //    set
+        //    {
+        //        if (_order == value)
+        //            return;
+        //        _order = value;
+        //        OnPropertyChanged("Order");
+        //    }
+        //}
+
+        public static readonly DirectProperty<CategoryItem, int> OrderProperty =
+                AvaloniaProperty.RegisterDirect<CategoryItem, int>(
+                    nameof(Order),
+                    o => o.Order);
+
         private int _order = -1;
-        /// <summary>
-        /// Gets or sets the order of the category.
-        /// </summary>
+
         public int Order
         {
             get { return _order; }
@@ -29,18 +47,36 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             {
                 if (_order == value)
                     return;
-                _order = value;
-                OnPropertyChanged("Order");
+                SetAndRaise(OrderProperty, ref _order, value);
             }
         }
 
-        private bool _isExpanded = true;
-        /// <summary>
-        /// Gets or sets a value indicating whether this category is expanded.
-        /// </summary>
-        /// <value>
-        /// 	<c>true</c> if this category is expanded; otherwise, <c>false</c>.
-        /// </value>
+        //private bool _isExpanded = true;
+        ///// <summary>
+        ///// Gets or sets a value indicating whether this category is expanded.
+        ///// </summary>
+        ///// <value>
+        ///// 	<c>true</c> if this category is expanded; otherwise, <c>false</c>.
+        ///// </value>
+        //public bool IsExpanded
+        //{
+        //    get { return _isExpanded; }
+        //    set
+        //    {
+        //        if (_isExpanded == value)
+        //            return;
+        //        _isExpanded = value;
+        //        OnPropertyChanged("IsExpanded");
+        //    }
+        //}
+
+        public static readonly DirectProperty<CategoryItem, bool> IsExpandedProperty =
+                AvaloniaProperty.RegisterDirect<CategoryItem, bool>(
+                    nameof(IsExpanded),
+                    o => o.IsExpanded);
+
+        private bool _isExpanded;
+
         public bool IsExpanded
         {
             get { return _isExpanded; }
@@ -48,12 +84,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             {
                 if (_isExpanded == value)
                     return;
-                _isExpanded = value;
-                OnPropertyChanged("IsExpanded");
+                SetAndRaise(IsExpandedProperty, ref _isExpanded, value);
             }
         }
 
         private readonly GridEntryCollection<PropertyItem> _properties = new GridEntryCollection<PropertyItem>();
+
         /// <summary>
         /// Get all the properties in the category.
         /// </summary>
@@ -67,7 +103,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         }
 
         // <summary>
-        /// Gets the <see cref="WpfPropertyGrid.PropertyItem"/> with the specified property name.
+        /// Gets the <see cref="PropertyItem"/> with the specified property name.
         /// </summary>
         /// <value></value>
         public PropertyItem this[string propertyName]
@@ -75,11 +111,31 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             get { return _properties[propertyName]; }
         }
 
-        private IComparer<PropertyItem> _comparer = new PropertyItemComparer();
-        /// <summary>
-        /// Gets or sets the comparer used to sort properties.
-        /// </summary>
-        /// <value>The comparer. </value>
+        //private IComparer<PropertyItem> _comparer = new PropertyItemComparer();
+        ///// <summary>
+        ///// Gets or sets the comparer used to sort properties.
+        ///// </summary>
+        ///// <value>The comparer. </value>
+        //public IComparer<PropertyItem> Comparer
+        //{
+        //    get { return _comparer; }
+        //    set
+        //    {
+        //        if (_comparer == value)
+        //            return;
+        //        _comparer = value;
+        //        _properties.Sort(_comparer);
+        //        OnPropertyChanged("Comparer");
+        //    }
+        //}
+
+        public static readonly DirectProperty<CategoryItem, IComparer<PropertyItem>> ComparerProperty =
+                AvaloniaProperty.RegisterDirect<CategoryItem, IComparer<PropertyItem>>(
+                    nameof(Comparer),
+                    o => o.Comparer);
+
+        private IComparer<PropertyItem> _comparer;
+
         public IComparer<PropertyItem> Comparer
         {
             get { return _comparer; }
@@ -87,19 +143,37 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             {
                 if (_comparer == value)
                     return;
-                _comparer = value;
+                SetAndRaise(ComparerProperty, ref _comparer, value);
                 _properties.Sort(_comparer);
-                OnPropertyChanged("Comparer");
             }
         }
 
-        private bool _hasVisibleProperties;
+        //private bool _hasVisibleProperties;
         /// <summary>
         /// Gets or sets a value indicating whether this instance has visible properties.
         /// </summary>
         /// <value>
         /// 	<c>true</c> if this instance has visible properties; otherwise, <c>false</c>.
         /// </value>
+        //public bool HasVisibleProperties
+        //{
+        //    get { return _hasVisibleProperties; }
+        //    private set
+        //    {
+        //        if (_hasVisibleProperties == value)
+        //            return;
+        //        _hasVisibleProperties = value;
+        //        OnPropertyChanged("HasVisibleProperties");
+        //    }
+        //}
+
+        public static readonly DirectProperty<CategoryItem, bool> HasVisiblePropertiesProperty =
+                AvaloniaProperty.RegisterDirect<CategoryItem, bool>(
+                    nameof(HasVisibleProperties),
+                    o => o.HasVisibleProperties);
+
+        private bool _hasVisibleProperties;
+
         public bool HasVisibleProperties
         {
             get { return _hasVisibleProperties; }
@@ -107,21 +181,32 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             {
                 if (_hasVisibleProperties == value)
                     return;
-                _hasVisibleProperties = value;
-                OnPropertyChanged("HasVisibleProperties");
+                SetAndRaise(HasVisiblePropertiesProperty, ref _hasVisibleProperties, value);
             }
         }
 
         /// <summary>
         /// Gets a value indicating whether this instance should be visible.
         /// </summary>
-        public override bool IsVisible
+        //public new bool IsVisible
+        //{
+        //    get { return base.IsVisible && HasVisibleProperties; }
+        //}
+
+        public static new readonly DirectProperty<CategoryItem, bool> IsVisibleProperty =
+                AvaloniaProperty.RegisterDirect<CategoryItem, bool>(
+                    nameof(IsVisible),
+                    o => o.IsVisible);
+
+        private bool _IsVisible;
+
+        public new bool IsVisible
         {
             get { return base.IsVisible && HasVisibleProperties; }
         }
 
+        //prop.IsBrowsable && prop.MatchesFilter
 
-        
         /// <summary>
         /// Initializes a new instance of the <see cref="CategoryItem"/> class.
         /// </summary>
@@ -149,8 +234,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             Attribute = category;
         }
 
-        static readonly Func<PropertyItem, bool> IsVisibleProperty = prop => 
-                                                        prop.IsBrowsable && prop.MatchesFilter;
+        private static readonly Func<PropertyItem, bool> IsPropertyVisible = prop =>
+                                                           prop.IsBrowsable && prop.MatchesFilter;
 
         /// <summary>
         /// Adds the property.
@@ -172,14 +257,14 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             if (property.IsBrowsable)
                 HasVisibleProperties = true;
             else
-                HasVisibleProperties = _properties.Any(IsVisibleProperty);
+                HasVisibleProperties = _properties.Any(IsPropertyVisible);
 
             property.BrowsableChanged += PropertyBrowsableChanged;
         }
 
         private void PropertyBrowsableChanged(object sender, EventArgs e)
         {
-            HasVisibleProperties = _properties.Any(IsVisibleProperty);
+            HasVisibleProperties = _properties.Any(IsPropertyVisible);
         }
 
         /// <summary>
@@ -188,7 +273,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <param name="predicate">The filtering predicate.</param>
         /// <returns>
         /// 	<c>true</c> if entry matches predicate; otherwise, <c>false</c>.
-        /// </returns>   
+        /// </returns>
         public override bool MatchesPredicate(PropertyFilterPredicate predicate)
         {
             return _properties.All(property => property.MatchesPredicate(predicate));
@@ -207,7 +292,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                     propertiesMatch = true;
             }
 
-            HasVisibleProperties = _properties.Any(IsVisibleProperty);
+            HasVisibleProperties = _properties.Any(IsPropertyVisible);
             MatchesFilter = propertiesMatch;
 
             if (propertiesMatch && !IsExpanded)
