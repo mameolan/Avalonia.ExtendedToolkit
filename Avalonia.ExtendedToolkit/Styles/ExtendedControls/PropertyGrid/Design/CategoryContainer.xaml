@@ -11,9 +11,6 @@
   </Styles.Resources>
 
   <Style Selector="design|CategoryContainer">
-    <Setter Property="BorderBrush" Value="Green"/>
-    <Setter Property="BorderThickness" Value="2"/>
-
     <Setter Property="IsVisible">
       <Setter.Value>
         <MultiBinding Converter="{StaticResource multiBooleanToVisibilityConverter}" Mode="OneWay">

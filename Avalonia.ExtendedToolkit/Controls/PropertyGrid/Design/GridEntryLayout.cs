@@ -15,12 +15,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         /// <summary>
         /// The default value for the <see cref="ItemsControl.ItemsPanel"/> property.
         /// </summary>
-        private static readonly FuncTemplate<IPanel> DefaultPanel =
-            new FuncTemplate<IPanel>(() => new VirtualizingStackPanel());
+        //private static readonly FuncTemplate<IPanel> DefaultPanel =
+        //    new FuncTemplate<IPanel>(() => new VirtualizingStackPanel());
 
         static GridEntryLayout()
         {
-            ItemsPanelProperty.OverrideDefaultValue<GridEntryLayout<T>>(DefaultPanel);
+            //ItemsPanelProperty.OverrideDefaultValue<GridEntryLayout<T>>(DefaultPanel);
         }
 
         public GridEntryLayout()

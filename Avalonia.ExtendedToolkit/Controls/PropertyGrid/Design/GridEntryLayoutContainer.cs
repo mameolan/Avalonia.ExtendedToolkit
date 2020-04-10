@@ -16,14 +16,25 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 
         protected override IControl CreateContainer(object element)
         {
-            var item = element as GridEntry;
+            
 
-            if (item!=null)
+            if (element is GridEntryContainer)
             {
-                
+                var item = element as GridEntryContainer;
+
                 item.DataContext = Owner.DataContext;
                 item.Bind(GridEntryContainer.EntryProperty, new Binding());
-                //return base.CreateContainer(item);
+                return base.CreateContainer(item);
+            }
+            else if(element is GridEntry)
+            {
+                var item = element as GridEntry;
+                item.DataContext = Owner.DataContext;
+                return base.CreateContainer(item);
+            }
+            else
+            {
+
             }
             //else if(element is CategoryItem)
             //{
@@ -34,7 +45,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             //}
 
 
-            return base.CreateContainer(item);
+            return base.CreateContainer(element);
         }
 
 

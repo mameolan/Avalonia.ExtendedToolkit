@@ -54,19 +54,26 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             DeclaringType = declaringType;
             CategoryName = categoryName;
 
-            var genericStyle = Application.Current.Styles.OfType<StyleInclude>().FirstOrDefault(styleInclude => styleInclude.
-                         Source.AbsoluteUri.StartsWith("avares://Avalonia.ExtendedToolkit/Styles/Generic.xaml"));
+            if (inlineTemplate is string)
+            {
+                var genericStyle = Application.Current.Styles.OfType<StyleInclude>().FirstOrDefault(styleInclude => styleInclude.
+                             Source.AbsoluteUri.StartsWith("avares://Avalonia.ExtendedToolkit/Styles/Generic.xaml"));
 
-            var result=(genericStyle.Loaded as Styles)?.OfType<StyleInclude>()
-                    .FirstOrDefault(styleInclude => styleInclude.
-                         Source.AbsoluteUri.EndsWith("PropertyGrid/EditorResources.xaml"));
+                var result = (genericStyle.Loaded as Styles)?.OfType<StyleInclude>()
+                        .FirstOrDefault(styleInclude => styleInclude.
+                             Source.AbsoluteUri.EndsWith("PropertyGrid/Editor/EditorResources.xaml"));
 
-            result.Loaded.TryGetResource(inlineTemplate, out object resourceValue);
+                result.Loaded.TryGetResource(inlineTemplate, out object resourceValue);
 
-            DataTemplate dataTemplate = resourceValue as DataTemplate;
+                DataTemplate dataTemplate = resourceValue as DataTemplate;
 
 
-            InlineTemplate = dataTemplate;// inlineTemplate;
+                InlineTemplate = dataTemplate;// inlineTemplate;
+            }
+            else
+            {
+                InlineTemplate =  inlineTemplate;
+            }
         }
     }
 }

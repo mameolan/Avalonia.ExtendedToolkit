@@ -58,7 +58,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         //    get { return IsBrowsable && MatchesFilter; }
         //}
 
-        public static new readonly DirectProperty<GridEntry, bool> IsVisibleProperty =
+        public new static readonly DirectProperty<GridEntry, bool> IsVisibleProperty =
                 AvaloniaProperty.RegisterDirect<GridEntry, bool>(
                     nameof(IsVisible),
                     o => o.IsVisible);

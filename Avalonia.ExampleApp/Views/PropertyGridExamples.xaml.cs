@@ -8,16 +8,11 @@ using Avalonia.Media;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class PropertyGridExample : UserControl
+    public class PropertyGridExamples : UserControl
     {
-        private PropertyGrid _propertyGrid;
-
-        public PropertyGridExample()
+        public PropertyGridExamples()
         {
             this.InitializeComponent();
-
-            _propertyGrid = this.Find<PropertyGrid>("propertyGrid");
-            _propertyGrid.SelectedObject = new BrushProxy(new MultiBrushObject1 { Background = Brushes.DarkCyan, BorderBrush = Brushes.Violet });
         }
 
         private void InitializeComponent()

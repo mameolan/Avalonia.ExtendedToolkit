@@ -1,0 +1,208 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
+    >
+  <!--just a clone of TabbedLayoutItem style-->
+  
+  <Styles.Resources>
+    <SolidColorBrush x:Key="TabControlNormalBorderBrush" Color="#8C8E94"/>
+    <LinearGradientBrush x:Key="TabItemHotBackground" EndPoint="0,1" StartPoint="0,0">
+      <GradientStop Color="#EAF6FD" Offset="0.15"/>
+      <GradientStop Color="#D9F0FC" Offset=".5"/>
+      <GradientStop Color="#BEE6FD" Offset=".5"/>
+      <GradientStop Color="#A7D9F5" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="TabItemSelectedBackground" Color="#F9F9F9"/>
+    <SolidColorBrush x:Key="TabItemHotBorderBrush" Color="#3C7FB1"/>
+    <SolidColorBrush x:Key="TabItemDisabledBackground" Color="#F4F4F4"/>
+    <SolidColorBrush x:Key="TabItemDisabledBorderBrush" Color="#FFC9C7BA"/>
+
+
+    <LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+      <GradientStop Color="#F3F3F3" Offset="0"/>
+      <GradientStop Color="#EBEBEB" Offset="0.5"/>
+      <GradientStop Color="#DDDDDD" Offset="0.5"/>
+      <GradientStop Color="#CDCDCD" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ButtonOverBackground" EndPoint="0,1" StartPoint="0,0">
+      <GradientStop Color="#FFFAFAFA" Offset="0"/>
+      <GradientStop Color="#FFE0E0E3" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ButtonPressedBackground" EndPoint="0,1" StartPoint="0,0">
+      <GradientStop Color="#FFE0E0E2" Offset="0"/>
+      <GradientStop Color="#FFF8F8F8" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF969696"/>
+  </Styles.Resources>
+
+
+  <Style Selector="Button.CloseableTabItemButtonStyle">
+    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="Padding" Value="4"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Button}">
+          <Grid>
+            <Border x:Name="Chrome"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="2" Opacity="0" />
+            <ContentPresenter
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              Margin="{TemplateBinding Padding}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Button.CloseableTabItemButtonStyle:pointerover /template/ Border#Chrome">
+    <Setter Property="Opacity" Value="1"/>
+    <Setter Property="Background" Value="{DynamicResource ButtonOverBackground}" />
+  </Style>
+
+  <Style Selector="Button.CloseableTabItemButtonStyle:pressed /template/ Border#Chrome">
+    <Setter Property="Opacity" Value="1"/>
+    <Setter Property="Background" Value="{DynamicResource ButtonPressedBackground}" />
+  </Style>
+
+  <Style Selector="Button.CloseableTabItemButtonStyle:disabled">
+    <Setter Property="Foreground" Value="#ADADAD"/>
+  </Style>
+
+
+
+  <!--propertygrid style tabitem-->
+  <Style Selector="design|ExtendedPropertyEditorTab">
+    <Setter Property="Foreground" Value="Black"/>
+    <Setter Property="Padding" Value="6,1,6,1"/>
+    <Setter Property="BorderBrush" Value="{StaticResource TabControlNormalBorderBrush}"/>
+    <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid >
+            <Border x:Name="Bd" Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="1,1,1,0" >
+              <DockPanel x:Name="ContentPanel">
+                <Button x:Name="PART_Close" HorizontalAlignment="Center"
+                        Margin="3,0,3,0"
+                        VerticalAlignment="Center"
+                        Width="16" Height="16"
+                        DockPanel.Dock="Right"
+                        Classes="CloseableTabItemButtonStyle"
+                        IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CanClose}"
+                        >
+                  <!--Command="pg:PropertyGridCommands.ClosePropertyTab"-->
+                  <Path x:Name="Path" Stretch="Fill"
+                        StrokeThickness="0.5"
+                        Stroke="#FF333333"
+                        Fill="#FF969696"
+                        Data="F1 M 2.28484e-007,1.33331L 1.33333,0L 4.00001,2.66669L 6.66667,6.10352e-005L 8,1.33331L 5.33334,4L 8,6.66669L 6.66667,8L 4,5.33331L 1.33333,8L 1.086e-007,6.66669L 2.66667,4L 2.28484e-007,1.33331 Z "
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"/>
+                </Button>
+                <ContentPresenter x:Name="Content"
+                                  Content="{TemplateBinding Header}"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Margin="{TemplateBinding Padding}"/>
+              </DockPanel>
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab /template/ Button#PART_Close:pointerover /template/ Path#Path">
+    <Setter Property="Fill" Value="#FFB83C3D"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab /template/ Button#PART_Close:pressed /template/ Path#Path">
+    <Setter Property="Fill" Value="#FF9D3838"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab:pointerover /template/ Border#Bd">
+    <Setter Property="Background" Value="{StaticResource TabItemHotBackground}"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab:selected">
+    <Setter Property="ZIndex" Value="1"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab:selected /template/ Border#Bd">
+    <Setter Property="Background" Value="{StaticResource TabItemSelectedBackground}"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab[IsSelected=false][IsPointerOver=true] /template/ Border#Bd">
+    <Setter Property="BorderBrush" Value="{StaticResource TabItemHotBorderBrush}"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab[TabStripPlacement=Bottom] /template/ Border#Bd">
+    <Setter Property="BorderThickness" Value="1,0,1,1"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab[TabStripPlacement=Left] /template/ Border#Bd">
+    <Setter Property="BorderThickness" Value="1,1,0,1"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab[TabStripPlacement=Right] /template/ Border#Bd">
+    <Setter Property="BorderThickness" Value="0,1,1,1"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab[IsSelected=true][TabStripPlacement=Top]">
+    <Setter Property="Margin" Value="-2,-2,-2,-1"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab[IsSelected=true][TabStripPlacement=Top] /template/ DockPanel#ContentPanel">
+    <Setter Property="Margin" Value="0,0,0,1"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab[IsSelected=true][TabStripPlacement=Bottom]">
+    <Setter Property="Margin" Value="-2,-1,-2,-2"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab[IsSelected=true][TabStripPlacement=Bottom] /template/ DockPanel#ContentPanel">
+    <Setter Property="Margin" Value="0,1,0,0"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab[IsSelected=true][TabStripPlacement=Left]">
+    <Setter Property="Margin" Value="-2,-2,-1,-2"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab[IsSelected=true][TabStripPlacement=Left] /template/ DockPanel#ContentPanel">
+    <Setter Property="Margin" Value="0,0,1,0"/>
+  </Style>
+  
+  <Style Selector="design|ExtendedPropertyEditorTab[IsSelected=true][TabStripPlacement=Right]">
+    <Setter Property="Margin" Value="-1,-2,-2,-2"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab[IsSelected=true][TabStripPlacement=Right] /template/ DockPanel#ContentPanel">
+    <Setter Property="Margin" Value="1,0,0,0"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab:disabled /template/ Border#Bd">
+    <Setter Property="Background" Value="{StaticResource TabItemDisabledBackground}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource TabItemDisabledBorderBrush}"/>
+  </Style>
+  
+  <Style Selector="design|ExtendedPropertyEditorTab:disabled">
+    <!--{DynamicResource {x:Static SystemColors.GrayTextBrushKey}} correct?-->
+    <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundLowBrush}"/>
+  </Style>
+
+</Styles>
