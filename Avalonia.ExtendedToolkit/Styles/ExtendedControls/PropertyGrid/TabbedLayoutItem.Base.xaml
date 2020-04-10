@@ -1,0 +1,55 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
+    >
+  
+  <!--avalonia tabitem style-->
+  <Style Selector="design|TabbedLayoutItem">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="FontSize" Value="{DynamicResource FontSizeLarge}"/>
+    <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundLightBrush}"/>
+    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    <Setter Property="Padding" Value="8"/>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter
+            Name="PART_ContentPresenter"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            ContentTemplate="{TemplateBinding HeaderTemplate}"
+            Content="{TemplateBinding Header}"
+            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+            Margin="{TemplateBinding Margin}"
+            Padding="{TemplateBinding Padding}"/>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="design|TabbedLayoutItem:disabled">
+    <Setter Property="Opacity" Value="{DynamicResource ThemeDisabledOpacity}"/>
+  </Style>
+  <Style Selector="design|TabbedLayoutItem:pointerover">
+    <Setter Property="Background" Value="{DynamicResource ThemeControlHighlightMidBrush}"/>
+  </Style>
+  <Style Selector="design|TabbedLayoutItem:selected">
+    <Setter Property="Background" Value="{DynamicResource ThemeAccentBrush4}"/>
+  </Style>
+  <Style Selector="design|TabbedLayoutItem:selected:focus">
+    <Setter Property="Background" Value="{DynamicResource ThemeAccentBrush3}"/>
+  </Style>
+  <Style Selector="design|TabbedLayoutItem:selected:pointerover">
+    <Setter Property="Background" Value="{DynamicResource ThemeAccentBrush3}"/>
+  </Style>
+  <Style Selector="design|TabbedLayoutItem:selected:focus:pointerover">
+    <Setter Property="Background" Value="{DynamicResource ThemeAccentBrush2}"/>
+  </Style>
+  <Style Selector="design|TabbedLayoutItem[TabStripPlacement=Right]">
+    <Setter Property="HorizontalContentAlignment" Value="Right"/>
+  </Style>
+  
+  
+  
+</Styles>

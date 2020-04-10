@@ -1,6 +1,8 @@
-﻿using Avalonia.Controls;
+﻿using System.Linq;
+using Avalonia.Controls;
 using Avalonia.Controls.Generators;
 using Avalonia.Controls.Templates;
+using Avalonia.Data;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 {
@@ -23,13 +25,26 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 
         public GridEntryLayout()
         {
-            ItemContainerGenerator.Materialized += ItemContainerGenerator_Materialized;
+       
         }
 
-        private void ItemContainerGenerator_Materialized(object sender, ItemContainerEventArgs e)
-        {
-            
-        }
+        //protected override void OnContainersMaterialized(ItemContainerEventArgs e)
+        //{
+        //    foreach(var item in e.Containers)
+        //    {
+        //        var container = item.ContainerControl;
+        //        if (container is T)
+        //        {
+        //            container.DataContext = item;
+        //            container.Bind(GridEntryContainer.EntryProperty, new Binding());
+        //        }
+        //    }
+
+
+
+        //    base.OnContainersMaterialized(e);
+        //}
+
 
         protected override IItemContainerGenerator CreateItemContainerGenerator()
         {
@@ -37,7 +52,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             return result;
         }
 
-        
+
 
 #warning todo
         ///// <summary>
