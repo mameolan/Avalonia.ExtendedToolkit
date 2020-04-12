@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
+namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
     /// <summary>
     /// Provides value editing service for a property value.
@@ -62,7 +62,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public PropertyEditor(Type declaringType, string propertyName, object inlineTemplate)
           : this(declaringType, propertyName)
         {
-            InlineTemplate = inlineTemplate;
+            InlineTemplate = GetEditorTemplate(inlineTemplate);
         }
     }
 }

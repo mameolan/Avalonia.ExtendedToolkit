@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pg="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid;assembly=Avalonia.ExtendedToolkit"
+             xmlns:editors="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;assembly=Avalonia.ExtendedToolkit"
              xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
              xmlns:panel="clr-namespace:Avalonia.ExtendedToolkit.Controls.Panels;assembly=Avalonia.ExtendedToolkit"
              xmlns:Model="clr-namespace:Avalonia.ExampleApp.Model;assembly=Avalonia.ExampleApp"
@@ -10,8 +11,8 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.PropertyGridExample_BrushCategory">
   <UserControl.Styles>
-    
-    
+
+
     <Style Selector="pg|PropertyGrid">
       <Setter Property="Background">
         <Setter.Value>
@@ -31,8 +32,8 @@
       <Setter Property="Background" Value="YellowGreen"/>
       <Setter Property="Width" Value="100"/>
       <Setter Property="Height" Value="100"/>
-      
-      
+
+
       <Setter Property="Template">
         <Setter.Value>
           <ControlTemplate>
@@ -57,8 +58,8 @@
 
                 <Border Grid.Row="1" Background="{Binding Background}">
                   <Border BorderThickness="0.5,1,0,0" BorderBrush="#6000" Background="#10FFFFFF" CornerRadius="2,3,2,2" Margin="2" >
-                    <ContentPresenter x:Name="PART_SelectedContentHost" 
-                                      Content="{TemplateBinding SelectedContent}" 
+                    <ContentPresenter x:Name="PART_SelectedContentHost"
+                                      Content="{TemplateBinding SelectedContent}"
                                       ContentTemplate="{TemplateBinding ContentTemplate}"
                                       />
                   </Border>
@@ -68,17 +69,17 @@
           </ControlTemplate>
         </Setter.Value>
       </Setter>
-    
+
       <Setter Property="ItemTemplate">
-      <Setter.Value>
-        <DataTemplate>
-          <Grid Margin="-10" Background="#0f00">
-            <TextBlock Margin="4" Text="{Binding Header}"/>
-          </Grid>
-        </DataTemplate>
-      </Setter.Value>
-    </Setter>
-      
+        <Setter.Value>
+          <DataTemplate>
+            <Grid Margin="-10" Background="#0f00">
+              <TextBlock Margin="4" Text="{Binding Header}"/>
+            </Grid>
+          </DataTemplate>
+        </Setter.Value>
+      </Setter>
+
     </Style>
 
 
@@ -250,12 +251,14 @@
     </Style>
 
 
+
+
   </UserControl.Styles>
 
   <UserControl.Resources>
     <Model:BrushList x:Key="BrushList"/>
 
-    <DataTemplate x:Key="mydata">
+    <ControlTemplate x:Key="mydata">
 
       <Border BorderBrush="White" BorderThickness="1" CornerRadius="5">
         <Border.Background>
@@ -265,14 +268,49 @@
           </LinearGradientBrush>
         </Border.Background>
         <StackPanel Margin="5">
+          <StackPanel.Styles>
 
+            <Style Selector="ListBoxItem:selected /template/ Border#Border">
+              <Setter Property="Background" Value="Transparent"/>
+            </Style>
 
-          <ListBox Items="{Binding Path=[ObjectBrushes].PropertyValue.Value}">
+            <Style Selector="ListBoxItem:selected:pointerover /template/ Border#Border">
+              <Setter Property="Background" Value="Transparent"/>
+            </Style>
+
+            <Style Selector="ListBoxItem[IsSelected=false][IsPointerOver=true] /template/ Border#Border">
+              <Setter Property="Background" Value="Transparent"/>
+            </Style>
+
+            <Style Selector="ListBoxItem[IsSelected=true]">
+              <!--<Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />-->
+              <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Highlight}" />
+            </Style>
+            
+            <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
+              <Setter Property="Background" Value="Transparent"/>
+            </Style>
+            <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+              <Setter Property="Background" Value="Transparent"/>
+            </Style>
+
+            <Style Selector="ListBoxItem:selected:focus /template/ ContentPresenter">
+              <Setter Property="Background" Value="Transparent"/>
+            </Style>
+
+            <Style Selector="ListBoxItem:selected:focus:pointerover /template/ ContentPresenter">
+              <Setter Property="Background" Value="Transparent"/>
+            </Style>
+          </StackPanel.Styles>
+
+          <ListBox Items="{Binding Path=[ObjectBrushes].PropertyValue.Value}"
+                   
+                   >
             <ListBox.ItemTemplate>
               <DataTemplate>
                 <StackPanel Orientation="Horizontal">
                   <TextBlock Text="{Binding Path=Name}"/>
-                  <ComboBox Margin="30,5,5,5" Items="{Binding Source={StaticResource BrushList}}" 
+                  <ComboBox Margin="30,5,5,5" Items="{Binding Source={StaticResource BrushList}}"
                             SelectedItem="{Binding Path=ObjectBrush}"/>
                   <TextBlock Margin="20,0,0,0" Text="{Binding Path=ObjectBrush}"/>
                 </StackPanel>
@@ -284,7 +322,7 @@
         </StackPanel>
       </Border>
 
-    </DataTemplate>
+    </ControlTemplate>
   </UserControl.Resources>
 
   <Grid>
@@ -320,9 +358,11 @@
 
       </pg:PropertyGrid.Layout>
       <pg:PropertyGrid.Editors>
-        <pg:CategoryEditor DeclaringType="{x:Type Model:BrushProxy}"
+        <editors:CategoryEditor DeclaringType="{x:Type Model:BrushProxy}"
                           CategoryName="Brushes"
                           InlineTemplate="{StaticResource  mydata}"/>
+        
+        
       </pg:PropertyGrid.Editors>
     </pg:PropertyGrid>
 

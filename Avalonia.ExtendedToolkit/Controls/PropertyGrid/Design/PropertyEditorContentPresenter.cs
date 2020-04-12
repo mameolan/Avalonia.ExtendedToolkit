@@ -31,11 +31,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             //var contentTemplateBinding = new Binding
             //{
             //    RelativeSource = new RelativeSource(RelativeSourceMode.Self),
-            //    Path = $"{parentContainerProperty}..EditorTemplate"
+            //    Path = $"{parentContainerProperty}.EditorTemplate"
             //    //Path = new PropertyPath("(0).EditorTemplate", new[] { GridEntryContainer.ParentContainerProperty })
             //};
 
-            //this.Bind(ContentProperty,contentBinding);
+            //this.Bind(ContentProperty, contentBinding);
             //this.Bind(ContentTemplateProperty, contentTemplateBinding);
         }
     }

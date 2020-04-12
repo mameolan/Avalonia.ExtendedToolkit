@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml.Styling;
 using Avalonia.Markup.Xaml.Templates;
 using Avalonia.Styling;
 
-namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
+namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
     /// <summary>
     /// Specifies the default category editor.
@@ -54,26 +54,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             DeclaringType = declaringType;
             CategoryName = categoryName;
 
-            if (inlineTemplate is string)
-            {
-                var genericStyle = Application.Current.Styles.OfType<StyleInclude>().FirstOrDefault(styleInclude => styleInclude.
-                             Source.AbsoluteUri.StartsWith("avares://Avalonia.ExtendedToolkit/Styles/Generic.xaml"));
+            InlineTemplate= GetEditorTemplate(inlineTemplate);
 
-                var result = (genericStyle.Loaded as Styles)?.OfType<StyleInclude>()
-                        .FirstOrDefault(styleInclude => styleInclude.
-                             Source.AbsoluteUri.EndsWith("PropertyGrid/Editor/EditorResources.xaml"));
-
-                result.Loaded.TryGetResource(inlineTemplate, out object resourceValue);
-
-                DataTemplate dataTemplate = resourceValue as DataTemplate;
-
-
-                InlineTemplate = dataTemplate;// inlineTemplate;
-            }
-            else
-            {
-                InlineTemplate =  inlineTemplate;
-            }
+            
+            
         }
     }
 }

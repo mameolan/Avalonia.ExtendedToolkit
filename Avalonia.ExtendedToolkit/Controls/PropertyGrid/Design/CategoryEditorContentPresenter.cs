@@ -20,14 +20,14 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             //var contentBinding = new Binding
             //{
             //    RelativeSource = new RelativeSource(RelativeSourceMode.Self),
-            //    Path=$"{parentContainerProperty}.{entryProperty}"
+            //    Path = $"{parentContainerProperty}.{entryProperty}"
             //    //Path = new PropertyPath("(0).(1)", new[] { GridEntryContainer.ParentContainerProperty, GridEntryContainer.EntryProperty })
             //};
 
             //var contentTemplateBinding = new Binding
             //{
             //    RelativeSource = new RelativeSource(RelativeSourceMode.Self),
-            //    Path=$"{parentContainerProperty}.EditorTemplate"
+            //    Path = $"{parentContainerProperty}.EditorTemplate"
             //    //Path = new PropertyPath("(0).EditorTemplate", new[] { GridEntryContainer.ParentContainerProperty })
             //};
 

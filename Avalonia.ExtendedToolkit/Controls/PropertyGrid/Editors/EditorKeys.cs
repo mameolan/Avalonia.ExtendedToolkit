@@ -1,4 +1,4 @@
-﻿namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
+﻿namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
     /// <summary>
     /// Contains a set of editor keys.

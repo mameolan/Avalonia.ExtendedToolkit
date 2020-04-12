@@ -36,7 +36,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public static readonly DirectProperty<CategoryItem, int> OrderProperty =
                 AvaloniaProperty.RegisterDirect<CategoryItem, int>(
                     nameof(Order),
-                    o => o.Order);
+                    o => o.Order, unsetValue: -1);
 
         private int _order = -1;
 
@@ -73,7 +73,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public static readonly DirectProperty<CategoryItem, bool> IsExpandedProperty =
                 AvaloniaProperty.RegisterDirect<CategoryItem, bool>(
                     nameof(IsExpanded),
-                    o => o.IsExpanded);
+                    o => o.IsExpanded, unsetValue: false);
 
         private bool _isExpanded;
 
@@ -170,7 +170,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public static readonly DirectProperty<CategoryItem, bool> HasVisiblePropertiesProperty =
                 AvaloniaProperty.RegisterDirect<CategoryItem, bool>(
                     nameof(HasVisibleProperties),
-                    o => o.HasVisibleProperties);
+                    o => o.HasVisibleProperties, unsetValue: true);
 
         private bool _hasVisibleProperties;
 
@@ -196,9 +196,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public static new readonly DirectProperty<CategoryItem, bool> IsVisibleProperty =
                 AvaloniaProperty.RegisterDirect<CategoryItem, bool>(
                     nameof(IsVisible),
-                    o => o.IsVisible);
-
-        private bool _IsVisible;
+                    o => o.IsVisible, unsetValue: true);
 
         public new bool IsVisible
         {
@@ -206,6 +204,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         }
 
         //prop.IsBrowsable && prop.MatchesFilter
+
+
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CategoryItem"/> class.

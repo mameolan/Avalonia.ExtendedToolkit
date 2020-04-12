@@ -13,7 +13,7 @@ namespace Avalonia.ExampleApp.Model
     /// </summary>
     public class BrushProxy : AvaloniaObject    
     {
-        public object CurrentComponent { get; set; }
+        public string CurrentComponent { get; set; }
 
         [Category("Brushes")]
         public BrushInfo[] ObjectBrushes
@@ -41,9 +41,9 @@ namespace Avalonia.ExampleApp.Model
                 throw new ArgumentNullException("component");
             ObjectBrushesProperty.Changed.AddClassHandler<BrushProxy>((o, e) => OnObjectBrushesChanged(o, e));
 
-            CurrentComponent = component;
+            CurrentComponent = component.ToString();
 
-            CaptureComponent(CurrentComponent);
+            CaptureComponent(component);
             
         }
         /// <summary>

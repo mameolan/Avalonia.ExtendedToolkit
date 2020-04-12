@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using Avalonia.Collections;
 
-namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
+namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
     /// <summary>
     /// Defines a collection of value Editors (Type, Category and Property editors).

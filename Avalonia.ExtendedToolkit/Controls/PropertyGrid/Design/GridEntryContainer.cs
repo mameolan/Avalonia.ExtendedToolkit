@@ -75,5 +75,17 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 
             return ResourceLocator.GetResource(editor.InlineTemplate) as DataTemplate;
         }
+
+        protected override void OnDataContextChanged(EventArgs e)
+        {
+            base.OnDataContextChanged(e);
+
+            if(this.DataContext is GridEntry)
+            {
+                Entry = DataContext as GridEntry;
+            }
+        }
+
+
     }
 }

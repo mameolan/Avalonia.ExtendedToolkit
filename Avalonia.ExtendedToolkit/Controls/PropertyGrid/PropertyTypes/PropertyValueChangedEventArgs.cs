@@ -37,7 +37,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <param name="property">The property.</param>
         /// <param name="oldValue">The old value.</param>
         public PropertyValueChangedEventArgs(RoutedEvent routedEvent, PropertyItem property, object oldValue)
-          : base(routedEvent, property)
+          : base(routedEvent)
         {
             Property = property;
             NewValue = property.PropertyValue;

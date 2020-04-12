@@ -11,12 +11,12 @@
   </Styles.Resources>
 
   <Style Selector="design|CategoryContainer">
-    <Setter Property="IsVisible">
+    <Setter Property="IsVisible" >
       <Setter.Value>
         <MultiBinding Converter="{StaticResource multiBooleanToVisibilityConverter}" Mode="OneWay">
-          <Binding Path="IsBrowsable"/>
-          <Binding Path="HasVisibleProperties"/>
-          <Binding Path="MatchesFilter"/>
+          <Binding Path="Entry.IsBrowsable"/>
+          <Binding Path="Entry.HasVisibleProperties"/>
+          <Binding Path="Entry.MatchesFilter"/>
         </MultiBinding>
       </Setter.Value>
     </Setter>
@@ -24,16 +24,19 @@
       <Setter.Value>
         <ControlTemplate>
             <Expander Header="{Binding Name}"
-                      IsExpanded="{Binding Entry.IsExpanded, RelativeSource={RelativeSource TemplatedParent}}">
+                      IsExpanded="{Binding Entry.IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
+                >
               <design:CategoryEditorContentPresenter
-                    Content="{TemplateBinding Content}"
-                    ContentTemplate="{TemplateBinding ContentTemplate}"
-                    TextBlock.Foreground="{TemplateBinding Foreground}"
+                    DataContext="{Binding}"
                 />
             </Expander>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
+
+  
+
+
 
 </Styles>

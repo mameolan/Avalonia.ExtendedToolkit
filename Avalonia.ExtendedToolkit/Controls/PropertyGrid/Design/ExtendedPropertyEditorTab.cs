@@ -1,5 +1,6 @@
 ﻿using System;
 using Avalonia.Controls;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml.Templates;
 

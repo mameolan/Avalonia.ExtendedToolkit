@@ -2,6 +2,7 @@
 using System.Collections;
 using System.ComponentModel;
 using System.Globalization;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {

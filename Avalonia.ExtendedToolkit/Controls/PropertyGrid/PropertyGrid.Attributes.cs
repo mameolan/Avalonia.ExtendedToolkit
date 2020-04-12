@@ -4,6 +4,7 @@ using System.ComponentModel;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Metadata;
@@ -455,7 +456,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         public IComparer<PropertyItem> PropertyComparer
         {
-            get { return _propertyComparer; }
+            get { return _propertyComparer ?? (_propertyComparer = new PropertyItemComparer()); }
             private set
             {
                 if (_propertyComparer == value)
@@ -499,7 +500,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         public IComparer<CategoryItem> CategoryComparer
         {
-            get { return _categoryComparer; }
+            get { return _categoryComparer ?? (_categoryComparer = new CategoryItemComparer()); }
             private set
             {
                 if (_categoryComparer == value)

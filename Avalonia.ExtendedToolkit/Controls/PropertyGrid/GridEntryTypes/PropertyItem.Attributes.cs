@@ -218,7 +218,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public static readonly DirectProperty<PropertyItem, bool> IsReadOnlyProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItem, bool>(
                     nameof(IsReadOnly),
-                    o => o.IsReadOnly);
+                    o => o.IsReadOnly, unsetValue: false);
 
         private bool _isReadOnly;
 
@@ -357,7 +357,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// </value>
         public bool IsDefaultValue
         {
-            get { throw new NotImplementedException(); }
+            get { return true; }
         }
 
         /// <summary>

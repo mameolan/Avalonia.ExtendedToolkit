@@ -34,7 +34,7 @@
                        FontSize="{DynamicResource FontSizeSmall}"
                        Text="{TemplateBinding Watermark}"
                        DockPanel.Dock="Top">
-              <TextBlock.IsVisible>
+              <!--<TextBlock.IsVisible>
                 <MultiBinding Converter="{x:Static BoolConverters.And}">
                   <Binding RelativeSource="{RelativeSource TemplatedParent}"
                            Path="UseFloatingWatermark"/>
@@ -42,10 +42,10 @@
                            Path="Text"
                            Converter="{x:Static StringConverters.IsNotNullOrEmpty}"/>
                 </MultiBinding>
-              </TextBlock.IsVisible>
+              </TextBlock.IsVisible>-->
             </TextBlock>
 
-            <DataValidationErrors>
+            <DataValidationErrors >
               <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
                             VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
 
@@ -64,7 +64,8 @@
                                  PasswordChar="{TemplateBinding PasswordChar}"
                                  SelectionBrush="{TemplateBinding SelectionBrush}"
                                  SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
-                                 CaretBrush="{TemplateBinding CaretBrush}"/>
+                                 CaretBrush="{TemplateBinding CaretBrush}"
+                                 />
                 </Panel>
               </ScrollViewer>
             </DataValidationErrors>

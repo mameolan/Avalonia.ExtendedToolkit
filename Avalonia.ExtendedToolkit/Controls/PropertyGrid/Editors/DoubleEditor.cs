@@ -6,7 +6,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using ReactiveUI;
 
-namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
+namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
     /// <summary>
     /// Simple Expression Blend like double editor.

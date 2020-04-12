@@ -9,6 +9,7 @@ using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes;
 using Avalonia.Input;
 using Avalonia.Interactivity;
@@ -301,7 +302,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         {
             if (e.Key == Key.Tab && e.Source is AvaloniaObject)//tabbing over the property editors
             {
-                var source = e.Source as IVisual;
+                var source = e.Source as IControl;
                 var element = e.KeyModifiers == KeyModifiers.Shift ? GetTabElement(source, -1) : GetTabElement(source, 1);
                 if (element != null)
                 {
@@ -322,27 +323,27 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// </remarks>
         /// <param name="source">The source.</param>
         /// <param name="delta">The delta.</param>
-        private IControl GetTabElement(IVisual source, int delta)
+        private IControl GetTabElement(IControl source, int delta)
         {
             if (source == null)
                 return null;
             PropertyContainer container = null;
             if (source is SearchTextBox && HasCategories)
             {
-                var itemspres = FindVisualChild<ItemsPresenter>(this);
+                var itemspres = this.FindVisualChild<ItemsPresenter>();
                 if (itemspres != null)
                 {
-                    var catcontainer = FindVisualChild<CategoryContainer>(itemspres);
+                    var catcontainer = itemspres.FindVisualChild<CategoryContainer>();
                     if (catcontainer != null)
                     {
-                        container = FindVisualChild<PropertyContainer>(catcontainer);
+                        container = catcontainer.FindVisualChild<PropertyContainer>();
                     }
                 }
             }
             else
-                container = FindVisualParent<PropertyContainer>(source);
+                container = source.FindVisualParent<PropertyContainer>();
 
-            var spanel = FindVisualParent<StackPanel>(container);
+            var spanel = container.FindVisualParent<StackPanel>();
             if (spanel != null && spanel.Children.Contains(container))
             {
                 var index = spanel.Children.IndexOf(container);
@@ -358,7 +359,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
                 var next = VisualTree.VisualExtensions.GetVisualChildren(spanel).ElementAt(index) as PropertyContainer;//  VisualTreeHelper.GetChild(spanel, index) as PropertyContainer;//this has always a Grid as visual child
 
-                var grid = FindVisualChild<Grid>(next);
+                var grid = next.FindVisualChild<Grid>();
                 if (grid != null && grid.Children.Count > 1)
                 {
                     var pecp = grid.Children[1] as PropertyEditorContentPresenter;
@@ -366,55 +367,13 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                     if ((final as Control).IsEnabled && (final as Control).Focusable && !(next.DataContext as PropertyItem).IsReadOnly)
                         return final as Control;
                     else
-                        return GetTabElement(final, delta);
+                        return GetTabElement(final as IControl, delta);
                 }
             }
             return null;
         }
 
-        private static T FindVisualParent<T>(IVisual element) where T : class
-        {
-            if (element == null)
-                return default(T);
-            object parent = VisualTree.VisualExtensions.GetVisualParent(element);
-            if (parent is T)
-                return parent as T;
-            if (parent is IVisual)
-                return FindVisualParent<T>(parent as IVisual);
-            return null;
-        }
-
-        private static T FindVisualChild<T>(IVisual element) where T : class
-        {
-            if (element == null)
-                return default(T);
-            if (element is T)
-                return element as T;
-
-            var children = VisualTree.VisualExtensions.GetVisualChildren(element);
-
-            if (children.Any())
-            {
-                for (var i = 0; i < children.Count(); i++)
-                {
-                    //object child = VisualTreeHelper.GetChild(element, i);
-                    object child = children.ElementAt(i);
-
-                    if (child is SearchTextBox)
-                        continue;//speeds up things a bit
-                    if (child is T)
-                        return child as T;
-                    if (child is IVisual)
-                    {
-                        var res = FindVisualChild<T>(child as IVisual);
-                        if (res == null)
-                            continue;
-                        return res;
-                    }
-                }
-            }
-            return null;
-        }
+        
 
         private void OnPropertyDisplayModePropertyChanged(PropertyGrid propertyGrid, AvaloniaPropertyChangedEventArgs e)
         {
@@ -464,9 +423,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             var layoutContainer = e.NewValue as TemplatedControl;
             if (layoutContainer != null)
             {
-                layoutContainer.MinWidth = 10;
-                layoutContainer.MinHeight = 10;
-                layoutContainer.Background = new SolidColorBrush(Colors.Green);
+               
                 layoutContainer.DataContext = propertyGrid;
             }
 

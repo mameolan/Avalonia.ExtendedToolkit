@@ -1,20 +1,21 @@
 ﻿<Styles
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid;assembly=Avalonia.ExtendedToolkit"
+    xmlns:pg="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid;assembly=Avalonia.ExtendedToolkit"
+    xmlns:editors="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;assembly=Avalonia.ExtendedToolkit"
     xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
     xmlns:controls="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls;assembly=Avalonia.ExtendedToolkit"
     xmlns:converter="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters;assembly=Avalonia.ExtendedToolkit"
     xmlns:controlz="clr-namespace:Avalonia.Controlz.Controls;assembly=Avalonia.Controlz"
     >
   <Styles.Resources>
-    <local:NamedColorList x:Key="NamedColorList"/>
+    <pg:NamedColorList x:Key="NamedColorList"/>
     <converter:NullValueConverter x:Key="NullValueConverter"/>
     <converter:EnumValueConverter x:Key="enumValueConverter"/>
     <converter:MultiBooleanToIsVisibleConverter x:Key="multiBooleanToVisibilityConverter"/>
     <converter:ExpanderHeaderWidthConverter x:Key="expanderHeaderWidthConverter"/>
 
-    <DataTemplate x:Key="{x:Static local:EditorKeys.ComplexPropertyEditorKey}">
+    <ControlTemplate x:Key="{x:Static editors:EditorKeys.ComplexPropertyEditorKey}">
       <Expander>
         <Expander.Header>
           <TextBox Text="{Binding Value, Mode=OneWay}" IsEnabled="False"
@@ -25,25 +26,26 @@
         </Expander.Header>
         <design:PropertyItemsLayout Grid.IsSharedSizeScope="True" Items="{Binding SubProperties}"/>
       </Expander>
-    </DataTemplate>
+    </ControlTemplate>
 
-    <DataTemplate x:Key="{x:Static local:EditorKeys.DefaultCategoryEditorKey}">
+    <ControlTemplate x:Key="{x:Static editors:EditorKeys.DefaultCategoryEditorKey}">
       <design:PropertyItemsLayout Items="{Binding Properties}"/>
-    </DataTemplate>
+    </ControlTemplate>
 
     <!--Note that commit on typing cannot work together with the roolback since every keystroke is committed and the roolback value is lost-->
-    <DataTemplate x:Key="{x:Static local:EditorKeys.DefaultEditorKey}">
+    <ControlTemplate x:Key="{x:Static editors:EditorKeys.DefaultEditorKey}">
       <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"-->
       <TextBox x:Name="PART_editor"
-        Text="{Binding StringValue, Mode=TwoWay}"
+        Text="{Binding PropertyValue.StringValue, Mode=TwoWay}"
         IsReadOnly="{Binding IsReadOnly}"
-        local:TextBoxExtender.CommitOnEnter="true"
-        local:TextBoxExtender.RollbackOnEscape="true"
-        local:TextBoxExtender.CommitOnTyping="false"
+        
+        pg:TextBoxExtender.CommitOnEnter="true"
+        pg:TextBoxExtender.RollbackOnEscape="true"
+        pg:TextBoxExtender.CommitOnTyping="false"
 			/>
-    </DataTemplate>
+    </ControlTemplate>
 
-    <DataTemplate x:Key="{x:Static local:EditorKeys.EnumEditorKey}">
+    <ControlTemplate x:Key="{x:Static editors:EditorKeys.EnumEditorKey}">
       <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"
         Style="{DynamicResource {x:Type ComboBox}}"
     -->
@@ -56,14 +58,14 @@
           </DataTemplate>
         </controls:EnumDropdown.ItemTemplate>
       </controls:EnumDropdown>
-    </DataTemplate>
+    </ControlTemplate>
 
-    <DataTemplate x:Key="{x:Static local:EditorKeys.BooleanEditorKey}">
+    <ControlTemplate x:Key="{x:Static editors:EditorKeys.BooleanEditorKey}">
       <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"-->
       <CheckBox x:Name="PART_editor" IsChecked="{Binding Value}" IsEnabled="{Binding IsEditable}" />
-    </DataTemplate>
+    </ControlTemplate>
 
-    <DataTemplate x:Key="{x:Static local:EditorKeys.FontFamilyEditorKey}">
+    <ControlTemplate x:Key="{x:Static editors:EditorKeys.FontFamilyEditorKey}">
       <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"
       (?) How to get installed fonts:
       Items="{Binding Source={x:Static Fonts.SystemFontFamilies}}"
@@ -78,9 +80,10 @@
           </DataTemplate>
         </ComboBox.ItemTemplate>
       </ComboBox>
-    </DataTemplate>
+    </ControlTemplate>
 
-    <DataTemplate x:Key="{x:Static local:EditorKeys.NamedColorEditorKey}" DataType="{x:Type local:NamedColor}">
+    <ControlTemplate x:Key="{x:Static editors:EditorKeys.NamedColorEditorKey}" >
+      <!--DataType="{x:Type pg:NamedColor}"-->
       <Grid>
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="Auto" />
@@ -89,9 +92,9 @@
         <Rectangle Fill="{Binding Brush}" Grid.Column="0" Width="100" Height="20" Margin="2" HorizontalAlignment="Center"/>
         <TextBlock x:Name="PART_editor" Margin="5,2,2,2" Text="{Binding Name}" Grid.Column="1" HorizontalAlignment="Center"/>
       </Grid>
-    </DataTemplate>
+    </ControlTemplate>
 
-    <DataTemplate x:Key="{x:Static local:EditorKeys.BrushEditorKey}">
+    <ControlTemplate x:Key="{x:Static editors:EditorKeys.BrushEditorKey}">
       <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"
         Text="{Binding Path=StringValue, Mode=TwoWay, Converter={StaticResource NullValueConverter}}"
         SelectedValuePath="Name"
@@ -99,11 +102,11 @@
       -->
       <ComboBox x:Name="PART_editor"
         Items="{Binding Source={StaticResource NamedColorList}}"
-        ItemTemplate="{DynamicResource {x:Static local:EditorKeys.NamedColorEditorKey}}"
+        ItemTemplate="{DynamicResource {x:Static editors:EditorKeys.NamedColorEditorKey}}"
         IsEnabled="{Binding IsEditable}"/>
-    </DataTemplate>
+    </ControlTemplate>
 
-    <DataTemplate x:Key="{x:Static local:EditorKeys.SliderEditorKey}">
+    <ControlTemplate x:Key="{x:Static editors:EditorKeys.SliderEditorKey}">
 
       <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"-->
       <controlz:SliderEx x:Name="PART_editor"
@@ -119,20 +122,20 @@
                 IsEnabled="{Binding IsEditable}"
                          
             />
-    </DataTemplate>
+    </ControlTemplate>
 
-    <DataTemplate x:Key="{x:Static local:EditorKeys.PasswordEditorKey}">
-      <!--local:PasswordBoxExtender.BindPassword="true"
-      local:PasswordBoxExtender.BoundPassword="{Binding StringValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
+    <ControlTemplate x:Key="{x:Static editors:EditorKeys.PasswordEditorKey}">
+      <!--pg:PasswordBoxExtender.BindPassword="true"
+      pg:PasswordBoxExtender.BoundPassword="{Binding StringValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
 
       <TextBox PasswordChar="*"
       x:Name="PART_editor"
       IsEnabled="{Binding IsEditable}"
       />
-    </DataTemplate>
+    </ControlTemplate>
 
-    <DataTemplate x:Key="{x:Static local:EditorKeys.DoubleEditorKey}">
-      <controls:DoubleEditor x:Name="PART_editor"
+    <ControlTemplate x:Key="{x:Static editors:EditorKeys.DoubleEditorKey}">
+      <editors:DoubleEditor x:Name="PART_editor"
           Value="{Binding Value, Mode=TwoWay}"
           Minimum="{Binding ParentProperty.Metadata[NumberRange].Minimum}"
           Maximum="{Binding ParentProperty.Metadata[NumberRange].Maximum}"
@@ -140,7 +143,7 @@
           MaxPrecision="{Binding ParentProperty.Metadata[NumberRange].Precision}"
           IsEnabled="{Binding IsEditable}"
         />
-    </DataTemplate>
+    </ControlTemplate>
 
   </Styles.Resources>
 

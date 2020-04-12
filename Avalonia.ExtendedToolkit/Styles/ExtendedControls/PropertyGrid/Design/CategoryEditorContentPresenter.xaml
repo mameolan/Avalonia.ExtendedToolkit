@@ -13,15 +13,11 @@
   <Style Selector="design|CategoryEditorContentPresenter">
     <Setter Property="Template">
       <ControlTemplate>
-        <ContentPresenter Name="PART_ContentPresenter"
-                          Background="{TemplateBinding Background}"
-                          BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}"
-                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                          Content="{TemplateBinding Content}"
-                          Padding="{TemplateBinding Padding}"
-                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+        <StackPanel>
+          <ContentControl Template="{Binding Editor.InlineTemplate}"/>
+          
+          <ContentControl Template="{Binding Editor.ExtendedTemplate}"/>
+        </StackPanel>
       </ControlTemplate>
     </Setter>
   </Style>

@@ -1,15 +1,16 @@
 ﻿using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
-    public abstract class GridEntry : ContentControl, /*INotifyPropertyChanged,*/ IPropertyFilterTarget, IDisposable
+    public abstract class GridEntry : AvaloniaObject, /*INotifyPropertyChanged,*/ IPropertyFilterTarget, IDisposable
     {
         /// <summary>
         /// Gets the name of the encapsulated item.
         /// </summary>
-        public new string Name { get; protected set; }
+        public string Name { get; protected set; }
 
         //private bool _isBrowsable;
         ///// <summary>
@@ -35,7 +36,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public static readonly DirectProperty<GridEntry, bool> IsBrowsableProperty =
                 AvaloniaProperty.RegisterDirect<GridEntry, bool>(
                     nameof(IsBrowsable),
-                    o => o.IsBrowsable);
+                    o => o.IsBrowsable, unsetValue: true);
 
         private bool _isBrowsable;
 
@@ -58,12 +59,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         //    get { return IsBrowsable && MatchesFilter; }
         //}
 
-        public new static readonly DirectProperty<GridEntry, bool> IsVisibleProperty =
+        public static readonly DirectProperty<GridEntry, bool> IsVisibleProperty =
                 AvaloniaProperty.RegisterDirect<GridEntry, bool>(
-                    nameof(IsVisible),
-                    o => o.IsVisible);
+                   nameof(IsVisible),
+                    o => o.IsVisible, unsetValue: true);
 
-        public new bool IsVisible
+        public bool IsVisible
         {
             get { return IsBrowsable && MatchesFilter; }
         }
@@ -210,7 +211,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public static readonly DirectProperty<GridEntry, bool> MatchesFilterProperty =
                 AvaloniaProperty.RegisterDirect<GridEntry, bool>(
                     nameof(MatchesFilter),
-                    o => o.MatchesFilter);
+                    o => o.MatchesFilter, unsetValue: true);
 
         private bool _matchesFilter;
 

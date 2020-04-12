@@ -10,7 +10,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
     {
         public object Convert(IList<object> values, Type targetType, object parameter, CultureInfo culture)
         {
-            return values.OfType<bool>().All(item => item);
+            return values?.OfType<bool>().All(item => item==true);
         }
     }
 }

@@ -18,7 +18,6 @@
             <controls:SearchTextBox DockPanel.Dock="Top"
                                     Text="{Binding Path=PropertyFilter, RelativeSource={RelativeSource TemplatedParent}}"
                                     IsVisible="{TemplateBinding PropertyFilterIsVisible}"
-                                    Foreground="AliceBlue"
                                     />
 
             <!--<Border DockPanel.Dock="Bottom" Height="70" Margin="2">-->

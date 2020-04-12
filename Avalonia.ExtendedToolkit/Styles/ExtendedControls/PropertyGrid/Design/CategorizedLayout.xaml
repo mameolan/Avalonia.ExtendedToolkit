@@ -10,9 +10,10 @@
         <ControlTemplate>
             <ScrollViewer   VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" >
               <design:CategoryItemsLayout Grid.IsSharedSizeScope="True"
-                                          Items="{Binding Categories}"
+                                          Items="{Binding Categories}" 
                                           Background="{Binding ItemsBackground}"
                                         />
+              <!--add categories to CategoryContainer converter-->
             </ScrollViewer>
         </ControlTemplate>
       </Setter.Value>

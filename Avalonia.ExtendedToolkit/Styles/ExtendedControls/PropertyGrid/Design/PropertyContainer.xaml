@@ -14,8 +14,8 @@
     <Setter Property="IsVisible">
       <Setter.Value>
         <MultiBinding Converter="{StaticResource multiBooleanToVisibilityConverter}" Mode="OneWay">
-          <Binding Path="IsBrowsable"/>
-          <Binding Path="MatchesFilter"/>
+          <Binding Path="Entry.IsBrowsable"/>
+          <Binding Path="Entry.MatchesFilter"/>
         </MultiBinding>
       </Setter.Value>
     </Setter>
@@ -31,10 +31,10 @@
             <design:PropertyNameTextBlock Grid.Column="0" Margin="0,0,8,0"
                                           Text="{Binding DisplayName, Mode=OneTime}"
                                           Foreground="{Binding ItemsForeground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:PropertyGrid}}}"
+                                          IsEnabled="False"
                                           />
             <design:PropertyEditorContentPresenter Grid.Column="1" VerticalAlignment="Center"
-                          Content="{TemplateBinding Content}"
-                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                          DataContext="{Binding}"
                           />
           </Grid>
         </ControlTemplate>

@@ -5,7 +5,7 @@ using System.Numerics;
 using Avalonia.Input;
 using Avalonia.Media;
 
-namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
+namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
     /// <summary>
     /// Frequently used types cache used performance optimization.

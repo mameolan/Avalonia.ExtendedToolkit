@@ -10,15 +10,41 @@ namespace Avalonia.ExtendedToolkit.Extensions
     {
         public static T TryFindParent<T>(this IControl control) where T : IControl
         {
+            if (control is T)
+                return (T)control;
+
+            if(control.TemplatedParent is T)
+            {
+                return (T)control.TemplatedParent;
+            }
+
+
+
+
+            if(control is IContentControl
+                && ((IContentControl)control).Content is T)
+            {
+                return (T)((IContentControl)control).Content;
+            }
+
             if (control.Parent is T)
                 return (T)control.Parent;
 
-            IControl parent = control.Parent.Parent;
+            IControl parent = control.Parent?.Parent;
 
             while (parent != null)
             {
-                if (parent is T)
+                if(parent is T)
+                {
                     return (T)parent;
+                }
+
+                T result = TryFindParent<T>(parent);
+
+                if(result is T)
+                {
+                    return result;
+                }
 
                 parent = parent.Parent;
             }
