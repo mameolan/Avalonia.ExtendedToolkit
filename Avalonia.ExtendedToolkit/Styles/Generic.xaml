@@ -75,7 +75,8 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BreadcrumbBar/BreadcrumbItem.xaml" />
 
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/AeroChrome.xaml"/>
-  <!--PropertyGrid-->
+  
+  <!--PropertyGrid Start-->
   <!--Controls-->
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Controls/EnumDropdown.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Controls/SearchTextBox.xaml"/>
@@ -102,14 +103,12 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Design/TabbedLayoutItem.xaml"/>
   
   <!--Editor-->
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Editor/CategoryEditor.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Editor/DoubleEditor.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Editor/EditorResources.xaml"/>
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Editor/PropertyEditor.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Editor/TypeEditor.xaml"/>
   
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/PropertyGrid.xaml"/>
-
+  <!--PropertyGrid End-->
   
 
 

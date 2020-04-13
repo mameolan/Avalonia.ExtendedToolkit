@@ -59,9 +59,18 @@
 
     </StackPanel>
     <Grid DockPanel.Dock="Bottom">
-
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      
+      <Expander Header="Test" Grid.Column="0" HorizontalAlignment="Stretch">
+        <TextBlock Text="dfdsfsdfdsfdsfsdfdsfsfdsfdsfdsfdsfsdfsf"/>
+      </Expander>
+                
+      
       <!--<Button Command="{Binding ShowFlyoutDemoCommand}" Content="Open File Demo"/>-->
-      <Views:PropertyGridExamples/>
+      <!--<Views:PropertyGridExamples/>-->
       
       
     </Grid>
