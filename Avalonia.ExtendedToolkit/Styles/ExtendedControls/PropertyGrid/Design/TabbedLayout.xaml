@@ -2,69 +2,56 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
+    xmlns:panel="clr-namespace:Avalonia.ExtendedToolkit.Controls.Panels;assembly=Avalonia.ExtendedToolkit"
     >
-  <!--avalonia tabcontrol style-->
-
+  
   <Style Selector="design|TabbedLayout">
     <Setter Property="Template">
-      <ControlTemplate>
-        <Border
-            Margin="{TemplateBinding Margin}"
-            BorderBrush="{TemplateBinding BorderBrush}"
-            BorderThickness="{TemplateBinding BorderThickness}"
-            Background="{TemplateBinding Background}"
-            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-            VerticalAlignment="{TemplateBinding VerticalAlignment}">
-          <DockPanel>
-            <ItemsPresenter
-                Name="PART_ItemsPresenter"
-                Items="{TemplateBinding Items}"
-                ItemsPanel="{TemplateBinding ItemsPanel}"
-                ItemTemplate="{TemplateBinding ItemTemplate}">
-            </ItemsPresenter>
-            <ContentPresenter
-                Name="PART_SelectedContentHost"
-                Margin="{TemplateBinding Padding}"
-                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                Content="{TemplateBinding SelectedContent}"
-                ContentTemplate="{TemplateBinding SelectedContentTemplate}">
-            </ContentPresenter>
-          </DockPanel>
-        </Border>
-      </ControlTemplate>
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Background="{Binding Background}">
+            <Grid Margin="2">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition  Height="*" />
+              </Grid.RowDefinitions>
+              <Border CornerRadius="4,4,0,0" BorderBrush="#777" BorderThickness="0,1,0,0">
+                <Border.Background>
+                  <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Offset="0.0" Color="#505050" />
+                    <GradientStop Offset="1.0" Color="#282828" />
+                  </LinearGradientBrush>
+                </Border.Background>
+                <StackPanel Orientation="Horizontal">
+                  <panel:IndexingStackPanel Orientation="Horizontal" />
+                  <Rectangle x:Name="Highlight" Width="1" Fill="#2FFF" HorizontalAlignment="Left" />
+                </StackPanel>
+              </Border>
+
+              <Border Grid.Row="1" Background="{Binding Background}">
+                <Border BorderThickness="0.5,1,0,0" BorderBrush="#6000" Background="#10FFFFFF" CornerRadius="2,3,2,2" Margin="2" >
+                  <ContentPresenter x:Name="PART_SelectedContentHost"
+                                    Content="{TemplateBinding SelectedContent}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      />
+                </Border>
+              </Border>
+            </Grid>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
     </Setter>
-  </Style>
-  <Style Selector="design|TabbedLayout[TabStripPlacement=Top]">
-    <Setter Property="Padding" Value="0 4 0 0"/>
-  </Style>
-  <Style Selector="design|TabbedLayout[TabStripPlacement=Top] /template/ ItemsPresenter#PART_ItemsPresenter">
-    <Setter Property="DockPanel.Dock" Value="Top"/>
-  </Style>
-  <Style Selector="design|TabbedLayout[TabStripPlacement=Bottom] /template/ ItemsPresenter#PART_ItemsPresenter">
-    <Setter Property="DockPanel.Dock" Value="Bottom"/>
-  </Style>
-  <Style Selector="design|TabbedLayout[TabStripPlacement=Bottom]">
-    <Setter Property="Padding" Value="0 0 0 4"/>
-  </Style>
-  <Style Selector="design|TabbedLayout[TabStripPlacement=Left] /template/ ItemsPresenter#PART_ItemsPresenter">
-    <Setter Property="DockPanel.Dock" Value="Left"/>
-  </Style>
-  <Style Selector="design|TabbedLayout[TabStripPlacement=Left] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
-    <Setter Property="Orientation" Value="Vertical"/>
-  </Style>
-  <Style Selector="design|TabbedLayout[TabStripPlacement=Left]">
-    <Setter Property="Padding" Value="4 0 0 0"/>
-  </Style>
-  <Style Selector="design|TabbedLayout[TabStripPlacement=Right] /template/ ItemsPresenter#PART_ItemsPresenter">
-    <Setter Property="DockPanel.Dock" Value="Right"/>
-  </Style>
-  <Style Selector="design|TabbedLayout[TabStripPlacement=Right] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
-    <Setter Property="Orientation" Value="Vertical"/>
-  </Style>
-  <Style Selector="design|TabbedLayout[TabStripPlacement=Right]">
-    <Setter Property="Padding" Value="0 0 4 0"/>
-  </Style>
-  
+
+    <Setter Property="ItemTemplate">
+      <Setter.Value>
+        <DataTemplate>
+          <Grid Margin="-10" Background="#0f00">
+            <TextBlock Margin="4" Text="{Binding Header}"/>
+          </Grid>
+        </DataTemplate>
+      </Setter.Value>
+    </Setter>
+
+  </Style> 
   
 </Styles>

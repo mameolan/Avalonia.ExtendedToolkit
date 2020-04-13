@@ -11,11 +11,11 @@
   </Styles.Resources>
 
   <Style Selector="design|PropertyNameTextBlock">
-    <Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}"/>
-    <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderMidBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}"/>
     <Setter Property="BorderThickness" Value="{DynamicResource ThemeBorderThickness}"/>
-    <Setter Property="SelectionBrush" Value="{DynamicResource HighlightBrush}"/>
-    <Setter Property="SelectionForegroundBrush" Value="{DynamicResource HighlightForegroundBrush}"/>
+    <Setter Property="SelectionBrush" Value="{DynamicResource MahApps.Brushes.Highlight}"/>
+    <!--<Setter Property="SelectionForegroundBrush" Value="{DynamicResource HighlightForegroundBrush}"/>-->
     <Setter Property="Padding" Value="4"/>
     <Setter Property="Template">
       <ControlTemplate>
@@ -52,9 +52,13 @@
                 <Panel>
                   <TextBlock Name="watermark"
                              Opacity="0.5"
+                             Foreground="{TemplateBinding Foreground}"
                              Text="{TemplateBinding Watermark}"
                              IsVisible="{TemplateBinding Text, Converter={x:Static StringConverters.IsNullOrEmpty}}"/>
+                  <!--only set the foreground there not the backgoround otherwise the text 
+                                disappears on light/dark theme switching-->
                   <TextPresenter Name="PART_TextPresenter"
+                                 Foreground="{DynamicResource MahApps.Brushes.Black}"
                                  Text="{TemplateBinding Text, Mode=TwoWay}"
                                  CaretIndex="{TemplateBinding CaretIndex}"
                                  SelectionStart="{TemplateBinding SelectionStart}"
@@ -79,7 +83,7 @@
     <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderHighBrush}"/>
   </Style>
   <Style Selector="design|PropertyNameTextBlock:focus /template/ Border#border">
-    <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderHighBrush}"/>
+    <!--<Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderHighBrush}"/>-->
   </Style>
   <Style Selector="design|PropertyNameTextBlock:error /template/ Border#border">
     <Setter Property="BorderBrush" Value="{DynamicResource ErrorBrush}"/>
@@ -88,7 +92,8 @@
     <Setter Property="Cursor" Value="IBeam" />
   </Style>
   <Style Selector="design|PropertyNameTextBlock:disabled /template/ Border#border">
-    <Setter Property="Opacity" Value="{DynamicResource ThemeDisabledOpacity}" />
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}"/>
+    
   </Style>
 
 

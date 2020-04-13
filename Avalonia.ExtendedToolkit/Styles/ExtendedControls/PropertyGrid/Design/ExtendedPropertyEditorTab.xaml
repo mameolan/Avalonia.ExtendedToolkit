@@ -205,4 +205,90 @@
     <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundLowBrush}"/>
   </Style>
 
+
+  <!--<Style Selector="design|ExtendedPropertyEditorTab">
+    <Setter Property="Foreground" Value="White" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border x:Name="Border" Background="Transparent" BorderBrush="Transparent" BorderThickness="0,1,0,0" Margin="0,-1,0,0">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <Border x:Name="Shimmer" Opacity="0">
+                <Border.Background>
+                  <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Offset="0.0" Color="#40909090" />
+                    <GradientStop Offset="1.0" Color="#40505050" />
+                  </LinearGradientBrush>
+                </Border.Background>
+              </Border>
+              <ContentPresenter x:Name="HeaderArea" Content="{TemplateBinding Header}" Margin="12,0,12,3" VerticalAlignment="Center" />
+              <Rectangle Grid.Column="0" x:Name="Highlight" Width="1" Fill="#2FFF" HorizontalAlignment="Left" />
+              <Rectangle Grid.Column="1" x:Name="Shadow" Width="1" Fill="#7000" HorizontalAlignment="Right" Margin="0,-1,0,0" />
+
+
+              --><!--Style="{StaticResource CloseButton}"--><!--
+              <Button Margin="0,0,8,3"
+                      Grid.Column="1" x:Name="CloseButton"
+                      Width="14" Height="14" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Center"
+                      IsVisible="{TemplateBinding CanClose}"
+                      
+                      CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type design:TabbedLayoutItem}}}"/>
+              --><!--Command="pg:PropertyGridCommands.ClosePropertyTab"--><!--
+            </Grid>
+          </Border>
+          --><!--<ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Trigger.EnterActions>
+                <BeginStoryboard>
+                  <Storyboard >
+                    <DoubleAnimation Duration="0:0:0.07" Storyboard.TargetName="Shimmer" Storyboard.TargetProperty="Opacity" To="1.0" />
+                  </Storyboard>
+                </BeginStoryboard>
+              </Trigger.EnterActions>
+              <Trigger.ExitActions>
+                <BeginStoryboard>
+                  <Storyboard >
+                    <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetName="Shimmer" Storyboard.TargetProperty="Opacity" />
+                  </Storyboard>
+                </BeginStoryboard>
+              </Trigger.ExitActions>
+            </Trigger>
+
+            <Trigger Property="IsSelected" Value="False">
+              <Setter TargetName="CloseButton" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+
+            <Trigger Property="IsSelected" Value="True">
+              <Setter TargetName="Shimmer" Property="Opacity" Value="0" />
+              <Setter TargetName="Border" Property="Background">
+                <Setter.Value>
+                  <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Offset="0.0" Color="#909090" />
+                    <GradientStop Offset="1.0" Color="#505050" />
+                  </LinearGradientBrush>
+                </Setter.Value>
+              </Setter>
+              <Setter TargetName="Border" Property="BorderBrush" Value="#BBB" />
+              <Setter TargetName="Highlight" Property="Fill" Value="#3FFF" />
+              <Setter TargetName="Shadow" Property="Fill" Value="#8000" />
+            </Trigger>
+
+            <Trigger Property="theme:IndexingStackPanel.Index" Value="0">
+              <Setter TargetName="Border" Property="CornerRadius" Value="4,0,0,0" />
+              <Setter TargetName="Shimmer" Property="CornerRadius" Value="4,0,0,0" />
+            </Trigger>
+
+          </ControlTemplate.Triggers>--><!--
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>-->
+  
+  
+  
 </Styles>

@@ -4,49 +4,12 @@
    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls;assembly=Avalonia.ExtendedToolkit"
     >
 
-  <Styles.Resources>
-    <SolidColorBrush x:Key="SearchTextBox_Background" Color="White" />
-    <SolidColorBrush x:Key="SearchTextBox_Foreground" Color="Black" />
-    <LinearGradientBrush x:Key="SearchTextBox_Border" StartPoint="0,0" EndPoint="0,1">
-      <GradientStop Color="#FFABADB3" Offset="0.05" />
-      <GradientStop Color="#FFE2E3EA" Offset="0.07" />
-      <GradientStop Color="#FFE3E9EF" Offset="1" />
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="SearchTextBox_BorderMouseOver" StartPoint="0,0" EndPoint="0,1">
-      <GradientStop Color="#FF5C97C1" Offset="0.05" />
-      <GradientStop Color="#FFB9D7EB" Offset="0.07" />
-      <GradientStop Color="#FFC7E2F1" Offset="1" />
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="SearchTextBox_SearchIconBorder" Color="White" />
-    <SolidColorBrush x:Key="SearchTextBox_SearchIconBackground" Color="White" />
-    <LinearGradientBrush x:Key="SearchTextBox_SearchIconBorder_MouseOver" StartPoint="0,0" EndPoint="0,1" >
-      <GradientStop Color="#FFFFFFFF" Offset="0" />
-      <GradientStop Color="#FFE5F4FC" Offset="1" />
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="SearchTextBox_SearchIconBackground_MouseOver" StartPoint="0,0" EndPoint="0,1" >
-      <GradientStop Color="#FFE7F5FD" Offset="0" />
-      <GradientStop Color="#FFD2EDFC" Offset="0.5" />
-      <GradientStop Color="#FFB6E3FD" Offset="0.51" />
-      <GradientStop Color="#FF9DD5F3" Offset="1" />
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="SearchTextBox_SearchIconBorder_MouseDown" StartPoint="0,0" EndPoint="0,1" >
-      <GradientStop Color="#FFFFFFFF" Offset="0" />
-      <GradientStop Color="#FFE5F4FC" Offset="1" />
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="SearchTextBox_SearchIconBackground_MouseDown" StartPoint="0,0" EndPoint="0,1" >
-      <GradientStop Color="#FFE7F5FD" Offset="0" />
-      <GradientStop Color="#FFD2EDFC" Offset="0.5" />
-      <GradientStop Color="#FFB6E3FD" Offset="0.51" />
-      <GradientStop Color="#FF9DD5F3" Offset="1" />
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="SearchTextBox_LabelTextColor" Color="Gray" />
-  </Styles.Resources>
-
   <Style Selector="Controls|SearchTextBox">
-    <Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}"/>
-    <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderMidBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}"/>
+    <!--<Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderMidBrush}"/>-->
     <Setter Property="BorderThickness" Value="{DynamicResource ThemeBorderThickness}"/>
-    <Setter Property="SelectionBrush" Value="{DynamicResource HighlightBrush}"/>
+    <Setter Property="SelectionBrush" Value="{DynamicResource MahApps.Brushes.Highlight}"/>
     <Setter Property="SelectionForegroundBrush" Value="{DynamicResource HighlightForegroundBrush}"/>
     <Setter Property="Padding" Value="4"/>
     <Setter Property="Watermark" Value="Search" />
@@ -64,7 +27,9 @@
 
 
               <TextBlock Name="floatingWatermark"
-                         Foreground="{DynamicResource ThemeAccentBrush}"
+                         Background="{TemplateBinding Background}"
+                         Foreground="{TemplateBinding Foreground}"
+                         TextBlock.Foreground="{TemplateBinding Foreground}"
                          FontSize="{DynamicResource FontSizeSmall}"
                          Text="{TemplateBinding Watermark}"
                          DockPanel.Dock="Top">
@@ -86,9 +51,13 @@
                   <Panel>
                     <TextBlock Name="watermark"
                                Opacity="0.5"
+                               Foreground="{TemplateBinding Foreground}"
                                Text="{TemplateBinding Watermark}"
                                IsVisible="{TemplateBinding Text, Converter={x:Static StringConverters.IsNullOrEmpty}}"/>
-                    <TextPresenter Name="PART_TextPresenter"
+                      <!--only set the foreground there not the backgoround otherwise the text 
+                                disappears on light/dark theme switching-->
+                       <TextPresenter Name="PART_TextPresenter"
+                                   Foreground="{TemplateBinding Foreground}"
                                    Text="{TemplateBinding Text, Mode=TwoWay}"
                                    CaretIndex="{TemplateBinding CaretIndex}"
                                    SelectionStart="{TemplateBinding SelectionStart}"
@@ -109,19 +78,19 @@
     </Setter>
   </Style>
 
-  <Style Selector="TextBox:pointerover /template/ Border#border">
-    <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderHighBrush}"/>
+  <Style Selector="Controls|SearchTextBox:pointerover /template/ Border#border">
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.MouseOverBorder}"/>
   </Style>
-  <Style Selector="TextBox:focus /template/ Border#border">
-    <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderHighBrush}"/>
+  <Style Selector="Controls|SearchTextBox:focus /template/ Border#border">
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.FocusBorder}"/>
   </Style>
-  <Style Selector="TextBox:error /template/ Border#border">
+  <Style Selector="Controls|SearchTextBox:error /template/ Border#border">
     <Setter Property="BorderBrush" Value="{DynamicResource ErrorBrush}"/>
   </Style>
-  <Style Selector="TextBox /template/ DockPanel">
+  <Style Selector="Controls|SearchTextBox /template/ DockPanel">
     <Setter Property="Cursor" Value="IBeam" />
   </Style>
-  <Style Selector="TextBox:disabled /template/ Border#border">
+  <Style Selector="Controls|SearchTextBox:disabled /template/ Border#border">
       <Setter Property="Opacity" Value="{DynamicResource ThemeDisabledOpacity}" />
   </Style>
 

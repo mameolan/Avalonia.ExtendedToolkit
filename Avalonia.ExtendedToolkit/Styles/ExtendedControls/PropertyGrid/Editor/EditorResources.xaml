@@ -38,7 +38,8 @@
       <TextBox x:Name="PART_editor"
         Text="{Binding PropertyValue.StringValue, Mode=TwoWay}"
         IsReadOnly="{Binding IsReadOnly}"
-        
+        Foreground="{DynamicResource MahApps.Brushes.Black}"
+        TextBlock.Foreground="{DynamicResource MahApps.Brushes.Black}"
         pg:TextBoxExtender.CommitOnEnter="true"
         pg:TextBoxExtender.RollbackOnEscape="true"
         pg:TextBoxExtender.CommitOnTyping="false"

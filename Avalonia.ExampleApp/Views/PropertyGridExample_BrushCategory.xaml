@@ -10,362 +10,85 @@
              xmlns:Views="clr-namespace:Avalonia.ExampleApp.Views;assembly=Avalonia.ExampleApp"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.PropertyGridExample_BrushCategory">
-  <UserControl.Styles>
-
-
-    <Style Selector="pg|PropertyGrid">
-      <Setter Property="Background">
-        <Setter.Value>
-          <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1.0">
-            <GradientStop Color="#FF232323" Offset="0"/>
-            <GradientStop Color="#FF000000" Offset="1"/>
-            <GradientStop Color="#FF393939" Offset="0.48"/>
-          </LinearGradientBrush>
-        </Setter.Value>
-      </Setter>
-      <Setter Property="ItemsBackground" Value="#FF333333"/>
-      <Setter Property="ItemsForeground" Value="White"/>
-
-    </Style>
-
-    <Style Selector="design|TabbedLayout">
-      <Setter Property="Background" Value="YellowGreen"/>
-      <Setter Property="Width" Value="100"/>
-      <Setter Property="Height" Value="100"/>
-
-
-      <Setter Property="Template">
-        <Setter.Value>
-          <ControlTemplate>
-            <Grid Background="{Binding Background}">
-              <Grid Margin="2">
-                <Grid.RowDefinitions>
-                  <RowDefinition Height="25" />
-                  <RowDefinition  Height="*" />
-                </Grid.RowDefinitions>
-                <Border CornerRadius="4,4,0,0" BorderBrush="#777" BorderThickness="0,1,0,0">
-                  <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                      <GradientStop Offset="0.0" Color="#505050" />
-                      <GradientStop Offset="1.0" Color="#282828" />
-                    </LinearGradientBrush>
-                  </Border.Background>
-                  <StackPanel Orientation="Horizontal">
-                    <panel:IndexingStackPanel Orientation="Horizontal" />
-                    <Rectangle x:Name="Highlight" Width="1" Fill="#2FFF" HorizontalAlignment="Left" />
-                  </StackPanel>
-                </Border>
-
-                <Border Grid.Row="1" Background="{Binding Background}">
-                  <Border BorderThickness="0.5,1,0,0" BorderBrush="#6000" Background="#10FFFFFF" CornerRadius="2,3,2,2" Margin="2" >
-                    <ContentPresenter x:Name="PART_SelectedContentHost"
-                                      Content="{TemplateBinding SelectedContent}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      />
-                  </Border>
-                </Border>
-              </Grid>
-            </Grid>
-          </ControlTemplate>
-        </Setter.Value>
-      </Setter>
-
-      <Setter Property="ItemTemplate">
-        <Setter.Value>
-          <DataTemplate>
-            <Grid Margin="-10" Background="#0f00">
-              <TextBlock Margin="4" Text="{Binding Header}"/>
-            </Grid>
-          </DataTemplate>
-        </Setter.Value>
-      </Setter>
-
-    </Style>
-
-
-
-    <Style Selector="design|TabbedLayoutItem">
-      <Setter Property="Foreground" Value="White" />
-      <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-      <Setter Property="Template">
-        <Setter.Value>
-          <ControlTemplate>
-            <Border x:Name="Border" Background="Transparent" BorderBrush="Transparent" BorderThickness="0,1,0,0" Margin="0,-1,0,0">
-              <Grid Background="Green">
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="Auto" />
-                  <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Border x:Name="Shimmer" Opacity="0">
-                  <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                      <GradientStop Offset="0.0" Color="#40909090" />
-                      <GradientStop Offset="1.0" Color="#40505050" />
-                    </LinearGradientBrush>
-                  </Border.Background>
-                </Border>
-                <ContentPresenter x:Name="HeaderArea" Content="{TemplateBinding Header}" Margin="12,0,12,3" VerticalAlignment="Center" />
-                <Rectangle Grid.Column="0" x:Name="Highlight" Width="1" Fill="#2FFF" HorizontalAlignment="Left" />
-                <Rectangle Grid.Column="1" x:Name="Shadow" Width="1" Fill="#7000" HorizontalAlignment="Right" Margin="0,-1,0,0" />
-
-
-                <!--Style="{StaticResource CloseButton}"-->
-                <Button Margin="0,0,8,3"
-                        Grid.Column="1" x:Name="CloseButton"
-                        Width="14" Height="14" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Center"
-                        IsVisible="{TemplateBinding CanClose}"
-                      
-                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type design:TabbedLayoutItem}}}"/>
-                <!--Command="pg:PropertyGridCommands.ClosePropertyTab"-->
-              </Grid>
-            </Border>
-            <!--<ControlTemplate.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-              <Trigger.EnterActions>
-                <BeginStoryboard>
-                  <Storyboard >
-                    <DoubleAnimation Duration="0:0:0.07" Storyboard.TargetName="Shimmer" Storyboard.TargetProperty="Opacity" To="1.0" />
-                  </Storyboard>
-                </BeginStoryboard>
-              </Trigger.EnterActions>
-              <Trigger.ExitActions>
-                <BeginStoryboard>
-                  <Storyboard >
-                    <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetName="Shimmer" Storyboard.TargetProperty="Opacity" />
-                  </Storyboard>
-                </BeginStoryboard>
-              </Trigger.ExitActions>
-            </Trigger>
-
-            <Trigger Property="IsSelected" Value="False">
-              <Setter TargetName="CloseButton" Property="Visibility" Value="Collapsed" />
-            </Trigger>
-
-            <Trigger Property="IsSelected" Value="True">
-              <Setter TargetName="Shimmer" Property="Opacity" Value="0" />
-              <Setter TargetName="Border" Property="Background">
-                <Setter.Value>
-                  <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Offset="0.0" Color="#909090" />
-                    <GradientStop Offset="1.0" Color="#505050" />
-                  </LinearGradientBrush>
-                </Setter.Value>
-              </Setter>
-              <Setter TargetName="Border" Property="BorderBrush" Value="#BBB" />
-              <Setter TargetName="Highlight" Property="Fill" Value="#3FFF" />
-              <Setter TargetName="Shadow" Property="Fill" Value="#8000" />
-            </Trigger>
-
-            <Trigger Property="theme:IndexingStackPanel.Index" Value="0">
-              <Setter TargetName="Border" Property="CornerRadius" Value="4,0,0,0" />
-              <Setter TargetName="Shimmer" Property="CornerRadius" Value="4,0,0,0" />
-            </Trigger>
-
-          </ControlTemplate.Triggers>-->
-          </ControlTemplate>
-        </Setter.Value>
-      </Setter>
-    </Style>
-
-    <Style Selector="design|ExtendedPropertyEditorTab">
-      <Setter Property="Foreground" Value="White" />
-      <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-      <Setter Property="Template">
-        <Setter.Value>
-          <ControlTemplate>
-            <Border x:Name="Border" Background="Transparent" BorderBrush="Transparent" BorderThickness="0,1,0,0" Margin="0,-1,0,0">
-              <Grid>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="Auto" />
-                  <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Border x:Name="Shimmer" Opacity="0">
-                  <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                      <GradientStop Offset="0.0" Color="#40909090" />
-                      <GradientStop Offset="1.0" Color="#40505050" />
-                    </LinearGradientBrush>
-                  </Border.Background>
-                </Border>
-                <ContentPresenter x:Name="HeaderArea" Content="{TemplateBinding Header}" Margin="12,0,12,3" VerticalAlignment="Center" />
-                <Rectangle Grid.Column="0" x:Name="Highlight" Width="1" Fill="#2FFF" HorizontalAlignment="Left" />
-                <Rectangle Grid.Column="1" x:Name="Shadow" Width="1" Fill="#7000" HorizontalAlignment="Right" Margin="0,-1,0,0" />
-
-
-                <!--Style="{StaticResource CloseButton}"-->
-                <Button Margin="0,0,8,3"
-                        Grid.Column="1" x:Name="CloseButton"
-                        Width="14" Height="14" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Center"
-                        IsVisible="{TemplateBinding CanClose}"
-                      
-                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type design:TabbedLayoutItem}}}"/>
-                <!--Command="pg:PropertyGridCommands.ClosePropertyTab"-->
-              </Grid>
-            </Border>
-            <!--<ControlTemplate.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-              <Trigger.EnterActions>
-                <BeginStoryboard>
-                  <Storyboard >
-                    <DoubleAnimation Duration="0:0:0.07" Storyboard.TargetName="Shimmer" Storyboard.TargetProperty="Opacity" To="1.0" />
-                  </Storyboard>
-                </BeginStoryboard>
-              </Trigger.EnterActions>
-              <Trigger.ExitActions>
-                <BeginStoryboard>
-                  <Storyboard >
-                    <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetName="Shimmer" Storyboard.TargetProperty="Opacity" />
-                  </Storyboard>
-                </BeginStoryboard>
-              </Trigger.ExitActions>
-            </Trigger>
-
-            <Trigger Property="IsSelected" Value="False">
-              <Setter TargetName="CloseButton" Property="Visibility" Value="Collapsed" />
-            </Trigger>
-
-            <Trigger Property="IsSelected" Value="True">
-              <Setter TargetName="Shimmer" Property="Opacity" Value="0" />
-              <Setter TargetName="Border" Property="Background">
-                <Setter.Value>
-                  <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Offset="0.0" Color="#909090" />
-                    <GradientStop Offset="1.0" Color="#505050" />
-                  </LinearGradientBrush>
-                </Setter.Value>
-              </Setter>
-              <Setter TargetName="Border" Property="BorderBrush" Value="#BBB" />
-              <Setter TargetName="Highlight" Property="Fill" Value="#3FFF" />
-              <Setter TargetName="Shadow" Property="Fill" Value="#8000" />
-            </Trigger>
-
-            <Trigger Property="theme:IndexingStackPanel.Index" Value="0">
-              <Setter TargetName="Border" Property="CornerRadius" Value="4,0,0,0" />
-              <Setter TargetName="Shimmer" Property="CornerRadius" Value="4,0,0,0" />
-            </Trigger>
-
-          </ControlTemplate.Triggers>-->
-          </ControlTemplate>
-        </Setter.Value>
-      </Setter>
-    </Style>
-
-
-
-
-  </UserControl.Styles>
 
   <UserControl.Resources>
-    <Model:BrushList x:Key="BrushList"/>
+    <Model:BrushList x:Key="BrushList" />
 
     <ControlTemplate x:Key="mydata">
-
-      <Border BorderBrush="White" BorderThickness="1" CornerRadius="5">
-        <Border.Background>
-          <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF333333" Offset="0"/>
-            <GradientStop Color="Gray" Offset="1"/>
-          </LinearGradientBrush>
-        </Border.Background>
+      <Border BorderBrush="{DynamicResource MahApps.Brushes.Accent2}" BorderThickness="1" CornerRadius="5"
+              Background="{DynamicResource MahApps.Brushes.Accent3}">
         <StackPanel Margin="5">
           <StackPanel.Styles>
-
             <Style Selector="ListBoxItem:selected /template/ Border#Border">
-              <Setter Property="Background" Value="Transparent"/>
+              <Setter Property="Background" Value="Transparent" />
             </Style>
 
             <Style Selector="ListBoxItem:selected:pointerover /template/ Border#Border">
-              <Setter Property="Background" Value="Transparent"/>
+              <Setter Property="Background" Value="Transparent" />
             </Style>
 
             <Style Selector="ListBoxItem[IsSelected=false][IsPointerOver=true] /template/ Border#Border">
-              <Setter Property="Background" Value="Transparent"/>
+              <Setter Property="Background" Value="Transparent" />
             </Style>
 
             <Style Selector="ListBoxItem[IsSelected=true]">
-              <!--<Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.AccentSelectedColor}" />-->
               <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Highlight}" />
             </Style>
-            
+
             <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
-              <Setter Property="Background" Value="Transparent"/>
+              <Setter Property="Background" Value="Transparent" />
             </Style>
             <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
-              <Setter Property="Background" Value="Transparent"/>
+              <Setter Property="Background" Value="Transparent" />
             </Style>
 
             <Style Selector="ListBoxItem:selected:focus /template/ ContentPresenter">
-              <Setter Property="Background" Value="Transparent"/>
+              <Setter Property="Background" Value="Transparent" />
             </Style>
 
             <Style Selector="ListBoxItem:selected:focus:pointerover /template/ ContentPresenter">
-              <Setter Property="Background" Value="Transparent"/>
+              <Setter Property="Background" Value="Transparent" />
             </Style>
           </StackPanel.Styles>
 
-          <ListBox Items="{Binding Path=[ObjectBrushes].PropertyValue.Value}"
-                   
-                   >
+          <ListBox Items="{Binding Path=[ObjectBrushes].PropertyValue.Value}">
             <ListBox.ItemTemplate>
               <DataTemplate>
                 <StackPanel Orientation="Horizontal">
-                  <TextBlock Text="{Binding Path=Name}"/>
+                  <StackPanel.Styles>
+                    <Style Selector="TextBlock">
+                      <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+                    </Style>
+                  </StackPanel.Styles>
+
+                  <TextBlock Text="{Binding Path=Name}" />
                   <ComboBox Margin="30,5,5,5" Items="{Binding Source={StaticResource BrushList}}"
-                            SelectedItem="{Binding Path=ObjectBrush}"/>
-                  <TextBlock Margin="20,0,0,0" Text="{Binding Path=ObjectBrush}"/>
+                            SelectedItem="{Binding Path=ObjectBrush}"
+                            MinWidth="80" />
+                  <TextBlock Margin="20,0,0,0" Text="{Binding Path=ObjectBrush}"
+                             TextBlock.Foreground="{DynamicResource MahApps.Brushes.Black}" />
                 </StackPanel>
               </DataTemplate>
-
             </ListBox.ItemTemplate>
           </ListBox>
-
         </StackPanel>
       </Border>
-
     </ControlTemplate>
   </UserControl.Resources>
 
   <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*" />
-      <ColumnDefinition />
-    </Grid.ColumnDefinitions>
-
-    <StackPanel x:Name="objectPanel" Grid.Column="0" Margin="0,10,10,0">
-      <TextBlock TextWrapping="Wrap">
-        Brush category editor
-      </TextBlock>
-    </StackPanel>
-
-    <GridSplitter Width="2" Background="Black" />
-
     <pg:PropertyGrid x:Name="propertyGrid"
-                     Grid.Column="1"
                      PropertyDisplayMode="All"
                      ShowAttachedProperties="False"
-                     ShowReadOnlyProperties="False"
-                     >
-      <!--<pg:PropertyGrid.Resources>
-        <ResourceDictionary>
-          <ResourceDictionary.MergedDictionaries>
-            <pg:KaxamlTheme/>
-          </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-      </pg:PropertyGrid.Resources>-->
+                     ShowReadOnlyProperties="False">
       <pg:PropertyGrid.Layout>
-
-        <design:CategorizedLayout/>
-
+        <design:CategorizedLayout />
       </pg:PropertyGrid.Layout>
       <pg:PropertyGrid.Editors>
         <editors:CategoryEditor DeclaringType="{x:Type Model:BrushProxy}"
                           CategoryName="Brushes"
-                          InlineTemplate="{StaticResource  mydata}"/>
-        
-        
+                          InlineTemplate="{StaticResource  mydata}" />
       </pg:PropertyGrid.Editors>
     </pg:PropertyGrid>
-
-
   </Grid>
 </UserControl>

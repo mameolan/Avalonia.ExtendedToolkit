@@ -28,25 +28,23 @@
               <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!--<design:PropertyNameTextBlock Grid.Column="0" Margin="0,0,8,0"
-                                          Text="{Binding DisplayName, Mode=OneTime}"
-                                          Foreground="{Binding ItemsForeground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:PropertyGrid}}}"
-                                          IsEnabled="False"
-                                          />-->
-            <TextBlock Grid.Column="0"
-                       Margin="3"
-                        Text="{Binding DisplayName, Mode=OneTime}"
-                        Foreground="{Binding ItemsForeground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:PropertyGrid}}}"
-                        Background="{DynamicResource ThemeControlMidBrush}"
-                       />
-
-            <design:PropertyEditorContentPresenter Grid.Column="1" VerticalAlignment="Center"
+            <design:PropertyNameTextBlock
+                    Grid.Column="0" Margin="0,0,5,0"
+                    Text="{Binding DisplayName, Mode=OneTime}"
+                    Background="{DynamicResource MahApps.Brushes.White}"
+                    IsEnabled="False"
+            />
+            
+             <design:PropertyEditorContentPresenter Grid.Column="1" VerticalAlignment="Center"
                           DataContext="{Binding}"
+                          Background="{DynamicResource MahApps.Brushes.White}"
                           />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
+
+
 
 </Styles>
