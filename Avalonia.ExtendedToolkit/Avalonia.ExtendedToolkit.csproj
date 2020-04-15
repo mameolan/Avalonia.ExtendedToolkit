@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,7 +14,7 @@
     <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.9.6" />
     <PackageReference Include="Avalonia.Xaml.Interactions" Version="0.9.6" />
     <PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.9.6" />
-    <PackageReference Include="GridExtra.Avalonia" Version="0.6.1" />
+    <PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

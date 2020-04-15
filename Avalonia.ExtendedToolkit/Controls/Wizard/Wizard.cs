@@ -7,6 +7,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.ExtendedToolkit.Extensions;
 using Avalonia.Interactivity;
+using DynamicData.Kernel;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {

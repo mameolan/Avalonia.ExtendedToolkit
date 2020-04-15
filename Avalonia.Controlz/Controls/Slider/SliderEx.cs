@@ -7,6 +7,7 @@ using Avalonia.Layout;
 using ReactiveUI;
 using System;
 using System.Windows.Input;
+using DynamicData.Kernel;
 
 namespace Avalonia.Controlz.Controls
 {
@@ -434,10 +435,9 @@ namespace Avalonia.Controlz.Controls
         /// <param name="priority"></param>
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
         {
-            base.OnPropertyChanged(e);
-            if (e.Property == OrientationProperty)
+            if (e.Property == OrientationProperty && e.NewValue is Orientation newValue)
             {
-                UpdatePseudoClassesForOrientation((Orientation)e.NewValue);
+                UpdatePseudoClassesForOrientation(newValue);
             }
         }
 
