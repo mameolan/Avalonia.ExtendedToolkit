@@ -11,6 +11,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.LogicalTree;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using ReactiveUI;
 
 namespace Avalonia.ExtendedToolkit.Controls
@@ -104,7 +105,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// Remove the focus from a button when it was clicked.
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void buttonClickedEvent(object sender, RoutedEventArgs e)
         {
             if (!this.IsDropDownOpen)
@@ -279,7 +280,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        private object GetImage(IImage imageSource)
+        private object GetImage(IBitmap imageSource)
         {
             if (imageSource == null) return null;
             Image image = new Image();
@@ -632,7 +633,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             BreadcrumbItem breadcrumbItem = Content as BreadcrumbItem;
 
             _isInitial = true;
-            RaisePropertyChanged(RootProperty, null,new BindingValue<object>( breadcrumbItem.Items));
+            RaisePropertyChanged(RootProperty, null, breadcrumbItem.Items);
             _isInitial = false;
 
             //RaisePropertyChanged(PathProperty, string.Empty, Path);

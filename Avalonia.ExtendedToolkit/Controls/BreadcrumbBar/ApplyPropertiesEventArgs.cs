@@ -1,5 +1,7 @@
-﻿using Avalonia.Interactivity;
+﻿using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -26,7 +28,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public object Item { get; private set; }
 
-        public IImage Image { get; set; }
+        public IBitmap Image { get; set; }
 
         /// <summary>
         /// The trace that is used to show the title of a breadcrumb.

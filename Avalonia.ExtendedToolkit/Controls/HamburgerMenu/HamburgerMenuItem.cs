@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -26,23 +27,23 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<string> TextProperty =
             AvaloniaProperty.Register<HamburgerMenuItem, string>(nameof(Text));
 
-        public IImage IconLight
+        public IBitmap IconLight
         {
-            get { return (IImage)GetValue(IconLightProperty); }
+            get { return (IBitmap)GetValue(IconLightProperty); }
             set { SetValue(IconLightProperty, value); }
         }
 
-        public static readonly StyledProperty<IImage> IconLightProperty =
-            AvaloniaProperty.Register<HamburgerMenuItem, IImage>(nameof(IconLight));
+        public static readonly StyledProperty<IBitmap> IconLightProperty =
+            AvaloniaProperty.Register<HamburgerMenuItem, IBitmap>(nameof(IconLight));
 
-        public IImage IconBlack
+        public IBitmap IconBlack
         {
-            get { return (IImage)GetValue(IconBlackProperty); }
+            get { return (IBitmap)GetValue(IconBlackProperty); }
             set { SetValue(IconBlackProperty, value); }
         }
 
-        public static readonly StyledProperty<IImage> IconBlackProperty =
-            AvaloniaProperty.Register<HamburgerMenuItem, IImage>(nameof(IconBlack));
+        public static readonly StyledProperty<IBitmap> IconBlackProperty =
+            AvaloniaProperty.Register<HamburgerMenuItem, IBitmap>(nameof(IconBlack));
 
         public IBrush SelectionIndicatorColor
         {

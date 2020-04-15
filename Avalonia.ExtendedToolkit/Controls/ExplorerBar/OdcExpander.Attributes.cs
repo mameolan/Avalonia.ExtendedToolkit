@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -62,14 +63,14 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Gets or sets the ImageSource for the image in the header.
         /// </summary>
-        public IImage Image
+        public IBitmap Image
         {
-            get { return (IImage)GetValue(ImageProperty); }
+            get { return (IBitmap)GetValue(ImageProperty); }
             set { SetValue(ImageProperty, value); }
         }
 
-        public static readonly StyledProperty<IImage> ImageProperty =
-            AvaloniaProperty.Register<OdcExpander, IImage>(nameof(Image));
+        public static readonly StyledProperty<IBitmap> ImageProperty =
+            AvaloniaProperty.Register<OdcExpander, IBitmap>(nameof(Image));
 
         public bool IsExpanded
         {
