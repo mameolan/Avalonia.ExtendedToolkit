@@ -4,7 +4,7 @@
     xmlns:pg="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid;assembly=Avalonia.ExtendedToolkit"
     xmlns:editors="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;assembly=Avalonia.ExtendedToolkit"
     xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
-    xmlns:controls="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:pgControls="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls;assembly=Avalonia.ExtendedToolkit"
     xmlns:converter="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters;assembly=Avalonia.ExtendedToolkit"
     xmlns:controlz="clr-namespace:Avalonia.Controlz.Controls;assembly=Avalonia.Controlz"
     >
@@ -12,7 +12,6 @@
     <pg:NamedColorList x:Key="NamedColorList"/>
     <converter:NullValueConverter x:Key="NullValueConverter"/>
     <converter:EnumValueConverter x:Key="enumValueConverter"/>
-    <converter:MultiBooleanToIsVisibleConverter x:Key="multiBooleanToVisibilityConverter"/>
     <converter:ExpanderHeaderWidthConverter x:Key="expanderHeaderWidthConverter"/>
 
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.ComplexPropertyEditorKey}">
@@ -50,15 +49,15 @@
       <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"
         Style="{DynamicResource {x:Type ComboBox}}"
     -->
-      <controls:EnumDropdown x:Name="PART_editor"
+      <pgControls:EnumDropdown x:Name="PART_editor"
         PropertyValue="{Binding}"
         IsEnabled="{Binding IsEditable}">
-        <controls:EnumDropdown.ItemTemplate>
+        <pgControls:EnumDropdown.ItemTemplate>
           <DataTemplate>
             <TextBlock Text="{Binding Path=., Converter={StaticResource enumValueConverter}}" />
           </DataTemplate>
-        </controls:EnumDropdown.ItemTemplate>
-      </controls:EnumDropdown>
+        </pgControls:EnumDropdown.ItemTemplate>
+      </pgControls:EnumDropdown>
     </ControlTemplate>
 
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.BooleanEditorKey}">
@@ -107,6 +106,16 @@
         IsEnabled="{Binding IsEditable}"/>
     </ControlTemplate>
 
+    <!--<DataTemplate x:Key="{x:Static editors:Resources.XmlLanguageEditorKey}">
+      <ComboBox
+        x:Name="PART_editor"
+        SelectedItem="{Binding Value}"
+        IsEnabled="{Binding IsEditable}"
+      />
+      --><!--Items="{Binding Source={x:Static local:EditorDataProvider.DefaultLanguages}}"--><!--
+    </DataTemplate>-->
+
+
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.SliderEditorKey}">
 
       <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"-->
@@ -124,6 +133,7 @@
                          
             />
     </ControlTemplate>
+
 
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.PasswordEditorKey}">
       <!--pg:PasswordBoxExtender.BindPassword="true"
@@ -146,6 +156,26 @@
         />
     </ControlTemplate>
 
+    <!--<DataTemplate x:Key="{x:Static editors:Resources.TimeSpanEditorKey}">
+      --><!--TimePicker control not available (?)--><!--
+      --><!--<controls:TimePicker
+        x:Name="PART_editor"
+        SelectedTime="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        IsEnabled="{Binding IsEditable}"
+      />--><!--
+    </DataTemplate>-->
+
+    <!--<DataTemplate x:Key="{x:Static editors:Resources.ColorEditorInlineKey}">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="1*"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        --><!--DropDownColorPicker not available (?)--><!--
+        --><!--<controls:DropDownColorPicker Grid.Column="0" Margin="2" Color="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>--><!--
+        <Button Grid.Column="2" Margin="2,0,0,0" Content="[...]" Width="20" Command="{Binding Owner.ShowExtendedEditor}" CommandParameter="{Binding}"/>
+      </Grid>
+    </DataTemplate>-->
   </Styles.Resources>
 
 

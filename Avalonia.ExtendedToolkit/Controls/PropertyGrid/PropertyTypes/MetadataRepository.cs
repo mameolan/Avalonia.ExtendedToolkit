@@ -5,6 +5,10 @@ using System.Linq;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     public static class MetadataRepository
     {
         private class PropertySet : Dictionary<string, PropertyData> { }

@@ -6,6 +6,10 @@ using System.ComponentModel;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Represents a strongly typed collection of <see cref="GridEntry"/>-based items that can be accessed by index or name.
     /// Provides collection change notifications, methods to search, sort, and manipulate lists.
@@ -108,8 +112,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
-        #region ObservableCollection implementation
-
         /// <summary>
         /// Inserts an item into the collection at the specified index.
         /// </summary>
@@ -154,8 +156,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             EncacheItem(item);
             base.SetItem(index, item);
         }
-
-        #endregion ObservableCollection implementation
 
         /// <summary>
         /// Gets the item with the specified name or null if no item with the name specified was found.

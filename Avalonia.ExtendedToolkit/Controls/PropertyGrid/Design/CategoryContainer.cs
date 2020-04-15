@@ -2,6 +2,10 @@
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Specialized UI container for a category entry.
     /// </summary>

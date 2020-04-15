@@ -2,6 +2,10 @@
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Controls the Browsable state of the category with corresponding properties.
     /// Supports the "*" (All) wildcard determining whether all the categories within the given class should be Browsable.

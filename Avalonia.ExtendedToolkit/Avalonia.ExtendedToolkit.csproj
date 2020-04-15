@@ -52,10 +52,6 @@
     <ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Behaviours\" />
-  </ItemGroup>
-
   <Target Name="GenerateXamlFilesInner">
     <PropertyGroup>
       <XamlColorSchemeGeneratorVersion Condition="'%(PackageReference.Identity)' == 'XamlColorSchemeGenerator'">%(PackageReference.Version)</XamlColorSchemeGeneratorVersion>

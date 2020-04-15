@@ -4,6 +4,10 @@ using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Extended <see cref="FontStyleConverter"/> that provides standard values collection.
     /// </summary>

@@ -4,13 +4,15 @@ using Avalonia.Interactivity;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Provides additional facilities for TextBox control.
     /// </summary>
     public static class TextBoxExtender
     {
-        #region CommitOnEnter
-
         public static readonly AttachedProperty<bool> CommitOnEnterProperty =
             AvaloniaProperty.RegisterAttached<TextBox, bool>("CommitOnEnter", typeof(TextBoxExtender));
 
@@ -55,10 +57,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
-        #endregion CommitOnEnter
-
-        #region CommitOnTyping
-
         public static readonly AttachedProperty<bool> CommitOnTypingProperty =
             AvaloniaProperty.RegisterAttached<TextBox, bool>("CommitOnTyping", typeof(TextBoxExtender));
 
@@ -100,10 +98,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 e.Handled = true;
             }
         }
-
-        #endregion CommitOnTyping
-
-        #region RollbackOnEscape
 
         public static readonly AttachedProperty<bool> RollbackOnEscapeProperty =
             AvaloniaProperty.RegisterAttached<TextBox, bool>("RollbackOnEscape", typeof(TextBoxExtender));
@@ -147,10 +141,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 e.Handled = true;
             }
         }
-
-        #endregion RollbackOnEscape
-
-        #region SelectAllOnFocus
 
         public static readonly AttachedProperty<bool> SelectAllOnFocusProperty =
             AvaloniaProperty.RegisterAttached<TextBox, bool>("SelectAllOnFocus", typeof(TextBoxExtender));
@@ -223,8 +213,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 tb.Focus();
             }
         }
-
-        #endregion SelectAllOnFocus
 
         static TextBoxExtender()
         {

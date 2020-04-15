@@ -28,6 +28,7 @@ namespace Avalonia.ExampleApp.Model
         public static readonly StyledProperty<BrushInfo[]> ObjectBrushesProperty =
             AvaloniaProperty.Register<BrushProxy, BrushInfo[]>(nameof(ObjectBrushes));
 
+
         
 
         protected virtual void OnObjectBrushesChanged(BrushProxy o, AvaloniaPropertyChangedEventArgs e)

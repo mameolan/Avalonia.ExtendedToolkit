@@ -7,6 +7,10 @@ using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Frequently used types cache used performance optimization.
     /// </summary>
@@ -26,7 +30,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
             public static readonly Type NotifyParentPropertyAttribute = typeof(NotifyParentPropertyAttribute);
         }
 
-        public static class Wpf
+        public static class Avalonia
         {
             public static readonly Type Geometry = typeof(Geometry);
             public static readonly Type CornerRadius = typeof(CornerRadius);

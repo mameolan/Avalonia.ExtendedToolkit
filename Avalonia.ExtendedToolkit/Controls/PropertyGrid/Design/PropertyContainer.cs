@@ -2,6 +2,10 @@
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Specialized UI container for a property entry.
     /// </summary>
@@ -23,7 +27,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         {
             SetParentContainer(this, this);
 
-            //PreviewMouseDown+=(sender, args) =>  MessageBox.Show(Entry.Name);
         }
     }
 }

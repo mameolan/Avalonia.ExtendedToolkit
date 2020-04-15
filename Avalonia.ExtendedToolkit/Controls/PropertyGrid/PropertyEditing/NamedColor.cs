@@ -3,6 +3,10 @@ using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Provides basic information for named colors.
     /// </summary>

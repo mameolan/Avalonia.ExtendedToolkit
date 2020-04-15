@@ -2,6 +2,10 @@
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Provides value editing service for a property value.
     /// </summary>

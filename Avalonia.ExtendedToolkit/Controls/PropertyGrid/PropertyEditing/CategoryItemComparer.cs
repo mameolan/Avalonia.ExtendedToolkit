@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Default <see cref="CategoryItem"/> comparer.
     /// </summary>

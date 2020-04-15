@@ -2,6 +2,10 @@
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Combobox control to present enumeration classes.
     /// </summary>

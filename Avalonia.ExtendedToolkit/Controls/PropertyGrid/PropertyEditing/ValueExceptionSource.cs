@@ -1,5 +1,9 @@
 ﻿namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Specifies the source of value exception
     /// </summary>

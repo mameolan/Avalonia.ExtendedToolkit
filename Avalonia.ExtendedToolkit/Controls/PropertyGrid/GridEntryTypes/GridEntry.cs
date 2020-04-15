@@ -1,37 +1,18 @@
 ﻿using System;
-using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     public abstract class GridEntry : AvaloniaObject, /*INotifyPropertyChanged,*/ IPropertyFilterTarget, IDisposable
     {
         /// <summary>
         /// Gets the name of the encapsulated item.
         /// </summary>
         public string Name { get; protected set; }
-
-        //private bool _isBrowsable;
-        ///// <summary>
-        ///// Gets or sets a value indicating whether this instance is browsable.
-        ///// </summary>
-        ///// <value>
-        ///// 	<c>true</c> if this instance is browsable; otherwise, <c>false</c>.
-        ///// </value>
-        //public bool IsBrowsable
-        //{
-        //    get { return _isBrowsable; }
-        //    set
-        //    {
-        //        if (_isBrowsable == value)
-        //            return;
-        //        _isBrowsable = value;
-        //        OnPropertyChanged();
-        //        OnPropertyChanged(nameof(IsVisible));
-        //        OnBrowsableChanged();
-        //    }
-        //}
 
         public static readonly DirectProperty<GridEntry, bool> IsBrowsableProperty =
                 AvaloniaProperty.RegisterDirect<GridEntry, bool>(
@@ -40,6 +21,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         private bool _isBrowsable;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is browsable.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if this instance is browsable; otherwise, <c>false</c>.
+        /// </value>
         public bool IsBrowsable
         {
             get { return _isBrowsable; }
@@ -51,19 +38,14 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether this instance should be visible.
-        /// </summary>
-        //public new virtual bool IsVisible
-        //{
-        //    get { return IsBrowsable && MatchesFilter; }
-        //}
-
         public static readonly DirectProperty<GridEntry, bool> IsVisibleProperty =
                 AvaloniaProperty.RegisterDirect<GridEntry, bool>(
                    nameof(IsVisible),
                     o => o.IsVisible, unsetValue: true);
 
+        /// <summary>
+        /// Gets a value indicating whether this instance should be visible.
+        /// </summary>
         public bool IsVisible
         {
             get { return IsBrowsable && MatchesFilter; }
@@ -75,26 +57,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <value>The owner of the item.</value>
         public PropertyGrid Owner { get; protected set; }
 
-        //private Editor _editor;
-        ///// <summary>
-        ///// Gets or sets the editor.
-        ///// </summary>
-        ///// <value>The editor.</value>
-        //public virtual Editor Editor
-        //{
-        //    get
-        //    {
-        //        if (_editor == null && Owner != null)
-        //            _editor = Owner.GetEditor(this);
-        //        return _editor;
-        //    }
-        //    set
-        //    {
-        //        _editor = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         public static readonly DirectProperty<GridEntry, Editor> EditorProperty =
                 AvaloniaProperty.RegisterDirect<GridEntry, Editor>(
                     nameof(Editor),
@@ -102,6 +64,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         private Editor _editor;
 
+        /// <summary>
+        /// Gets or sets the editor.
+        /// </summary>
+        /// <value>The editor.</value>
         public Editor Editor
         {
             get
@@ -190,38 +156,24 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <returns><c>true</c> if entry matches predicate; otherwise, <c>false</c>.</returns>
         public abstract bool MatchesPredicate(PropertyFilterPredicate predicate);
 
-        //private bool _matchesFilter = true;
-        ///// <summary>
-        ///// Gets or sets a value indicating whether the entry matches filter.
-        ///// </summary>
-        ///// <value><c>true</c> if entry matches filter; otherwise, <c>false</c>.</value>
-        //public bool MatchesFilter
-        //{
-        //    get { return _matchesFilter; }
-        //    protected set
-        //    {
-        //        if (_matchesFilter == value)
-        //            return;
-        //        _matchesFilter = value;
-        //        OnPropertyChanged();
-        //        OnPropertyChanged(nameof(IsVisible));
-        //    }
-        //}
-
         public static readonly DirectProperty<GridEntry, bool> MatchesFilterProperty =
                 AvaloniaProperty.RegisterDirect<GridEntry, bool>(
                     nameof(MatchesFilter),
                     o => o.MatchesFilter, unsetValue: true);
 
-        private bool _matchesFilter;
+        private bool _matchesFilter = true;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the entry matches filter.
+        /// </summary>
+        /// <value><c>true</c> if entry matches filter; otherwise, <c>false</c>.</value>
         public bool MatchesFilter
         {
             get { return _matchesFilter; }
             protected set
             {
-                if (_matchesFilter == value)
-                    return;
+                //if (_matchesFilter == value)
+                //    return;
                 SetAndRaise(MatchesFilterProperty, ref _matchesFilter, value);
 
                 RaisePropertyChanged(IsVisibleProperty, !IsVisible, IsVisible);
@@ -242,14 +194,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             if (handler != null)
                 handler(this, EventArgs.Empty);
         }
-
-        //public new event PropertyChangedEventHandler PropertyChanged;
-
-        //protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        //{
-        //    var handler = PropertyChanged;
-        //    if (handler != null)
-        //        handler(this, new PropertyChangedEventArgs(propertyName));
-        //}
     }
 }

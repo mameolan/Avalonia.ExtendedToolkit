@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
 using Avalonia.Interactivity;
 using Avalonia.Media;
-using Avalonia.Metadata;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     public partial class PropertyGrid//, INotifyPropertyChanged
     {
         public Type StyleKey => typeof(PropertyGrid);
@@ -325,7 +327,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                     foreach (var item in _properties)
                     {
                         UnhookPropertyChanged(item);
-                        item.Dispose();
+                        //item.Dispose();
                     }
                 }
 

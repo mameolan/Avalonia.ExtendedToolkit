@@ -4,6 +4,10 @@ using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Provides a list of colors that is possible to bind to UI
     /// </summary>

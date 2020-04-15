@@ -6,6 +6,10 @@ using Avalonia.Collections;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Defines a collection of value Editors (Type, Category and Property editors).
     /// </summary>
@@ -14,12 +18,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
         private static readonly Dictionary<Type, Editor> Cache = new Dictionary<Type, Editor>
     {
       { typeof(Boolean), new TypeEditor(typeof(Boolean), EditorKeys.BooleanEditorKey) },
-      //{ KnownTypes.Wpf.FontStretch, new TypeEditor(KnownTypes.Wpf.FontStretch, EditorKeys.EnumEditorKey) },
-      { KnownTypes.Wpf.FontStyle, new TypeEditor(KnownTypes.Wpf.FontStyle, EditorKeys.EnumEditorKey) },
-      { KnownTypes.Wpf.FontWeight, new TypeEditor(KnownTypes.Wpf.FontWeight, EditorKeys.EnumEditorKey) },
-      { KnownTypes.Wpf.Cursor, new TypeEditor(KnownTypes.Wpf.Cursor, EditorKeys.EnumEditorKey) },
-      { KnownTypes.Wpf.FontFamily, new TypeEditor(KnownTypes.Wpf.FontFamily, EditorKeys.FontFamilyEditorKey) },
-      { KnownTypes.Wpf.Brush, new TypeEditor(KnownTypes.Wpf.Brush, EditorKeys.BrushEditorKey) },
+      //{ KnownTypes.Avalonia.FontStretch, new TypeEditor(KnownTypes.Avalonia.FontStretch, EditorKeys.EnumEditorKey) },
+      { KnownTypes.Avalonia.FontStyle, new TypeEditor(KnownTypes.Avalonia.FontStyle, EditorKeys.EnumEditorKey) },
+      { KnownTypes.Avalonia.FontWeight, new TypeEditor(KnownTypes.Avalonia.FontWeight, EditorKeys.EnumEditorKey) },
+      { KnownTypes.Avalonia.Cursor, new TypeEditor(KnownTypes.Avalonia.Cursor, EditorKeys.EnumEditorKey) },
+      { KnownTypes.Avalonia.FontFamily, new TypeEditor(KnownTypes.Avalonia.FontFamily, EditorKeys.FontFamilyEditorKey) },
+      { KnownTypes.Avalonia.Brush, new TypeEditor(KnownTypes.Avalonia.Brush, EditorKeys.BrushEditorKey) },
       { typeof(Enum), new TypeEditor(typeof(Enum), EditorKeys.EnumEditorKey) }
     };
 

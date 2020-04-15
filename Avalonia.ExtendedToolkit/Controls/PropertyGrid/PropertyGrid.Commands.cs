@@ -3,6 +3,10 @@ using ReactiveUI;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     public partial class PropertyGrid
     {
         public ICommand ResetFilterCommand { get; private set; }

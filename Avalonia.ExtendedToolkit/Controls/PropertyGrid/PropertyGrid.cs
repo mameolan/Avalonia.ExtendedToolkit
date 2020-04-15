@@ -13,8 +13,10 @@ using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Media;
-using Avalonia.VisualTree;
+
+//
+// ported from https://github.com/DenisVuyka/WPG
+//
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
@@ -30,14 +32,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 ShowDescription(o, e);
             };
 
-            //EventManager.RegisterClassHandler(typeof(PropertyGrid), GotFocusEvent, new RoutedEventHandler(ShowDescription), true);
-
             // Assign Layout to be Alphabetical by default
             Layout = new AlphabeticalLayout();
 
             // Wire command bindings
-
             InitializeCommandBindings();
+
             CurrentDescriptionProperty.Changed.AddClassHandler((Action<PropertyGrid, AvaloniaPropertyChangedEventArgs>)((o, e) => OnCurrentDescriptionChanged(o, e)));
             LayoutProperty.Changed.AddClassHandler((Action<PropertyGrid, AvaloniaPropertyChangedEventArgs>)((o, e) => OnLayoutChanged(o, e)));
             ShowReadOnlyPropertiesProperty.Changed.AddClassHandler((Action<PropertyGrid, AvaloniaPropertyChangedEventArgs>)((o, e) => OnShowReadOnlyPropertiesChanged(o, e)));
@@ -76,7 +76,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             // Check browsable restrictions
             //if (!ShoudDisplayProperty(descriptor)) return null;
 
-
             //DependencyPropertyDescriptor.FromProperty(descriptor);
             var dpDescriptor = TypeDescriptor.GetProperties(this.SelectedObject).OfType<PropertyDescriptor>().
                 FirstOrDefault(x => x.Name == descriptor.Name && x.PropertyType == descriptor.PropertyType);
@@ -88,7 +87,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 FirstOrDefault(x => x.Name == descriptor.Name && x.PropertyType == descriptor.PropertyType);
             }
 
-            
             // Provide additional checks for dependency properties
             if (dpDescriptor != null)
             {
@@ -235,13 +233,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             if (components == null || components.Length == 0)
                 throw new ArgumentNullException("components");
 
-            // This is an obsolete code left for performance improvements demo. Will be removed in the future versions.
-            /*
-            var descriptors = component.Length == 1
-              ? TypeDescriptor.GetProperties(component[0], DefaultPropertiesFilter).OfType<PropertyDescriptor>()
-              : ObjectServices.GetMergedProperties(component);
-            */
-
             // TODO: PropertyItem is to be wired with PropertyData rather than pure PropertyDescriptor in the next version!
             var descriptors = (components.Length == 1)
               ? MetadataRepository.GetProperties(components[0]).Select(prop => prop.Descriptor)
@@ -250,8 +241,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             IList<PropertyItem> propertyCollection = new List<PropertyItem>();
 
             foreach (var propertyDescriptor in descriptors)
-            // This is an obsolete code left for performance improvements demo. Will be removed in the future versions.
-            //CollectProperties(component, propertyDescriptor, propertyCollection);
             {
                 var item = CreatePropertyItem(propertyDescriptor);
                 if (item != null)
@@ -260,26 +249,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
             return propertyCollection;
         }
-
-        // This is an obsolete code left for performance improvements demo. Will be removed in the future versions.
-        /*
-        private void CollectProperties(object component, PropertyDescriptor descriptor, IList<PropertyItem> propertyList)
-        {
-          if (descriptor.Attributes[typeof(FlatternHierarchyAttribute)] == null)
-          {
-            PropertyItem item = CreatePropertyItem(descriptor);
-            if (item != null)
-              propertyList.Add(item);
-          }
-          else
-          {
-            component = descriptor.GetValue(component);
-            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(component);
-            foreach (PropertyDescriptor propertyDescriptor in properties)
-              CollectProperties(component, propertyDescriptor, propertyList);
-          }
-        }
-        */
 
         private static void VerifySelectedObjects(object[] value)
         {
@@ -333,7 +302,22 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 var itemspres = this.FindVisualChild<ItemsPresenter>();
                 if (itemspres != null)
                 {
+                    //var children = itemspres.FindVisualChildren<Control>().Where(x => x is CategoryContainer);
+                    //List<PropertyContainer> propContainers = new List<PropertyContainer>();
+                    //foreach (var child in children)
+                    //{
+                    //    var test = child.FindVisualChildren<Control>();
+
+                    //    var propcontainer = child.FindVisualChild<PropertyContainer>();
+                    //    if (propcontainer != null)
+                    //    {
+                    //        propContainers.Add(propcontainer);
+                    //    }
+
+                    //}
+
                     var catcontainer = itemspres.FindVisualChild<CategoryContainer>();
+
                     if (catcontainer != null)
                     {
                         container = catcontainer.FindVisualChild<PropertyContainer>();
@@ -363,7 +347,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 if (grid != null && grid.Children.Count > 1)
                 {
                     var pecp = grid.Children[1] as PropertyEditorContentPresenter;
-                    var final = VisualTree.VisualExtensions.GetVisualChildren(pecp).ElementAt(0);//VisualTreeHelper.GetChild(pecp, 0);
+                    var final = VisualTree.VisualExtensions.GetVisualChildren(pecp).ElementAt(0);
+                    //VisualTreeHelper.GetChild(pecp, 0);
                     if ((final as Control).IsEnabled && (final as Control).Focusable && !(next.DataContext as PropertyItem).IsReadOnly)
                         return final as Control;
                     else
@@ -372,8 +357,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
             return null;
         }
-
-        
 
         private void OnPropertyDisplayModePropertyChanged(PropertyGrid propertyGrid, AvaloniaPropertyChangedEventArgs e)
         {
@@ -410,23 +393,13 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 propertyGrid.DoReload();
         }
 
-        Size _size = new Size();
-        protected override Size MeasureOverride(Size availableSize)
-        {
-            _size = availableSize;
-            return base.MeasureOverride(availableSize);
-        }
-
-
         private void OnLayoutChanged(PropertyGrid propertyGrid, AvaloniaPropertyChangedEventArgs e)
         {
             var layoutContainer = e.NewValue as TemplatedControl;
             if (layoutContainer != null)
             {
-               
                 layoutContainer.DataContext = propertyGrid;
             }
-
         }
 
         private void OnCurrentDescriptionChanged(PropertyGrid o, AvaloniaPropertyChangedEventArgs e)
@@ -452,22 +425,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             CurrentDescription = descri == null ? "" : descri.ToString();
         }
 
-        ///// <summary>
-        ///// Occurs when a property value changes.
-        ///// </summary>
-        //public new event PropertyChangedEventHandler PropertyChanged;
-
-        ///// <summary>
-        ///// Called when property value changes.
-        ///// </summary>
-        ///// <param name="propertyName">Name of the property.</param>
-        //protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        //{
-        //    var handler = PropertyChanged;
-        //    if (handler != null)
-        //        handler(this, new PropertyChangedEventArgs(propertyName));
-        //}
-
         protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
         {
             base.OnAttachedToVisualTree(e);
@@ -477,15 +434,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             RaisePropertyChanged(LayoutProperty, null, Layout);
             DoReload();
         }
-
-        //protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
-        //{
-        //    base.OnTemplateApplied(e);
-        //    //OnPropertyChanged(nameof(SelectedObject));
-        //    //OnPropertyChanged(nameof(SelectedObjects));
-
-
-        //}
 
         private void DoReload()
         {

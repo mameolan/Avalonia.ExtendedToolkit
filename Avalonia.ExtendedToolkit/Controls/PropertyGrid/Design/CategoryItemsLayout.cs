@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Linq;
-using Avalonia.Collections;
 using Avalonia.Controls;
-using Avalonia.Controls.Generators;
-using Avalonia.Data;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Specifies a layout for categories.
     /// </summary>

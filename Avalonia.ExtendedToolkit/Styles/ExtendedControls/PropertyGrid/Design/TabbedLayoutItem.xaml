@@ -101,8 +101,9 @@
                         DockPanel.Dock="Right"
                         Classes="CloseableTabItemButtonStyle"
                         IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CanClose}"
-                        >
-                  <!--Command="pg:PropertyGridCommands.ClosePropertyTab"-->
+                        Command="{Binding Owner.ClosePropertyTab}"
+                      >
+                  
                   <Path x:Name="Path" Stretch="Fill"
                         StrokeThickness="0.5"
                         Stroke="#FF333333"
@@ -236,7 +237,9 @@
                       IsVisible="{TemplateBinding CanClose}"
                       
                       CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type design:TabbedLayoutItem}}}"/>
-              --><!--Command="pg:PropertyGridCommands.ClosePropertyTab"--><!--
+              -->
+                        <!--Command="{Binding Owner.ClosePropertyTab}"-->
+                        <!--
             </Grid>
           </Border>
           --><!--<ControlTemplate.Triggers>

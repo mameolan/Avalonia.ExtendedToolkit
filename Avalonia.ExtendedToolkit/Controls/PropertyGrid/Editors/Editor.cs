@@ -8,6 +8,10 @@ using Avalonia.Styling;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// A base class for all value editors.
     /// </summary>
@@ -24,7 +28,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
         {
             get { return (object)GetValue(InlineTemplateProperty); }
             set {
-
                 if (value == null)
                     return;
 
@@ -64,7 +67,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
                     throw new NotSupportedException("ExtendedTemplate have to be a string or a ControlTemplate");
                 }
             }
-                
         }
 
         /// <summary>
@@ -91,7 +93,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
                 result.Loaded.TryGetResource(template, out object resourceValue);
 
                 ControlTemplate controlTemplate = resourceValue as ControlTemplate;
-
 
                 return controlTemplate;// inlineTemplate;
             }

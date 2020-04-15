@@ -4,6 +4,10 @@ using Avalonia.Data.Converters;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Converts a null value into a string representation.
     /// </summary>

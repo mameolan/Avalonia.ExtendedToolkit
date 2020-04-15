@@ -11,6 +11,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Internal
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     [DebuggerDisplay("{Name}")]
     internal class MergedPropertyDescriptor : PropertyDescriptor
     {

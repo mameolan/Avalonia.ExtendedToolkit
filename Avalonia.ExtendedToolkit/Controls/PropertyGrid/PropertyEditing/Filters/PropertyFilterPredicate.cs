@@ -3,6 +3,10 @@ using System.Globalization;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Property filter predicate.
     /// </summary>

@@ -5,6 +5,10 @@ using Avalonia.Interactivity;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Base class for Slider-like editor implementations.
     /// </summary>

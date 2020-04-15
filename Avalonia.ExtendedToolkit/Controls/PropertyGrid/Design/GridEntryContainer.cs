@@ -5,6 +5,10 @@ using Avalonia.Markup.Xaml.Templates;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Specifies a UI container for <see cref="GridEntry"/>
     /// </summary>
@@ -85,7 +89,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
                 Entry = DataContext as GridEntry;
             }
         }
-
-
     }
 }

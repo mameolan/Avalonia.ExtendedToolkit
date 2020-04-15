@@ -1,5 +1,9 @@
 ﻿namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Defines the search behavior of <see cref="SearchTextBox"/>.
     /// </summary>

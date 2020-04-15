@@ -1,11 +1,16 @@
 ﻿using System;
 using Avalonia.Controls;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml.Templates;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Special Tab used to contain Extended Editors. Used in Tabbed Layout.
     /// </summary>
@@ -13,7 +18,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     {
         public new Type StyleKey => typeof(ExtendedPropertyEditorTab);
 
-        //private readonly ResourceLocator _resourceLocator = new ResourceLocator();
+        private readonly ResourceLocator _resourceLocator = new ResourceLocator();
 
         /// <summary>
         /// Gets or sets the property an extended editor is bound to.

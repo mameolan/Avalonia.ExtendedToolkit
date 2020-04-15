@@ -3,6 +3,10 @@ using Avalonia.Controls;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Native Tab item for <see cref="TabbedLayout"/>
     /// </summary>

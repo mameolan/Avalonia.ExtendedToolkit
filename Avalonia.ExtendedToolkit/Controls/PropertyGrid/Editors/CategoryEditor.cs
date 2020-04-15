@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Linq;
-using Avalonia.Markup.Xaml.Styling;
-using Avalonia.Markup.Xaml.Templates;
-using Avalonia.Styling;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Specifies the default category editor.
     /// </summary>
@@ -55,9 +55,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
             CategoryName = categoryName;
 
             InlineTemplate= GetEditorTemplate(inlineTemplate);
-
-            
-            
         }
     }
 }

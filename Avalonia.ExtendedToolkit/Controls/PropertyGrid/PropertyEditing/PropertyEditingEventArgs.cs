@@ -3,6 +3,10 @@ using Avalonia.Interactivity;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Encapsulates a method that contains an object and PropertyEditingEventArgs event arguments.
     /// </summary>

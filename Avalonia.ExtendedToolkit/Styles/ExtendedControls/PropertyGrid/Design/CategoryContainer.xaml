@@ -2,7 +2,8 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
-    xmlns:converter="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters;assembly=Avalonia.ExtendedToolkit">
+    xmlns:converter="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters;assembly=Avalonia.ExtendedToolkit"
+    >
   <Styles.Resources>
     <converter:MultiBooleanToIsVisibleConverter x:Key="multiBooleanToVisibilityConverter" />
   </Styles.Resources>
@@ -11,22 +12,27 @@
     <Setter Property="IsVisible">
       <Setter.Value>
         <MultiBinding Converter="{StaticResource multiBooleanToVisibilityConverter}" Mode="OneWay">
-          <Binding Path="Entry.IsBrowsable" />
-          <Binding Path="Entry.HasVisibleProperties" />
-          <Binding Path="Entry.MatchesFilter" />
+          <Binding Path="IsBrowsable" FallbackValue="True"/>
+          <Binding Path="HasVisibleProperties" FallbackValue="True"/>
+          <Binding Path="MatchesFilter" FallbackValue="True"/>
         </MultiBinding>
       </Setter.Value>
     </Setter>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
-            <Expander Header="{Binding Name}"
-                      IsExpanded="{Binding Entry.IsExpanded, RelativeSource={RelativeSource TemplatedParent}}">
-              <design:CategoryEditorContentPresenter
-                    DataContext="{Binding}" />
-            </Expander>
+          <Expander Header="{Binding Name}"
+                    IsExpanded="{Binding Entry.IsExpanded, RelativeSource={RelativeSource TemplatedParent}}">
+            <design:CategoryEditorContentPresenter
+                  DataContext="{Binding}" />
+          </Expander>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
+  
+  
+  
+  
+  
 </Styles>

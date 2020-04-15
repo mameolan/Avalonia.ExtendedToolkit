@@ -3,8 +3,13 @@ using System.ComponentModel;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Extended <see cref="FontStretchConverter"/> that provides standard values collection.
+    /// Todo update if avalonia has a front stretch type
     /// </summary>
     public sealed class FontStretchConverterDecorator : FontConverterDecorator
     {

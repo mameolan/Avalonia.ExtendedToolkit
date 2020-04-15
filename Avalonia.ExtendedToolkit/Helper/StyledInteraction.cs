@@ -19,6 +19,8 @@ namespace Avalonia.ExtendedToolkit.Helper
         static StyledInteraction()
         {
             BehaviorsProperty.Changed.AddClassHandler((Action<AvaloniaObject, AvaloniaPropertyChangedEventArgs>)((o, e) => OnBehaviorsPropertyChanged(o, e)));
+
+            
         }
 
         /// <summary>
@@ -28,10 +30,29 @@ namespace Avalonia.ExtendedToolkit.Helper
         /// <param name="e"></param>
         private static void OnBehaviorsPropertyChanged(AvaloniaObject o, AvaloniaPropertyChangedEventArgs e)
         {
-            var behaviors = Interaction.GetBehaviors(o);
+            if(behaviors==null)
+            {
+                behaviors = Interaction.GetBehaviors(o);
+            }
+            
+
+
+            if (e.NewValue == null)
+                return;
+                        
             foreach (var behavior in e.NewValue as Behaviors)
             {
-                behaviors.Add(behavior);
+                if (behaviors.Contains(behavior) == false)
+                {
+                    try
+                    {
+                        behaviors.Add(behavior);
+                    }
+                    catch
+                    {
+                    }
+                   
+                }
             }
         }
 
@@ -40,6 +61,7 @@ namespace Avalonia.ExtendedToolkit.Helper
         /// </summary>
         public static readonly AttachedProperty<Behaviors> BehaviorsProperty =
             AvaloniaProperty.RegisterAttached<AvaloniaObject, Behaviors>("Behaviors",typeof(StyledInteraction));
+        private static BehaviorCollection behaviors;
 
         public static Behaviors GetBehaviors(AvaloniaObject element)
         {

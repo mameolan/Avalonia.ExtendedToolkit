@@ -8,6 +8,10 @@ using Avalonia.VisualTree;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     // http://davidowens.wordpress.com/2009/02/18/wpf-search-text-box/
     /// <summary>
     /// Property search box control.

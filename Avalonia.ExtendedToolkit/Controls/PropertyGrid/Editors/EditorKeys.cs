@@ -1,5 +1,9 @@
 ﻿namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Contains a set of editor keys.
     /// </summary>

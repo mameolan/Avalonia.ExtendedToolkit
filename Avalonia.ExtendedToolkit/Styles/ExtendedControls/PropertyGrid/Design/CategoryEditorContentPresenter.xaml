@@ -1,15 +1,8 @@
 ﻿<Styles
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-   xmlns:local="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid;assembly=Avalonia.ExtendedToolkit"
     xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
-    xmlns:controls="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls;assembly=Avalonia.ExtendedToolkit"
-    xmlns:converter="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters;assembly=Avalonia.ExtendedToolkit"
     >
-  <Styles.Resources>
-    <converter:MultiBooleanToIsVisibleConverter x:Key="multiBooleanToVisibilityConverter"/>
-  </Styles.Resources>
-
   <Style Selector="design|CategoryEditorContentPresenter">
     <Setter Property="Template">
       <ControlTemplate>

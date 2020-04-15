@@ -14,10 +14,40 @@ namespace Avalonia.ExampleApp.Model
     /// </summary>
     public class BrushInfo : AvaloniaObject
     {
-        public string Name { get; set; }
-        public PropertyInfo Info { get; set; }
-        public object Component { get; set; }
-        
+        public string Name
+        {
+            get { return (string)GetValue(NameProperty); }
+            set { SetValue(NameProperty, value); }
+        }
+
+
+        public static readonly StyledProperty<string> NameProperty =
+            AvaloniaProperty.Register<BrushInfo, string>(nameof(Name));
+
+
+
+        public PropertyInfo Info
+        {
+            get { return (PropertyInfo)GetValue(InfoProperty); }
+            set { SetValue(InfoProperty, value); }
+        }
+
+
+        public static readonly StyledProperty<PropertyInfo> InfoProperty =
+            AvaloniaProperty.Register<BrushInfo, PropertyInfo>(nameof(Info));
+
+
+
+        public object Component
+        {
+            get { return (object)GetValue(ComponentProperty); }
+            set { SetValue(ComponentProperty, value); }
+        }
+
+
+        public static readonly StyledProperty<object> ComponentProperty =
+            AvaloniaProperty.Register<BrushInfo, object>(nameof(Component));
+
         public IBrush ObjectBrush
         {
             get { return (IBrush)GetValue(ObjectBrushProperty); }

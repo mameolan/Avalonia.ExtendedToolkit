@@ -2,6 +2,10 @@
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Controls Browsable state of the property without having access to property declaration or inherited property.
     /// Supports a "*" (All) wildcard determining whether all the properties within the given class should be Browsable.

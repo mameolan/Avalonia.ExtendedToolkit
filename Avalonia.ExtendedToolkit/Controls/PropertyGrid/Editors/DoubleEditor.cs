@@ -8,6 +8,10 @@ using ReactiveUI;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Simple Expression Blend like double editor.
     /// </summary>

@@ -7,6 +7,10 @@ using ReactiveUI;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// The default tabbed layout.
     /// </summary>
@@ -189,6 +193,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             return new TabbedLayoutContainerGenerator(this);
         }
 
+#warning todo
         /// <summary>
         /// Prepares the specified element to display the specified item.
         /// </summary>

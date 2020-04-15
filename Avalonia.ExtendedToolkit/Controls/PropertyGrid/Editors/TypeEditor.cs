@@ -2,6 +2,10 @@
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Provides value editing service for property value that is of some specific type.
     /// </summary>
@@ -56,9 +60,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
             EditedType = editedType;
 
             InlineTemplate = GetEditorTemplate(inlineTemplate);
-            
+
             ExtendedTemplate = GetEditorTemplate(extendedTemplate);
-            
         }
     }
 }

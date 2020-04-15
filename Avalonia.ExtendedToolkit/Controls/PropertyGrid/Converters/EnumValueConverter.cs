@@ -5,6 +5,10 @@ using Avalonia.Data.Converters;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     public class EnumValueConverter : IValueConverter
     {
         /// <summary>
@@ -44,7 +48,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
         }
 
         /// <summary>
-        /// Converts a value.
+        /// just return an UnsetValue.
         /// </summary>
         /// <param name="value">The value that is produced by the binding target.</param>
         /// <param name="targetType">The type to convert to.</param>
@@ -55,7 +59,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
         /// </returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotSupportedException();
+            return AvaloniaProperty.UnsetValue;
         }
     }
 }

@@ -5,6 +5,10 @@ using System.Linq;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Holds custom attributes collection and provides facilities accessing attribute values from UI.
     /// </summary>

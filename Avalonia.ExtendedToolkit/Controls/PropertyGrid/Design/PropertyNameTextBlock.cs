@@ -4,6 +4,10 @@ using Avalonia.Input;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Specifies a property name presenter.
     /// </summary>

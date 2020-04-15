@@ -1,10 +1,13 @@
 ﻿using System;
-using System.Linq;
 using System.ComponentModel;
-using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
+using System.Linq;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Defines a wrapper around object property to be used at presentation level.
     /// </summary>
@@ -71,13 +74,19 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             _descriptor = descriptor;
 
             IsBrowsable = descriptor.IsBrowsable;
-            _isReadOnly = descriptor.IsReadOnly;
-            _description = descriptor.Description;
+            IsReadOnly = descriptor.IsReadOnly;
+            Description = descriptor.Description;
             _categoryName = descriptor.Category;
             _isLocalizable = descriptor.IsLocalizable;
 
             _metadata = new AttributesContainer(descriptor.Attributes);
             _descriptor.AddValueChanged(component, ComponentValueChanged);
+
+            FilterApplied += (o, e) =>
+            {
+                RaisePropertyChanged(IsBrowsableProperty, !IsBrowsable, IsBrowsable);
+                RaisePropertyChanged(MatchesFilterProperty, !MatchesFilter, MatchesFilter);
+            };
         }
 
         /// <summary>
@@ -91,7 +100,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         private void ComponentValueChanged(object sender, EventArgs e)
         {
-            //OnPropertyChanged("PropertyValue");
             RaisePropertyChanged(PropertyValueProperty, null, PropertyValue);
         }
 
@@ -114,7 +122,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             _descriptor.ResetValue(_component);
             OnValueChanged(oldValue, GetValue());
             RaisePropertyChanged(PropertyValueProperty, null, PropertyValue);
-            //OnPropertyChanged("PropertyValue");
         }
 
         /// <summary>
@@ -137,7 +144,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             // Check whether underlying dependency property passes validation
             if (!IsValidAvaloniaPropertyValue(_descriptor, value))
             {
-                //OnPropertyChanged("PropertyValue");
                 RaisePropertyChanged(PropertyValueProperty, null, PropertyValue);
                 return;
             }
@@ -181,7 +187,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             {
                 // TODO: Provide error feedback!
             }
-            //OnPropertyChanged("PropertyValue");
             RaisePropertyChanged(PropertyValueProperty, null, PropertyValue);
         }
 

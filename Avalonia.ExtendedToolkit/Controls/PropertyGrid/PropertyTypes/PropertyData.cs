@@ -7,6 +7,10 @@ using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     [DebuggerDisplay("{Name}")]
     // For the moment this class is a wrapper around PropertyDescriptor. Later on it will be migrated into a separate independent unit.
     // It will be able in future creating dynamic objects without using reflection
@@ -14,23 +18,23 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
     {
         private static readonly List<Type> CultureInvariantTypes = new List<Type>
     {
-      KnownTypes.Wpf.CornerRadius,
-      //KnownTypes.Wpf.Point3D,
-      //KnownTypes.Wpf.Point4D,
-      //KnownTypes.Wpf.Point3DCollection,
-      //KnownTypes.Wpf.Matrix3D,
-      KnownTypes.Wpf.Quaternion,
-      //KnownTypes.Wpf.Rect3D,
-      //KnownTypes.Wpf.Size3D,
-      //KnownTypes.Wpf.Vector3D,
-      //KnownTypes.Wpf.Vector3DCollection,
-      //KnownTypes.Wpf.PointCollection,
-      //KnownTypes.Wpf.VectorCollection,
-      KnownTypes.Wpf.Point,
-      KnownTypes.Wpf.Rect,
-      KnownTypes.Wpf.Size,
-      KnownTypes.Wpf.Thickness,
-      KnownTypes.Wpf.Vector
+      KnownTypes.Avalonia.CornerRadius,
+      //KnownTypes.Avalonia.Point3D,
+      //KnownTypes.Avalonia.Point4D,
+      //KnownTypes.Avalonia.Point3DCollection,
+      //KnownTypes.Avalonia.Matrix3D,
+      KnownTypes.Avalonia.Quaternion,
+      //KnownTypes.Avalonia.Rect3D,
+      //KnownTypes.Avalonia.Size3D,
+      //KnownTypes.Avalonia.Vector3D,
+      //KnownTypes.Avalonia.Vector3DCollection,
+      //KnownTypes.Avalonia.PointCollection,
+      //KnownTypes.Avalonia.VectorCollection,
+      KnownTypes.Avalonia.Point,
+      KnownTypes.Avalonia.Rect,
+      KnownTypes.Avalonia.Size,
+      KnownTypes.Avalonia.Thickness,
+      KnownTypes.Avalonia.Vector
     };
 
         private static readonly string[] StringConverterMembers = { "Content", "Header", "ToolTip", "Tag" };
@@ -116,7 +120,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             {
                 if (_SerializationCulture == null)
                 {
-                    _SerializationCulture = (CultureInvariantTypes.Contains(PropertyType) || KnownTypes.Wpf.Geometry.IsAssignableFrom(PropertyType))
+                    _SerializationCulture = (CultureInvariantTypes.Contains(PropertyType)
+                        || KnownTypes.Avalonia.Geometry.IsAssignableFrom(PropertyType))
                       ? CultureInfo.InvariantCulture
                       : CultureInfo.CurrentCulture;
                 }

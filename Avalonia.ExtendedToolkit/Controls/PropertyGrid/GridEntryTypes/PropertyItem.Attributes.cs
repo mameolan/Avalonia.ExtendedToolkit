@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     public partial class PropertyItem
     {
         private readonly PropertyItemValue _parentValue;
@@ -26,21 +28,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             get { return _parentValue; }
         }
 
-        //private PropertyItemValue _value;
-        //// <summary>
-        ///// Gets the property value.
-        ///// </summary>
-        ///// <value>The property value.</value>
-        //public PropertyItemValue PropertyValue
-        //{
-        //    get
-        //    {
-        //        if (_value == null)
-        //            _value = CreatePropertyValueInstance();
-        //        return _value;
-        //    }
-        //}
-
         public static readonly DirectProperty<PropertyItem, PropertyItemValue> PropertyValueProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItem, PropertyItemValue>(
                     nameof(PropertyValue),
@@ -48,6 +35,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         private PropertyItemValue _propertyValue;
 
+        /// <summary>
+        /// Gets the property value.
+        /// </summary>
+        /// <value>The property value.</value>
         public PropertyItemValue PropertyValue
         {
             get
@@ -67,32 +58,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             get { return _descriptor; }
         }
 
-        //private string _displayName;
-        ///// <summary>
-        ///// Gets the display name for the property.
-        ///// </summary>
-        ///// <value></value>
-        ///// <returns>
-        ///// The display name for the property.
-        ///// </returns>
-        //public string DisplayName
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(_displayName))
-        //            _displayName = GetDisplayName();
-
-        //        return _displayName;
-        //    }
-        //    set
-        //    {
-        //        if (_displayName == value)
-        //            return;
-        //        _displayName = value;
-        //        OnPropertyChanged("DisplayName");
-        //    }
-        //}
-
         public static readonly DirectProperty<PropertyItem, string> DisplayNameProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItem, string>(
                     nameof(DisplayName),
@@ -100,6 +65,13 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         private string _displayName;
 
+        /// <summary>
+        /// Gets the display name for the property.
+        /// </summary>
+        /// <value></value>
+        /// <returns>
+        /// The display name for the property.
+        /// </returns>
         public string DisplayName
         {
             get
@@ -131,26 +103,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             get { return _categoryName; }
         }
 
-        //private string _description;
-        ///// <summary>
-        ///// Gets the description of the encapsulated property.
-        ///// </summary>
-        ///// <value></value>
-        ///// <returns>
-        ///// The description of the encapsulated property.
-        ///// </returns>
-        //public string Description
-        //{
-        //    get { return _description; }
-        //    set
-        //    {
-        //        if (_description == value)
-        //            return;
-        //        _description = value;
-        //        OnPropertyChanged("Description");
-        //    }
-        //}
-
         public static readonly DirectProperty<PropertyItem, string> DescriptionProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItem, string>(
                     nameof(Description),
@@ -158,6 +110,13 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         private string _description;
 
+        /// <summary>
+        /// Gets the description of the encapsulated property.
+        /// </summary>
+        /// <value></value>
+        /// <returns>
+        /// The description of the encapsulated property.
+        /// </returns>
         public string Description
         {
             get { return _description; }
@@ -196,25 +155,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             get { return _isLocalizable; }
         }
 
-        //private bool _isReadOnly;
-        ///// <summary>
-        ///// Gets a value indicating whether the encapsulated property is read-only.
-        ///// </summary>
-        ///// <value></value>
-        ///// <returns>true if the encapsulated property is read-only; otherwise, false.
-        ///// </returns>
-        //public bool IsReadOnly
-        //{
-        //    get { return _isReadOnly; }
-        //    set
-        //    {
-        //        if (_isReadOnly == value)
-        //            return;
-        //        _isReadOnly = value;
-        //        OnPropertyChanged("IsReadOnly");
-        //    }
-        //}
-
         public static readonly DirectProperty<PropertyItem, bool> IsReadOnlyProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItem, bool>(
                     nameof(IsReadOnly),
@@ -222,6 +162,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         private bool _isReadOnly;
 
+        /// <summary>
+        /// Gets a value indicating whether the encapsulated property is read-only.
+        /// </summary>
+        /// <value></value>
+        /// <returns>true if the encapsulated property is read-only; otherwise, false.
+        /// </returns>
         public bool IsReadOnly
         {
             get { return _isReadOnly; }
@@ -371,12 +317,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             get { return typeof(IList).IsAssignableFrom(PropertyType); }
         }
 
-
         /// <summary>
         /// Occurs when property value is changed.
         /// </summary>
         public event Action<PropertyItem, object, object> ValueChanged;
-
-
     }
 }

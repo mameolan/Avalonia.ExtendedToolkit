@@ -4,6 +4,10 @@ using System.Globalization;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
 {
+    //
+    // ported from https://github.com/DenisVuyka/WPG
+    //
+
     /// <summary>
     /// Specifies a generic font type converter that provides standard values collection.
     /// </summary>
@@ -19,8 +23,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
         {
             _converter = converter;
         }
-
-        #region TypeConverter implementation
 
         /// <summary>
         /// Returns whether this converter can convert an object of the given type to the type of this converter, using the specified context.
@@ -97,7 +99,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
         {
             return true;
         }
-
-        #endregion TypeConverter implementation
     }
 }
