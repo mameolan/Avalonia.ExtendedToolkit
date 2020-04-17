@@ -17,8 +17,6 @@ etc.
 
 
 
-The styles are incomplete or have to be fixed.
-
 Please have a look at the example app how to use the controls.
 
 ### Solution Structure
@@ -35,9 +33,6 @@ Please have a look at the example app how to use the controls.
 
 ------
 
-
-
-
 ```xml	
 <Application.Styles>
 	<StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.xaml"/>
@@ -45,42 +40,6 @@ Please have a look at the example app how to use the controls.
 	<StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Generic.xaml"/>
 </Application.Styles>
 ```
-
-### Not working controls
-
-------
-
-
-
-1. Progress Ring
-
-2. Flyout
-
-3. SplitView
-
-4. TreeGrid has to many subitems.
-
-   
-
-### Rework to do
-
-------
-
-
-
-1. Buttons have to be merged to the original Controls
-
-   Right now the Buttons have a special class starting with **Metro** to use the different styles.
-
-2. Window Commands have different color.
-
-3. Datagrid style is not correct.
-
-4. Some Controls have properties which cannot be used in Avalonia i.e. DropDownButton.
-
-5. BreadcrumbBar has strange behaviours with the context menu.
-
-   
 
 ### Missing controls/styles
 
