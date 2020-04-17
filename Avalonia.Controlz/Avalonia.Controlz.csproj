@@ -3,9 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
+  
+  <PropertyGroup>
+    <PackageId>Avalonia.Controlz</PackageId>
+    <Description>Standard controls which are not available in Avalonia.</Description>
+    <PackageTags>gui;avalonia;avaloniaui;xaml</PackageTags>
+  </PropertyGroup>
+  
 
   <ItemGroup>
+
     <PackageReference Include="Avalonia" Version="0.9.999-cibuild0006395-beta" />
     <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.9.999-cibuild0006395-beta" />
     <PackageReference Include="Avalonia.Desktop" Version="0.9.999-cibuild0006395-beta" />

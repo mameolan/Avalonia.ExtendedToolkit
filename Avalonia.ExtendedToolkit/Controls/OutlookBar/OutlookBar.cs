@@ -206,7 +206,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             base.OnTemplateApplied(e);
 
-            RaisePropertyChanged(OdcExpanderClassesProperty, null, new Data.BindingValue<Classes>(OdcExpanderClasses));
+            RaisePropertyChanged(OdcExpanderClassesProperty, null, (Classes)OdcExpanderClasses);
             ApplySections();
 
             //RaisePropertyChanged(IsOverflowVisibleProperty, !IsOverflowVisible, IsOverflowVisible);

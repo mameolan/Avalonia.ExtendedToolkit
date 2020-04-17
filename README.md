@@ -126,13 +126,11 @@ Future Controls (if motivated):
 
 4. MessageBox
 
-5. PropertyGrid
+5. Rating Control
 
-6. Rating Control
+6. RibbonControl
 
-7. RibbonControl
-
-8. RichText Box
+7. RichText Box
 
    
 

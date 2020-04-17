@@ -13,7 +13,7 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
         }
 
         /// <summary>
-        /// Gets the object to which this <see cref="Microsoft.Xaml.Behaviors.TriggerAction&lt;T&gt;"/> is attached.
+        /// Gets the object to which this <see cref="TriggerAction"/> is attached.
         /// </summary>
         /// <value>The associated object.</value>
         protected new T AssociatedObject

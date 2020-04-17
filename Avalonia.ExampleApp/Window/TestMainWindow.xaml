@@ -59,8 +59,15 @@
 
     </StackPanel>
     <Grid DockPanel.Dock="Bottom">
-
-      <Button Command="{Binding ShowFlyoutDemoCommand}" Content="Open File Demo"/>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+      
+    
+      <!--<Button Command="{Binding ShowFlyoutDemoCommand}" Content="Open File Demo"/>-->
+      <Views:PropertyGridExamples/>
+      
       
     </Grid>
 

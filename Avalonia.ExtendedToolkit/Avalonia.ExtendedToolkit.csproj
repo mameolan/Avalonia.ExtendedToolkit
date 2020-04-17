@@ -1,9 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.9.999-cibuild0006395-beta" />
@@ -26,49 +28,67 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="**\*.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
-    <AvaloniaResource Include="**\*.xaml" Exclude="**\*.Template.xaml">
-      <SubType>Designer</SubType>
-    </AvaloniaResource>
-  </ItemGroup>
+   <PropertyGroup>
+		<PackageId>Avalonia.ExtendedToolkit</PackageId>
+		<Description>Extended Controls for Avalonia UI.</Description>
+		<PackageTags>gui;avalonia;avaloniaui;xaml</PackageTags>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <AvaloniaResource Remove="Commanding\**" />
-    <Compile Remove="Commanding\**" />
-    <EmbeddedResource Remove="Commanding\**" />
-    <None Remove="Commanding\**" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="0.9.6" />
+		<PackageReference Include="Avalonia.Controls.DataGrid" Version="0.9.6" />
+		<PackageReference Include="Avalonia.Desktop" Version="0.9.6" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="0.9.6" />
+		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.9.6" />
+		<PackageReference Include="Avalonia.Xaml.Interactions" Version="0.9.6" />
+		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.9.6" />
+		<PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
+		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="XamlColorSchemeGenerator" Version="3.0.0.31">
+			<NoWarn>NU1701</NoWarn>
+		</PackageReference>
+	</ItemGroup>
 
-  
-  <ItemGroup>
-    <None Remove=".gitignore" />
-    <None Remove="Styles\Themes\GeneratorParameters.json" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="**\*.xaml.cs">
+			<DependentUpon>%(Filename)</DependentUpon>
+		</Compile>
+		<AvaloniaResource Include="**\*.xaml" Exclude="**\*.Template.xaml">
+			<SubType>Designer</SubType>
+		</AvaloniaResource>
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Styles\Themes\GeneratorParameters.json" />
-  </ItemGroup>
+	<ItemGroup>
+		<AvaloniaResource Remove="Commanding\**" />
+		<Compile Remove="Commanding\**" />
+		<EmbeddedResource Remove="Commanding\**" />
+		<None Remove="Commanding\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove=".gitignore" />
+		<None Remove="Styles\Themes\GeneratorParameters.json" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Behaviours\" />
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Styles\Themes\GeneratorParameters.json" />
+	</ItemGroup>
 
-  
-  <Target Name="GenerateXamlFilesInner">
-    <PropertyGroup>
-      <XamlColorSchemeGeneratorVersion Condition="'%(PackageReference.Identity)' == 'XamlColorSchemeGenerator'">%(PackageReference.Version)</XamlColorSchemeGeneratorVersion>
-    </PropertyGroup>
-    <Exec Command="&quot;$(NuGetPackageRoot)xamlcolorschemegenerator\$(XamlColorSchemeGeneratorVersion)\tools\XamlColorSchemeGenerator.exe&quot; &quot;$(MSBuildProjectDirectory)\Styles\Themes\GeneratorParameters.json&quot;" />
-  </Target>
-  <Target Name="GenerateXamlFiles" BeforeTargets="DispatchToInnerBuilds;BeforeBuild">
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="GenerateXamlFilesInner" Properties="TargetFramework=once" />
-  </Target>
- 
+	<ItemGroup>
+		<ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
+	</ItemGroup>
+
+	<Target Name="GenerateXamlFilesInner">
+		<PropertyGroup>
+			<XamlColorSchemeGeneratorVersion Condition="'%(PackageReference.Identity)' == 'XamlColorSchemeGenerator'">%(PackageReference.Version)</XamlColorSchemeGeneratorVersion>
+		</PropertyGroup>
+		<Exec Command="&quot;$(NuGetPackageRoot)xamlcolorschemegenerator\$(XamlColorSchemeGeneratorVersion)\tools\XamlColorSchemeGenerator.exe&quot; &quot;$(MSBuildProjectDirectory)\Styles\Themes\GeneratorParameters.json&quot;" />
+	</Target>
+	<Target Name="GenerateXamlFiles" BeforeTargets="DispatchToInnerBuilds;BeforeBuild">
+		<MSBuild Projects="$(MSBuildProjectFile)" Targets="GenerateXamlFilesInner" Properties="TargetFramework=once" />
+	</Target>
+
 </Project>

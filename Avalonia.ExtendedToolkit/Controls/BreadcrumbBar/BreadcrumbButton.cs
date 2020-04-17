@@ -10,6 +10,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml.Templates;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using Avalonia.VisualTree;
 using ReactiveUI;
 
@@ -41,14 +42,14 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Gets or sets the Image of the BreadcrumbButton.
         /// </summary>
-        public IImage Image
+        public IBitmap Image
         {
-            get { return (IImage)GetValue(ImageProperty); }
+            get { return (IBitmap)GetValue(ImageProperty); }
             set { SetValue(ImageProperty, value); }
         }
 
-        public static readonly StyledProperty<IImage> ImageProperty =
-            AvaloniaProperty.Register<BreadcrumbButton, IImage>(nameof(Image));
+        public static readonly StyledProperty<IBitmap> ImageProperty =
+            AvaloniaProperty.Register<BreadcrumbButton, IBitmap>(nameof(Image));
 
         public bool HasImage
         {
@@ -244,7 +245,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void OnImageChanged(BreadcrumbButton o, AvaloniaPropertyChangedEventArgs e)
         {
-            HasImage = e.NewValue is IImage;
+            HasImage = e.NewValue is IBitmap;
         }
 
         protected override void ItemsChanged(AvaloniaPropertyChangedEventArgs e)
@@ -460,7 +461,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             base.OnTemplateApplied(e);
 
-            RaisePropertyChanged(ItemsProperty, null, new Data.BindingValue<IEnumerable>(Items));
+            RaisePropertyChanged(ItemsProperty, null, (IEnumerable) Items);
         }
 
         private void dropDownBtn_MouseDown(object sender, EventArgs e)
@@ -614,8 +615,8 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         /// <summary>
         /// When a BreadcrumbItem is selected from a dropdown menu, the SelectedItem of the new selected item must be set to null.
-        /// Since no event is raised when a DependencyProperty is assigned to it's current value, this cannot be recognized at this place,
-        /// therefore the SelectedItem DependencyProperty must previously set to null before setting it to it's new value to raise event
+        /// Since no event is raised when a AvaloniaProperty is assigned to it's current value, this cannot be recognized at this place,
+        /// therefore the SelectedItem AvaloniaProperty must previously set to null before setting it to it's new value to raise event
         /// when SelectedItem is changed:
         /// </summary>
         /// <param name="dataItem"></param>

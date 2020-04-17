@@ -8,27 +8,33 @@
              x:Class="Avalonia.ExampleApp.Views.DateExamples">
   <Grid>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition />
+      <ColumnDefinition Width="*"/>
       <ColumnDefinition />
       <ColumnDefinition />
     </Grid.ColumnDefinitions>
-    <StackPanel Grid.Row="0"
-                        Grid.Column="1"
-                        VerticalAlignment="Top">
-      <TextBlock Text="Calendar" Classes="DescriptionHeaderStyle" />
-      
-      <CheckBox x:Name="IsTodayHighlightedCheckBox"
+
+    <CheckBox x:Name="IsTodayHighlightedCheckBox"
+                Grid.Column="0"
                 Content="IsTodayHighlighted"
-                IsChecked="True" />
+                IsChecked="True" 
+                VerticalAlignment="Top"
+              />
+    
+    <StackPanel Grid.Column="1"
+                >
+      <TextBlock Text="Calendar" Classes="DescriptionHeaderStyle" />
       <Calendar Margin="5"
                 DisplayDateStart="{x:Static system:DateTime.Now}"
                 SelectionMode="MultipleRange" 
                 IsTodayHighlighted="{Binding ElementName=IsTodayHighlightedCheckBox, Path=IsChecked, Mode=TwoWay}"
                 />
-      
+     </StackPanel>
+
+    <StackPanel Grid.Column="2" >
+      <TextBlock Text="Disabled Calendar" Classes="DescriptionHeaderStyle" />
       <Calendar Margin="5"
-                HorizontalAlignment="Center"
-                IsEnabled="False" />
+                 HorizontalAlignment="Center"
+                 IsEnabled="False" />
     </StackPanel>
   </Grid>
 </UserControl>

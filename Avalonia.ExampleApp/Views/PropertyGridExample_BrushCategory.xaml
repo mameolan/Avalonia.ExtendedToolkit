@@ -1,0 +1,105 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pg="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid;assembly=Avalonia.ExtendedToolkit"
+             xmlns:editors="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;assembly=Avalonia.ExtendedToolkit"
+             xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
+             xmlns:panel="clr-namespace:Avalonia.ExtendedToolkit.Controls.Panels;assembly=Avalonia.ExtendedToolkit"
+             xmlns:behaviours="clr-namespace:Avalonia.ExtendedToolkit.Behaviours;assembly=Avalonia.ExtendedToolkit"
+             xmlns:Model="clr-namespace:Avalonia.ExampleApp.Model;assembly=Avalonia.ExampleApp"
+             xmlns:Views="clr-namespace:Avalonia.ExampleApp.Views;assembly=Avalonia.ExampleApp"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.PropertyGridExample_BrushCategory">
+
+  <UserControl.Resources>
+    <Model:BrushList x:Key="BrushList" />
+
+    <ControlTemplate x:Key="mydata">
+      <Border BorderBrush="{DynamicResource MahApps.Brushes.Accent2}" BorderThickness="1" CornerRadius="5"
+              Background="{DynamicResource MahApps.Brushes.Accent3}">
+        <StackPanel Margin="5">
+          <StackPanel.Styles>
+            <Style Selector="ListBoxItem:selected /template/ Border#Border">
+              <Setter Property="Background" Value="Transparent" />
+            </Style>
+
+            <Style Selector="ListBoxItem:selected:pointerover /template/ Border#Border">
+              <Setter Property="Background" Value="Transparent" />
+            </Style>
+
+            <Style Selector="ListBoxItem[IsSelected=false][IsPointerOver=true] /template/ Border#Border">
+              <Setter Property="Background" Value="Transparent" />
+            </Style>
+
+            <Style Selector="ListBoxItem[IsSelected=true]">
+              <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Highlight}" />
+            </Style>
+
+            <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
+              <Setter Property="Background" Value="Transparent" />
+            </Style>
+            <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+              <Setter Property="Background" Value="Transparent" />
+            </Style>
+
+            <Style Selector="ListBoxItem:selected:focus /template/ ContentPresenter">
+              <Setter Property="Background" Value="Transparent" />
+            </Style>
+
+            <Style Selector="ListBoxItem:selected:focus:pointerover /template/ ContentPresenter">
+              <Setter Property="Background" Value="Transparent" />
+            </Style>
+          </StackPanel.Styles>
+
+          <ListBox Items="{Binding Path=[ObjectBrushes].PropertyValue.Value}">
+            <ListBox.ItemTemplate>
+              <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                  <StackPanel.Styles>
+                    <Style Selector="TextBlock">
+                      <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+                    </Style>
+                    <Style Selector="ComboBoxItem">
+                      <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+                    </Style>
+                  </StackPanel.Styles>
+
+                  <TextBlock Text="{Binding Path=Name}" />
+                  <ComboBox Margin="30,5,5,5" Items="{Binding Source={StaticResource BrushList}}"
+                            MinWidth="80" x:Name="cmb" SelectedItem="{Binding ObjectBrush}">
+                    <i:Interaction.Behaviors>
+                      <behaviours:SelectedItemBehaviour />
+                    </i:Interaction.Behaviors>
+                  </ComboBox>
+
+                  <TextBlock x:Name="txtObjectBrush" Margin="20,0,0,0" 
+                             Text="{Binding ObjectBrush}"
+                             TextBlock.Foreground="{DynamicResource MahApps.Brushes.Black}" />
+                </StackPanel>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+        </StackPanel>
+      </Border>
+    </ControlTemplate>
+  </UserControl.Resources>
+
+  <Grid>
+    <pg:PropertyGrid x:Name="propertyGrid"
+                     PropertyDisplayMode="All"
+                     ShowAttachedProperties="False"
+                     ShowReadOnlyProperties="False">
+      <pg:PropertyGrid.Layout>
+        <design:CategorizedLayout />
+      </pg:PropertyGrid.Layout>
+      <pg:PropertyGrid.Editors>
+        <editors:CategoryEditor DeclaringType="{x:Type Model:BrushProxy}"
+                          CategoryName="Brushes"
+                          InlineTemplate="{StaticResource  mydata}" />
+      </pg:PropertyGrid.Editors>
+    </pg:PropertyGrid>
+  </Grid>
+</UserControl>

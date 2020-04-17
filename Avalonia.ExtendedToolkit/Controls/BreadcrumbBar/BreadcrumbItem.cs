@@ -12,6 +12,7 @@ using Avalonia.Layout;
 using Avalonia.LogicalTree;
 using Avalonia.Markup.Xaml.Templates;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -117,14 +118,14 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Gets or sets the image that is used to display this item.
         /// </summary>
-        public IImage Image
+        public IBitmap Image
         {
-            get { return (IImage)GetValue(ImageProperty); }
+            get { return (IBitmap)GetValue(ImageProperty); }
             set { SetValue(ImageProperty, value); }
         }
 
-        public static readonly StyledProperty<IImage> ImageProperty =
-            AvaloniaProperty.Register<BreadcrumbItem, IImage>(nameof(Image));
+        public static readonly StyledProperty<IBitmap> ImageProperty =
+            AvaloniaProperty.Register<BreadcrumbItem, IBitmap>(nameof(Image));
 
         /// <summary>
         /// Gets or sets the Trace of the breadcrumb

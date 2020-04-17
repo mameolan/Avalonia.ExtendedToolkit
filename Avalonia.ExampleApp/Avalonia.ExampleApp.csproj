@@ -3,9 +3,11 @@
     <OutputType>Exe</OutputType>
     <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
+
     <PackageReference Include="Avalonia" Version="0.9.999-cibuild0006395-beta" />
     <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.9.999-cibuild0006395-beta" />
     <PackageReference Include="Avalonia.Desktop" Version="0.9.999-cibuild0006395-beta" />
@@ -60,6 +62,5 @@
       <Private>true</Private>
     </Reference>
   </ItemGroup>
-
-      
+    
 </Project>

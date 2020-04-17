@@ -7,30 +7,36 @@
              xmlns:Controlz="clr-namespace:Avalonia.Controlz.Controls;assembly=Avalonia.Controlz"
              x:Class="Avalonia.ExampleApp.Views.Sliders">
   <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition/>
-      <RowDefinition/>
-    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
     
-    <StackPanel Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Auto" >
+    <StackPanel Grid.Column="0" VerticalAlignment="Center" 
+                ScrollViewer.HorizontalScrollBarVisibility="Auto" >
       <TextBlock Text="Avalonia Slider"/>
-      <Slider Orientation="Horizontal" Width="400"
+      <Slider Orientation="Horizontal" Width="400" 
               />
 
-      <Slider Orientation="Vertical" Height="400"
+      <Slider Orientation="Vertical" Height="200" 
               />
 
     </StackPanel>
 
-    <StackPanel Grid.Row="1" Margin="0,20,0,0" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+    <StackPanel Grid.Column="1" VerticalAlignment="Center"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto">
       <TextBlock Text="Slider Ex"/>
       
-      <Controlz:SliderEx Orientation="Horizontal" TickPlacement="Both" Width="400"/>
+      <Controlz:SliderEx Orientation="Horizontal" TickPlacement="Both" 
+                         Width="400"
+                         
+                         />
 
       <Controlz:SliderEx Margin="10" HorizontalAlignment="Center"
                          Orientation="Vertical" 
                          TickPlacement="TopLeft" 
-                         Height="100"/>
+                         Height="200"
+                         />
       
     </StackPanel>
     

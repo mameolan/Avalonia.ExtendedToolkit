@@ -18,7 +18,7 @@
                   Background="{TemplateBinding Background}"
                   BorderBrush="{TemplateBinding BorderBrush}"
                   BorderThickness="{TemplateBinding BorderThickness}"
-                  Opacity="0"
+                  Opacity="1"
                   >
             <!--<Border.Resources>
               <Storyboard x:Key="Visible State" />
@@ -63,23 +63,23 @@
 
   <!--isopen/isclosed is missing-->
   <Style Selector="ToolTip:isopen /template/ Border#Root">
-    <Style.Animations>
-      <Animation Duration="0:0:0.3">
+    <!--<Style.Animations>
+      <Animation Duration="0:0:0.3" FillMode="Forward">
         <KeyFrame Cue="100%">
           <Setter Property="Opacity" Value="1"/>
         </KeyFrame>
       </Animation>
-    </Style.Animations>
+    </Style.Animations>-->
   </Style>
 
   <Style Selector="ToolTip:isclosed /template/ Border#Root">
-    <Style.Animations>
+    <!--<Style.Animations>
       <Animation Duration="0:0:0.4">
         <KeyFrame Cue="100%">
           <Setter Property="Opacity" Value="0"/>
         </KeyFrame>
       </Animation>
-    </Style.Animations>
+    </Style.Animations>-->
   </Style>
 
 </Styles>

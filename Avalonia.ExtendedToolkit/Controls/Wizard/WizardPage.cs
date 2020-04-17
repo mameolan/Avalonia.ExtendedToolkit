@@ -4,6 +4,7 @@ using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using DynamicData.Kernel;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -209,11 +210,14 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        protected override void OnPropertyChanged<T>(AvaloniaProperty<T> property, Optional<T> oldValue, BindingValue<T> newValue, BindingPriority priority)
+        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
         {
-            base.OnPropertyChanged(property, oldValue, newValue, priority);
-            if ((property.Name == nameof(CanSelectNextPage)) || (property.Name == nameof(CanHelp)) || (property.Name == nameof(CanFinish))
-        || (property.Name == nameof(CanCancel)) || (property.Name == nameof(CanSelectPreviousPage)))
+            base.OnPropertyChanged(e);
+            if ((e.Property.Name == nameof(CanSelectNextPage)) 
+                || (e.Property.Name == nameof(CanHelp)) 
+                || (e.Property.Name == nameof(CanFinish))
+                || (e.Property.Name == nameof(CanCancel)) 
+                || (e.Property.Name == nameof(CanSelectPreviousPage)))
             {
                 //CommandManager.InvalidateRequerySuggested();
             }
