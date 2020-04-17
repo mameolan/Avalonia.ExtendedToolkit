@@ -47,7 +47,6 @@
 		<None Remove="Commanding\**" />
 	</ItemGroup>
 
-
 	<ItemGroup>
 		<None Remove=".gitignore" />
 		<None Remove="Styles\Themes\GeneratorParameters.json" />
@@ -60,11 +59,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Behaviours\" />
-	</ItemGroup>
-
 
 	<Target Name="GenerateXamlFilesInner">
 		<PropertyGroup>

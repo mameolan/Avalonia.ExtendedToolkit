@@ -1,0 +1,17 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             xmlns:Views="clr-namespace:Avalonia.ExampleApp.Views;assembly=Avalonia.ExampleApp"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.PropertyGridExamples">
+  <Grid>
+    <TabControl>
+      <TabItem Header="BrushCategory" Foreground="{DynamicResource MahApps.Brushes.Black}">
+        <Views:PropertyGridExample_BrushCategory/>
+      </TabItem>      
+
+    </TabControl>
+  </Grid>
+</UserControl>

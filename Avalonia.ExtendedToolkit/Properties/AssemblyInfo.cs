@@ -3,4 +3,4 @@ using System.Runtime.CompilerServices;
 using Avalonia.Metadata;
 
 [assembly: InternalsVisibleTo("Avalonia.DesignerSupport")]
-[assembly: XmlnsDefinition("https://github.com/avaloniametro", "Avalonia.ExtendedToolkit")]
+[assembly: XmlnsDefinition("https://github.com/avaloniaextendedtoolkit", "Avalonia.ExtendedToolkit.Controls")]
