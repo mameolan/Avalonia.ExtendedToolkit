@@ -6,12 +6,33 @@
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
 
-	<PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.9.999-cibuild0006395-beta" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.9.999-cibuild0006395-beta" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.9.999-cibuild0006395-beta" />
+    <PackageReference Include="Avalonia.Diagnostics" Version="0.9.999-cibuild0006395-beta" />
+    <PackageReference Include="Avalonia.FreeDesktop" Version="0.9.999-cibuild0006395-beta" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.9.999-cibuild0006395-beta" />
+    <PackageReference Include="Avalonia.Skia" Version="0.9.999-cibuild0006395-beta" />
+    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.9.0-build20191017-01" />
+    <PackageReference Include="Avalonia.Xaml.Interactions" Version="0.9.0-build20191017-01" />
+    <PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.9.0-build20191017-01" />
+    <PackageReference Include="GridExtra.Avalonia" Version="0.6.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="XamlColorSchemeGenerator" Version="3.0.0.31">
+      <NoWarn>NU1701</NoWarn>
+    </PackageReference>
+  </ItemGroup>
+
+   <PropertyGroup>
 		<PackageId>Avalonia.ExtendedToolkit</PackageId>
 		<Description>Extended Controls for Avalonia UI.</Description>
 		<PackageTags>gui;avalonia;avaloniaui;xaml</PackageTags>
 	</PropertyGroup>
-
 
 	<ItemGroup>
 		<PackageReference Include="Avalonia" Version="0.9.6" />
