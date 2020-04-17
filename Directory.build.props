@@ -4,17 +4,13 @@
       Properties for NuGet Packages
       -->
   <PropertyGroup>
-    <PackageId>TruDan.$(MSBuildProjectName)</PackageId>
-    <Description>Extended Controls for Avalonia UI</Description>
-
-    <Version>0.9.6</Version>
-
-    <Authors>TruDan, mameolan</Authors>
+    <Version>0.0.1</Version>
+	<Authors>mameolan and others</Authors>
     <Company>mameolan</Company>
 
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/TruDan/Avalonia.ExtendedToolkit</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/TruDan/Avalonia.ExtendedToolkit</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/mameolan/Avalonia.ExtendedToolkit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mameolan/Avalonia.ExtendedToolkit</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Avalonia</PackageTags>
 

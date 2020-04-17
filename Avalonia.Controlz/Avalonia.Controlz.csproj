@@ -5,6 +5,13 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
+  
+  <PropertyGroup>
+    <PackageId>Avalonia.Controlz</PackageId>
+    <Description>Standard controls which are not available in Avalonia.</Description>
+    <PackageTags>gui;avalonia;avaloniaui;xaml</PackageTags>
+  </PropertyGroup>
+  
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.9.6" />
