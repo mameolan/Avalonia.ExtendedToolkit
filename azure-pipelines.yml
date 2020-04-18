@@ -8,10 +8,10 @@ trigger:
 
 strategy:
   matrix:
-    linux:
-      imageName: 'ubuntu-16.04'
-    mac:
-      imageName: 'macos-10.14'
+    #linux:
+    #  imageName: 'ubuntu-16.04'
+    #mac:
+    #  imageName: 'macos-10.14'
     windows:
       imageName: 'windows-latest'
 
@@ -19,20 +19,50 @@ pool:
   vmImage: $(imageName)
 
 variables:
+  project: '**/*.csproj'
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
 steps:
-- task: NuGetToolInstaller@1
 
-- task: NuGetCommand@2
+- task: UseDotNet@2
   inputs:
-    restoreSolution: '$(solution)'
+    packageType: 'sdk'
+    version: '3.1.x'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
 
-- task: VSBuild@1
+
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: 'restore'
+    projects: '**/*.csproj'
+    feedsToUse: 'select'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+
+
+
+#- task: NuGetToolInstaller@1
+#  inputs:
+#    versionSpec: '5.5.1'
+
+
+#- task: NuGetCommand@2
+# restoreSolution: '$(solution)'
+
+
+
+
+
+#- task: VSBuild@1
+#  inputs:
+#    solution: '$(solution)'
+#    platform: '$(buildPlatform)'
+#    configuration: '$(buildConfiguration)'
 
