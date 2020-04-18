@@ -70,6 +70,13 @@ steps:
               '-p:PackageVersion=$(Major).$(Minor).$(Patch)'
    versioningScheme: 'off'
 
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+
 
 
 # - task: NuGetCommand@2
