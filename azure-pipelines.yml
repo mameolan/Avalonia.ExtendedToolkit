@@ -43,9 +43,9 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    configuration: Release
     projects: '**/*.csproj'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
+    arguments: '--configuration Release'
 
 #- task: DotNetCoreCLI@2
 #  inputs:
