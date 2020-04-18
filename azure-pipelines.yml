@@ -22,7 +22,7 @@ variables:
   project: '**/*.csproj'
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+  BuildConfiguration: 'Release'
 
 steps:
 
@@ -45,14 +45,32 @@ steps:
     command: 'build'
     projects: '**/*.csproj'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
-    arguments: '--configuration Release'
+    arguments: '--configuration $(BuildConfiguration)'
+
 
 - task: DotNetCoreCLI@2
   inputs:
-   command: 'pack'
-   packagesToPack: '**/*.csproj'
-   nobuild: true
-   versioningScheme: 'off'
+   command: 'publish'
+   arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+   zipAfterPublish: True
+
+
+
+
+
+# - task: DotNetCoreCLI@2
+#   inputs:
+#    command: 'pack'
+#    packagesToPack: '**/*.csproj'
+#    nobuild: true
+#    versioningScheme: 'off'
+
+
+
+
+
+
+
 
 # - task: NuGetCommand@2
 #   inputs:
