@@ -50,12 +50,10 @@ steps:
 
 - task: DotNetCoreCLI@2
   inputs:
+   publishWebProjects: False
    command: 'publish'
    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
    zipAfterPublish: True
-
-
-
 
 
 # - task: DotNetCoreCLI@2
