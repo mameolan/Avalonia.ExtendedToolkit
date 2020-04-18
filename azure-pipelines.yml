@@ -48,20 +48,22 @@ steps:
     arguments: '--configuration $(BuildConfiguration)'
 
 
-- task: DotNetCoreCLI@2
-  inputs:
-   publishWebProjects: False
-   command: 'publish'
-   arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-   zipAfterPublish: True
-
-
 # - task: DotNetCoreCLI@2
 #   inputs:
-#    command: 'pack'
-#    packagesToPack: '**/*.csproj'
-#    nobuild: true
-#    versioningScheme: 'off'
+#    publishWebProjects: False
+#    command: 'publish'
+#    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+#    zipAfterPublish: True
+
+
+- task: DotNetCoreCLI@2
+  inputs:
+   command: 'pack'
+   packagesToPack: '**/*.csproj'
+   nobuild: true
+   arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+   versioningScheme: 'off'
+   
 
 
 
