@@ -8,10 +8,10 @@ trigger:
 
 strategy:
   matrix:
-    linux:
-      imageName: 'ubuntu-16.04'
-    mac:
-      imageName: 'macos-10.14'
+    #linux:
+    #  imageName: 'ubuntu-16.04'
+    #mac:
+      #imageName: 'macos-10.14'
     windows:
       imageName: 'windows-latest'
 
@@ -45,6 +45,14 @@ steps:
     command: 'build'
     projects: '**/*.csproj'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/*.csproj'
+    nobuild: true
+    versioningScheme: 'off'
+
 
 
 
