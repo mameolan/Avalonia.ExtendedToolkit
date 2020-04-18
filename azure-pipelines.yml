@@ -52,32 +52,21 @@ steps:
     workingDirectory: '$(System.DefaultWorkingDirectory)'
     arguments: '--configuration $(BuildConfiguration)'
 
-- task: CopyFiles@2
+- task: DotNetCoreCLI@2
   inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)'
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)/$(ridId)'
-    CleanTargetFolder: true
+   command: 'pack'
+   packagesToPack: '**/*.csproj'
+   nobuild: true
+   arguments: |
+              '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) '
+              '-p:PackageVersion=$(Major).$(Minor).$(Patch)'
+   versioningScheme: 'byPrereleaseNumber'
 
-
-
-
-# - task: DotNetCoreCLI@2
-#   inputs:
-#    command: 'pack'
-#    packagesToPack: '**/*.csproj'
-#    nobuild: true
-#    arguments: |
-#               '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) '
-#               '-p:PackageVersion=$(Major).$(Minor).$(Patch)'
-# #'--runtime $(ridId)'              
-#    versioningScheme: 'byPrereleaseNumber'
-
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#     ArtifactName: 'drop'
-#     publishLocation: 'Container'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop-$(ridId)'
+    publishLocation: 'Container'
 
 
 
