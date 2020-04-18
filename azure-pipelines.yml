@@ -10,7 +10,7 @@ strategy:
      ridId: 'linux'
      imageName: 'ubuntu-latest'
     #mac:
-    # ridId: 'linux'
+    # ridId: 'macos'
     # imageName: 'macos-10.14'
     windows:
       ridId: 'win-x86'
