@@ -23,6 +23,10 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   BuildConfiguration: 'Release'
+  
+  Major: '0'
+  Minor: '0'
+  Patch: '1'
 
 steps:
 
@@ -61,14 +65,10 @@ steps:
    command: 'pack'
    packagesToPack: '**/*.csproj'
    nobuild: true
-   arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+   arguments: |
+              '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) '
+              '-p:PackageVersion=$(Major).$(Minor).$(Patch)'
    versioningScheme: 'off'
-   
-
-
-
-
-
 
 
 
