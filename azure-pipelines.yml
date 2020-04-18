@@ -46,13 +46,19 @@ steps:
     projects: '**/*.csproj'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
 
-- task: DotNetCoreCLI@2
+#- task: DotNetCoreCLI@2
+#  inputs:
+#    command: 'pack'
+#    packagesToPack: '**/*.csproj'
+#    nobuild: true
+#    versioningScheme: 'off'
+
+- task: NuGetCommand@2
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
-    nobuild: true
     versioningScheme: 'off'
-
+    includeReferencedProjects: true
 
 
 
