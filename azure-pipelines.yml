@@ -9,10 +9,13 @@ trigger:
 strategy:
   matrix:
     #linux:
-    #  imageName: 'ubuntu-16.04'
+    # ridId: 'linux'
+    # imageName: 'ubuntu-latest'
     #mac:
-      #imageName: 'macos-10.14'
+    # ridId: 'linux'
+    # imageName: 'macos-10.14'
     windows:
+      ridId: 'win-x86'
       imageName: 'windows-latest'
 
 pool:
@@ -51,15 +54,6 @@ steps:
     workingDirectory: '$(System.DefaultWorkingDirectory)'
     arguments: '--configuration $(BuildConfiguration)'
 
-
-# - task: DotNetCoreCLI@2
-#   inputs:
-#    publishWebProjects: False
-#    command: 'publish'
-#    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-#    zipAfterPublish: True
-
-
 - task: DotNetCoreCLI@2
   inputs:
    command: 'pack'
@@ -68,24 +62,18 @@ steps:
    arguments: |
               '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) '
               '-p:PackageVersion=$(Major).$(Minor).$(Patch)'
-   versioningScheme: 'off'
+              '--runtime $(ridId)'
+   versioningScheme: 'byPrereleaseNumber'
 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
+    ArtifactName: 'drop-$(ridId)'
     publishLocation: 'Container'
 
 
 
 
-# - task: NuGetCommand@2
-#   inputs:
-   
-#     command: 'pack'
-#     packagesToPack: '**/*.csproj'
-#     versioningScheme: 'off'
-#     includeReferencedProjects: true
 
 
 
