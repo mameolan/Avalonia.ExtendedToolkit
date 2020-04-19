@@ -45,10 +45,11 @@
         IsReadOnly="{Binding IsReadOnly}"
         Foreground="{DynamicResource MahApps.Brushes.Black}"
         TextBlock.Foreground="{DynamicResource MahApps.Brushes.Black}"
-			/>
-            <!--utils:TextBoxExtender.CommitOnEnter="true"
+        utils:TextBoxExtender.CommitOnEnter="true"
         utils:TextBoxExtender.RollbackOnEscape="true"
-        utils:TextBoxExtender.CommitOnTyping="false"-->
+        utils:TextBoxExtender.CommitOnTyping="false"
+			/>
+            
 
     
     </ControlTemplate>

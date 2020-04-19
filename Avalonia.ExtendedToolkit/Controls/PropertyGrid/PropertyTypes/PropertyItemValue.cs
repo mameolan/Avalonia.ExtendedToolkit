@@ -164,7 +164,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
 
         private void NotifyStringValueChanged()
         {
-            RaisePropertyChanged(StringValueProperty, null, CanConvertFromString);
+            RaisePropertyChanged(StringValueProperty, null, StringValue);
         }
 
         /// <summary>

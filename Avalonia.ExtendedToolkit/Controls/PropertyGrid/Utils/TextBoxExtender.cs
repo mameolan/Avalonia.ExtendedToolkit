@@ -1,8 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using Avalonia.Controls;
 using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using ReactiveHistory;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
 {
@@ -15,6 +20,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
     /// </summary>
     public static class TextBoxExtender
     {
+        private static CompositeDisposable _disposable = null;
+        static StackHistory _stackHistory = new StackHistory();
+        static Subject<string> _subject = null;
+        static List<string> _myHistory = new List<string>();
+
+
         public static readonly AttachedProperty<bool> CommitOnEnterProperty =
             AvaloniaProperty.RegisterAttached<TextBox, bool>("CommitOnEnter", typeof(TextBoxExtender));
 
@@ -36,12 +47,61 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
             var wasBound = (bool)(e.OldValue);
             var needToBind = (bool)(e.NewValue);
 
+            _disposable?.Dispose();
+            _disposable = null;
+            _subject?.Dispose();
+            _subject = null;
+            _myHistory.Clear();
+
             if (wasBound)
+            {
                 textBox.KeyUp -= TextBoxCommitValue;
+                textBox.PropertyChanged -= TextBox_PropertyChanged;
+            }
+
 
             if (needToBind)
+            {
+                _subject = new Subject<string>();
+                _disposable = new CompositeDisposable();
                 textBox.KeyUp += TextBoxCommitValue;
+                textBox.PropertyChanged += TextBox_PropertyChanged;
+            }
         }
+
+        private static void TextBox_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            if(e.Property== TextBox.TextProperty)
+            {
+                string oldText = e.OldValue as string == null ? string.Empty : (string)e.OldValue;
+                string newText = e.NewValue as string == null ? string.Empty : (string)e.NewValue;
+                _subject.AsObservable().ObserveWithHistory(x => _myHistory.Add(oldText), newText, _stackHistory);
+                _stackHistory.Snapshot(() => 
+                {
+                    textBox.PropertyChanged -= TextBox_PropertyChanged;
+                    //don't allow to switchback to initial value
+                    if(string.IsNullOrEmpty(oldText)==false)
+                    {
+                        textBox.Text = oldText;
+                    }
+                    
+                    
+                    textBox.SelectionStart=textBox.SelectionEnd = textBox.Text.Length + 1;
+                    textBox.PropertyChanged += TextBox_PropertyChanged;
+                }, 
+                () => 
+                {
+                    textBox.PropertyChanged -= TextBox_PropertyChanged;
+                    textBox.Text = newText;
+                    textBox.PropertyChanged += TextBox_PropertyChanged;
+                });
+            }
+            
+        }
+
+
 
         private static void TextBoxCommitValue(object sender, KeyEventArgs e)
         {
@@ -51,12 +111,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
 
             if ((e.Key == Key.Enter))
             {
-                
-#warning todo how to this in avalonia?
-                //BindingExpression expression = textbox.GetBindingExpression(TextBox.TextProperty);
-                //if (expression != null)
-                //    expression.UpdateSource();
-                //e.Handled = true;
+                //do nothing?
+                //or set the last entry of the history
+                e.Handled = true;
             }
         }
 
@@ -81,11 +138,28 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
             var wasBound = (bool)(e.OldValue);
             var needToBind = (bool)(e.NewValue);
 
+            _disposable?.Dispose();
+            _disposable = null;
+            _subject?.Dispose();
+            _subject = null;
+            _myHistory.Clear();
+
+
+
             if (wasBound)
+            {
+                textBox.PropertyChanged -= TextBox_PropertyChanged;
                 textBox.KeyUp -= TextBoxCommitValueWhileTyping;
+            }
 
             if (needToBind)
+            {
+                _subject = new Subject<string>();
+                _disposable = new CompositeDisposable();
+                textBox.PropertyChanged += TextBox_PropertyChanged;
                 textBox.KeyUp += TextBoxCommitValueWhileTyping;
+
+            }
         }
 
         private static void TextBoxCommitValueWhileTyping(object sender, KeyEventArgs e)
@@ -95,10 +169,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
                 var textbox = sender as TextBox;
                 if (textbox == null)
                     return;
-                //BindingExpression expression = textbox.GetBindingExpression(TextBox.TextProperty);
-                //if (expression != null)
-                //    expression.UpdateSource();
-                e.Handled = true;
+                //e.Handled = true;
             }
         }
 
@@ -138,9 +209,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
 
             if (e.Key == Key.Escape)
             {
-                //BindingExpression expression = textbox.GetBindingExpression(TextBox.TextProperty);
-                //if (expression != null)
-                //    expression.UpdateTarget();
+                var result = _stackHistory.Undo();
+
                 e.Handled = true;
             }
         }
