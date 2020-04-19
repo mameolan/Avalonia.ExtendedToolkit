@@ -51,11 +51,11 @@
                 <MultiBinding Converter="{StaticResource BorderGapMaskConverter}"
                               ConverterParameter="7">
                   <Binding ElementName="Header"
-                           Path="ActualWidth" />
+                           Path="Width" />
                   <Binding RelativeSource="{RelativeSource Self}"
-                           Path="ActualWidth" />
+                           Path="Width" />
                   <Binding RelativeSource="{RelativeSource Self}"
-                           Path="ActualHeight" />
+                           Path="Height" />
                 </MultiBinding>
               </Border.OpacityMask>
 

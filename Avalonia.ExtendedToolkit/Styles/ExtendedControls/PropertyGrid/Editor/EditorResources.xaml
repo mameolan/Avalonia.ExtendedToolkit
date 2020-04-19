@@ -17,13 +17,17 @@
     <converter:ExpanderHeaderWidthConverter x:Key="expanderHeaderWidthConverter"/>
 
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.ComplexPropertyEditorKey}">
-      <Expander>
+      <Expander DataContext="{Binding PropertyValue}">
         <Expander.Header>
-          <TextBox Text="{Binding Value, Mode=OneWay}" IsEnabled="False"
+          
+          <TextBlock Text="{Binding Value, Mode=OneWay}" 
                    Width="{Binding RelativeSource=
                    {RelativeSource Mode=FindAncestor, AncestorType={x:Type Expander}}, 
-                   Mode=OneWay, Path=ActualWidth, Converter={StaticResource expanderHeaderWidthConverter}, 
-                   ConverterParameter=-29}"/>
+                   Mode=OneWay, Path=Width, Converter={StaticResource expanderHeaderWidthConverter}, 
+                   ConverterParameter=-29}"
+                   Foreground="{DynamicResource MahApps.Brushes.Black}"
+                   TextBlock.Foreground="{DynamicResource MahApps.Brushes.Black}"
+                   />
         </Expander.Header>
         <design:PropertyItemsLayout Grid.IsSharedSizeScope="True" Items="{Binding SubProperties}"/>
       </Expander>

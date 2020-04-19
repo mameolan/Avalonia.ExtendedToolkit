@@ -26,7 +26,7 @@
     </AvaloniaResource>
     <AvaloniaResource Include="Assets\*" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <EmbeddedResource Include="Assets\AlignTableCellMiddleCenterHS.png" />
     <EmbeddedResource Include="Assets\HamburgerMenu\favorite-black.png" />
@@ -42,7 +42,8 @@
     <EmbeddedResource Include="Assets\openfolderHS.png" />
     <EmbeddedResource Include="Assets\Web.png" />
   </ItemGroup>
-
+  
+  
   <ItemGroup>
     <ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
     <ProjectReference Include="..\Avalonia.ExtendedToolkit\Avalonia.ExtendedToolkit.csproj" />

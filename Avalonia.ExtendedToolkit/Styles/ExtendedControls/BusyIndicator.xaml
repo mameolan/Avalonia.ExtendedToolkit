@@ -105,7 +105,7 @@
                       <ProgressBar Grid.Row="1" Classes="progress">
                         <ProgressBar.Width>
                           <MultiBinding Converter="{StaticResource ProgressBarWidthConverter}">
-                            <Binding Path="ActualWidth"
+                            <Binding Path="Width"
                                      ElementName="busyContent" />
                             <Binding Path="MinWidth"
                                      ElementName="_grid" />

@@ -5,11 +5,12 @@
     xmlns:converter="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters;assembly=Avalonia.ExtendedToolkit"
     >
   <Styles.Resources>
-    <converter:MultiBooleanToIsVisibleConverter x:Key="multiBooleanToVisibilityConverter" />
+    <converter:GridEntryToIsVisibleConverter x:Key="GridEntryToIsVisibleConverter"/>
   </Styles.Resources>
 
   <Style Selector="design|CategoryContainer">
-    <Setter Property="IsVisible">
+    <Setter Property="IsVisible" Value="{Binding .,Converter={StaticResource GridEntryToIsVisibleConverter}}"/>
+    <!--<Setter Property="IsVisible">
       <Setter.Value>
         <MultiBinding Converter="{StaticResource multiBooleanToVisibilityConverter}" Mode="OneWay">
           <Binding Path="IsBrowsable" FallbackValue="True"/>
@@ -17,7 +18,7 @@
           <Binding Path="MatchesFilter" FallbackValue="True"/>
         </MultiBinding>
       </Setter.Value>
-    </Setter>
+    </Setter>-->
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>

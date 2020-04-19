@@ -4,6 +4,14 @@
    xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
     >
   <Style Selector="design|PropertyItemsLayout">
+    
+    <Setter Property="ItemTemplate">
+      <DataTemplate>
+        <design:PropertyContainer Margin="1" DataContext="{Binding}" />
+      </DataTemplate>
+    </Setter>
+    
+    
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>

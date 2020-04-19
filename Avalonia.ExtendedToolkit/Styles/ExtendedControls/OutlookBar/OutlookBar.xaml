@@ -290,7 +290,7 @@
                     -->
                     <Popup.Child>
                       <!--<mwt:SystemDropShadowChrome Margin="0,0,5,5" CornerRadius="3" Color="" Name="Shdw"
-                              MinWidth="{TemplateBinding FrameworkElement.ActualWidth}" VerticalAlignment="Stretch">-->
+                              MinWidth="{TemplateBinding FrameworkElement.Width}" VerticalAlignment="Stretch">-->
                       <Border Background="Transparent">
                         <Border
                                 Background="{DynamicResource Odc.Brushes.LightBackground}"
