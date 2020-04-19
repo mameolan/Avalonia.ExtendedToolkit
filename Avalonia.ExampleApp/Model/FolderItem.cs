@@ -1,7 +1,6 @@
-﻿using Avalonia.Media;
+﻿using System;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
-using System;
 
 namespace Avalonia.ExampleApp.Model
 {

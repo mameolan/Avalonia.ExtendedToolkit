@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Avalonia.Controls.Primitives;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml.Styling;
 using Avalonia.Markup.Xaml.Templates;

@@ -1,10 +1,6 @@
-﻿using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
+﻿using System.Windows.Input;
+using Avalonia.Controls;
 using Avalonia.Xaml.Interactivity;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
 
 namespace Avalonia.ExampleApp.Behaviors
 {

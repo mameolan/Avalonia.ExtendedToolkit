@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using Avalonia.Controls;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 
 namespace Avalonia.ExampleApp.Model
 {
@@ -450,6 +448,5 @@ namespace Avalonia.ExampleApp.Model
                 grouping.Key.Albums = new ObservableCollection<Album>( grouping.ToList());
             }
         }
-
     }
 }

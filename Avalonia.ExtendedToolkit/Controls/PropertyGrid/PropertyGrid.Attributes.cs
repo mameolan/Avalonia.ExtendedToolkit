@@ -4,6 +4,8 @@ using System.ComponentModel;
 using Avalonia.Controls;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 

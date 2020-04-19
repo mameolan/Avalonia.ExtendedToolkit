@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using Avalonia.Media;
 
 namespace Avalonia.ExampleApp.Model
@@ -11,7 +9,7 @@ namespace Avalonia.ExampleApp.Model
     /// <summary>
     /// This class acts as a pre-processor for properties shown in WPG.
     /// </summary>
-    public class BrushProxy : AvaloniaObject    
+    public class BrushProxy : AvaloniaObject
     {
         public string CurrentComponent { get; set; }
 
@@ -23,17 +21,13 @@ namespace Avalonia.ExampleApp.Model
         }
 
         /// <summary>
-        /// Gets or sets the ObjectBrushes property.  
+        /// Gets or sets the ObjectBrushes property.
         /// </summary>
         public static readonly StyledProperty<BrushInfo[]> ObjectBrushesProperty =
             AvaloniaProperty.Register<BrushProxy, BrushInfo[]>(nameof(ObjectBrushes));
 
-
-        
-
         protected virtual void OnObjectBrushesChanged(BrushProxy o, AvaloniaPropertyChangedEventArgs e)
         {
-            
         }
 
         public BrushProxy(object component)
@@ -45,8 +39,8 @@ namespace Avalonia.ExampleApp.Model
             CurrentComponent = component.ToString();
 
             CaptureComponent(component);
-            
         }
+
         /// <summary>
         /// Captures the component's properties of interest.
         /// </summary>
@@ -68,6 +62,5 @@ namespace Avalonia.ExampleApp.Model
             }
             ObjectBrushes = list.ToArray();
         }
-
     }
 }

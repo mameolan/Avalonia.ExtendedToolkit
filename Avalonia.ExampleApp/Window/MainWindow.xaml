@@ -215,7 +215,9 @@
         <TabItem Header="Explorer Bar" Foreground="{DynamicResource MahApps.Brushes.Black}">
           <Views:ExplorerBarView/>
         </TabItem>
-
+        <TabItem Header="Property Grid" Foreground="{DynamicResource MahApps.Brushes.Black}">
+          <Views:PropertyGridExamples/>
+        </TabItem>
         <TabItem Header="Colors" Foreground="{DynamicResource MahApps.Brushes.Black}">
           <Views:ColorExample/>
         </TabItem>

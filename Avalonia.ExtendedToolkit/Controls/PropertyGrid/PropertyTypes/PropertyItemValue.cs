@@ -3,8 +3,10 @@ using System.Collections;
 using System.ComponentModel;
 using System.Globalization;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils;
 
-namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
+namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
 {
     //
     // ported from https://github.com/DenisVuyka/WPG

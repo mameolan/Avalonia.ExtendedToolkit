@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Reflection;
-using System.Text;
+﻿using System.Reflection;
 using Avalonia.Media;
 
 namespace Avalonia.ExampleApp.Model
 {
     /// <summary>
     /// Utility class to pass the property info to the datatemplate.
-    /// The crucial method is the passing of the new values (set in WPG) 
+    /// The crucial method is the passing of the new values (set in WPG)
     /// via the PropertyInfo to the edited object.
     /// </summary>
     public class BrushInfo : AvaloniaObject
@@ -20,11 +16,8 @@ namespace Avalonia.ExampleApp.Model
             set { SetValue(NameProperty, value); }
         }
 
-
         public static readonly StyledProperty<string> NameProperty =
             AvaloniaProperty.Register<BrushInfo, string>(nameof(Name));
-
-
 
         public PropertyInfo Info
         {
@@ -32,18 +25,14 @@ namespace Avalonia.ExampleApp.Model
             set { SetValue(InfoProperty, value); }
         }
 
-
         public static readonly StyledProperty<PropertyInfo> InfoProperty =
             AvaloniaProperty.Register<BrushInfo, PropertyInfo>(nameof(Info));
-
-
 
         public object Component
         {
             get { return (object)GetValue(ComponentProperty); }
             set { SetValue(ComponentProperty, value); }
         }
-
 
         public static readonly StyledProperty<object> ComponentProperty =
             AvaloniaProperty.Register<BrushInfo, object>(nameof(Component));
@@ -53,7 +42,6 @@ namespace Avalonia.ExampleApp.Model
             get { return (IBrush)GetValue(ObjectBrushProperty); }
             set { SetValue(ObjectBrushProperty, value); }
         }
-
 
         public static readonly StyledProperty<IBrush> ObjectBrushProperty =
             AvaloniaProperty.Register<BrushInfo, IBrush>(nameof(ObjectBrush), defaultValue: Brushes.Transparent);

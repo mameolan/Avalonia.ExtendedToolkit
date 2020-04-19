@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes;
 using ReactiveUI;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid

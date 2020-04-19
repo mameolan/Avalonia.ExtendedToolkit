@@ -5,7 +5,7 @@ using Avalonia.Controls;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls;
 using Avalonia.VisualTree;
 
-namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
+namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
 {
     //
     // ported from https://github.com/DenisVuyka/WPG

@@ -1,0 +1,100 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tk="https://github.com/avalonia_extendedtoolkit"
+             xmlns:Model="clr-namespace:Avalonia.ExampleApp.Model;assembly=Avalonia.ExampleApp"
+             xmlns:Converter="clr-namespace:Avalonia.ExampleApp.Converters;assembly=Avalonia.ExampleApp"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.PropertyGridExample_CategoryEditor">
+  <UserControl.Resources>
+    <Model:FontList x:Key="FontFamilyList"/>
+    <Model:FontSizeList x:Key="FontSizeList"/>
+    <Model:BusinessObject x:Key="BusinessObject"/>
+
+    <Converter:FontStyleConverter x:Key="FontStyleConverter"/>
+    <Converter:FontWeightConverter x:Key="FontWeightConverter"/>
+
+    <ControlTemplate x:Key="TextCategoryEditorKey">
+      <StackPanel Margin="5">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+          </Grid.ColumnDefinitions>
+          <ComboBox
+                    Grid.Column="0"
+                    Margin="2"
+                    Items="{Binding Source={StaticResource FontFamilyList}}"
+                    SelectedItem="{Binding SelectedObject.FontFamily, ElementName=pg}"
+                    />
+          <!--
+          
+          DisplayMemberPath="FamilyNames.Values[0]"-->
+          <ComboBox
+                    Grid.Column="1"
+                    Margin="2"
+                    Items="{Binding Source={StaticResource FontSizeList}}"
+                    SelectedItem="{Binding SelectedObject.FontSize, ElementName=pg}"/>
+        </Grid>
+        <StackPanel Orientation="Horizontal">
+          <CheckBox
+                    Margin="2"
+                    Content="Bold"
+                    IsChecked="{Binding Path=[FontWeight].PropertyValue.Value, 
+                                        Converter={StaticResource FontWeightConverter}}"/>
+          <CheckBox
+                    Margin="2"
+                    Content="Italic"
+                    IsChecked="{Binding Path=[FontStyle].PropertyValue.Value, 
+                                        Converter={StaticResource FontStyleConverter}}"/>
+        </StackPanel>
+      </StackPanel>
+
+    </ControlTemplate>
+
+  </UserControl.Resources>
+
+  <Grid >
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+
+    <tk:PropertyGrid x:Name="pg" Grid.Column="0" SelectedObject="{StaticResource BusinessObject}">
+      <tk:PropertyGrid.Layout>
+        <tk:CategorizedLayout/>
+      </tk:PropertyGrid.Layout>
+
+      <tk:PropertyGrid.Editors>
+        <tk:CategoryEditor DeclaringType="{x:Type Model:BusinessObject}"
+                           CategoryName="Text"
+                           InlineTemplate="{StaticResource TextCategoryEditorKey}"
+                           />
+      </tk:PropertyGrid.Editors>
+    </tk:PropertyGrid>
+
+
+    <StackPanel Grid.Column="1" Margin="10">
+        <TextBlock Text="Formated Output:"/>       
+
+        <TextBlock DataContext="{Binding SelectedObject, ElementName=pg}" Margin="0,20,0,0" 
+                   Text="{Binding Name}"
+                   FontFamily="{Binding FontFamily}"
+                   FontSize="{Binding FontSize}"
+                   FontWeight="{Binding FontWeight}"
+                   FontStyle="{Binding FontStyle}"
+                   />  
+      
+    </StackPanel>
+    
+    
+  
+  
+  </Grid>
+
+
+
+
+
+</UserControl>

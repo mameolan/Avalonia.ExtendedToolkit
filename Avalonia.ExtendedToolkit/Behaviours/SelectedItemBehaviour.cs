@@ -12,12 +12,13 @@ namespace Avalonia.ExtendedToolkit.Behaviours
     {
         protected override void OnAttached()
         {
+
             AssociatedObject.SelectionChanged += SelectingItemsControl_SelectionChanged;
 
             if(AssociatedObject.Items!=null)
             {
                 AssociatedObject.SelectionChanged -= SelectingItemsControl_SelectionChanged;
-                AssociatedObject.SelectedItem = 0;
+                AssociatedObject.SelectedIndex = 0;
 
                 AssociatedObject.SelectionChanged += SelectingItemsControl_SelectionChanged;
             }
@@ -43,7 +44,7 @@ namespace Avalonia.ExtendedToolkit.Behaviours
 
                 AssociatedObject.SelectionChanged -= SelectingItemsControl_SelectionChanged;
                 AssociatedObject.SelectedIndex = newIndex;
-                AssociatedObject.SelectedItem = selectedItems.First();
+                //AssociatedObject.SelectedItem = selectedItems.First();
                 AssociatedObject.SelectionChanged += SelectingItemsControl_SelectionChanged;
 
 

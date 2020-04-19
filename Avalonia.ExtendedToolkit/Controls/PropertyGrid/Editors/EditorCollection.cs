@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Avalonia.Collections;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {

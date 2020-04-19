@@ -1,6 +1,6 @@
 ﻿using Avalonia.Interactivity;
 
-namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
+namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
 {
     //
     // ported from https://github.com/DenisVuyka/WPG

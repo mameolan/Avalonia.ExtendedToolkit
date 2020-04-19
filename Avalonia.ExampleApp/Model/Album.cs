@@ -1,5 +1,5 @@
-﻿using ReactiveUI;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using ReactiveUI;
 
 namespace Avalonia.ExampleApp.Model
 {

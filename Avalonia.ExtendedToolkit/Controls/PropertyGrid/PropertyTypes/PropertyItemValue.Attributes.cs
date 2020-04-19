@@ -1,6 +1,7 @@
 ﻿using System;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing;
 
-namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
+namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
 {
     public partial class PropertyItemValue
     {
@@ -127,7 +128,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public static readonly DirectProperty<PropertyItemValue, string> StringValueProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItemValue, string>(
                     nameof(StringValue),
-                    o => o.StringValue);
+                    o => o.StringValue, (o, v) => o.StringValue = v, defaultBindingMode: Data.BindingMode.TwoWay);
 
         /// <summary>
         /// Gets or sets the string representation of the value.
@@ -175,7 +176,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public static readonly DirectProperty<PropertyItemValue, object> ValueProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItemValue, object>(
                     nameof(Value),
-                    o => o.Value);
+                    o => o.Value, (o, v) => o.Value = v, defaultBindingMode: Data.BindingMode.TwoWay);
 
         /// <summary>
         /// Gets or sets the value.

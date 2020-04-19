@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {

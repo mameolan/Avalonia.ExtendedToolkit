@@ -1,5 +1,6 @@
 ﻿using System;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {

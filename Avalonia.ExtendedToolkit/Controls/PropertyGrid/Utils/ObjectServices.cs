@@ -8,7 +8,7 @@ using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Internal;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes;
 using Avalonia.Media;
 
-namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
+namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
 {
     //
     // ported from https://github.com/DenisVuyka/WPG

@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Globalization;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
 
-namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
+namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
 {
     //
     // ported from https://github.com/DenisVuyka/WPG

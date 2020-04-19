@@ -57,28 +57,40 @@
           <ListBox Items="{Binding Path=[ObjectBrushes].PropertyValue.Value}">
             <ListBox.ItemTemplate>
               <DataTemplate>
-                <StackPanel Orientation="Horizontal">
-                  <StackPanel.Styles>
+                <Grid>
+                  <Grid.Styles>
                     <Style Selector="TextBlock">
                       <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
                     </Style>
                     <Style Selector="ComboBoxItem">
                       <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
                     </Style>
-                  </StackPanel.Styles>
-
-                  <TextBlock Text="{Binding Path=Name}" />
-                  <ComboBox Margin="30,5,5,5" Items="{Binding Source={StaticResource BrushList}}"
-                            MinWidth="80" x:Name="cmb" SelectedItem="{Binding ObjectBrush}">
+                  </Grid.Styles>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                  </Grid.ColumnDefinitions>
+                  
+                  
+                  <TextBlock Grid.Column="0" Text="{Binding Path=Name}" />
+                  
+                  <ComboBox Margin="0,3,0,3" Grid.Column="1" Items="{Binding Source={StaticResource BrushList}}"
+                            MinWidth="80" x:Name="cmb">
                     <i:Interaction.Behaviors>
                       <behaviours:SelectedItemBehaviour />
                     </i:Interaction.Behaviors>
                   </ComboBox>
 
-                  <TextBlock x:Name="txtObjectBrush" Margin="20,0,0,0" 
-                             Text="{Binding ObjectBrush}"
-                             TextBlock.Foreground="{DynamicResource MahApps.Brushes.Black}" />
-                </StackPanel>
+                  <Ellipse Grid.Column="2" x:Name="BrushResource"
+                       Width="20"
+                       Height="20"
+                       Fill="{Binding SelectedItem, ElementName=cmb}" />
+                  
+                  <!--<TextBlock x:Name="txtObjectBrush" Margin="20,0,0,0" 
+                             Text="{Binding SelectedItem, ElementName=cmb}"
+                             TextBlock.Foreground="{DynamicResource MahApps.Brushes.Black}" />-->
+                </Grid>
               </DataTemplate>
             </ListBox.ItemTemplate>
           </ListBox>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
@@ -31,7 +33,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public static readonly DirectProperty<PropertyItem, PropertyItemValue> PropertyValueProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItem, PropertyItemValue>(
                     nameof(PropertyValue),
-                    o => o.PropertyValue);
+                    o => o.PropertyValue/*, defaultBindingMode: Data.BindingMode.TwoWay*/);
 
         private PropertyItemValue _propertyValue;
 
@@ -61,7 +63,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public static readonly DirectProperty<PropertyItem, string> DisplayNameProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItem, string>(
                     nameof(DisplayName),
-                    o => o.DisplayName);
+                    o => o.DisplayName, (o, v) => o.DisplayName=v,defaultBindingMode: Data.BindingMode.TwoWay);
 
         private string _displayName;
 
@@ -106,7 +108,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public static readonly DirectProperty<PropertyItem, string> DescriptionProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItem, string>(
                     nameof(Description),
-                    o => o.Description);
+                    o => o.Description, (o, v) => o.Description = v, defaultBindingMode: Data.BindingMode.TwoWay);
 
         private string _description;
 
@@ -158,7 +160,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public static readonly DirectProperty<PropertyItem, bool> IsReadOnlyProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItem, bool>(
                     nameof(IsReadOnly),
-                    o => o.IsReadOnly, unsetValue: false);
+                    o => o.IsReadOnly, (o, v) => o.IsReadOnly=v, unsetValue: false, defaultBindingMode: Data.BindingMode.TwoWay);
 
         private bool _isReadOnly;
 

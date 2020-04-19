@@ -2,6 +2,8 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:pg="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid;assembly=Avalonia.ExtendedToolkit"
+    xmlns:pgEditing="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing;assembly=Avalonia.ExtendedToolkit"
+    xmlns:utils="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils;assembly=Avalonia.ExtendedToolkit"
     xmlns:editors="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;assembly=Avalonia.ExtendedToolkit"
     xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
     xmlns:pgControls="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls;assembly=Avalonia.ExtendedToolkit"
@@ -9,7 +11,7 @@
     xmlns:controlz="clr-namespace:Avalonia.Controlz.Controls;assembly=Avalonia.Controlz"
     >
   <Styles.Resources>
-    <pg:NamedColorList x:Key="NamedColorList"/>
+    <pgEditing:NamedColorList x:Key="NamedColorList"/>
     <converter:NullValueConverter x:Key="NullValueConverter"/>
     <converter:EnumValueConverter x:Key="enumValueConverter"/>
     <converter:ExpanderHeaderWidthConverter x:Key="expanderHeaderWidthConverter"/>
@@ -39,10 +41,12 @@
         IsReadOnly="{Binding IsReadOnly}"
         Foreground="{DynamicResource MahApps.Brushes.Black}"
         TextBlock.Foreground="{DynamicResource MahApps.Brushes.Black}"
-        pg:TextBoxExtender.CommitOnEnter="true"
-        pg:TextBoxExtender.RollbackOnEscape="true"
-        pg:TextBoxExtender.CommitOnTyping="false"
 			/>
+            <!--utils:TextBoxExtender.CommitOnEnter="true"
+        utils:TextBoxExtender.RollbackOnEscape="true"
+        utils:TextBoxExtender.CommitOnTyping="false"-->
+
+    
     </ControlTemplate>
 
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.EnumEditorKey}">

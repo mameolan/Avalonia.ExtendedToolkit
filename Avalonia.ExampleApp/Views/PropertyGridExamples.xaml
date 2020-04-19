@@ -10,8 +10,11 @@
     <TabControl>
       <TabItem Header="BrushCategory" Foreground="{DynamicResource MahApps.Brushes.Black}">
         <Views:PropertyGridExample_BrushCategory/>
-      </TabItem>      
-
+      </TabItem>
+      <TabItem Header="CategoryEditor" Foreground="{DynamicResource MahApps.Brushes.Black}">
+        <Views:PropertyGridExample_CategoryEditor/>
+      </TabItem>
+      
     </TabControl>
   </Grid>
 </UserControl>

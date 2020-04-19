@@ -1,19 +1,15 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
-using Avalonia.ExtendedToolkit;
-using Avalonia.ExtendedToolkit.Controls;
 using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class MainWindowView : UserControl
+    public class PropertyGridExample_CategoryEditor : UserControl
     {
-        public MainWindowView()
+        public PropertyGridExample_CategoryEditor()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
-
-        
 
         private void InitializeComponent()
         {

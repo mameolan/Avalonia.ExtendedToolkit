@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
@@ -95,7 +96,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                     nameof(Comparer),
                     o => o.Comparer);
 
-        private IComparer<PropertyItem> _comparer;
+        private IComparer<PropertyItem> _comparer = new PropertyItemComparer();
 
         /// <summary>
         /// Gets or sets the comparer used to sort properties.

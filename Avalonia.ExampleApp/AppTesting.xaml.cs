@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.ExampleApp.Model;
 using Avalonia.ExampleApp.ViewModels;
 using Avalonia.ExampleApp.Views;
 using Avalonia.ExtendedToolkit;

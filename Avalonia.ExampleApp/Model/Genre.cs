@@ -1,6 +1,5 @@
-﻿using ReactiveUI;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using ReactiveUI;
 
 namespace Avalonia.ExampleApp.Model
 {

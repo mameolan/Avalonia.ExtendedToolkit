@@ -1,8 +1,10 @@
-﻿using Avalonia.Controls;
+﻿using System.ComponentModel;
+using Avalonia.Controls;
+using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 
-namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
+namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
 {
     //
     // ported from https://github.com/DenisVuyka/WPG
@@ -49,11 +51,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
             if ((e.Key == Key.Enter))
             {
+                
 #warning todo how to this in avalonia?
                 //BindingExpression expression = textbox.GetBindingExpression(TextBox.TextProperty);
                 //if (expression != null)
                 //    expression.UpdateSource();
-                e.Handled = true;
+                //e.Handled = true;
             }
         }
 

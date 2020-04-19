@@ -1,6 +1,7 @@
 ﻿using System;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes;
 
-namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
+namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing
 {
     //
     // ported from https://github.com/DenisVuyka/WPG

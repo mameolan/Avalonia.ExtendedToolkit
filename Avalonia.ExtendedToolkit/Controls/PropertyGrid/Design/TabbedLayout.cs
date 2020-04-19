@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Input;
 using Avalonia.Controls;
 using Avalonia.Controls.Generators;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes;
 using ReactiveUI;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
