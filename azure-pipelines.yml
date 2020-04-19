@@ -14,7 +14,7 @@ strategy:
     # imageName: 'macos-10.14'
     windows:
       ridId: 'win-x86'
-      imageName: 'windows-latest'
+      imageName: 'windows-2019'
 
 pool:
   vmImage: $(imageName)
