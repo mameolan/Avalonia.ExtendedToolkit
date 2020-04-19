@@ -10,8 +10,14 @@ namespace Avalonia.ExtendedToolkit.Extensions
         {
            return styles.OfType<StyleInclude>()
                          .FirstOrDefault(styleInclude => styleInclude.
-                         Source.AbsoluteUri.StartsWith("avares://Avalonia.ExtendedToolkit/Styles/Themes"));
+                         Source.AbsoluteUri.StartsWith("avares://Avalonia.ExtendedToolkit/Styles/Themes")
+                         ||
+                         styleInclude.
+                         Source.AbsoluteUri.StartsWith("resm:Avalonia.ExtendedToolkit.Styles.Themes")
+                         );
         }
+
+        
 
         public static int GetThemeStyleIndex(this Styles styles, IStyle item)
         {

@@ -310,18 +310,20 @@ namespace Avalonia.ExtendedToolkit
 
                 foreach (string xamlFile in availableXamlThemes)
                 {
+                    string tempXamlPath = xamlFile.Replace("/", ".");
+
                     var theme = new StyleInclude(new Uri("resm:Styles?assembly=Avalonia.ExtendedToolkit"))
                     {
-                        Source = new Uri($"avares://{xamlFile}")
+                        //resm:Avalonia.Controls.DataGrid.Themes.Default.xaml?assembly=Avalonia.Controls.DataGrid
+                        //Source = new Uri($"avares://{xamlFile}")
+                        Source = new Uri($"resm:{tempXamlPath}?assembly=Avalonia.ExtendedToolkit")
                     };
                     themesInternal.Add(new Theme(theme));
                 }
             }
             catch (Exception e)
             {
-                throw new InvalidOperationException("This exception happens because you are" +
-                    " maybe running that code out of the scope of a WPF application. " +
-                    "Most likely because you are testing your configuration inside a unit test.", e);
+                throw new InvalidOperationException(e.Message);
             }
         }
 
