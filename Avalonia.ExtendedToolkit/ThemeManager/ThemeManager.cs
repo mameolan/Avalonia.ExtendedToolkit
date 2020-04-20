@@ -315,8 +315,8 @@ namespace Avalonia.ExtendedToolkit
                     var theme = new StyleInclude(new Uri("resm:Styles?assembly=Avalonia.ExtendedToolkit"))
                     {
                         //resm:Avalonia.Controls.DataGrid.Themes.Default.xaml?assembly=Avalonia.Controls.DataGrid
-                        //Source = new Uri($"avares://{xamlFile}")
-                        Source = new Uri($"resm:{tempXamlPath}?assembly=Avalonia.ExtendedToolkit")
+                        Source = new Uri($"avares://{xamlFile}")
+                        //Source = new Uri($"resm:{tempXamlPath}?assembly=Avalonia.ExtendedToolkit")
                     };
                     themesInternal.Add(new Theme(theme));
                 }

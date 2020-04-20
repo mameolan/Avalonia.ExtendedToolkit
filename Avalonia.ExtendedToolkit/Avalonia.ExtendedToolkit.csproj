@@ -27,6 +27,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="ReactiveHistory" Version="0.9.4" />
     <PackageReference Include="XamlColorSchemeGenerator" Version="3.0.0.31">
       <NoWarn>NU1701</NoWarn>
@@ -47,20 +48,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove=".gitignore" />
-    <None Remove="Styles\Themes\GeneratorParameters.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="Styles\Themes\GeneratorParameters.json" />
-    <EmbeddedResource Include="Styles\Themes\*.xaml" Exclude="Styles\Themes\*.Template.xaml" />
+    <None Remove=".gitignore" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
   </ItemGroup>
 
-  <Target Name="GenerateXamlFilesInner">
+  <Target Name="GenerateXamlFilesInner" BeforeTargets="DispatchToInnerBuilds">
     <PropertyGroup>
       <XamlColorSchemeGeneratorVersion Condition="'%(PackageReference.Identity)' == 'XamlColorSchemeGenerator'">%(PackageReference.Version)</XamlColorSchemeGeneratorVersion>
     </PropertyGroup>
