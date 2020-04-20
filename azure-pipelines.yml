@@ -22,10 +22,8 @@ pool:
 variables:
   project: '**/*.csproj'
   BuildConfiguration: 'Release'
+  XamlColorSchemeGeneratorVersion: ''
   
-  Major: '0'
-  Minor: '0'
-  Patch: '1'
 
 steps:
 
@@ -43,6 +41,47 @@ steps:
     feedsToUse: 'select'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
 
+
+#linux
+- bash: |
+    export IPADDR=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
+    echo "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
+  condition: eq( variables['Agent.OS'], 'Linux' )
+  displayName: Get IP on Linux
+
+#macox
+- bash: |
+    export IPADDR=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
+    echo "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
+  condition: eq( variables['Agent.OS'], 'Linux' )
+  displayName: Get IP on Linux
+
+# macOS
+- bash: |
+    export IPADDR=$(ifconfig | grep 'en0' -A3 | tail -n1 | awk '{print $2}')
+    echo "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
+  condition: eq( variables['Agent.OS'], 'Darwin' )
+  displayName: Get IP on macOS
+# Windows
+- powershell: |
+    Set-Variable -Name IPADDR -Value ((Get-NetIPAddress | ?{ $_.AddressFamily -eq "IPv4" -and !($_.IPAddress -match "169") -and !($_.IPaddress -match "127") } | Select-Object -First 1).IPAddress)
+    Write-Host "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
+  displayName: Get IP on Windows
+
+
+
+
+- task: CmdLine@2
+  displayName: 'Run xaml colorscheme generator'
+  inputs:
+    script: |
+      echo The IP address is $(IP_ADDR)
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+    failOnStderr: true
+# "$(NuGetPackageRoot)xamlcolorschemegenerator\$(XamlColorSchemeGeneratorVersion)\tools\XamlColorSchemeGenerator.exe" "$(MSBuildProjectDirectory)\Styles\Themes\GeneratorParameters.json"
+
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
@@ -57,7 +96,6 @@ steps:
    nobuild: true
    arguments: |
               '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) '
-              '-p:PackageVersion=$(Major).$(Minor).$(Patch)'
    versioningScheme: 'byPrereleaseNumber'
 
 - task: PublishBuildArtifacts@1
