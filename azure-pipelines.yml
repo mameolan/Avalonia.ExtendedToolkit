@@ -14,15 +14,13 @@ strategy:
     # imageName: 'macos-10.14'
     windows:
       ridId: 'win-x86'
-      imageName: 'windows-latest'
+      imageName: 'windows-2019'
 
 pool:
   vmImage: $(imageName)
 
 variables:
   project: '**/*.csproj'
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
   BuildConfiguration: 'Release'
   
   Major: '0'
@@ -34,7 +32,7 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '3.1.x'
+    version: '3.1.100'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
 
 
