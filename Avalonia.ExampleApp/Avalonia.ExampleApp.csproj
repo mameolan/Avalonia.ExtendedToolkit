@@ -1,64 +1,66 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <IsPackable>false</IsPackable>
-  </PropertyGroup>
+	<Import Project="..\Directory.build.props" />
 
-  <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.9.6" />
-    <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.9.6" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.9.6" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.9.6" />
-    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.9.6" />
-    <PackageReference Include="Avalonia.Xaml.Interactions" Version="0.9.6" />
-    <PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.9.6" />
-    <PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-  </ItemGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Update="**\*.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
-    <AvaloniaResource Include="**\*.xaml">
-      <SubType>Designer</SubType>
-    </AvaloniaResource>
-    <AvaloniaResource Include="Assets\*" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="0.9.6" />
+		<PackageReference Include="Avalonia.Controls.DataGrid" Version="0.9.6" />
+		<PackageReference Include="Avalonia.Desktop" Version="0.9.6" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="0.9.6" />
+		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.9.6" />
+		<PackageReference Include="Avalonia.Xaml.Interactions" Version="0.9.6" />
+		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.9.6" />
+		<PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Assets\AlignTableCellMiddleCenterHS.png" />
-    <EmbeddedResource Include="Assets\HamburgerMenu\favorite-black.png" />
-    <EmbeddedResource Include="Assets\HamburgerMenu\favorite-white.png" />
-    <EmbeddedResource Include="Assets\HamburgerMenu\home-black.png" />
-    <EmbeddedResource Include="Assets\HamburgerMenu\home-white.png" />
-    <EmbeddedResource Include="Assets\HamburgerMenu\list-black.png" />
-    <EmbeddedResource Include="Assets\HamburgerMenu\list-white.png" />
-    <EmbeddedResource Include="Assets\HamburgerMenu\person-black.png" />
-    <EmbeddedResource Include="Assets\HamburgerMenu\person-white.png" />
-    <EmbeddedResource Include="Assets\HamburgerMenu\search-black.png" />
-    <EmbeddedResource Include="Assets\HamburgerMenu\search-white.png" />
-    <EmbeddedResource Include="Assets\openfolderHS.png" />
-    <EmbeddedResource Include="Assets\Web.png" />
-  </ItemGroup>
-  
-  
-  <ItemGroup>
-    <ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
-    <ProjectReference Include="..\Avalonia.ExtendedToolkit\Avalonia.ExtendedToolkit.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="**\*.xaml.cs">
+			<DependentUpon>%(Filename)</DependentUpon>
+		</Compile>
+		<AvaloniaResource Include="**\*.xaml">
+			<SubType>Designer</SubType>
+		</AvaloniaResource>
+		<AvaloniaResource Include="Assets\*" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="FontAwesome.Avalonia">
-      <HintPath>..\ExternalDependencies\FontAwesome.Avalonia.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
-    <Reference Include="FontAwesome.Generate">
-      <HintPath>..\ExternalDependencies\FontAwesome.Generate.dll</HintPath>
-      <Private>true</Private>
-    </Reference>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Assets\AlignTableCellMiddleCenterHS.png" />
+		<EmbeddedResource Include="Assets\HamburgerMenu\favorite-black.png" />
+		<EmbeddedResource Include="Assets\HamburgerMenu\favorite-white.png" />
+		<EmbeddedResource Include="Assets\HamburgerMenu\home-black.png" />
+		<EmbeddedResource Include="Assets\HamburgerMenu\home-white.png" />
+		<EmbeddedResource Include="Assets\HamburgerMenu\list-black.png" />
+		<EmbeddedResource Include="Assets\HamburgerMenu\list-white.png" />
+		<EmbeddedResource Include="Assets\HamburgerMenu\person-black.png" />
+		<EmbeddedResource Include="Assets\HamburgerMenu\person-white.png" />
+		<EmbeddedResource Include="Assets\HamburgerMenu\search-black.png" />
+		<EmbeddedResource Include="Assets\HamburgerMenu\search-white.png" />
+		<EmbeddedResource Include="Assets\openfolderHS.png" />
+		<EmbeddedResource Include="Assets\Web.png" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
+		<ProjectReference Include="..\Avalonia.ExtendedToolkit\Avalonia.ExtendedToolkit.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="FontAwesome.Avalonia">
+			<HintPath>..\ExternalDependencies\FontAwesome.Avalonia.dll</HintPath>
+			<Private>true</Private>
+		</Reference>
+		<Reference Include="FontAwesome.Generate">
+			<HintPath>..\ExternalDependencies\FontAwesome.Generate.dll</HintPath>
+			<Private>true</Private>
+		</Reference>
+	</ItemGroup>
 
 </Project>

@@ -1,10 +1,7 @@
 <Project>
 
-  <!--
-      Properties for NuGet Packages
-      -->
-  <PropertyGroup>
-    <Version>0.0.1</Version>
+<PropertyGroup>
+    <Version>0.9.6</Version>
 	<Authors>mameolan and others</Authors>
     <Company>mameolan</Company>
 
@@ -12,9 +9,8 @@
     <PackageProjectUrl>https://github.com/mameolan/Avalonia.ExtendedToolkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mameolan/Avalonia.ExtendedToolkit</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>Avalonia</PackageTags>
-
-    <AssemblyVersion>$(Version)</AssemblyVersion>
+    
+	<AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
   </PropertyGroup>
 

@@ -222,6 +222,12 @@ namespace Avalonia.ExtendedToolkit
 
             window.Opened += (o, e) =>
               {
+
+                  if(SelectedTheme==null)
+                  {
+                      SelectedTheme = Themes.FirstOrDefault();
+                  }
+
                   //ObserveOn(RxApp.MainThreadScheduler)
                   disposableForSelectedTheme = this.WhenAnyValue(x => x.SelectedTheme).Where(x => x != null)
                   .Subscribe(x =>
