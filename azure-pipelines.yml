@@ -55,6 +55,7 @@ steps:
    nobuild: true
    arguments: |
               '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) '
+              '--runtime $(ridId) '
    versioningScheme: 'byPrereleaseNumber'
 
 - task: PublishBuildArtifacts@1
