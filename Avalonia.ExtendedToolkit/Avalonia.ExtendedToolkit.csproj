@@ -58,14 +58,17 @@
 		<ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
 	</ItemGroup>
 
-	<Target Name="GenerateXamlFilesInner" BeforeTargets="DispatchToInnerBuilds">
+  <!--Only enable if you have changes in the GeneratorParameters.json or Theme.Template.xaml file
+      But comment afterward this target (build time can increase)
+  -->
+  <!--<Target Name="GenerateXamlFilesInner" BeforeTargets="DispatchToInnerBuilds">
 		<PropertyGroup>
 			<XamlColorSchemeGeneratorVersion Condition="'%(PackageReference.Identity)' == 'XamlColorSchemeGenerator'">%(PackageReference.Version)</XamlColorSchemeGeneratorVersion>
 		</PropertyGroup>
-		<Exec Command="&quot;$(NuGetPackageRoot)xamlcolorschemegenerator\$(XamlColorSchemeGeneratorVersion)\tools\XamlColorSchemeGenerator.exe&quot; &quot;$(MSBuildProjectDirectory)\Styles\Themes\GeneratorParameters.json&quot;" />
+    <Exec Command="&quot;$(NuGetPackageRoot)\xamlcolorschemegenerator\$(XamlColorSchemeGeneratorVersion)\tools\XamlColorSchemeGenerator.exe&quot; &quot;$(MSBuildProjectDirectory)\Styles\Themes\GeneratorParameters.json&quot;" />
 	</Target>
 	<Target Name="GenerateXamlFiles" BeforeTargets="DispatchToInnerBuilds;BeforeBuild">
 		<MSBuild Projects="$(MSBuildProjectFile)" Targets="GenerateXamlFilesInner" Properties="TargetFramework=once" />
-	</Target>
+  </Target>-->
 
 </Project>

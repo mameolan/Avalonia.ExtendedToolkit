@@ -22,10 +22,8 @@ pool:
 variables:
   project: '**/*.csproj'
   BuildConfiguration: 'Release'
+  XamlColorSchemeGeneratorVersion: ''
   
-  Major: '0'
-  Minor: '0'
-  Patch: '1'
 
 steps:
 
@@ -57,7 +55,6 @@ steps:
    nobuild: true
    arguments: |
               '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) '
-              '-p:PackageVersion=$(Major).$(Minor).$(Patch)'
    versioningScheme: 'byPrereleaseNumber'
 
 - task: PublishBuildArtifacts@1
