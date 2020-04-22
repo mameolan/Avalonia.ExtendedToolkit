@@ -12,9 +12,9 @@ strategy:
     #mac:
     # ridId: 'macos'
     # imageName: 'macos-10.14'
-    windows:
-      ridId: 'win-x86'
-      imageName: 'windows-2019'
+    # windows:
+    #   ridId: 'win-x86'
+    #   imageName: 'windows-2019'
 
 pool:
   vmImage: $(imageName)
@@ -55,13 +55,15 @@ steps:
    nobuild: true
    arguments: |
               '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) '
-              '--runtime $(ridId) '
+              
    versioningScheme: 'byPrereleaseNumber'
+#'--runtime $(ridId) '
+
 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop-$(ridId)'
+    ArtifactName: 'drop'
     publishLocation: 'Container'
 
 
