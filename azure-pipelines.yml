@@ -1,29 +1,16 @@
-# .NET Multienvironment
-
+# .NET core build pipeline
 
 trigger:
 - master
 
-strategy:
-  matrix:
-    linux:
-     ridId: 'linux'
-     imageName: 'ubuntu-latest'
-    #mac:
-    # ridId: 'macos'
-    # imageName: 'macos-10.14'
-    # windows:
-    #   ridId: 'win-x86'
-    #   imageName: 'windows-2019'
-
 pool:
-  vmImage: $(imageName)
+  vmImage: 'ubuntu-latest'
 
 variables:
   project: '**/*.csproj'
   BuildConfiguration: 'Release'
   XamlColorSchemeGeneratorVersion: ''
-  
+ 
 
 steps:
 
@@ -55,9 +42,7 @@ steps:
    nobuild: true
    arguments: |
               '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) '
-              
    versioningScheme: 'byPrereleaseNumber'
-#'--runtime $(ridId) '
 
 
 - task: PublishBuildArtifacts@1
