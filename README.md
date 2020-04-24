@@ -1,3 +1,5 @@
+
+
 # Avalonia.ExtendedToolkit
 
 
@@ -39,4 +41,28 @@ Please have a look at the example app how to use the controls.
 	<StyleInclude Source="resm:Avalonia.Controls.DataGrid.Themes.Default.xaml?assembly=Avalonia.Controls.DataGrid" />
 	<StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Generic.xaml"/>
 </Application.Styles>
+
 ```
+
+Set Color in App.xaml Styles like this i.e.:
+
+```xml
+<StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Themes/Dark.Blue.xaml"/>
+```
+
+or use the ThemeManager (App.xaml.cs):
+
+```cs
+public override void OnFrameworkInitializationCompleted()
+{
+   if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+   {
+        var window=new MainWindow();
+		ThemeManager.Instance.EnableTheme(window);
+        desktop.MainWindow = window;
+   }
+
+   base.OnFrameworkInitializationCompleted();
+}
+```
+
