@@ -58,6 +58,7 @@ steps:
     publishFeedCredentials: 'nuget AvaloniaExtendedToolkit'
     allowPackageConflicts: true
     versioningScheme: off
+    includeNuGetOrg: true
 
 
 
