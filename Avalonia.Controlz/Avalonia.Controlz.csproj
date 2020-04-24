@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageId>Avalonia.Controlz</PackageId>
+		<PackageId>mameolan.Avalonia.Controlz</PackageId>
 		<Description>Standard controls which are not available in Avalonia.</Description>
 		<PackageTags>gui;avalonia;avaloniaui;xaml</PackageTags>
 	</PropertyGroup>

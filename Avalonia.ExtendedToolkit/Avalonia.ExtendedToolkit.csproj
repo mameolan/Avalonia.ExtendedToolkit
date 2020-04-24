@@ -10,7 +10,7 @@
 
 
 	<PropertyGroup>
-		<PackageId>Avalonia.ExtendedToolkit</PackageId>
+		<PackageId>mameolan.Avalonia.ExtendedToolkit</PackageId>
 		<Description>Extended Controls for Avalonia UI.</Description>
 		<PackageTags>gui;avalonia;avaloniaui;xaml</PackageTags>
 	</PropertyGroup>
