@@ -57,6 +57,7 @@ steps:
     nuGetFeedType: 'external'
     publishFeedCredentials: 'nuget AvaloniaExtendedToolkit'
     allowPackageConflicts: true
+    versioningScheme: off
 
 
 
