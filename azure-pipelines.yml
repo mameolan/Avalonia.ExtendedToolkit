@@ -4,7 +4,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-2019'
 
 variables:
   project: '**/*.csproj'
@@ -13,6 +13,10 @@ variables:
  
 
 steps:
+- task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: '5.5.1'
+
 
 - task: UseDotNet@2
   inputs:
@@ -43,7 +47,6 @@ steps:
    arguments: |
               '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) '
    versioningScheme: 'byPrereleaseNumber'
-
 
 - task: PublishBuildArtifacts@1
   inputs:
