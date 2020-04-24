@@ -48,40 +48,11 @@ steps:
               '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) '
    versioningScheme: 'byPrereleaseNumber'
 
-
-- task: NuGetCommand@2
+- task: PublishBuildArtifacts@1
   inputs:
-    command: 'push'
-    feedsToUse: 'select' 
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/Avalonia.Controlz*.nupkg;'
-    nuGetFeedType: 'external'
-    publishFeedCredentials: 'Nuget-AvaloniaControlz'
-    allowPackageConflicts: true
-    versioningScheme: off
-    includeNuGetOrg: true
-
-
-
-- task: NuGetCommand@2
-  inputs:
-    command: 'push'
-    feedsToUse: 'select' 
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/Avalonia.ExtendedToolkit*.nupkg;'
-    nuGetFeedType: 'external'
-    publishFeedCredentials: 'nuget AvaloniaExtendedToolkit'
-    allowPackageConflicts: true
-    versioningScheme: off
-    includeNuGetOrg: true
-
-
-
-
-
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#     ArtifactName: 'drop'
-#     publishLocation: 'Container'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 
 
 
