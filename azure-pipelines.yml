@@ -13,6 +13,10 @@ variables:
  
 
 steps:
+- task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: '5.5.1'
+
 
 - task: UseDotNet@2
   inputs:
@@ -45,11 +49,24 @@ steps:
    versioningScheme: 'byPrereleaseNumber'
 
 
-- task: PublishBuildArtifacts@1
+- task: NuGetCommand@2
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    command: 'push'
+    feedsToUse: 'select' 
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'nuget AvaloniaExtendedToolkit'
+    allowPackageConflicts: true
+
+
+
+
+
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#     ArtifactName: 'drop'
+#     publishLocation: 'Container'
 
 
 
