@@ -17,6 +17,15 @@ Most styles / ideas where taken from:
 
 etc.
 
+### Nugets
+------
+
+- [Avalonia.Controlz](https://www.nuget.org/packages/mameolan.Avalonia.Controlz/)
+- [Avalonia.ExtendedToolkit](https://www.nuget.org/packages/mameolan.Avalonia.ExtendedToolkit/)
+
+
+### Usage
+------
 Please have a look at the example app or in the [wiki](https://github.com/mameolan/Avalonia.ExtendedToolkit/wiki) on how to use the controls.
 
 ### Solution Structure
