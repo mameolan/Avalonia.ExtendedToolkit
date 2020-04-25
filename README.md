@@ -17,9 +17,7 @@ Most styles / ideas where taken from:
 
 etc.
 
-
-
-Please have a look at the example app how to use the controls.
+Please have a look at the example app or in the [wiki](https://github.com/mameolan/Avalonia.ExtendedToolkit/wiki) on how to use the controls.
 
 ### Solution Structure
 
