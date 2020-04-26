@@ -5,6 +5,8 @@
     xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
     xmlns:System="clr-namespace:System;assembly=mscorlib">
   <Style Selector="ComboBox">
+    <Setter Property="Height" Value="25"/>
+    <Setter Property="Width" Value="100"/>
     <Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}" />
     <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
   </Style>

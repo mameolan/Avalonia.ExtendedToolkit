@@ -26,5 +26,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 
         public static readonly StyledProperty<bool> CanCloseProperty =
             AvaloniaProperty.Register<TabbedLayoutItem, bool>(nameof(CanClose));
+
+
+
+
+
     }
 }

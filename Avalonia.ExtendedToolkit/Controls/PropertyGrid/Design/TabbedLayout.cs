@@ -3,6 +3,9 @@ using System.Linq;
 using System.Windows.Input;
 using Avalonia.Controls;
 using Avalonia.Controls.Generators;
+using Avalonia.Controls.Primitives;
+using Avalonia.Controls.Templates;
+using Avalonia.Data;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes;
 using ReactiveUI;
 
@@ -23,6 +26,39 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         /// The fallback header for a tab if no header custom is provided.
         /// </summary>
         public const string DefaultHeader = "Unknown";
+
+        /// <summary>
+        /// Gets or sets the content of the selected tab.
+        /// </summary>
+        /// <value>
+        /// The content of the selected tab.
+        /// </value>
+        /// 
+        public new object SelectedContent
+        {
+            get { return (object)GetValue(SelectedContentProperty); }
+            set { SetValue(SelectedContentProperty, value); }
+        }
+
+
+        public new static readonly StyledProperty<object> SelectedContentProperty =
+            TabControl.SelectedContentProperty.AddOwner<TabbedLayout>();
+
+        /// <summary>
+        /// Gets or sets the content template for the selected tab.
+        /// </summary>
+        /// <value>
+        /// The content template of the selected tab.
+        /// </value>
+        public new IDataTemplate SelectedContentTemplate
+        {
+            get { return (IDataTemplate)GetValue(SelectedContentTemplateProperty); }
+            set { SetValue(SelectedContentTemplateProperty, value); }
+        }
+
+
+        public new static readonly StyledProperty<IDataTemplate> SelectedContentTemplateProperty =
+            TabControl.SelectedContentTemplateProperty.AddOwner<TabbedLayout>();
 
         /// <summary>
         /// Initializes the <see cref="TabbedLayout"/> class.
@@ -48,16 +84,16 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         public string ItemHeaderProperty { get; set; }
 
         public static readonly AttachedProperty<bool> CanCloseProperty =
-            AvaloniaProperty.RegisterAttached<TabbedLayout, Control, bool>("CanClose");
+            AvaloniaProperty.RegisterAttached<TabbedLayout, IControl, bool>("CanClose");
 
-        public static bool GetCanClose(Control element)
+        public static bool GetCanClose(IControl element)
         {
             if (element == null)
                 throw new ArgumentNullException("obj");
             return element.GetValue(CanCloseProperty);
         }
 
-        public static void SetCanClose(Control element, bool value)
+        public static void SetCanClose(IControl element, bool value)
         {
             if (element == null)
                 throw new ArgumentNullException("obj");
@@ -66,10 +102,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         }
 
         public static readonly AttachedProperty<string> HeaderProperty =
-            AvaloniaProperty.RegisterAttached<TabbedLayout, Control, string>
+            AvaloniaProperty.RegisterAttached<TabbedLayout, IControl, string>
             ("Header", defaultValue: "Unknown");
 
-        public static string GetHeader(Control element)
+        public static string GetHeader(IControl element)
         {
             if (element == null)
                 throw new ArgumentNullException("obj");
@@ -91,18 +127,158 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         public TabbedLayout()
         {
             ClosePropertyTabCommand = ReactiveCommand.Create(
-               ()=> OnClosePropertyTabCommand(), CanClosePropertyTab()
+               () => OnClosePropertyTabCommand(), CanClosePropertyTab()
                , outputScheduler: RxApp.MainThreadScheduler);
 
             ShowExtendedEditorCommand = ReactiveCommand.Create<object>(x => OnShowExtendedEditor(x)
             , outputScheduler: RxApp.MainThreadScheduler);
 
+            SelectedContentProperty.Changed.AddClassHandler<TabbedLayout>((o, e) => OnSelectedContentChanged(o, e));
+
+
             this.ItemContainerGenerator.Materialized += ItemContainerGenerator_Materialized;
         }
 
+        private void OnSelectedContentChanged(TabbedLayout o, AvaloniaPropertyChangedEventArgs e)
+        {
+            TabItem oldTabItem = GetTabItem(e.OldValue);
+            if(oldTabItem!=null)
+            {
+                oldTabItem.IsSelected = false;
+            }
+
+
+            if (e.NewValue == null)
+                return;
+
+            TabItem tabItem = GetTabItem(e.NewValue);
+
+            if (tabItem != null)
+            {
+                tabItem.IsSelected = true;
+            }
+
+        }
+
+
+        private TabItem GetTabItem(object item)
+        {
+            TabItem tabItem = item as TabItem;
+
+            if (tabItem == null)
+            {
+                tabItem = (item as IControl)?.Parent as TabItem;
+            }
+            return tabItem;
+        }
+
+
+
+
+
+
         private void ItemContainerGenerator_Materialized(object sender, ItemContainerEventArgs e)
         {
+            if (sender is TabbedLayoutItem)
+            {
+
+            }
+
+
+            var tab = e.Containers.FirstOrDefault().Item as TabbedLayoutItem;
+
+            if (tab != null)
+            {
+                var item = tab.Content;
+
+                //TODO: Assign PG as DataContext here?
+                //tab.DataContext = item;
+
+                var layout = item as IControl;
+                if (!string.IsNullOrEmpty(ItemHeaderProperty))
+                {
+                    var bHeader = new Binding(ItemHeaderProperty)
+                    {
+                        Source = item,
+                        Mode = BindingMode.OneWay,
+                    };
+
+                    tab.Bind(HeaderedContentControl.HeaderProperty, bHeader);
+                }
+                else
+                {
+                    if (layout != null)
+                    {
+                        //tab.Header = GetHeader(layout);
+                        //tab.CanClose = GetCanClose(layout);
+                    }
+                }
+
+                if (item is GridEntry)
+                {
+                    var binding = new Binding("IsVisible")
+                    {
+                        Source = item,
+                        Mode = BindingMode.OneWay,
+                    };
+                    tab.Bind(Visual.IsVisibleProperty, binding);
+                }
+
+                tab.PropertyChanged += TabItem_PropertyChanged;
+
+            }
+
+
+
+
+
+
         }
+
+        private void TabItem_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
+        {
+            if (e.Property.Name == nameof(TabControl.IsVisible))
+            {
+                var propChanged = new AvaloniaPropertyChangedEventArgs
+                    (sender as AvaloniaObject
+                    , e.Property
+                    , e.OldValue
+                    , e.NewValue
+                    , e.Priority);
+
+                OnTabVisibilityChanged(sender, propChanged);
+            }
+        }
+
+        private void OnTabVisibilityChanged(object sender, AvaloniaPropertyChangedEventArgs e)
+        {
+            var tabItem = sender as TabbedLayoutItem;
+            if (tabItem == null || tabItem.DataContext == null)
+                return;
+
+            bool isVisible = (bool)e.NewValue;
+
+            if (isVisible && GetVisibleEntryCount() == 1)
+            {
+                var visibleEntry = GetFirstVisibleEntry();
+                if (SelectedItem != visibleEntry)
+                    SelectedItem = visibleEntry;
+            }
+            else if (tabItem.IsSelected)
+            {
+                if (GetVisibleEntryCount() == 0)
+                {
+                    SelectedItem = null;
+                    return;
+                }
+
+                if (Items.OfType<object>().ToList().IndexOf(tabItem.DataContext) > 0)
+                    SelectedIndex--;
+                else if (Items.OfType<object>().Count() > 1)
+                    SelectedIndex++;
+            }
+        }
+
 
         private IObservable<bool> CanClosePropertyTab()
         {
@@ -191,7 +367,42 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 
         protected override IItemContainerGenerator CreateItemContainerGenerator()
         {
-            return new TabbedLayoutContainerGenerator(this);
+            return new TabItemContainerGenerator(this);
+        }
+
+
+
+
+        protected override void OnContainersMaterialized(ItemContainerEventArgs e)
+        {
+
+            if (SelectedContent != null || SelectedIndex == -1)
+            {
+                return;
+            }
+
+            var container = ItemContainerGenerator.ContainerFromIndex(SelectedIndex) as TabItem;
+
+            if (container == null)
+            {
+                return;
+            }
+
+            UpdateSelectedContent(container);
+        }
+
+        private void UpdateSelectedContent(IContentControl item)
+        {
+            if (SelectedContentTemplate != item.ContentTemplate)
+            {
+                SelectedContentTemplate = item.ContentTemplate;
+            }
+
+            if (SelectedContent != item.Content)
+            {
+                SelectedContent = item.Content;
+            }
+
         }
 
 #warning todo

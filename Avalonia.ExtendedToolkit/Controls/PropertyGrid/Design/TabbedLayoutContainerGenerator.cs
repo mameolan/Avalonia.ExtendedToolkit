@@ -22,7 +22,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             var item = (element as ItemsControl);
 
             if (item == Owner)
-                return base.CreateContainer(element);
+            {
+
+            }
+            //    return base.CreateContainer(element);
 
             var tab = element as TabbedLayoutItem;
             if (tab != null)

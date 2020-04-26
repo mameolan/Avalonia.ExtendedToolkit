@@ -7,11 +7,13 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
-            <ScrollViewer   VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-              <design:CategoryItemsLayout Grid.IsSharedSizeScope="True"
-                                          Items="{Binding Categories}"
-                                          Background="{Binding ItemsBackground}" />
-            </ScrollViewer>
+          <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <design:CategoryItemsLayout Grid.IsSharedSizeScope="True"
+                                        Items="{Binding Categories}"
+                                        Background="{Binding ItemsBackground}"
+                                        VerticalAlignment="Stretch"
+                                        />
+          </ScrollViewer>
         </ControlTemplate>
       </Setter.Value>
     </Setter>

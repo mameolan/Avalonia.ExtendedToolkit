@@ -2,56 +2,52 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
-    xmlns:panel="clr-namespace:Avalonia.ExtendedToolkit.Controls.Panels;assembly=Avalonia.ExtendedToolkit"
-    >
-  
+    xmlns:panel="clr-namespace:Avalonia.ExtendedToolkit.Controls.Panels;assembly=Avalonia.ExtendedToolkit">
+
   <Style Selector="design|TabbedLayout">
+    <!--<Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}" />-->
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
-          <Grid Background="{Binding Background}">
-            <Grid Margin="2">
-              <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
-                <RowDefinition  Height="*" />
-              </Grid.RowDefinitions>
-              <Border CornerRadius="4,4,0,0" BorderBrush="#777" BorderThickness="0,1,0,0">
-                <Border.Background>
-                  <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Offset="0.0" Color="#505050" />
-                    <GradientStop Offset="1.0" Color="#282828" />
-                  </LinearGradientBrush>
-                </Border.Background>
-                <StackPanel Orientation="Horizontal">
-                  <panel:IndexingStackPanel Orientation="Horizontal" />
-                  <Rectangle x:Name="Highlight" Width="1" Fill="#2FFF" HorizontalAlignment="Left" />
-                </StackPanel>
-              </Border>
+          <Grid Background="{Binding Background}" Margin="2">
+            <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.White}"
+                    CornerRadius="2,3,2,2" Background="{DynamicResource MahApps.Brushes.Accent3}">
+              <Grid Margin="5">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-              <Border Grid.Row="1" Background="{Binding Background}">
-                <Border BorderThickness="0.5,1,0,0" BorderBrush="#6000" Background="#10FFFFFF" CornerRadius="2,3,2,2" Margin="2" >
-                  <ContentPresenter x:Name="PART_SelectedContentHost"
-                                    Content="{TemplateBinding SelectedContent}"
-                                    ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      />
+                <!--TODO: Which background: ?-->
+                <Border Grid.Row="0" BorderThickness="0"  >
+                  <ItemsPresenter Name="PART_ItemsPresenter"
+                                  Items="{TemplateBinding Items}"
+                                  ItemTemplate="{TemplateBinding ItemTemplate}"
+                                  ItemsPanel="{TemplateBinding ItemsPanel}" 
+                                    />
                 </Border>
-              </Border>
-            </Grid>
+                <ScrollViewer Grid.Row="1" Margin="1,3,1,0" VerticalScrollBarVisibility="Visible">
+                  <ContentPresenter
+                            Name="PART_SelectedContentHost"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding SelectedContent}"
+                            ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
+                </ScrollViewer>
+              </Grid>
+            </Border>
           </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-
     <Setter Property="ItemTemplate">
       <Setter.Value>
         <DataTemplate>
-          <Grid Margin="-10" Background="#0f00">
-            <TextBlock Margin="4" Text="{Binding Header}"/>
+          <Grid Margin="-10">
+            <TextBlock Margin="4" Text="{Binding Header}" />
           </Grid>
         </DataTemplate>
       </Setter.Value>
     </Setter>
-
-  </Style> 
-  
+  </Style>
 </Styles>

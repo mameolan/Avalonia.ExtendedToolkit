@@ -39,7 +39,6 @@
 
     <!--Note that commit on typing cannot work together with the roolback since every keystroke is committed and the roolback value is lost-->
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.DefaultEditorKey}">
-      <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"-->
       <TextBox x:Name="PART_editor"
         Text="{Binding PropertyValue.StringValue, Mode=TwoWay}"
         IsReadOnly="{Binding IsReadOnly}"
@@ -49,13 +48,10 @@
         utils:TextBoxExtender.RollbackOnEscape="true"
         utils:TextBoxExtender.CommitOnTyping="false"
 			/>
-            
-
-    
     </ControlTemplate>
 
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.EnumEditorKey}">
-      <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"
+      <!--
         Style="{DynamicResource {x:Type ComboBox}}"
     -->
       <pgControls:EnumDropdown x:Name="PART_editor"
@@ -70,18 +66,13 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.BooleanEditorKey}">
-      <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"-->
       <CheckBox x:Name="PART_editor" IsChecked="{Binding Value}" IsEnabled="{Binding IsEditable}" />
     </ControlTemplate>
 
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.FontFamilyEditorKey}">
-      <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"
-      (?) How to get installed fonts:
-      Items="{Binding Source={x:Static Fonts.SystemFontFamilies}}"
--->
       <ComboBox x:Name="PART_editor"
         SelectedItem="{Binding Value}"
-      
+        Items="{Binding Source={x:Static FontFamily.SystemFontFamilies}}"
         IsEnabled="{Binding IsEditable}">
         <ComboBox.ItemTemplate>
           <DataTemplate>
@@ -104,10 +95,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.BrushEditorKey}">
-      <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"
-        Text="{Binding Path=StringValue, Mode=TwoWay, Converter={StaticResource NullValueConverter}}"
-        SelectedValuePath="Name"
-        IsEditable="{Binding IsEditable}"
+      <!--
       -->
       <ComboBox x:Name="PART_editor"
         Items="{Binding Source={StaticResource NamedColorList}}"
@@ -126,8 +114,6 @@
 
 
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.SliderEditorKey}">
-
-      <!--AutomationProperties.AutomationId="{Binding ParentProperty.Name}"-->
       <controlz:SliderEx x:Name="PART_editor"
                 Value="{Binding Value}"
                 Minimum="{Binding ParentProperty.Metadata[NumberRange].Minimum, FallbackValue=0}"

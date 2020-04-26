@@ -9,10 +9,12 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
-          <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
+          <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <design:PropertyItemsLayout Grid.IsSharedSizeScope="True" 
                                         Items="{Binding Properties}" 
-                                        Background="{Binding ItemsBackground}"/>
+                                        Background="{Binding ItemsBackground}"
+                                        VerticalAlignment="Stretch"
+                                        />
           </ScrollViewer>
         </ControlTemplate>
       </Setter.Value>
