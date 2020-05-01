@@ -143,6 +143,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
         private void OnEditorTemplateChanged(Editor editor, AvaloniaPropertyChangedEventArgs e)
         {
             editor.OnTemplateChanged(e);
+
+            if(editor.Parent!=null)
+            {
+
+            }
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes

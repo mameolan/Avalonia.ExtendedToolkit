@@ -170,6 +170,24 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 RaisePropertyChanged(HasVisiblePropertiesProperty, !HasVisibleProperties, HasVisibleProperties);
                 RaisePropertyChanged(MatchesFilterProperty, !MatchesFilter, MatchesFilter);
             };
+            this.BrowsableChanged += (o, e) =>
+            {
+                //foreach(var item in _properties)
+                //{
+                //    //foreach(var att in item.Attributes.OfType<BrowsableAttribute>().ToList())
+                //    //{
+                //    //    att.Browsable = IsBrowsable;
+                //    //}
+
+                //}
+
+
+                RaisePropertyChanged(IsBrowsableProperty, !IsBrowsable, IsBrowsable);
+                RaisePropertyChanged(HasVisiblePropertiesProperty, !HasVisibleProperties, HasVisibleProperties);
+                RaisePropertyChanged(MatchesFilterProperty, !MatchesFilter, MatchesFilter);
+            };
+
+
             Owner = owner;
             Name = name;
         }

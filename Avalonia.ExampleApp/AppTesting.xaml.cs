@@ -5,7 +5,9 @@ using Avalonia.ExampleApp.ViewModels;
 using Avalonia.ExampleApp.Views;
 using Avalonia.ExtendedToolkit;
 using Avalonia.ExtendedToolkit.Controls;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid;
 using Avalonia.Markup.Xaml;
+using ReactiveUI;
 
 namespace Avalonia.ExampleApp
 {
@@ -36,7 +38,13 @@ namespace Avalonia.ExampleApp
 
             ThemeManager.Instance.EnableTheme(mainWindow);
             SkinManager.Instance.EnableSkin(mainWindow);
-            
+
+            //Splat.Locator.CurrentMutable.Register(
+            //            () => new PropertyEditorCommandBinder(),
+            //            typeof(ICreatesCommandBinding));
+
+
+
             base.OnFrameworkInitializationCompleted();
         }
 

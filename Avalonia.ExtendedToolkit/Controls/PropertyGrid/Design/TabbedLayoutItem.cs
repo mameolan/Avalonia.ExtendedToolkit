@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Windows.Input;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 {
@@ -13,7 +16,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     public partial class TabbedLayoutItem : TabItem
     {
         public Type StyleKey => typeof(TabbedLayoutItem);
-
+        
         /// <summary>
         /// Gets or sets a value indicating whether this instance can close.
         /// </summary>
@@ -25,7 +28,25 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         }
 
         public static readonly StyledProperty<bool> CanCloseProperty =
-            AvaloniaProperty.Register<TabbedLayoutItem, bool>(nameof(CanClose));
+            AvaloniaProperty.Register<TabbedLayoutItem, bool>(nameof(CanClose), defaultValue: true);
+
+
+        /// <summary>
+        /// command which is set by the TabbedLayout Control
+        /// </summary>
+        public ICommand ClosePropertyTabCommand
+        {
+            get { return (ICommand)GetValue(ClosePropertyTabCommandProperty); }
+            set { SetValue(ClosePropertyTabCommandProperty, value); }
+        }
+
+
+        public static readonly StyledProperty<ICommand> ClosePropertyTabCommandProperty =
+            AvaloniaProperty.Register<TabbedLayoutItem, ICommand>(nameof(ClosePropertyTabCommand));
+
+
+        
+
 
 
 

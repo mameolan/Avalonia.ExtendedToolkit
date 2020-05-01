@@ -50,6 +50,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         private void RaisePropertyValueChangedEvent(PropertyItem property, object oldValue)
         {
+            
             var args = new PropertyValueChangedEventArgs(PropertyValueChangedEvent, property, oldValue);
             RaiseEvent(args);
         }
@@ -210,7 +211,15 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 CategoryItem category;
 
                 if (categories.ContainsKey(property.CategoryName))
+                {
                     category = categories[property.CategoryName];
+
+                    if (category.Name.Contains("Account"))
+                    {
+
+                    }
+
+                }
                 else
                 {
                     category = CreateCategory(property.GetAttribute<CategoryAttribute>());
@@ -225,6 +234,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 }
 
                 category.AddProperty(property);
+
             }
 
             return categories.Values.ToList();
@@ -437,10 +447,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             DoReload();
         }
 
-        private void DoReload()
+        
+        internal void DoReload()
         {
             if (SelectedObject == null)
             {
+                
                 Categories = new GridEntryCollection<CategoryItem>();
                 Properties = new GridEntryCollection<PropertyItem>();
             }

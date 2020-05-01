@@ -17,9 +17,11 @@
       <TabItem Header="ComplexProperty" Foreground="{DynamicResource MahApps.Brushes.Black}">
         <Views:PropertyGridExample_ComplexProperty/>
       </TabItem>
+      <TabItem Header="CustomTypeEditors" Foreground="{DynamicResource MahApps.Brushes.Black}">
+        <Views:PropertyGridExample_CustomTypeEditors/>
+      </TabItem>
       
-      
-      
+
     </TabControl>
   </Grid>
 </UserControl>

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid;
 using Avalonia.Media;
 using ReactiveUI;
@@ -70,12 +67,5 @@ namespace Avalonia.ExampleApp.Model
                 this.RaiseAndSetIfChanged(ref _fontStyle, value);
             }
         }
-
-
-
-
-
-
-
     }
 }

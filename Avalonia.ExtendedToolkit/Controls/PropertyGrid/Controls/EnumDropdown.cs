@@ -26,10 +26,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
         public EnumDropdown()
         {
             PropertyValueProperty.Changed.AddClassHandler<EnumDropdown>((o, e) => OnPropertyValueChanged(o, e));
-
+            
             this.AttachedToVisualTree += EnumDropdownLoaded;
             this.DetachedFromVisualTree += EnumDropdownUnloaded;
-
             this.SelectionChanged += OnSelectionChanged;
         }
 

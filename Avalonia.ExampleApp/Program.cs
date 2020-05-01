@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Avalonia.ExampleApp.ViewModels;
 using Avalonia.ExampleApp.Views;
 using Avalonia.ExtendedToolkit;
@@ -20,6 +21,8 @@ namespace Avalonia.ExampleApp
             currentArgs = args;
             AppBuilder appBuilder = BuildAvaloniaApp();
             return appBuilder.StartWithClassicDesktopLifetime(args);
+
+
         }
 
         public static AppBuilder BuildAvaloniaApp()

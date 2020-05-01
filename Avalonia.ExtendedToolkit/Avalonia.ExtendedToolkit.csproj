@@ -46,10 +46,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Remove="Commanding\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<EmbeddedResource Include="Styles\Themes\GeneratorParameters.json" />
 		<None Remove=".gitignore" />
 	</ItemGroup>

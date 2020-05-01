@@ -555,6 +555,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             {
                 if (_categories == value)
                     return;
+
                 SetAndRaise(CategoriesProperty, ref _categories, value);
 
                 if (CategoryComparer != null)

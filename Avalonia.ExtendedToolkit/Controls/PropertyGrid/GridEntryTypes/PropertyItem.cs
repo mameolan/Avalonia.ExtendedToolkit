@@ -89,6 +89,13 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 RaisePropertyChanged(IsBrowsableProperty, !IsBrowsable, IsBrowsable);
                 RaisePropertyChanged(MatchesFilterProperty, !MatchesFilter, MatchesFilter);
             };
+            BrowsableChanged += (o, e) =>
+            {
+                
+                RaisePropertyChanged(IsBrowsableProperty, !IsBrowsable, IsBrowsable);
+                RaisePropertyChanged(MatchesFilterProperty, !MatchesFilter, MatchesFilter);
+            };
+
         }
 
         /// <summary>

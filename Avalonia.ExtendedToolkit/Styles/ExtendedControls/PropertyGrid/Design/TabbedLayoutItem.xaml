@@ -3,39 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
     >
-  <Styles.Resources>
-    <!--<SolidColorBrush x:Key="TabControlNormalBorderBrush" Color="#8C8E94"/>
-    <LinearGradientBrush x:Key="TabItemHotBackground" EndPoint="0,1" StartPoint="0,0">
-      <GradientStop Color="#EAF6FD" Offset="0.15"/>
-      <GradientStop Color="#D9F0FC" Offset=".5"/>
-      <GradientStop Color="#BEE6FD" Offset=".5"/>
-      <GradientStop Color="#A7D9F5" Offset="1"/>
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="TabItemSelectedBackground" Color="#F9F9F9"/>
-    <SolidColorBrush x:Key="TabItemHotBorderBrush" Color="#3C7FB1"/>
-    <SolidColorBrush x:Key="TabItemDisabledBackground" Color="#F4F4F4"/>
-    <SolidColorBrush x:Key="TabItemDisabledBorderBrush" Color="#FFC9C7BA"/>
-
-
-    <LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
-      <GradientStop Color="#F3F3F3" Offset="0"/>
-      <GradientStop Color="#EBEBEB" Offset="0.5"/>
-      <GradientStop Color="#DDDDDD" Offset="0.5"/>
-      <GradientStop Color="#CDCDCD" Offset="1"/>
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ButtonOverBackground" EndPoint="0,1" StartPoint="0,0">
-      <GradientStop Color="#FFFAFAFA" Offset="0"/>
-      <GradientStop Color="#FFE0E0E3" Offset="1"/>
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ButtonPressedBackground" EndPoint="0,1" StartPoint="0,0">
-      <GradientStop Color="#FFE0E0E2" Offset="0"/>
-      <GradientStop Color="#FFF8F8F8" Offset="1"/>
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF969696"/>-->
-  </Styles.Resources>
-
-
-  <Style Selector="Button.CloseableTabItemButtonStyle">
+  
+    <Style Selector="Button.CloseableTabItemButtonStyle">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray10}"/>
     <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.Border}" />
     <Setter Property="FontFamily" Value="{DynamicResource MahApps.Fonts.Default}" />
@@ -88,7 +57,7 @@
 
   <!--propertygrid style tabitem-->
   <Style Selector="design|TabbedLayoutItem">
-    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type design:TabbedLayout}}, Path=Background, Mode=OneWay}" />
+    <!--<Setter Property="Background" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type design:TabbedLayout}}, Path=Background, Mode=OneWay}" />-->
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}"/>
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="Padding" Value="6,1,6,1"/>
@@ -106,13 +75,12 @@
                 <Button x:Name="PART_Close" HorizontalAlignment="Center"
                         Margin="3,0,3,0"
                         VerticalAlignment="Center"
-                        Width="16" Height="16"
+                        Width="16" Height="16"    
                         DockPanel.Dock="Right"
                         Classes="CloseableTabItemButtonStyle"
-                        IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CanClose}"
-                        Command="{Binding Owner.ClosePropertyTab}"
+                        IsVisible="{TemplateBinding CanClose}"
+                        Command="{TemplateBinding ClosePropertyTabCommand}"
                       >
-
                   <Path x:Name="Path" Stretch="Fill"
                         StrokeThickness="0.5"
                         Stroke="{DynamicResource MahApps.Brushes.White}"

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
+using System.Diagnostics;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils;
 
@@ -9,7 +10,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
     //
     // ported from https://github.com/DenisVuyka/WPG
     //
-
+    [DebuggerDisplay("DisplayName= {DisplayName}")]
     public partial class PropertyItem
     {
         private readonly PropertyItemValue _parentValue;
