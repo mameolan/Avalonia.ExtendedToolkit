@@ -55,7 +55,7 @@
 
 
 
-  <!--propertygrid style tabitem-->
+  
   <Style Selector="design|TabbedLayoutItem">
     <!--<Setter Property="Background" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type design:TabbedLayout}}, Path=Background, Mode=OneWay}" />-->
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}"/>

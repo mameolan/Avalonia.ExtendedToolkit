@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using Avalonia.Controls.Primitives;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing;
@@ -16,6 +17,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
     /// <summary>
     /// Simple Expression Blend like double editor.
     /// </summary>
+    [DebuggerDisplay("[DoubleEditor] PropertyDescriptor: {PropertyDescriptor}")]
     public class DoubleEditor : TemplatedControl
     {
         public Type StyleKey => typeof(DoubleEditor);

@@ -12,7 +12,7 @@ namespace Avalonia.ExampleApp.Converters
             {
                 string val = value.ToString();
 
-                val = val.Replace(".", ",");
+                val = val.Replace(".", ",").Replace("%", string.Empty).Trim();
 
                 decimal dec = Decimal.Parse(val);
 

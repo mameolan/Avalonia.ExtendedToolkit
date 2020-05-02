@@ -10,7 +10,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
     //
     // ported from https://github.com/DenisVuyka/WPG
     //
-    [DebuggerDisplay("DisplayName= {DisplayName}")]
+    [DebuggerDisplay("DisplayName= {DisplayName} Component= {Component}")]
     public partial class PropertyItem
     {
         private readonly PropertyItemValue _parentValue;

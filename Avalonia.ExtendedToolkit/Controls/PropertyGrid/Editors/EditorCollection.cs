@@ -184,6 +184,26 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 
             Editor editor;
 
+            //first check custom editors
+            if (propertyItem.Component != null && this.Count > 0)
+            {
+                Type propType = propertyItem.Component.GetType();
+
+                Editor customEditor = this.OfType<PropertyEditor>().Where
+                    (x => x.PropertyName == propertyItem.Name
+                    && x.DeclaringType.GetElementType() == propType.GetElementType())
+                    .FirstOrDefault();
+
+                
+                if (customEditor != null)
+                {
+                    return customEditor;
+                }
+
+            }
+
+
+
             if (propertyItem.Attributes != null)
             {
                 editor = GetPropertyEditorByAttributes(propertyItem.Attributes);

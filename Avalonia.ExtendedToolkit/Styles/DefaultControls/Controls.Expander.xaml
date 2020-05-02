@@ -316,7 +316,7 @@
 
 
   <Style Selector="Expander">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Controls:ControlsHelper.ContentCharacterCasing" Value="Upper" />

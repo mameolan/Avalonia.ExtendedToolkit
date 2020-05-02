@@ -3,88 +3,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:design="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design;assembly=Avalonia.ExtendedToolkit"
     >
-  <!--just a clone of TabbedLayoutItem style-->
-  
-  <Styles.Resources>
-    <SolidColorBrush x:Key="TabControlNormalBorderBrush" Color="#8C8E94"/>
-    <LinearGradientBrush x:Key="TabItemHotBackground" EndPoint="0,1" StartPoint="0,0">
-      <GradientStop Color="#EAF6FD" Offset="0.15"/>
-      <GradientStop Color="#D9F0FC" Offset=".5"/>
-      <GradientStop Color="#BEE6FD" Offset=".5"/>
-      <GradientStop Color="#A7D9F5" Offset="1"/>
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="TabItemSelectedBackground" Color="#F9F9F9"/>
-    <SolidColorBrush x:Key="TabItemHotBorderBrush" Color="#3C7FB1"/>
-    <SolidColorBrush x:Key="TabItemDisabledBackground" Color="#F4F4F4"/>
-    <SolidColorBrush x:Key="TabItemDisabledBorderBrush" Color="#FFC9C7BA"/>
-
-
-    <LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
-      <GradientStop Color="#F3F3F3" Offset="0"/>
-      <GradientStop Color="#EBEBEB" Offset="0.5"/>
-      <GradientStop Color="#DDDDDD" Offset="0.5"/>
-      <GradientStop Color="#CDCDCD" Offset="1"/>
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ButtonOverBackground" EndPoint="0,1" StartPoint="0,0">
-      <GradientStop Color="#FFFAFAFA" Offset="0"/>
-      <GradientStop Color="#FFE0E0E3" Offset="1"/>
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="ButtonPressedBackground" EndPoint="0,1" StartPoint="0,0">
-      <GradientStop Color="#FFE0E0E2" Offset="0"/>
-      <GradientStop Color="#FFF8F8F8" Offset="1"/>
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF969696"/>
-  </Styles.Resources>
-
-
-  <Style Selector="Button.CloseableTabItemButtonStyle">
-    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-    <Setter Property="VerticalContentAlignment" Value="Center"/>
-    <Setter Property="Padding" Value="4"/>
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate TargetType="{x:Type Button}">
-          <Grid>
-            <Border x:Name="Chrome"
-                    Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="2" Opacity="0" />
-            <ContentPresenter
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                              Margin="{TemplateBinding Padding}"
-                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                              Content="{TemplateBinding Content}"
-                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                              />
-          </Grid>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <Style Selector="Button.CloseableTabItemButtonStyle:pointerover /template/ Border#Chrome">
-    <Setter Property="Opacity" Value="1"/>
-    <Setter Property="Background" Value="{DynamicResource ButtonOverBackground}" />
-  </Style>
-
-  <Style Selector="Button.CloseableTabItemButtonStyle:pressed /template/ Border#Chrome">
-    <Setter Property="Opacity" Value="1"/>
-    <Setter Property="Background" Value="{DynamicResource ButtonPressedBackground}" />
-  </Style>
-
-  <Style Selector="Button.CloseableTabItemButtonStyle:disabled">
-    <Setter Property="Foreground" Value="#ADADAD"/>
-  </Style>
+  <!--just a clone of ExtendedPropertyEditorTab style-->
 
 
 
-  <!--propertygrid style tabitem-->
   <Style Selector="design|ExtendedPropertyEditorTab">
-    <Setter Property="Foreground" Value="Black"/>
+    <!--<Setter Property="Background" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type design:TabbedLayout}}, Path=Background, Mode=OneWay}" />-->
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}"/>
+    <Setter Property="BorderThickness" Value="0" />
     <Setter Property="Padding" Value="6,1,6,1"/>
-    <Setter Property="BorderBrush" Value="{StaticResource TabControlNormalBorderBrush}"/>
-    <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
     <Setter Property="VerticalContentAlignment" Value="Stretch"/>
 
@@ -102,18 +29,18 @@
                         Width="16" Height="16"
                         DockPanel.Dock="Right"
                         Classes="CloseableTabItemButtonStyle"
-                        IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CanClose}"
-                        Command="{Binding Owner.ClosePropertyTab}"
-                        >
+                        IsVisible="{TemplateBinding CanClose}"
+                        Command="{TemplateBinding ClosePropertyTabCommand}"
+                      >
                   <Path x:Name="Path" Stretch="Fill"
                         StrokeThickness="0.5"
-                        Stroke="#FF333333"
-                        Fill="#FF969696"
+                        Stroke="{DynamicResource MahApps.Brushes.White}"
+                        Fill="{DynamicResource MahApps.Brushes.Text}"
                         Data="F1 M 2.28484e-007,1.33331L 1.33333,0L 4.00001,2.66669L 6.66667,6.10352e-005L 8,1.33331L 5.33334,4L 8,6.66669L 6.66667,8L 4,5.33331L 1.33333,8L 1.086e-007,6.66669L 2.66667,4L 2.28484e-007,1.33331 Z "
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"/>
                 </Button>
-                <ContentPresenter x:Name="Content"
+                <ContentPresenter x:Name="PART_HeaderPresenter"
                                   Content="{TemplateBinding Header}"
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
@@ -127,29 +54,48 @@
 
   </Style>
 
+  <!--From Avalonia with changes-->
+  <Style Selector="design|ExtendedPropertyEditorTab:selected">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent4}"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab:selected:focus">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab:selected:pointerover">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}"/>
+  </Style>
+
+  <Style Selector="design|ExtendedPropertyEditorTab:pointerover">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent2}"/>
+  </Style>
+
   <Style Selector="design|ExtendedPropertyEditorTab /template/ Button#PART_Close:pointerover /template/ Path#Path">
-    <Setter Property="Fill" Value="#FFB83C3D"/>
+    <Setter Property="Fill" Value="{DynamicResource MahApps.Brushes.Accent3}"/>
   </Style>
 
   <Style Selector="design|ExtendedPropertyEditorTab /template/ Button#PART_Close:pressed /template/ Path#Path">
     <Setter Property="Fill" Value="#FF9D3838"/>
   </Style>
 
-  <Style Selector="design|ExtendedPropertyEditorTab:pointerover /template/ Border#Bd">
-    <Setter Property="Background" Value="{StaticResource TabItemHotBackground}"/>
+  <!--Todo Do we need this?-->
+
+  <!--<Style Selector="design|ExtendedPropertyEditorTab:pointerover /template/ Border#Bd">
+    <Setter Property="Background" Value="{DynamicResource TabItemHotBackground}"/>
   </Style>
 
   <Style Selector="design|ExtendedPropertyEditorTab:selected">
     <Setter Property="ZIndex" Value="1"/>
-  </Style>
+  </Style>-->
 
-  <Style Selector="design|ExtendedPropertyEditorTab:selected /template/ Border#Bd">
-    <Setter Property="Background" Value="{StaticResource TabItemSelectedBackground}"/>
+  <!--<Style Selector="design|ExtendedPropertyEditorTab:selected /template/ Border#Bd">
+    <Setter Property="Background" Value="{DynamicResource TabItemSelectedBackground}"/>
   </Style>
 
   <Style Selector="design|ExtendedPropertyEditorTab[IsSelected=false][IsPointerOver=true] /template/ Border#Bd">
-    <Setter Property="BorderBrush" Value="{StaticResource TabItemHotBorderBrush}"/>
-  </Style>
+    <Setter Property="BorderBrush" Value="{DynamicResource TabItemHotBorderBrush}"/>
+  </Style>-->
 
   <Style Selector="design|ExtendedPropertyEditorTab[TabStripPlacement=Bottom] /template/ Border#Bd">
     <Setter Property="BorderThickness" Value="1,0,1,1"/>
@@ -186,7 +132,7 @@
   <Style Selector="design|ExtendedPropertyEditorTab[IsSelected=true][TabStripPlacement=Left] /template/ DockPanel#ContentPanel">
     <Setter Property="Margin" Value="0,0,1,0"/>
   </Style>
-  
+
   <Style Selector="design|ExtendedPropertyEditorTab[IsSelected=true][TabStripPlacement=Right]">
     <Setter Property="Margin" Value="-1,-2,-2,-2"/>
   </Style>
@@ -196,101 +142,14 @@
   </Style>
 
   <Style Selector="design|ExtendedPropertyEditorTab:disabled /template/ Border#Bd">
-    <Setter Property="Background" Value="{StaticResource TabItemDisabledBackground}"/>
-    <Setter Property="BorderBrush" Value="{StaticResource TabItemDisabledBorderBrush}"/>
+    <Setter Property="Background" Value="{DynamicResource TabItemDisabledBackground}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource TabItemDisabledBorderBrush}"/>
   </Style>
-  
+
   <Style Selector="design|ExtendedPropertyEditorTab:disabled">
     <!--{DynamicResource {x:Static SystemColors.GrayTextBrushKey}} correct?-->
     <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundLowBrush}"/>
   </Style>
-
-
-  <!--<Style Selector="design|ExtendedPropertyEditorTab">
-    <Setter Property="Foreground" Value="White" />
-    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Border x:Name="Border" Background="Transparent" BorderBrush="Transparent" BorderThickness="0,1,0,0" Margin="0,-1,0,0">
-            <Grid>
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-              </Grid.ColumnDefinitions>
-              <Border x:Name="Shimmer" Opacity="0">
-                <Border.Background>
-                  <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Offset="0.0" Color="#40909090" />
-                    <GradientStop Offset="1.0" Color="#40505050" />
-                  </LinearGradientBrush>
-                </Border.Background>
-              </Border>
-              <ContentPresenter x:Name="HeaderArea" Content="{TemplateBinding Header}" Margin="12,0,12,3" VerticalAlignment="Center" />
-              <Rectangle Grid.Column="0" x:Name="Highlight" Width="1" Fill="#2FFF" HorizontalAlignment="Left" />
-              <Rectangle Grid.Column="1" x:Name="Shadow" Width="1" Fill="#7000" HorizontalAlignment="Right" Margin="0,-1,0,0" />
-
-
-              --><!--Style="{StaticResource CloseButton}"--><!--
-              <Button Margin="0,0,8,3"
-                      Grid.Column="1" x:Name="CloseButton"
-                      Width="14" Height="14" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Center"
-                      IsVisible="{TemplateBinding CanClose}"
-                      
-                      CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type design:TabbedLayoutItem}}}"/>
-              -->
-                        <!--Command="{Binding Owner.ClosePropertyTab}"-->
-                        <!--
-            </Grid>
-          </Border>
-          --><!--<ControlTemplate.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-              <Trigger.EnterActions>
-                <BeginStoryboard>
-                  <Storyboard >
-                    <DoubleAnimation Duration="0:0:0.07" Storyboard.TargetName="Shimmer" Storyboard.TargetProperty="Opacity" To="1.0" />
-                  </Storyboard>
-                </BeginStoryboard>
-              </Trigger.EnterActions>
-              <Trigger.ExitActions>
-                <BeginStoryboard>
-                  <Storyboard >
-                    <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetName="Shimmer" Storyboard.TargetProperty="Opacity" />
-                  </Storyboard>
-                </BeginStoryboard>
-              </Trigger.ExitActions>
-            </Trigger>
-
-            <Trigger Property="IsSelected" Value="False">
-              <Setter TargetName="CloseButton" Property="Visibility" Value="Collapsed" />
-            </Trigger>
-
-            <Trigger Property="IsSelected" Value="True">
-              <Setter TargetName="Shimmer" Property="Opacity" Value="0" />
-              <Setter TargetName="Border" Property="Background">
-                <Setter.Value>
-                  <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Offset="0.0" Color="#909090" />
-                    <GradientStop Offset="1.0" Color="#505050" />
-                  </LinearGradientBrush>
-                </Setter.Value>
-              </Setter>
-              <Setter TargetName="Border" Property="BorderBrush" Value="#BBB" />
-              <Setter TargetName="Highlight" Property="Fill" Value="#3FFF" />
-              <Setter TargetName="Shadow" Property="Fill" Value="#8000" />
-            </Trigger>
-
-            <Trigger Property="theme:IndexingStackPanel.Index" Value="0">
-              <Setter TargetName="Border" Property="CornerRadius" Value="4,0,0,0" />
-              <Setter TargetName="Shimmer" Property="CornerRadius" Value="4,0,0,0" />
-            </Trigger>
-
-          </ControlTemplate.Triggers>--><!--
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>-->
-  
   
   
 </Styles>

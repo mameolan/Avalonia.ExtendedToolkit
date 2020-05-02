@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
@@ -9,6 +10,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
     /// <summary>
     /// Provides value editing service for property value that is of some specific type.
     /// </summary>
+    [DebuggerDisplay("[TypeEditor] EditedType: {EditedType}")]
     public class TypeEditor : Editor
     {
         public new Type StyleKey => typeof(TypeEditor);

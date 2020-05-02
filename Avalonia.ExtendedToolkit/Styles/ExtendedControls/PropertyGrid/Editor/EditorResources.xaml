@@ -15,12 +15,14 @@
     <converter:NullValueConverter x:Key="NullValueConverter"/>
     <converter:EnumValueConverter x:Key="enumValueConverter"/>
     <converter:ExpanderHeaderWidthConverter x:Key="expanderHeaderWidthConverter"/>
+    <converter:NumberRangeConverter x:Key="NumberRangeConverter"/>
+
 
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.ComplexPropertyEditorKey}">
       <Expander DataContext="{Binding PropertyValue}" Background="{DynamicResource ThemeBackgroundBrush}">
         <Expander.Header>
-          
-          <TextBlock Text="{Binding Value, Mode=OneWay}" 
+
+          <TextBlock Text="{Binding Value, Mode=OneWay}"
                    Width="{Binding RelativeSource=
                    {RelativeSource Mode=FindAncestor, AncestorType={x:Type Expander}}, 
                    Mode=OneWay, Path=Width, Converter={StaticResource expanderHeaderWidthConverter}, 
@@ -69,7 +71,8 @@
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.BooleanEditorKey}">
       <CheckBox x:Name="PART_editor"
                 DataContext="{Binding PropertyValue}"
-                IsChecked="{Binding Value}" IsEnabled="{Binding IsEditable}" />
+                IsChecked="{Binding Value}" IsEnabled="{Binding IsEditable}"
+                />
     </ControlTemplate>
 
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.FontFamilyEditorKey}">
@@ -114,24 +117,41 @@
         IsEnabled="{Binding PropertyValue.IsEditable}"
       />
       -->
-        <!--Items="{Binding Source={x:Static local:EditorDataProvider.DefaultLanguages}}"--><!--
+    <!--Items="{Binding Source={x:Static local:EditorDataProvider.DefaultLanguages}}"-->
+    <!--
     </DataTemplate>-->
 
 
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.SliderEditorKey}">
-      <controlz:SliderEx x:Name="PART_editor" DataContext="{Binding PropertyValue}"
-                Value="{Binding Value}"
-                Minimum="{Binding ParentProperty.Metadata[NumberRange].Minimum, FallbackValue=0}"
-                Maximum="{Binding ParentProperty.Metadata[NumberRange].Maximum, FallbackValue=100}"
-                TickFrequency="{Binding ParentProperty.Metadata[NumberRange].Tick, FallbackValue=1}"
-                AutoToolTipPrecision="{Binding ParentProperty.Metadata[NumberRange].Precision, FallbackValue=0}"
-                AutoToolTipPlacement="BottomRight"
-                IsDirectionReversed="False"
-                IsMoveToPointEnabled="True"
-                IsSnapToTickEnabled="False"
-                IsEnabled="{Binding IsEditable}"
+      <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="24"
+                  Background="{DynamicResource ThemeBackgroundBrush}">
+        <controlz:SliderEx x:Name="PART_editor" DataContext="{Binding PropertyValue}"
+               VerticalAlignment="Center" Margin="2"
+                Value="{Binding  Value, Mode=OneWay}"
+                Minimum="{Binding ParentProperty,Converter={StaticResource NumberRangeConverter},
+                         ConverterParameter={x:Static pg:NumberRangeType.Minimum},
+                         FallbackValue=0}"
+                 Maximum="{Binding ParentProperty,Converter={StaticResource NumberRangeConverter},
+                         ConverterParameter={x:Static pg:NumberRangeType.Maximum},
+                         FallbackValue=100}"
+                TickFrequency="{Binding ParentProperty,Converter={StaticResource NumberRangeConverter},
+                         ConverterParameter={x:Static pg:NumberRangeType.Tick},
+                         FallbackValue=1}"
+               IsEnabled="{Binding IsEditable}"
+              IsDirectionReversed="False"
+              IsMoveToPointEnabled="True"
+              IsSnapToTickEnabled="False"
+      
+              AutoToolTipPlacement="BottomRight"
+              AutoToolTipPrecision="{Binding ParentProperty,Converter={StaticResource NumberRangeConverter},
+                        ConverterParameter={x:Static pg:NumberRangeType.Precision},
+                        FallbackValue=0}"
                          
+               Foreground="{DynamicResource MahApps.Brushes.Black}"
+               
             />
+      </StackPanel>
+
     </ControlTemplate>
 
 
@@ -140,7 +160,7 @@
       pg:PasswordBoxExtender.BoundPassword="{Binding StringValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
 
       <TextBox PasswordChar="*" DataContext="{Binding PropertyValue}"
-        Text="{Binding StringValue}"
+        Text="{Binding StringValue, Mode=TwoWay}"
         x:Name="PART_editor"
         IsEnabled="{Binding IsEditable}"
       />
@@ -149,23 +169,33 @@
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.DoubleEditorKey}">
       <editors:DoubleEditor x:Name="PART_editor" DataContext="{Binding PropertyValue}"
           Value="{Binding Value, Mode=TwoWay}"
-          Minimum="{Binding ParentProperty.Metadata[NumberRange].Minimum}"
-          Maximum="{Binding ParentProperty.Metadata[NumberRange].Maximum}"
-          DefaultChange="{Binding ParentProperty.Metadata[NumberRange].Tick}"
-          MaxPrecision="{Binding ParentProperty.Metadata[NumberRange].Precision}"
+          Minimum="{Binding ParentProperty,Converter={StaticResource NumberRangeConverter},
+                         ConverterParameter={x:Static pg:NumberRangeType.Minimum},
+                         FallbackValue=0}"
+          Maximum="{Binding ParentProperty,Converter={StaticResource NumberRangeConverter},
+                  ConverterParameter={x:Static pg:NumberRangeType.Maximum},
+                  FallbackValue=100}"
+                            
+          DefaultChange="{Binding ParentProperty,Converter={StaticResource NumberRangeConverter},
+                          ConverterParameter={x:Static pg:NumberRangeType.Tick}}"
+                            
+          MaxPrecision="{Binding ParentProperty,Converter={StaticResource NumberRangeConverter},
+                          ConverterParameter={x:Static pg:NumberRangeType.Precision}}"
           IsEnabled="{Binding IsEditable}"
         />
     </ControlTemplate>
 
     <!--<DataTemplate x:Key="{x:Static editors:Resources.TimeSpanEditorKey}">
-      --><!--TimePicker control not available (?)--><!--
       -->
-        <!--<controls:TimePicker DataContext="{Binding PropertyValue}"
+    <!--TimePicker control not available (?)-->
+    <!--
+      -->
+    <!--<controls:TimePicker DataContext="{Binding PropertyValue}"
         x:Name="PART_editor"
         SelectedTime="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
         IsEnabled="{Binding IsEditable}"
       />-->
-        <!--
+    <!--
     </DataTemplate>-->
 
     <!--<DataTemplate x:Key="{x:Static editors:Resources.ColorEditorInlineKey}">
@@ -175,8 +205,11 @@
           <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         -->
-      <!--DropDownColorPicker not available (?)--><!--
-        --><!--<controls:DropDownColorPicker Grid.Column="0" Margin="2" Color="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>--><!--
+    <!--DropDownColorPicker not available (?)-->
+    <!--
+        -->
+    <!--<controls:DropDownColorPicker Grid.Column="0" Margin="2" Color="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+    <!--
         <Button Grid.Column="2" Margin="2,0,0,0" Content="[...]" Width="20" Command="{Binding Owner.ShowExtendedEditor}" CommandParameter="{Binding}"/>
       </Grid>
     </DataTemplate>-->

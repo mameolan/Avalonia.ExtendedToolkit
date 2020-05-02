@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
@@ -9,6 +10,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
     /// <summary>
     /// Provides value editing service for a property value.
     /// </summary>
+    [DebuggerDisplay("PropertyName: {PropertyName} DeclaringType: {DeclaringType}")]
     public class PropertyEditor : Editor
     {
         /// <summary>

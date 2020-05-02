@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 {
@@ -9,6 +10,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
     /// <summary>
     /// Specifies the default category editor.
     /// </summary>
+    [DebuggerDisplay("[CategoryEditor] CategoryName: {CategoryName} DeclaringType: {DeclaringType}")]
     public class CategoryEditor : Editor
     {
         public new Type StyleKey => typeof(CategoryEditor);

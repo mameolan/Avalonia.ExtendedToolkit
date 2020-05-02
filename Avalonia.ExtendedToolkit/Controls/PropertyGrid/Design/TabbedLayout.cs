@@ -401,13 +401,20 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
                 // create new extended tab, add to the tabs collection and activate it
                 extendedTab = new ExtendedPropertyEditorTab(property);
 
+                var items = Items.OfType<object>().ToList();
                 // Try inserting extended tab after currently selected one
                 if (SelectedItem != null)
-                    Items.OfType<object>().ToList().Insert(Items.OfType<object>()
-                        .ToList().IndexOf(SelectedItem) + 1, extendedTab);
+                {
+                    int index = items.IndexOf(SelectedItem) + 1;
+                    items.Insert(index, extendedTab);
+                }
                 else
-                    Items.OfType<object>().ToList()
-                        .Add(extendedTab);
+                {
+                    items.Add(extendedTab);
+                }
+
+                Items = items;
+
 
                 // Activate extended tab
                 SelectedItem = extendedTab;

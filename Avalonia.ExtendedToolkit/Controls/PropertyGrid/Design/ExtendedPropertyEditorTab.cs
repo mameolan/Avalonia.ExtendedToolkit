@@ -1,5 +1,6 @@
 ﻿using System;
 using Avalonia.Controls;
+using Avalonia.Data;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils;
 using Avalonia.Layout;
@@ -75,21 +76,24 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             var content = new ContentControl
             {
                 VerticalContentAlignment = VerticalAlignment.Stretch,
-                ContentTemplate = GetDataTemplate(editor.ExtendedTemplate),
-                Content = propertyItem.PropertyValue
+                Template = GetControlTemplate(editor.ExtendedTemplate),
             };
+
+
+            content.SetValue(ContentControl.DataContextProperty, propertyItem);
+
 
             return content;
         }
 
-        private DataTemplate GetDataTemplate(object template)
+        private ControlTemplate GetControlTemplate(object template)
         {
             if (template == null)
                 return null;
 
-            var dataTemplate = template as DataTemplate;
-            if (dataTemplate != null)
-                return dataTemplate;
+            var controlTemplate = template as ControlTemplate;
+            if (controlTemplate != null)
+                return controlTemplate;
 
             return null;
 #warning todo
