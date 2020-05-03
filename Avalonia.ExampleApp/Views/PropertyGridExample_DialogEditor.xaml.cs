@@ -1,5 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.ExampleApp.Model.PropertyGrid_DialogEditor;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid;
 using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
@@ -9,6 +11,10 @@ namespace Avalonia.ExampleApp.Views
         public PropertyGridExample_DialogEditor()
         {
             this.InitializeComponent();
+
+            //PropertyGrid propertyGrid = this.Find<PropertyGrid>("propertyGrid");
+            //propertyGrid.SelectedObject = new BusinessObject();
+
         }
 
         private void InitializeComponent()

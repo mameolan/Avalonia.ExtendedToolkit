@@ -1,11 +1,14 @@
 ﻿using System;
 using Avalonia.Controlz.Controls;
+using Avalonia.Controlz.EventArgs;
+using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes;
 
 namespace Avalonia.ExampleApp.Model
 {
     public class PointEditor : SliderEx
     {
         private bool _isUpdating;
+        
 
         public Point EditValue
         {
@@ -15,8 +18,10 @@ namespace Avalonia.ExampleApp.Model
 
         public static readonly StyledProperty<Point> EditValueProperty =
             AvaloniaProperty.Register<PointEditor, Point>(nameof(EditValue)
-                , defaultValue:new Point()
-                , validate: (o, e) => { return OnEditValuePropertyCoerceValue(o, e); });
+                , defaultValue: new Point()
+                //, validate: (o, e) => { return OnEditValuePropertyCoerceValue(o, e); }
+                , defaultBindingMode: Data.BindingMode.OneWay
+                );
 
         private static Point OnEditValuePropertyCoerceValue(PointEditor o, Point e)
         {
@@ -39,14 +44,19 @@ namespace Avalonia.ExampleApp.Model
             IsDirectionReversed = false;
             IsMoveToPointEnabled = true;
             IsSnapToTickEnabled = false;
+
+            //ValueProperty.Changed.AddClassHandler<PointEditor>((o, e) => OnSliderValueChanged(o, e));
+
+            ValueChanged += PointEditor_ValueChanged;
+
         }
 
-        protected override void OnValueChanged(double oldValue, double newValue)
+        private void PointEditor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (_isUpdating)
                 return;
 
-            base.OnValueChanged(oldValue, newValue);
+            _isUpdating = true;
 
             switch (DisplayMember)
             {
@@ -61,6 +71,32 @@ namespace Avalonia.ExampleApp.Model
                 default:
                     break;
             }
+
+            _isUpdating = false;
+
+            RaisePropertyChanged(EditValueProperty, new Point(), EditValue);
+        }
+
+        private void OnSliderValueChanged(PointEditor o, AvaloniaPropertyChangedEventArgs e)
+        {
+            if (_isUpdating)
+                return;
+
+            switch (DisplayMember)
+            {
+                case PointDisplayMember.X:
+                    EditValue = new Point(Math.Round(Value, AutoToolTipPrecision), EditValue.Y);
+                    break;
+
+                case PointDisplayMember.Y:
+                    EditValue = new Point(EditValue.X, Math.Round(Value, AutoToolTipPrecision));
+                    break;
+
+                default:
+                    break;
+            }
+
+
         }
 
         private void OnEditValuePropertyChanged(PointEditor editor, object e)
@@ -68,25 +104,31 @@ namespace Avalonia.ExampleApp.Model
             editor.UpdateValue();
         }
 
+        
+
         private void UpdateValue()
         {
             if (_isUpdating)
                 return;
 
             _isUpdating = true;
-
+            
             switch (DisplayMember)
             {
                 case PointDisplayMember.X:
                     Value = EditValue.X;
+                    //EditValue 
                     break;
 
                 case PointDisplayMember.Y:
                     Value = EditValue.Y;
+                    //EditValue = new Point(EditValue.X, Value);
                     break;
 
                 default:
                     Value = 0;
+                    
+                    
                     break;
             }
 

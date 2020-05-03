@@ -17,9 +17,9 @@
           <design:PropertyContainer Entry="{Binding}"
             Content="{TemplateBinding InlineTemplate}"
           />
-          <design:PropertyContainer Entry="{Binding}"
+          <!--<design:PropertyContainer Entry="{Binding}"
             Content="{TemplateBinding ExtendedTemplate}"
-          />
+          />-->
 
 
 

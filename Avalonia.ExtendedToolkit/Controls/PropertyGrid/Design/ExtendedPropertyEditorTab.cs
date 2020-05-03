@@ -1,6 +1,5 @@
 ﻿using System;
 using Avalonia.Controls;
-using Avalonia.Data;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils;
 using Avalonia.Layout;
@@ -79,13 +78,25 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
                 Template = GetControlTemplate(editor.ExtendedTemplate),
             };
 
-
             content.SetValue(ContentControl.DataContextProperty, propertyItem);
 
+            //somehow binding destroys all editors (?)
+
+            //var binding = new Binding()
+            //{
+            //    Source = propertyItem,
+            //    Mode = BindingMode.OneWay
+            //};
+            //content.Bind(DataContextProperty, binding);
 
             return content;
         }
 
+        /// <summary>
+        /// returns a controlltemplate or null
+        /// </summary>
+        /// <param name="template"></param>
+        /// <returns></returns>
         private ControlTemplate GetControlTemplate(object template)
         {
             if (template == null)
@@ -95,13 +106,14 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             if (controlTemplate != null)
                 return controlTemplate;
 
-            return null;
-#warning todo
-            //var resourceKey = template as ComponentResourceKey;
-            //if (resourceKey == null)
-            //    return null;
+            //return null;
 
-            //return _resourceLocator.GetResource(resourceKey) as DataTemplate;
+            var resourceKey = template as string;
+            if (resourceKey == null)
+                return null;
+
+            //try find the resources from the application
+            return _resourceLocator.GetResource(resourceKey) as ControlTemplate;
         }
     }
 }

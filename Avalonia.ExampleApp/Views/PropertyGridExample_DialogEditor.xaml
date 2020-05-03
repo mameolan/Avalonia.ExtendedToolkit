@@ -2,7 +2,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tk="https://github.com/avalonia_extendedtoolkit"
+             xmlns:Model="clr-namespace:Avalonia.ExampleApp.Model.PropertyGrid_DialogEditor;assembly=Avalonia.ExampleApp"
+             xmlns:LocalModel="clr-namespace:Avalonia.ExampleApp.Model;assembly=Avalonia.ExampleApp"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.PropertyGridExample_DialogEditor">
-    Welcome to Avalonia!
+  <UserControl.Resources>
+    <Model:BusinessObject x:Key="BusinessObject"/>
+
+    <ControlTemplate x:Key="{x:Static LocalModel:LocalResources.FilePathPickerEditorKey}">
+      <Grid DataContext="{Binding PropertyValue}">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="1*"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox Grid.Column="0"
+                 Text="{Binding StringValue}"
+                 IsReadOnly="True"
+                 />
+        <!--ToolTip="{Binding Value}"-->
+
+        <Button Grid.Column="1" Margin="2,0,0,0" Content="..." Width="20"
+              Command="{Binding ElementName=propertyGrid, Path=ShowDialogEditorCommand}"
+              CommandParameter="{Binding}"
+              IsVisible="{Binding IsEditable}"/>
+        <!--Command="pg:PropertyEditorCommands.ShowDialogEditor"-->
+
+      </Grid>
+    </ControlTemplate>
+    
+    
+  </UserControl.Resources>
+
+  <Grid>
+    <tk:PropertyGrid x:Name="propertyGrid" ShowReadOnlyProperties="True"
+                     SelectedObject="{StaticResource BusinessObject}"
+                     />
+
+    <!---->
+
+  </Grid>
+  
+  
 </UserControl>

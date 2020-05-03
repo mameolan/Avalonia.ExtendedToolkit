@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.ExampleApp.Model.PropertyGrid_CustomTypeEditors;
@@ -11,6 +12,8 @@ namespace Avalonia.ExampleApp.Views
     public class PropertyGridExample_CustomTypeEditors : UserControl
     {
         static Random random = new Random();
+        private CategoryItem _tempItem;
+        private int _tempIndex;
         readonly BusinessObject bo;
         private readonly PropertyGrid propertyGrid;
 
@@ -69,10 +72,26 @@ namespace Avalonia.ExampleApp.Views
             PropertyItem prop = propertyGrid.Properties["Name"];
             if (prop != null)
             {
-                //prop.IsReadOnly = !prop.IsReadOnly;
-                prop.IsBrowsable = !prop.IsBrowsable;
+                //workaround because setting isbrowsable is not working right now
+                var result= propertyGrid.Categories.FirstOrDefault(x => x.Properties.Contains(prop));
 
-                propertyGrid.ReloadCommand.Execute(null);
+                if(result!=null)
+                {
+                    _tempItem = result;
+                    _tempIndex = propertyGrid.Categories.IndexOf(result);
+                    propertyGrid.Categories.Remove(result);
+                }
+                else 
+                {
+                    propertyGrid.Categories.Insert(_tempIndex, _tempItem);
+                }
+
+                
+
+                //prop.IsReadOnly = !prop.IsReadOnly;
+                //prop.IsReadOnly = !prop.IsReadOnly;
+
+                // propertyGrid.ReloadCommand.Execute(null);
             }
         }
 

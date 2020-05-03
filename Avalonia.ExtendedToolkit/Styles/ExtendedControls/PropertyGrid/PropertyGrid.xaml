@@ -13,8 +13,10 @@
         <ControlTemplate>
           <DockPanel LastChildFill="True" Background="{TemplateBinding Background}">
             <controls:SearchTextBox DockPanel.Dock="Top"
-                                    Text="{Binding Path=PropertyFilter, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Text="{TemplateBinding PropertyFilter, Mode=TwoWay}"
                                     IsVisible="{TemplateBinding PropertyFilterIsVisible}" />
+
+            <!--{Binding Path=PropertyFilter, RelativeSource={RelativeSource TemplatedParent}}-->
 
             <ContentControl  Content="{TemplateBinding Layout}"
                                TextBlock.Foreground="{TemplateBinding Foreground}" />

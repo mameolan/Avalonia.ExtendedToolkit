@@ -383,7 +383,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 ShowFrameTranslateTransformY = 0;
             }
 
-            // I mean, we don't need this anymore, because we use ActualWidth and ActualHeight of the flyoutRoot
+            // I mean, we don't need this anymore, because we use Width and Height of the flyoutRoot
             this.flyoutRoot.Measure(new Size(_currentSize.Width, _currentSize.Height));
             if (double.IsNaN(flyoutRoot.Height))
             {

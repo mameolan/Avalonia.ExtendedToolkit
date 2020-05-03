@@ -19,7 +19,7 @@
 
 
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.ComplexPropertyEditorKey}">
-      <Expander DataContext="{Binding PropertyValue}" Background="{DynamicResource ThemeBackgroundBrush}">
+      <Expander DataContext="{Binding PropertyValue}">
         <Expander.Header>
 
           <TextBlock Text="{Binding Value, Mode=OneWay}"
@@ -158,12 +158,14 @@
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.PasswordEditorKey}">
       <!--pg:PasswordBoxExtender.BindPassword="true"
       pg:PasswordBoxExtender.BoundPassword="{Binding StringValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
-
-      <TextBox PasswordChar="*" DataContext="{Binding PropertyValue}"
-        Text="{Binding StringValue, Mode=TwoWay}"
-        x:Name="PART_editor"
-        IsEnabled="{Binding IsEditable}"
+      <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                  Background="{DynamicResource ThemeBackgroundBrush}" DataContext="{Binding PropertyValue}">
+        <TextBox PasswordChar="*" 
+          Text="{Binding StringValue, Mode=TwoWay}"
+          x:Name="PART_editor"
+          IsEnabled="{Binding IsEditable}"
       />
+      </StackPanel>
     </ControlTemplate>
 
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.DoubleEditorKey}">

@@ -46,7 +46,6 @@
 		<EmbeddedResource Include="Assets\Web.png" />
 	</ItemGroup>
 
-
 	<ItemGroup>
 		<ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
 		<ProjectReference Include="..\Avalonia.ExtendedToolkit\Avalonia.ExtendedToolkit.csproj" />
@@ -63,4 +62,5 @@
 		</Reference>
 	</ItemGroup>
 
+	
 </Project>

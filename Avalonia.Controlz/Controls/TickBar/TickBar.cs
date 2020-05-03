@@ -605,12 +605,12 @@ namespace Avalonia.Controlz.Controls
 
                 //    if (parent.Orientation == Layout.Orientation.Horizontal)
                 //    {
-                //        //binding.Path = new PropertyPath(Thumb.ActualWidthProperty);
+                //        //binding.Path = new PropertyPath(Thumb.WidthProperty);
                 //        Bind(ReservedSpaceProperty, ObservableEx.SingleValue(Thumb.WidthProperty));
                 //    }
                 //    else
                 //    {
-                //        //binding.Path = new PropertyPath(Thumb.ActualHeightProperty);
+                //        //binding.Path = new PropertyPath(Thumb.HeightProperty);
                 //        Bind(ReservedSpaceProperty, ObservableEx.SingleValue(Thumb.HeightProperty));
                 //    }
 

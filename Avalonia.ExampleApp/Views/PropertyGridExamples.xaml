@@ -6,7 +6,7 @@
              xmlns:Views="clr-namespace:Avalonia.ExampleApp.Views;assembly=Avalonia.ExampleApp"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.PropertyGridExamples">
-  <Grid>
+  <Grid HorizontalAlignment="Stretch">
     <TabControl>
       <TabItem Header="BrushCategory" Foreground="{DynamicResource MahApps.Brushes.Black}">
         <Views:PropertyGridExample_BrushCategory/>
@@ -20,6 +20,16 @@
       <TabItem Header="CustomTypeEditors" Foreground="{DynamicResource MahApps.Brushes.Black}">
         <Views:PropertyGridExample_CustomTypeEditors/>
       </TabItem>
+      <TabItem Header="DialogEditor" Foreground="{DynamicResource MahApps.Brushes.Black}">
+        <Views:PropertyGridExample_DialogEditor/>
+      </TabItem>
+      <TabItem Header="ExtendedEditor" Foreground="{DynamicResource MahApps.Brushes.Black}">
+        <Views:PropertyGridExample_ExtendedEditor/>
+      </TabItem>
+      <TabItem Header="ProxyExample" Foreground="{DynamicResource MahApps.Brushes.Black}">
+        <Views:PropertyGridExample_ProxyExample/>
+      </TabItem>
+      
       
 
     </TabControl>

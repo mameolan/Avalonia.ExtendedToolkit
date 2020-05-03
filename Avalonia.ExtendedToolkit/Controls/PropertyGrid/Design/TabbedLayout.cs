@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Input;
+using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Generators;
 using Avalonia.Controls.Primitives;
@@ -363,11 +364,22 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 
             var item = SelectedItem as TabbedLayoutItem;
 
-            if (item != null && item.CanClose && Items.OfType<object>().Count() > 1)
+            if (item != null && item.CanClose && Items.OfType<TabbedLayoutItem>().Count(x=> x.IsVisible) > 1)
             {
-                var items = Items.OfType<object>().ToList();
-                items.Remove(SelectedItem);
-                Items = items;
+                if (item is ExtendedPropertyEditorTab)
+                {
+                    //only set is visible to false 
+                    //otherwise the editor controls have ui problems (?)
+                    item.IsVisible = false;
+                }
+                else
+                {
+                    var items = Items.OfType<object>().ToList();
+                    items.Remove(item);
+                    Items = items;
+                }
+                SelectedItem = Items.OfType<object>().FirstOrDefault(x=> (x as IControl)?.IsVisible==true);
+
             }
         }
 
@@ -388,6 +400,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             if (extendedTab != null)
             {
                 // Activate alreay opened tab
+                extendedTab.IsVisible = true;
                 SelectedItem = extendedTab;
             }
             else

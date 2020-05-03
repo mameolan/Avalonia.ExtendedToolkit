@@ -11,7 +11,7 @@
           <ContentControl Template="{Binding Editor.InlineTemplate}"
                           />
           
-          <ContentControl Template="{Binding Editor.ExtendedTemplate}"/>
+          <!--<ContentControl Template="{Binding Editor.ExtendedTemplate}"/>-->
         </StackPanel>
       </ControlTemplate>
     </Setter>

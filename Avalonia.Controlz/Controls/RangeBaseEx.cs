@@ -37,6 +37,8 @@ namespace Avalonia.Controlz.Controls
         {
             //animationpeer missing ...
             ctrl.OnValueChanged((double)e.OldValue, (double)e.NewValue);
+            
+
         }
 
         private void OnMaximumChanged(RangeBaseEx ctrl, AvaloniaPropertyChangedEventArgs e)

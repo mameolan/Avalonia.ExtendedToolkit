@@ -2,7 +2,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tk="https://github.com/avalonia_extendedtoolkit"
+             xmlns:Model="clr-namespace:Avalonia.ExampleApp.Model.PropertyGrid_ExtendedEditor;assembly=Avalonia.ExampleApp"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.PropertyGridExample_ExtendedEditor">
-    Welcome to Avalonia!
+  <UserControl.Resources>
+
+    <Model:ViewModel x:Key="ViewModel"/>
+
+    <ControlTemplate x:Key="TextEditor_Inline">
+      <Grid DataContext="{Binding PropertyValue}">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="1*"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Grid.Column="0" Text="{Binding StringValue, Mode=TwoWay}" IsReadOnly="{Binding IsReadOnly}"/>
+        <Button Grid.Column="1" Margin="2,0,0,0"
+                Content="[...]" Width="20"
+                Command="{Binding ElementName=tabbedLayout, Path=ShowExtendedEditorCommand}"
+                CommandParameter="{Binding}"/>
+      </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="TextEditor_Extended">
+      <Grid DataContext="{Binding PropertyValue}">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0" Text="{Binding StringValue, Mode=TwoWay}" IsReadOnly="{Binding IsReadOnly}" TextWrapping="Wrap"/>
+      </Grid>
+    </ControlTemplate>
+  </UserControl.Resources>
+
+  <tk:PropertyGrid x:Name="propertyGrid" 
+                   SelectedObject="{StaticResource ViewModel}" 
+                    PropertyFilterIsVisible="False" Margin="2">
+      <tk:PropertyGrid.Layout>
+        <tk:TabbedLayout x:Name="tabbedLayout">
+          <tk:TabbedLayoutItem Header="Alphabetical" CanClose="False" >
+            <tk:AlphabeticalLayout/>
+          </tk:TabbedLayoutItem>
+        </tk:TabbedLayout>
+      </tk:PropertyGrid.Layout>
+      <tk:PropertyGrid.Editors>
+        <tk:PropertyEditor DeclaringType="{x:Type Model:ViewModel}" 
+                           PropertyName="Details" 
+                           InlineTemplate="{StaticResource TextEditor_Inline}" 
+                           ExtendedTemplate="{StaticResource TextEditor_Extended}"/>
+      </tk:PropertyGrid.Editors>
+    
+  
+  </tk:PropertyGrid>
+
+
 </UserControl>

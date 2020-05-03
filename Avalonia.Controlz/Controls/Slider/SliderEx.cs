@@ -336,6 +336,13 @@ namespace Avalonia.Controlz.Controls
         private static void OnValueChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)
         {
             slider.UpdateSelectionRangeElementPositionAndSize();
+
+            double? oldValue = e.OldValue as double?;
+            double? newValue = e.NewValue as double?;
+
+            slider.OnValueChanged(oldValue.HasValue ? oldValue.Value : 0.0,
+                                    newValue.HasValue ? newValue.Value : 0.0);
+
         }
 
         private static void OnSelectionEndChanged(SliderEx slider, AvaloniaPropertyChangedEventArgs e)

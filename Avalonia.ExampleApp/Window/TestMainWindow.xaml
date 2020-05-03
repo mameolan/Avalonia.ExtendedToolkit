@@ -58,11 +58,11 @@
       </ComboBox>
 
     </StackPanel>
-    <Grid DockPanel.Dock="Bottom">
-      <Grid.ColumnDefinitions>
+    <Grid DockPanel.Dock="Bottom" HorizontalAlignment="Stretch">
+      <!--<Grid.ColumnDefinitions>
         <ColumnDefinition/>
         <ColumnDefinition/>
-      </Grid.ColumnDefinitions>
+      </Grid.ColumnDefinitions>-->
       
     
       <!--<Button Command="{Binding ShowFlyoutDemoCommand}" Content="Open File Demo"/>-->

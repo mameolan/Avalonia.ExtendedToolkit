@@ -326,13 +326,29 @@ namespace Avalonia.ExampleApp.Model.PropertyGrid_CustomTypeEditors
         public static readonly StyledProperty<string> PercentageProperty =
             AvaloniaProperty.Register<BusinessObject, string>(nameof(Percentage));
 
+        [Category("Display")]
+        public Point Point
+        {
+            get { return (Point)GetValue(PointProperty); }
+            set { SetValue(PointProperty, value); }
+        }
+
+
+        public static readonly StyledProperty<Point> PointProperty =
+            AvaloniaProperty.Register<BusinessObject, Point>(nameof(Point), defaultValue:new Point(0,0));
+
+
+
+
+
+
         public IBrush BackgroundBrush { get; set; }
 
         public BusinessObject()
         {
             //set init values
             Dock = Dock.Bottom;
-            Percentage = "10%";
+            Percentage = "10";
             DefaultFontFamily = FontFamily = new FontFamily("Arial");
             BackgroundBrush = Brushes.AliceBlue;
 

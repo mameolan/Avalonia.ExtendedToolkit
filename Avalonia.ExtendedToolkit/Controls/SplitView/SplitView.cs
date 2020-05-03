@@ -42,7 +42,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             if (this.paneClipRectangle != null)
             {
-                this.paneClipRectangle.Rect = new Rect(0, 0, this.OpenPaneLength, (double)this.Height); // We could also use ActualHeight and subscribe to the SizeChanged property
+                // We could also use Height and subscribe to the SizeChanged property
+                this.paneClipRectangle.Rect = new Rect(0, 0, this.OpenPaneLength, (double)this.Height);
             }
 
             var state = string.Empty;
