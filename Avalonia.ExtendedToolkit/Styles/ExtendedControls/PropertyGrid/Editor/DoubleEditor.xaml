@@ -12,8 +12,8 @@
               <ColumnDefinition Width="0.5*"/>
               <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="PART_editor" Grid.ColumnSpan="2" 
-                     Text="{Binding Path=Value, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+            <NumericUpDown x:Name="PART_editor" Grid.ColumnSpan="2" Height="30" FormatString="N"
+                     Value="{Binding Path=Value, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
             <Rectangle x:Name="PART_dragger"  Stroke="Transparent" Fill="Transparent" />
           </Grid>
         </ControlTemplate>

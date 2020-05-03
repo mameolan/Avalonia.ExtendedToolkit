@@ -6,10 +6,19 @@
     >
   <Styles.Resources>
     <converter:GridEntryToIsVisibleConverter x:Key="GridEntryToIsVisibleConverter"/>
+    <converter:MultiBooleanToIsVisibleConverter x:Key="multiBooleanToVisibilityConverter"/>
   </Styles.Resources>
 
   <Style Selector="design|PropertyContainer">
-    <Setter Property="IsVisible" Value="{Binding .,Converter={StaticResource GridEntryToIsVisibleConverter}}"/>
+    <!--<Setter Property="IsVisible" Value="{Binding .,Converter={StaticResource GridEntryToIsVisibleConverter}}"/>-->
+    <Setter Property="IsVisible">
+      <Setter.Value>
+        <MultiBinding Converter="{StaticResource multiBooleanToVisibilityConverter}" Mode="OneWay">
+          <Binding Path="IsBrowsable" FallbackValue="True"/>
+          <Binding Path="MatchesFilter" FallbackValue="True"/>
+        </MultiBinding>
+      </Setter.Value>
+    </Setter>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>

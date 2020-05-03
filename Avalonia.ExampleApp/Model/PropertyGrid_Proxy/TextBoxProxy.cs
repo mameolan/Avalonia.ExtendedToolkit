@@ -11,15 +11,15 @@ namespace Avalonia.ExampleApp.Model.PropertyGrid_Proxy
 
 
 
-        public double Width
-        {
-            get { return (double)GetValue(WidthProperty); }
-            set { SetValue(WidthProperty, value); }
-        }
+        //public double Width
+        //{
+        //    get { return (double)GetValue(WidthProperty); }
+        //    set { SetValue(WidthProperty, value); }
+        //}
 
 
-        public static readonly StyledProperty<double> WidthProperty =
-            AvaloniaProperty.Register<TextBoxProxy, double>(nameof(Width));
+        //public static readonly StyledProperty<double> WidthProperty =
+        //    AvaloniaProperty.Register<TextBoxProxy, double>(nameof(Width));
 
 
 
@@ -63,11 +63,12 @@ namespace Avalonia.ExampleApp.Model.PropertyGrid_Proxy
 
         private void Component_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
         {
-            if (e.Property == TextBox.WidthProperty)
-            {
-                Width = component.Width;
-            }
-            else if (e.Property == TextBox.TextProperty)
+            //if (e.Property == TextBox.WidthProperty)
+            //{
+            //    Width = component.Width;
+            //}
+            //else 
+            if (e.Property == TextBox.TextProperty)
             {
                 Text = component.Text;
             }

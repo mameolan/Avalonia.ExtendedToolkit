@@ -11,24 +11,20 @@
       <ColumnDefinition />
     </Grid.ColumnDefinitions>
 
-    <StackPanel x:Name="objectPanel" Grid.Column="0" Margin="0,10,10,0">
-      <TextBlock TextWrapping="Wrap">
+    <StackPanel x:Name="objectPanel" Grid.Column="0" Margin="0,0,0,0">
+      <TextBlock TextWrapping="NoWrap">
         This sample demonstrates a way providing a Proxy for a TextBox
       </TextBlock>
-      <TextBox x:Name="TargetToProxy" Width="200"/>
+      <TextBox x:Name="TargetToProxy" Margin="0,35,0,0" Width="200"/>
     </StackPanel>
-
-    <GridSplitter Width="2" Grid.Column="1"/>
 
     <tk:PropertyGrid x:Name="propertyGrid"
                      Grid.Column="1"
                      PropertyDisplayMode="All"
+                     Margin="0,20,0,0"
                      ShowAttachedProperties="False"
                      ShowReadOnlyProperties="False"
-                     >
-      <tk:PropertyGrid.Resources>
-        
-      </tk:PropertyGrid.Resources>
-    </tk:PropertyGrid>
+                     />
+    
   </Grid>
 </UserControl>
