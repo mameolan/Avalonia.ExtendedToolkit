@@ -35,7 +35,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public GridEntryCollection(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
             CopyFrom(collection);
         }
 
@@ -120,7 +120,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         protected override void InsertItem(int index, T item)
         {
             if (item == null)
-                throw new ArgumentNullException("item");
+                throw new ArgumentNullException(nameof(item));
             EncacheItem(item);
             base.InsertItem(index, item);
         }

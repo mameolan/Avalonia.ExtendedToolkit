@@ -277,7 +277,7 @@
         <tk:TabbedLayout x:Name="tabbedLayout">
 
           <!-- #1.1: Default layout usage -->
-          <tk:TabbedLayoutItem Header="Categorized">
+          <tk:TabbedLayoutItem Header="Categorized" CanClose="True">
             <!--CanClose="true"-->
             <tk:CategorizedLayout />
           </tk:TabbedLayoutItem>

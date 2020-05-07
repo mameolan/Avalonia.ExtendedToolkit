@@ -9,11 +9,22 @@ namespace Avalonia.Controlz.Controls
     // (https://github.com/dotnet/wpf/)
     //
     // Licensed to The Avalonia Project under MIT License, courtesy of The .NET Foundation.
+
+    /// <summary>
+    /// Range base with extended properties.
+    /// Used by the <see cref="SliderEx"/>
+    /// </summary>
     public class RangeBaseEx : RangeBase
     {
+        /// <summary>
+        /// Registered the ValueChangedEvent
+        /// </summary>
         public static readonly RoutedEvent<RoutedPropertyChangedEventArgs<double>> ValueChangedEvent =
                     RoutedEvent.Register<RangeBaseEx, RoutedPropertyChangedEventArgs<double>>(nameof(ValueChangedEvent), RoutingStrategies.Bubble);
 
+        /// <summary>
+        /// Get/sets the ValueChanged eventhandler
+        /// </summary>
         public event EventHandler<RoutedPropertyChangedEventArgs<double>> ValueChanged
         {
             add
@@ -26,6 +37,10 @@ namespace Avalonia.Controlz.Controls
             }
         }
 
+        /// <summary>
+        /// sets the changed handler for
+        /// MinimumProperty, MaximumProperty, ValueProperty 
+        /// </summary>
         public RangeBaseEx()
         {
             MinimumProperty.Changed.AddClassHandler<RangeBaseEx>((o, e) => OnMinimumChanged(o, e));

@@ -8,7 +8,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
     //
 
     /// <summary>
-    /// Extended <see cref="FontStretchConverter"/> that provides standard values collection.
+    /// FontStretchConverter is missing
+    /// Extended  that provides standard values collection.
     /// Todo update if avalonia has a front stretch type
     /// </summary>
     public sealed class FontStretchConverterDecorator : FontConverterDecorator

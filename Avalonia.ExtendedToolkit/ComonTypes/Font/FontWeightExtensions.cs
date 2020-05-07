@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Avalonia.Media;
 
-namespace Avalonia.Controlz.Font
+namespace Avalonia.ExtendedToolkit.Font
 {
     public static class FontWeightExtensions
     {

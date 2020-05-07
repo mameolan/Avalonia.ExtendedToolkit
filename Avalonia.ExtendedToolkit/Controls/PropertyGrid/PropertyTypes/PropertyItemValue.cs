@@ -24,7 +24,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
         public PropertyItemValue(PropertyItem property)
         {
             if (property == null)
-                throw new ArgumentNullException("property");
+                throw new ArgumentNullException(nameof(property));
             ParentProperty = property;
 
             HasSubProperties = property.Converter.GetPropertiesSupported();
@@ -229,13 +229,13 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
         /// <summary>
         /// Raises the <see cref="PropertyValueException"/> event.
         /// </summary>
-        /// <param name="e">The <see cref="ValueExceptionEventArgs"/> instance containing the event data.</param>
-        protected virtual void OnPropertyValueException(ValueExceptionEventArgs e)
+        /// <param name="valueExceptionEventArgs">The <see cref="ValueExceptionEventArgs"/> instance containing the event data.</param>
+        protected virtual void OnPropertyValueException(ValueExceptionEventArgs valueExceptionEventArgs)
         {
-            if (e == null)
-                throw new ArgumentNullException("e");
+            if (valueExceptionEventArgs == null)
+                throw new ArgumentNullException(nameof(valueExceptionEventArgs));
             if (PropertyValueException != null)
-                PropertyValueException(this, e);
+                PropertyValueException(this, valueExceptionEventArgs);
         }
 
         /// <summary>

@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design.Serialization;
 using System.Globalization;
 using System.Reflection;
-using System.Text;
 using Avalonia.Media;
 
-namespace Avalonia.Controlz.Font
+namespace Avalonia.ExtendedToolkit.Font
 {
-    ///from MS
+    //from MS
 
     /// <summary>
-    /// FontStyleConverter class parses a font style string.
+    /// FontWeightConverter class parses a font weight string.
     /// </summary>
-    public sealed class FontStyleConverter : TypeConverter
+    public sealed class FontWeightConverter : TypeConverter
     {
         /// <summary>
         /// CanConvertFrom
@@ -48,11 +46,11 @@ namespace Avalonia.Controlz.Font
         }
 
         /// <summary>
-        /// ConvertFrom - attempt to convert to a FontStyle from the given object
+        /// ConvertFrom - attempt to convert to a FontWeight from the given object
         /// </summary>
         /// <exception cref="NotSupportedException">
         /// A NotSupportedException is thrown if the example object is null or is not a valid type
-        /// which can be converted to a FontStyle.
+        /// which can be converted to a FontWeight.
         /// </exception>
         public override object ConvertFrom(ITypeDescriptorContext td, CultureInfo ci, object value)
         {
@@ -68,18 +66,18 @@ namespace Avalonia.Controlz.Font
                 throw new ArgumentException("value");
             }
 
-            FontStyle fontStyle = new FontStyle();
-            if (!FontStyles.FontStyleStringToKnownStyle(s, ci, ref fontStyle))
-                throw new FormatException("Parsers_IllegalToken");
+            FontWeight fontWeight = new FontWeight();
+            if (!FontWeights.FontWeightStringToKnownWeight(s, ci, ref fontWeight))
+                throw new FormatException("IllegalToken");
 
-            return fontStyle;
+            return fontWeight;
         }
 
         /// <summary>
         /// TypeConverter method implementation.
         /// </summary>
         /// <exception cref="NotSupportedException">
-        /// An NotSupportedException is thrown if the example object is null or is not a FontStyle,
+        /// An NotSupportedException is thrown if the example object is null or is not a FontWeight,
         /// or if the destinationType isn't one of the valid destination types.
         /// </exception>
         /// <param name="context">ITypeDescriptorContext</param>
@@ -89,17 +87,17 @@ namespace Avalonia.Controlz.Font
         /// <returns>converted value</returns>
         public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
-            if (destinationType != null && value is FontStyle)
+            if (destinationType != null && value is FontWeight)
             {
                 if (destinationType == typeof(InstanceDescriptor))
                 {
-                    ConstructorInfo ci = typeof(FontStyle).GetConstructor(new Type[] { typeof(int) });
-                    int c = (int)((FontStyle)value);
-                    return new InstanceDescriptor(ci, new object[] { c });
+                    MethodInfo mi = typeof(FontWeight).GetMethod("FromOpenTypeWeight", new Type[] { typeof(int) });
+                    FontWeight c = (FontWeight)value;
+                    return new InstanceDescriptor(mi, new object[] { c.ToOpenTypeWeight() });
                 }
                 else if (destinationType == typeof(string))
                 {
-                    FontStyle c = (FontStyle)value;
+                    FontWeight c = (FontWeight)value;
                     return ((IFormattable)c).ToString(null, culture);
                 }
             }

@@ -9,11 +9,16 @@ namespace Avalonia.ExtendedToolkit.Controls
     //ported from https://github.com/ControlzEx/ControlzEx
     //and
     //ported from https://github.com/MahApps/MahApps.Metro
-
+    /// <summary>
+    /// surrounds the content with a badge
+    /// </summary>
     public class Badged : ContentControl
     {
-        public const string BadgeContainerPartName = "PART_BadgeContainer";
+        private const string BadgeContainerPartName = "PART_BadgeContainer";
 
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(Badged);
 
         /// <summary>
@@ -25,6 +30,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BadgeProperty, value); }
         }
 
+        
+        /// <inheritdoc/>
         public static readonly StyledProperty<object> BadgeProperty =
             AvaloniaProperty.Register<Badged, object>(nameof(Badge));
 
@@ -37,6 +44,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BadgeBackgroundProperty, value); }
         }
 
+        /// <inheritdoc/>
         public static readonly StyledProperty<IBrush> BadgeBackgroundProperty =
             AvaloniaProperty.Register<Badged, IBrush>(nameof(BadgeBackground));
 
@@ -49,6 +57,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BadgeForegroundProperty, value); }
         }
 
+        /// <inheritdoc/>
         public static readonly StyledProperty<IBrush> BadgeForegroundProperty =
             AvaloniaProperty.Register<Badged, IBrush>(nameof(BadgeForeground));
 
@@ -61,6 +70,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BadgePlacementModeProperty, value); }
         }
 
+        /// <inheritdoc/>
         public static readonly StyledProperty<BadgePlacementMode> BadgePlacementModeProperty =
             AvaloniaProperty.Register<Badged, BadgePlacementMode>(nameof(BadgePlacementMode));
 
@@ -73,6 +83,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BadgeMarginProperty, value); }
         }
 
+        /// <inheritdoc/>
         public static readonly StyledProperty<Thickness> BadgeMarginProperty =
             AvaloniaProperty.Register<Badged, Thickness>(nameof(BadgeMargin));
 
@@ -85,12 +96,20 @@ namespace Avalonia.ExtendedToolkit.Controls
             private set { SetValue(IsBadgeSetProperty, value); }
         }
 
+        /// <inheritdoc/>
         public static readonly StyledProperty<bool> IsBadgeSetProperty =
             AvaloniaProperty.Register<Badged, bool>(nameof(IsBadgeSet));
 
+        /// <summary>
+        /// routed event for badge changed
+        /// </summary>
         public static readonly RoutedEvent BadgeChangedEvent =
-            RoutedEvent.Register<Badged, RoutedPropertyChangedEventArgs<object>>(nameof(BadgeChanged), RoutingStrategies.Bubble);
+            RoutedEvent.Register<Badged, RoutedPropertyChangedEventArgs<object>>
+            (nameof(BadgeChanged), RoutingStrategies.Bubble);
 
+        /// <summary>
+        /// event handler if badge changed
+        /// </summary>
         public event EventHandler<RoutedPropertyChangedEventArgs<object>> BadgeChanged
         {
             add { AddHandler(BadgeChangedEvent, value); }
@@ -99,6 +118,9 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private Control _badgeContainer;
 
+        /// <summary>
+        /// initialize bageproperty changed
+        /// </summary>
         public Badged()
         {
             BadgeProperty.Changed.AddClassHandler<Badged>((o, e) => OnBadgeChanged(o, e));
@@ -115,16 +137,20 @@ namespace Avalonia.ExtendedToolkit.Controls
             badged.RaiseEvent(args);
         }
 
+        /// <summary>
+        /// gets the badgecontainer from the style
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             base.OnTemplateApplied(e);
             _badgeContainer = e.NameScope.Get<Control>(BadgeContainerPartName);
         }
 
-        protected override Size MeasureOverride(Size availableSize)
-        {
-            return base.MeasureOverride(availableSize);
-        }
+        //protected override Size MeasureOverride(Size availableSize)
+        //{
+        //    return base.MeasureOverride(availableSize);
+        //}
 
         //is not working in avalonia
         //protected override Size ArrangeOverride(Size arrangeBounds)

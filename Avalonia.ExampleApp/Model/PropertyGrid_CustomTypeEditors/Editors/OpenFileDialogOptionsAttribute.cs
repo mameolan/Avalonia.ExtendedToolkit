@@ -18,7 +18,7 @@ namespace Avalonia.ExampleApp.Model
         public OpenFileDialogOptionsAttribute(string filter)
         {
             if (string.IsNullOrEmpty(filter))
-                throw new ArgumentNullException("filter");
+                throw new ArgumentNullException(nameof(filter));
 
             string[] filters = filter.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
             string filtername = string.Empty;

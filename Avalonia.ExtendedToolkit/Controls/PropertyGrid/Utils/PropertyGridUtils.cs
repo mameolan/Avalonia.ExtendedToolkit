@@ -16,14 +16,14 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
         public static IEnumerable<T> GetAttributes<T>(object target)
         {
             if (target == null)
-                throw new ArgumentNullException("target");
+                throw new ArgumentNullException(nameof(target));
             return GetAttributes<T>(target.GetType());
         }
 
         public static IEnumerable<T> GetAttributes<T>(Type type)
         {
             if (type == null)
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
 
             var attributes =
                from T attribute

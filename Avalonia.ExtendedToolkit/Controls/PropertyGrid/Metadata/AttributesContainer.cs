@@ -25,7 +25,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public AttributesContainer(AttributeCollection attributes)
         {
             if (attributes == null)
-                throw new ArgumentNullException("attributes");
+                throw new ArgumentNullException(nameof(attributes));
 
             _attributes = attributes;
 

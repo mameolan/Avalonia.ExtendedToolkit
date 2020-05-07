@@ -38,9 +38,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Internal
         public sealed override void AddValueChanged(object component, EventHandler handler)
         {
             if (component == null)
-                throw new ArgumentNullException("component");
+                throw new ArgumentNullException(nameof(component));
             if (handler == null)
-                throw new ArgumentNullException("handler");
+                throw new ArgumentNullException(nameof(handler));
 
             Array targets = component as Array;
             if (targets == null)
@@ -62,9 +62,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Internal
         public sealed override void RemoveValueChanged(object component, EventHandler handler)
         {
             if (component == null)
-                throw new ArgumentNullException("component");
+                throw new ArgumentNullException(nameof(component));
             if (handler == null)
-                throw new ArgumentNullException("handler");
+                throw new ArgumentNullException(nameof(handler));
 
             Array targets = component as Array;
             if (targets == null)

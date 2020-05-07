@@ -46,7 +46,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing
         public bool Match(IPropertyFilterTarget target)
         {
             if (target == null)
-                throw new ArgumentNullException("target");
+                throw new ArgumentNullException(nameof(target));
             if (IsEmpty)
                 return true;
 

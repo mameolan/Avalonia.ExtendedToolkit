@@ -161,9 +161,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public CategoryItem(PropertyGrid owner, string name)
         {
             if (owner == null)
-                throw new ArgumentNullException("owner");
+                throw new ArgumentNullException(nameof(owner));
             if (string.IsNullOrEmpty(name))
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(nameof(name));
             this.FilterApplied+= (o, e) =>
             {
                 RaisePropertyChanged(IsBrowsableProperty, !IsBrowsable, IsBrowsable);
@@ -213,7 +213,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public void AddProperty(PropertyItem property)
         {
             if (property == null)
-                throw new ArgumentNullException("property");
+                throw new ArgumentNullException(nameof(property));
             if (_properties.Contains(property))
                 throw new ArgumentException("Cannot add a duplicated property " + property.Name);
 

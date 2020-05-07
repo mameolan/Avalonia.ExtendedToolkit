@@ -36,11 +36,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
         private static IEnumerable<PropertyData> DoGetProperties(object target)
         {
             if (target == null)
-                throw new ArgumentNullException("target");
+                throw new ArgumentNullException(nameof(target));
 
             PropertySet result;
             Properties.TryGetValue(target.GetType(), out result);
-#warning change it back
+
             if(result==null|| result.Count==0)
             {
                 result = CollectProperties(target);
@@ -68,9 +68,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
         public static PropertyData GetProperty(object target, string propertyName)
         {
             if (target == null)
-                throw new ArgumentNullException("target");
+                throw new ArgumentNullException(nameof(target));
             if (string.IsNullOrEmpty(propertyName))
-                throw new ArgumentNullException("propertyName");
+                throw new ArgumentNullException(nameof(propertyName));
 
             PropertySet propertySet = null;
 
@@ -110,7 +110,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
         public static IEnumerable<Attribute> GetAttributes(object target)
         {
             if (target == null)
-                throw new ArgumentNullException("target");
+                throw new ArgumentNullException(nameof(target));
 
             return CollectAttributes(target).ToList().AsReadOnly();
         }
@@ -163,9 +163,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
         public static IEnumerable<Attribute> GetAttributes(object target, string propertyName)
         {
             if (target == null)
-                throw new ArgumentNullException("target");
+                throw new ArgumentNullException(nameof(target));
             if (string.IsNullOrEmpty(propertyName))
-                throw new ArgumentNullException("propertyName");
+                throw new ArgumentNullException(nameof(propertyName));
 
             Type targetType = target.GetType();
 

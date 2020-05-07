@@ -50,7 +50,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
           : this()
         {
             if (property == null)
-                throw new ArgumentNullException("property");
+                throw new ArgumentNullException(nameof(property));
 
             Property = property;
             Header = property.Name;

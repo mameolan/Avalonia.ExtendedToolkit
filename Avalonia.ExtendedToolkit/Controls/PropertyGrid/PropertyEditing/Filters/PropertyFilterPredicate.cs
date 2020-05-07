@@ -25,7 +25,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing
         public PropertyFilterPredicate(string matchText)
         {
             if (matchText == null)
-                throw new ArgumentNullException("matchText");
+                throw new ArgumentNullException(nameof(matchText));
             MatchText = matchText.ToUpper(CultureInfo.CurrentCulture);
         }
 

@@ -32,9 +32,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public CategoryEditorAttribute(string categoryName, string editorType)
         {
             if (string.IsNullOrEmpty(categoryName))
-                throw new ArgumentNullException("categoryName");
+                throw new ArgumentNullException(nameof(categoryName));
             if (string.IsNullOrEmpty(editorType))
-                throw new ArgumentNullException("editorType");
+                throw new ArgumentNullException(nameof(editorType));
 
             EditorType = editorType;
             CategoryName = categoryName.ToUpperInvariant();
