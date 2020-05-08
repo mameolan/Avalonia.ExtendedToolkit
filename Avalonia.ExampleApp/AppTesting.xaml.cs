@@ -41,7 +41,7 @@ namespace Avalonia.ExampleApp
 
 
             ThemeManager.Instance.EnableTheme(mainWindow);
-            SkinManager.Instance.EnableSkin(mainWindow);
+//            SkinManager.Instance.EnableSkin(mainWindow);
 
             //Splat.Locator.CurrentMutable.Register(
             //            () => new PropertyEditorCommandBinder(),

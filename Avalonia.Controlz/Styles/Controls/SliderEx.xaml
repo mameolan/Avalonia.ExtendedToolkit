@@ -5,1072 +5,388 @@
     xmlns:helper="clr-namespace:Avalonia.Controlz.Helper;assembly=Avalonia.Controlz"
     xmlns:System="clr-namespace:System;assembly=mscorlib">
   <Styles.Resources>
-    <!-- Pointed Thumb-->
-    <Geometry x:Key="SliderPointedThumbOuterBorderGeometry">
-      M 4.5,-7.5 A 1 1 0 0 0 3.5,-8.5 L -3.5,-8.5 A 1 1 0 0 0 -4.5,-7.5 L -4.5,4.5 L -0.5,8.5 L 0.5,8.5 L 4.5,4.5 Z
-    </Geometry>
-
-    <Geometry x:Key="SliderPointedThumbMiddleBorderGeometry">
-      M 3.5,-7.5 L -3.5,-7.5 L -3.5,4.5 L 0,8 L 3.5,4.5 Z
-    </Geometry>
-
-    <Geometry x:Key="SliderPointedThumbInnerBorderGeometry">
-      M 2.5,-6.5 L -2.5,-6.5 L -2.5,4.5 L 0,7 L 2.5 4.5 Z
-    </Geometry>
-
-    <Geometry x:Key="SliderPointedThumbDisabledGeometry">
-      M 4.5,-8.5 L -4.5,-8.5 L -4.5,4.5 L -0.5,8.5 L 0.5,8.5 L 4.5,4.5 Z
-    </Geometry>
-
-    <!-- Rectangular Thumb -->
-    <Geometry x:Key="SliderThumbOuterBorderGeometry">
-      M -5,-9.5 A 1 1 0 0 1 -4,-10.5 L 4,-10.5 A 1 1 0 0 1 5,-9.5 L 5,9.5 A 1 1 0 0 1 4,10.5 L -4,10.5 A 1 1 0 0 1 -5,9.5 Z
-    </Geometry>
-
-    <Geometry x:Key="SliderThumbMiddleBorderGeometry">
-      M -4,-9.5 L 4,-9.5 L 4,9.5 L -4,9.5 Z
-    </Geometry>
-
-    <Geometry x:Key="SliderThumbDisabledGeometry">
-      M -5,-10.5 L 5,-10.5 L 5,10.5 L -5,10.5 Z
-    </Geometry>
-
-    <!-- Normal -->
-    <LinearGradientBrush x:Key="HorizontalSliderThumbNormalBackground"
-                         EndPoint="0,1"
-                         StartPoint="0,0">
-      <LinearGradientBrush.GradientStops>
-        <GradientStop Color="White"
-                      Offset="0" />
-        <GradientStop Color="#F0EFEF"
-                      Offset="0.4" />
-        <GradientStop Color="#D6D5D5"
-                      Offset=".8" />
-      </LinearGradientBrush.GradientStops>
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="HorizontalSliderThumbNormalBackgroundInverted"
-                         EndPoint="0,0"
-                         StartPoint="0,1">
-      <LinearGradientBrush.GradientStops>
-        <GradientStop Color="White"
-                      Offset="0" />
-        <GradientStop Color="#F0EFEF"
-                      Offset="0.4" />
-        <GradientStop Color="#D6D5D5"
-                      Offset=".8" />
-      </LinearGradientBrush.GradientStops>
-    </LinearGradientBrush>
-
-    <!-- Normal -->
-    <LinearGradientBrush x:Key="VerticalSliderThumbNormalBackground"
-                         EndPoint="1,0"
-                         StartPoint="0,0">
-      <LinearGradientBrush.GradientStops>
-        <GradientStop Color="White"
-                      Offset="0" />
-        <GradientStop Color="#F0EFEF"
-                      Offset="0.4" />
-        <GradientStop Color="#D6D5D5"
-                      Offset=".8" />
-      </LinearGradientBrush.GradientStops>
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="VerticalSliderThumbNormalBackgroundInverted"
-                         EndPoint="0,0"
-                         StartPoint="1,0">
-      <LinearGradientBrush.GradientStops>
-        <GradientStop Color="White"
-                      Offset="0" />
-        <GradientStop Color="#F0EFEF"
-                      Offset="0.4" />
-        <GradientStop Color="#D6D5D5"
-                      Offset=".8" />
-      </LinearGradientBrush.GradientStops>
-    </LinearGradientBrush>
-
-    <!-- Hover -->
-    <LinearGradientBrush x:Key="HorizontalSliderThumbHoverBackground"
-                         EndPoint="0,1"
-                         StartPoint="0,0">
-      <LinearGradientBrush.GradientStops>
-        <GradientStop Color="white"
-                      Offset="0" />
-        <GradientStop Color="#B8E2F9"
-                      Offset="0.5" />
-        <GradientStop Color="#B0DFF8"
-                      Offset="1" />
-      </LinearGradientBrush.GradientStops>
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="HorizontalSliderThumbHoverBackgroundInverted"
-                         EndPoint="0,0"
-                         StartPoint="0,1">
-      <LinearGradientBrush.GradientStops>
-        <GradientStop Color="white"
-                      Offset="0" />
-        <GradientStop Color="#B8E2F9"
-                      Offset="0.5" />
-        <GradientStop Color="#B0DFF8"
-                      Offset="1" />
-      </LinearGradientBrush.GradientStops>
-    </LinearGradientBrush>
-    <!-- Hover -->
-    <LinearGradientBrush x:Key="VerticalSliderThumbHoverBackground"
-                         EndPoint="1,0"
-                         StartPoint="0,0">
-      <LinearGradientBrush.GradientStops>
-        <GradientStop Color="white"
-                      Offset="0" />
-        <GradientStop Color="#B8E2F9"
-                      Offset="0.5" />
-        <GradientStop Color="#B0DFF8"
-                      Offset="1" />
-      </LinearGradientBrush.GradientStops>
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="VerticalSliderThumbHoverBackgroundInverted"
-                         EndPoint="0,0"
-                         StartPoint="1,0">
-      <LinearGradientBrush.GradientStops>
-        <GradientStop Color="white"
-                      Offset="0" />
-        <GradientStop Color="#B8E2F9"
-                      Offset="0.5" />
-        <GradientStop Color="#B0DFF8"
-                      Offset="1" />
-      </LinearGradientBrush.GradientStops>
-    </LinearGradientBrush>
-
-    <SolidColorBrush x:Key="HorizontalSliderThumbHoverBorder" Color="#3C7FB1" />
-
-    <LinearGradientBrush x:Key="HorizontalSliderThumbPressedBackground"
-                         EndPoint="0,1"
-                         StartPoint="0,0">
-      <LinearGradientBrush.GradientStops>
-        <GradientStop Color="#B8E4FA"
-                      Offset="0.25" />
-        <GradientStop Color="#5EB4E3"
-                      Offset="0.5" />
-        <GradientStop Color="#4C8BB4"
-                      Offset="1" />
-      </LinearGradientBrush.GradientStops>
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="HorizontalSliderThumbPressedBackgroundInverted"
-                         EndPoint="0,0"
-                         StartPoint="0,1">
-      <LinearGradientBrush.GradientStops>
-        <GradientStop Color="#B8E4FA"
-                      Offset="0.25" />
-        <GradientStop Color="#5EB4E3"
-                      Offset="0.5" />
-        <GradientStop Color="#4C8BB4"
-                      Offset="1" />
-      </LinearGradientBrush.GradientStops>
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="VerticalSliderThumbPressedBackground"
-                         EndPoint="1,0"
-                         StartPoint="0,0">
-      <LinearGradientBrush.GradientStops>
-        <GradientStop Color="#B8E4FA"
-                      Offset="0.25" />
-        <GradientStop Color="#5EB4E3"
-                      Offset="0.5" />
-        <GradientStop Color="#4C8BB4"
-                      Offset="1" />
-      </LinearGradientBrush.GradientStops>
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="VerticalSliderThumbPressedBackgroundInverted"
-                         EndPoint="0,0"
-                         StartPoint="1,0">
-      <LinearGradientBrush.GradientStops>
-        <GradientStop Color="#B8E4FA"
-                      Offset="0.25" />
-        <GradientStop Color="#5EB4E3"
-                      Offset="0.5" />
-        <GradientStop Color="#4C8BB4"
-                      Offset="1" />
-      </LinearGradientBrush.GradientStops>
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="HorizontalSliderThumbPressedBorder" Color="#2C628B" />
-
-    <!-- Track Colors -->
-    <SolidColorBrush x:Key="HorizontalSliderTrackNormalBackground"
-                     Color="#FFE7EAEA" />
-    <LinearGradientBrush x:Key="HorizontalSliderTrackNormalBorder"
-                         EndPoint="0,1"
-                         StartPoint="0,0">
-      <LinearGradientBrush.GradientStops>
-        <GradientStop Color="#FFAEB1AF"
-                      Offset="0.1" />
-        <GradientStop Color="White"
-                      Offset=".9" />
-      </LinearGradientBrush.GradientStops>
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="VerticalSliderTrackNormalBorder"
-                           EndPoint="1,0"
-                           StartPoint="0,0">
-      <LinearGradientBrush.GradientStops>
-        <GradientStop Color="#FFAEB1AF"
-                      Offset="0.1" />
-        <GradientStop Color="White"
-                      Offset=".9" />
-      </LinearGradientBrush.GradientStops>
-    </LinearGradientBrush>
+    <System:Double x:Key="HorizontalThumb.Height">16</System:Double>
+    <System:Double x:Key="HorizontalThumb.Width">10</System:Double>
+    <System:Double x:Key="VerticalThumb.Width">16</System:Double>
+    <System:Double x:Key="VerticalThumb.Height">10</System:Double>
   </Styles.Resources>
-
-  <Style Selector="RepeatButton.SliderRepeatButtonStyle">
-    <Setter Property="Focusable"
-            Value="false" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Rectangle Fill="Transparent" />
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderThumbStyle">
-    <!--<Setter Property="Focusable"
-                Value="false" />-->
-    <Setter Property="Height"
-            Value="22" />
-    <Setter Property="Width"
-            Value="11" />
-    <Setter Property="Foreground"
-            Value="Gray" />
-
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Canvas>
-            <Canvas.RenderTransform>
-              <TranslateTransform X="5.5"
-                                  Y="11" />
-            </Canvas.RenderTransform>
-            <Path x:Name="Background"
-                  Fill="{StaticResource HorizontalSliderThumbNormalBackground}"
-                  Data="{StaticResource SliderThumbOuterBorderGeometry}" />
-            <Path x:Name="InnerBorder"
-                  Stroke="White"
-                  Data="{StaticResource SliderThumbMiddleBorderGeometry}" />
-            <Path x:Name="OuterBorder"
-                  Stroke="#FF929292"
-                  Data="{StaticResource SliderThumbOuterBorderGeometry}" />
-          </Canvas>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderThumbStyle:pointerover /template/ Path#Background">
-    <Setter Property="Fill" Value="{StaticResource HorizontalSliderThumbHoverBackground}" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderThumbStyle:pointerover /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbHoverBorder}" />
-  </Style>
-
-  <!--<Style Selector="Thumb.HorizontalSliderThumbStyle[Foreground=Blue] /template/ Path#Background">
-    <Setter Property="Fill" Value="{StaticResource HorizontalSliderThumbHoverBackground}" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderThumbStyle[Foreground=Blue] /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbHoverBorder}" />
-  </Style>-->
-
-  <!--<Style Selector="Thumb.HorizontalSliderThumbStyle[IsDragging=true] /template/ Path#Background">
-    <Setter Property="Fill" Value="{StaticResource HorizontalSliderThumbPressedBackground}" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderThumbStyle[IsDragging=true] /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbPressedBorder}" />
-  </Style>-->
-
-  <Style Selector="Thumb.HorizontalSliderThumbStyle:disabled /template/ Path#Background">
-    <Setter Property="Fill" Value="#FFF4F4F4" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderThumbStyle:disabled /template/ Path#InnerBorder">
-    <Setter Property="Stroke" Value="{x:Null}" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderThumbStyle:disabled /template/ Path#OuterBorder">
-    <Setter Property="Data" Value="{StaticResource SliderThumbDisabledGeometry}" />
-    <Setter Property="Stroke" Value="#FFAEB1AF" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderUpThumbStyle">
-    <!--<Setter Property="Focusable"
-                Value="false" />-->
-    <Setter Property="Height"
-            Value="18" />
-    <Setter Property="Width"
-            Value="10" />
-    <Setter Property="Foreground"
-            Value="Gray" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Canvas>
-            <Canvas.RenderTransform>
-              <TransformGroup>
-                <TransformGroup.Children>
-                  <RotateTransform Angle="180" />
-                  <TranslateTransform X="5"
-                                      Y="9" />
-                </TransformGroup.Children>
-              </TransformGroup>
-            </Canvas.RenderTransform>
-            <Path x:Name="Background"
-                  Fill="{StaticResource HorizontalSliderThumbNormalBackgroundInverted}"
-                  Data="{StaticResource SliderPointedThumbOuterBorderGeometry}" />
-            <Path x:Name="InnerBorder"
-                  Stroke="White"
-                  StrokeThickness="1"
-                  Data="{StaticResource SliderPointedThumbMiddleBorderGeometry}" />
-            <Path x:Name="OuterBorder"
-                  Stroke="#FF929292"
-                  StrokeThickness="1"
-                  Data="{StaticResource SliderPointedThumbOuterBorderGeometry}" />
-          </Canvas>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderUpThumbStyle:pointerover /template/ Path#Background">
-    <Setter Property="Fill" Value="{StaticResource HorizontalSliderThumbHoverBackgroundInverted}" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderUpThumbStyle:pointerover /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbHoverBorder}" />
-  </Style>
-
-  <!--<Style Selector="Thumb.HorizontalSliderUpThumbStyle[Foreground=Blue] /template/ Path#Background">
-    <Setter Property="Fill" Value="{StaticResource HorizontalSliderThumbHoverBackgroundInverted}" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderUpThumbStyle[Foreground=Blue] /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbHoverBorder}" />
-  </Style>-->
-
-  <!--<Style Selector="Thumb.HorizontalSliderUpThumbStyle[IsDragging=true] /template/ Path#Background">
-    <Setter Property="Fill" Value="{StaticResource HorizontalSliderThumbPressedBackgroundInverted}" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderUpThumbStyle[IsDragging=true] /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbPressedBorder}" />
-  </Style>-->
-
-  <Style Selector="Thumb.HorizontalSliderUpThumbStyle:disabled /template/ Path#Background">
-    <Setter Property="Fill" Value="#FFF4F4F4" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderUpThumbStyle:pointerover /template/ Path#InnerBorder">
-    <Setter Property="Stroke" Value="{x:Null}" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderUpThumbStyle:pointerover /template/ Path#OuterBorder">
-    <Setter Property="Data" Value="{StaticResource SliderThumbDisabledGeometry}" />
-    <Setter Property="Stroke" Value="#FFAEB1AF" />
-    <Setter Property="Data" Value="{StaticResource SliderPointedThumbDisabledGeometry}" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderDownThumbStyle">
-    <!--<Setter Property="Focusable"
-             Value="false" />-->
-    <Setter Property="Height"
-            Value="18" />
-    <Setter Property="Width"
-            Value="10" />
-    <Setter Property="Foreground"
-            Value="Gray" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Canvas>
-            <Canvas.RenderTransform>
-              <TranslateTransform X="5"
-                                  Y="9" />
-            </Canvas.RenderTransform>
-            <Path x:Name="Background"
-                  Fill="{StaticResource HorizontalSliderThumbNormalBackground}"
-                  Data="{StaticResource SliderPointedThumbOuterBorderGeometry}" />
-            <Path x:Name="InnerBorder"
-                  Stroke="White"
-                  StrokeThickness="1"
-                  Data="{StaticResource SliderPointedThumbMiddleBorderGeometry}" />
-            <Path x:Name="OuterBorder"
-                  Stroke="#FF929292"
-                  StrokeThickness="1"
-                  Data="{StaticResource SliderPointedThumbOuterBorderGeometry}" />
-          </Canvas>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderDownThumbStyle:pointerover /template/ Path#Background">
-    <Setter Property="Fill" Value="{StaticResource HorizontalSliderThumbHoverBackground}" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderDownThumbStyle:pointerover /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbHoverBorder}" />
-  </Style>
-
-  <!--<Style Selector="Thumb.HorizontalSliderDownThumbStyle[Foreground=Blue] /template/ Path#Background">
-    <Setter Property="Fill" Value="{StaticResource HorizontalSliderThumbHoverBackground}" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderDownThumbStyle[Foreground=Blue] /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbHoverBorder}" />
-  </Style>-->
-
-  <!--<Style Selector="Thumb.HorizontalSliderDownThumbStyle[IsDragging=True] /template/ Path#Background">
-    <Setter Property="Fill" Value="{StaticResource HorizontalSliderThumbPressedBackground}" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderDownThumbStyle[IsDragging=True] /template/ Path#OuterBorder">
-    <Setter  Property="Stroke" Value="{StaticResource HorizontalSliderThumbPressedBorder}" />
-  </Style>-->
-
-  <Style Selector="Thumb.HorizontalSliderDownThumbStyle:disabled /template/ Path#Background">
-    <Setter Property="Fill" Value="#FFF4F4F4" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderDownThumbStyle:disabled /template/ Path#InnerBorder">
-    <Setter Property="Stroke" Value="{x:Null}" />
-  </Style>
-
-  <Style Selector="Thumb.HorizontalSliderDownThumbStyle:disabled /template/ Path#OuterBorder">
-    <Setter Property="Data" Value="{StaticResource SliderThumbDisabledGeometry}" />
-    <Setter Property="Stroke" Value="#FFAEB1AF" />
-    <Setter Property="Data" Value="{StaticResource SliderPointedThumbDisabledGeometry}" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderThumbStyle">
-    <!--<Setter Property="Focusable"
-                Value="false" />-->
-    <Setter Property="Height"
-            Value="11" />
-    <Setter Property="Width"
-            Value="22" />
-    <Setter Property="Foreground"
-            Value="Gray" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <LayoutTransformControl>
-            <LayoutTransformControl.RenderTransform>
-              <RotateTransform Angle="90" />
-              <!--<TranslateTransform X="11"
-                                      Y="5.5" />-->
-            </LayoutTransformControl.RenderTransform>
-            <Canvas x:Name="Canvas">
-              <Canvas.RenderTransform>
-                <TranslateTransform X="11"
-                                      Y="5.5" />
-              </Canvas.RenderTransform>
-              <!--<Canvas.RenderTransform>
-              <TransformGroup>
-                <TransformGroup.Children>
-                  <RotateTransform Angle="90" />
-                  <TranslateTransform X="11"
-                                      Y="5.5" />
-                </TransformGroup.Children>
-              </TransformGroup>
-            </Canvas.RenderTransform>-->
-              <Path x:Name="Background"
-                    Fill="{StaticResource VerticalSliderThumbNormalBackground}"
-                    Data="{StaticResource SliderThumbOuterBorderGeometry}" />
-              <Path x:Name="InnerBorder"
-                    Stroke="White"
-                    StrokeThickness="1"
-                    Data="{StaticResource SliderThumbMiddleBorderGeometry}" />
-              <Path x:Name="OuterBorder"
-                    Stroke="#FF929292"
-                    StrokeThickness="1"
-                    Data="{StaticResource SliderThumbOuterBorderGeometry}" />
-            </Canvas>
-          </LayoutTransformControl>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <!--<Style Selector="Thumb.VerticalSliderThumbStyle /template/ Canvas#Canvas">
-    <Setter Property="RotateTransform.Angle" Value="90" />
-    <Setter Property="TranslateTransform.X" Value="11" />
-    <Setter Property="TranslateTransform.Y" Value="5.5" />
-  </Style>-->
-
-  <Style Selector="Thumb.VerticalSliderThumbStyle:pointerover /template/ Path#Background">
-    <Setter Property="Fill" Value="{StaticResource VerticalSliderThumbHoverBackground}" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderThumbStyle:pointerover /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbHoverBorder}" />
-  </Style>
-
-  <!--<Style Selector="Thumb.VerticalSliderThumbStyle[Foreground=Blue] /template/ Path#Background">
-    <Setter Property="Fill" Value="{StaticResource VerticalSliderThumbHoverBackground}" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderThumbStyle[Foreground=Blue] /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbHoverBorder}" />
-  </Style>-->
-
-  <!--<Style Selector="Thumb.VerticalSliderThumbStyle[IsDragging=True] /template/ Path#Background">
-        <Setter Property="Fill" Value="{StaticResource VerticalSliderThumbPressedBackground}" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderThumbStyle[IsDragging=True] /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbPressedBorder}" />
-  </Style>-->
-
-  <Style Selector="Thumb.VerticalSliderThumbStyle:disabled /template/ Path#Background">
-    <Setter Property="Fill" Value="#FFF4F4F4" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderThumbStyle:disabled /template/ Path#InnerBorder">
-    <Setter Property="Stroke" Value="{x:Null}" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderThumbStyle:disabled /template/ Path#OuterBorder">
-    <Setter Property="Data" Value="{StaticResource SliderThumbDisabledGeometry}" />
-    <Setter Property="Stroke" Value="#FFAEB1AF" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderThumbStyle">
-    <!--<Setter Property="Focusable"
-                Value="false" />-->
-    <Setter Property="Height"
-            Value="11" />
-    <Setter Property="Width"
-            Value="22" />
-    <Setter Property="Foreground"
-            Value="Gray" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Canvas>
-            <Canvas.RenderTransform>
-              <TransformGroup>
-                <TransformGroup.Children>
-                  <RotateTransform Angle="90" />
-                  <TranslateTransform X="11"
-                                      Y="5.5" />
-                </TransformGroup.Children>
-              </TransformGroup>
-            </Canvas.RenderTransform>
-            <Path x:Name="Background"
-                  Fill="{StaticResource VerticalSliderThumbNormalBackground}"
-                  Data="{StaticResource SliderThumbOuterBorderGeometry}" />
-            <Path x:Name="InnerBorder"
-                  Stroke="White"
-                  StrokeThickness="1"
-                  Data="{StaticResource SliderThumbMiddleBorderGeometry}" />
-            <Path x:Name="OuterBorder"
-                  Stroke="#FF929292"
-                  StrokeThickness="1"
-                  Data="{StaticResource SliderThumbOuterBorderGeometry}" />
-          </Canvas>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderThumbStyle:pointerover /template/ Path#Background">
-    <Setter Property="Fill" Value="{StaticResource VerticalSliderThumbHoverBackground}" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderThumbStyle:pointerover /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbHoverBorder}" />
-  </Style>
-
-  <!--<Style Selector="Thumb.VerticalSliderThumbStyle[Foreground=Blue] /template/ Path#Background">
-    <Setter Property="Fill" Value="{StaticResource VerticalSliderThumbHoverBackground}" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderThumbStyle[Foreground=Blue] /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbHoverBorder}" />
-  </Style>-->
-
-  <!--<Style Selector="Thumb.VerticalSliderThumbStyle[IsDragging=True] /template/ Path#Background">
-        <Setter Property="Fill" Value="{StaticResource VerticalSliderThumbPressedBackground}" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderThumbStyle[IsDragging=True] /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbPressedBorder}" />
-  </Style>-->
-
-  <Style Selector="Thumb.VerticalSliderThumbStyle:disabled /template/ Path#Background">
-    <Setter Property="Fill" Value="#FFF4F4F4" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderThumbStyle:disabled /template/ Path#InnerBorder">
-    <Setter Property="Stroke" Value="{x:Null}" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderThumbStyle:disabled /template/ Path#OuterBorder">
-    <Setter Property="Data" Value="{StaticResource SliderThumbDisabledGeometry}" />
-    <Setter Property="Stroke" Value="#FFAEB1AF" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderLeftThumbStyle">
-    <!--<Setter Property="Focusable"
-                   Value="false" />-->
-    <Setter Property="Height"
-            Value="10" />
-    <Setter Property="Width"
-            Value="18" />
-    <Setter Property="Foreground"
-            Value="Gray" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Canvas>
-            <Canvas.RenderTransform>
-              <TransformGroup>
-                <TransformGroup.Children>
-                  <RotateTransform Angle="90" />
-                  <TranslateTransform X="9"
-                                      Y="5" />
-                </TransformGroup.Children>
-              </TransformGroup>
-            </Canvas.RenderTransform>
-            <Path x:Name="Background"
-                  Fill="{StaticResource VerticalSliderThumbNormalBackground}"
-                  Data="{StaticResource SliderPointedThumbOuterBorderGeometry}" />
-            <Path x:Name="InnerBorder"
-                  Stroke="White"
-                  StrokeThickness="1"
-                  Data="{StaticResource SliderPointedThumbMiddleBorderGeometry}" />
-            <Path x:Name="OuterBorder"
-                  Stroke="#FF929292"
-                  StrokeThickness="1"
-                  Data="{StaticResource SliderPointedThumbOuterBorderGeometry}" />
-          </Canvas>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderLeftThumbStyle:pointerover /template/ Path#Background">
-    <Setter Property="Fill" Value="{StaticResource VerticalSliderThumbHoverBackground}" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderLeftThumbStyle:pointerover /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbHoverBorder}" />
-  </Style>
-
-  <!--<Style Selector="Thumb.VerticalSliderLeftThumbStyle[Foreground=Blue] /template/ Path#Background">
-        <Setter Property="Fill" Value="{StaticResource VerticalSliderThumbHoverBackground}" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderLeftThumbStyle[Foreground=Blue] /template/ Path#OuterBorder">
-      <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbHoverBorder}" />
-  </Style>-->
-
-  <!--<Style Selector="Thumb.VerticalSliderLeftThumbStyle[IsDragging=True] /template/ Path#Background">
-            <Setter Property="Fill" Value="{StaticResource VerticalSliderThumbPressedBackground}" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderLeftThumbStyle[IsDragging=True] /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbPressedBorder}" />
-  </Style>-->
-
-  <Style Selector="Thumb.VerticalSliderLeftThumbStyle:disabled /template/ Path#Background">
-    <Setter Property="Fill" Value="#FFF4F4F4" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderLeftThumbStyle:disabled /template/ Path#InnerBorder">
-    <Setter Property="Stroke" Value="{x:Null}" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderLeftThumbStyle:disabled /template/ Path#OuterBorder">
-    <Setter Property="Data" Value="{StaticResource SliderPointedThumbDisabledGeometry}" />
-    <Setter Property="Stroke" Value="#FFAEB1AF" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderRightThumbStyle">
-    <!--<Setter Property="Focusable"
-                Value="false" />-->
-    <Setter Property="Height"
-            Value="10" />
-    <Setter Property="Width"
-            Value="18" />
-    <Setter Property="Foreground"
-            Value="Gray" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Canvas>
-            <Canvas.RenderTransform>
-              <TransformGroup>
-                <TransformGroup.Children>
-                  <RotateTransform Angle="-90" />
-                  <TranslateTransform X="9"
-                                      Y="5" />
-                </TransformGroup.Children>
-              </TransformGroup>
-            </Canvas.RenderTransform>
-            <Path x:Name="Background"
-                  Fill="{StaticResource VerticalSliderThumbNormalBackgroundInverted}"
-                  Data="{StaticResource SliderPointedThumbOuterBorderGeometry}" />
-            <Path x:Name="InnerBorder"
-                  Stroke="White"
-                  StrokeThickness="1"
-                  Data="{StaticResource SliderPointedThumbMiddleBorderGeometry}" />
-            <Path x:Name="OuterBorder"
-                  Stroke="#FF929292"
-                  StrokeThickness="1"
-                  Data="{StaticResource SliderPointedThumbOuterBorderGeometry}" />
-          </Canvas>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderRightThumbStyle:pointerover /template/ Path#Background">
-    <Setter Property="Fill" Value="{StaticResource VerticalSliderThumbHoverBackgroundInverted}" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderRightThumbStyle:pointerover /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbHoverBorder}" />
-  </Style>
-
-  <!--<Style Selector="Thumb.VerticalSliderRightThumbStyle[Foreground=Blue] /template/ Path#Background">
-        <Setter Property="Fill" Value="{StaticResource VerticalSliderThumbHoverBackgroundInverted}" />
- </Style>
-
-  <Style Selector="Thumb.VerticalSliderRightThumbStyle[Foreground=Blue] /template/ Path#OuterBorder">
-      <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbHoverBorder}" />
-  </Style>-->
-
-  <!--<Style Selector="Thumb.VerticalSliderRightThumbStyle[IsDragging=True] /template/ Path#Background">
-            <Setter Property="Fill" Value="{StaticResource VerticalSliderThumbPressedBackgroundInverted}" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderRightThumbStyle[IsDragging=True] /template/ Path#OuterBorder">
-    <Setter Property="Stroke" Value="{StaticResource HorizontalSliderThumbPressedBorder}" />
-  </Style>-->
-
-  <Style Selector="Thumb.VerticalSliderRightThumbStyle:disabled /template/ Path#Background">
-    <Setter Property="Fill" Value="#FFF4F4F4" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderRightThumbStyle:disabled /template/ Path#InnerBorder">
-    <Setter Property="Stroke" Value="{x:Null}" />
-  </Style>
-
-  <Style Selector="Thumb.VerticalSliderRightThumbStyle:disabled /template/ Path#OuterBorder">
-    <Setter Property="Data" Value="{StaticResource SliderPointedThumbDisabledGeometry}" />
-    <Setter Property="Stroke" Value="#FFAEB1AF" />
-  </Style>
-
-  <Style Selector="Controlz|SliderEx:hotizontal">
-    <Setter Property="Background"
-            Value="Transparent" />
-    <Setter Property="Foreground"
-            Value="#FFC4C4C4" />
+ 
+  <Style Selector="Thumb.Slider">
+    <Setter Property="BorderThickness" Value="0" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
           <Border Background="{TemplateBinding Background}"
                   BorderBrush="{TemplateBinding BorderBrush}"
-                  BorderThickness="{TemplateBinding BorderThickness}">
-            <Grid>
-              <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto"
-                               MinHeight="20" />
-                <!--MinHeight="{TemplateBinding MinHeight}"-->
-
-                <RowDefinition Height="Auto" />
-              </Grid.RowDefinitions>
-              <!-- Top TickBar: Will be shown only when Slider.TickPlacement = TopLeft or Both -->
-              <Controlz:TickBar x:Name="TopTick"
-                       Grid.Row="0"
-                       IsVisible="False"
-                       Placement="Top"
-                       Fill="{TemplateBinding Foreground}"
-                       Height="4" />
-              <!-- Bottom TickBar: Will be shown only when Slider.TickPlacement = BottomRight or Both -->
-              <Controlz:TickBar x:Name="BottomTick"
-                       Grid.Row="2"
-                       IsVisible="False"
-                       Placement="Bottom"
-                       Fill="{TemplateBinding Foreground}"
-                       Height="4" />
-              <!-- Slider Track Background -->
-              <Border x:Name="TrackBackground"
-                      Grid.Row="1"
-                      Margin="5,0"
-                      VerticalAlignment="Center"
-                      BorderBrush="{StaticResource HorizontalSliderTrackNormalBorder}"
-                      BorderThickness="1"
-                      CornerRadius="1"
-                      Background="{StaticResource HorizontalSliderTrackNormalBackground}"
-                      Height="4.0">
-                <!-- SelectionRangeElement (draw on top of Track background) -->
-                <Canvas Margin="-6,-1">
-                  <Rectangle x:Name="PART_SelectionRange"
-                             Fill="{DynamicResource ThemeHighlightBrushKey}"
-                             Height="4.0"
-                             IsVisible="False"
-                             StrokeThickness="1.0"
-                             Stroke="{DynamicResource ThemeBorderLowBrush}}" />
-                </Canvas>
-              </Border>
-              <!-- MainPartsPanel -->
-              <Track Grid.Row="1" Orientation="Horizontal"
-                     Name="PART_Track">
-                <Track.DecreaseButton>
-                  <RepeatButton Classes="SliderRepeatButtonStyle"
-                                Command="{x:Static Controlz:SliderEx.DecreaseLargeCommand}" />
-                </Track.DecreaseButton>
-                <Track.IncreaseButton>
-                  <RepeatButton Classes="SliderRepeatButtonStyle"
-                                Command="{x:Static Controlz:SliderEx.IncreaseLargeCommand}" />
-                </Track.IncreaseButton>
-                <Track.Thumb>
-                  <Thumb MinWidth="20" MinHeight="20" Name="Thumb" Classes="HorizontalSliderThumbStyle}">
-                    <Thumb.Template>
-                      <ControlTemplate>
-                        <Grid>
-                          <Ellipse Width="12" Height="12" Fill="{DynamicResource ThemeAccentBrush}" />
-                        </Grid>
-                      </ControlTemplate>
-                    </Thumb.Template>
-                  </Thumb>
-                </Track.Thumb>
-              </Track>
-            </Grid>
-          </Border>
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="2"
+                  />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
 
-  <!--<Style Selector="Controlz|SliderEx:hotizontal[TickPlacement=TopLeft] /template/ Controlz|TickBar#TopTick">
+  <Style Selector="RepeatButton.HorizontalTrack">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Background="{TemplateBinding Background}">
+            <Rectangle Height="3" Fill="{TemplateBinding Foreground}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="RepeatButton.HorizontalTrackValue">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Background="{TemplateBinding Background}">
+            <Rectangle Height="5" Fill="{TemplateBinding Foreground}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="RepeatButton.VerticalTrack">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Background="{TemplateBinding Background}">
+            <Rectangle Width="3" Fill="{TemplateBinding Foreground}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="RepeatButton.VerticalTrackValue">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource ThemeBorderLowBrush}"/>
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Background="{TemplateBinding Background}">
+            <Rectangle Width="5" Fill="{TemplateBinding Foreground}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:horizontal">
+    <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderHighBrush}" />
+    <Setter Property="BorderThickness" Value="2" />
+    <Setter Property="Foreground" Value="{DynamicResource ThemeBorderMidBrush}" />
+    <Setter Property="Maximum" Value="100" />
+    <Setter Property="Minimum" Value="0" />
+    <Setter Property="MinWidth" Value="40"/>
+    <Setter Property="MinHeight" Value="20"/>
+    <Setter Property="Value" Value="0" />
+    <Setter Property="Template" >
+      <ControlTemplate>
+        <Grid x:Name="HorizontalTemplate"
+            Background="{TemplateBinding Background}">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" MinHeight="20" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <Controlz:TickBar x:Name="TopTick"
+                              Grid.Row="0"
+                              Height="4"
+                              Fill="{TemplateBinding Foreground}"
+                              Maximum="{TemplateBinding Maximum}"
+                              Minimum="{TemplateBinding Minimum}"
+                              Placement="Top"
+                              ReservedSpace="{DynamicResource HorizontalThumbWidth}"
+                              TickFrequency="{TemplateBinding TickFrequency}"
+                              Ticks="{TemplateBinding Ticks}"
+                              IsSelectionRangeEnabled="{TemplateBinding IsSelectionRangeEnabled}"
+                              SelectionEnd="{TemplateBinding SelectionEnd}"
+                              SelectionStart="{TemplateBinding SelectionStart}"
+                              IsVisible="False" />
+
+
+          <Controlz:TickBar x:Name="BottomTick"
+                                  Grid.Row="2"
+                                  Height="4"
+                                  Fill="{TemplateBinding Foreground}"
+                                  Maximum="{TemplateBinding Maximum}"
+                                  Minimum="{TemplateBinding Minimum}"
+                                  Placement="Bottom"
+                                  ReservedSpace="{DynamicResource HorizontalThumbWidth}"
+                                  Ticks="{TemplateBinding Ticks}"
+                                  IsSelectionRangeEnabled="{TemplateBinding IsSelectionRangeEnabled}"
+                                  SelectionEnd="{TemplateBinding SelectionEnd}"
+                                  SelectionStart="{TemplateBinding SelectionStart}"
+                                  TickFrequency="{TemplateBinding TickFrequency}"
+                                  IsVisible="False" />
+
+
+          <Border Name="TrackBackground" Grid.Row="1" Height="4" Margin="6,0" VerticalAlignment="Center"/>
+          <Track x:Name="PART_Track" Grid.Row="1" Orientation="Horizontal">
+            <Track.DecreaseButton>
+              <RepeatButton x:Name="PART_DecreaseButton"
+                            Foreground="{DynamicResource ThemeAccentBrush}"
+                            Classes="HorizontalTrackValue"
+                            Command="{x:Static Controlz:SliderEx.DecreaseLargeCommand}"
+                            />
+            </Track.DecreaseButton>
+            <Track.IncreaseButton>
+              <RepeatButton x:Name="PART_IncreaseButton"
+                            Foreground="{DynamicResource ThemeControlHighlightLowBrush}"
+                            Classes="HorizontalTrack"
+                            Command="{x:Static Controlz:SliderEx.IncreaseLargeCommand}"
+                            />
+
+            </Track.IncreaseButton>
+            <Track.Thumb>
+              <Thumb x:Name="HorizontalThumb"
+                        Width="{DynamicResource  HorizontalThumb.Width}"
+                        Height="{DynamicResource HorizontalThumb.Height}"
+                        Background="{DynamicResource ThemeBorderMidBrush}"
+                        BorderThickness="1 0"
+                        Classes="Slider" />
+            </Track.Thumb>
+
+          </Track>
+        </Grid>
+
+      </ControlTemplate>
+    </Setter>
+
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:horizontal:pointerover /template/ Thumb#HorizontalThumb">
+    <Setter Property="Background" Value="{DynamicResource ThemeControlHighlightBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:horizontal:pointerover /template/ RepeatButton#PART_DecreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeAccentBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:horizontal:pointerover /template/ RepeatButton#PART_IncreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeControlHighlightLowBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:horizontal /template/ RepeatButton#PART_DecreaseButton:pressed /template/ Thumb#HorizontalThumb">
+    <Setter Property="Background" Value="{DynamicResource ThemeBorderMidBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:horizontal /template/ RepeatButton#PART_DecreaseButton:pressed /template/ RepeatButton#PART_DecreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeAccentBrush)}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:horizontal /template/ RepeatButton#PART_DecreaseButton:pressed /template/ RepeatButton#PART_IncreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeControlHighlightLowBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:horizontal /template/ RepeatButton#PART_IncreaseButton:pressed /template/ Thumb#HorizontalThumb">
+    <Setter Property="Background" Value="{DynamicResource ThemeBorderMidBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:horizontal /template/ RepeatButton#PART_IncreaseButton:pressed /template/ RepeatButton#PART_DecreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeAccentBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:horizontal /template/ RepeatButton#PART_IncreaseButton:pressed /template/ RepeatButton#PART_IncreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeControlHighlightLowBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:horizontal /template/ Thumb#HorizontalThumb:pressed /template/ Thumb#HorizontalThumb">
+    <Setter Property="Background" Value="{DynamicResource ThemeBorderMidBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:horizontal /template/ Thumb#HorizontalThumb:pressed /template/ RepeatButton#PART_DecreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeAccentBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:horizontal /template/ Thumb#HorizontalThumb:pressed /template/ RepeatButton#PART_IncreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeControlHighlightLowBrush}" />
+  </Style>
+
+  <!--Thumb.IsDragging not available in avalonia-->
+
+  <!--<Style Selector="Controlz|SliderEx:horizontal /template/ Thumb#HorizontalThumb[IsDragging=true] /template/ Thumb#HorizontalThumb">
+    <Setter Property="Background" Value="{DynamicResource ThemeBorderMidBrush)}" />
+  </Style>-->
+
+  <!--<Style Selector="Controlz|SliderEx:horizontal /template/ Controls|Thumb#HorizontalThumb[IsDragging=true] /template/ RepeatButton#PART_DecreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeAccentBrush)}" />
+  </Style>-->
+
+  <!--<Style Selector="Controlz|SliderEx:horizontal /template/ Controls|Thumb#HorizontalThumb[IsDragging=true] /template/ RepeatButton#PART_IncreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeControlHighlightLowBrush}" />
+  </Style>-->
+
+  <Style Selector="Controlz|SliderEx:horizontal:disabled /template/ Thumb#HorizontalThumb">
+    <Setter Property="Background" Value="{DynamicResource ThemeBorderHighBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:horizontal:disabled /template/ RepeatButton#PART_DecreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeBorderHighBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:horizontal:disabled /template/ RepeatButton#PART_IncreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeBorderHighBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:horizontal[TickPlacement=TopLeft] /template/ Controlz|TickBar#TopTick">
     <Setter Property="IsVisible" Value="true" />
-  </Style>-->
+  </Style>
 
-  <!--<Style Selector="Controlz|SliderEx:hotizontal[TickPlacement=TopLeft] /template/ Thumb#Thumb">
-    <Setter Property="helper:Extensions.Classes" Value="HorizontalSliderUpThumbStyle" />
-  </Style>-->
+  <Style Selector="Controlz|SliderEx:horizontal[TickPlacement=BottomRight] /template/ Controlz|TickBar#BottomTick">
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
 
-  <!--<Style Selector="Controlz|SliderEx[TickPlacement=TopLeft] /template/ Border#TrackBackground">
-    <Setter Property="Margin" Value="5,2,5,0" />
-  </Style>-->
+  <Style Selector="Controlz|SliderEx:horizontal[TickPlacement=Both] /template/ Controlz|TickBar#BottomTick">
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
+  
+  <Style Selector="Controlz|SliderEx:horizontal[TickPlacement=Both] /template/ Controlz|TickBar#TopTick">
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
 
-  <!--<ControlTemplate.Triggers>
-            -->
-  <!-- Show Tickbars and Reposition the Track-->
-  <!--
-            <Trigger Property="TickPlacement"
-                     Value="TopLeft">
-              <Setter TargetName="TopTick"
-                      Property="Visibility"
-                      Value="Visible" />
-              <Setter TargetName="Thumb"
-                      Property="Style"
-                      Value="{StaticResource HorizontalSliderUpThumbStyle}" />
-              <Setter TargetName="TrackBackground" />
-            </Trigger>
-            <Trigger Property="TickPlacement"
-                     Value="BottomRight">
-              <Setter TargetName="BottomTick"
-                      Property="Visibility"
-                      Value="Visible" />
-              <Setter TargetName="Thumb"
-                      Property="Style"
-                      Value="{StaticResource HorizontalSliderDownThumbStyle}" />
-              <Setter TargetName="TrackBackground"
-                      Property="Margin"
-                      Value="5,0,5,2" />
-            </Trigger>
-            <Trigger Property="TickPlacement"
-                     Value="Both">
-              <Setter TargetName="TopTick"
-                      Property="Visibility"
-                      Value="Visible" />
-              <Setter TargetName="BottomTick"
-                      Property="Visibility"
-                      Value="Visible" />
-            </Trigger>
-            -->
-  <!-- Display SelectionRange background -->
-  <!--
-            <Trigger Property="IsSelectionRangeEnabled"
-                     Value="true">
-              <Setter TargetName="PART_SelectionRange"
-                      Property="Visibility"
-                      Value="Visible" />
-            </Trigger>
-            <Trigger Property="IsKeyboardFocused"
-                     Value="true">
-              <Setter TargetName="Thumb"
-                      Property="Foreground"
-                      Value="Blue" />
-            </Trigger>
-          </ControlTemplate.Triggers>-->
 
   <Style Selector="Controlz|SliderEx:vertical">
-    <Setter Property="MinWidth" Value="20" />
-    <Setter Property="MinHeight" Value="40" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Border Background="{TemplateBinding Background}"
-                  BorderBrush="{TemplateBinding BorderBrush}"
-                  BorderThickness="{TemplateBinding BorderThickness}">
-            <Grid>
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto"
-                                  MinWidth="26" />
-                <ColumnDefinition Width="Auto" />
-              </Grid.ColumnDefinitions>
-              <!-- Top TickBar: Will be shown only when Slider.TickPlacement = TopLeft or Both -->
-              <Controlz:TickBar x:Name="TopTick"
-                       Grid.Column="0"
-                       IsVisible="False"
-                       Placement="Left"
-                       Fill="{TemplateBinding Foreground}"
-                       Width="4" />
-              <!-- Bottom TickBar: Will be shown only when Slider.TickPlacement = BottomRight or Both -->
-              <Controlz:TickBar x:Name="BottomTick"
-                       Grid.Column="2"
-                       IsVisible="False"
-                       Placement="Right"
-                       Fill="{TemplateBinding Foreground}"
-                       Width="4" />
-              <!-- Slider Track Background -->
-              <Border Name="TrackBackground"
-                      Grid.Column="1"
-                      Margin="0,5"
-                      HorizontalAlignment="Center"
-                      BorderBrush="{StaticResource VerticalSliderTrackNormalBorder}"
-                      BorderThickness="1"
-                      CornerRadius="1"
-                      Background="{StaticResource HorizontalSliderTrackNormalBackground}"
-                      Width="4.0">
-
-                <!-- SelectionRangeElement (draw on top of Track background) -->
-                <Canvas Margin="-1,-6">
-                  <Rectangle x:Name="PART_SelectionRange"
-                             Fill="{DynamicResource ThemeHighlightBrushKey}"
-                             Width="4.0"
-                             IsVisible="False"
-                             StrokeThickness="1.0"
-                             Stroke="{DynamicResource ThemeBorderLowBrush}}" />
-                </Canvas>
-              </Border>
-
-              <!-- MainPartsPanel -->
-              <Track Name="PART_Track" Grid.Column="1" Orientation="Vertical" IsDirectionReversed="True">
-                <Track.DecreaseButton>
-                  <RepeatButton Classes="repeattrack"
-                                Command="{x:Static Controlz:SliderEx.DecreaseLargeCommand}" />
-                </Track.DecreaseButton>
-                <Track.IncreaseButton>
-                  <RepeatButton Classes="repeattrack"
-                                Command="{x:Static Controlz:SliderEx.IncreaseLargeCommand}" />
-                </Track.IncreaseButton>
-                <!--<Track.Thumb>
-                  <Thumb x:Name="Thumb"
-                         Classes="VerticalSliderThumbStyle" />
-                </Track.Thumb>-->
-                <Thumb MinWidth="20" MinHeight="20">
-                  <Thumb.Template>
-                    <ControlTemplate>
-                      <Grid>
-                        <Ellipse Width="12" Height="12" Fill="{DynamicResource ThemeAccentBrush}" />
-                      </Grid>
-                    </ControlTemplate>
-                  </Thumb.Template>
-                </Thumb>
-              </Track>
-            </Grid>
-          </Border>
-          <!--<ControlTemplate.Triggers>
-            -->
-          <!-- Show Tickbars and Reposition the Track-->
-          <!--
-            <Trigger Property="TickPlacement"
-                     Value="TopLeft">
-              <Setter TargetName="TopTick"
-                      Property="Visibility"
-                      Value="Visible" />
-              <Setter TargetName="Thumb"
-                      Property="Style"
-                      Value="{StaticResource VerticalSliderLeftThumbStyle}" />
-              <Setter TargetName="TrackBackground"
-                      Property="Margin"
-                      Value="2,5,0,5" />
-            </Trigger>
-            <Trigger Property="TickPlacement"
-                     Value="BottomRight">
-              <Setter TargetName="BottomTick"
-                      Property="Visibility"
-                      Value="Visible" />
-              <Setter TargetName="Thumb"
-                      Property="Style"
-                      Value="{StaticResource VerticalSliderRightThumbStyle}" />
-              <Setter TargetName="TrackBackground"
-                      Property="Margin"
-                      Value="0,5,2,5" />
-            </Trigger>
-            <Trigger Property="TickPlacement"
-                     Value="Both">
-              <Setter TargetName="TopTick"
-                      Property="Visibility"
-                      Value="Visible" />
-              <Setter TargetName="BottomTick"
-                      Property="Visibility"
-                      Value="Visible" />
-            </Trigger>
-            -->
-          <!-- Display SelectionRange background -->
-          <!--
-            <Trigger Property="IsSelectionRangeEnabled"
-                     Value="true">
-              <Setter TargetName="PART_SelectionRange"
-                      Property="Visibility"
-                      Value="Visible" />
-            </Trigger>
-            <Trigger Property="IsKeyboardFocused"
-                     Value="true">
-              <Setter TargetName="Thumb"
-                      Property="Foreground"
-                      Value="Blue" />
-            </Trigger>
-          </ControlTemplate.Triggers>-->
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <Style Selector="Controlz|SliderEx /template/ Track#PART_Track">
-    <Setter Property="Minimum" Value="{TemplateBinding Minimum}" />
-    <Setter Property="Maximum" Value="{TemplateBinding Maximum}" />
-    <Setter Property="Value" Value="{TemplateBinding Value, Mode=TwoWay}" />
-  </Style>
-
-  <Style Selector="Controlz|SliderEx /template/ Border#TrackBackground">
-    <Setter Property="BorderThickness" Value="2" />
-    <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderLowBrush}" />
-  </Style>
-
-  <Style Selector="Slider /template/ RepeatButton.repeattrack">
-    <Setter Property="Background" Value="Transparent" />
-    <Setter Property="Foreground" Value="{DynamicResource ThemeBorderLowBrush}" />
-    <Setter Property="Template">
+    <Setter Property="MinWidth" Value="20"/>
+    <Setter Property="MinHeight" Value="40"/>
+    <Setter Property="Template" >
       <ControlTemplate>
-        <Border Background="{TemplateBinding Background}" />
+        <Grid x:Name="HorizontalTemplate"
+              Background="{TemplateBinding Background}">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" MinWidth="26" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Controlz:TickBar x:Name="TopTick"
+                   Grid.Column="0"
+                   Width="4"
+                   Fill="{TemplateBinding Foreground}"
+                   Placement="Left"
+                   IsVisible="False" />
+          <Controlz:TickBar x:Name="BottomTick"
+                   Grid.Column="2"
+                   Width="4"
+                   Fill="{TemplateBinding Foreground}"
+                   Placement="Right"
+                   IsVisible="False" />
+          <Border Name="TrackBackground" Grid.Column="1" Width="4" Margin="0,6" HorizontalAlignment="Center"/>
+          <Track x:Name="PART_Track" Grid.Column="1" Orientation="Vertical" IsDirectionReversed="True">
+            <Track.DecreaseButton>
+              <RepeatButton x:Name="PART_DecreaseButton"
+                            Foreground="{DynamicResource ThemeAccentBrush}"
+                            Classes="VerticalTrackValue"
+                            Command="{x:Static Controlz:SliderEx.DecreaseLargeCommand}"
+                            />
+            </Track.DecreaseButton>
+            <Track.IncreaseButton>
+              <RepeatButton x:Name="PART_IncreaseButton"
+                            Foreground="{DynamicResource ThemeControlHighlightLowBrush)}"
+                            Classes="VerticalTrack"
+                            Command="{x:Static Controlz:SliderEx.IncreaseLargeCommand}"
+                            />
+            </Track.IncreaseButton>
+            <Track.Thumb>
+              <Thumb x:Name="VerticalThumb"
+                                   Width="{DynamicResource VerticalThumb.Width}"
+                                   Height="{DynamicResource VerticalThumb.Height}"
+                                   Background="{DynamicResource ThemeBorderMidBrush)}"
+                                   BorderThickness="0 1"
+                                   Classes="Slider" />
+            </Track.Thumb>
+          </Track>
+        </Grid>
       </ControlTemplate>
     </Setter>
   </Style>
+
+  <Style Selector="Controlz|SliderEx:vertical:pointerover /template/ Thumb#VerticalThumb">
+    <Setter Property="Background" Value="{DynamicResource ThemeControlHighlightBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:vertical:pointerover /template/ RepeatButton#PART_DecreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeAccentBrush)}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:vertical:pointerover /template/ RepeatButton#PART_IncreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeControlHighlightLowBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:vertical:pointerover /template/ RepeatButton#PART_DecreaseButton:pressed /template/ Thumb#VerticalThumb">
+    <Setter Property="Background" Value="{DynamicResource ThemeBorderMidBrush)}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:vertical:pointerover /template/ RepeatButton#PART_DecreaseButton:pressed">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeAccentBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:vertical:pointerover /template/ RepeatButton#PART_DecreaseButton:pressed RepeatButton#PART_IncreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeControlHighlightLowBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:vertical:pointerover /template/ RepeatButton#PART_IncreaseButton:pressed /template/ Thumb#VerticalThumb">
+    <Setter Property="Background" Value="{DynamicResource ThemeBorderMidBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:vertical:pointerover /template/ RepeatButton#PART_IncreaseButton:pressed RepeatButton#PART_DecreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeAccentBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:vertical:pointerover /template/ RepeatButton#PART_IncreaseButton:pressed">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeControlHighlightLowBrush}" />
+  </Style>
+
+  <!--Thumb.IsDragging not available in avalonia-->
+  
+  <!--<Style Selector="Controlz|SliderEx:vertical /template/ Thumb[IsDragging=true]#VerticalThumb">
+    <Setter Property="Background" Value="{DynamicResource ThemeBorderMidBrush}" />
+  </Style>-->
+
+  <!--<Style Selector="Controlz|SliderEx:vertical /template/ Thumb[IsDragging=true]#VerticalThumb RepeatButton#PART_DecreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeAccentBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:vertical /template/ Thumb[IsDragging=true]#VerticalThumb RepeatButton#PART_IncreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeControlHighlightLowBrush}" />
+  </Style>-->
+
+  <Style Selector="Controlz|SliderEx:vertical:disabled /template/ Thumb">
+    <Setter Property="Background" Value="{DynamicResource ThemeBorderHighBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:vertical:disabled /template/ RepeatButton#PART_DecreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeBorderHighBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:vertical:disabled /template/ RepeatButton#PART_IncreaseButton">
+    <Setter Property="Foreground" Value="{DynamicResource ThemeBorderHighBrush}" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:vertical[TickPlacement=TopLeft] /template/ Controlz|TickBar#TopTick">
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:vertical[TickPlacement=BottomRight] /template/ Controlz|TickBar#BottomTick">
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
+
+  <Style Selector="Controlz|SliderEx:vertical[TickPlacement=Both] /template/ Controlz|TickBar#BottomTick">
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
+  <Style Selector="Controlz|SliderEx:vertical[TickPlacement=Both] /template/ Controlz|TickBar#TopTick">
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
+
 </Styles>

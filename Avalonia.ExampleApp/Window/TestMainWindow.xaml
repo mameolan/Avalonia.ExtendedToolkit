@@ -32,7 +32,7 @@
       </ComboBox>
 
       <TextBlock Margin="10,0,0,0" Text="Color Schemes" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
-      <ComboBox Name="cmbColorScheme" Margin="10,1,0,1" Items="{Binding ColorSchemes}"
+      <ComboBox IsEnabled="False"  Name="cmbColorScheme" Margin="10,1,0,1" Items="{Binding ColorSchemes}"
          SelectedIndex="0" SelectedItem="{Binding SelectedColorScheme}" Width="100"
                 >
         <ComboBox.ItemTemplate>
@@ -45,7 +45,7 @@
       </ComboBox>
 
       <TextBlock Margin="10,0,0,0" Text="Skins" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
-      <ComboBox Margin="10,1,0,1" Items="{Binding Skins}"
+      <ComboBox IsEnabled="False"  Margin="10,1,0,1" Items="{Binding Skins}"
          SelectedIndex="0" SelectedItem="{Binding SelectedSkin, Mode=TwoWay}" Width="100"
                 >
         <ComboBox.ItemTemplate>
@@ -63,10 +63,13 @@
         <ColumnDefinition/>
         <ColumnDefinition/>
       </Grid.ColumnDefinitions>-->
-      
+
+      <Controlz:SliderEx VerticalAlignment="Center" Width="300" Orientation="Horizontal"
+                         TickPlacement="TopLeft" TickFrequency="2"
+                         />
     
       <!--<Button Command="{Binding ShowFlyoutDemoCommand}" Content="Open File Demo"/>-->
-      <Views:PropertyGridExamples/>
+      <!--<Views:PropertyGridExamples/>-->
       
       
     </Grid>
