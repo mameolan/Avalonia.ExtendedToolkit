@@ -1,17 +1,17 @@
-﻿using Avalonia.Controls.Primitives;
+﻿using System;
+using Avalonia.Controls.Primitives;
 
 namespace Avalonia.Controlz.Controls
 {
-    // <summary>
-    // This source file is adapted from the Windows Presentation Foundation project.
-    // (https://github.com/dotnet/wpf/)
-    //
-
-
     /// <summary>
     /// GroupBox Control class
     /// </summary>
     public class GroupBox: HeaderedContentControl
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
+        public Type StyleKey => typeof(GroupBox);
+
     }
 }

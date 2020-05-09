@@ -64,9 +64,14 @@
         <ColumnDefinition/>
       </Grid.ColumnDefinitions>-->
 
-      <Controlz:SliderEx VerticalAlignment="Center" Width="300" Orientation="Horizontal"
+      <!--<Controlz:SliderEx VerticalAlignment="Center" Width="300" Orientation="Horizontal"
                          TickPlacement="TopLeft" TickFrequency="2"
-                         />
+                         />-->
+
+      <Controlz:GroupBox Header="Test" Width="200" Height="200" Classes="MahApps">
+        <Button Content="Click Me"/>
+      </Controlz:GroupBox>
+      
     
       <!--<Button Command="{Binding ShowFlyoutDemoCommand}" Content="Open File Demo"/>-->
       <!--<Views:PropertyGridExamples/>-->
