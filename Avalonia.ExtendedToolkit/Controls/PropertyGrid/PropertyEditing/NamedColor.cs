@@ -38,7 +38,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing
         public NamedColor(string name, Color color)
         {
             if (string.IsNullOrEmpty(name))
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(nameof(name));
 
             Name = name;
             Color = color;

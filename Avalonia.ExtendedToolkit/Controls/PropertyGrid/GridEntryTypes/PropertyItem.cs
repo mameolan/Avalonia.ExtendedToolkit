@@ -64,11 +64,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
           : this(null)
         {
             if (owner == null)
-                throw new ArgumentNullException("owner");
+                throw new ArgumentNullException(nameof(owner));
             if (component == null)
-                throw new ArgumentNullException("component");
+                throw new ArgumentNullException(nameof(component));
             if (descriptor == null)
-                throw new ArgumentNullException("descriptor");
+                throw new ArgumentNullException(nameof(descriptor));
 
             Owner = owner;
             Name = descriptor.Name;

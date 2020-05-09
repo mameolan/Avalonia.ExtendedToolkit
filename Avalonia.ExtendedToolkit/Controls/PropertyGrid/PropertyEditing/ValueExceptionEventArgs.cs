@@ -27,11 +27,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing
         public ValueExceptionEventArgs(string message, PropertyItemValue value, ValueExceptionSource source, Exception exception)
         {
             if (message == null)
-                throw new ArgumentNullException("message");
+                throw new ArgumentNullException(nameof(message));
             if (value == null)
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             if (exception == null)
-                throw new ArgumentNullException("exception");
+                throw new ArgumentNullException(nameof(exception));
             _message = message;
             _value = value;
             _source = source;

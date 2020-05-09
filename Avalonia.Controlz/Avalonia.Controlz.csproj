@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<Import Project="..\Directory.build.props" />
-	<PropertyGroup>
+  <Import Project="..\Directory.build.props" />
+  
+  <PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<IsPackable>true</IsPackable>
@@ -11,6 +11,14 @@
 		<PackageId>mameolan.Avalonia.Controlz</PackageId>
 		<Description>Standard controls which are not available in Avalonia.</Description>
 		<PackageTags>gui;avalonia;avaloniaui;xaml</PackageTags>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DocumentationFile>bin\Debug\Avalonia.Controlz.xml</DocumentationFile>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <DocumentationFile>bin\Release\Avalonia.Controlz.xml</DocumentationFile>
 	</PropertyGroup>
 
 
@@ -40,5 +48,7 @@
 		<AvaloniaResource Include="Assets\*" />
 	</ItemGroup>
 
-
+	
+	
+  
 </Project>

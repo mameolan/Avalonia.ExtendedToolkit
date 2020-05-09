@@ -51,9 +51,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
         public PropertyEditor(Type declaringType, string propertyName)
         {
             if (declaringType == null)
-                throw new ArgumentNullException("declaringType");
+                throw new ArgumentNullException(nameof(declaringType));
             if (string.IsNullOrEmpty(propertyName))
-                throw new ArgumentNullException("propertyName");
+                throw new ArgumentNullException(nameof(propertyName));
 
             DeclaringType = declaringType;
             PropertyName = propertyName;

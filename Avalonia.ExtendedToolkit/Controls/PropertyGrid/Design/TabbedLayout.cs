@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Input;
-using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Generators;
 using Avalonia.Controls.Primitives;
@@ -21,9 +20,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     /// </summary>
     public class TabbedLayout : TabControl
     {
-        
-
-
         public Type StyleKey => typeof(TabbedLayout);
 
         /// <summary>
@@ -37,13 +33,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         /// <value>
         /// The content of the selected tab.
         /// </value>
-        /// 
+        ///
         public new object SelectedContent
         {
             get { return (object)GetValue(SelectedContentProperty); }
             set { SetValue(SelectedContentProperty, value); }
         }
-
 
         public new static readonly StyledProperty<object> SelectedContentProperty =
             TabControl.SelectedContentProperty.AddOwner<TabbedLayout>();
@@ -60,7 +55,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             set { SetValue(SelectedContentTemplateProperty, value); }
         }
 
-
         public new static readonly StyledProperty<IDataTemplate> SelectedContentTemplateProperty =
             TabControl.SelectedContentTemplateProperty.AddOwner<TabbedLayout>();
 
@@ -71,13 +65,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         {
         }
 
-
-
         /// <summary>
         /// property grid command
         /// </summary>
         //public static ICommand ClosePropertyTabCommand { get; internal set; }
-
 
         public ICommand ClosePropertyTabCommand
         {
@@ -85,20 +76,13 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             internal set { SetValue(ClosePropertyTabCommandProperty, value); }
         }
 
-
         public static readonly StyledProperty<ICommand> ClosePropertyTabCommandProperty =
             AvaloniaProperty.Register<TabbedLayout, ICommand>(nameof(ClosePropertyTabCommand));
-
-
-
-
-
 
         /// <summary>
         /// property grid command
         /// </summary>
         //public static ICommand ShowExtendedEditorCommand { get; internal set; }
-
 
         public ICommand ShowExtendedEditorCommand
         {
@@ -106,15 +90,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             set { SetValue(ShowExtendedEditorCommandProperty, value); }
         }
 
-
         public static readonly StyledProperty<ICommand> ShowExtendedEditorCommandProperty =
             AvaloniaProperty.Register<TabbedLayout, ICommand>(nameof(ShowExtendedEditorCommand));
-
-
-
-
-
-
 
         /// <summary>
         /// Gets or sets the item header property.
@@ -165,22 +142,17 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         /// </summary>
         public TabbedLayout()
         {
-
             //somehow not refreshed in command
             var canExecuteClosePropertyTab = this.WhenAny(x => x, (control) => CanCloseExecute());
-
 
             ClosePropertyTabCommand = ReactiveCommand.Create(
                () => OnClosePropertyTabCommand()
                , outputScheduler: RxApp.MainThreadScheduler);
 
-
-
             ShowExtendedEditorCommand = ReactiveCommand.Create<object>(x => OnShowExtendedEditor(x)
             , outputScheduler: RxApp.MainThreadScheduler);
 
             SelectedContentProperty.Changed.AddClassHandler<TabbedLayout>((o, e) => OnSelectedContentChanged(o, e));
-
 
             this.ItemContainerGenerator.Materialized += ItemContainerGenerator_Materialized;
         }
@@ -201,11 +173,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
                 }
                 return true;
             }
-
         }
-
-
-
 
         private void OnSelectedContentChanged(TabbedLayout o, AvaloniaPropertyChangedEventArgs e)
         {
@@ -214,7 +182,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             {
                 oldTabItem.IsSelected = false;
             }
-
 
             if (e.NewValue == null)
                 return;
@@ -230,9 +197,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 
                 tabItem.IsSelected = true;
             }
-
         }
-
 
         private TabbedLayoutItem GetTabbedLayoutItem(object item)
         {
@@ -245,11 +210,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             return tabItem;
         }
 
-
-
-
-
-
         private void ItemContainerGenerator_Materialized(object sender, ItemContainerEventArgs e)
         {
             var tab = e.Containers.FirstOrDefault().Item as TabbedLayoutItem;
@@ -261,7 +221,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
                     tab.ClosePropertyTabCommand = ClosePropertyTabCommand;
                     tab.CanClose = true;
                 }
-
 
                 var item = tab.Content;
 
@@ -300,22 +259,13 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 
                 tab.PropertyChanged -= TabItem_PropertyChanged;
                 tab.PropertyChanged += TabItem_PropertyChanged;
-
             }
-
-
-
-
-
-
         }
 
         private void TabItem_PropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
         {
             if (e.Property.Name == nameof(TabItem.IsSelected))
             {
-
-
                 //var propChanged = new AvaloniaPropertyChangedEventArgs
                 //    (sender as AvaloniaObject
                 //    , e.Property
@@ -356,19 +306,15 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             }
         }
 
-
-
-
         private void OnClosePropertyTabCommand()
         {
-
             var item = SelectedItem as TabbedLayoutItem;
 
             if (item != null && item.CanClose && Items.OfType<TabbedLayoutItem>().Count(x=> x.IsVisible) > 1)
             {
                 if (item is ExtendedPropertyEditorTab)
                 {
-                    //only set is visible to false 
+                    //only set is visible to false
                     //otherwise the editor controls have ui problems (?)
                     item.IsVisible = false;
                 }
@@ -379,7 +325,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
                     Items = items;
                 }
                 SelectedItem = Items.OfType<object>().FirstOrDefault(x=> (x as IControl)?.IsVisible==true);
-
             }
         }
 
@@ -428,7 +373,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 
                 Items = items;
 
-
                 // Activate extended tab
                 SelectedItem = extendedTab;
             }
@@ -451,12 +395,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             return new TabItemContainerGenerator(this);
         }
 
-
-
-
         protected override void OnContainersMaterialized(ItemContainerEventArgs e)
         {
-
             if (SelectedContent != null || SelectedIndex == -1)
             {
                 return;
@@ -483,62 +423,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             {
                 SelectedContent = item.Content;
             }
-
         }
-
-#warning todo
-        /// <summary>
-        /// Prepares the specified element to display the specified item.
-        /// </summary>
-        /// <param name="element">Element used to display the specified item.</param>
-        /// <param name="item">Specified item.</param>
-        //protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
-        //{
-        //    base.PrepareContainerForItemOverride(element, item);
-
-        //    if (element == item)
-        //        return;
-        //    // Processing items not wrapped with TabbedLayoutItem container
-
-        //    var tab = element as TabbedLayoutItem;
-        //    if (tab != null)
-        //    {
-        //        //TODO: Assign PG as DataContext here?
-        //        //tab.DataContext = item;
-
-        //        var layout = item as DependencyObject;
-        //        if (layout != null)
-        //        {
-        //            tab.Header = GetHeader(layout);
-        //            tab.CanClose = GetCanClose(layout);
-        //        }
-        //        else if (!string.IsNullOrEmpty(ItemHeaderProperty))
-        //        {
-        //            var bHeader = new Binding(ItemHeaderProperty)
-        //            {
-        //                Source = item,
-        //                Mode = BindingMode.OneWay,
-        //                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-        //            };
-
-        //            tab.SetBinding(HeaderedContentControl.HeaderProperty, bHeader);
-        //        }
-
-        //        if (item is GridEntry)
-        //        {
-        //            var binding = new Binding("IsVisible")
-        //            {
-        //                Source = item,
-        //                Mode = BindingMode.OneWay,
-        //                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
-        //                Converter = visibilityConverter
-        //            };
-        //            tab.SetBinding(UIElement.VisibilityProperty, binding);
-        //        }
-
-        //        tab.IsVisibleChanged += OnTabVisibilityChanged;
-        //    }
-        //}
 
         internal GridEntry GetFirstVisibleEntry()
         {
@@ -549,28 +434,5 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         {
             return Items.OfType<GridEntry>().Count(item => item.IsVisible);
         }
-
-        /// <summary>
-        /// Determines if the specified item is (or is eligible to be) its own ItemContainer.
-        /// </summary>
-        /// <param name="item">Specified item.</param>
-        /// <returns>
-        /// Returns true if the item is its own ItemContainer; otherwise, false.
-        /// </returns>
-        //protected override bool IsItemItsOwnContainerOverride(object item)
-        //{
-        //    return item is TabbedLayoutItem;
-        //}
-
-        /// <summary>
-        /// Creates or identifies the element used to display the specified item.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Windows.Controls.TabItem"/>.
-        /// </returns>
-        //protected override DependencyObject GetContainerForItemOverride()
-        //{
-        //    return new TabbedLayoutItem();
-        //}
     }
 }

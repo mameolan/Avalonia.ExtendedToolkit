@@ -25,7 +25,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         public PropertyEditorAttribute(string editorType)
         {
             if (string.IsNullOrEmpty(editorType))
-                throw new ArgumentNullException("editorType");
+                throw new ArgumentNullException(nameof(editorType));
             EditorType = editorType;
         }
 

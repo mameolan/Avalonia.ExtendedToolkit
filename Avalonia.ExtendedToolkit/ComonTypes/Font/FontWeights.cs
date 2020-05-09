@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Text;
 using Avalonia.Media;
 
-namespace Avalonia.Controlz.Font
+namespace Avalonia.ExtendedToolkit.Font
 {
     //from ms
 

@@ -57,7 +57,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
         public TypeEditor(Type editedType, object inlineTemplate, object extendedTemplate)
         {
             if (editedType == null)
-                throw new ArgumentNullException("editedType");
+                throw new ArgumentNullException(nameof(editedType));
 
             EditedType = editedType;
 

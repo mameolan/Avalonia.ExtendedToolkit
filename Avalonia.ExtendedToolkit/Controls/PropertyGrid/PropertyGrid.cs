@@ -243,7 +243,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         private IEnumerable<PropertyItem> CollectProperties(object[] components)
         {
             if (components == null || components.Length == 0)
-                throw new ArgumentNullException("components");
+                throw new ArgumentNullException(nameof(components));
 
             // TODO: PropertyItem is to be wired with PropertyData rather than pure PropertyDescriptor in the next version!
             var descriptors = (components.Length == 1)

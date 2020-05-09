@@ -180,6 +180,9 @@ dotnet_diagnostic.CA2208.severity = silent
 # CA1062: Validate arguments of public methods (i.e. AttachedProperty get method)
 dotnet_diagnostic.CA1062.severity = silent
 
+# CA1031: Keine allgemeinen Ausnahmetypen abfangen
+dotnet_diagnostic.CA1031.severity = silent
+
 [*.xaml]
 indent_size = 2
 

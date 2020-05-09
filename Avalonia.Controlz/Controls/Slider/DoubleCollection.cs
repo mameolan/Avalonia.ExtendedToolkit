@@ -7,6 +7,10 @@ namespace Avalonia.Controlz.Controls
     /// </summary>
     public class DoubleCollection : AvaloniaList<double>
     {
+        /// <summary>
+        /// returns an empty list
+        /// </summary>
+        /// <returns></returns>
         public static DoubleCollection Empty()
         {
             return new DoubleCollection();

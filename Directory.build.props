@@ -1,17 +1,15 @@
 <Project>
+	<PropertyGroup>
+		<Version>0.9.6</Version>
+		<Authors>mameolan and others</Authors>
+		<Company>mameolan</Company>
 
-<PropertyGroup>
-    <Version>0.9.6</Version>
-	<Authors>mameolan and others</Authors>
-    <Company>mameolan</Company>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/mameolan/Avalonia.ExtendedToolkit</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/mameolan/Avalonia.ExtendedToolkit</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
 
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/mameolan/Avalonia.ExtendedToolkit</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/mameolan/Avalonia.ExtendedToolkit</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    
-	<AssemblyVersion>$(Version)</AssemblyVersion>
-    <FileVersion>$(Version)</FileVersion>
-  </PropertyGroup>
-
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+		<FileVersion>$(Version)</FileVersion>
+	</PropertyGroup>
 </Project>

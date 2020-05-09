@@ -49,9 +49,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
         public CategoryEditor(Type declaringType, string categoryName, object inlineTemplate)
         {
             if (declaringType == null)
-                throw new ArgumentNullException("declaringType");
+                throw new ArgumentNullException(nameof(declaringType));
             if (string.IsNullOrEmpty(categoryName))
-                throw new ArgumentNullException("categoryName");
+                throw new ArgumentNullException(nameof(categoryName));
 
             DeclaringType = declaringType;
             CategoryName = categoryName;

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Globalization;
-using Avalonia.Controlz.Font;
+using Avalonia.ExtendedToolkit.Font;
 using Avalonia.Data.Converters;
 using Avalonia.Media;
 

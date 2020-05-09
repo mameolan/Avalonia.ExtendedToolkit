@@ -36,7 +36,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
         public TypeEditor FindTypeEditor(Type editedType)
         {
             if (editedType == null)
-                throw new ArgumentNullException("editedType");
+                throw new ArgumentNullException(nameof(editedType));
 
             return this
               .OfType<TypeEditor>()
@@ -52,9 +52,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
         public PropertyEditor FindPropertyEditor(Type declaringType, string propertyName)
         {
             if (declaringType == null)
-                throw new ArgumentNullException("declaringType");
+                throw new ArgumentNullException(nameof(declaringType));
             if (string.IsNullOrEmpty(propertyName))
-                throw new ArgumentNullException("propertyName");
+                throw new ArgumentNullException(nameof(propertyName));
 
             return this
               .OfType<PropertyEditor>()
@@ -71,9 +71,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
         public CategoryEditor FindCategoryEditor(Type declaringType, string categoryName)
         {
             if (declaringType == null)
-                throw new ArgumentNullException("declaringType");
+                throw new ArgumentNullException(nameof(declaringType));
             if (string.IsNullOrEmpty(categoryName))
-                throw new ArgumentNullException("categoryName");
+                throw new ArgumentNullException(nameof(categoryName));
 
             return this
               .OfType<CategoryEditor>()
@@ -150,7 +150,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
         public Editor GetEditor(CategoryItem categoryItem)
         {
             if (categoryItem == null)
-                throw new ArgumentNullException("categoryItem");
+                throw new ArgumentNullException(nameof(categoryItem));
 
             if (categoryItem.Owner == null)
                 return null;
@@ -180,7 +180,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
         public Editor GetEditor(PropertyItem propertyItem)
         {
             if (propertyItem == null)
-                throw new ArgumentNullException("propertyItem");
+                throw new ArgumentNullException(nameof(propertyItem));
 
             Editor editor;
 

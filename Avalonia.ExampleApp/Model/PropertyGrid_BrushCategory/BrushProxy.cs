@@ -33,7 +33,7 @@ namespace Avalonia.ExampleApp.Model
         public BrushProxy(object component)
         {
             if (component == null)
-                throw new ArgumentNullException("component");
+                throw new ArgumentNullException(nameof(component));
             ObjectBrushesProperty.Changed.AddClassHandler<BrushProxy>((o, e) => OnObjectBrushesChanged(o, e));
 
             CurrentComponent = component.ToString();
@@ -48,7 +48,7 @@ namespace Avalonia.ExampleApp.Model
         private void CaptureComponent(object component)
         {
             if (component == null)
-                throw new ArgumentNullException("component");
+                throw new ArgumentNullException(nameof(component));
             var props = component.GetType().GetProperties();
             //take everything inheriting from a Brush type
             //You could filter out on the basis of a name or what not.

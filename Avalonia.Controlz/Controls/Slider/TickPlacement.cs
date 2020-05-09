@@ -1,10 +1,14 @@
 ﻿namespace Avalonia.Controlz.Controls
 {
-    /// <summary>
-    /// // This source file is adapted from the Windows Presentation Foundation project.
+    
+    // This source file is adapted from the Windows Presentation Foundation project.
     // (https://github.com/dotnet/wpf/)
     //
     // Licensed to The Avalonia Project under MIT License, courtesy of The .NET Foundation.
+    
+    /// <summary>
+    /// Type to control the placement of the <see cref="TickBar"/> 
+    /// in the <see cref="SliderEx"/> Control
     /// </summary>
     public enum TickPlacement
     {

@@ -25,6 +25,13 @@ namespace Avalonia.Controlz.Controls
         private const string TrackName = "PART_Track";
         private const string SelectionRangeElementName = "PART_SelectionRange";
 
+
+        /// <summary>
+        /// style key of this control
+        /// </summary>
+        public Type StyleKey => typeof(SliderEx);
+
+
         internal Track Track
         {
             get;
@@ -45,6 +52,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(OrientationProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="Orientation"/> property.
+        /// </summary>
         public static readonly StyledProperty<Orientation> OrientationProperty =
            AvaloniaProperty.Register<SliderEx, Orientation>(nameof(Orientation), defaultValue: Orientation.Horizontal);
 
@@ -59,6 +69,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IsDirectionReversedProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="IsDirectionReversed"/> property.
+        /// </summary>
         public static readonly StyledProperty<bool> IsDirectionReversedProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsDirectionReversed));
 
@@ -72,6 +85,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(DelayProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="Delay"/> property.
+        /// </summary>
         public static readonly StyledProperty<int> DelayProperty =
             RepeatButton.DelayProperty.AddOwner<SliderEx>();
 
@@ -87,6 +103,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IntervalProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="Interval"/> property.
+        /// </summary>
         public static readonly StyledProperty<int> IntervalProperty =
             RepeatButton.IntervalProperty.AddOwner<SliderEx>();
 
@@ -101,6 +120,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(AutoToolTipPlacementProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="AutoToolTipPlacement"/> property.
+        /// </summary>
         public static readonly StyledProperty<AutoToolTipPlacement> AutoToolTipPlacementProperty =
            AvaloniaProperty.Register<SliderEx, AutoToolTipPlacement>(nameof(AutoToolTipPlacement)
                , defaultValue: AutoToolTipPlacement.None
@@ -116,6 +138,10 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(AutoToolTipPrecisionProperty, value); }
         }
 
+
+        /// <summary>
+        /// Defines the <see cref="AutoToolTipPrecision"/> property.
+        /// </summary>
         public static readonly StyledProperty<int> AutoToolTipPrecisionProperty =
             AvaloniaProperty.Register<SliderEx, int>(nameof(AutoToolTipPrecision), defaultValue: 0);
 
@@ -128,6 +154,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IsSnapToTickEnabledProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="IsSnapToTickEnabled"/> property.
+        /// </summary>
         public static readonly StyledProperty<bool> IsSnapToTickEnabledProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsSnapToTickEnabled), defaultValue: true);
 
@@ -142,6 +171,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(TickPlacementProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="TickPlacement"/> property.
+        /// </summary>
         public static readonly StyledProperty<TickPlacement> TickPlacementProperty =
             AvaloniaProperty.Register<SliderEx, TickPlacement>(nameof(TickPlacement)
                 , defaultValue: TickPlacement.None);
@@ -157,6 +189,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(TickFrequencyProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="TickFrequency"/> property.
+        /// </summary>
         public static readonly StyledProperty<double> TickFrequencyProperty =
             AvaloniaProperty.Register<SliderEx, double>(nameof(TickFrequency), defaultValue: 1.0);
 
@@ -171,6 +206,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(TicksProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="Ticks"/> property.
+        /// </summary>
         public static readonly StyledProperty<DoubleCollection> TicksProperty =
             AvaloniaProperty.Register<SliderEx, DoubleCollection>(nameof(Ticks), defaultValue: DoubleCollection.Empty());
 
@@ -183,6 +221,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IsSelectionRangeEnabledProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="IsSelectionRangeEnabled"/> property.
+        /// </summary>
         public static readonly StyledProperty<bool> IsSelectionRangeEnabledProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsSelectionRangeEnabled));
 
@@ -195,6 +236,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(SelectionStartProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="SelectionStart"/> property.
+        /// </summary>
         public static readonly StyledProperty<double> SelectionStartProperty =
             AvaloniaProperty.Register<SliderEx, double>(nameof(SelectionStart)
                 , defaultValue: 0.0d, defaultBindingMode: Data.BindingMode.TwoWay);
@@ -208,6 +252,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(SelectionEndProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="SelectionEnd"/> property.
+        /// </summary>
         public static readonly StyledProperty<double> SelectionEndProperty =
             AvaloniaProperty.Register<SliderEx, double>(nameof(SelectionEnd)
                 , defaultValue: 0.0d, defaultBindingMode: Data.BindingMode.TwoWay);
@@ -223,6 +270,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IsMoveToPointEnabledProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="IsMoveToPointEnabled"/> property.
+        /// </summary>
         public static readonly StyledProperty<bool> IsMoveToPointEnabledProperty =
             AvaloniaProperty.Register<SliderEx, bool>(nameof(IsMoveToPointEnabled));
 
@@ -435,11 +485,7 @@ namespace Avalonia.Controlz.Controls
         /// <summary>
         /// updates the pseudo classes
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="property"></param>
-        /// <param name="oldValue"></param>
-        /// <param name="newValue"></param>
-        /// <param name="priority"></param>
+        /// <param name="e"></param>
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
         {
             if (e.Property == OrientationProperty && e.NewValue is Orientation newValue)
@@ -459,6 +505,10 @@ namespace Avalonia.Controlz.Controls
             PseudoClasses.Set(":horizontal", o == Orientation.Horizontal);
         }
 
+        /// <summary>
+        /// updates the value if the pointer is over Track.Thumb
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPointerPressed(PointerPressedEventArgs e)
         {
             var result = e.GetCurrentPoint(this);
@@ -509,6 +559,10 @@ namespace Avalonia.Controlz.Controls
             sliderEx.OnThumbDragStarted(args);
         }
 
+        /// <summary>
+        /// handles the auto tooltip 
+        /// </summary>
+        /// <param name="args"></param>
         protected virtual void OnThumbDragStarted(VectorEventArgs args)
         {
             // Show AutoToolTip if needed.
@@ -535,6 +589,10 @@ namespace Avalonia.Controlz.Controls
             //((Popup)_autoToolTip.Parent).Reposition();
         }
 
+        /// <summary>
+        /// converts the track coordinate
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnThumbDragDelta(VectorEventArgs e)
         {
             Thumb thumb = e.Source as Thumb;
@@ -571,6 +629,10 @@ namespace Avalonia.Controlz.Controls
             }
         }
 
+        /// <summary>
+        /// closes the tool tip
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnThumbDragCompleted(VectorEventArgs e)
         {
             // Show AutoToolTip if needed.
@@ -801,6 +863,12 @@ namespace Avalonia.Controlz.Controls
             //}
         }
 
+        /// <summary>
+        /// sets the <see cref="TopTickBar"/> width and
+        /// the <see cref="BottomTickBar"/> width
+        /// </summary>
+        /// <param name="finalSize"></param>
+        /// <returns></returns>
         protected override Size ArrangeOverride(Size finalSize)
         {
             Size size = base.ArrangeOverride(finalSize);
@@ -820,6 +888,10 @@ namespace Avalonia.Controlz.Controls
             return size;
         }
 
+        /// <summary>
+        /// gets the controls from style
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             SelectionRangeElement = e.NameScope.Find<AvaloniaObject>(SelectionRangeElementName);

@@ -94,7 +94,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
         public static TypeConverter GetPropertyConverter(PropertyDescriptor propertyDescriptor)
         {
             if (propertyDescriptor == null)
-                throw new ArgumentNullException("propertyDescriptor");
+                throw new ArgumentNullException(nameof(propertyDescriptor));
 
             if (StringConverterMembers.Contains(propertyDescriptor.Name)
               && propertyDescriptor.PropertyType.IsAssignableFrom(typeof(object)))

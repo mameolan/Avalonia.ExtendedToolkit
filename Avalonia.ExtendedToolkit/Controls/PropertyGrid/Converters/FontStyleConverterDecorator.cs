@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using Avalonia.Controlz.Font;
+using Avalonia.ExtendedToolkit.Font;
 using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters

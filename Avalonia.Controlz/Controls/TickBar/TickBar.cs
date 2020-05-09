@@ -4,15 +4,16 @@ using Avalonia.Controlz.Helper;
 using Avalonia.Data;
 using Avalonia.Media;
 using System;
+using System.Diagnostics;
 
 namespace Avalonia.Controlz.Controls
 {
-    /// <summary>
-    /// // This source file is adapted from the Windows Presentation Foundation project.
+    
+    // This source file is adapted from the Windows Presentation Foundation project.
     // (https://github.com/dotnet/wpf/)
     //
     // Licensed to The Avalonia Project under MIT License, courtesy of The .NET Foundation.
-    /// </summary>
+    
 
     /// <summary>
     /// TickBar is an element that use for drawing Slider's Ticks.
@@ -28,6 +29,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(FillProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="Fill"/> property.
+        /// </summary>
         public static readonly StyledProperty<IBrush> FillProperty =
             AvaloniaProperty.Register<TickBar, IBrush>(nameof(Fill));
 
@@ -40,6 +44,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(MinimumProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="Minimum"/> property.
+        /// </summary>
         public static readonly StyledProperty<double> MinimumProperty =
             AvaloniaProperty.Register<TickBar, double>(nameof(Minimum), defaultValue: 0d);
 
@@ -55,6 +62,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(MaximumProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="Maximum"/> property.
+        /// </summary>
         public static readonly StyledProperty<double> MaximumProperty =
             AvaloniaProperty.Register<TickBar, double>(nameof(Maximum), defaultValue: 0d);
 
@@ -70,6 +80,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(SelectionStartProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="SelectionStart"/> property.
+        /// </summary>
         public static readonly StyledProperty<double> SelectionStartProperty =
             AvaloniaProperty.Register<TickBar, double>(nameof(SelectionStart), defaultValue: -1.0d);
 
@@ -84,6 +97,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(SelectionEndProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="SelectionEnd"/> property.
+        /// </summary>
         public static readonly StyledProperty<double> SelectionEndProperty =
             AvaloniaProperty.Register<TickBar, double>(nameof(SelectionEnd), defaultValue: -1.0d);
 
@@ -96,6 +112,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IsSelectionRangeEnabledProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="IsSelectionRangeEnabled"/> property.
+        /// </summary>
         public static readonly StyledProperty<bool> IsSelectionRangeEnabledProperty =
             AvaloniaProperty.Register<TickBar, bool>(nameof(IsSelectionRangeEnabled));
 
@@ -108,6 +127,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(TickFrequencyProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="TickFrequency"/> property.
+        /// </summary>
         public static readonly StyledProperty<double> TickFrequencyProperty =
             AvaloniaProperty.Register<TickBar, double>(nameof(TickFrequency), defaultValue: 0d);
 
@@ -124,6 +146,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(TicksProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="Ticks"/> property.
+        /// </summary>
         public static readonly StyledProperty<DoubleCollection> TicksProperty =
             AvaloniaProperty.Register<TickBar, DoubleCollection>(nameof(Ticks));
 
@@ -140,6 +165,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(IsDirectionReversedProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="IsDirectionReversed"/> property.
+        /// </summary>
         public static readonly StyledProperty<bool> IsDirectionReversedProperty =
             AvaloniaProperty.Register<TickBar, bool>(nameof(IsDirectionReversed));
 
@@ -156,6 +184,9 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(PlacementProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="Placement"/> property.
+        /// </summary>
         public static readonly StyledProperty<TickBarPlacement> PlacementProperty =
             AvaloniaProperty.Register<TickBar, TickBarPlacement>(nameof(Placement),
                 defaultValue: TickBarPlacement.Top);
@@ -172,30 +203,50 @@ namespace Avalonia.Controlz.Controls
             set { SetValue(ReservedSpaceProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="ReservedSpace"/> property.
+        /// </summary>
         public static readonly StyledProperty<double> ReservedSpaceProperty =
             AvaloniaProperty.Register<TickBar, double>(nameof(ReservedSpace), defaultValue: 0d);
 
-
+        /// <summary>
+        /// Get /sets VisualXSnappingGuidelines
+        /// </summary>
         public DoubleCollection VisualXSnappingGuidelines
         {
             get { return (DoubleCollection)GetValue(VisualXSnappingGuidelinesProperty); }
             set { SetValue(VisualXSnappingGuidelinesProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="VisualXSnappingGuidelines"/> property.
+        /// </summary>
         public static readonly StyledProperty<DoubleCollection> VisualXSnappingGuidelinesProperty =
             AvaloniaProperty.Register<TickBar, DoubleCollection>(nameof(VisualXSnappingGuidelines));
 
+        /// <summary>
+        /// Get /sets VisualYSnappingGuidelines
+        /// </summary>
         public DoubleCollection VisualYSnappingGuidelines
         {
             get { return (DoubleCollection)GetValue(VisualYSnappingGuidelinesProperty); }
             set { SetValue(VisualYSnappingGuidelinesProperty, value); }
         }
 
+        /// <summary>
+        /// Defines the <see cref="VisualYSnappingGuidelines"/> property.
+        /// </summary>
         public static readonly StyledProperty<DoubleCollection> VisualYSnappingGuidelinesProperty =
             AvaloniaProperty.Register<TickBar, DoubleCollection>(nameof(VisualYSnappingGuidelines));
 
         private Size controlSize = new Size();
 
+        /// <summary>
+        /// sets the control size
+        /// it's more a hack
+        /// </summary>
+        /// <param name="finalSize"></param>
+        /// <returns></returns>
         protected override Size ArrangeOverride(Size finalSize)
         {
             var result = base.ArrangeOverride(finalSize);
@@ -205,6 +256,11 @@ namespace Avalonia.Controlz.Controls
             return result;
         }
 
+        /// <summary>
+        /// sets the <see cref="Layout.Layoutable.Width"/>
+        /// </summary>
+        /// <param name="availableSize"></param>
+        /// <returns></returns>
         protected override Size MeasureOverride(Size availableSize)
         {
             if (DoubleUtil.IsDoubleFinite(Width) == false)
@@ -217,6 +273,10 @@ namespace Avalonia.Controlz.Controls
             return result;
         }
 
+        /// <summary>
+        /// sets the tick values
+        /// </summary>
+        /// <param name="dc"></param>
         public override void Render(DrawingContext dc)
         {
             if (DoubleUtil.IsDoubleFinite(Width) == false)
@@ -566,11 +626,16 @@ namespace Avalonia.Controlz.Controls
                 }
                 catch (Exception ex)
                 {
+                    Debug.WriteLine(ex.Message);
                 }
                 //Bind(target, ObservableEx.SingleValue(source));
             }
         }
 
+        /// <summary>
+        /// gets the parent <see cref="SliderEx"/>
+        /// and the Track
+        /// </summary>
         public override void ApplyTemplate()
         {
             base.ApplyTemplate();
