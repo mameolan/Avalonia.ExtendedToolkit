@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <IsTestProject>true</IsTestProject>
+    <IsPackable>false</IsPackable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.9.6" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.9.6" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.9.6" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.9.6" />
+    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.9.6" />
+    <PackageReference Include="Avalonia.Xaml.Interactions" Version="0.9.6" />
+    <PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.9.6" />
+    <PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="ReactiveHistory" Version="0.9.4" />
+    <PackageReference Include="XamlColorSchemeGenerator" Version="3.0.0.31">
+      <NoWarn>NU1701</NoWarn>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="Microsoft.Reactive.Testing" Version="4.4.1" />
+    <PackageReference Include="Moq" Version="4.14.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="1.2.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
+    <ProjectReference Include="..\Avalonia.ExtendedToolkit\Avalonia.ExtendedToolkit.csproj" />
+  </ItemGroup>
+
+</Project>
