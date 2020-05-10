@@ -25,6 +25,13 @@ namespace Avalonia.Controlz.Controls
         private const string TrackName = "PART_Track";
         private const string SelectionRangeElementName = "PART_SelectionRange";
 
+
+        /// <summary>
+        /// style key of this control
+        /// </summary>
+        public Type StyleKey => typeof(SliderEx);
+
+
         internal Track Track
         {
             get;

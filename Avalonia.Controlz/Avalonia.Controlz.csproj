@@ -1,5 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
+  <Import Project="..\Directory.build.props" />
+  
+  <PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<IsPackable>true</IsPackable>
@@ -46,6 +48,7 @@
 		<AvaloniaResource Include="Assets\*" />
 	</ItemGroup>
 
-
-  <Import Project="..\Directory.build.props" />
+	
+	
+  
 </Project>
