@@ -3,3 +3,6 @@
 bin
 obj
 Packages
+TestResults
+coverage.xml
+coverage
