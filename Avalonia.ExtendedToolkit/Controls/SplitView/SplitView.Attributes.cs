@@ -9,6 +9,9 @@ namespace Avalonia.ExtendedToolkit.Controls
 
     public partial class SplitView : ContentControl
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(SplitView);
 
         /// <summary>
@@ -24,6 +27,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CompactPaneLengthProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="CompactPaneLength"/>
+        /// </summary>
         public static readonly StyledProperty<double> CompactPaneLengthProperty =
             AvaloniaProperty.Register<SplitView, double>(nameof(CompactPaneLength), defaultValue: 0d);
 
@@ -37,6 +43,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(StateProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="State"/>
+        /// </summary>
         internal static readonly StyledProperty<string> StateProperty =
             AvaloniaProperty.Register<SplitView, string>(nameof(State));
 
@@ -54,6 +63,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(DisplayModeProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="DisplayMode"/>
+        /// </summary>
         public static readonly StyledProperty<SplitViewDisplayMode> DisplayModeProperty =
             AvaloniaProperty.Register<SplitView, SplitViewDisplayMode>(nameof(DisplayMode), defaultValue: SplitViewDisplayMode.Overlay);
 
@@ -68,6 +80,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsPaneOpenProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsPaneOpen"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsPaneOpenProperty =
             AvaloniaProperty.Register<SplitView, bool>(nameof(IsPaneOpen), defaultValue: true);
 
@@ -85,6 +100,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OpenPaneLengthProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="OpenPaneLength"/>
+        /// </summary>
         public static readonly StyledProperty<double> OpenPaneLengthProperty =
             AvaloniaProperty.Register<SplitView, double>(nameof(OpenPaneLength), defaultValue: 0d);
 
@@ -98,6 +116,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(PaneProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Pane"/>
+        /// </summary>
         public static readonly StyledProperty<object> PaneProperty =
             AvaloniaProperty.Register<SplitView, object>(nameof(Pane));
 
@@ -112,6 +133,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(PaneBackgroundProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="PaneBackground"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> PaneBackgroundProperty =
             AvaloniaProperty.Register<SplitView, IBrush>(nameof(PaneBackground));
 
@@ -126,6 +150,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(PaneForegroundProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="PaneForeground"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> PaneForegroundProperty =
             AvaloniaProperty.Register<SplitView, IBrush>(nameof(PaneForeground));
 
@@ -144,6 +171,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(PanePlacementProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="PanePlacement"/>
+        /// </summary>
         public static readonly StyledProperty<SplitViewPanePlacement> PanePlacementProperty =
             AvaloniaProperty.Register<SplitView, SplitViewPanePlacement>(nameof(PanePlacement), defaultValue: SplitViewPanePlacement.Left);
 
@@ -159,6 +189,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(TemplateSettingsProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="TemplateSettings"/>
+        /// </summary>
         public static readonly StyledProperty<SplitViewTemplateSettings> TemplateSettingsProperty =
             AvaloniaProperty.Register<SplitView, SplitViewTemplateSettings>(nameof(TemplateSettings));
 

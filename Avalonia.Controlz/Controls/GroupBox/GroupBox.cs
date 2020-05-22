@@ -7,7 +7,6 @@ namespace Avalonia.Controlz.Controls
     /// <summary>
     /// GroupBox Control class
     /// </summary>
-    [Obsolete("This control is already merged into Avalonia Project")]
     public class GroupBox : HeaderedContentControl
     {
         /// <summary>

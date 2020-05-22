@@ -18,6 +18,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
     /// </summary>
     public abstract class Editor : TemplatedControl
     {
+        /// <summary>
+        /// style key for this control
+        /// </summary>
         public Type StyleKey => typeof(Editor);
 
         /// <summary>
@@ -43,6 +46,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
             }
         }
 
+        /// <summary>
+        /// <see cref="InlineTemplate"/>
+        /// </summary>
         public static readonly StyledProperty<object> InlineTemplateProperty =
             AvaloniaProperty.Register<Editor, object>(nameof(InlineTemplate));
 
@@ -110,6 +116,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
             }
         }
 
+        /// <summary>
+        /// <see cref="ExtendedTemplate"/>
+        /// </summary>
         public static readonly StyledProperty<object> ExtendedTemplateProperty =
             AvaloniaProperty.Register<Editor, object>(nameof(ExtendedTemplate));
 
@@ -123,6 +132,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
             set { SetValue(DialogTemplateProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="DialogTemplate"/>
+        /// </summary>
         public static readonly StyledProperty<object> DialogTemplateProperty =
             AvaloniaProperty.Register<Editor, object>(nameof(DialogTemplate));
 
@@ -135,6 +147,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
         {
         }
 
+        /// <summary>
+        /// registered InlineTemplate changed
+        /// </summary>
         public Editor()
         {
             InlineTemplateProperty.Changed.AddClassHandler<Editor>((o, e) => OnEditorTemplateChanged(o, e));

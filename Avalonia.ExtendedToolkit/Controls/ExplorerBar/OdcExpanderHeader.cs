@@ -12,6 +12,9 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class OdcExpanderHeader: ToggleButton
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(OdcExpanderHeader);
 
         /// <summary>
@@ -23,6 +26,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(HasExpandGeometryProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="HasExpandGeometry"/>
+        /// </summary>
         public static readonly StyledProperty<bool> HasExpandGeometryProperty =
             AvaloniaProperty.Register<OdcExpanderHeader, bool>(nameof(HasExpandGeometry));
 
@@ -35,6 +41,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CollapseGeometryProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="CollapseGeometry"/>
+        /// </summary>
         public static readonly StyledProperty<Geometry> CollapseGeometryProperty =
             AvaloniaProperty.Register<OdcExpanderHeader, Geometry>(nameof(CollapseGeometry));
 
@@ -47,6 +56,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ExpandGeometryProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ExpandGeometry"/>
+        /// </summary>
         public static readonly StyledProperty<Geometry> ExpandGeometryProperty =
             AvaloniaProperty.Register<OdcExpanderHeader, Geometry>(nameof(ExpandGeometry)
                 );
@@ -60,6 +72,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CornerRadiusProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="CornerRadius"/>
+        /// </summary>
         public static readonly StyledProperty<CornerRadius> CornerRadiusProperty =
             AvaloniaProperty.Register<OdcExpanderHeader, CornerRadius>(nameof(CornerRadius));
 
@@ -72,6 +87,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ShowEllipseProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ShowEllipse"/>
+        /// </summary>
         public static readonly StyledProperty<bool> ShowEllipseProperty =
             AvaloniaProperty.Register<OdcExpanderHeader, bool>(nameof(ShowEllipse));
 
@@ -84,6 +102,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CircleButtonStrokeProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="CircleButtonStroke"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> CircleButtonStrokeProperty =
             AvaloniaProperty.Register<OdcExpanderHeader, IBrush>(nameof(CircleButtonStroke));
 
@@ -96,11 +117,14 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CircleButtonFillProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="CircleButtonFill"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> CircleButtonFillProperty =
             AvaloniaProperty.Register<OdcExpanderHeader, IBrush>(nameof(CircleButtonFill));
 
         /// <summary>
-        /// for styling the cirecle button
+        /// for styling the circle button
         /// </summary>
         public IBrush CircleButtonForeground
         {
@@ -108,6 +132,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CircleButtonForegroundProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="CircleButtonForeground"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> CircleButtonForegroundProperty =
             AvaloniaProperty.Register<OdcExpanderHeader, IBrush>(nameof(CircleButtonForeground));
 
@@ -120,6 +147,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ImageProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Image"/>
+        /// </summary>
         public static readonly StyledProperty<IBitmap> ImageProperty =
             AvaloniaProperty.Register<OdcExpanderHeader, IBitmap>(nameof(Image));
 
@@ -133,6 +163,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             eh.HasExpandGeometry = e.NewValue != null;
         }
 
+        /// <summary>
+        /// raises ExpandGeometry property changed
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
         {
             base.OnAttachedToVisualTree(e);

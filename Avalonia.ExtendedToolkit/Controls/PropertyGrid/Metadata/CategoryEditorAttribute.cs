@@ -62,7 +62,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <summary>
         /// Returns a value that indicates whether this instance is equal to a specified object.
         /// </summary>
-        /// <param name="obj">An <see cref="T:System.Object"/> to compare with this instance or null.</param>
+        /// <param name="obj">An <see cref="Object"/> to compare with this instance or null.</param>
         /// <returns>
         /// true if <paramref name="obj"/> equals the type and value of this instance; otherwise, false.
         /// </returns>

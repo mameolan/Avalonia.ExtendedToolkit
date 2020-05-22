@@ -16,6 +16,9 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public partial class SplitView : ContentControl
     {
+        /// <summary>
+        /// initi some changed handlers
+        /// </summary>
         public SplitView()
         {
             CompactPaneLengthProperty.Changed.AddClassHandler<SplitView>((o, e) => OnMetricsChanged(o, e));
@@ -38,6 +41,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// sets the states
+        /// </summary>
+        /// <param name="animated"></param>
+        /// <param name="reset"></param>
         protected virtual void ChangeVisualState(bool animated = true, bool reset = false)
         {
             if (this.paneClipRectangle != null)
@@ -112,6 +120,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             sender?.ChangeVisualState(true, true);
         }
 
+        /// <summary>
+        /// gets controls from the style
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             base.OnTemplateApplied(e);
@@ -133,6 +145,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             //});
         }
 
+        /// <summary>
+        /// adds Pane and Content as result
+        /// </summary>
         protected IAvaloniaList<ILogical> LogicalChildren
         {
             get
@@ -172,6 +187,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// opens or close the pane
+        /// </summary>
         protected virtual void OnIsPaneOpenChanged()
         {
             var cancel = false;

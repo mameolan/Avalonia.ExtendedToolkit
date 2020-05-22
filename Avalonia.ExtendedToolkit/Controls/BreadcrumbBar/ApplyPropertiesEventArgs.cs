@@ -1,16 +1,28 @@
-﻿using Avalonia.Controls;
-using Avalonia.Interactivity;
-using Avalonia.Media;
+﻿using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
     //ported from https://github.com/jogibear9988/OdysseyWPF.git
 
+    /// <summary>
+    /// apply properties event handler
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     public delegate void ApplyPropertiesEventHandler(object sender, ApplyPropertiesEventArgs e);
 
+    /// <summary>
+    /// event args for apply the items binding
+    /// </summary>
     public class ApplyPropertiesEventArgs: RoutedEventArgs
     {
+        /// <summary>
+        /// item which belongs to the breadcrumpitem
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="breadcrumb"></param>
+        /// <param name="routedEvent"></param>
         public ApplyPropertiesEventArgs(object item, BreadcrumbItem breadcrumb, RoutedEvent routedEvent)
             : base(routedEvent)
         {
@@ -28,6 +40,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public object Item { get; private set; }
 
+        /// <summary>
+        /// image to show
+        /// </summary>
         public IBitmap Image { get; set; }
 
         /// <summary>

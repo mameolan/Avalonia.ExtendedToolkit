@@ -5,12 +5,21 @@ using System.Collections.Specialized;
 
 namespace Avalonia.ExtendedToolkit
 {
+    /// <summary>
+    /// collection of TreeGridElement
+    /// </summary>
     public class TreeGridModel : ObservableCollection<TreeGridElement>
     {
+        /// <summary>
+        /// gets the TreeGridFlatModel
+        /// </summary>
 		public TreeGridFlatModel FlatModel { get; private set; }
 
 		private List<TreeGridElement> itemCache;
 
+        /// <summary>
+        /// initilaize <see cref="FlatModel"/>
+        /// </summary>
 		public TreeGridModel()
 		{
 			// Initialize the model
@@ -18,6 +27,10 @@ namespace Avalonia.ExtendedToolkit
 			FlatModel = new TreeGridFlatModel();
 		}
 
+        /// <summary>
+        /// if NotifyCollectionChangedAction.Add OnRootAdded is called
+        /// </summary>
+        /// <param name="args"></param>
 		protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs args)
 		{
 			// Process the event

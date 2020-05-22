@@ -11,9 +11,21 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
     /// </summary>
     public enum NumberRangeType
     {
+        /// <summary>
+        /// minimum
+        /// </summary>
         Minimum,
+        /// <summary>
+        /// maximum
+        /// </summary>
         Maximum,
+        /// <summary>
+        /// tick
+        /// </summary>
         Tick,
+        /// <summary>
+        /// precision
+        /// </summary>
         Precision
     }
 }

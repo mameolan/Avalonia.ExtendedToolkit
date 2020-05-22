@@ -15,10 +15,16 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
     // ported from https://github.com/DenisVuyka/WPG
     //
 
-    public partial class PropertyGrid//, INotifyPropertyChanged
+    public partial class PropertyGrid
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(PropertyGrid);
 
+        /// <summary>
+        /// default properties filter
+        /// </summary>
         private static Attribute[] DefaultPropertiesFilter = new Attribute[]
         {
             new PropertyFilterAttribute(
@@ -30,7 +36,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         private List<BrowsablePropertyAttribute> browsableProperties = new List<BrowsablePropertyAttribute>();
         private List<BrowsableCategoryAttribute> browsableCategories = new List<BrowsableCategoryAttribute>();
 
-        private EditorCollection _Editors = new EditorCollection();
+
 
         /// <summary>
         /// Gets the editors collection.
@@ -38,29 +44,35 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <value>The editors collection.</value>
         public EditorCollection Editors
         {
-            get { return _Editors; }
-        }
+            get;
+        } = new EditorCollection();
 
+        /// <summary>
+        /// <see cref="HasProperties"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyGrid, bool> HasPropertiesProperty =
                 AvaloniaProperty.RegisterDirect<PropertyGrid, bool>(
                     nameof(HasProperties),
                     o => o.HasProperties);
 
+        /// <summary>
+        /// Gets a value indicating whether this instance has properties.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance has properties; otherwise, <c>false</c>.
+        /// </value>
         public bool HasProperties
         {
             get { return _properties != null && _properties.Count > 0; }
         }
 
         /// <summary>
-        /// Gets a value indicating whether this instance has properties.
+        /// <see cref="HasCategories"/>
         /// </summary>
-        /// <value>
-        /// 	<c>true</c> if this instance has properties; otherwise, <c>false</c>.
-        /// </value>
-        //public bool HasProperties
-        //{
-        //    get { return _properties != null && _properties.Count > 0; }
-        //}
+        public static readonly DirectProperty<PropertyGrid, bool> HasCategoriesProperty =
+                AvaloniaProperty.RegisterDirect<PropertyGrid, bool>(
+                    nameof(HasCategories),
+                    o => o.HasCategories);
 
         /// <summary>
         /// Gets a value indicating whether this instance has categories.
@@ -68,27 +80,23 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <value>
         /// 	<c>true</c> if this instance has categories; otherwise, <c>false</c>.
         /// </value>
-        //public bool HasCategories
-        //{
-        //    get { return _categories != null && _categories.Count > 0; }
-        //}
-
-        public static readonly DirectProperty<PropertyGrid, bool> HasCategoriesProperty =
-                AvaloniaProperty.RegisterDirect<PropertyGrid, bool>(
-                    nameof(HasCategories),
-                    o => o.HasCategories);
-
         public bool HasCategories
         {
             get { return _categories != null && _categories.Count > 0; }
         }
 
+        /// <summary>
+        /// get/set CurrentDescription
+        /// </summary>
         public string CurrentDescription
         {
             get { return (string)GetValue(CurrentDescriptionProperty); }
             set { SetValue(CurrentDescriptionProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="CurrentDescription"/>
+        /// </summary>
         public static readonly StyledProperty<string> CurrentDescriptionProperty =
             AvaloniaProperty.Register<PropertyGrid, string>(nameof(CurrentDescription)
                 , defaultValue: string.Empty);
@@ -103,6 +111,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             set { SetValue(ItemsBackgroundProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ItemsBackground"/>
+        /// </summary>
         public static readonly StyledProperty<Brush> ItemsBackgroundProperty =
             AvaloniaProperty.Register<PropertyGrid, Brush>(nameof(ItemsBackground));
 
@@ -116,6 +127,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             set { SetValue(ItemsForegroundProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ItemsForeground"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> ItemsForegroundProperty =
             AvaloniaProperty.Register<PropertyGrid, IBrush>(nameof(ItemsForeground));
 
@@ -130,19 +144,15 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             set { SetValue(LayoutProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Layout"/>
+        /// </summary>
         public static readonly StyledProperty<IControl> LayoutProperty =
             AvaloniaProperty.Register<PropertyGrid, IControl>(nameof(Layout), defaultValue: default(AlphabeticalLayout));
 
         /// <summary>
-        /// Gets or sets the selected object.
+        /// <see cref="SelectedObject"/>
         /// </summary>
-        /// <value>The selected object.</value>
-        //public object SelectedObject
-        //{
-        //    get { return (currentObjects != null && currentObjects.Length != 0) ? currentObjects[0] : null; }
-        //    set { SelectedObjects = (value == null) ? new object[0] : new[] { value }; }
-        //}
-
         public static readonly DirectProperty<PropertyGrid, object> SelectedObjectProperty =
                 AvaloniaProperty.RegisterDirect<PropertyGrid, object>(
                     nameof(SelectedObject),
@@ -150,6 +160,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         private object _selectedObject;
 
+        /// <summary>
+        /// Gets or sets the selected object.
+        /// </summary>
+        /// <value>The selected object.</value>
         public object SelectedObject
         {
             get { return (_currentObjects != null && _currentObjects.Length != 0) ? _currentObjects[0] : null; }
@@ -160,6 +174,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
+        /// <summary>
+        /// <see cref="SelectedObjects"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyGrid, object[]> SelectedObjectsProperty =
                 AvaloniaProperty.RegisterDirect<PropertyGrid, object[]>(
                     nameof(SelectedObjects),
@@ -167,6 +184,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         private object[] _currentObjects;
 
+        /// <summary>
+        /// Gets or sets the selected objects.
+        /// </summary>
+        /// <value>The selected objects.</value>
         public object[] SelectedObjects
         {
             get { return (_currentObjects == null) ? new object[0] : (object[])_currentObjects.Clone(); }
@@ -236,77 +257,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
-        //private object[] currentObjects;
-        ///// <summary>
-        ///// Gets or sets the selected objects.
-        ///// </summary>
-        ///// <value>The selected objects.</value>
-        //public object[] SelectedObjects
-        //{
-        //    get { return (currentObjects == null) ? new object[0] : (object[])currentObjects.Clone(); }
-        //    set
-        //    {
-        //        // Ensure there are no nulls in the array
-        //        VerifySelectedObjects(value);
-
-        //        var sameSelection = false;
-
-        //        // Check whether new selection is the same as was previously defined
-        //        if (currentObjects != null && value != null && currentObjects.Length == value.Length)
-        //        {
-        //            sameSelection = true;
-
-        //            for (var i = 0; i < value.Length && sameSelection; i++)
-        //            {
-        //                if (currentObjects[i] != value[i])
-        //                    sameSelection = false;
-        //            }
-        //        }
-
-        //        if (!sameSelection)
-        //        {
-        //            // Assign new objects and reload
-        //            if (value == null)
-        //            {
-        //                currentObjects = new object[0];
-        //                DoReload();
-        //            }
-        //            else
-        //            {
-        //                // process single selection
-        //                if (value.Length == 1 && currentObjects != null && currentObjects.Length == 1)
-        //                {
-        //                    var oldValue = (currentObjects != null && currentObjects.Length > 0) ? currentObjects[0] : null;
-        //                    var newValue = (value.Length > 0) ? value[0] : null;
-
-        //                    currentObjects = (object[])value.Clone();
-
-        //                    if (oldValue != null && newValue != null && oldValue.GetType().Equals(newValue.GetType()))
-        //                        SwapSelectedObject(newValue);
-        //                    else
-        //                    {
-        //                        DoReload();
-        //                    }
-        //                }
-        //                // process multiple selection
-        //                else
-        //                {
-        //                    currentObjects = (object[])value.Clone();
-        //                    DoReload();
-        //                }
-        //            }
-
-        //            OnPropertyChanged("SelectedObjects");
-        //            OnPropertyChanged("SelectedObject");
-        //            OnSelectedObjectsChanged();
-        //        }
-        //        else
-        //        {
-        //            // TODO: Swap multiple objects here? Guess nothing can be done in this case...
-        //        }
-        //    }
-        //}
-
+        /// <summary>
+        /// <see cref="Properties"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyGrid, GridEntryCollection<PropertyItem>> PropertiesProperty =
                 AvaloniaProperty.RegisterDirect<PropertyGrid, GridEntryCollection<PropertyItem>>(
                     nameof(Properties),
@@ -314,6 +267,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         private GridEntryCollection<PropertyItem> _properties;
 
+        /// <summary>
+        /// Gets or sets the properties of the selected object(s).
+        /// </summary>
+        /// <value>The properties of the selected object(s).</value>
         public GridEntryCollection<PropertyItem> Properties
         {
             get { return _properties; }
@@ -354,67 +311,17 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
-        //private GridEntryCollection<PropertyItem> _properties;
-
-        ///// <summary>
-        ///// Gets or sets the properties of the selected object(s).
-        ///// </summary>
-        ///// <value>The properties of the selected object(s).</value>
-        //public GridEntryCollection<PropertyItem> Properties
-        //{
-        //    get { return _properties; }
-        //    private set
-        //    {
-        //        if (_properties == value)
-        //            return;
-
-        //        if (_properties != null)
-        //        {
-        //            foreach (var item in _properties)
-        //            {
-        //                UnhookPropertyChanged(item);
-        //                item.Dispose();
-        //            }
-        //        }
-
-        //        if (value != null)
-        //        {
-        //            _properties = value;
-
-        //            if (PropertyComparer != null)
-        //                _properties.Sort(PropertyComparer);
-
-        //            foreach (var item in _properties)
-        //                HookPropertyChanged(item);
-        //        }
-
-        //        OnPropertyChanged("Properties");
-        //        OnPropertyChanged("HasProperties");
-        //        OnPropertyChanged("BrowsableProperties");
-        //    }
-        //}
-
         /// <summary>
-        /// Enumerates the properties that should be visible for user
+        /// <see cref="BrowsableProperties"/>
         /// </summary>
-        //public IEnumerable<PropertyItem> BrowsableProperties
-        //{
-        //    get
-        //    {
-        //        if (_properties != null)
-        //        {
-        //            foreach (var property in _properties)
-        //                if (property.IsBrowsable)
-        //                    yield return property;
-        //        }
-        //    }
-        //}
-
         public static readonly DirectProperty<PropertyGrid, IEnumerable<PropertyItem>> BrowsablePropertiesProperty =
                 AvaloniaProperty.RegisterDirect<PropertyGrid, IEnumerable<PropertyItem>>(
                     nameof(BrowsableProperties),
                     o => o.BrowsableProperties);
 
+        /// <summary>
+        /// Enumerates the properties that should be visible for user
+        /// </summary>
         public IEnumerable<PropertyItem> BrowsableProperties
         {
             get
@@ -426,31 +333,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                             yield return property;
                 }
             }
-            //private set { SetAndRaise(BrowsablePropertiesProperty, ref _browsableProperties, value); }
         }
 
-        //private IComparer<PropertyItem> _propertyComparer;
-
-        ///// <summary>
-        ///// Gets or sets the default property comparer.
-        ///// </summary>
-        ///// <value>The default property comparer.</value>
-        //public IComparer<PropertyItem> PropertyComparer
-        //{
-        //    get { return _propertyComparer ?? (_propertyComparer = new PropertyItemComparer()); }
-        //    set
-        //    {
-        //        if (_propertyComparer == value)
-        //            return;
-        //        _propertyComparer = value;
-
-        //        if (_properties != null)
-        //            _properties.Sort(_propertyComparer);
-
-        //        OnPropertyChanged("PropertyComparer");
-        //    }
-        //}
-
+        /// <summary>
+        /// <see cref="PropertyComparer"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyGrid, IComparer<PropertyItem>> PropertyComparerProperty =
                 AvaloniaProperty.RegisterDirect<PropertyGrid, IComparer<PropertyItem>>(
                     nameof(PropertyComparer),
@@ -458,6 +345,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         private IComparer<PropertyItem> _propertyComparer;
 
+        /// <summary>
+        /// Gets or sets the default property comparer.
+        /// </summary>
+        /// <value>The default property comparer.</value>
         public IComparer<PropertyItem> PropertyComparer
         {
             get { return _propertyComparer ?? (_propertyComparer = new PropertyItemComparer()); }
@@ -473,28 +364,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
-        //private IComparer<CategoryItem> _categoryComparer;
-
-        ///// <summary>
-        ///// Gets or sets the default category comparer.
-        ///// </summary>
-        ///// <value>The default category comparer.</value>
-        //public IComparer<CategoryItem> CategoryComparer
-        //{
-        //    get { return _categoryComparer ?? (_categoryComparer = new CategoryItemComparer()); }
-        //    set
-        //    {
-        //        if (_categoryComparer == value)
-        //            return;
-        //        _categoryComparer = value;
-
-        //        if (_categories != null)
-        //            _categories.Sort(_categoryComparer);
-
-        //        OnPropertyChanged("Categories");
-        //    }
-        //}
-
+        /// <summary>
+        /// <see cref="CategoryComparer"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyGrid, IComparer<CategoryItem>> CategoryComparerProperty =
                 AvaloniaProperty.RegisterDirect<PropertyGrid, IComparer<CategoryItem>>(
                     nameof(CategoryComparer),
@@ -502,6 +374,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         private IComparer<CategoryItem> _categoryComparer;
 
+        /// <summary>
+        /// Gets or sets the default category comparer.
+        /// </summary>
+        /// <value>The default category comparer.</value>
         public IComparer<CategoryItem> CategoryComparer
         {
             get { return _categoryComparer ?? (_categoryComparer = new CategoryItemComparer()); }
@@ -517,30 +393,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
-        //private GridEntryCollection<CategoryItem> _categories;
-
-        ///// <summary>
-        ///// Gets or sets the categories of the selected object(s).
-        ///// </summary>
-        ///// <value>The categories of the selected object(s).</value>
-        //public GridEntryCollection<CategoryItem> Categories
-        //{
-        //    get { return _categories; }
-        //    private set
-        //    {
-        //        if (_categories == value)
-        //            return;
-        //        _categories = value;
-
-        //        if (CategoryComparer != null)
-        //            _categories.Sort(CategoryComparer);
-
-        //        OnPropertyChanged("Categories");
-        //        OnPropertyChanged("HasCategories");
-        //        OnPropertyChanged("BrowsableCategories");
-        //    }
-        //}
-
+        /// <summary>
+        /// <see cref="Categories"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyGrid, GridEntryCollection<CategoryItem>> CategoriesProperty =
                 AvaloniaProperty.RegisterDirect<PropertyGrid, GridEntryCollection<CategoryItem>>(
                     nameof(Categories),
@@ -548,6 +403,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
         private GridEntryCollection<CategoryItem> _categories;
 
+        /// <summary>
+        /// Gets or sets the categories of the selected object(s).
+        /// </summary>
+        /// <value>The categories of the selected object(s).</value>
         public GridEntryCollection<CategoryItem> Categories
         {
             get { return _categories; }
@@ -568,26 +427,16 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         }
 
         /// <summary>
-        /// Enumerates the categories that should be visible for user.
+        /// <see cref="BrowsableCategories"/>
         /// </summary>
-        //public IEnumerable<CategoryItem> BrowsableCategories
-        //{
-        //    get
-        //    {
-        //        if (_categories != null)
-        //        {
-        //            foreach (var category in _categories)
-        //                if (category.IsBrowsable)
-        //                    yield return category;
-        //        }
-        //    }
-        //}
-
         public static readonly DirectProperty<PropertyGrid, IEnumerable<CategoryItem>> BrowsableCategoriesProperty =
                 AvaloniaProperty.RegisterDirect<PropertyGrid, IEnumerable<CategoryItem>>(
                     nameof(BrowsableCategories),
                     o => o.BrowsableCategories);
 
+        /// <summary>
+        /// Enumerates the categories that should be visible for user.
+        /// </summary>
         public IEnumerable<CategoryItem> BrowsableCategories
         {
             get
@@ -614,6 +463,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             set { SetValue(ShowReadOnlyPropertiesProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ShowReadOnlyProperties"/>
+        /// </summary>
         public static readonly StyledProperty<bool> ShowReadOnlyPropertiesProperty =
             AvaloniaProperty.Register<PropertyGrid, bool>(nameof(ShowReadOnlyProperties));
 
@@ -629,6 +481,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             set { SetValue(ShowAttachedPropertiesProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ShowAttachedProperties"/>
+        /// </summary>
         public static readonly StyledProperty<bool> ShowAttachedPropertiesProperty =
             AvaloniaProperty.Register<PropertyGrid, bool>(nameof(ShowAttachedProperties));
 
@@ -642,6 +497,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             set { SetValue(PropertyFilterProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="PropertyFilter"/>
+        /// </summary>
         public static readonly StyledProperty<string> PropertyFilterProperty =
             AvaloniaProperty.Register<PropertyGrid, string>(nameof(PropertyFilter)
                 , defaultValue: string.Empty
@@ -658,6 +516,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             set { SetValue(PropertyFilterIsVisibleProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="PropertyFilterIsVisible"/>
+        /// </summary>
         public static readonly StyledProperty<bool> PropertyFilterIsVisibleProperty =
             AvaloniaProperty.Register<PropertyGrid, bool>(nameof(PropertyFilterIsVisible)
                 , defaultValue: true);
@@ -672,6 +533,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             set { SetValue(PropertyDisplayModeProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="PropertyDisplayMode"/>
+        /// </summary>
         public static readonly StyledProperty<PropertyDisplayMode> PropertyDisplayModeProperty =
             AvaloniaProperty.Register<PropertyGrid, PropertyDisplayMode>(nameof(PropertyDisplayMode)
                 , defaultValue: PropertyDisplayMode.All);
@@ -681,6 +545,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// </summary>
         public event EventHandler SelectedObjectsChanged;
 
+        /// <summary>
+        /// <see cref="PropertyEditingStarted"/>
+        /// </summary>
         public static readonly RoutedEvent<PropertyEditingEventArgs> PropertyEditingStartedEvent =
                     RoutedEvent.Register<PropertyGrid, PropertyEditingEventArgs>
             (nameof(PropertyEditingStartedEvent), RoutingStrategies.Bubble);
@@ -704,6 +571,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
+        /// <summary>
+        /// <see cref="PropertyEditingFinished"/>
+        /// </summary>
         public static readonly RoutedEvent<PropertyEditingEventArgs> PropertyEditingFinishedEvent =
                     RoutedEvent.Register<PropertyGrid, PropertyEditingEventArgs>
             (nameof(PropertyEditingFinishedEvent), RoutingStrategies.Bubble);
@@ -727,6 +597,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
+        /// <summary>
+        /// <see cref="PropertyValueChanged"/>
+        /// </summary>
         public static readonly RoutedEvent<RoutedEventArgs> PropertyValueChangedEvent =
                     RoutedEvent.Register<PropertyGrid, RoutedEventArgs>(nameof(PropertyValueChangedEvent), RoutingStrategies.Bubble);
 

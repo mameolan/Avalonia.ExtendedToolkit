@@ -39,6 +39,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// registered PointerPressed, PointerReleased
+        /// for setting IsPressed state
+        /// </summary>
         public OdcExpander()
         {
             PointerPressed += (o, e) =>
@@ -72,6 +76,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             expander.RaiseEvent(args);
         }
 
+        /// <summary>
+        /// gets the header from the template
+        /// raises header classes propertychanged
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             _header = e.NameScope.Find<OdcExpanderHeader>("PART_HEADER");

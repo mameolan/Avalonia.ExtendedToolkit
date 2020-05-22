@@ -26,7 +26,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <summary>
         /// Initializes a new instance of the <see cref="CategoryOrderAttribute"/> class.
         /// </summary>
-        /// <param name="order">The order.</param>
+        /// <param name="category"></param>
+        /// <param name="order"></param>
         public CategoryOrderAttribute(string category, int order)
         {
             Category = category;

@@ -12,6 +12,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     /// </summary>
     public sealed class PropertyEditorContentPresenter : ContentControl
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(PropertyEditorContentPresenter);
 
         /// <summary>

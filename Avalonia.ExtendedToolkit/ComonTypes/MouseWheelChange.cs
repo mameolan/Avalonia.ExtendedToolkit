@@ -2,6 +2,9 @@
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// types for the see <see cref="SliderHelper"/>
+    /// </summary>
     public enum MouseWheelChange
     {
         /// <summary>

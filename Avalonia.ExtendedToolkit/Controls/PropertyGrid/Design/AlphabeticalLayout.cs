@@ -12,6 +12,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     /// </summary>
     public class AlphabeticalLayout : TemplatedControl
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(AlphabeticalLayout);
     }
 }

@@ -4,6 +4,11 @@ namespace Avalonia.ExtendedToolkit.Controls
 {
     //ported from https://github.com/jogibear9988/OdysseyWPF.git
 
+    /// <summary>
+    /// PathConversionEventHandler
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     public delegate void PathConversionEventHandler(object sender, PathConversionEventArgs e);
 
     /// <summary>

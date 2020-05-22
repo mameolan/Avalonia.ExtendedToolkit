@@ -7,8 +7,12 @@ namespace Avalonia.ExtendedToolkit.Controls
 {
     //ported from https://github.com/MahApps/MahApps.Metro
 
+    /// <summary>
+    /// TransitioningContentControl
+    /// </summary>
     public class TransitioningContentControl : ContentControl
     {
+#warning finish implementation
         //internal const string PresentationGroup = "PresentationStates";
         //internal const string NormalState = "Normal";
         internal const string PreviousContentPresentationSitePartName = "PreviousContentPresentationSite";
@@ -19,51 +23,84 @@ namespace Avalonia.ExtendedToolkit.Controls
         private ContentPresenter previousContentPresentationSite;
         private bool allowIsTransitioningPropertyWrite;
 
+        /// <summary>
+        /// TransitionCompleted event
+        /// </summary>
         public event EventHandler TransitionCompleted;
 
+        /// <summary>
+        /// Default TransitionType
+        /// </summary>
         public const TransitionType DefaultTransitionState = TransitionType.Default;
 
+        /// <summary>
+        /// get IsTransitioning
+        /// </summary>
         public bool IsTransitioning
         {
             get { return (bool)GetValue(IsTransitioningProperty); }
             private set
             {
-                this.allowIsTransitioningPropertyWrite = true;
+                allowIsTransitioningPropertyWrite = true;
                 SetValue(IsTransitioningProperty, value);
-                this.allowIsTransitioningPropertyWrite = false;
+                allowIsTransitioningPropertyWrite = false;
             }
         }
 
+        /// <summary>
+        /// <see cref="IsTransitioning"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsTransitioningProperty =
             AvaloniaProperty.Register<TransitioningContentControl, bool>(nameof(IsTransitioning));
 
+        /// <summary>
+        /// get/set Transition state
+        /// </summary>
         public TransitionType Transition
         {
             get { return (TransitionType)GetValue(TransitionProperty); }
             set { SetValue(TransitionProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Transition"/>
+        /// </summary>
         public static readonly StyledProperty<TransitionType> TransitionProperty =
             AvaloniaProperty.Register<TransitioningContentControl, TransitionType>(nameof(Transition), defaultValue: TransitionType.Default);
 
+        /// <summary>
+        /// get/sets RestartTransitionOnContentChange
+        /// </summary>
         public bool RestartTransitionOnContentChange
         {
             get { return (bool)GetValue(RestartTransitionOnContentChangeProperty); }
             set { SetValue(RestartTransitionOnContentChangeProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="RestartTransitionOnContentChange"/>
+        /// </summary>
         public static readonly StyledProperty<bool> RestartTransitionOnContentChangeProperty =
             AvaloniaProperty.Register<TransitioningContentControl, bool>(nameof(RestartTransitionOnContentChange));
 
-        public string CustomVisualStatesName
+        /// <summary>
+        /// get set CustomVisualStatesName
+        /// </summary>
+        internal string CustomVisualStatesName
         {
             get { return (string)GetValue(CustomVisualStatesNameProperty); }
             set { SetValue(CustomVisualStatesNameProperty, value); }
         }
 
-        public static readonly StyledProperty<string> CustomVisualStatesNameProperty =
+        /// <summary>
+        /// <see cref="CustomVisualStatesName"/>
+        /// </summary>
+        internal static readonly StyledProperty<string> CustomVisualStatesNameProperty =
             AvaloniaProperty.Register<TransitioningContentControl, string>(nameof(CustomVisualStatesName), defaultValue: "CustomTransition");
 
+        /// <summary>
+        /// registers some changed listeners
+        /// </summary>
         public TransitioningContentControl()
         {
             IsTransitioningProperty.Changed.AddClassHandler<TransitioningContentControl>((o, e) => OnIsTransitioningPropertyChanged(o, e));
@@ -74,31 +111,31 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void OnContentChangeChanged(TransitioningContentControl o, AvaloniaPropertyChangedEventArgs e)
         {
-            this.StartTransition(e.OldValue, e.NewValue);
+            StartTransition(e.OldValue, e.NewValue);
         }
 
         private void StartTransition(object oldContent, object newContent)
         {
             // both presenters must be available, otherwise a transition is useless.
-            if (this.currentContentPresentationSite != null && this.previousContentPresentationSite != null)
+            if (currentContentPresentationSite != null && previousContentPresentationSite != null)
             {
-                if (this.RestartTransitionOnContentChange)
+                if (RestartTransitionOnContentChange)
                 {
                     //this.CurrentTransition.Completed -= this.OnTransitionCompleted;
                 }
 
-                this.currentContentPresentationSite.SetValue(ContentPresenter.ContentProperty, newContent);
-                this.previousContentPresentationSite.SetValue(ContentPresenter.ContentProperty, oldContent);
+                currentContentPresentationSite.SetValue(ContentPresenter.ContentProperty, newContent);
+                previousContentPresentationSite.SetValue(ContentPresenter.ContentProperty, oldContent);
 
                 // and start a new transition
-                if (!this.IsTransitioning || this.RestartTransitionOnContentChange)
+                if (!IsTransitioning || RestartTransitionOnContentChange)
                 {
                     //if (this.RestartTransitionOnContentChange)
                     //{
                     //    this.CurrentTransition.Completed += this.OnTransitionCompleted;
                     //}
 
-                    this.IsTransitioning = true;
+                    IsTransitioning = true;
                     //VisualStateManager.GoToState(this, NormalState, false);
                     //VisualStateManager.GoToState(this, this.GetTransitionName(this.Transition), true);
                 }
@@ -110,6 +147,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             o.OnRestartTransitionOnContentChangeChanged((bool)e.OldValue, (bool)e.NewValue);
         }
 
+        /// <summary>
+        /// overriden control can add functionality
+        /// </summary>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
         protected virtual void OnRestartTransitionOnContentChangeChanged(bool oldValue, bool newValue)
         {
         }
@@ -159,11 +201,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// gets the controls of the style
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
-            if (this.IsTransitioning)
+            if (IsTransitioning)
             {
-                this.AbortTransition();
+                AbortTransition();
             }
 
             //if (this.CustomVisualStates != null && this.CustomVisualStates.Any())
@@ -180,8 +226,8 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             base.OnTemplateApplied(e);
 
-            this.previousContentPresentationSite = e.NameScope.Find(PreviousContentPresentationSitePartName) as ContentPresenter;
-            this.currentContentPresentationSite = e.NameScope.Find(CurrentContentPresentationSitePartName) as ContentPresenter;
+            previousContentPresentationSite = e.NameScope.Find(PreviousContentPresentationSitePartName) as ContentPresenter;
+            currentContentPresentationSite = e.NameScope.Find(CurrentContentPresentationSitePartName) as ContentPresenter;
 
             // hookup currenttransition
             //Storyboard transition = this.GetStoryboard(this.Transition);
@@ -198,24 +244,27 @@ namespace Avalonia.ExtendedToolkit.Controls
             //VisualStateManager.GoToState(this, NormalState, false);
         }
 
+        /// <summary>
+        /// reloads the transaction
+        /// </summary>
         public void ReloadTransition()
         {
             // both presenters must be available, otherwise a transition is useless.
-            if (this.currentContentPresentationSite != null && this.previousContentPresentationSite != null)
+            if (currentContentPresentationSite != null && previousContentPresentationSite != null)
             {
-                if (this.RestartTransitionOnContentChange)
+                if (RestartTransitionOnContentChange)
                 {
          //           this.CurrentTransition.Completed -= this.OnTransitionCompleted;
                 }
 
-                if (!this.IsTransitioning || this.RestartTransitionOnContentChange)
+                if (!IsTransitioning || RestartTransitionOnContentChange)
                 {
-                    if (this.RestartTransitionOnContentChange)
+                    if (RestartTransitionOnContentChange)
                     {
            //             this.CurrentTransition.Completed += this.OnTransitionCompleted;
                     }
 
-                    this.IsTransitioning = true;
+                    IsTransitioning = true;
                     //VisualStateManager.GoToState(this, NormalState, false);
                     //VisualStateManager.GoToState(this, this.GetTransitionName(this.Transition), true);
                 }
@@ -232,12 +281,15 @@ namespace Avalonia.ExtendedToolkit.Controls
         //    }
         //}
 
+        /// <summary>
+        /// aborts the transaction
+        /// </summary>
         public void AbortTransition()
         {
             // go to normal state and release our hold on the old content.
             //VisualStateManager.GoToState(this, NormalState, false);
-            this.IsTransitioning = false;
-            this.previousContentPresentationSite?.SetValue(ContentPresenter.ContentProperty, null);
+            IsTransitioning = false;
+            previousContentPresentationSite?.SetValue(ContentPresenter.ContentProperty, null);
         }
 
         //private Storyboard GetStoryboard(TransitionType newTransition)
@@ -287,7 +339,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                     return "LeftReplaceTransition";
 
                 case TransitionType.Custom:
-                    return this.CustomVisualStatesName;
+                    return CustomVisualStatesName;
             }
         }
     }

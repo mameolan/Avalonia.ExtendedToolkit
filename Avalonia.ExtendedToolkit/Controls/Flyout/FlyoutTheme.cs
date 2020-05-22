@@ -1,5 +1,8 @@
 ﻿namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// FlyoutTheme types
+    /// </summary>
     public enum FlyoutTheme
     {
         /// <summary>

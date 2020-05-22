@@ -197,8 +197,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 newValue = Math.Round(value * dpiScale) / dpiScale;
                 // If rounding produces a value unacceptable to layout (NaN, Infinity or MaxValue), use the original value.
                 if (IsNaN(newValue) ||
-                    Double.IsInfinity(newValue) ||
-                    newValue.IsCloseTo(Double.MaxValue))
+                    double.IsInfinity(newValue) ||
+                    newValue.IsCloseTo(double.MaxValue))
                 {
                     newValue = value;
                 }
@@ -242,8 +242,8 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             if (!allowPositiveInfinity)
             {
-                if (Double.IsPositiveInfinity(thick.Left) || Double.IsPositiveInfinity(thick.Right)
-                    || Double.IsPositiveInfinity(thick.Top) || Double.IsPositiveInfinity(thick.Bottom))
+                if (double.IsPositiveInfinity(thick.Left) || double.IsPositiveInfinity(thick.Right)
+                    || double.IsPositiveInfinity(thick.Top) || double.IsPositiveInfinity(thick.Bottom))
                 {
                     return false;
                 }
@@ -251,8 +251,8 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             if (!allowNegativeInfinity)
             {
-                if (Double.IsNegativeInfinity(thick.Left) || Double.IsNegativeInfinity(thick.Right)
-                    || Double.IsNegativeInfinity(thick.Top) || Double.IsNegativeInfinity(thick.Bottom))
+                if (double.IsNegativeInfinity(thick.Left) || double.IsNegativeInfinity(thick.Right)
+                    || double.IsNegativeInfinity(thick.Top) || double.IsNegativeInfinity(thick.Bottom))
                 {
                     return false;
                 }
@@ -331,8 +331,8 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             if (!allowPositiveInfinity)
             {
-                if (Double.IsPositiveInfinity(corner.TopLeft) || Double.IsPositiveInfinity(corner.TopRight) ||
-                    Double.IsPositiveInfinity(corner.BottomLeft) || Double.IsPositiveInfinity(corner.BottomRight))
+                if (double.IsPositiveInfinity(corner.TopLeft) || double.IsPositiveInfinity(corner.TopRight) ||
+                    double.IsPositiveInfinity(corner.BottomLeft) || double.IsPositiveInfinity(corner.BottomRight))
                 {
                     return (false);
                 }
@@ -340,8 +340,8 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             if (!allowNegativeInfinity)
             {
-                if (Double.IsNegativeInfinity(corner.TopLeft) || Double.IsNegativeInfinity(corner.TopRight) ||
-                    Double.IsNegativeInfinity(corner.BottomLeft) || Double.IsNegativeInfinity(corner.BottomRight))
+                if (double.IsNegativeInfinity(corner.TopLeft) || double.IsNegativeInfinity(corner.TopRight) ||
+                    double.IsNegativeInfinity(corner.BottomLeft) || double.IsNegativeInfinity(corner.BottomRight))
                 {
                     return (false);
                 }

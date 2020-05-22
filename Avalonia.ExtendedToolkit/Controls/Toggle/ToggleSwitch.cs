@@ -16,6 +16,9 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public partial class ToggleSwitch : HeaderedContentControl
     {
+        /// <summary>
+        /// init some handlers
+        /// </summary>
         public ToggleSwitch()
         {
             IsCheckedProperty.Changed.AddClassHandler<ToggleSwitch>((o, e) => OnIsCheckedChanged(o, e));
@@ -52,6 +55,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// gets some controls from the style
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             base.OnTemplateApplied(e);
@@ -124,6 +131,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             KeyboardDevice.Instance.SetFocusedElement(this, NavigationMethod.Unspecified, InputModifiers.None);
         }
 
+        /// <summary>
+        /// returns a debug text with on/off
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format(

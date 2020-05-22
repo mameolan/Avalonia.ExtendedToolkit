@@ -5,10 +5,24 @@ using Avalonia.Data.Converters;
 
 namespace Avalonia.ExtendedToolkit.Converters
 {
+    /// <summary>
+    /// tries to convert the thicknes to double
+    /// </summary>
     public class ThicknessToDoubleConverter : IValueConverter
     {
+        /// <summary>
+        /// TakeThicknessSide
+        /// </summary>
         public ThicknessSideType TakeThicknessSide { get; set; }
 
+        /// <summary>
+        /// tries to convert by <see cref="TakeThicknessSide"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             bool  isGridTarget = targetType.Name.Contains(nameof(Grid));
@@ -85,6 +99,14 @@ namespace Avalonia.ExtendedToolkit.Converters
             }
         }
 
+        /// <summary>
+        /// does nothing
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return AvaloniaProperty.UnsetValue;

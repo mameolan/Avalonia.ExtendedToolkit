@@ -13,6 +13,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     /// <typeparam name="T">The type of elements in the control.</typeparam>
     public abstract class GridEntryLayout<T> : ItemsControl where T : GridEntryContainer, new()
     {
+        /// <summary>
+        /// uses the GridEntryLayoutContainer as Generator
+        /// </summary>
+        /// <returns></returns>
         protected override IItemContainerGenerator CreateItemContainerGenerator()
         {
             var result = new GridEntryLayoutContainer<T>(this);

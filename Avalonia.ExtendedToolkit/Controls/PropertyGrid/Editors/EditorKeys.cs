@@ -9,17 +9,17 @@
     /// </summary>
     public static class EditorKeys
     {
-        private static readonly string _NamedColorEditorKey = "NamedColorEditor";
-        private static readonly string _PasswordEditorKey = "PasswordEditor";
-        private static readonly string _DefaultEditorKey = "DefaultEditor";
-        private static readonly string _BooleanEditorKey = "BooleanEditor";
-        private static readonly string _DoubleEditorKey = "DoubleEditor";
-        private static readonly string _EnumEditorKey = "EnumEditor";
-        private static readonly string _SliderEditorKey = "SliderEditor";
-        private static readonly string _FontFamilyEditorKey = "FontFamilyEditor";
-        private static readonly string _BrushEditorKey = "BrushEditor";
-        private static readonly string _DefaultCategoryEditorKey = "DefaultCategoryEditor";
-        private static readonly string _ComplexPropertyEditorKey = "ComplexPropertyEditor";
+        private const string _NamedColorEditorKey = "NamedColorEditor";
+        private const string _PasswordEditorKey = "PasswordEditor";
+        private const string _DefaultEditorKey = "DefaultEditor";
+        private const string _BooleanEditorKey = "BooleanEditor";
+        private const string _DoubleEditorKey = "DoubleEditor";
+        private const string _EnumEditorKey = "EnumEditor";
+        private const string _SliderEditorKey = "SliderEditor";
+        private const string _FontFamilyEditorKey = "FontFamilyEditor";
+        private const string _BrushEditorKey = "BrushEditor";
+        private const string _DefaultCategoryEditorKey = "DefaultCategoryEditor";
+        private const string _ComplexPropertyEditorKey = "ComplexPropertyEditor";
 
         /// <summary>
         /// Gets the NamedColor editor key.

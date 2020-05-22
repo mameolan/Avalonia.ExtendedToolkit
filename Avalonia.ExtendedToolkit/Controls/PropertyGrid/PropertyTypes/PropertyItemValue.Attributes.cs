@@ -23,6 +23,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
         /// </summary>
         public event EventHandler SubPropertyChanged;
 
+        /// <summary>
+        /// <see cref="ParentProperty"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyItemValue, PropertyItem> ParentPropertyProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItemValue, PropertyItem>(
                     nameof(ParentProperty),
@@ -40,6 +43,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
             private set { SetAndRaise(ParentPropertyProperty, ref _parentProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="SubProperties"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyItemValue, GridEntryCollection<PropertyItem>> SubPropertiesProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItemValue, GridEntryCollection<PropertyItem>>(
                     nameof(SubProperties),
@@ -47,12 +53,18 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
 
         private GridEntryCollection<PropertyItem> _subProperties = new GridEntryCollection<PropertyItem>();
 
+        /// <summary>
+        /// gets the sub properties
+        /// </summary>
         public GridEntryCollection<PropertyItem> SubProperties
         {
             get { return _subProperties; }
             private set { SetAndRaise(SubPropertiesProperty, ref _subProperties, value); }
         }
 
+        /// <summary>
+        /// <see cref="HasSubProperties"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyItemValue, bool> HasSubPropertiesProperty =
                         AvaloniaProperty.RegisterDirect<PropertyItemValue, bool>(
                             nameof(HasSubProperties),
@@ -73,6 +85,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
             private set { SetAndRaise(HasSubPropertiesProperty, ref _hasSubProperties, value); }
         }
 
+        /// <summary>
+        /// <see cref="CanConvertFromString"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyItemValue, bool> CanConvertFromStringProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItemValue, bool>(
                     nameof(CanConvertFromString),
@@ -94,6 +109,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
             }
         }
 
+        /// <summary>
+        /// <see cref="IsCollection"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyItemValue, bool> IsCollectionProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItemValue, bool>(
                     nameof(IsCollection),
@@ -110,6 +128,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
             get { return _parentProperty.IsCollection; }
         }
 
+        /// <summary>
+        /// <see cref="IsDefaultValue"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyItemValue, bool> IsDefaultValueProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItemValue, bool>(
                     nameof(IsDefaultValue),
@@ -126,6 +147,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
             get { return _parentProperty.IsDefaultValue; }
         }
 
+        /// <summary>
+        /// <see cref="StringValue"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyItemValue, string> StringValueProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItemValue, string>(
                     nameof(StringValue),
@@ -174,6 +198,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
             }
         }
 
+        /// <summary>
+        /// <see cref="Value"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyItemValue, object> ValueProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItemValue, object>(
                     nameof(Value),
@@ -222,6 +249,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
             }
         }
 
+        /// <summary>
+        /// <see cref="IsReadOnly"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyItemValue, bool> IsReadOnlyProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItemValue, bool>(
                     nameof(IsReadOnly),
@@ -238,6 +268,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
             get { return _parentProperty.IsReadOnly; }
         }
 
+        /// <summary>
+        /// <see cref="IsEditable"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyItemValue, bool> IsEditableProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItemValue, bool>(
                     nameof(IsEditable),

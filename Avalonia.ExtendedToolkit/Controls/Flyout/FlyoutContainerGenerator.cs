@@ -4,16 +4,31 @@ using Avalonia.Controls.Primitives;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// FlyoutContainerGenerator
+    /// </summary>
     public class FlyoutContainerGenerator : ItemContainerGenerator<Flyout>
     {
+        /// <summary>
+        /// sets the owner
+        /// </summary>
+        /// <param name="owner"></param>
         public FlyoutContainerGenerator(FlyoutsControl owner)
             : base(owner, ContentControl.ContentProperty, ContentControl.ContentTemplateProperty)
         {
             Owner = owner;
         }
 
+        /// <summary>
+        /// gets FlyoutsControl
+        /// </summary>
         public new FlyoutsControl Owner { get; }
 
+        /// <summary>
+        /// sets the item and attach the handlers
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         protected override IControl CreateContainer(object item)
         {
             var flyout = (Flyout)item;

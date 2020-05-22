@@ -23,6 +23,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <value>The attribute.</value>
         public Attribute Attribute { get; set; }
 
+        /// <summary>
+        /// <see cref="Order"/>
+        /// </summary>
         public static readonly DirectProperty<CategoryItem, int> OrderProperty =
                 AvaloniaProperty.RegisterDirect<CategoryItem, int>(
                     nameof(Order),
@@ -44,6 +47,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
+        /// <summary>
+        /// <see cref="IsExpanded"/>
+        /// </summary>
         public static readonly DirectProperty<CategoryItem, bool> IsExpandedProperty =
                 AvaloniaProperty.RegisterDirect<CategoryItem, bool>(
                     nameof(IsExpanded),
@@ -91,6 +97,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             get { return _properties[propertyName]; }
         }
 
+        /// <summary>
+        /// <see cref="Comparer"/>
+        /// </summary>
         public static readonly DirectProperty<CategoryItem, IComparer<PropertyItem>> ComparerProperty =
                 AvaloniaProperty.RegisterDirect<CategoryItem, IComparer<PropertyItem>>(
                     nameof(Comparer),
@@ -114,6 +123,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
+        /// <summary>
+        /// <see cref="HasVisibleProperties"/>
+        /// </summary>
         public static readonly DirectProperty<CategoryItem, bool> HasVisiblePropertiesProperty =
                 AvaloniaProperty.RegisterDirect<CategoryItem, bool>(
                     nameof(HasVisibleProperties),
@@ -138,6 +150,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
+        /// <summary>
+        /// <see cref="IsVisible"/>
+        /// </summary>
         public static new readonly DirectProperty<CategoryItem, bool> IsVisibleProperty =
                 AvaloniaProperty.RegisterDirect<CategoryItem, bool>(
                     nameof(IsVisible),

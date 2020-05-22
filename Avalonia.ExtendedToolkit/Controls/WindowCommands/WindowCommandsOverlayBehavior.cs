@@ -2,6 +2,9 @@
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// WindowCommandsOverlayBehavior type
+    /// </summary>
     [Flags]
     public enum WindowCommandsOverlayBehavior
     {

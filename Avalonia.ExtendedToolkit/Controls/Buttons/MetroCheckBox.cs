@@ -11,56 +11,93 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class MetroCheckBox : CheckBox
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(MetroCheckBox);
 
+        /// <summary>
+        /// get/set FocusBorderBrush
+        /// </summary>
         public IBrush FocusBorderBrush
         {
             get { return (IBrush)GetValue(FocusBorderBrushProperty); }
             set { SetValue(FocusBorderBrushProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="FocusBorderBrush"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> FocusBorderBrushProperty =
             AvaloniaProperty.Register<MetroCheckBox, IBrush>(nameof(FocusBorderBrush));
 
+        /// <summary>
+        /// get/set MouseOverBorderBrush
+        /// </summary>
         public IBrush MouseOverBorderBrush
         {
             get { return (IBrush)GetValue(MouseOverBorderBrushProperty); }
             set { SetValue(MouseOverBorderBrushProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="MouseOverBorderBrush"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> MouseOverBorderBrushProperty =
             AvaloniaProperty.Register<MetroCheckBox, IBrush>(nameof(MouseOverBorderBrush));
 
+        /// <summary>
+        /// get/set IsIndeterminate
+        /// </summary>
         public bool IsIndeterminate
         {
             get { return (bool)GetValue(IsIndeterminateProperty); }
             set { SetValue(IsIndeterminateProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsIndeterminate"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsIndeterminateProperty =
             AvaloniaProperty.Register<MetroCheckBox, bool>(nameof(IsIndeterminate));
 
+        /// <summary>
+        /// get/set FlowDirection
+        /// </summary>
         public FlowDirection FlowDirection
         {
             get { return (FlowDirection)GetValue(FlowDirectionProperty); }
             set { SetValue(FlowDirectionProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="FlowDirection"/>
+        /// </summary>
         public static readonly StyledProperty<FlowDirection> FlowDirectionProperty =
             AvaloniaProperty.Register<MetroCheckBox, FlowDirection>(nameof(FlowDirection));
 
+        /// <summary>
+        /// ContentDirection
+        /// </summary>
         public FlowDirection ContentDirection
         {
             get { return (FlowDirection)GetValue(ContentDirectionProperty); }
             set { SetValue(ContentDirectionProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ContentDirection"/>
+        /// </summary>
         public static readonly StyledProperty<FlowDirection> ContentDirectionProperty =
             AvaloniaProperty.Register<MetroCheckBox, FlowDirection>(nameof(ContentDirection));
 
         private Path _checkBoxPath;
         private Rectangle _indeterminateCheck;
 
+        /// <summary>
+        /// adds listener for
+        /// IsChecked, IsIndeterminate
+        /// </summary>
         static MetroCheckBox()
         {
             IsCheckedProperty.Changed.AddClassHandler<MetroCheckBox>((o, e) => OnIsCheckChanged(o, e));
@@ -93,6 +130,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// gets _checkBoxPath, _indeterminateCheck
+        /// initilaize default value
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             _checkBoxPath = e.NameScope.Find<Path>("checkBox");

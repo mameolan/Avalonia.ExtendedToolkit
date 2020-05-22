@@ -12,59 +12,98 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class HamburgerMenu: ContentControl
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(HamburgerMenu);
 
+        /// <summary>
+        /// get/sets HamburgerMenuItems as content
+        /// </summary>
         public new AvaloniaList<HamburgerMenuItem> Content
         {
             get { return (AvaloniaList<HamburgerMenuItem>)GetValue(ContentProperty); }
             set { SetValue(ContentProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Content"/>
+        /// </summary>
         public new static readonly StyledProperty<AvaloniaList<HamburgerMenuItem>> ContentProperty =
             AvaloniaProperty.Register<HamburgerMenu, AvaloniaList<HamburgerMenuItem>>(nameof(Content));
 
+        /// <summary>
+        /// get/set IsOpen
+        /// </summary>
         public bool IsOpen
         {
             get { return (bool)GetValue(IsOpenProperty); }
             set { SetValue(IsOpenProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsOpen"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsOpenProperty =
             AvaloniaProperty.Register<HamburgerMenu, bool>(nameof(IsOpen), defaultValue:false);
 
+        /// <summary>
+        /// get/set MenuIconColor
+        /// </summary>
         public IBrush MenuIconColor
         {
             get { return (IBrush)GetValue(MenuIconColorProperty); }
             set { SetValue(MenuIconColorProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="MenuIconColor"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> MenuIconColorProperty =
             AvaloniaProperty.Register<HamburgerMenu, IBrush>(nameof(MenuIconColor));
 
+        /// <summary>
+        /// get/set SelectionIndicatorColor
+        /// </summary>
         public IBrush SelectionIndicatorColor
         {
             get { return (IBrush)GetValue(SelectionIndicatorColorProperty); }
             set { SetValue(SelectionIndicatorColorProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="SelectionIndicatorColor"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> SelectionIndicatorColorProperty =
             AvaloniaProperty.Register<HamburgerMenu, IBrush>(nameof(SelectionIndicatorColor));
 
+        /// <summary>
+        /// get/set MenuItemForeground
+        /// </summary>
         public IBrush MenuItemForeground
         {
             get { return (IBrush)GetValue(MenuItemForegroundProperty); }
             set { SetValue(MenuItemForegroundProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="MenuItemForeground"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> MenuItemForegroundProperty =
             AvaloniaProperty.Register<HamburgerMenu, IBrush>(nameof(MenuItemForeground));
 
+        /// <summary>
+        /// get/set SelectedIndex
+        /// </summary>
         public int SelectedIndex
         {
             get { return (int)GetValue(SelectedIndexProperty); }
             set { SetValue(SelectedIndexProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="SelectedIndex"/>
+        /// </summary>
         public static readonly StyledProperty<int> SelectedIndexProperty =
             AvaloniaProperty.Register<HamburgerMenu, int>(nameof(SelectedIndex), defaultValue:0);
 
@@ -88,6 +127,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         //public static readonly StyledProperty<double> MinimizedSizeProperty =
         //    AvaloniaProperty.Register<HamburgerMenu, double>(nameof(MinimizedSize), defaultValue: 50d);
 
+        /// <summary>
+        /// initilaize content and collection changed
+        /// </summary>
         public HamburgerMenu()
         {
             Content = new AvaloniaList<HamburgerMenuItem>();

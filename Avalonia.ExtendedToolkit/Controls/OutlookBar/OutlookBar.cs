@@ -19,8 +19,14 @@ namespace Avalonia.ExtendedToolkit.Controls
 {
     //ported from https://github.com/jogibear9988/OdysseyWPF.git
 
+    /// <summary>
+    /// outlookbar control
+    /// </summary>
     public partial class OutlookBar : HeaderedItemsControl
     {
+        /// <summary>
+        /// calls GetLogicalChildren to get logical children
+        /// </summary>
         protected new IAvaloniaList<ILogical> LogicalChildren
         {
             get
@@ -36,8 +42,10 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private IEnumerable<ILogical> GetLogicalChildren()
         {
-            foreach (var section in Items) yield return section as ILogical;
-            if (SelectedSection != null) yield return SelectedSection.Content as ILogical;
+            foreach (var section in Items)
+                yield return section as ILogical;
+            if (SelectedSection != null)
+                yield return SelectedSection.Content as ILogical;
         }
 
         private void ApplyOverflowMenu()
@@ -61,7 +69,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 {
                     OutlookSection section = items[i];
 
-                    if (overflowItems.OfType<MenuItem>().Count(x => x.Tag == section) > 0)
+                    if (overflowItems.OfType<MenuItem>().Any(x => x.Tag == section))
                     {
                         continue;
                     }
@@ -107,8 +115,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             return 0;
         }
 
+        /// <summary>
+        /// OverflowMenuCreated event
+        /// </summary>
         public event EventHandler<OverflowMenuCreatedEventArgs> OverflowMenuCreated;
 
+        /// <summary>
+        /// fires OverflowMenuCreated if not null
+        /// </summary>
+        /// <param name="menuItems"></param>
         protected virtual void OnOverflowMenuCreated(Collection<object> menuItems)
         {
             if (OverflowMenuCreated != null)
@@ -130,6 +145,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             ApplySections();
         }
 
+        /// <summary>
+        /// gets controls from the style
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             if (popup != null)
@@ -222,12 +241,22 @@ namespace Avalonia.ExtendedToolkit.Controls
             popup.StaysOpen = false;
         }
 
+        /// <summary>
+        /// set IsPopupVisible to true
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected virtual void OnPopupOpened(object sender, EventArgs e)
         {
             IsPopupVisible = true;
             //Mouse.Capture(this, CaptureMode.SubTree);
         }
 
+        /// <summary>
+        /// set IsPopupVisible to false
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected virtual void OnPopupClosed(object sender, EventArgs e)
         {
             IsPopupVisible = false;
@@ -240,7 +269,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <param name="isExpanded"></param>
         protected virtual void OnMaximizedChanged(bool isExpanded)
         {
-            if (isExpanded) IsPopupVisible = false;
+            if (isExpanded)
+                IsPopupVisible = false;
             EnsureSectionContentIsVisible();
             if (isExpanded)
             {
@@ -268,6 +298,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             SectionContent = IsMaximized ? content : null;
         }
 
+        /// <summary>
+        /// init some properties and registered some changed events
+        /// </summary>
         public OutlookBar()
         {
             OverflowMenuItems = _overflowMenu = new ObservableCollection<object>();
@@ -494,7 +527,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 IsMaximized = true;
             }
 
-            if (MaxWidth != double.NaN && w > MaxWidth)
+            if (!double.IsNaN(MaxWidth) && w > MaxWidth)
             {
                 w = MaxWidth;
             }
@@ -517,7 +550,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 IsMaximized = true;
             }
 
-            if (MaxWidth != double.NaN && w > MaxWidth)
+            if (double.IsNaN(MaxWidth) == false && w > MaxWidth)
             {
                 w = MaxWidth;
             }
@@ -576,6 +609,11 @@ namespace Avalonia.ExtendedToolkit.Controls
         //    return base.ArrangeOverride(finalSize);
         //}
 
+        /// <summary>
+        /// remember available size
+        /// </summary>
+        /// <param name="availableSize"></param>
+        /// <returns></returns>
         protected override Size MeasureOverride(Size availableSize)
         {
             _finalSize = availableSize;
@@ -605,10 +643,14 @@ namespace Avalonia.ExtendedToolkit.Controls
             //RaiseEvent(new RoutedEventArgs(SelectedSectionChangedEvent));
         }
 
+        /// <summary>
+        /// if width is not nan set width to MaximizedWidth
+        /// call ApplySections
+        /// </summary>
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            if(double.IsNaN(Width)==false)
+            if (double.IsNaN(Width) == false)
             {
                 MaximizedWidth = Width;
             }
@@ -616,6 +658,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             ApplySections();
         }
 
+        /// <summary>
+        /// applies the sections
+        /// </summary>
         protected virtual void ApplySections()
         {
             if (this.IsInitialized)
@@ -650,7 +695,8 @@ namespace Avalonia.ExtendedToolkit.Controls
 
                     bool selected = index++ == selectedIndex;
                     e.IsSelected = selected;
-                    if (selected) selectedContent = e;
+                    if (selected)
+                        selectedContent = e;
                 }
 
                 try
@@ -699,6 +745,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// create an ItemContainerGenerator from outlooksection
+        /// </summary>
+        /// <returns></returns>
         protected override IItemContainerGenerator CreateItemContainerGenerator()
         {
             var result = new ItemContainerGenerator<OutlookSection>

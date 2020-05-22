@@ -22,6 +22,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
 
         private readonly DispatcherTimer _searchEventDelayTimer;
 
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(SearchTextBox);
 
         /// <summary>
@@ -33,6 +36,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(SearchModeProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="SearchMode"/>
+        /// </summary>
         public static readonly StyledProperty<SearchMode> SearchModeProperty =
             AvaloniaProperty.Register<SearchTextBox, SearchMode>(nameof(SearchMode)
                 , defaultValue: SearchMode.Instant);
@@ -48,6 +54,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(HasTextProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="HasText"/>
+        /// </summary>
         public static readonly StyledProperty<bool> HasTextProperty =
             AvaloniaProperty.Register<SearchTextBox, bool>(nameof(HasText));
 
@@ -63,6 +72,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(IsMouseLeftButtonDownProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsMouseLeftButtonDown"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsMouseLeftButtonDownProperty =
             AvaloniaProperty.Register<SearchTextBox, bool>(nameof(IsMouseLeftButtonDown));
 
@@ -76,10 +88,17 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             set { SetValue(SearchEventTimeDelayProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="SearchEventTimeDelay"/>
+        /// </summary>
         public static readonly StyledProperty<TimeSpan> SearchEventTimeDelayProperty =
             AvaloniaProperty.Register<SearchTextBox, TimeSpan>(nameof(SearchEventTimeDelay)
                 , defaultValue: TimeSpan.FromMilliseconds(500));
 
+
+        /// <summary>
+        /// <see cref="Search"/>
+        /// </summary>
         public static readonly RoutedEvent<RoutedEventArgs> SearchEvent =
                     RoutedEvent.Register<SearchTextBox, RoutedEventArgs>(nameof(SearchEvent),
                         RoutingStrategies.Bubble);
@@ -140,6 +159,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
             }
         }
 
+        /// <summary>
+        /// gets the border from the style
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             var iconBorder = e.NameScope.Find<Border>("PART_SearchIconBorder");

@@ -6,8 +6,17 @@ using Avalonia.VisualTree;
 
 namespace Avalonia.ExtendedToolkit.Extensions
 {
+    /// <summary>
+    /// visual/logical tree extensions
+    /// </summary>
     public static class TreeExtensions
     {
+        /// <summary>
+        /// tries to find the parent by type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="control"></param>
+        /// <returns></returns>
         public static T TryFindParent<T>(this IControl control) where T : IControl
         {
             if (control is T)
@@ -51,6 +60,12 @@ namespace Avalonia.ExtendedToolkit.Extensions
             return default(T);
         }
 
+        /// <summary>
+        /// tries to find the child by type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="control"></param>
+        /// <returns></returns>
         public static T FindChildren<T>(this IControl control) where T : IControl
         {
             //if (control.Parent is T)
@@ -70,6 +85,13 @@ namespace Avalonia.ExtendedToolkit.Extensions
             //return default(T);
         }
 
+
+        /// <summary>
+        /// returns the children by control
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="forceUsingTheVisualTreeHelper"></param>
+        /// <returns></returns>
         public static IEnumerable<IControl> GetChildObjects(this IControl parent, bool forceUsingTheVisualTreeHelper = false)
         {
             if (parent == null) yield break;
@@ -98,6 +120,13 @@ namespace Avalonia.ExtendedToolkit.Extensions
             }
         }
 
+        /// <summary>
+        /// try to find children by T
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="forceUsingTheVisualTreeHelper"></param>
+        /// <returns></returns>
         public static IEnumerable<T> FindChildren<T>(this IControl source, bool forceUsingTheVisualTreeHelper = false) where T : IControl
         {
             if (source != null)
@@ -120,6 +149,11 @@ namespace Avalonia.ExtendedToolkit.Extensions
             }
         }
 
+        /// <summary>
+        /// tries to find the visual parent
+        /// </summary>
+        /// <param name="child"></param>
+        /// <returns></returns>
         public static IEnumerable<IVisual> GetAncestors(this IVisual child)
         {
             IVisual parent= VisualTree.VisualExtensions.GetVisualParent(child);

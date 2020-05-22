@@ -12,6 +12,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing
     /// </summary>
     public delegate void PropertyEditingEventHandler(object sender, PropertyEditingEventArgs e);
 
+    /// <summary>
+    /// PropertyEditingEventArgs
+    /// </summary>
     public class PropertyEditingEventArgs : RoutedEventArgs
     {
         /// <summary>
@@ -20,6 +23,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing
         // TODO: Replace with my wrapper?
         public PropertyDescriptor PropertyDescriptor { get; private set; }
 
+        /// <summary>
+        /// sets PropertyDescriptor
+        /// </summary>
+        /// <param name="routedEvent"></param>
+        /// <param name="source"></param>
+        /// <param name="propertyDescriptor"></param>
         public PropertyEditingEventArgs(RoutedEvent routedEvent, IInteractive source, PropertyDescriptor propertyDescriptor)
           : base(routedEvent, source)
         {

@@ -9,6 +9,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
     // ported from https://github.com/DenisVuyka/WPG
     //
 
+    /// <summary>
+    /// MetadataRepository
+    /// </summary>
     public static class MetadataRepository
     {
         private class PropertySet : Dictionary<string, PropertyData> { }
@@ -21,6 +24,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
 
         private static readonly Attribute[] PropertyFilter = new Attribute[] { new PropertyFilterAttribute(PropertyFilterOptions.SetValues | PropertyFilterOptions.UnsetValues | PropertyFilterOptions.Valid) };
 
+        /// <summary>
+        /// clears the property
+        /// </summary>
         public static void Clear()
         {
             Properties.Clear();
@@ -28,6 +34,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
             TypeAttributes.Clear();
         }
 
+        /// <summary>
+        /// gets properties from the target
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public static IEnumerable<PropertyData> GetProperties(object target)
         {
             return DoGetProperties(target).ToList().AsReadOnly();
@@ -49,6 +60,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
             return result.Values;
         }
 
+        /// <summary>
+        /// gets the common properties
+        /// </summary>
+        /// <param name="targets"></param>
+        /// <returns></returns>
         public static IEnumerable<PropertyData> GetCommonProperties(IEnumerable<object> targets)
         {
             if (targets == null)
@@ -65,6 +81,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
             return (result != null) ? result : Enumerable.Empty<PropertyData>();
         }
 
+        /// <summary>
+        /// gets the property from target by propertyName
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
         public static PropertyData GetProperty(object target, string propertyName)
         {
             if (target == null)
@@ -107,6 +129,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
             return result;
         }
 
+        /// <summary>
+        /// gets the attriutes from the target
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public static IEnumerable<Attribute> GetAttributes(object target)
         {
             if (target == null)
@@ -160,6 +187,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes
             return attributes;
         }
 
+        /// <summary>
+        /// gets attributes by target by property name
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
         public static IEnumerable<Attribute> GetAttributes(object target, string propertyName)
         {
             if (target == null)

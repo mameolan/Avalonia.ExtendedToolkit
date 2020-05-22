@@ -8,14 +8,23 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class SquareButton : Button
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(SquareButton);
 
+        /// <summary>
+        /// get/sets ContentCharacterCasing
+        /// </summary>
         public CharacterCasing ContentCharacterCasing
         {
             get { return (CharacterCasing)GetValue(ContentCharacterCasingProperty); }
             set {  SetValue(ContentCharacterCasingProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ContentCharacterCasing"/>
+        /// </summary>
         public static readonly StyledProperty<CharacterCasing> ContentCharacterCasingProperty =
             AvaloniaProperty.Register<SquareButton, CharacterCasing>(nameof(ContentCharacterCasing));
     }

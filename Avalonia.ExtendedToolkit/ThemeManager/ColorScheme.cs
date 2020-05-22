@@ -36,6 +36,10 @@ namespace Avalonia.ExtendedToolkit
         /// </summary>
         public IBrush ShowcaseBrush { get; }
 
+        /// <summary>
+        /// returns the <see cref="Name"/>
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return Name;

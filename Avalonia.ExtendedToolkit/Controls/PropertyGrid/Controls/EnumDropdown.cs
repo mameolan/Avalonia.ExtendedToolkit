@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
@@ -14,15 +15,29 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
     {
         private bool _wrappedEvents;
 
+        /// <summary>
+        /// style key of this control
+        /// </summary>
+        public Type StyleKey => typeof(EnumDropdown);
+
+        /// <summary>
+        /// get/sets PropertyValue
+        /// </summary>
         public PropertyItemValue PropertyValue
         {
             get { return (PropertyItemValue)GetValue(PropertyValueProperty); }
             set { SetValue(PropertyValueProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="PropertyValue"/>
+        /// </summary>
         public static readonly StyledProperty<PropertyItemValue> PropertyValueProperty =
             AvaloniaProperty.Register<EnumDropdown, PropertyItemValue>(nameof(PropertyValue));
 
+        /// <summary>
+        /// registers some handler
+        /// </summary>
         public EnumDropdown()
         {
             PropertyValueProperty.Changed.AddClassHandler<EnumDropdown>((o, e) => OnPropertyValueChanged(o, e));

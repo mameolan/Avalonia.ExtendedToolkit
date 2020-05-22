@@ -31,6 +31,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         private string initPath;
 
+        /// <summary>
+        /// style key of the breadcrumb bar
+        /// </summary>
         public Type StyleKey => typeof(BreadcrumbBar);
 
         private ObservableCollection<Button> buttons = new ObservableCollection<Button>();
@@ -66,6 +69,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(HideRootNodeProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="HideRootNode"/>
+        /// </summary>
         public static readonly StyledProperty<bool> HideRootNodeProperty =
             AvaloniaProperty.Register<BreadcrumbBar, bool>(nameof(HideRootNode), defaultValue: true);
 
@@ -78,6 +84,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             private set { SetValue(HasDropDownItemsProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="HasDropDownItems"/>
+        /// </summary>
         public static readonly StyledProperty<bool> HasDropDownItemsProperty =
             AvaloniaProperty.Register<BreadcrumbBar, bool>(nameof(HasDropDownItems));
 
@@ -90,6 +99,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(DropDownItemsPanelProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="DropDownItemsPanel"/>
+        /// </summary>
         public static readonly StyledProperty<ItemsPanelTemplate> DropDownItemsPanelProperty =
             AvaloniaProperty.Register<BreadcrumbBar, ItemsPanelTemplate>(nameof(DropDownItemsPanel));
 
@@ -102,6 +114,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsRootSelectedProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsRootSelected"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsRootSelectedProperty =
             AvaloniaProperty.Register<BreadcrumbBar, bool>(nameof(IsRootSelected), defaultValue: true);
 
@@ -114,6 +129,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(DropDownItemTemplateProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="DropDownItemTemplate"/>
+        /// </summary>
         public static readonly StyledProperty<IDataTemplate> DropDownItemTemplateProperty =
             AvaloniaProperty.Register<BreadcrumbBar, IDataTemplate>(nameof(DropDownItemTemplate));
 
@@ -126,6 +144,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsEditableProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsEditable"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsEditableProperty =
             AvaloniaProperty.Register<BreadcrumbBar, bool>(nameof(IsEditable), defaultValue: true);
 
@@ -138,6 +159,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OverflowItemTemplateProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="OverflowItemTemplate"/>
+        /// </summary>
         public static readonly StyledProperty<IDataTemplate> OverflowItemTemplateProperty =
             AvaloniaProperty.Register<BreadcrumbBar, IDataTemplate>(nameof(OverflowItemTemplate));
 
@@ -150,6 +174,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CollapsedTracesProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="CollapsedTraces"/>
+        /// </summary>
         public static readonly StyledProperty<IEnumerable> CollapsedTracesProperty =
             AvaloniaProperty.Register<BreadcrumbBar, IEnumerable>(nameof(CollapsedTraces));
 
@@ -162,6 +189,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(RootProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Root"/>
+        /// </summary>
         public static readonly StyledProperty<object> RootProperty =
             AvaloniaProperty.Register<BreadcrumbBar, object>(nameof(Root));
 
@@ -174,6 +204,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(SelectedItemProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="SelectedItem"/>
+        /// </summary>
         public static readonly StyledProperty<object> SelectedItemProperty =
             AvaloniaProperty.Register<BreadcrumbBar, object>(nameof(SelectedItem));
 
@@ -186,6 +219,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(SelectedBreadcrumbProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="SelectedBreadcrumb"/>
+        /// </summary>
         public static readonly StyledProperty<BreadcrumbItem> SelectedBreadcrumbProperty =
             AvaloniaProperty.Register<BreadcrumbBar, BreadcrumbItem>(nameof(SelectedBreadcrumb));
 
@@ -198,6 +234,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsOverflowPressedProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsOverflowPressed"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsOverflowPressedProperty =
             AvaloniaProperty.Register<BreadcrumbBar, bool>(nameof(IsOverflowPressed));
 
@@ -210,6 +249,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(RootItemProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="RootItem"/>
+        /// </summary>
         public static readonly StyledProperty<BreadcrumbItem> RootItemProperty =
             AvaloniaProperty.Register<BreadcrumbBar, BreadcrumbItem>(nameof(RootItem));
 
@@ -222,6 +264,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BreadcrumbItemTemplateProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="BreadcrumbItemTemplate"/>
+        /// </summary>
         public static readonly StyledProperty<IDataTemplate> BreadcrumbItemTemplateProperty =
             AvaloniaProperty.Register<BreadcrumbBar, IDataTemplate>(nameof(BreadcrumbItemTemplate));
 
@@ -234,6 +279,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             private set { SetValue(OverflowModeProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="OverflowMode"/>
+        /// </summary>
         public static readonly StyledProperty<ButtonMode> OverflowModeProperty =
             AvaloniaProperty.Register<BreadcrumbBar, ButtonMode>(nameof(OverflowMode), defaultValue: ButtonMode.Overflow);
 
@@ -246,6 +294,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsDropDownOpenProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsDropDownOpen"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsDropDownOpenProperty =
             AvaloniaProperty.Register<BreadcrumbBar, bool>(nameof(IsDropDownOpen));
 
@@ -258,15 +309,24 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(SeparatorStringProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="SeparatorString"/>
+        /// </summary>
         public static readonly StyledProperty<string> SeparatorStringProperty =
             AvaloniaProperty.Register<BreadcrumbBar, string>(nameof(SeparatorString), defaultValue: System.IO.Path.DirectorySeparatorChar.ToString());
 
+        /// <summary>
+        /// string path (for debugging)
+        /// </summary>
         public string PathBinding
         {
             get { return (string)GetValue(PathBindingProperty); }
             set { SetValue(PathBindingProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="PathBinding"/>
+        /// </summary>
         public static readonly StyledProperty<string> PathBindingProperty =
             AvaloniaProperty.Register<BreadcrumbBar, string>(nameof(PathBinding));
 
@@ -279,6 +339,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(PathProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Path"/>
+        /// </summary>
         public static readonly StyledProperty<string> PathProperty =
             AvaloniaProperty.Register<BreadcrumbBar, string>(nameof(Path), defaultValue: string.Empty);
 
@@ -291,6 +354,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(SelectedDropDownIndexProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="SelectedDropDownIndex"/>
+        /// </summary>
         public static readonly StyledProperty<int> SelectedDropDownIndexProperty =
             AvaloniaProperty.Register<BreadcrumbBar, int>(nameof(SelectedDropDownIndex), defaultValue: -1);
 
@@ -303,6 +369,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ProgressValueProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ProgressValue"/>
+        /// </summary>
         public static readonly StyledProperty<double> ProgressValueProperty =
             AvaloniaProperty.Register<BreadcrumbBar, double>(nameof(ProgressValue), defaultValue: 0.0d,
                 validate: (o, e) => { return CoerceProgressValue(o, e); });
@@ -316,6 +385,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ProgressMaximumProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ProgressMaximum"/>
+        /// </summary>
         public static readonly StyledProperty<double> ProgressMaximumProperty =
             AvaloniaProperty.Register<BreadcrumbBar, double>(nameof(ProgressMaximum), defaultValue: 100d
                 , validate: (o, e) => { return CoerceProgressMaximum(o, e); });
@@ -329,6 +401,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ProgressMinimumProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ProgressMinimum"/>
+        /// </summary>
         public static readonly StyledProperty<double> ProgressMinimumProperty =
             AvaloniaProperty.Register<BreadcrumbBar, double>(nameof(ProgressMinimum), defaultValue: 0.0d
                 , validate: (o, e) => { return CoerceProgressMinimum(o, e); });
@@ -348,6 +423,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public ICommand SelectRootCommand { get; private set; }
 
+        /// <summary>
+        /// routed event for dropdown open
+        /// </summary>
         public static readonly RoutedEvent<RoutedEventArgs> BreadcrumbItemDropDownOpenedEvent =
                     RoutedEvent.Register<BreadcrumbBar, RoutedEventArgs>(nameof(BreadcrumbItemDropDownOpenedEvent), RoutingStrategies.Bubble);
 
@@ -366,6 +444,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// event for dropdown close event
+        /// </summary>
         public static readonly RoutedEvent<RoutedEventArgs> BreadcrumbItemDropDownClosedEvent =
                     RoutedEvent.Register<BreadcrumbBar, RoutedEventArgs>(nameof(BreadcrumbItemDropDownClosedEvent), RoutingStrategies.Bubble);
 
@@ -384,6 +465,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// <see cref="ProgressValueChanged"/>
+        /// </summary>
         public static readonly RoutedEvent<RoutedEventArgs> ProgressValueChangedEvent =
                     RoutedEvent.Register<BreadcrumbBar, RoutedEventArgs>(nameof(ProgressValueChangedEvent), RoutingStrategies.Bubble);
 
@@ -402,6 +486,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// <see cref="ApplyProperties"/>
+        /// </summary>
         public static readonly RoutedEvent<ApplyPropertiesEventArgs> ApplyPropertiesEvent =
                     RoutedEvent.Register<BreadcrumbBar, ApplyPropertiesEventArgs>(nameof(ApplyPropertiesEvent), RoutingStrategies.Bubble);
 
@@ -420,6 +507,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// <see cref="SelectedBreadcrumbChanged"/>
+        /// </summary>
         public static readonly RoutedEvent<RoutedEventArgs> SelectedBreadcrumbChangedEvent =
                     RoutedEvent.Register<BreadcrumbBar, RoutedEventArgs>(nameof(SelectedBreadcrumbChangedEvent), RoutingStrategies.Bubble);
 
@@ -438,6 +528,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// <see cref="PathChanged"/>
+        /// </summary>
         public static readonly RoutedEvent<RoutedPropertyChangedEventArgs<string>> PathChangedEvent =
                     RoutedEvent.Register<BreadcrumbBar, RoutedPropertyChangedEventArgs<string>>
                     (nameof(PathChangedEvent), RoutingStrategies.Bubble);
@@ -457,6 +550,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// <see cref="PopulateItems"/>
+        /// </summary>
         public static readonly RoutedEvent<BreadcrumbItemEventArgs> PopulateItemsEvent =
                     RoutedEvent.Register<BreadcrumbBar, BreadcrumbItemEventArgs>(nameof(PopulateItemsEvent), RoutingStrategies.Bubble);
 
@@ -475,6 +571,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// <see cref="PathConversion"/>
+        /// </summary>
         public static readonly RoutedEvent<PathConversionEventArgs> PathConversionEvent =
                     RoutedEvent.Register<BreadcrumbBar, PathConversionEventArgs>
             (nameof(PathConversionEvent), RoutingStrategies.Bubble);

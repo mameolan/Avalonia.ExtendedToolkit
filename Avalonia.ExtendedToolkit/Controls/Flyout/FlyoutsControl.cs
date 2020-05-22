@@ -17,9 +17,6 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class FlyoutsControl : ItemsControl
     {
-        //private static readonly FuncTemplate<IPanel> DefaultPanel =
-        //    new FuncTemplate<IPanel>(() => new VirtualizingStackPanel());
-
         /// <summary>
         /// Gets/sets whether
         /// <see cref="Avalonia.ExtendedToolkit.Controls.Flyout.ExternalCloseButton"/>
@@ -31,6 +28,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OverrideExternalCloseButtonProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="OverrideExternalCloseButton"/>
+        /// </summary>
         public static readonly StyledProperty<MouseButton?> OverrideExternalCloseButtonProperty =
             AvaloniaProperty.Register<FlyoutsControl, MouseButton?>(nameof(OverrideExternalCloseButton));
 
@@ -45,9 +45,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OverrideIsPinnedProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="OverrideIsPinned"/>
+        /// </summary>
         public static readonly StyledProperty<bool> OverrideIsPinnedProperty =
             AvaloniaProperty.Register<FlyoutsControl, bool>(nameof(OverrideIsPinned));
 
+        /// <summary>
+        /// registers changed events
+        /// </summary>
         public FlyoutsControl()
         {
             //ItemsPanelProperty.OverrideDefaultValue<FlyoutsControl>(DefaultPanel);
@@ -59,6 +65,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             this.IsVisible = true;
         }
 
+        /// <summary>
+        /// use FlyoutContainerGenerator as container generator
+        /// </summary>
+        /// <returns></returns>
         protected override IItemContainerGenerator CreateItemContainerGenerator()
         {
             return new FlyoutContainerGenerator(this);

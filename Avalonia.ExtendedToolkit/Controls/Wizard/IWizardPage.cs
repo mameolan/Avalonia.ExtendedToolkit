@@ -3,29 +3,38 @@ using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// interface for a wizard page
+    /// </summary>
     public interface IWizardPage
     {
-        //bool? CanCancel { get; set; }
-        //bool? CanFinish { get; set; }
-        //bool? CanHelp { get; set; }
-        //bool? CanSelectNextPage { get; set; }
-        //bool? CanSelectPreviousPage { get; set; }
+        /// <summary>
+        /// description
+        /// </summary>
         string Description { get; set; }
-
+        /// <summary>
+        /// ExteriorPanelBackground
+        /// </summary>
         Brush ExteriorPanelBackground { get; set; }
+        /// <summary>
+        /// ExteriorPanelContent
+        /// </summary>
         object ExteriorPanelContent { get; set; }
+        /// <summary>
+        /// HeaderBackground
+        /// </summary>
         Brush HeaderBackground { get; set; }
+        /// <summary>
+        /// HeaderImage
+        /// </summary>
         Image HeaderImage { get; set; }
-
-        //bool IsBackButtonVisible { get; set; }
-        //bool IsCancelButtonVisibe { get; set; }
-        //bool IsFinishButtonVisible { get; set; }
-        //bool IsHelpButtonVisible { get; set; }
-        //bool IsNextButtonVisible { get; set; }
-        //WizardPage NextPage { get; set; }
-        //WizardPage PreviousPage { get; set; }
+        /// <summary>
+        /// PageType
+        /// </summary>
         WizardPageType PageType { get; set; }
-
+        /// <summary>
+        /// Title
+        /// </summary>
         string Title { get; set; }
     }
 }

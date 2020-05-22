@@ -14,6 +14,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     /// </summary>
     public abstract class GridEntryContainer : ContentControl
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(GridEntryContainer);
 
         private ResourceLocator _resourceLocator = new ResourceLocator();
@@ -28,25 +31,44 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             set { _resourceLocator = value; }
         }
 
+        /// <summary>
+        /// ParentContainer AttachedProperty
+        /// </summary>
         public static readonly AttachedProperty<GridEntryContainer> ParentContainerProperty =
             AvaloniaProperty.RegisterAttached<GridEntryContainer, Control, GridEntryContainer>("ParentContainer");
 
+        /// <summary>
+        /// get ParentContainer
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static GridEntryContainer GetParentContainer(Control element)
         {
             return element.GetValue(ParentContainerProperty);
         }
 
+        /// <summary>
+        /// set ParentContainer
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
         public static void SetParentContainer(Control element, GridEntryContainer value)
         {
             element.SetValue(ParentContainerProperty, value);
         }
 
+        /// <summary>
+        /// get/set gridentry
+        /// </summary>
         public GridEntry Entry
         {
             get { return (GridEntry)GetValue(EntryProperty); }
             set { SetValue(EntryProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Entry"/>
+        /// </summary>
         public static readonly StyledProperty<GridEntry> EntryProperty =
             AvaloniaProperty.Register<GridEntryContainer, GridEntry>(nameof(Entry));
 
@@ -80,6 +102,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             return ResourceLocator.GetResource(editor.InlineTemplate) as DataTemplate;
         }
 
+        /// <summary>
+        /// assigns the DataContext as GridEntry to the Entry property
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnDataContextChanged(EventArgs e)
         {
             base.OnDataContextChanged(e);

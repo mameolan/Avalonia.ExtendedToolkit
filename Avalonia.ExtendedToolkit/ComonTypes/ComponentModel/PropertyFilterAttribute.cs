@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Text;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace System.ComponentModel
 {
@@ -68,7 +65,7 @@ namespace System.ComponentModel
         /// <summary>
         ///     Match determines if one attribute "matches" another.  For
         ///     attributes that store flags, a match may be different from
-        ///     an equals.  For example, a filter of SetValid matches a 
+        ///     an equals.  For example, a filter of SetValid matches a
         ///     filter of All, because All is a merge of all filter values.
         /// </summary>
         public override bool Match(object value)
@@ -87,7 +84,6 @@ namespace System.ComponentModel
         //
         //------------------------------------------------------
 
-
         //------------------------------------------------------
         //
         //  Public Properties
@@ -104,7 +100,6 @@ namespace System.ComponentModel
             get { return _filter; }
         }
 
-
         #endregion Public Properties
 
         //------------------------------------------------------
@@ -112,7 +107,6 @@ namespace System.ComponentModel
         //  Public Events
         //
         //------------------------------------------------------
-
 
         //------------------------------------------------------
         //
@@ -131,7 +125,6 @@ namespace System.ComponentModel
         public static readonly PropertyFilterAttribute Default = new PropertyFilterAttribute(PropertyFilterOptions.All);
 
         #endregion Public Fields
-
 
         //------------------------------------------------------
         //

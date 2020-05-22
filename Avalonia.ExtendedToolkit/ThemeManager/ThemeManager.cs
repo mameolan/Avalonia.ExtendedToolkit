@@ -446,6 +446,12 @@ namespace Avalonia.ExtendedToolkit
             return Themes.FirstOrDefault(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
+        /// <summary>
+        /// returns the theme if found 
+        /// or null
+        /// </summary>
+        /// <param name="window"></param>
+        /// <returns></returns>
         public Theme DetectTheme(Window window)
         {
             var item = window.Styles.GetThemeStyle();

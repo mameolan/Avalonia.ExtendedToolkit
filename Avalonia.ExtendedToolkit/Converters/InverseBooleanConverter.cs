@@ -1,13 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using Avalonia.Data.Converters;
 
 namespace Avalonia.ExtendedToolkit.Converters
 {
+    /// <summary>
+    /// convert to inverse value
+    /// </summary>
     public class InverseBooleanConverter : IValueConverter
     {
+        /// <summary>
+        /// returns a inverse value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             bool result = true;
@@ -23,6 +32,14 @@ namespace Avalonia.ExtendedToolkit.Converters
             return result == false;
         }
 
+        /// <summary>
+        /// does nothing
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return AvaloniaProperty.UnsetValue;

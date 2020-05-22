@@ -8,6 +8,9 @@ namespace Avalonia.ExtendedToolkit.Controls
 
     public partial class WindowButtonCommands : ContentControl
     {
+        /// <summary>
+        /// registeres Theme changed event
+        /// </summary>
         public WindowButtonCommands()
         {
             ThemeProperty.Changed.AddClassHandler<WindowButtonCommands>((o, e) => OnThemeChanged(o, e));
@@ -53,6 +56,10 @@ namespace Avalonia.ExtendedToolkit.Controls
         private Button max;
         private Button close;
 
+        /// <summary>
+        /// gets the controls from the style
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             base.OnTemplateApplied(e);
@@ -76,6 +83,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// execute ClosingWindow event if registered
+        /// </summary>
+        /// <param name="args"></param>
         protected void OnClosingWindow(ClosingWindowEventArgs args)
         {
             var handler = ClosingWindow;
@@ -128,6 +139,9 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private MetroWindow _parentWindow;
 
+        /// <summary>
+        /// returns the parent MetroWindow
+        /// </summary>
         public MetroWindow ParentWindow
         {
             get { return _parentWindow; }

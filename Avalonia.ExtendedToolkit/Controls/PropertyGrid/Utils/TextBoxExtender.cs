@@ -25,20 +25,118 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
         static Subject<string> _subject = null;
         static List<string> _myHistory = new List<string>();
 
-
+        /// <summary>
+        /// CommitOnEnter AttachedProperty
+        /// </summary>
         public static readonly AttachedProperty<bool> CommitOnEnterProperty =
             AvaloniaProperty.RegisterAttached<TextBox, bool>("CommitOnEnter", typeof(TextBoxExtender));
 
+        /// <summary>
+        /// gets CommitOnEnter
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static bool GetCommitOnEnter(TextBox element)
         {
             return element.GetValue(CommitOnEnterProperty);
         }
 
+        /// <summary>
+        /// sets CommitOnEnter
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
         public static void SetCommitOnEnter(TextBox element, bool value)
         {
             element.SetValue(CommitOnEnterProperty, value);
         }
 
+        /// <summary>
+        /// CommitOnTyping AttachedProperty
+        /// </summary>
+        public static readonly AttachedProperty<bool> CommitOnTypingProperty =
+            AvaloniaProperty.RegisterAttached<TextBox, bool>("CommitOnTyping", typeof(TextBoxExtender));
+
+        /// <summary>
+        /// get CommitOnTyping
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static bool GetCommitOnTyping(TextBox element)
+        {
+            return element.GetValue(CommitOnTypingProperty);
+        }
+
+        /// <summary>
+        /// set CommitOnTyping
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetCommitOnTyping(TextBox element, bool value)
+        {
+            element.SetValue(CommitOnTypingProperty, value);
+        }
+
+        /// <summary>
+        /// RollbackOnEscape AttachedProperty
+        /// </summary>
+        public static readonly AttachedProperty<bool> RollbackOnEscapeProperty =
+            AvaloniaProperty.RegisterAttached<TextBox, bool>("RollbackOnEscape", typeof(TextBoxExtender));
+
+        /// <summary>
+        /// get RollbackOnEscape
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static bool GetRollbackOnEscape(TextBox element)
+        {
+            return element.GetValue(RollbackOnEscapeProperty);
+        }
+
+        /// <summary>
+        /// set RollbackOnEscape
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetRollbackOnEscape(TextBox element, bool value)
+        {
+            element.SetValue(RollbackOnEscapeProperty, value);
+        }
+
+        /// <summary>
+        /// SelectAllOnFocus AttachedProperty
+        /// </summary>
+        public static readonly AttachedProperty<bool> SelectAllOnFocusProperty =
+            AvaloniaProperty.RegisterAttached<TextBox, bool>("SelectAllOnFocus", typeof(TextBoxExtender));
+
+        /// <summary>
+        /// get SelectAllOnFocus
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static bool GetSelectAllOnFocus(TextBox element)
+        {
+            return element.GetValue(SelectAllOnFocusProperty);
+        }
+
+        /// <summary>
+        /// set SelectAllOnFocus
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetSelectAllOnFocus(TextBox element, bool value)
+        {
+            element.SetValue(SelectAllOnFocusProperty, value);
+        }
+
+
+
+        /// <summary>
+        /// clears the history 
+        /// add/removes handler
+        /// </summary>
+        /// <param name="textBox"></param>
+        /// <param name="e"></param>
         private static void OnCommitOnEnterChanged(TextBox textBox, AvaloniaPropertyChangedEventArgs e)
         {
             if (textBox == null)
@@ -117,19 +215,14 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
             }
         }
 
-        public static readonly AttachedProperty<bool> CommitOnTypingProperty =
-            AvaloniaProperty.RegisterAttached<TextBox, bool>("CommitOnTyping", typeof(TextBoxExtender));
+        
 
-        public static bool GetCommitOnTyping(TextBox element)
-        {
-            return element.GetValue(CommitOnTypingProperty);
-        }
-
-        public static void SetCommitOnTyping(TextBox element, bool value)
-        {
-            element.SetValue(CommitOnTypingProperty, value);
-        }
-
+        /// <summary>
+        /// clears the history 
+        /// add/removes handler
+        /// </summary>
+        /// <param name="textBox"></param>
+        /// <param name="e"></param>
         private static void OnCommitOnTypingChanged(TextBox textBox, AvaloniaPropertyChangedEventArgs e)
         {
             if (textBox == null)
@@ -173,18 +266,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
             }
         }
 
-        public static readonly AttachedProperty<bool> RollbackOnEscapeProperty =
-            AvaloniaProperty.RegisterAttached<TextBox, bool>("RollbackOnEscape", typeof(TextBoxExtender));
-
-        public static bool GetRollbackOnEscape(TextBox element)
-        {
-            return element.GetValue(RollbackOnEscapeProperty);
-        }
-
-        public static void SetRollbackOnEscape(TextBox element, bool value)
-        {
-            element.SetValue(RollbackOnEscapeProperty, value);
-        }
+       
 
         private static void OnRollbackOnEscapeChanged(TextBox textBox, AvaloniaPropertyChangedEventArgs e)
         {
@@ -215,18 +297,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
             }
         }
 
-        public static readonly AttachedProperty<bool> SelectAllOnFocusProperty =
-            AvaloniaProperty.RegisterAttached<TextBox, bool>("SelectAllOnFocus", typeof(TextBoxExtender));
-
-        public static bool GetSelectAllOnFocus(TextBox element)
-        {
-            return element.GetValue(SelectAllOnFocusProperty);
-        }
-
-        public static void SetSelectAllOnFocus(TextBox element, bool value)
-        {
-            element.SetValue(SelectAllOnFocusProperty, value);
-        }
+        
 
         private static void OnSelectAllOnFocusChanged(TextBox textBox, AvaloniaPropertyChangedEventArgs e)
         {

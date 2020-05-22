@@ -1,9 +1,5 @@
-﻿using System;
-
-namespace System.ComponentModel 
+﻿namespace System.ComponentModel
 {
-    
-
     /// <summary>
     ///     This set of flags can be wrapped in
     ///     a PropertyFilterAttribute to filter
@@ -19,7 +15,7 @@ namespace System.ComponentModel
         None = 0x00,
 
         /// <summary>
-        ///     Returns those properties that are not valid 
+        ///     Returns those properties that are not valid
         ///     given the current context of the object.
         /// </summary>
         Invalid = 0x01,
@@ -31,8 +27,8 @@ namespace System.ComponentModel
         SetValues = 0x02,
 
         /// <summary>
-        ///     Return those properties whose local values are 
-        ///     not set or do not have properties set in an 
+        ///     Return those properties whose local values are
+        ///     not set or do not have properties set in an
         ///     external expression store.
         /// </summary>
         UnsetValues = 0x04,

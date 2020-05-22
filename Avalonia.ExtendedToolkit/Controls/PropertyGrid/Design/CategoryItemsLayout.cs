@@ -12,6 +12,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     /// </summary>
     public class CategoryItemsLayout : ItemsControl//GridEntryLayout<CategoryContainer>
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(CategoryItemsLayout);
     }
 }

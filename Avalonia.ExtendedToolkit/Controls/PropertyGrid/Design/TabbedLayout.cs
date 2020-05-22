@@ -20,6 +20,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     /// </summary>
     public class TabbedLayout : TabControl
     {
+
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(TabbedLayout);
 
         /// <summary>
@@ -40,6 +44,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             set { SetValue(SelectedContentProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="SelectedContent"/>
+        /// </summary>
         public new static readonly StyledProperty<object> SelectedContentProperty =
             TabControl.SelectedContentProperty.AddOwner<TabbedLayout>();
 
@@ -55,6 +62,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             set { SetValue(SelectedContentTemplateProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="SelectedContentTemplate"/>
+        /// </summary>
         public new static readonly StyledProperty<IDataTemplate> SelectedContentTemplateProperty =
             TabControl.SelectedContentTemplateProperty.AddOwner<TabbedLayout>();
 
@@ -65,31 +75,34 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         {
         }
 
+
         /// <summary>
         /// property grid command
         /// </summary>
-        //public static ICommand ClosePropertyTabCommand { get; internal set; }
-
         public ICommand ClosePropertyTabCommand
         {
             get { return (ICommand)GetValue(ClosePropertyTabCommandProperty); }
             internal set { SetValue(ClosePropertyTabCommandProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ClosePropertyTabCommand"/>
+        /// </summary>
         public static readonly StyledProperty<ICommand> ClosePropertyTabCommandProperty =
             AvaloniaProperty.Register<TabbedLayout, ICommand>(nameof(ClosePropertyTabCommand));
 
         /// <summary>
         /// property grid command
         /// </summary>
-        //public static ICommand ShowExtendedEditorCommand { get; internal set; }
-
         public ICommand ShowExtendedEditorCommand
         {
             get { return (ICommand)GetValue(ShowExtendedEditorCommandProperty); }
             set { SetValue(ShowExtendedEditorCommandProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ShowExtendedEditorCommand"/>
+        /// </summary>
         public static readonly StyledProperty<ICommand> ShowExtendedEditorCommandProperty =
             AvaloniaProperty.Register<TabbedLayout, ICommand>(nameof(ShowExtendedEditorCommand));
 
@@ -99,9 +112,17 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
         /// <value>The item header property.</value>
         public string ItemHeaderProperty { get; set; }
 
+        /// <summary>
+        /// CanClose AttachedProperty
+        /// </summary>
         public static readonly AttachedProperty<bool> CanCloseProperty =
             AvaloniaProperty.RegisterAttached<TabbedLayout, IControl, bool>("CanClose");
 
+        /// <summary>
+        /// get CanClose
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static bool GetCanClose(IControl element)
         {
             if (element == null)
@@ -109,6 +130,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             return element.GetValue(CanCloseProperty);
         }
 
+        /// <summary>
+        /// set CanClose
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
         public static void SetCanClose(IControl element, bool value)
         {
             if (element == null)
@@ -117,10 +143,18 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             element.SetValue(CanCloseProperty, value);
         }
 
+        /// <summary>
+        /// Header AttachedProperty
+        /// </summary>
         public static readonly AttachedProperty<string> HeaderProperty =
             AvaloniaProperty.RegisterAttached<TabbedLayout, IControl, string>
             ("Header", defaultValue: "Unknown");
 
+        /// <summary>
+        /// get Header
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static string GetHeader(IControl element)
         {
             if (element == null)
@@ -128,6 +162,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             return element.GetValue(HeaderProperty);
         }
 
+        /// <summary>
+        /// set Header
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
         public static void SetHeader(Control element, string value)
         {
             if (element == null)
@@ -390,11 +429,19 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
               .FirstOrDefault(tab => tab.Property == property);
         }
 
+        /// <summary>
+        /// uses TabItemContainerGenerator as generator
+        /// </summary>
+        /// <returns></returns>
         protected override IItemContainerGenerator CreateItemContainerGenerator()
         {
             return new TabItemContainerGenerator(this);
         }
 
+        /// <summary>
+        /// updates selected content
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnContainersMaterialized(ItemContainerEventArgs e)
         {
             if (SelectedContent != null || SelectedIndex == -1)

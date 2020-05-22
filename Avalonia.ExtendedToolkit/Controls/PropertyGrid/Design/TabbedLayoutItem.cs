@@ -15,6 +15,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     /// </summary>
     public partial class TabbedLayoutItem : TabItem
     {
+        /// <summary>
+        /// style key for this control
+        /// </summary>
         public Type StyleKey => typeof(TabbedLayoutItem);
         
         /// <summary>
@@ -27,6 +30,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             set { SetValue(CanCloseProperty, value); }
         }
 
+
+        /// <summary>
+        /// <see cref="CanClose"/>
+        /// </summary>
         public static readonly StyledProperty<bool> CanCloseProperty =
             AvaloniaProperty.Register<TabbedLayoutItem, bool>(nameof(CanClose));
 
@@ -40,7 +47,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
             set { SetValue(ClosePropertyTabCommandProperty, value); }
         }
 
-
+        /// <summary>
+        /// <see cref="ClosePropertyTabCommand"/>
+        /// </summary>
         public static readonly StyledProperty<ICommand> ClosePropertyTabCommandProperty =
             AvaloniaProperty.Register<TabbedLayoutItem, ICommand>(nameof(ClosePropertyTabCommand));
 

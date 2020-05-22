@@ -16,6 +16,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     /// </summary>
     public class ExtendedPropertyEditorTab : TabbedLayoutItem
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public new Type StyleKey => typeof(ExtendedPropertyEditorTab);
 
         private readonly ResourceLocator _resourceLocator = new ResourceLocator();

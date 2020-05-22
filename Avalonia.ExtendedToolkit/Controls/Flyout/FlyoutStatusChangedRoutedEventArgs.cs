@@ -4,6 +4,11 @@ namespace Avalonia.ExtendedToolkit.Controls
 {
     //ported from https://github.com/MahApps/MahApps.Metro
 
+    /// <summary>
+    /// FlyoutStatusChangedHandler
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     public delegate void FlyoutStatusChangedHandler(object sender, FlyoutStatusChangedRoutedEventArgs e);
 
     /// <summary>
@@ -16,6 +21,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
         }
 
+        /// <summary>
+        /// changed flyout
+        /// </summary>
         public Flyout ChangedFlyout { get; internal set; }
     }
 }

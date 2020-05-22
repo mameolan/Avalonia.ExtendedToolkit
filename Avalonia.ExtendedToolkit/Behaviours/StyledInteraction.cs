@@ -63,11 +63,21 @@ namespace Avalonia.ExtendedToolkit.Helper
             AvaloniaProperty.RegisterAttached<AvaloniaObject, Behaviors>("Behaviors",typeof(StyledInteraction));
         private static BehaviorCollection behaviors;
 
+        /// <summary>
+        /// gets the behaviours
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static Behaviors GetBehaviors(AvaloniaObject element)
         {
             return element.GetValue(BehaviorsProperty);
         }
 
+        /// <summary>
+        /// sets the behaviours
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
         public static void SetBehaviors(AvaloniaObject element, Behaviors value)
         {
             element.SetValue(BehaviorsProperty, value);

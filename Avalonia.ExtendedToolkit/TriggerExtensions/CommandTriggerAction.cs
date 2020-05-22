@@ -14,24 +14,40 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
     /// </summary>
     public class CommandTriggerAction :  TriggerAction<InputElement>
     {
+        /// <summary>
+        /// get/set command
+        /// </summary>
         public ICommand Command
         {
             get { return (ICommand)GetValue(CommandProperty); }
             set { SetValue(CommandProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Command"/>
+        /// </summary>
         public static readonly StyledProperty<ICommand> CommandProperty =
             AvaloniaProperty.Register<CommandTriggerAction, ICommand>(nameof(Command));
 
+        /// <summary>
+        /// get/sets CommandParameter
+        /// </summary>
         public object CommandParameter
         {
             get { return (object)GetValue(CommandParameterProperty); }
             set { SetValue(CommandParameterProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="CommandParameter"/>
+        /// </summary>
         public static readonly StyledProperty<object> CommandParameterProperty =
             AvaloniaProperty.Register<CommandTriggerAction, object>(nameof(CommandParameter));
 
+        /// <summary>
+        /// registers <see cref="CommandParameter"/>
+        /// and <see cref="Command"/> changed event
+        /// </summary>
         public CommandTriggerAction()
         {
             CommandParameterProperty.Changed.AddClassHandler<CommandTriggerAction>((o, e) => OnCommandParameterChanged(o, e));
@@ -59,12 +75,19 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
             commandTriggerAction.EnableDisableElement();
         }
 
+        /// <summary>
+        /// calls EnableDisableElement
+        /// </summary>
         protected override void OnAttached()
         {
             base.OnAttached();
            this.EnableDisableElement();
         }
 
+        /// <summary>
+        /// invokes the command by parameter
+        /// </summary>
+        /// <param name="parameter"></param>
         protected override void Invoke(object parameter)
         {
             if (this.AssociatedObject == null || (this.AssociatedObject != null && !this.AssociatedObject.IsEnabled))
@@ -83,6 +106,11 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
             }
         }
 
+        /// <summary>
+        /// return the <see cref="CommandParameter"/> if not null
+        /// or returns <see cref="TriggerAction.AssociatedObject"/>
+        /// </summary>
+        /// <returns></returns>
         protected virtual object GetCommandParameter()
         {
             return this.CommandParameter ?? this.AssociatedObject;

@@ -2,6 +2,10 @@
 
 namespace Avalonia.ExtendedToolkit.TriggerExtensions
 {
+    /// <summary>
+    /// implements TriggerAction T have to be an AvaloniaObject
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class TriggerAction<T>: TriggerAction where T: AvaloniaObject
     {
         /// <summary>

@@ -8,21 +8,38 @@ namespace Avalonia.ExtendedToolkit.Controls
 {
     //ported from https://github.com/MahApps/MahApps.Metro
 
+    /// <summary>
+    /// Mutiframe image
+    /// </summary>
     public class MultiFrameImage : Image
     {
+#warning complete implementation
+
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(MultiFrameImage);
 
+        /// <summary>
+        /// registered sourceproperty changed handler
+        /// </summary>
         public MultiFrameImage()
         {
             SourceProperty.Changed.AddClassHandler<MultiFrameImage>((o, e) => OnSourceChanged(o, e));
         }
 
+        /// <summary>
+        /// get /sets MultiFrameImageMode
+        /// </summary>
         public MultiFrameImageMode MultiFrameImageMode
         {
             get { return (MultiFrameImageMode)GetValue(MultiFrameImageModeProperty); }
             set { SetValue(MultiFrameImageModeProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="MultiFrameImageMode"/>
+        /// </summary>
         public static readonly StyledProperty<MultiFrameImageMode> MultiFrameImageModeProperty =
             AvaloniaProperty.Register<MultiFrameImage, MultiFrameImageMode>(nameof(MultiFrameImageMode));
 
@@ -59,6 +76,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             //        );
         }
 
+        /// <summary>
+        /// draws the image
+        /// </summary>
+        /// <param name="dc"></param>
         public override void Render(DrawingContext dc)
         {
             if (_frames.Count == 0)

@@ -12,9 +12,18 @@ using Avalonia.ExtendedToolkit.Extensions;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from https://github.com/MahApps/MahApps.Metro
+
     //should be toolbar but avalonia have no right now
+
+    /// <summary>
+    /// Window commands control
+    /// </summary>
     public class WindowCommands : HeaderedItemsControl, INotifyPropertyChanged
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(WindowCommands);
 
         /// <summary>
@@ -26,48 +35,42 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ThemeProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Theme"/>
+        /// </summary>
         public static readonly StyledProperty<WindowCommandTheme> ThemeProperty =
             AvaloniaProperty.Register<WindowCommands, WindowCommandTheme>(nameof(Theme));
 
-        ///// <summary>
-        ///// Gets or sets the value indicating light theme template.
-        ///// </summary>
-        //public ControlTemplate LightTemplate
-        //{
-        //    get { return (ControlTemplate)GetValue(LightTemplateProperty); }
-        //    set { SetValue(LightTemplateProperty, value); }
-        //}
 
-        //public static readonly StyledProperty<ControlTemplate> LightTemplateProperty =
-        //    AvaloniaProperty.Register<WindowCommands, ControlTemplate>(nameof(LightTemplate));
-
+        /// <summary>
+        /// Gets or sets the value indicating light theme template.
+        /// (was controltemplate before)
+        /// </summary>
         public Classes LightClasses
         {
             get { return (Classes)GetValue(LightClassesProperty); }
             set { SetValue(LightClassesProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="LightClasses"/>
+        /// </summary>
         public static readonly StyledProperty<Classes> LightClassesProperty =
             AvaloniaProperty.Register<WindowCommands, Classes>(nameof(LightClasses));
 
-        ///// <summary>
-        ///// Gets or sets the value indicating light theme template.
-        ///// </summary>
-        //public ControlTemplate DarkTemplate
-        //{
-        //    get { return (ControlTemplate)GetValue(DarkTemplateProperty); }
-        //    set { SetValue(DarkTemplateProperty, value); }
-        //}
-
-        //public static readonly StyledProperty<ControlTemplate> DarkTemplateProperty =
-        //    AvaloniaProperty.Register<WindowCommands, ControlTemplate>(nameof(DarkTemplate));
-
+        /// <summary>
+        /// Gets or sets the value indicating light theme template.
+        /// (Was Control template before)
+        /// </summary>
         public Classes DarkClasses
         {
             get { return (Classes)GetValue(DarkClassesProperty); }
             set { SetValue(DarkClassesProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="DarkClasses"/>
+        /// </summary>
         public static readonly StyledProperty<Classes> DarkClassesProperty =
             AvaloniaProperty.Register<WindowCommands, Classes>(nameof(DarkClasses));
 
@@ -80,6 +83,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ShowSeparatorsProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ShowSeparators"/>
+        /// </summary>
         public static readonly StyledProperty<bool> ShowSeparatorsProperty =
             AvaloniaProperty.Register<WindowCommands, bool>(nameof(ShowSeparators));
 
@@ -92,6 +98,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ShowLastSeparatorProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ShowLastSeparator"/>
+        /// </summary>
         public static readonly StyledProperty<bool> ShowLastSeparatorProperty =
             AvaloniaProperty.Register<WindowCommands, bool>(nameof(ShowLastSeparator));
 
@@ -104,36 +113,60 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(SeparatorHeightProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="SeparatorHeight"/>
+        /// </summary>
         public static readonly StyledProperty<int> SeparatorHeightProperty =
             AvaloniaProperty.Register<WindowCommands, int>(nameof(SeparatorHeight), defaultValue: 15);
 
+        /// <summary>
+        /// get/sets the parent <see cref="MetroWindow"/>
+        /// </summary>
         public MetroWindow ParentWindow
         {
             get { return (MetroWindow)GetValue(ParentWindowProperty); }
             set { SetValue(ParentWindowProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ParentWindow"/>
+        /// </summary>
         public static readonly StyledProperty<MetroWindow> ParentWindowProperty =
             AvaloniaProperty.Register<WindowCommands, MetroWindow>(nameof(ParentWindow));
 
+        /// <summary>
+        /// get/sets ShowTitleBar
+        /// </summary>
         public bool ShowTitleBar
         {
             get { return (bool)GetValue(ShowTitleBarProperty); }
             set { SetValue(ShowTitleBarProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ShowTitleBar"/>
+        /// </summary>
         public static readonly StyledProperty<bool> ShowTitleBarProperty =
             AvaloniaProperty.Register<WindowCommands, bool>(nameof(ShowTitleBar));
 
+        /// <summary>
+        /// for updation dark/light classes
+        /// </summary>
         public new Classes Classes
         {
             get { return (Classes)GetValue(ClassesProperty); }
             set { SetValue(ClassesProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Classes"/>
+        /// </summary>
         public static readonly StyledProperty<Classes> ClassesProperty =
             AvaloniaProperty.Register<WindowCommands, Classes>(nameof(Classes));
 
+        /// <summary>
+        /// registers some handlers
+        /// </summary>
         public WindowCommands()
         {
             ThemeProperty.Changed.AddClassHandler<WindowCommands>((o, e) => OnThemeChanged(o, e));
@@ -151,9 +184,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         private void OnClassesChanged(WindowCommands o, AvaloniaPropertyChangedEventArgs e)
         {
             Classes classes = e.NewValue as Classes;
-            if(classes!=null)
+            if (classes != null)
             {
-                if(LightClasses!=null)
+                if (LightClasses != null)
                 {
                     foreach (var item in LightClasses)
                     {
@@ -329,21 +362,5 @@ namespace Avalonia.ExtendedToolkit.Controls
             return (from object item in (IEnumerable)this.Items select this.GetWindowCommandsItem(item)).Where(i => i != null);
         }
 
-        //private Window _parentWindow;
-
-        //public Window ParentWindow
-        //{
-        //    get { return _parentWindow; }
-        //    set
-        //    {
-        //        if (Equals(_parentWindow, value))
-        //        {
-        //            return;
-        //        }
-        //        _parentWindow = value;
-
-        //        //this.RaisePropertyChanged("ParentWindow");
-        //    }
-        //}
     }
 }

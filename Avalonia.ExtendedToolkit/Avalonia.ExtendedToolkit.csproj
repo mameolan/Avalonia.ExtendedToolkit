@@ -55,12 +55,28 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AvaloniaResource Remove="Controls\Wizard\ViewModel\**" />
+	  <Compile Remove="Controls\Wizard\ViewModel\**" />
+	  <EmbeddedResource Remove="Controls\Wizard\ViewModel\**" />
+	  <None Remove="Controls\Wizard\ViewModel\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Controls\Wizard\WizardItemsConverter.cs" />
+	  <Compile Remove="Controls\Wizard\WizardPageVMConverter.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<EmbeddedResource Include="Styles\Themes\GeneratorParameters.json" />
 		<None Remove=".gitignore" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Avalonia.Controlz\Avalonia.Controlz.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Controls\PropertyGrid\Input\" />
 	</ItemGroup>
 
   <!--Only enable if you have changes in the GeneratorParameters.json or Theme.Template.xaml file

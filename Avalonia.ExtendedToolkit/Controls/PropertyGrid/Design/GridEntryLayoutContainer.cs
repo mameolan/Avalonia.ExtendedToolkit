@@ -8,6 +8,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     // ported from https://github.com/DenisVuyka/WPG
     //
 
+    /// <summary>
+    /// GridEntryLayoutContainer T is GridEntryContainer
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     internal class GridEntryLayoutContainer<T> : ItemContainerGenerator<T> where T : GridEntryContainer, new()
     {
         public GridEntryLayoutContainer(GridEntryLayout<T> owner)
@@ -18,6 +22,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
 
         public new GridEntryLayout<T> Owner { get; }
 
+        /// <summary>
+        /// assigns the datacontext from the owner
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         protected override IControl CreateContainer(object element)
         {
             if (element is GridEntryContainer)

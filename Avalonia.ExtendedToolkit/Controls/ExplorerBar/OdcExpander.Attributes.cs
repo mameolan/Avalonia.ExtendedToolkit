@@ -19,14 +19,23 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         private OdcExpanderHeader _header;
 
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(OdcExpander);
 
+        /// <summary>
+        /// get/sets HeaderBorderBrush
+        /// </summary>
         public IBrush HeaderBorderBrush
         {
             get { return (IBrush)GetValue(HeaderBorderBrushProperty); }
             set { SetValue(HeaderBorderBrushProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="HeaderBorderBrush"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> HeaderBorderBrushProperty =
             AvaloniaProperty.Register<OdcExpander, IBrush>(nameof(HeaderBorderBrush), defaultValue: Brushes.Gray);
 
@@ -39,24 +48,39 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(HeaderClassesProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="HeaderClasses"/>
+        /// </summary>
         public static readonly StyledProperty<Classes> HeaderClassesProperty =
             AvaloniaProperty.Register<OdcExpander, Classes>(nameof(HeaderClasses));
 
+        /// <summary>
+        /// get/sets HeaderBackground
+        /// </summary>
         public IBrush HeaderBackground
         {
             get { return (IBrush)GetValue(HeaderBackgroundProperty); }
             set { SetValue(HeaderBackgroundProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="HeaderBackground"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> HeaderBackgroundProperty =
             AvaloniaProperty.Register<OdcExpander, IBrush>(nameof(HeaderBackground), defaultValue: Brushes.Silver);
 
+        /// <summary>
+        /// get/sets IsMinimized
+        /// </summary>
         public bool IsMinimized
         {
             get { return (bool)GetValue(IsMinimizedProperty); }
             set { SetValue(IsMinimizedProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsMinimized"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsMinimizedProperty =
             AvaloniaProperty.Register<OdcExpander, bool>(nameof(IsMinimized), defaultValue: false);
 
@@ -69,15 +93,24 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ImageProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Image"/>
+        /// </summary>
         public static readonly StyledProperty<IBitmap> ImageProperty =
             AvaloniaProperty.Register<OdcExpander, IBitmap>(nameof(Image));
 
+        /// <summary>
+        /// get/sets IsExpanded
+        /// </summary>
         public bool IsExpanded
         {
             get { return (bool)GetValue(IsExpandedProperty); }
             set { SetValue(IsExpandedProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsExpanded"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsExpandedProperty =
             AvaloniaProperty.Register<OdcExpander, bool>(nameof(IsExpanded), defaultValue: true);
 
@@ -90,6 +123,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CornerRadiusProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="CornerRadius"/>
+        /// </summary>
         public static readonly StyledProperty<CornerRadius> CornerRadiusProperty =
             AvaloniaProperty.Register<OdcExpander, CornerRadius>(nameof(CornerRadius));
 
@@ -102,6 +138,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(MouseOverHeaderBackgroundProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="MouseOverHeaderBackground"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> MouseOverHeaderBackgroundProperty =
             AvaloniaProperty.Register<OdcExpander, IBrush>(nameof(MouseOverHeaderBackground));
 
@@ -114,6 +153,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(HasPressedBackgroundProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="HasPressedBackground"/>
+        /// </summary>
         public static readonly StyledProperty<bool> HasPressedBackgroundProperty =
             AvaloniaProperty.Register<OdcExpander, bool>(nameof(HasPressedBackground));
 
@@ -126,15 +168,24 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(PressedHeaderBackgroundProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="PressedHeaderBackground"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> PressedHeaderBackgroundProperty =
             AvaloniaProperty.Register<OdcExpander, IBrush>(nameof(PressedHeaderBackground));
 
+        /// <summary>
+        /// get/sets HeaderBorderThickness
+        /// </summary>
         public Thickness HeaderBorderThickness
         {
             get { return (Thickness)GetValue(HeaderBorderThicknessProperty); }
             set { SetValue(HeaderBorderThicknessProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="HeaderBorderThickness"/>
+        /// </summary>
         public static readonly StyledProperty<Thickness> HeaderBorderThicknessProperty =
             AvaloniaProperty.Register<OdcExpander, Thickness>(nameof(HeaderBorderThickness));
 
@@ -147,6 +198,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(MouseOverHeaderForegroundProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="MouseOverHeaderForeground"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> MouseOverHeaderForegroundProperty =
             AvaloniaProperty.Register<OdcExpander, IBrush>(nameof(MouseOverHeaderForeground));
 
@@ -159,6 +213,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ShowEllipseProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ShowEllipse"/>
+        /// </summary>
         public static readonly StyledProperty<bool> ShowEllipseProperty =
             AvaloniaProperty.Register<OdcExpander, bool>(nameof(ShowEllipse));
 
@@ -171,30 +228,51 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CanAnimateProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="CanAnimate"/>
+        /// </summary>
         public static readonly StyledProperty<bool> CanAnimateProperty =
             AvaloniaProperty.Register<OdcExpander, bool>(nameof(CanAnimate), defaultValue: true);
 
+        /// <summary>
+        /// get/set IsHeaderVisible
+        /// </summary>
         public bool IsHeaderVisible
         {
             get { return (bool)GetValue(IsHeaderVisibleProperty); }
             set { SetValue(IsHeaderVisibleProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsHeaderVisible"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsHeaderVisibleProperty =
             AvaloniaProperty.Register<OdcExpander, bool>(nameof(IsHeaderVisible), defaultValue: true);
 
+        /// <summary>
+        /// get/sets IsPressed
+        /// </summary>
         public bool IsPressed
         {
             get { return (bool)GetValue(IsPressedProperty); }
             set { SetValue(IsPressedProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsPressed"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsPressedProperty =
             AvaloniaProperty.Register<OdcExpander, bool>(nameof(IsPressed));
 
+        /// <summary>
+        /// <see cref="Expanded"/>
+        /// </summary>
         public static readonly RoutedEvent<RoutedEventArgs> ExpandedEvent =
                     RoutedEvent.Register<OdcExpander, RoutedEventArgs>(nameof(ExpandedEvent), RoutingStrategies.Bubble);
 
+        /// <summary>
+        /// Expanded eventhandler
+        /// </summary>
         public event EventHandler Expanded
         {
             add
@@ -207,9 +285,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// <see cref="Collapsed"/>
+        /// </summary>
         public static readonly RoutedEvent<RoutedEventArgs> CollapsedEvent =
                     RoutedEvent.Register<OdcExpander, RoutedEventArgs>(nameof(CollapsedEvent), RoutingStrategies.Bubble);
 
+        /// <summary>
+        /// Collapsed Eventhandler
+        /// </summary>
         public event EventHandler Collapsed
         {
             add
@@ -222,9 +306,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// <see cref="Minimized"/>
+        /// </summary>
         public static readonly RoutedEvent<RoutedEventArgs> MinimizedEvent =
                     RoutedEvent.Register<OdcExpander, RoutedEventArgs>(nameof(MinimizedEvent), RoutingStrategies.Bubble);
 
+        /// <summary>
+        /// Minimized Event handler
+        /// </summary>
         public event EventHandler Minimized
         {
             add
@@ -237,9 +327,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// <see cref="Maximized"/>
+        /// </summary>
         public static readonly RoutedEvent<RoutedEventArgs> MaximizedEvent =
                     RoutedEvent.Register<OdcExpander, RoutedEventArgs>(nameof(MaximizedEvent), RoutingStrategies.Bubble);
 
+        /// <summary>
+        /// Maximized event handler
+        /// </summary>
         public event EventHandler Maximized
         {
             add

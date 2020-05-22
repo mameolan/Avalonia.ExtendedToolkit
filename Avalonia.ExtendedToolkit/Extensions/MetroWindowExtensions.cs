@@ -6,8 +6,17 @@ using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Extensions
 {
+    /// <summary>
+    /// MetroWindow extensions
+    /// </summary>
     public static class MetroWindowExtensions
     {
+        /// <summary>
+        /// Handle WindowCommands ForFlyouts
+        /// </summary>
+        /// <param name="window"></param>
+        /// <param name="flyouts"></param>
+        /// <param name="resetBrush"></param>
         public static void HandleWindowCommandsForFlyouts(this MetroWindow window,  IEnumerable<Flyout> flyouts, Brush resetBrush = null)
         {
             var allOpenFlyouts = flyouts.Where(x => x.IsOpen);
@@ -55,6 +64,11 @@ namespace Avalonia.ExtendedToolkit.Extensions
             }
         }
 
+        /// <summary>
+        /// checks if the theme is a dark theme
+        /// </summary>
+        /// <param name="brush"></param>
+        /// <returns></returns>
         private static bool NeedLightTheme(this IBrush brush)
         {
             if (brush == null)
@@ -83,16 +97,26 @@ namespace Avalonia.ExtendedToolkit.Extensions
             return lightness > 0.1;
         }
 
+        /// <summary>
+        /// resets all window commands
+        /// </summary>
+        /// <param name="window"></param>
         public static void ResetAllWindowCommandsBrush(this MetroWindow window)
         {
             window.ChangeAllWindowCommandsBrush(window.OverrideDefaultWindowCommandsBrush);
             window.ChangeAllWindowButtonCommandsBrush(window.OverrideDefaultWindowCommandsBrush);
         }
 
+        /// <summary>
+        /// updates the windowcommands through the flyout
+        /// </summary>
+        /// <param name="window"></param>
+        /// <param name="flyout"></param>
         public static void UpdateWindowCommandsForFlyout(this MetroWindow window, Flyout flyout)
         {
             window.ChangeAllWindowButtonCommandsBrush(flyout.Foreground, flyout.Position);
         }
+
 
         private static void ChangeAllWindowCommandsBrush(this MetroWindow window, IBrush brush)
         {

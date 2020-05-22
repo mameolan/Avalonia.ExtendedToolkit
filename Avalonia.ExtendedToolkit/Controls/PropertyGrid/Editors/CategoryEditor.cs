@@ -13,23 +13,38 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
     [DebuggerDisplay("[CategoryEditor] CategoryName: {CategoryName} DeclaringType: {DeclaringType}")]
     public class CategoryEditor : Editor
     {
+        /// <summary>
+        /// style key for this control
+        /// </summary>
         public new Type StyleKey => typeof(CategoryEditor);
 
+        /// <summary>
+        /// get/sets DeclaringType
+        /// </summary>
         public Type DeclaringType
         {
             get { return (Type)GetValue(DeclaringTypeProperty); }
             set { SetValue(DeclaringTypeProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="DeclaringType"/>
+        /// </summary>
         public static readonly StyledProperty<Type> DeclaringTypeProperty =
             AvaloniaProperty.Register<CategoryEditor, Type>(nameof(DeclaringType));
 
+        /// <summary>
+        /// get/sets CategoryName
+        /// </summary>
         public string CategoryName
         {
             get { return (string)GetValue(CategoryNameProperty); }
             set { SetValue(CategoryNameProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="CategoryName"/>
+        /// </summary>
         public static readonly StyledProperty<string> CategoryNameProperty =
             AvaloniaProperty.Register<CategoryEditor, string>(nameof(CategoryName));
 

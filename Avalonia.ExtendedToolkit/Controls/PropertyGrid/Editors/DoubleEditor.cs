@@ -20,8 +20,6 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
     [DebuggerDisplay("[DoubleEditor] PropertyDescriptor: {PropertyDescriptor}")]
     public class DoubleEditor : TemplatedControl
     {
-        public Type StyleKey => typeof(DoubleEditor);
-
         private Point _dragStartPoint;
         private Point _lastDragPoint;
 
@@ -31,92 +29,160 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
         private KeyModifiers _currentKeyModifiers;
         private const double DragTolerance = 2.0;
 
+        /// <summary>
+        /// style key for this control
+        /// </summary>
+        public Type StyleKey => typeof(DoubleEditor);
+
+        /// <summary>
+        /// increase command
+        /// </summary>
         public ICommand Increase { get; }
 
+        /// <summary>
+        /// Decrease command
+        /// </summary>
         public ICommand Decrease { get; }
 
         //[TypeConverter(typeof(LengthConverter))]
+        /// <summary>
+        /// get/sets Value
+        /// </summary>
         public double Value
         {
             get { return (double)GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Value"/>
+        /// </summary>
         public static readonly StyledProperty<double> ValueProperty =
             AvaloniaProperty.Register<DoubleEditor, double>(nameof(Value), defaultValue: 0d);
 
+        /// <summary>
+        /// get/sets SmallChange
+        /// </summary>
         public double SmallChange
         {
             get { return (double)GetValue(SmallChangeProperty); }
             set { SetValue(SmallChangeProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="SmallChange"/>
+        /// </summary>
         public static readonly StyledProperty<double> SmallChangeProperty =
             AvaloniaProperty.Register<DoubleEditor, double>(nameof(SmallChange), defaultValue: 1.0d);
 
+        /// <summary>
+        /// get/sets LargeChange
+        /// </summary>
         public double LargeChange
         {
             get { return (double)GetValue(LargeChangeProperty); }
             set { SetValue(LargeChangeProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="LargeChange"/>
+        /// </summary>
         public static readonly StyledProperty<double> LargeChangeProperty =
             AvaloniaProperty.Register<DoubleEditor, double>(nameof(LargeChange), defaultValue: 1.0d);
 
+        /// <summary>
+        /// get/sets DefaultChange
+        /// </summary>
         public double DefaultChange
         {
             get { return (double)GetValue(DefaultChangeProperty); }
             set { SetValue(DefaultChangeProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="DefaultChange"/>
+        /// </summary>
         public static readonly StyledProperty<double> DefaultChangeProperty =
             AvaloniaProperty.Register<DoubleEditor, double>(nameof(DefaultChange), defaultValue: 1.0d);
 
+        /// <summary>
+        /// get/sets Minimum
+        /// </summary>
         public double Minimum
         {
             get { return (double)GetValue(MinimumProperty); }
             set { SetValue(MinimumProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Minimum"/>
+        /// </summary>
         public static readonly StyledProperty<double> MinimumProperty =
             AvaloniaProperty.Register<DoubleEditor, double>(nameof(Minimum), defaultValue: 0.0d);
 
+        /// <summary>
+        /// get/sets Maximum
+        /// </summary>
         public double Maximum
         {
             get { return (double)GetValue(MaximumProperty); }
             set { SetValue(MaximumProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Maximum"/>
+        /// </summary>
         public static readonly StyledProperty<double> MaximumProperty =
             AvaloniaProperty.Register<DoubleEditor, double>(nameof(Maximum), defaultValue: double.MaxValue);
 
+        /// <summary>
+        /// get/sets MaxPrecision
+        /// </summary>
         public int MaxPrecision
         {
             get { return (int)GetValue(MaxPrecisionProperty); }
             set { SetValue(MaxPrecisionProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="MaxPrecision"/>
+        /// </summary>
         public static readonly StyledProperty<int> MaxPrecisionProperty =
             AvaloniaProperty.Register<DoubleEditor, int>(nameof(MaxPrecision), defaultValue: 0);
 
+        /// <summary>
+        /// get/sets IsDragging
+        /// </summary>
         public bool IsDragging
         {
             get { return (bool)GetValue(IsDraggingProperty); }
             set { SetValue(IsDraggingProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsDragging"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsDraggingProperty =
             AvaloniaProperty.Register<DoubleEditor, bool>(nameof(IsDragging));
 
+        /// <summary>
+        /// get/sets PropertyDescriptor
+        /// </summary>
         public PropertyDescriptor PropertyDescriptor
         {
             get { return (PropertyDescriptor)GetValue(PropertyDescriptorProperty); }
             set { SetValue(PropertyDescriptorProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="PropertyDescriptor"/>
+        /// </summary>
         public static readonly StyledProperty<PropertyDescriptor> PropertyDescriptorProperty =
             AvaloniaProperty.Register<DoubleEditor, PropertyDescriptor>(nameof(PropertyDescriptor));
 
+        /// <summary>
+        /// <see cref="PropertyEditingStarted"/>
+        /// </summary>
         public static readonly RoutedEvent<RoutedEventArgs> PropertyEditingStartedEvent =
                     RoutedEvent.Register<DoubleEditor, RoutedEventArgs>
             (nameof(PropertyEditingStartedEvent), RoutingStrategies.Bubble);
@@ -136,6 +202,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
             }
         }
 
+        /// <summary>
+        /// <see cref="PropertyEditingFinished"/>
+        /// </summary>
         public static readonly RoutedEvent<RoutedEventArgs> PropertyEditingFinishedEvent =
                     RoutedEvent.Register<DoubleEditor, RoutedEventArgs>(nameof(PropertyEditingFinishedEvent), RoutingStrategies.Bubble);
 
@@ -154,6 +223,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
             }
         }
 
+        /// <summary>
+        /// initialize sone handlers commands
+        /// </summary>
         public DoubleEditor()
         {
             Increase = ReactiveCommand.Create<object>(x => OnIncrease(x)
@@ -255,6 +327,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
             e.Pointer.Capture(null);
         }
 
+        /// <summary>
+        /// remebers KeyModifiers
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
@@ -283,6 +359,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
             doubleEditor.Value = doubleEditor.EnforceLimitsAndPrecision((double)e.NewValue);
         }
 
+        /// <summary>
+        /// if isdragging OnPropertyEditingStarted is calles
+        /// else OnPropertyEditingFinished
+        /// </summary>
         protected virtual void OnIsDraggingChanged()
         {
             if (IsDragging)

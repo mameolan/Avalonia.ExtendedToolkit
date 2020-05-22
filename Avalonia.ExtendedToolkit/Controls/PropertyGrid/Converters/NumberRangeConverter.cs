@@ -1,13 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using Avalonia.Data.Converters;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
 {
+    /// <summary>
+    /// number range converter
+    /// </summary>
     public class NumberRangeConverter : IValueConverter
     {
+        /// <summary>
+        /// if value is PropertyItem and parameter is NumberRangeType
+        /// return the values by NumberRangeType
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             PropertyItem propertyItem = value as PropertyItem;
@@ -26,27 +36,30 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
                     {
                         case NumberRangeType.Minimum:
                             return rangeAttribute.Minimum;
+
                         case NumberRangeType.Maximum:
                             return rangeAttribute.Maximum;
+
                         case NumberRangeType.Tick:
                             return rangeAttribute.Tick;
+
                         case NumberRangeType.Precision:
                             return rangeAttribute.Precision;
                     }
                 }
-
-
-
-
-
             }
-
-
-
 
             return value;
         }
 
+        /// <summary>
+        /// does nothing
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return AvaloniaProperty.UnsetValue;

@@ -40,6 +40,9 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class ClipBorder : Decorator
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(ClipBorder);
 
         #region Fields
@@ -59,6 +62,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BorderThicknessProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="BorderThickness"/>
+        /// </summary>
         public static readonly StyledProperty<Thickness> BorderThicknessProperty =
             AvaloniaProperty.Register<ClipBorder, Thickness>(nameof(BorderThickness), defaultValue: new Thickness());
 
@@ -72,6 +78,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(CornerRadiusProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="CornerRadius"/>
+        /// </summary>
         public static readonly StyledProperty<CornerRadius> CornerRadiusProperty =
             AvaloniaProperty.Register<ClipBorder, CornerRadius>(nameof(CornerRadius), defaultValue: new CornerRadius());
 
@@ -85,6 +94,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BorderBrushProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="BorderBrush"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> BorderBrushProperty =
             AvaloniaProperty.Register<ClipBorder, IBrush>(nameof(BorderBrush));
 
@@ -98,6 +110,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BackgroundProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Background"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> BackgroundProperty =
             AvaloniaProperty.Register<ClipBorder, IBrush>(nameof(Background));
 
@@ -117,6 +132,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OptimizeClipRenderingProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="OptimizeClipRendering"/>
+        /// </summary>
         public static readonly StyledProperty<bool> OptimizeClipRenderingProperty =
             AvaloniaProperty.Register<ClipBorder, bool>(nameof(OptimizeClipRendering), defaultValue: true);
 

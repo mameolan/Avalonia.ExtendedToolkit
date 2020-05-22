@@ -6,8 +6,14 @@ namespace Avalonia.ExtendedToolkit.Controls
 {
     //ported from https://github.com/MahApps/MahApps.Metro
 
+    /// <summary>
+    /// metro thumb
+    /// </summary>
     public class MetroThumb : Thumb, IMetroThumb
     {
+        /// <summary>
+        /// style key for this control
+        /// </summary>
         public Type StyleKey => typeof(MetroThumb);
 
         /// <summary>
@@ -20,15 +26,26 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsDraggingProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsDragging"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsDraggingProperty =
             AvaloniaProperty.Register <MetroThumb, bool>(nameof(IsDragging));
 
+        /// <summary>
+        /// set is dragging to true
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnDragStarted(VectorEventArgs e)
         {
             IsDragging = true;
             base.OnDragStarted(e);
         }
 
+        /// <summary>
+        /// set is dragging to false
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnDragCompleted(VectorEventArgs e)
         {
             IsDragging = false;

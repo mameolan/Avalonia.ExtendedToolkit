@@ -2,15 +2,20 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
-using Avalonia.Media;
 using Avalonia.Media.Imaging;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
     //ported from https://github.com/jogibear9988/OdysseyWPF.git
 
+    /// <summary>
+    /// Outlook Section
+    /// </summary>
     public class OutlookSection : HeaderedContentControl
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(OutlookSection);
 
         /// <summary>
@@ -18,36 +23,60 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         internal OutlookBar OutlookBar { get; set; }
 
+        /// <summary>
+        /// get/sets the image
+        /// </summary>
         public IBitmap Image
         {
             get { return (IBitmap)GetValue(ImageProperty); }
             set { SetValue(ImageProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Image"/>
+        /// </summary>
         public static readonly StyledProperty<IBitmap> ImageProperty =
             AvaloniaProperty.Register<OutlookSection, IBitmap>(nameof(Image));
 
+        /// <summary>
+        /// get/sets IsSelected
+        /// </summary>
         public bool IsSelected
         {
             get { return (bool)GetValue(IsSelectedProperty); }
             set { SetValue(IsSelectedProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsSelected"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsSelectedProperty =
             AvaloniaProperty.Register<OutlookSection, bool>(nameof(IsSelected));
 
+        /// <summary>
+        /// get/sets IsMaximized
+        /// </summary>
         public bool IsMaximized
         {
             get { return (bool)GetValue(IsMaximizedProperty); }
             set { SetValue(IsMaximizedProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsMaximized"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsMaximizedProperty =
             AvaloniaProperty.Register<OutlookSection, bool>(nameof(IsMaximized), defaultValue: true);
 
+        /// <summary>
+        /// <see cref="Click"/>
+        /// </summary>
         public static readonly RoutedEvent<RoutedEventArgs> ClickEvent =
                     RoutedEvent.Register<OutlookSection, RoutedEventArgs>(nameof(ClickEvent), RoutingStrategies.Bubble);
 
+        /// <summary>
+        /// get/set Click event
+        /// </summary>
         public event EventHandler Click
         {
             add
@@ -60,6 +89,12 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// sets the SelectedSection to the OutlookBar
+        /// and set the pseudo class
+        /// </summary>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
         protected virtual void OnSelectedPropertyChanged(bool oldValue, bool newValue)
         {
             if (OutlookBar == null)
@@ -70,6 +105,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             PseudoClasses.Set(":checked", newValue);
         }
 
+        /// <summary>
+        /// registers changed handlers
+        /// </summary>
         public OutlookSection()
         {
             //AddHandler(Button.PointerPressedEvent, buttonClickedEvent);
@@ -98,6 +136,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             this.RaiseEvent(new RoutedEventArgs(OutlookSection.ClickEvent));
         }
 
+        /// <summary>
+        /// gets the buttom from the style
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             base.OnTemplateApplied(e);

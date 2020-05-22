@@ -23,6 +23,9 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public partial class BreadcrumbBar : ContentControl, IAddChild
     {
+        /// <summary>
+        /// initialize events for the breadcrump bar
+        /// </summary>
         public BreadcrumbBar()
         {
             RootProperty.Changed.AddClassHandler<BreadcrumbBar>(((o, e) => OnRootPropertyChanged(o, e)));
@@ -168,7 +171,10 @@ namespace Avalonia.ExtendedToolkit.Controls
         private void ShowDropDownExecuted(object sender)
         {
             BreadcrumbBar bar = sender as BreadcrumbBar;
-            if (bar.IsEditable && bar.DropDownItems.OfType<object>().Count() > 0) bar.IsDropDownOpen = true;
+            if (bar.IsEditable && bar.DropDownItems.OfType<object>().Any())
+            {
+                bar.IsDropDownOpen = true; 
+            }
         }
 
         private static double CoerceProgressMaximum(IAvaloniaObject d, double baseValue)
@@ -335,7 +341,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Traces the specified path and builds the associated BreadcrumbItems.
         /// </summary>
-        /// <param name="path">The traces separated by the SepearatorString property.</param>
+        /// <param name="newPath">The traces separated by the SepearatorString property.</param>
         private bool BuildBreadcrumbsFromPath(string newPath)
         {
             PathConversionEventArgs e = new PathConversionEventArgs(ConversionMode.EditToDisplay, newPath, Root, PathConversionEvent);
@@ -457,7 +463,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Occurs when the selected item of an embedded BreadcrumbItem is changed.
         /// </summary>
-        /// <param name="oldvalue"></param>
+        /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
         protected virtual void OnRootItemChanged(BreadcrumbItem oldValue, BreadcrumbItem newValue)
         {
@@ -499,6 +505,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Occurs when the selected item of an embedded BreadcrumbItem is changed.
         /// </summary>
+        /// <param name="sender"></param>
         /// <param name="oldvalue"></param>
         /// <param name="newValue"></param>
         protected virtual void OnSelectedItemChanged(BreadcrumbBar sender, object oldvalue, object newValue)
@@ -513,6 +520,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Occurs when the Root property is changed.
         /// </summary>
+        /// <param name="bar"></param>
         /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
         protected virtual void OnRootChanged(BreadcrumbBar bar, object oldValue, object newValue)
@@ -595,6 +603,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             return entity;
         }
 
+        /// <summary>
+        /// gets the controls from the styles
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             base.OnTemplateApplied(e);
@@ -786,11 +798,19 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// sets the root by value
+        /// </summary>
+        /// <param name="value"></param>
         public void AddChild(object value)
         {
             this.Root = value;
         }
 
+        /// <summary>
+        /// sets the root text
+        /// </summary>
+        /// <param name="text"></param>
         public void AddText(string text)
         {
             AddChild(text);

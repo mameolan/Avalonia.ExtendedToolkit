@@ -9,6 +9,9 @@ using Avalonia.Styling;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// toggle button control
+    /// </summary>
     public class ToggleSwitchButton : ToggleButton
     {
         private const string PART_OffSwitch = "PART_OffSwitch";
@@ -24,57 +27,93 @@ namespace Avalonia.ExtendedToolkit.Controls
         private IControl _ThumbIndicator;
         private TranslateTransform _ThumbTranslate;
 
+        /// <summary>
+        /// get/sets style
+        /// </summary>
         public IStyle Style
         {
             get { return (IStyle)GetValue(StyleProperty); }
             set { SetValue(StyleProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Style"/>
+        /// </summary>
         public static readonly StyledProperty<IStyle> StyleProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, IStyle>(nameof(Style));
 
+        /// <summary>
+        /// get/sets On Brush
+        /// </summary>
         public IBrush OnSwitchBrush
         {
             get { return (IBrush)GetValue(OnSwitchBrushProperty); }
             set { SetValue(OnSwitchBrushProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="OnSwitchBrush"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> OnSwitchBrushProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, IBrush>(nameof(OnSwitchBrush));
 
+        /// <summary>
+        /// get/sets Off Brush
+        /// </summary>
         public IBrush OffSwitchBrush
         {
             get { return (IBrush)GetValue(OffSwitchBrushProperty); }
             set { SetValue(OffSwitchBrushProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="OffSwitchBrush"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> OffSwitchBrushProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, IBrush>(nameof(OffSwitchBrush));
 
+        /// <summary>
+        /// get/sets ThumbIndicatorBrush
+        /// </summary>
         public IBrush ThumbIndicatorBrush
         {
             get { return (IBrush)GetValue(ThumbIndicatorBrushProperty); }
             set { SetValue(ThumbIndicatorBrushProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ThumbIndicatorBrush"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> ThumbIndicatorBrushProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, IBrush>(nameof(ThumbIndicatorBrush));
 
+        /// <summary>
+        /// get/set ThumbIndicatorDisabledBrush
+        /// </summary>
         public IBrush ThumbIndicatorDisabledBrush
         {
             get { return (IBrush)GetValue(ThumbIndicatorDisabledBrushProperty); }
             set { SetValue(ThumbIndicatorDisabledBrushProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ThumbIndicatorDisabledBrush"/>
+        /// </summary>
         public static readonly StyledProperty<IBrush> ThumbIndicatorDisabledBrushProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, IBrush>(nameof(ThumbIndicatorDisabledBrush));
 
+        /// <summary>
+        /// get/sets ThumbIndicatorWidth
+        /// </summary>
         public double ThumbIndicatorWidth
         {
             get { return (double)GetValue(ThumbIndicatorWidthProperty); }
             set { SetValue(ThumbIndicatorWidthProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ThumbIndicatorWidth"/>
+        /// </summary>
         public static readonly StyledProperty<double> ThumbIndicatorWidthProperty =
             AvaloniaProperty.Register<ToggleSwitchButton, double>(nameof(ThumbIndicatorWidth), defaultValue: 13d);
 
@@ -83,6 +122,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             StyleProperty.Changed.AddClassHandler<ToggleSwitchButton>((o, e) => StyleChanged(o, e));
         }
 
+        /// <summary>
+        /// registered IsChecked changed
+        /// </summary>
         public ToggleSwitchButton()
         {
             IsCheckedProperty.Changed.AddClassHandler<ToggleSwitchButton>((o, e) => IsCheckedChanged(o, e));
@@ -133,6 +175,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// gets some controls from the style
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             base.OnTemplateApplied(e);

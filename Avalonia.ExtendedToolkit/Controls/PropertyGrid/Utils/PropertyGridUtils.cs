@@ -11,8 +11,17 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
     // ported from https://github.com/DenisVuyka/WPG
     //
 
+    /// <summary>
+    /// property grid utils
+    /// </summary>
     internal static class PropertyGridUtils
     {
+        /// <summary>
+        /// gets the attributes from target
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public static IEnumerable<T> GetAttributes<T>(object target)
         {
             if (target == null)
@@ -20,6 +29,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
             return GetAttributes<T>(target.GetType());
         }
 
+        /// <summary>
+        /// gets the attributes from type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public static IEnumerable<T> GetAttributes<T>(Type type)
         {
             if (type == null)
@@ -33,6 +48,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
             return attributes;
         }
 
+        /// <summary>
+        /// tries to find the visual parent
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static T FindVisualParent<T>(this IControl element) where T : class
         {
             if (element == null)
@@ -47,6 +68,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
             return null;
         }
 
+        /// <summary>
+        /// tries to find visual children
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static IEnumerable<T> FindVisualChildren<T>(this IVisual element) where T : IVisual
         {
             List<T> result = new List<T>();
@@ -66,6 +93,12 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
             return result;
         }
 
+        /// <summary>
+        /// tries to find visual child
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static T FindVisualChild<T>(this IVisual element) where T : IVisual
         {
             if (element == null)

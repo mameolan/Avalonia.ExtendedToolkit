@@ -2,6 +2,9 @@
 {
     //ported from https://github.com/MahApps/MahApps.Metro
 
+    /// <summary>
+    /// ThicknessSideType
+    /// </summary>
     public enum ThicknessSideType
     {
         /// <summary>

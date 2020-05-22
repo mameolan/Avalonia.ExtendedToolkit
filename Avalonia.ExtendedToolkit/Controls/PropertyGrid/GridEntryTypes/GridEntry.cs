@@ -8,6 +8,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
     // ported from https://github.com/DenisVuyka/WPG
     //
 
+    /// <summary>
+    /// grid entry 
+    /// </summary>
     public abstract class GridEntry : AvaloniaObject, /*INotifyPropertyChanged,*/ IPropertyFilterTarget, IDisposable
     {
         /// <summary>
@@ -15,6 +18,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// </summary>
         public string Name { get; protected set; }
 
+        /// <summary>
+        /// <see cref="IsBrowsable"/>
+        /// </summary>
         public static readonly DirectProperty<GridEntry, bool> IsBrowsableProperty =
                 AvaloniaProperty.RegisterDirect<GridEntry, bool>(
                     nameof(IsBrowsable),
@@ -39,6 +45,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
+        /// <summary>
+        /// <see cref="IsVisible"/>
+        /// </summary>
         public static readonly DirectProperty<GridEntry, bool> IsVisibleProperty =
                 AvaloniaProperty.RegisterDirect<GridEntry, bool>(
                    nameof(IsVisible),
@@ -58,6 +67,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <value>The owner of the item.</value>
         public PropertyGrid Owner { get; protected set; }
 
+        /// <summary>
+        /// <see cref="Editor"/>
+        /// </summary>
         public static readonly DirectProperty<GridEntry, Editor> EditorProperty =
                 AvaloniaProperty.RegisterDirect<GridEntry, Editor>(
                     nameof(Editor),
@@ -157,6 +169,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// <returns><c>true</c> if entry matches predicate; otherwise, <c>false</c>.</returns>
         public abstract bool MatchesPredicate(PropertyFilterPredicate predicate);
 
+        /// <summary>
+        /// <see cref="MatchesFilter"/>
+        /// </summary>
         public static readonly DirectProperty<GridEntry, bool> MatchesFilterProperty =
                 AvaloniaProperty.RegisterDirect<GridEntry, bool>(
                     nameof(MatchesFilter),

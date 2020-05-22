@@ -31,6 +31,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             get { return _parentValue; }
         }
 
+        /// <summary>
+        /// <see cref="PropertyValue"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyItem, PropertyItemValue> PropertyValueProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItem, PropertyItemValue>(
                     nameof(PropertyValue),
@@ -61,6 +64,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             get { return _descriptor; }
         }
 
+        /// <summary>
+        /// <see cref="DisplayName"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyItem, string> DisplayNameProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItem, string>(
                     nameof(DisplayName),
@@ -106,6 +112,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             get { return _categoryName; }
         }
 
+        /// <summary>
+        /// <see cref="Description"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyItem, string> DescriptionProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItem, string>(
                     nameof(Description),
@@ -158,6 +167,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             get { return _isLocalizable; }
         }
 
+        /// <summary>
+        /// <see cref="IsReadOnly"/>
+        /// </summary>
         public static readonly DirectProperty<PropertyItem, bool> IsReadOnlyProperty =
                 AvaloniaProperty.RegisterDirect<PropertyItem, bool>(
                     nameof(IsReadOnly),
@@ -205,7 +217,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// </summary>
         /// <value></value>
         /// <returns>
-        /// A <see cref="T:System.Collections.ICollection"/> of standard values that the encapsulated property supports.
+        /// A <see cref="ICollection"/> of standard values that the encapsulated property supports.
         /// </returns>
         public ICollection StandardValues
         {

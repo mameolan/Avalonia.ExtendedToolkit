@@ -7,9 +7,24 @@
     /// </summary>
     public enum Position
     {
+        /// <summary>
+        /// left position
+        /// </summary>
         Left,
+
+        /// <summary>
+        /// right position
+        /// </summary>
         Right,
+
+        /// <summary>
+        /// top position
+        /// </summary>
         Top,
+
+        /// <summary>
+        /// bottom position
+        /// </summary>
         Bottom
     }
 }

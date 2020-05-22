@@ -23,15 +23,24 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
             set { SetValue(DeclaringTypeProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="DeclaringType"/>
+        /// </summary>
         public static readonly StyledProperty<Type> DeclaringTypeProperty =
             AvaloniaProperty.Register<PropertyEditor, Type>(nameof(DeclaringType));
 
+        /// <summary>
+        /// get/sets PropertyName
+        /// </summary>
         public string PropertyName
         {
             get { return (string)GetValue(PropertyNameProperty); }
             set { SetValue(PropertyNameProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="PropertyName"/>
+        /// </summary>
         public static readonly StyledProperty<string> PropertyNameProperty =
             AvaloniaProperty.Register<PropertyEditor, string>(nameof(PropertyName));
 

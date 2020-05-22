@@ -5,16 +5,10 @@
   <Styles.Resources>
     <Controls:ProgressBarWidthConverter x:Key="ProgressBarWidthConverter" />
   </Styles.Resources>
-  <!--<Design.PreviewWith>
-    <Border Padding="20">
-      <Controls:BusyIndicator />
-    </Border>
-  </Design.PreviewWith>-->
-
+ 
   <Style Selector="Rectangle.overlay">
-    <Setter Property="Fill"
-                  Value="{DynamicResource MahApps.Brushes.DisabledWhite}" />
-    <Setter Property="Opacity" Value="0.7" />
+    <Setter Property="Fill" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="Opacity" Value="0.5" />
   </Style>
 
   <Style Selector="ProgressBar.progress">
@@ -27,6 +21,7 @@
   </Style>
 
   <Style Selector="Controls|BusyIndicator">
+    <Setter Property="ZIndex" Value="99"/>
     <Setter Property="MinWidth" Value="150" />
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray10}" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />

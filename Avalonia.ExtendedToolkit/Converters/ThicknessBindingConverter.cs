@@ -10,8 +10,19 @@ namespace Avalonia.ExtendedToolkit.Converters
     /// </summary>
     public class ThicknessBindingConverter : IValueConverter
     {
+        /// <summary>
+        /// get/sets IgnoreThicknessSide
+        /// </summary>
         public ThicknessSideType IgnoreThicknessSide { get; set; }
 
+        /// <summary>
+        /// returns the thickness by <see cref="IgnoreThicknessSide"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is Thickness)
@@ -43,6 +54,14 @@ namespace Avalonia.ExtendedToolkit.Converters
             return default(Thickness);
         }
 
+        /// <summary>
+        /// does nothing
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return AvaloniaProperty.UnsetValue;

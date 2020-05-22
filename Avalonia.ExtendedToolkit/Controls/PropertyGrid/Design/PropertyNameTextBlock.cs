@@ -13,6 +13,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Design
     /// </summary>
     public sealed class PropertyNameTextBlock : TextBox
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(PropertyNameTextBlock);
 
         /// <summary>

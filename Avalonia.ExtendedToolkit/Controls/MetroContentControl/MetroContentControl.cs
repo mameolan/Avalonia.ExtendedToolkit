@@ -6,61 +6,100 @@ using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //Originally from http://xamlcoder.com/blog/2010/11/04/creating-a-metro-ui-style-control/
+
     /// <summary>
-    /// Originally from http://xamlcoder.com/blog/2010/11/04/creating-a-metro-ui-style-control/
+    /// metro content control
     /// </summary>
     public class MetroContentControl : ContentControl
     {
+#warning finish implementation
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(MetroContentControl);
 
         private bool transitionLoaded;
         private Grid _root;
 
+        /// <summary>
+        /// get/set MetroContentControlState
+        /// </summary>
         public MetroContentControlState MetroContentControlState
         {
             get { return (MetroContentControlState)GetValue(MetroContentControlStateProperty); }
             set { SetValue(MetroContentControlStateProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="MetroContentControlState"/>
+        /// </summary>
         public static readonly StyledProperty<MetroContentControlState> MetroContentControlStateProperty =
             AvaloniaProperty.Register<MetroContentControl, MetroContentControlState>(nameof(MetroContentControlState));
 
+        /// <summary>
+        /// get/sets ReverseTransition
+        /// </summary>
         public bool ReverseTransition
         {
             get { return (bool)GetValue(ReverseTransitionProperty); }
             set { SetValue(ReverseTransitionProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ReverseTransition"/>
+        /// </summary>
         public static readonly StyledProperty<bool> ReverseTransitionProperty =
             AvaloniaProperty.Register<MetroContentControl, bool>(nameof(ReverseTransition));
 
+        /// <summary>
+        /// get/sets TransitionsEnabled
+        /// </summary>
         public bool TransitionsEnabled
         {
             get { return (bool)GetValue(TransitionsEnabledProperty); }
             set { SetValue(TransitionsEnabledProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="TransitionsEnabled"/>
+        /// </summary>
         public static readonly StyledProperty<bool> TransitionsEnabledProperty =
             AvaloniaProperty.Register<MetroContentControl, bool>(nameof(TransitionsEnabled), defaultValue: true);
 
+        /// <summary>
+        /// get/sets OnlyLoadTransition
+        /// </summary>
         public bool OnlyLoadTransition
         {
             get { return (bool)GetValue(OnlyLoadTransitionProperty); }
             set { SetValue(OnlyLoadTransitionProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="OnlyLoadTransition"/>
+        /// </summary>
         public static readonly StyledProperty<bool> OnlyLoadTransitionProperty =
             AvaloniaProperty.Register<MetroContentControl, bool>(nameof(OnlyLoadTransition));
 
+        /// <summary>
+        /// <see cref="TransitionCompleted"/>
+        /// </summary>
         public static readonly RoutedEvent TransitionCompletedEvent =
             RoutedEvent.Register<MetroContentControl, RoutedPropertyChangedEventArgs<object>>(nameof(TransitionCompleted), RoutingStrategies.Bubble);
 
+        /// <summary>
+        /// get/set TransitionCompleted
+        /// </summary>
         public event EventHandler TransitionCompleted
         {
             add { this.AddHandler(TransitionCompletedEvent, value); }
             remove { this.RemoveHandler(TransitionCompletedEvent, value); }
         }
 
+        /// <summary>
+        /// registers some changed handlers
+        /// </summary>
         public MetroContentControl()
         {
             IsVisibleProperty.Changed.AddClassHandler<MetroContentControl>((o, e) => MetroContentControlIsVisibleChanged(o, e));
@@ -68,6 +107,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             this.TemplateApplied += MetroContentControl_TemplateApplied;
         }
+
 
         private void MetroContentControl_TemplateApplied(object sender, TemplateAppliedEventArgs e)
         {
@@ -162,6 +202,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// reloads the states
+        /// </summary>
         public void Reload()
         {
             if (!TransitionsEnabled || transitionLoaded) return;
@@ -182,6 +225,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// gets the root grid 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             _root = e.NameScope.Find<Grid>("root");

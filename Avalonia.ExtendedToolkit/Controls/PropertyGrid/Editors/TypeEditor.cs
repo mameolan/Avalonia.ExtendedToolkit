@@ -13,6 +13,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
     [DebuggerDisplay("[TypeEditor] EditedType: {EditedType}")]
     public class TypeEditor : Editor
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public new Type StyleKey => typeof(TypeEditor);
 
         /// <summary>
@@ -25,6 +28,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
             set { SetValue(EditedTypeProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="EditedType"/>
+        /// </summary>
         public static readonly StyledProperty<Type> EditedTypeProperty =
             AvaloniaProperty.Register<TypeEditor, Type>(nameof(EditedType));
 

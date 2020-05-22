@@ -6,6 +6,9 @@ using Avalonia.Data.Converters;
 
 namespace Avalonia.ExtendedToolkit.Converters
 {
+    /// <summary>
+    /// <see cref="ResizeMode"/> to bool converter
+    /// </summary>
     public sealed class ResizeModeMinMaxButtonVisibilityConverter : IMultiValueConverter
     {
         private static ResizeModeMinMaxButtonVisibilityConverter _instance;
@@ -20,11 +23,24 @@ namespace Avalonia.ExtendedToolkit.Converters
         {
         }
 
+        /// <summary>
+        /// returns the singelton
+        /// </summary>
         public static ResizeModeMinMaxButtonVisibilityConverter Instance
         {
             get { return _instance ?? (_instance = new ResizeModeMinMaxButtonVisibilityConverter()); }
         }
 
+        /// <summary>
+        /// values first: bool showButton
+        /// values second: bool useNoneWindowStyle
+        /// values third: ResizeMode windowResizeMode
+        /// </summary>
+        /// <param name="values"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(IList<object> values, Type targetType, object parameter, CultureInfo culture)
         {
             var whichButton = parameter as string;

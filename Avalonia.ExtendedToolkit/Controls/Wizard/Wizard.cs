@@ -15,16 +15,19 @@ namespace Avalonia.ExtendedToolkit.Controls
 
     public partial class Wizard : ItemsControl
     {
+        /// <summary>
+        /// initialise items collection
+        /// add some changed listener
+        /// </summary>
         public Wizard()
         {
             Items = new AvaloniaList<WizardPage>();
 
             CurrentPageProperty.Changed.AddClassHandler((Action<Wizard, AvaloniaPropertyChangedEventArgs>)((o, e) => OnCurrentPageChanged(o, e)));
             ItemsPanelProperty.Changed.AddClassHandler((Action<Wizard, AvaloniaPropertyChangedEventArgs>)((o, e) => OnItemChanged(o, e)));
-            ItemsSourceProperty.Changed.AddClassHandler((Action<Wizard, AvaloniaPropertyChangedEventArgs>)((o, e) => OnItemSourceChanged(o, e)));
-            CurrentWizardPageVMProperty.Changed.AddClassHandler((Action<Wizard, AvaloniaPropertyChangedEventArgs>)((o, e) => OnCurrentWizardPageVM(o, e)));
+            ItemsProperty.Changed.AddClassHandler((Action<Wizard, AvaloniaPropertyChangedEventArgs>)((o, e) => OnItemSourceChanged(o, e)));
 
-            this.Initialized += (o, e) =>
+            Initialized += (o, e) =>
             {
                 if (Items.OfType<object>().Any() && CurrentPage == null)
                     CurrentPage = Items.OfType<WizardPage>().FirstOrDefault();
@@ -45,16 +48,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             });
         }
 
-        private void OnCurrentWizardPageVM(Wizard o, AvaloniaPropertyChangedEventArgs e)
-        {
-            if (e.NewValue == null)
-                return;
-
-            IWizardPageVM wizardPageVM = e.NewValue as IWizardPageVM;
-
-            CurrentPage = this.Items.OfType<WizardPage>().FirstOrDefault(x => x.DataContext == wizardPageVM);
-        }
-
         private void OnItemSourceChanged(Wizard wizard, AvaloniaPropertyChangedEventArgs e)
         {
             if (Items == null)
@@ -63,17 +56,17 @@ namespace Avalonia.ExtendedToolkit.Controls
             if (e.NewValue == null)
                 return;
 
-            var list = e.NewValue as IEnumerable<IWizardPageVM>;
+            var list = e.NewValue as IEnumerable<IWizardPage>;
 
             if (list != null)
             {
-                foreach (IWizardPageVM wizardPageVM in list)
+                foreach (IWizardPage wizardPageVM in list)
                 {
-                    IWizardPageVM vm = wizardPageVM as IWizardPageVM;
+                    IWizardPage vm = wizardPageVM as IWizardPage;
                     WizardPage wizardPage = new WizardPage();
                     wizardPage.DataContext = vm;
                     wizardPage.CanCancel = CanCancel;
-                    (this.Items as AvaloniaList<WizardPage>).Add(wizardPage);
+                    (Items as AvaloniaList<WizardPage>).Add(wizardPage);
                 }
             }
         }
@@ -88,10 +81,14 @@ namespace Avalonia.ExtendedToolkit.Controls
             if (e.NewValue == null)
                 return;
 
-            if (Items.OfType<WizardPage>().Count() > 0 && CurrentPage == null)
+            if (Items.OfType<WizardPage>().Any() && CurrentPage == null)
                 CurrentPage = Items.OfType<WizardPage>().FirstOrDefault();
         }
 
+        /// <summary>
+        /// fires can execute on the commands
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
         {
             base.OnPropertyChanged(e);
@@ -113,6 +110,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// if CancelButtonClosesWindow is true the parent window is closed
+        /// </summary>
         private void ExecuteCancelWizard()
         {
             RaiseRoutedEvent(Wizard.CancelEvent);
@@ -145,7 +145,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
 
             var eventArgs = new RoutedEventArgs(Wizard.FinishEvent);
-            this.RaiseEvent(eventArgs);
+            RaiseEvent(eventArgs);
             //if (eventArgs.Cancel)
             //    return;
 
@@ -201,7 +201,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             if (CurrentPage != null)
             {
                 var eventArgs = new RoutedEventArgs(NextEvent);
-                this.RaiseEvent(eventArgs);
+                RaiseEvent(eventArgs);
                 //if (eventArgs.Cancel)
                 //    return;
 
@@ -249,7 +249,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             if (CurrentPage != null)
             {
                 var eventArgs = new RoutedEventArgs(PreviousEvent);
-                this.RaiseEvent(eventArgs);
+                RaiseEvent(eventArgs);
                 //if (eventArgs.Cancel)
                 //    return;
 
@@ -336,6 +336,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             base.RaiseEvent(newEventArgs);
         }
 
+        /// <summary>
+        /// gets the controls from the style
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             btnHelp = e.NameScope.Find<Button>(ButtonName_Help);

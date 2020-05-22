@@ -21,9 +21,22 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// <typeparam name="T"></typeparam>
     public class RoutedPropertyChangedEventArgs<T> : RoutedEventArgs
     {
+        /// <summary>
+        /// old value
+        /// </summary>
         public T OldValue { get; }
+
+        /// <summary>
+        /// new value
+        /// </summary>
         public T NewValue { get; }
 
+        /// <summary>
+        /// constructs RoutedPropertyChangedEventArgs by parameter and routed event
+        /// </summary>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
+        /// <param name="routedEvent"></param>
         public RoutedPropertyChangedEventArgs(T oldValue, T newValue, RoutedEvent routedEvent)
         {
             OldValue = oldValue;
@@ -31,6 +44,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             RoutedEvent = routedEvent;
         }
 
+        /// <summary>
+        /// constructs RoutedPropertyChangedEventArgs by parameter
+        /// </summary>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
         public RoutedPropertyChangedEventArgs(T oldValue, T newValue)
         {
             OldValue = oldValue;

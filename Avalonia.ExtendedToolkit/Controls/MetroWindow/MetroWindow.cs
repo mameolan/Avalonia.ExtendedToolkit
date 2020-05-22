@@ -22,6 +22,8 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public partial class MetroWindow : Window, IStyleable
     {
+#warning check commented code
+
         private void ToggleWindowState()
         {
             var oldValue = WindowState;
@@ -44,7 +46,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             //if (flyout.Position == Position.Left || flyout.Position == Position.Right || flyout.Position == Position.Top)
             {
                 //get it's zindex
-                var zIndex = flyout.IsOpen ? flyout.ZIndex + 3 : visibleFlyouts.Count() + 2;
+                var zIndex = flyout.IsOpen ? flyout.ZIndex + 3 : visibleFlyouts.Count + 2;
 
                 //if the the corresponding behavior has the right flag, set the window commands' and icon zIndex to a number that is higher than the flyout's.
                 this._icon?.SetValue(Panel.ZIndexProperty, flyout.IsModal && flyout.IsOpen ? 0 : (this.IconOverlayBehavior.HasFlag(OverlayBehavior.Flyouts) ? zIndex : 1));
@@ -174,6 +176,10 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         }
 
+        /// <summary>
+        /// !!!hack so the controls are drawn correctly!!!
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnOpened(EventArgs e)
         {
             base.OnOpened(e);
@@ -419,7 +425,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             DoWindowTitleThumbSystemMenuOnMouseRightButtonUp(this, e);
         }
 
-        public void DoWindowTitleThumbSystemMenuOnMouseRightButtonUp(MetroWindow metroWindow, PointerReleasedEventArgs e)
+        internal void DoWindowTitleThumbSystemMenuOnMouseRightButtonUp(MetroWindow metroWindow, PointerReleasedEventArgs e)
         {
             //throw new NotImplementedException();
         }
@@ -544,7 +550,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 window.WindowState = WindowState.Normal;
 
-                ///var pointerPress=new
+                //var pointerPress=new
 
                 try
                 {

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
+using System.Linq;
 using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Font
@@ -216,30 +214,39 @@ namespace Avalonia.ExtendedToolkit.Font
                 case 100:
                     convertedValue = "Thin";
                     return true;
+
                 case 200:
                     convertedValue = "ExtraLight";
                     return true;
+
                 case 300:
                     convertedValue = "Light";
                     return true;
+
                 case 400:
                     convertedValue = "Normal";
                     return true;
+
                 case 500:
                     convertedValue = "Medium";
                     return true;
+
                 case 600:
                     convertedValue = "SemiBold";
                     return true;
+
                 case 700:
                     convertedValue = "Bold";
                     return true;
+
                 case 800:
                     convertedValue = "ExtraBold";
                     return true;
+
                 case 900:
                     convertedValue = "Black";
                     return true;
+
                 case 950:
                     convertedValue = "ExtraBlack";
                     return true;

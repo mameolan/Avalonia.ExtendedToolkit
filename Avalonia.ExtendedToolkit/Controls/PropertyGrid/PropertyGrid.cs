@@ -22,6 +22,9 @@ using Avalonia.Interactivity;
 
 namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 {
+    /// <summary>
+    /// property grid control
+    /// </summary>
     public partial class PropertyGrid : TemplatedControl
     {
         /// <summary>
@@ -279,6 +282,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             }
         }
 
+        /// <summary>
+        /// tabbing over property editors
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if (e.Key == Key.Tab && e.Source is AvaloniaObject)//tabbing over the property editors
@@ -437,6 +444,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
             CurrentDescription = descri == null ? "" : descri.ToString();
         }
 
+        /// <summary>
+        /// reloads the property grid
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
         {
             base.OnAttachedToVisualTree(e);

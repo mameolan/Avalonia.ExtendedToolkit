@@ -6,12 +6,20 @@ namespace Avalonia.ExtendedToolkit.Actions
 {
     //ported from https://github.com/MahApps/MahApps.Metro
 
+    /// <summary>
+    /// command action which closes
+    /// the <see cref="Flyout"/>
+    /// </summary>
     public class CloseFlyoutAction : CommandTriggerAction
     {
         private Flyout associatedFlyout;
 
         private Flyout AssociatedFlyout => this.associatedFlyout ?? (this.associatedFlyout = this.AssociatedObject.GetVisualParent<Flyout>());
 
+        /// <summary>
+        /// invokes the close fyout command if associated object is a flyout
+        /// </summary>
+        /// <param name="parameter"></param>
         protected override void Invoke(object parameter)
         {
             if (this.AssociatedObject == null || (this.AssociatedObject != null && !this.AssociatedObject.IsEnabled))
@@ -34,6 +42,10 @@ namespace Avalonia.ExtendedToolkit.Actions
             }
         }
 
+        /// <summary>
+        /// if command parameter is null use the associated object as parameter
+        /// </summary>
+        /// <returns></returns>
         protected override object GetCommandParameter()
         {
             return this.CommandParameter ?? this.AssociatedFlyout;

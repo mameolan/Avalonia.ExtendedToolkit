@@ -9,6 +9,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters
     // ported from https://github.com/DenisVuyka/WPG
     //
 
+    /// <summary>
+    /// converts enum to string
+    /// </summary>
     public class EnumValueConverter : IValueConverter
     {
         /// <summary>

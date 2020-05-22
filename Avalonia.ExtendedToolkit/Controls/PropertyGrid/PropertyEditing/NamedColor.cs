@@ -46,10 +46,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// Returns a <see cref="String"/> that represents the current <see cref="Object"/>.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// A <see cref="String"/> that represents the current <see cref="Object"/>.
         /// </returns>
         public override String ToString()
         {

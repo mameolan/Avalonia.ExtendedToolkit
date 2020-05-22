@@ -58,6 +58,11 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private MetroWindow ParentWindow => this.parentWindow ?? (this.parentWindow = this.TryFindParent<MetroWindow>());
 
+        /// <summary>
+        /// remembers available size
+        /// </summary>
+        /// <param name="availableSize"></param>
+        /// <returns></returns>
         protected override Size MeasureOverride(Size availableSize)
         {
             _currentSize = availableSize;
@@ -251,6 +256,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// gets the controls from the style
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             this.flyoutRoot = e.NameScope.Find<Border>("PART_Root");
@@ -321,6 +330,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// cleanups the events
+        /// </summary>
+        /// <param name="flyoutsControl"></param>
         protected internal void CleanUp(FlyoutsControl flyoutsControl)
         {
             var thumbContentControl = this.flyoutHeader as IMetroThumb;
@@ -453,6 +466,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// arrange the control
+        /// </summary>
+        /// <param name="finalRect"></param>
         protected override void ArrangeCore(Rect finalRect)
         {
             base.ArrangeCore(finalRect);

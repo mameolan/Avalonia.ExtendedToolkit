@@ -10,111 +10,183 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
 
     public partial class PropertyGrid
     {
+        /// <summary>
+        /// resets the filter
+        /// </summary>
         public ICommand ResetFilterCommand
         {
             get { return (ICommand)GetValue(ResetFilterCommandProperty); }
             private set { SetValue(ResetFilterCommandProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ResetFilterCommand"/>
+        /// </summary>
         public static readonly StyledProperty<ICommand> ResetFilterCommandProperty =
             AvaloniaProperty.Register<PropertyGrid, ICommand>(nameof(ResetFilterCommand));
 
+        /// <summary>
+        /// reloads the propertygrid
+        /// </summary>
         public ICommand ReloadCommand
         {
             get { return (ICommand)GetValue(ReloadCommandProperty); }
             set { SetValue(ReloadCommandProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ReloadCommand"/>
+        /// </summary>
         public static readonly StyledProperty<ICommand> ReloadCommandProperty =
             AvaloniaProperty.Register<PropertyGrid, ICommand>(nameof(ReloadCommand));
 
+        /// <summary>
+        /// gets ShowReadOnlyProperties
+        /// </summary>
         public ICommand ShowReadOnlyPropertiesCommand
         {
             get { return (ICommand)GetValue(ShowReadOnlyPropertiesCommandProperty); }
             set { SetValue(ShowReadOnlyPropertiesCommandProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ShowReadOnlyPropertiesCommand"/>
+        /// </summary>
         public static readonly StyledProperty<ICommand> ShowReadOnlyPropertiesCommandProperty =
             AvaloniaProperty.Register<PropertyGrid, ICommand>(nameof(ShowReadOnlyPropertiesCommand));
 
+        /// <summary>
+        /// gets HideReadOnlyPropertiesCommand
+        /// </summary>
         public ICommand HideReadOnlyPropertiesCommand
         {
             get { return (ICommand)GetValue(HideReadOnlyPropertiesCommandProperty); }
             set { SetValue(HideReadOnlyPropertiesCommandProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="HideReadOnlyPropertiesCommand"/>
+        /// </summary>
         public static readonly StyledProperty<ICommand> HideReadOnlyPropertiesCommandProperty =
             AvaloniaProperty.Register<PropertyGrid, ICommand>(nameof(HideReadOnlyPropertiesCommand));
 
+        /// <summary>
+        /// gets ToggleReadOnlyPropertiesCommand
+        /// </summary>
         public ICommand ToggleReadOnlyPropertiesCommand
         {
             get { return (ICommand)GetValue(ToggleReadOnlyPropertiesCommandProperty); }
             set { SetValue(ToggleReadOnlyPropertiesCommandProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ToggleReadOnlyPropertiesCommand"/>
+        /// </summary>
         public static readonly StyledProperty<ICommand> ToggleReadOnlyPropertiesCommandProperty =
             AvaloniaProperty.Register<PropertyGrid, ICommand>(nameof(ToggleReadOnlyPropertiesCommand));
 
+        /// <summary>
+        /// gets ShowAttachedPropertiesCommand
+        /// </summary>
         public ICommand ShowAttachedPropertiesCommand
         {
             get { return (ICommand)GetValue(ShowAttachedPropertiesCommandProperty); }
             set { SetValue(ShowAttachedPropertiesCommandProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ShowAttachedPropertiesCommand"/>
+        /// </summary>
         public static readonly StyledProperty<ICommand> ShowAttachedPropertiesCommandProperty =
             AvaloniaProperty.Register<PropertyGrid, ICommand>(nameof(ShowAttachedPropertiesCommand));
 
+        /// <summary>
+        /// gets HideAttachedPropertiesCommand
+        /// </summary>
         public ICommand HideAttachedPropertiesCommand
         {
             get { return (ICommand)GetValue(HideAttachedPropertiesCommandProperty); }
             set { SetValue(HideAttachedPropertiesCommandProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="HideAttachedPropertiesCommand"/>
+        /// </summary>
         public static readonly StyledProperty<ICommand> HideAttachedPropertiesCommandProperty =
             AvaloniaProperty.Register<PropertyGrid, ICommand>(nameof(HideAttachedPropertiesCommand));
 
+        /// <summary>
+        /// gets ToggleAttachedPropertiesCommand
+        /// </summary>
         public ICommand ToggleAttachedPropertiesCommand
         {
             get { return (ICommand)GetValue(ToggleAttachedPropertiesCommandProperty); }
             set { SetValue(ToggleAttachedPropertiesCommandProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ToggleAttachedPropertiesCommand"/>
+        /// </summary>
         public static readonly StyledProperty<ICommand> ToggleAttachedPropertiesCommandProperty =
             AvaloniaProperty.Register<PropertyGrid, ICommand>(nameof(ToggleAttachedPropertiesCommand));
 
+        /// <summary>
+        /// get ShowFilterCommand
+        /// </summary>
         public ICommand ShowFilterCommand
         {
             get { return (ICommand)GetValue(ShowFilterCommandProperty); }
             set { SetValue(ShowFilterCommandProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ShowFilterCommand"/>
+        /// </summary>
         public static readonly StyledProperty<ICommand> ShowFilterCommandProperty =
             AvaloniaProperty.Register<PropertyGrid, ICommand>(nameof(ShowFilterCommand));
 
+        /// <summary>
+        /// get HideFilterCommand
+        /// </summary>
         public ICommand HideFilterCommand
         {
             get { return (ICommand)GetValue(HideFilterCommandProperty); }
             set { SetValue(HideFilterCommandProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="HideFilterCommand"/>
+        /// </summary>
         public static readonly StyledProperty<ICommand> HideFilterCommandProperty =
             AvaloniaProperty.Register<PropertyGrid, ICommand>(nameof(HideFilterCommand));
 
+        /// <summary>
+        /// get ToggleFilterCommand
+        /// </summary>
         public ICommand ToggleFilterCommand
         {
             get { return (ICommand)GetValue(ToggleFilterCommandProperty); }
             set { SetValue(ToggleFilterCommandProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ToggleFilterCommand"/>
+        /// </summary>
         public static readonly StyledProperty<ICommand> ToggleFilterCommandProperty =
             AvaloniaProperty.Register<PropertyGrid, ICommand>(nameof(ToggleFilterCommand));
 
+        /// <summary>
+        /// gets ShowDialogEditorCommand
+        /// </summary>
         public ICommand ShowDialogEditorCommand
         {
             get { return (ICommand)GetValue(ShowDialogEditorCommandProperty); }
             set { SetValue(ShowDialogEditorCommandProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ShowDialogEditorCommand"/>
+        /// </summary>
         public static readonly StyledProperty<ICommand> ShowDialogEditorCommandProperty =
             AvaloniaProperty.Register<PropertyGrid, ICommand>(nameof(ShowDialogEditorCommand));
 

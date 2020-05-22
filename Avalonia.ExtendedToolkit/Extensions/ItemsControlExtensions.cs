@@ -5,10 +5,20 @@ using Avalonia.VisualTree;
 
 namespace Avalonia.ExtendedToolkit.Extensions
 {
+    /// <summary>
+    /// ItemsConrol extensions
+    /// </summary>
     public static class ItemsControlExtensions
     {
+        /// <summary>
+        /// returns the items control from the container
+        /// </summary>
+        /// <param name="container"></param>
+        /// <returns></returns>
         public static ItemsControl ItemsControlFromItemContainer(AvaloniaObject container)
         {
+#warning needs to be checked
+
             ILogical uiLogical = container as ILogical;
             if (uiLogical == null)
                 return null;
@@ -41,8 +51,14 @@ namespace Avalonia.ExtendedToolkit.Extensions
             return panel.TemplatedParent as ItemsPresenter;
         }
 
+        /// <summary>
+        /// gets the owner of this element
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static ItemsControl GetItemsOwner(AvaloniaObject element)
         {
+#warning needs to be checked
             ItemsControl container = null;
             Panel panel = element as Panel;
 

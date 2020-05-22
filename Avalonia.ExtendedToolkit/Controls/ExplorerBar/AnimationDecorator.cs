@@ -27,6 +27,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OpacityAnimationProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="OpacityAnimation"/>
+        /// </summary>
         public static readonly StyledProperty<bool> OpacityAnimationProperty =
             AvaloniaProperty.Register<AnimationDecorator, bool>(nameof(OpacityAnimation), defaultValue: true);
 
@@ -39,6 +42,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsExpandedProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsExpanded"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsExpandedProperty =
             AvaloniaProperty.Register<AnimationDecorator, bool>(nameof(IsExpanded), defaultValue: true);
 
@@ -51,6 +57,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(HeightAnimationProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="HeightAnimation"/>
+        /// </summary>
         public static readonly StyledProperty<IAnimation> HeightAnimationProperty =
             AvaloniaProperty.Register<AnimationDecorator, IAnimation>(nameof(HeightAnimation));
 
@@ -63,6 +72,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(DurationProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="Duration"/>
+        /// </summary>
         public static readonly StyledProperty<TimeSpan> DurationProperty =
             AvaloniaProperty.Register<AnimationDecorator, TimeSpan>(
                 nameof(Duration), defaultValue: TimeSpan.FromMilliseconds(250));
@@ -77,6 +89,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(AnimationOpacityProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="AnimationOpacity"/>
+        /// </summary>
         public static readonly StyledProperty<double> AnimationOpacityProperty =
             AvaloniaProperty.Register<AnimationDecorator, double>(nameof(AnimationOpacity), defaultValue: (double)1.0);
 
@@ -89,6 +104,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(HeightOffsetProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="HeightOffset"/>
+        /// </summary>
         public static readonly StyledProperty<double> HeightOffsetProperty =
             AvaloniaProperty.Register<AnimationDecorator, double>(nameof(HeightOffset), defaultValue: 0.0d);
 
@@ -101,27 +119,45 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(YOffsetProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="YOffset"/>
+        /// </summary>
         public static readonly StyledProperty<double> YOffsetProperty =
             AvaloniaProperty.Register<AnimationDecorator, double>(nameof(YOffset), defaultValue: 0.0d);
 
+        /// <summary>
+        /// get/sets CanAnimate 
+        /// </summary>
         public bool CanAnimate
         {
             get { return (bool)GetValue(CanAnimateProperty); }
             set { SetValue(CanAnimateProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="CanAnimate"/>
+        /// </summary>
         public static readonly StyledProperty<bool> CanAnimateProperty =
             AvaloniaProperty.Register<AnimationDecorator, bool>(nameof(CanAnimate), defaultValue: true);
 
+        /// <summary>
+        /// get/sets AnimateOnContentHeightChanged
+        /// </summary>
         public bool AnimateOnContentHeightChanged
         {
             get { return (bool)GetValue(AnimateOnContentHeightChangedProperty); }
             set { SetValue(AnimateOnContentHeightChangedProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="AnimateOnContentHeightChanged"/>
+        /// </summary>
         public static readonly StyledProperty<bool> AnimateOnContentHeightChangedProperty =
             AvaloniaProperty.Register<AnimationDecorator, bool>(nameof(AnimateOnContentHeightChanged), defaultValue: true);
 
+        /// <summary>
+        /// add IsExpanded listener
+        /// </summary>
         public AnimationDecorator()
         {
             ClipToBounds = true;
@@ -264,6 +300,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             return delta;
         }
 
+        /// <summary>
+        /// measure the decorated control
+        /// </summary>
+        /// <param name="constraint"></param>
+        /// <returns></returns>
         protected override Size MeasureOverride(Size constraint)
         {
             if (Child == null)
@@ -271,10 +312,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             Size size;
             if (double.IsInfinity(constraint.Height))
             {
-                Child.Measure(new Size(constraint.Width, Double.PositiveInfinity));
-                Double childHeight = Child.DesiredSize.Height;
-                Double deltaHeight = 0;
-                if (this.AnimateOnContentHeightChanged && this.IsInitialized && IsVisible && CanAnimate)
+                Child.Measure(new Size(constraint.Width, double.PositiveInfinity));
+                double childHeight = Child.DesiredSize.Height;
+                double deltaHeight = 0;
+                if (AnimateOnContentHeightChanged && IsInitialized && IsVisible && CanAnimate)
                 {
                     if (targetHeight != childHeight)
                     {
@@ -300,10 +341,15 @@ namespace Avalonia.ExtendedToolkit.Controls
                 (Child as Control).IsEnabled = size.Height > 0;
             }
             if (size.Height == 0)
-                this.AnimationOpacity = 0;
+                AnimationOpacity = 0;
             return size;
         }
 
+        /// <summary>
+        /// arranges the decorated control
+        /// </summary>
+        /// <param name="arrangeSize"></param>
+        /// <returns></returns>
         protected override Size ArrangeOverride(Size arrangeSize)
         {
             if (Child == null)

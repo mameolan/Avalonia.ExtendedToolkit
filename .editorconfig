@@ -180,8 +180,17 @@ dotnet_diagnostic.CA2208.severity = silent
 # CA1062: Validate arguments of public methods (i.e. AttachedProperty get method)
 dotnet_diagnostic.CA1062.severity = silent
 
-# CA1031: Keine allgemeinen Ausnahmetypen abfangen
+# CA1031: Do not catch general exception types
 dotnet_diagnostic.CA1031.severity = silent
+
+# CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member'
+#dotnet_diagnostic.CS1591.severity = suggestion
+
+# CA1710: field must have a correct sign
+dotnet_diagnostic.CA1710.severity = silent
+
+# IDE1006: name style
+dotnet_diagnostic.IDE1006.severity = silent
 
 [*.xaml]
 indent_size = 2

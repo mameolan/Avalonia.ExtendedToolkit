@@ -4,6 +4,9 @@ using Avalonia.Styling;
 
 namespace Avalonia.ExtendedToolkit
 {
+    /// <summary>
+    /// skin extensions
+    /// </summary>
     public static class SkinExtensions
     {
         /// <summary>

@@ -3,7 +3,9 @@ using Avalonia.Xaml.Interactivity;
 
 namespace Avalonia.ExtendedToolkit.Helper
 {
-    /// <summary>
+    
+    #pragma warning disable CS1570 // XML-Comment has invalid chars
+    ///<summary>
     /// add log functionality into a style
     /// (for testing only)
     ///
@@ -21,13 +23,20 @@ namespace Avalonia.ExtendedToolkit.Helper
     /// <Setter Property="helper:StyledInteraction.Behaviors" Value="{StaticResource debugTriggers}"/>
     /// </summary>
     public class DebugAction : Trigger<AvaloniaObject>
+#pragma warning restore CS1570 // XML-Kommentar weist ein ungültiges Format auf
     {
+        /// <summary>
+        /// registered PropertyChanged on AssociatedObject 
+        /// </summary>
         protected override void OnAttached()
         {
             AssociatedObject.PropertyChanged += AssociatedObject_PropertyChanged;
             base.OnAttached();
         }
 
+        /// <summary>
+        /// unregistered PropertyChanged on AssociatedObject 
+        /// </summary>
         protected override void OnDetaching()
         {
             AssociatedObject.PropertyChanged -= AssociatedObject_PropertyChanged;

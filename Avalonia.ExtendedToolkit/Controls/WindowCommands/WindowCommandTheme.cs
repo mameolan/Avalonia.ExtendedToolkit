@@ -5,7 +5,13 @@
     /// </summary>
     public enum WindowCommandTheme
     {
+        /// <summary>
+        /// light theme
+        /// </summary>
         Light,
+        /// <summary>
+        /// dark theme
+        /// </summary>
         Dark
     }
 }

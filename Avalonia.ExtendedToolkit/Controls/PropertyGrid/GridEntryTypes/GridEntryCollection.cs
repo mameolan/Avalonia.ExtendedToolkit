@@ -29,7 +29,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// Initializes a new instance of the <see cref="GridEntryCollection&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="collection">The collection from which the elements are copied.</param>
-        /// <exception cref="T:System.ArgumentNullException">
+        /// <exception cref="ArgumentNullException">
         /// The <paramref name="collection"/> parameter cannot be null.
         /// </exception>
         public GridEntryCollection(IEnumerable<T> collection)

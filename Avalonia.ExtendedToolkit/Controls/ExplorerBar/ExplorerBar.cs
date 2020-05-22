@@ -17,6 +17,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         private static readonly FuncTemplate<IPanel> DefaultPanel =
             new FuncTemplate<IPanel>(() => new VirtualizingStackPanel());
 
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(ExplorerBar);
 
         static ExplorerBar()

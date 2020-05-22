@@ -6,6 +6,10 @@ using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Converters
 {
+    /// <summary>
+    /// sets the foreground color
+    /// from the background color
+    /// </summary>
     public class BackgroundToForegroundConverter : IValueConverter, IMultiValueConverter
     {
         private static BackgroundToForegroundConverter _instance;
@@ -20,6 +24,9 @@ namespace Avalonia.ExtendedToolkit.Converters
         {
         }
 
+        /// <summary>
+        /// instance
+        /// </summary>
         public static BackgroundToForegroundConverter Instance
         {
             get { return _instance ?? (_instance = new BackgroundToForegroundConverter()); }
@@ -39,6 +46,17 @@ namespace Avalonia.ExtendedToolkit.Converters
             return foreColor;
         }
 
+        /// <summary>
+        /// values first: background color
+        /// values second titlebroush
+        /// if title brush is not null return title brush
+        /// else call convert
+        /// </summary>
+        /// <param name="values"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(IList<object> values, Type targetType, object parameter, CultureInfo culture)
         {
             var bgBrush = values.Count > 0 ? values[0] as Brush : null;
@@ -50,6 +68,17 @@ namespace Avalonia.ExtendedToolkit.Converters
             return Convert(bgBrush, targetType, parameter, culture);
         }
 
+        /// <summary>
+        /// if value is <see cref="SolidColorBrush"/>
+        /// find ideal color
+        /// else
+        /// return white
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is SolidColorBrush)
@@ -62,6 +91,14 @@ namespace Avalonia.ExtendedToolkit.Converters
             return Brushes.White;
         }
 
+        /// <summary>
+        /// does nothing
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return AvaloniaProperty.UnsetValue;

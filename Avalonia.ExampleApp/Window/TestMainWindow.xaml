@@ -8,8 +8,56 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Avalonia.ExampleApp.Views.TestMainWindow"
         Title="TestMainWindow">
+  <!--<Window.Styles>
+    <Style Selector="Button.FlatButton">
+      <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.FlatButton.Background}" />
+      <Setter Property="BorderThickness" Value="0" />
+      --><!--<Setter Property="FocusVisualStyle" Value="{DynamicResource MahApps.Styles.Button.FocusVisualStyle.Flat}" />--><!--
+      <Setter Property="FontSize" Value="{DynamicResource MahApps.Sizes.Font.FlatButton}" />
+      <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.FlatButton.Foreground}" />
+      <Setter Property="Padding" Value="10 5 10 5" />
+      --><!--<Setter Property="SnapsToDevicePixels" Value="True" />--><!--
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate>
+            <Border x:Name="Border"
+                    Margin="0"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    >
+              <Controls:ContentControlEx x:Name="PART_ContentPresenter"
+                                         Padding="{TemplateBinding Padding}"
+                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                         ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.ContentCharacterCasing)}"
+                                         Content="{TemplateBinding Content}"
+                                         ContentTemplate="{TemplateBinding ContentTemplate}"
+                                         RecognizesAccessKey="True"
+                                         />
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
 
- 
+    <Style Selector="Button.FlatButton:pointerover">
+      <Setter Property="Background" Value="DarkGray" />
+    </Style>
+
+    <Style Selector="Button.FlatButton:pressed">
+      <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.FlatButton.PressedBackground}" />
+      <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.FlatButton.PressedForeground}" />
+    </Style>
+
+    <Style Selector="Button.FlatButton:disabled">
+      <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+    </Style>
+
+
+
+  </Window.Styles>-->
+
 
 
   <DockPanel>
@@ -68,15 +116,13 @@
                          TickPlacement="TopLeft" TickFrequency="2"
                          />-->
 
-      <Controlz:GroupBox Header="Test" Width="200" Height="200" Classes="MahApps">
-        <Button Content="Click Me"/>
-      </Controlz:GroupBox>
       
-    
-      <!--<Button Command="{Binding ShowFlyoutDemoCommand}" Content="Open File Demo"/>-->
-      <!--<Views:PropertyGridExamples/>-->
-      
-      
+
+      <Controls:BusyIndicator IsBusy="True" BusyContent="Message"/>
+     
+
+
+
     </Grid>
 
   </DockPanel>

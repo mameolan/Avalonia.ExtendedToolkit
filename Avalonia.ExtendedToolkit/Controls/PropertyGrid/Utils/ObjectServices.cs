@@ -14,33 +14,46 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
     // ported from https://github.com/DenisVuyka/WPG
     //
 
+    /// <summary>
+    /// Object resolving helper class
+    /// </summary>
     internal static class ObjectServices
     {
         private static readonly Type[] CultureInvariantTypes = new Type[]
         {
-      typeof(CornerRadius),
-      //typeof(Point3D),
-      //typeof(Point4D),
-      //typeof(Point3DCollection),
-      //typeof(Matrix3D),
-      //typeof(Quaternion),
-      //typeof(Rect3D),
-      //typeof(Size3D),
-      //typeof(Vector3D),
-      //typeof(Vector3DCollection),
-      //typeof(PointCollection),
-      //typeof(VectorCollection),
-      typeof(Point),
-      typeof(Rect),
-      typeof(Size),
-      typeof(Thickness),
-      typeof(Vector)
+          typeof(CornerRadius),
+          //typeof(Point3D),
+          //typeof(Point4D),
+          //typeof(Point3DCollection),
+          //typeof(Matrix3D),
+          //typeof(Quaternion),
+          //typeof(Rect3D),
+          //typeof(Size3D),
+          //typeof(Vector3D),
+          //typeof(Vector3DCollection),
+          //typeof(PointCollection),
+          //typeof(VectorCollection),
+          typeof(Point),
+          typeof(Rect),
+          typeof(Size),
+          typeof(Thickness),
+          typeof(Vector)
         };
 
-        private static readonly string[] StringConverterMembers = { "Content", "Header", "ToolTip", "Tag" };
+
+        private static readonly string[] StringConverterMembers = 
+                                            { 
+                                               "Content", 
+                                               "Header", 
+                                               "ToolTip", 
+                                               "Tag" 
+                                            };
 
         private static StringConverter _defaultStringConverter;
 
+        /// <summary>
+        /// gets default string converter
+        /// </summary>
         public static StringConverter DefaultStringConverter
         {
             get
@@ -53,6 +66,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
 
         private static FontStretchConverterDecorator _defaultFontStretchConverterDecorator;
 
+        /// <summary>
+        /// gets FontStretchConverterDecorator
+        /// </summary>
         public static FontStretchConverterDecorator DefaultFontStretchConverterDecorator
         {
             get { return _defaultFontStretchConverterDecorator ?? (_defaultFontStretchConverterDecorator = new FontStretchConverterDecorator()); }
@@ -60,6 +76,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
 
         private static FontStyleConverterDecorator _DefaultFontStyleConverterDecorator;
 
+        /// <summary>
+        /// gets FontStyleConverterDecorator
+        /// </summary>
         public static FontStyleConverterDecorator DefaultFontStyleConverterDecorator
         {
             get
@@ -72,12 +91,17 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
 
         private static FontWeightConverterDecorator _defaultFontWeightConverterDecorator;
 
+        /// <summary>
+        /// gets FontWeightConverterDecorator
+        /// </summary>
         public static FontWeightConverterDecorator DefaultFontWeightConverterDecorator
         {
-            get { return _defaultFontWeightConverterDecorator ?? (_defaultFontWeightConverterDecorator = new FontWeightConverterDecorator()); }
+            get { return _defaultFontWeightConverterDecorator ?? 
+                    (_defaultFontWeightConverterDecorator = new FontWeightConverterDecorator()); }
         }
 
-        [Obsolete("This member will be superceded by PropertyItem.SerializationCulture in the next versions of component", false)]
+        [Obsolete("This member will be superceded by PropertyItem.SerializationCulture" +
+                   " in the next versions of component", false)]
         public static CultureInfo GetSerializationCulture(Type propertyType)
         {
             var currentCulture = CultureInfo.CurrentCulture;
@@ -85,12 +109,18 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
             if (propertyType == null)
                 return currentCulture;
 
-            if ((Array.IndexOf(CultureInvariantTypes, propertyType) == -1) && !typeof(Geometry).IsAssignableFrom(propertyType))
+            if ((Array.IndexOf(CultureInvariantTypes, propertyType) == -1) 
+                && !typeof(Geometry).IsAssignableFrom(propertyType))
                 return currentCulture;
 
             return CultureInfo.InvariantCulture;
         }
 
+        /// <summary>
+        /// gets the property converter
+        /// </summary>
+        /// <param name="propertyDescriptor"></param>
+        /// <returns></returns>
         public static TypeConverter GetPropertyConverter(PropertyDescriptor propertyDescriptor)
         {
             if (propertyDescriptor == null)
@@ -108,6 +138,11 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
             return propertyDescriptor.Converter;
         }
 
+        /// <summary>
+        /// gets merged properties
+        /// </summary>
+        /// <param name="targets"></param>
+        /// <returns></returns>
         internal static IEnumerable<PropertyDescriptor> GetMergedProperties(IEnumerable<object> targets)
         {
             var merged = new List<PropertyDescriptor>();

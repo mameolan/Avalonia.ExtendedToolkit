@@ -5,7 +5,6 @@
     xmlns:converter="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Converters;assembly=Avalonia.ExtendedToolkit"
     >
   <Styles.Resources>
-    <converter:GridEntryToIsVisibleConverter x:Key="GridEntryToIsVisibleConverter"/>
     <converter:MultiBooleanToIsVisibleConverter x:Key="multiBooleanToVisibilityConverter"/>
   </Styles.Resources>
 

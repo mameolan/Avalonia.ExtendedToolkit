@@ -4,20 +4,32 @@ using Avalonia.Xaml.Interactivity;
 
 namespace Avalonia.ExtendedToolkit.TriggerExtensions
 {
+    /// <summary>
+    /// class which implements <see cref="IBehavior"/> and <see cref="IAction"/>
+    /// </summary>
     public abstract class TriggerAction :Animatable, IBehavior, IAction
     {
         private AvaloniaObject associatedObject;
         private Type associatedObjectTypeConstraint;
 
+        /// <summary>
+        /// get/sets IsEnabled
+        /// </summary>
         public bool IsEnabled
         {
             get { return (bool)GetValue(IsEnabledProperty); }
             set { SetValue(IsEnabledProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsEnabled"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsEnabledProperty =
             AvaloniaProperty.Register<TriggerAction, bool>(nameof(IsEnabled));
 
+        /// <summary>
+        /// returns the AssociatedObject
+        /// </summary>
         public AvaloniaObject AssociatedObject => associatedObject;
 
         /// <summary>
@@ -69,9 +81,13 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
         {
         }
 
-        public void Attach(AvaloniaObject dependencyObject)
+        /// <summary>
+        /// tries to set the AssociatedObject
+        /// </summary>
+        /// <param name="avaloniaObject"></param>
+        public void Attach(AvaloniaObject avaloniaObject)
         {
-            if (dependencyObject != this.AssociatedObject)
+            if (avaloniaObject != this.AssociatedObject)
             {
                 if (this.AssociatedObject != null)
                 {
@@ -79,12 +95,12 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
                 }
 
                 // Ensure the type constraint is met
-                if (dependencyObject != null && !this.AssociatedObjectTypeConstraint.IsAssignableFrom(dependencyObject.GetType()))
+                if (avaloniaObject != null && !this.AssociatedObjectTypeConstraint.IsAssignableFrom(avaloniaObject.GetType()))
                 {
-                    throw new InvalidOperationException($"Cannot assign {this.GetType().Name} {dependencyObject.GetType().Name} {this.AssociatedObjectTypeConstraint.Name}");
+                    throw new InvalidOperationException($"Cannot assign {this.GetType().Name} {avaloniaObject.GetType().Name} {this.AssociatedObjectTypeConstraint.Name}");
                 }
 
-                this.associatedObject = dependencyObject;
+                this.associatedObject = avaloniaObject;
                 this.OnAttached();
             }
         }
@@ -98,6 +114,12 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
             this.associatedObject = null;
         }
 
+        /// <summary>
+        /// executes the command
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         public object Execute(object sender, object parameter)
         {
             CallInvoke(parameter);

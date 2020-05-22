@@ -8,11 +8,18 @@ using Avalonia.Xaml.Interactivity;
 
 namespace Avalonia.ExtendedToolkit.Behaviours
 {
+    /// <summary>
+    /// tries to set the selected item
+    /// on a <see cref="SelectingItemsControl"/>
+    /// </summary>
     public class SelectedItemBehaviour:Trigger<SelectingItemsControl>
     {
+        /// <summary>
+        /// adds selection changed event to the associated object
+        /// if items is not null try selected the first index
+        /// </summary>
         protected override void OnAttached()
         {
-
             AssociatedObject.SelectionChanged += SelectingItemsControl_SelectionChanged;
 
             if(AssociatedObject.Items!=null)
@@ -25,16 +32,22 @@ namespace Avalonia.ExtendedToolkit.Behaviours
 
         }
 
+        /// <summary>
+        /// removes the selectionchanged event
+        /// </summary>
         protected override void OnDetaching()
         {
             AssociatedObject.SelectionChanged -= SelectingItemsControl_SelectionChanged;
-            
-
         }
 
+        /// <summary>
+        /// tries to select the item by index
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SelectingItemsControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedItems = e.AddedItems.OfType<Object>().ToList();
+            var selectedItems = e.AddedItems.OfType<object>().ToList();
 
             if (AssociatedObject.Items != null && selectedItems.Any())
             {

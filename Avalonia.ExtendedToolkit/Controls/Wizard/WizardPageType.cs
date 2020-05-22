@@ -2,6 +2,9 @@
 {
     //ported from https://github.com/xceedsoftware/wpftoolkit
 
+    /// <summary>
+    /// available page types
+    /// </summary>
     public enum WizardPageType
     {
         /// <summary>

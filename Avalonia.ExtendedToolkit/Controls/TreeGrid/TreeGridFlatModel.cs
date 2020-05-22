@@ -5,6 +5,9 @@ using System.Collections.Specialized;
 
 namespace Avalonia.ExtendedToolkit
 {
+    /// <summary>
+    /// collection of TreeGridElement
+    /// </summary>
     public class TreeGridFlatModel : ObservableCollection<TreeGridElement>
     {
         private const string ModificationError = "The collection cannot be modified by the user.";
@@ -12,6 +15,9 @@ namespace Avalonia.ExtendedToolkit
         private bool modification;
         private HashSet<TreeGridElement> keys;
 
+        /// <summary>
+        /// initilaize hash set
+        /// </summary>
         public TreeGridFlatModel()
         {
             // Initialize the model
@@ -77,6 +83,10 @@ namespace Avalonia.ExtendedToolkit
 			modification = false;
 		}
 
+        /// <summary>
+        /// thows an exception if modification is false
+        /// </summary>
+        /// <param name="args"></param>
 		protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs args)
 		{
 			// Is the modification flag set?

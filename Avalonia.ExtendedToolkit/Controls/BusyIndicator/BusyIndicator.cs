@@ -18,6 +18,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         private DispatcherTimer _displayAfterTimer = new DispatcherTimer();
 
+        /// <summary>
+        /// style key for this control
+        /// </summary>
         public Type StyleKey => typeof(BusyIndicator);
 
         /// <summary>
@@ -29,6 +32,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             private set { SetValue(IsContentVisibleProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsContentVisible"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsContentVisibleProperty =
             AvaloniaProperty.Register<BusyIndicator, bool>(nameof(IsContentVisible));
 
@@ -41,6 +47,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsBusyProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsBusy"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsBusyProperty =
             AvaloniaProperty.Register<BusyIndicator, bool>(nameof(IsBusy));
 
@@ -53,6 +62,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BusyContentProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="BusyContent"/>
+        /// </summary>
         public static readonly StyledProperty<object> BusyContentProperty =
             AvaloniaProperty.Register<BusyIndicator, object>(nameof(BusyContent));
 
@@ -65,6 +77,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(BusyContentTemplateProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="BusyContentTemplate"/>
+        /// </summary>
         public static readonly StyledProperty<DataTemplate> BusyContentTemplateProperty =
             AvaloniaProperty.Register<BusyIndicator, DataTemplate>(nameof(BusyContentTemplate));
 
@@ -77,6 +92,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(DisplayAfterProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="DisplayAfter"/>
+        /// </summary>
         public static readonly StyledProperty<TimeSpan> DisplayAfterProperty =
             AvaloniaProperty.Register<BusyIndicator, TimeSpan>(nameof(DisplayAfter),
                 defaultValue: TimeSpan.FromSeconds(0.1));
@@ -90,6 +108,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(FocusAfterBusyProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="FocusAfterBusy"/>
+        /// </summary>
         public static readonly StyledProperty<IControl> FocusAfterBusyProperty =
             AvaloniaProperty.Register<BusyIndicator, IControl>(nameof(FocusAfterBusy));
 
@@ -102,6 +123,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(OverlayStyleProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="OverlayStyle"/>
+        /// </summary>
         public static readonly StyledProperty<IStyle> OverlayStyleProperty =
             AvaloniaProperty.Register<BusyIndicator, IStyle>(nameof(OverlayStyle));
 
@@ -114,9 +138,16 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(ProgressBarStyleProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="ProgressBarStyle"/>
+        /// </summary>
         public static readonly StyledProperty<IStyle> ProgressBarStyleProperty =
             AvaloniaProperty.Register<BusyIndicator, IStyle>(nameof(ProgressBarStyle));
 
+        /// <summary>
+        /// init _displayAfterTimer.Tick
+        /// registered IsBusy
+        /// </summary>
         public BusyIndicator()
         {
             _displayAfterTimer.Tick += DisplayAfterTimerElapsed;

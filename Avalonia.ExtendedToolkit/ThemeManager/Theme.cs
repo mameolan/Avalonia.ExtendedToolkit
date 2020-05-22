@@ -56,6 +56,10 @@ namespace Avalonia.ExtendedToolkit
             this.ShowcaseBrush = (SolidColorBrush)result;
         }
 
+        /// <summary>
+        /// ctor with uri
+        /// </summary>
+        /// <param name="uri"></param>
         public Theme(Uri uri)
             :this(new StyleInclude(new Uri("resm:Styles?assembly=Avalonia.ExtendedToolkit"))
             {

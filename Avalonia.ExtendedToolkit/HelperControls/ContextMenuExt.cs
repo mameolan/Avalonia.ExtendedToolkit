@@ -7,21 +7,37 @@ using Avalonia.LogicalTree;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    /// <summary>
+    /// context menu with extended properties
+    /// </summary>
     public class ContextMenuExt : ContextMenu
     {
+        /// <summary>
+        /// style key of this control
+        /// </summary>
         public Type StyleKey => typeof(ContextMenu);
 
         private Popup _popup;
 
+        /// <summary>
+        /// get/set is open
+        /// </summary>
         public bool IsOpen
         {
             get { return (bool)GetValue(IsOpenProperty); }
             set { SetValue(IsOpenProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsOpen"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsOpenProperty =
             AvaloniaProperty.Register<ContentControlEx, bool>(nameof(IsOpen));
 
+        /// <summary>
+        /// opens the context menu
+        /// </summary>
+        /// <param name="control"></param>
         public new void Open(Control control)
         {
             if (IsOpen)

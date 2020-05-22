@@ -8,8 +8,19 @@
     /// </summary>
     public enum CharacterCasing
     {
+        /// <summary>
+        /// no upper / lower transform
+        /// </summary>
         Normal,
+
+        /// <summary>
+        /// makes the text to upper
+        /// </summary>
         Upper,
+
+        /// <summary>
+        /// makes the text6 lower
+        /// </summary>
         Lower
     }
 }

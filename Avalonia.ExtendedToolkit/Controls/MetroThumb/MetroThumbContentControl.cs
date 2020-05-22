@@ -8,19 +8,30 @@ namespace Avalonia.ExtendedToolkit.Controls
     //ported from https://github.com/MahApps/MahApps.Metro
 
     /// <summary>
-    /// The MetroThumbContentControl control can be used for titles or something else and enables basic drag movement functionality.
+    /// The MetroThumbContentControl control can be used 
+    /// for titles or something else and 
+    /// enables basic drag movement functionality.
     /// </summary>
     public class MetroThumbContentControl : ContentControlEx, IMetroThumb
     {
+        /// <summary>
+        /// style key for this control
+        /// </summary>
         public new Type StyleKey => typeof(MetroThumbContentControl);
 
         private Point startDragPoint;
         private PixelPoint startDragScreenPoint;
         private PixelPoint? oldDragScreenPoint;
 
+        /// <summary>
+        /// <see cref="DragStarted"/>
+        /// </summary>
         public static readonly RoutedEvent<VectorEventArgs> DragStartedEvent =
             RoutedEvent.Register<MetroThumbContentControl, VectorEventArgs>(nameof(DragStartedEvent), RoutingStrategies.Bubble);
 
+        /// <summary>
+        /// get/set drag started event
+        /// </summary>
         public event EventHandler<VectorEventArgs> DragStarted
         {
             add
@@ -33,9 +44,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// <see cref="DragDelta"/>
+        /// </summary>
         public static readonly RoutedEvent<VectorEventArgs> DragDeltaEvent =
             RoutedEvent.Register<MetroThumbContentControl, VectorEventArgs>(nameof(DragDeltaEvent), RoutingStrategies.Bubble);
 
+        /// <summary>
+        /// get/set drag delta event
+        /// </summary>
         public event EventHandler<VectorEventArgs> DragDelta
         {
             add
@@ -48,9 +65,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// <see cref="DragCompleted"/>
+        /// </summary>
         public static readonly RoutedEvent<VectorEventArgs> DragCompletedEvent =
             RoutedEvent.Register<MetroThumbContentControl, VectorEventArgs>(nameof(DragCompletedEvent), RoutingStrategies.Bubble);
 
+        /// <summary>
+        /// get/set dragcompleted event
+        /// </summary>
         public event EventHandler<VectorEventArgs> DragCompleted
         {
             add
@@ -72,9 +95,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsDraggingProperty, value); }
         }
 
+        /// <summary>
+        /// <see cref="IsDragging"/>
+        /// </summary>
         public static readonly StyledProperty<bool> IsDraggingProperty =
             AvaloniaProperty.Register<MetroThumbContentControl, bool>(nameof(IsDragging));
 
+        /// <summary>
+        /// cancels the drag
+        /// </summary>
         public void CancelDragAction()
         {
             if (!this.IsDragging)
@@ -101,6 +130,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             this.RaiseEvent(args);
         }
 
+        /// <summary>
+        /// handels mouse capturing on pressed
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPointerPressed(PointerPressedEventArgs e)
         {
             var properties = e.GetCurrentPoint(this).Properties;
@@ -142,6 +175,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             base.OnPointerPressed(e);
         }
 
+        /// <summary>
+        /// handels pointer capturing on release
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPointerReleased(PointerReleasedEventArgs e)
         {
             if (/*e.Pointer.Captured.*/this.IsDragging)
@@ -168,6 +205,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// cancels drag action
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPointerCaptureLost(PointerCaptureLostEventArgs e)
         {
             // Cancel the drag action if we lost capture
@@ -178,6 +219,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// handels movement on dragging
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPointerMoved(PointerEventArgs e)
         {
             base.OnPointerMoved(e);

@@ -4,6 +4,9 @@ namespace Avalonia.ExtendedToolkit.Controls
 {
     //ported from https://github.com/MahApps/MahApps.Metro
 
+    /// <summary>
+    /// overlay behaviour
+    /// </summary>
     [Flags]
     public enum OverlayBehavior
     {
@@ -21,7 +24,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// Overlays a hidden TitleBar.
         /// </summary>
         HiddenTitleBar = 1 << 1,
-
+        /// <summary>
+        /// always overlay
+        /// </summary>
         Always = ~(-1 << 2)
     }
 }
