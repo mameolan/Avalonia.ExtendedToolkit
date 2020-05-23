@@ -21,8 +21,9 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class DropDownButton : ItemsControl
     {
-        private Button clickButton;
-        private ContextMenu menu;
+        private Button _clickButton;
+        private ContextMenu _menu;
+        private Border _contextMenuBorder;
 
         /// <summary>
         /// style key of this control
@@ -356,14 +357,14 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <param name="e"></param>
         private void MenuStyleChanged(DropDownButton o, AvaloniaPropertyChangedEventArgs e)
         {
-            if (menu == null)
+            if (_menu == null)
                 return;
 
             IStyle menuStyle = e.NewValue as IStyle;
             if (menuStyle == null)
                 return;
 
-            menu.Styles.Add(menuStyle);
+            _menu.Styles.Add(menuStyle);
         }
 
         /// <summary>
@@ -378,13 +379,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             e.RoutedEvent = ClickEvent;
             this.RaiseEvent(e);
 
-            if (menu.IsOpen)
-                menu.Close();
+            if (_menu.IsOpen)
+                _menu.Close();
 
-            //if (menu.Parent == null)
-            {
-                menu.Open(this);
-            }
+            _menu.Open(_contextMenuBorder);
+
         }
 
         private void IsExpandedPropertyChangedCallback(DropDownButton dropDownButton, AvaloniaPropertyChangedEventArgs e)
@@ -409,9 +408,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <param name="contextMenu"></param>
         protected virtual void SetContextMenuPlacementTarget(ContextMenu contextMenu)
         {
-            if (this.clickButton != null)
+            if (this._clickButton != null)
             {
-                contextMenu.SetValue(Popup.PlacementTargetProperty, clickButton);
+                contextMenu.SetValue(Popup.PlacementTargetProperty, _clickButton);
                 //contextMenu.PlacementTarget = this.clickButton;
             }
         }
@@ -423,11 +422,13 @@ namespace Avalonia.ExtendedToolkit.Controls
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             base.OnTemplateApplied(e);
-            this.clickButton = this.EnforceInstance<Button>(e, "PART_Button");
-            this.menu = this.EnforceInstance<ContextMenu>(e, "PART_Menu");
+            _clickButton = this.EnforceInstance<Button>(e, "PART_Button");
+            _menu = this.EnforceInstance<ContextMenu>(e, "PART_Menu");
+            _contextMenuBorder = e.NameScope.Find<Border>("PART_Border");
+
 
             this.InitializeVisualElementsContainer();
-            if (this.menu != null && this.Items != null /*&& this.ItemsSource == null*/)
+            if (_menu != null && this.Items != null /*&& this.ItemsSource == null*/)
             {
                 var list = new AvaloniaList<object>();
                 foreach (var newItem in this.Items)
@@ -435,7 +436,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                     this.TryRemoveVisualFromOldTree(newItem);
                     list.Add(newItem);
                 }
-                menu.Items = list;
+                _menu.Items = list;
             }
             this.RaisePropertyChanged(MenuStyleProperty, null, (IStyle)MenuStyle);
             //RaisePropertyChanged<IStyle>(MenuStyleProperty, null, MenuStyle);
@@ -465,9 +466,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         private void InitializeVisualElementsContainer()
         {
             this.PointerReleased -= DropDownButtonMouseRightButtonUp;
-            this.clickButton.Click -= ButtonClick;
+            this._clickButton.Click -= ButtonClick;
             this.PointerReleased += DropDownButtonMouseRightButtonUp;
-            this.clickButton.Click += ButtonClick;
+            this._clickButton.Click += ButtonClick;
         }
 
         private void DropDownButtonMouseRightButtonUp(object sender, PointerReleasedEventArgs e)
@@ -499,7 +500,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         protected override void ItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             base.ItemsCollectionChanged(sender, e);
-            if (this.menu == null /*|| this.ItemsSource != null || this.menu.ItemsSource != null*/)
+            if (_menu == null /*|| this.ItemsSource != null || this.menu.ItemsSource != null*/)
             {
                 return;
             }
@@ -511,8 +512,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                     {
                         foreach (var newItem in e.NewItems)
                         {
-                            this.TryRemoveVisualFromOldTree(newItem);
-                            this.menu.Items.OfType<object>().ToList().Add(newItem);
+                            TryRemoveVisualFromOldTree(newItem);
+                            _menu.Items.OfType<object>().ToList().Add(newItem);
                         }
                     }
                     break;
@@ -522,7 +523,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                     {
                         foreach (var oldItem in e.OldItems)
                         {
-                            this.menu.Items.OfType<object>().ToList().Remove(oldItem);
+                            _menu.Items.OfType<object>().ToList().Remove(oldItem);
                         }
                     }
                     break;
@@ -533,15 +534,15 @@ namespace Avalonia.ExtendedToolkit.Controls
                     {
                         foreach (var oldItem in e.OldItems)
                         {
-                            this.menu.Items.OfType<object>().ToList().Remove(oldItem);
+                            _menu.Items.OfType<object>().ToList().Remove(oldItem);
                         }
                     }
                     if (e.NewItems != null)
                     {
                         foreach (var newItem in e.NewItems)
                         {
-                            this.TryRemoveVisualFromOldTree(newItem);
-                            this.menu.Items.OfType<object>().ToList().Add(newItem);
+                            TryRemoveVisualFromOldTree(newItem);
+                            _menu.Items.OfType<object>().ToList().Add(newItem);
                         }
                     }
                     break;
@@ -549,11 +550,11 @@ namespace Avalonia.ExtendedToolkit.Controls
                 case NotifyCollectionChangedAction.Reset:
                     if (this.Items != null)
                     {
-                        this.menu.Items.OfType<object>().ToList().Clear();
+                        _menu.Items.OfType<object>().ToList().Clear();
                         foreach (var newItem in this.Items)
                         {
                             this.TryRemoveVisualFromOldTree(newItem);
-                            this.menu.Items.OfType<object>().ToList().Add(newItem);
+                            _menu.Items.OfType<object>().ToList().Add(newItem);
                         }
                     }
                     break;
