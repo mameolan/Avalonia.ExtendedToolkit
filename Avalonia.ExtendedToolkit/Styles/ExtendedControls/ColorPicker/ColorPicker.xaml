@@ -1,0 +1,48 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ext="https://github.com/avalonia_extendedtoolkit"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls">
+
+  <Style Selector="Controls|ColorPicker">
+    <Setter Property="Padding" Value="4" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <StackPanel Orientation="Vertical">
+            <Border>
+              <StackPanel>
+                <ToggleButton x:Name="PART_Button" HorizontalContentAlignment="Stretch">
+                  <ToggleButton.Content>
+                    <Grid HorizontalAlignment="Stretch" ColumnDefinitions="90*, 10*">
+                      <Rectangle Grid.Column="0" Width="10" Height="10"
+                             Stroke="{DynamicResource MahApps.Brushes.Black}"
+                             HorizontalAlignment="Left"
+                                 Fill="{TemplateBinding PreviewColorBrush}"
+                             StrokeThickness="1" />
+                      <Path Grid.Column="1" Width="5" Height="5"
+                            Fill="{DynamicResource MahApps.Brushes.Black}"
+                            Stretch="Uniform"
+                            HorizontalAlignment="Right" VerticalAlignment="Center"
+                            Data="F1 M 301.14,-189.041L 311.57,-189.041L 306.355,-182.942L 301.14,-189.041 Z" />
+                    </Grid>
+                  </ToggleButton.Content>
+                </ToggleButton>
+
+                <Popup x:Name="PART_PopupMenu" PlacementTarget="{Binding #button}" PlacementMode="AnchorAndGravity"
+                       MaxHeight="400" Width="250" StaysOpen="False" UseLayoutRounding="True">
+                  <Border BorderBrush="{DynamicResource ThemeBorderMidBrush}" BorderThickness="1">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                      <Controls:ColorSelector x:Name="PART_ColorSelector" />
+                    </ScrollViewer>
+                  </Border>
+                </Popup>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</Styles>

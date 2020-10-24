@@ -1,0 +1,142 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls"
+             xmlns:tk="https://github.com/avalonia_extendedtoolkit"
+             xmlns:Controlz="clr-namespace:Avalonia.Controlz.Controls;assembly=Avalonia.Controlz">
+  <Styles.Resources>
+    <Converter:ColorToSolidColorBrushConverter x:Key="FromColorToSolidColorBrushConverter" />
+  </Styles.Resources>
+
+  <Style Selector="Controls|ColorSelector">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <StackPanel HorizontalAlignment="Stretch">
+            <Expander Header="Default Colors" Name="PART_DefaultColorSection" IsExpanded="True">
+              <ListBox x:Name="PART_DefaultPicker">
+                <ListBox.ItemTemplate>
+                  <DataTemplate>
+                    <Rectangle Width="15" Height="15" Stroke="{DynamicResource MahApps.Brushes.Black}"
+                               HorizontalAlignment="Center"
+                          Fill="{Binding Converter={StaticResource FromColorToSolidColorBrushConverter}}"
+                               Margin="0 1 0 1" />
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <WrapPanel  Width="151" Margin="0 10 0 10" />
+                  </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+              </ListBox>
+            </Expander>
+            <Expander Header="More Colors"  Name="PART_CustomColorSection" IsExpanded="False">
+              <Grid>
+                <Grid.Styles>
+                  <Style Selector="TextBox.Input">
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
+                    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+                  </Style>
+                  <Style Selector="TextBox.SingleInput">
+                    <Setter Property="MaxLength" Value="3" />
+                    <Setter Property="Width" Value="35" />
+                  </Style>
+                </Grid.Styles>
+                <Grid.RowDefinitions>
+                  <RowDefinition />
+                  <RowDefinition Height="40" />
+                  <RowDefinition Height="40" />
+                  <RowDefinition Height="40" />
+                  <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition />
+                  <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,0,0,10">
+                  <Border BorderBrush="{DynamicResource MahApps.Brushes.Black}" BorderThickness="1">
+                    <Image x:Name="PART_Image"  Width="140" Height="140"
+                           Source="avares://Avalonia.ExtendedToolkit/Assets/ColorSwatchCircle.png"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Top" Margin="2" />
+                  </Border>
+                  <Canvas x:Name="PART_CanvasColor"  Width="140" Height="140"
+                     HorizontalAlignment="Center"
+                     Background="Transparent"
+                     VerticalAlignment="Top" Margin="2">
+
+                    <Ellipse x:Name="PART_Pointer" Width="8"
+                      Height="8"
+                        Stroke="{DynamicResource MahApps.Brushes.Accent}"
+                        StrokeThickness="1"
+                        Fill="{DynamicResource MahApps.Brushes.White}" />
+                  </Canvas>
+                </Grid>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="ARGB"
+                           HorizontalAlignment="Left"
+                           FontWeight="Bold" VerticalAlignment="Center" />
+
+                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Height="35">
+                  <TextBox x:Name="PART_NumericAlpha" Classes="Input SingleInput"
+                           Text="{TemplateBinding AlphaValue}"
+                           Margin="2,1,2,1" />
+                  <TextBox x:Name="PART_NumericRed" Classes="Input SingleInput"
+                           Text="{TemplateBinding RedValue}"
+                           Margin="2,1,2,1" />
+                  <TextBox x:Name="PART_NumericGreen" Classes="Input SingleInput"
+                           Text="{TemplateBinding GreenValue}"
+                           Margin="2,1,2,1" />
+                  <TextBox x:Name="PART_NumericBlue" Classes="Input SingleInput"
+                           Text="{TemplateBinding BlueValue}"
+                           Margin="2,1,2,1" />
+                </StackPanel>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Hex"
+                           HorizontalAlignment="Left"
+                           FontWeight="Bold" VerticalAlignment="Center" />
+
+                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                  <Border CornerRadius="5"
+                          Background="{DynamicResource MahApps.Brushes.White}"
+                          BorderBrush="{DynamicResource MahApps.Brushes.Black}"
+                          BorderThickness="2"
+                          Width="80"
+                          Height="30">
+                    <TextBox x:Name="PART_TxtAll"
+                             Classes="Input"
+                             BorderBrush="Transparent" />
+                  </Border>
+                </StackPanel>
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Preview"
+                           HorizontalAlignment="Left"
+                           FontWeight="Bold" VerticalAlignment="Center" />
+
+                <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                  <Border  CornerRadius="5" Width="80"   Height="30"
+                        BorderBrush="{DynamicResource MahApps.Brushes.Black}"
+                           BorderThickness="2">
+                    <Border x:Name="PART_Preview" />
+                  </Border>
+                </StackPanel>
+
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Alpha"
+                           HorizontalAlignment="Left"
+                           FontWeight="Bold" VerticalAlignment="Center" />
+
+                <Slider Grid.Row="4" Grid.Column="1" x:Name="PART_SliderAlpha"
+                                  Orientation="Horizontal"  Width="150"
+                                  Minimum="0" Maximum="255"
+                                  VerticalAlignment="Center" Margin="5"
+                                  Value="255" />
+              </Grid>
+            </Expander>
+          </StackPanel>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</Styles>

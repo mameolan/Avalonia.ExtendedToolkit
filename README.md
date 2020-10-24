@@ -17,6 +17,8 @@ Most styles / ideas where taken from:
 
 etc.
 
+**Contributor are welcome.**
+
 ### Nugets
 ------
 

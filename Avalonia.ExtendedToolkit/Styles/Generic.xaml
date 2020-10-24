@@ -51,6 +51,13 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BusyIndicator.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Badget.xaml"/>
 
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ColorPicker/ColorPicker.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ColorPicker/ColorSelector.xaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Notification/Notification.Base.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Notification/NotificationMessage.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Notification/NotificationMessageContainer.xaml"/>
+  
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/HamburgerMenu/HamburgerMenu.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/HamburgerMenu/HamburgerMenuItem.xaml"/>
 

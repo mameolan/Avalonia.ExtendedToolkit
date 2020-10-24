@@ -16,13 +16,16 @@
 
     <Grid Grid.Row="0">
       <Grid.RowDefinitions>
-        <RowDefinition/>
-        <RowDefinition/>
+        <RowDefinition Height="35"/>
+        <RowDefinition Height="*"/>
       </Grid.RowDefinitions>
 
-      <TextBlock Grid.Row="0" Text="Enable"/>
-      <TreeView Items="{Binding Artists}" Height="300"
-              Grid.Row="1"  >
+      <TextBlock Grid.Row="0" Text="Enable" Foreground="{DynamicResource MahApps.Brushes.Black}" Width="100"/>
+      <TreeView Items="{Binding Artists}" Margin="5"
+              Height="300"
+              Grid.Row="1"
+              ScrollViewer.VerticalScrollBarVisibility="Auto"
+              ScrollViewer.HorizontalScrollBarVisibility="Auto"  >
         <TreeView.DataTemplates>
           <TreeDataTemplate ItemsSource="{Binding Albums}" DataType="{x:Type model:Artist}">
             <TextBlock Text="{Binding Name}" />
@@ -41,16 +44,20 @@
       </TreeView>
     </Grid>
 
-    <Grid Grid.Row="1">
+    <Grid Grid.Row="1" >
       <Grid.RowDefinitions>
-        <RowDefinition/>
-        <RowDefinition/>
+        <RowDefinition Height="35"/>
+        <RowDefinition Height="*"/>
       </Grid.RowDefinitions>
 
-      <TextBlock Grid.Row="0" Text="Disabled"/>
+      <TextBlock Grid.Row="0" Text="Disabled" Foreground="{DynamicResource MahApps.Brushes.Black}"
+                 Width="100"/>
 
-      <TreeView Items="{Binding Artists}" Height="300" x:Name="disableTree"
-            Grid.Row="1" IsEnabled="False" >
+      <TreeView Items="{Binding Artists}" x:Name="disableTree"
+            Grid.Row="1" IsEnabled="False" Margin="5"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            >
         <TreeView.DataTemplates>
           <TreeDataTemplate ItemsSource="{Binding Albums}" DataType="{x:Type model:Artist}">
             <TextBlock Text="{Binding Name}" />
@@ -70,7 +77,11 @@
     </Grid>
 
     <Grid Grid.Row="2">
-      <TreeView Margin="2" IsEnabled="False">
+      <TreeView IsEnabled="False"
+        Margin="5"
+        ScrollViewer.VerticalScrollBarVisibility="Auto"
+        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+      >
         <TreeViewItem Header="Item 1">
           <TreeViewItem Header="Item 1.1">
             <TreeViewItem Header="Item 1.1.1" />

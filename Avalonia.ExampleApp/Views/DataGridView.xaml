@@ -13,9 +13,8 @@
                  Margin="10"
                 HorizontalScrollBarVisibility="Auto"
                 VerticalScrollBarVisibility="Auto"
-                
-                
-                
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
         >
         <DataGrid.Columns>
           <DataGridCheckBoxColumn
@@ -49,6 +48,8 @@
                  Margin="10"
                 HorizontalScrollBarVisibility="Auto"
                 VerticalScrollBarVisibility="Auto"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
                 
         >
         <DataGrid.Columns>

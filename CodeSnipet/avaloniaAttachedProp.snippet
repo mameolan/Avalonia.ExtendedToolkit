@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Avalonia Attached Property definition</Title>
+            <Shortcut>avalattprop</Shortcut>
+            <Description>Snippet for creating an attachedproperty</Description>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>type</ID>
+                    <ToolTip>txpe of the property</ToolTip>
+                    <Default>int</Default>
+                </Literal>
+                <Literal>
+                    <ID>property</ID>
+                    <ToolTip>property name</ToolTip>
+                    <Default>MyProperty</Default>
+                </Literal>
+				<Literal>
+                    <ID>control</ID>
+                    <ToolTip>control which is used for the attached property</ToolTip>
+                    <Default>Control</Default>
+                </Literal>
+                <Literal>
+                    <ID>ownerclass</ID>
+                    <ToolTip>ownerclass of this attached property.</ToolTip>
+                    <Default>ownerclass</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+                <![CDATA[
+
+/// <summary>
+/// Defines the <see cref="$property$"/> attach property.
+/// </summary>
+public static readonly AttachedProperty<$type$> $property$Property = 
+    AvaloniaProperty.RegisterAttached<$ownerclass$, $control$, $type$>("$property$");
+
+/// <summary>
+/// Gets the attach property $property$.
+/// </summary>
+public static $type$ Get$property$($control$ element)
+{
+	return element.GetValue($property$Property);
+}
+
+/// <summary>
+/// Sets the attach property $property$.
+/// </summary>
+public static void Set$property$($control$ element, $type$ value)
+{
+	element.SetValue($property$Property, value);
+}
+
+$end$]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

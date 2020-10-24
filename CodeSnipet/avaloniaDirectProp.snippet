@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>Defines an Avalonia Direct Property</Title>
+            <Shortcut>avaldirprop</Shortcut>
+            <Description>Snippet for creating an Avalonia Direct Property</Description>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>type</ID>
+                    <ToolTip>Type</ToolTip>
+                    <Default>int</Default>
+                </Literal>
+                <Literal>
+                    <ID>property</ID>
+                    <ToolTip>PropertyName</ToolTip>
+                    <Default>MyProperty</Default>
+                </Literal>
+                <Literal>
+                    <ID>ownerclass</ID>
+                    <ToolTip>Owner class.</ToolTip>
+                    <Default>ownerclass</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+                <![CDATA[
+
+/// <summary>
+/// Defines the <see cref="$property$"/> direct property.
+/// </summary>
+public static readonly DirectProperty<$ownerclass$, $type$> $property$Property =
+        AvaloniaProperty.RegisterDirect<$ownerclass$, $type$>(
+            nameof($property$),
+            o => o.$property$);
+
+private $type$ _$property$;
+
+/// <summary>
+/// Gets or sets $property$.
+/// </summary>
+public $type$ $property$
+{
+	get { return _$property$; }
+	set 
+	{ 
+		SetAndRaise($property$Property, ref _$property$, value); 
+	}
+}
+
+$end$]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

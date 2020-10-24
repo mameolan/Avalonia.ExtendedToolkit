@@ -22,6 +22,10 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public partial class MetroWindow : Window, IStyleable
     {
+
+        private static Pointer dummyMovePointer = null;
+        private static PointerPressedEventArgs dummyPointerPressedEventArgs = null;
+
 #warning check commented code
 
         private void ToggleWindowState()
@@ -130,10 +134,10 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <inheritdoc/>
         //protected override void OnPointerMoved(PointerEventArgs e)
         //{
-        //    if (titleBar != null && titleBar.IsPointerOver && _mouseDown)
+        //    if (_titleBar != null && _titleBar.IsPointerOver && _mouseDown)
         //    {
         //        WindowState = WindowState.Normal;
-        //        BeginMoveDrag();
+        //        BeginMoveDrag(e);
         //        _mouseDown = false;
         //    }
         //    base.OnPointerMoved(e);
@@ -546,20 +550,39 @@ namespace Avalonia.ExtendedToolkit.Controls
             // if the window is maximized dragging is only allowed on title bar (also if not visible)
             var windowIsMaximized = window.WindowState == WindowState.Maximized;
 
-            if (window._titleBar != null && window._titleBar.IsPointerOver /*&& _mouseDown*/)
+            if (window._titleBar != null && window._titleBar.IsPointerOver /*&& window._mouseDown*/)
             {
                 window.WindowState = WindowState.Normal;
 
-                //var pointerPress=new
-
                 try
                 {
-                    window.BeginMoveDrag(null);
+                    if (dummyMovePointer == null)
+                    {
+                        dummyMovePointer = 
+                            new Pointer(0, PointerType.Mouse, true);
+                    }
+
+                    if (dummyPointerPressedEventArgs == null)
+                    {
+                        //just create a dummy PointerPressedEventArgs
+                        dummyPointerPressedEventArgs = new PointerPressedEventArgs
+                        (
+                            window,
+                            dummyMovePointer,
+                            window,
+                            new Point(1, 1),
+                            0,
+                            new PointerPointProperties(RawInputModifiers.None,
+                                    PointerUpdateKind.LeftButtonPressed),
+                            KeyModifiers.None
+                        );
+                    }
+
+                    window.PlatformImpl.BeginMoveDrag(dummyPointerPressedEventArgs);
                 }
                 catch
                 {
-                    //little hack so I do not need create Pointerpressed event
-                    //which has a huge constructor
+
                 }
                 window._mouseDown = false;
             }

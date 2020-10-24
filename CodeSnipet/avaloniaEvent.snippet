@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>defines an Avalonia Event</Title>
+            <Shortcut>avalevent</Shortcut>
+            <Description></Description>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>property</ID>
+                    <ToolTip>Property Name</ToolTip>
+                    <Default>MyProperty</Default>
+                </Literal>
+                <Literal>
+                    <ID>ownerclass</ID>
+                    <ToolTip>Owner class.</ToolTip>
+                    <Default>ownerclass</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+                <![CDATA[
+
+/// <summary>
+/// Defines the <see cref="$property$"/> routed event.
+/// </summary>
+public static readonly RoutedEvent<RoutedEventArgs> $property$Event =
+            RoutedEvent.Register<$ownerclass$, RoutedEventArgs>(nameof($property$Event), RoutingStrategies.Bubble);
+
+
+/// <summary>
+/// Gets or sets $property$ eventhandler.
+/// </summary>
+public event EventHandler $property$
+{
+	add
+	{
+		AddHandler($property$Event, value);
+	}
+	remove
+	{
+		RemoveHandler($property$Event, value);
+	}
+}
+
+$end$]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

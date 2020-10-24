@@ -156,14 +156,16 @@
           </ScrollViewer>
         </TabItem>
         <TabItem Header="DataGrid" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <ScrollViewer>
+          <Grid>
             <Views:DataGridView/>
-          </ScrollViewer>
+          </Grid>
         </TabItem>
         <TabItem Header="TreeGrid" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <ScrollViewer>
-            <Views:TreeGridView/>
-          </ScrollViewer>
+          <Grid>
+            <ScrollViewer>
+              <Views:TreeGridView/>
+            </ScrollViewer>
+          </Grid>
         </TabItem>
         <TabItem Header="Progress Controls" Foreground="{DynamicResource MahApps.Brushes.Black}">
           <ScrollViewer>
@@ -201,13 +203,14 @@
             </Grid>
           </ScrollViewer>
         </TabItem>
-        <TabItem Header="Split View" Foreground="{DynamicResource MahApps.Brushes.Black}">
+          <!--Not  working-->
+        <!--<TabItem Header="Split View" Foreground="{DynamicResource MahApps.Brushes.Black}">
           <ScrollViewer>
             <Grid>
               <Views:SplitViewExamples/>
             </Grid>
           </ScrollViewer>
-        </TabItem>
+        </TabItem>-->
         <TabItem Header="Outlook Bar" Foreground="{DynamicResource MahApps.Brushes.Black}">
           <Views:OutlookBarView/>
         </TabItem>
@@ -217,6 +220,12 @@
         </TabItem>
         <TabItem Header="Property Grid" Foreground="{DynamicResource MahApps.Brushes.Black}">
           <Views:PropertyGridExamples/>
+        </TabItem>
+        <TabItem Header="Notification" Foreground="{DynamicResource MahApps.Brushes.Black}">
+          <Views:NotifictionExampleView/>
+        </TabItem>
+        <TabItem Header="ColorPicker" Foreground="{DynamicResource MahApps.Brushes.Black}">
+          <Views:ColorPickerExampleView/>
         </TabItem>
         <TabItem Header="Colors" Foreground="{DynamicResource MahApps.Brushes.Black}">
           <Views:ColorExample/>
