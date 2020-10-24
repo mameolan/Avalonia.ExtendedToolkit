@@ -9,10 +9,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Avalonia" Version="0.9.10" />
-		<PackageReference Include="Avalonia.Controls.DataGrid" Version="0.9.10" />
-		<PackageReference Include="Avalonia.Desktop" Version="0.9.10" />
-		<PackageReference Include="Avalonia.ReactiveUI" Version="0.9.10" />
+		<PackageReference Include="Avalonia" Version="0.9.12" />
+		<PackageReference Include="Avalonia.Controls.DataGrid" Version="0.9.12" />
+		<PackageReference Include="Avalonia.Desktop" Version="0.9.12" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="0.9.12" />
 		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.9.9" />
 		<PackageReference Include="Avalonia.Xaml.Interactions" Version="0.9.9" />
 		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.9.9" />
@@ -28,6 +28,10 @@
 			<SubType>Designer</SubType>
 		</AvaloniaResource>
 		<AvaloniaResource Include="Assets\*" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Views\ColorPickerExampleView.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -60,6 +64,18 @@
 			<HintPath>..\ExternalDependencies\FontAwesome.Generate.dll</HintPath>
 			<Private>true</Private>
 		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AvaloniaResource Update="Views\ColorPickerExampleView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </AvaloniaResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\ColorPickerExampleView.xaml.cs">
+	    <DependentUpon>%(Filename)</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	

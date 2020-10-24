@@ -1,0 +1,83 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.NotifictionExampleView">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="3*" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+
+    <Border Grid.Column="1">
+      <Controls:NotificationMessageContainer Manager="{Binding Manager}" />
+    </Border>
+
+    <WrapPanel
+        Grid.Row="1"
+        Grid.Column="0"
+        Grid.ColumnSpan="3"
+        VerticalAlignment="Bottom"
+        Orientation="Horizontal">
+
+      <Button
+          Margin="8"
+          Padding="12,8"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Top"
+          Background="#1751C3"
+          Name="ButtonInfo"
+          Content="Info message"
+          Classes="NotificationMessageButtonStyle" />
+
+      <Button
+          Margin="8"
+          Padding="12,8"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Top"
+          Background="#E0A030"
+          Name="ButtonWarning"
+          Content="Warning (with header)"
+          Classes="NotificationMessageButtonStyle" />
+
+      <Button
+          Margin="8"
+          Padding="12,8"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Top"
+          Background="#F15B19"
+          Name="ButtonError"
+          Content="Error message"
+          Classes="NotificationMessageButtonStyle" />
+
+      <Button
+          Margin="8"
+          Padding="12,8"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Top"
+          Background="#1751C3"
+          Name="ButtonInfoDelay"
+          Content="Animated info message with delayed dismiss (5s)"
+          Classes="NotificationMessageButtonStyle" />
+
+      <Button
+          Margin="8"
+          Padding="12,8"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Top"
+          Background="#1751C3"
+          Name="ButtonAdditionalContent"
+          Content="Additional Content Areas"
+          Classes="NotificationMessageButtonStyle" />
+
+    </WrapPanel>
+  </Grid>
+
+</UserControl>

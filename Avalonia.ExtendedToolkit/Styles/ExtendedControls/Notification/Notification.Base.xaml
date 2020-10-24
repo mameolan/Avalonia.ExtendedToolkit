@@ -1,0 +1,100 @@
+<Styles xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls"
+             >
+  <Styles.Resources>
+    <SolidColorBrush x:Key="NotificationButtonDarkBackgroundOverlayBrush">#333333</SolidColorBrush>
+    <SolidColorBrush x:Key="NotificationButtonDarkBackgroundOverlayPressedBrush">#666666</SolidColorBrush>
+    <SolidColorBrush x:Key="NotificationButtonDarkBackgroundOverlayDisabledBrush">#FFFFFF</SolidColorBrush>
+  </Styles.Resources>
+
+  <Style Selector="TextBlock.NotificationBadgeBaseStyle">
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="Foreground" Value="White" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="10,2,0,2" />
+    <!--<Setter Property="Padding" Value="4,2" />-->
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="ContentControl.NotificationAdditionalContentOverBadgeStyle" >
+    <Setter Property="Margin" Value="10,2,0,2" />
+    <Setter Property="Padding" Value="4,2" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="TextBlock.NotificationHeaderTextStyle" >
+    <Setter Property="FontSize" Value="16" />
+    <Setter Property="FontWeight" Value="Light" />
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:NotificationMessage}}, Path=Foreground}" />
+    <Setter Property="Margin" Value="0,0,8,0" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+  </Style>
+
+  <Style Selector="TextBlock.NotificationMessageTextStyle">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:NotificationMessage}}, Path=Foreground}" />
+    <Setter Property="Margin" Value="0,0,8,0" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="Button.NotificationMessageButtonStyle">
+    <Setter Property="Foreground" Value="#EAEAEA" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="Padding" Value="12,2" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid>
+            <Border
+                x:Name="backgroundBorder"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding Background}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                />
+            <Border
+                x:Name="backgroundOverlay"
+                BorderThickness="0"
+                Opacity="0.3"
+                />
+            <ContentPresenter
+                x:Name="contentPresenter"
+                Margin="{TemplateBinding Padding}"
+                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                Content="{TemplateBinding Content}"
+                ContentTemplate="{TemplateBinding ContentTemplate}"
+                Focusable="False"
+                 />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="Button.NotificationMessageButtonStyle[IsDefault=true] /template/ Border#backgroundBorder">
+    <Setter Property="BorderBrush" Value="{DynamicResource ThemeControlHighlightHighBrush}" />
+  </Style>
+
+  <Style Selector="Button.NotificationMessageButtonStyle:pointerover /template/ Border#backgroundOverlay">
+    <Setter Property="Background" Value="{StaticResource NotificationButtonDarkBackgroundOverlayBrush}" />
+  </Style>
+
+  <Style Selector="Button.NotificationMessageButtonStyle:pressed /template/ Border#backgroundOverlay">
+    <Setter Property="Background" Value="{StaticResource NotificationButtonDarkBackgroundOverlayPressedBrush}" />
+  </Style>
+
+  <Style Selector="Button.NotificationMessageButtonStyle:disabled /template/ Border#backgroundOverlay">
+    <Setter Property="Background" Value="{StaticResource NotificationButtonDarkBackgroundOverlayDisabledBrush}" />
+  </Style>
+
+  
+  
+  
+</Styles>

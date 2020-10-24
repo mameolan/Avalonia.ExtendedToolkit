@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>defines an Avalonia StyledProperty</Title>
+            <Shortcut>avalstprop</Shortcut>
+            <Description>Snippet for creating an Avalonia Styled Property</Description>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>type</ID>
+                    <ToolTip>Type</ToolTip>
+                    <Default>int</Default>
+                </Literal>
+                <Literal>
+                    <ID>property</ID>
+                    <ToolTip>Property Name</ToolTip>
+                    <Default>MyProperty</Default>
+                </Literal>
+                <Literal>
+                    <ID>ownerclass</ID>
+                    <ToolTip>Owner class.</ToolTip>
+                    <Default>ownerclass</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp">
+                <![CDATA[
+
+/// <summary>
+/// Gets or sets $property$.
+/// </summary>
+public $type$ $property$
+{
+    get { return ($type$)GetValue($property$Property); }
+    set { SetValue($property$Property, value); }
+}
+
+/// <summary>
+/// Defines the <see cref="$property$"/> property.
+/// </summary>
+public static readonly StyledProperty<$type$> $property$Property = 
+    AvaloniaProperty.Register<$ownerclass$, $type$>(nameof($property$));
+
+$end$]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

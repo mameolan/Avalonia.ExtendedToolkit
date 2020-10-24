@@ -14,6 +14,7 @@ namespace Avalonia.ExtendedToolkit.Controls
     ///     view that is typically used for
     ///     navigation commands.
     /// </summary>
+    [Obsolete("Not working right now. Please use Split view from avalonia")]
     public partial class SplitView : ContentControl
     {
         /// <summary>

@@ -1,0 +1,32 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             xmlns:tk="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.ColorPickerExampleView">
+
+  <Grid VerticalAlignment="Center">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+
+
+    <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+      <TextBlock Text="PreviewColor"/>
+      <Rectangle Margin="10,0,0,0" Width="20" Height="20"
+               Fill="{Binding ElementName=colorPicker, Path=PreviewColorBrush}"
+               StrokeThickness="1"
+               Stroke="{DynamicResource MahApps.Brushes.Black}"
+               />
+    </StackPanel>
+    
+    <Controls:ColorPicker Grid.Column="1" x:Name="colorPicker" Width="100" Height="20"
+                          HorizontalAlignment="Center"
+                          />
+    
+    
+  </Grid>
+</UserControl>
