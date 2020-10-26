@@ -144,36 +144,18 @@ namespace Avalonia.ExtendedToolkit.Controls
             UpdateThumb();
         }
 
-        private Animation.Animation _thumbAnimation;
-
         private void UpdateThumb()
         {
             if (_ThumbTranslate != null && _SwitchTrack != null && _ThumbIndicator != null)
             {
-                double destination = IsChecked.GetValueOrDefault() ? Width - (_SwitchTrack.Margin.Left + _SwitchTrack.Margin.Right + _ThumbIndicator.Width + _ThumbIndicator.Margin.Left + _ThumbIndicator.Margin.Right) : 0;
-
-                _thumbAnimation = new Animation.Animation();
-                //_thumbAnimation.To = destination;
-                _thumbAnimation.Duration = TimeSpan.FromMilliseconds(500);
-                //_thumbAnimation.Easing = new ExponentialEase() { Exponent = 9 };
-                _thumbAnimation.FillMode = Animation.FillMode.Backward;
-                _thumbAnimation.PropertyChanged += (o, e) =>
-                {
-                    //if(e.Property.Name== nameof(Animation.Animation.)
-                };
-                //_ThumbTranslate.
-
-                //AnimationTimeline currentAnimation = _thumbAnimation;
-                //_thumbAnimation.Completed += (sender, e) => {
-                //    if (_thumbAnimation != null && currentAnimation == _thumbAnimation)
-                //    {
-                //        _ThumbTranslate.X = destination;
-                //        _thumbAnimation = null;
-                //    }
-                //};
-                //_ThumbTranslate.BeginAnimation(TranslateTransform.XProperty, _thumbAnimation);
+                double destination = IsChecked.GetValueOrDefault() ? 
+                    Width - (_SwitchTrack.Margin.Left + _SwitchTrack.Margin.Right + _ThumbIndicator.Width 
+                    + _ThumbIndicator.Margin.Left + _ThumbIndicator.Margin.Right) 
+                    : 0;
+                _ThumbTranslate.X = destination;
             }
         }
+
 
         /// <summary>
         /// gets some controls from the style
@@ -219,13 +201,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             if (e.Property.Name == nameof(_SwitchTrack.Width) || e.Property.Name == nameof(_SwitchTrack.Height))
             {
-                if (_ThumbTranslate != null && _SwitchTrack != null && _ThumbIndicator != null)
-                {
-                    double destination = IsChecked.GetValueOrDefault() ? Width -
-                        (_SwitchTrack.Margin.Left + _SwitchTrack.Margin.Right +
-                        _ThumbIndicator.Width + _ThumbIndicator.Margin.Left + _ThumbIndicator.Margin.Right) : 0;
-                    _ThumbTranslate.X = destination;
-                }
+
+                UpdateThumb();
             }
         }
 
@@ -285,13 +262,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 return;
             }
 
-            if (_ThumbTranslate != null)
-            {
-                //_ThumbTranslate.BeginAnimation(TranslateTransform.XProperty, null);
-                double destination = IsChecked.GetValueOrDefault() ? Width - (_SwitchTrack.Margin.Left + _SwitchTrack.Margin.Right + _ThumbIndicator.Width + _ThumbIndicator.Margin.Left + _ThumbIndicator.Margin.Right) : 0;
-                _ThumbTranslate.X = destination;
-                _thumbAnimation = null;
-            }
+            UpdateThumb();
+
             _lastDragPosition = _ThumbTranslate.X;
             _isDragging = false;
         }

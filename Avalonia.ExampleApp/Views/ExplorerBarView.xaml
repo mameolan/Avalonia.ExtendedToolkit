@@ -29,7 +29,8 @@
       <ColumnDefinition/>
     </Grid.ColumnDefinitions>
 
-    <Controls:BreadcrumbBar Grid.ColumnSpan="2"  x:Name="breadcrumb"
+    <TextBlock Text="BreadcrumbBar not working right now."/>
+    <!--<Controls:BreadcrumbBar Grid.ColumnSpan="2"  x:Name="breadcrumb"
       Focusable="True" Path="Computer\C:\" Margin="5"
       >
       <Controls:BreadcrumbBar.Buttons>
@@ -51,7 +52,7 @@
           <Controls:BreadcrumbItem Header="Recylce bin" />
         </Controls:BreadcrumbItem.Items>
       </Controls:BreadcrumbItem>
-    </Controls:BreadcrumbBar>
+    </Controls:BreadcrumbBar>-->
 
     <Controls:ExplorerBar Grid.Row="1" Grid.Column="0" x:Name="explorerBar"
                                 >

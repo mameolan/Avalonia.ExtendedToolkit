@@ -16,10 +16,10 @@ namespace Avalonia.ExampleApp.Views
         {
             this.InitializeComponent();
 
-            this.Find<Button>("btnBreadAnimate").Click += RefreshClick;
-            _breadcrumbBar = this.Find<BreadcrumbBar>("breadcrumb");
+            //this.Find<Button>("btnBreadAnimate").Click += RefreshClick;
+            //_breadcrumbBar = this.Find<BreadcrumbBar>("breadcrumb");
 
-            _breadcrumbBar.PopulateItems += BreadcrumbBar_PopulateItems;
+            //_breadcrumbBar.PopulateItems += BreadcrumbBar_PopulateItems;
         }
 
         private void BreadcrumbBar_PopulateItems(object sender, BreadcrumbItemEventArgs e)
