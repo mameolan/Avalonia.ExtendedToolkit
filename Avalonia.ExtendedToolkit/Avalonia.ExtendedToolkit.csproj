@@ -30,11 +30,11 @@
 		<PackageReference Include="Avalonia.Controls.DataGrid" Version="0.9.12" />
 		<PackageReference Include="Avalonia.Desktop" Version="0.9.12" />
 		<PackageReference Include="Avalonia.ReactiveUI" Version="0.9.12" />
-		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.9.9" />
-		<PackageReference Include="Avalonia.Xaml.Interactions" Version="0.9.9" />
-		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.9.9" />
+		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.9.12" />
+		<PackageReference Include="Avalonia.Xaml.Interactions" Version="0.9.12" />
+		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.9.12" />
 		<PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
-		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
+		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
