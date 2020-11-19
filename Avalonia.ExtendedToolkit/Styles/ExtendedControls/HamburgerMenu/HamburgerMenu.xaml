@@ -29,7 +29,7 @@
                           VerticalAlignment="Top"
                           Height="40"
                           Width="50"
-                          IsChecked="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:HamburgerMenu}}, Path=IsOpen, Mode=TwoWay}"
+                          IsChecked="{TemplateBinding IsOpen, Mode=TwoWay}"
                           
               >
               <Path HorizontalAlignment="Center"
@@ -73,7 +73,8 @@
 
   <Style Selector="Controls|HamburgerMenu[IsOpen=false]">
     <Style.Animations>
-      <Animation Duration="0:0:0.2">
+      <Animation Duration="0:0:0.2"
+                 FillMode="Forward">
         <!--set init value otherwise it does not work-->
         <KeyFrame Cue="0%">
           <!--Setting over a property does not work right now-->
