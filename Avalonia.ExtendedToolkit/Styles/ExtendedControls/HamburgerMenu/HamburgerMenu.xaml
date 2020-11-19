@@ -17,7 +17,7 @@
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}"/>
     <Setter Property="MenuIconColor" Value="{DynamicResource MahApps.Brushes.White}"/>
     <Setter Property="SelectionIndicatorColor" Value="{DynamicResource MahApps.Brushes.Accent}"/>
-    <Setter Property="Width" Value="50"/>
+    <Setter Property="Width" Value="{TemplateBinding MinimizedSize}"/>
     <Setter Property="IsVisible" Value="True"/>
     <Setter Property="IsOpen" Value="False"/>
     <Setter Property="Template">
@@ -61,11 +61,11 @@
         <!--set init value otherwise it does not work-->
         <KeyFrame Cue="0%">
           <!--Setting over a property does not work right now-->
-          <Setter Property="Width" Value="{StaticResource MinimizedSize}"/>
+          <Setter Property="Width" Value="{Binding $self.MinimizedSize}"/>
         </KeyFrame>
         <KeyFrame Cue="100%">
           <!--Setting over a property does not work right now-->
-          <Setter Property="Width" Value="{StaticResource MaximizedSize}"/>
+          <Setter Property="Width" Value="{Binding $self.MaximizedSize}"/>
         </KeyFrame>
       </Animation>
     </Style.Animations>
@@ -78,11 +78,11 @@
         <!--set init value otherwise it does not work-->
         <KeyFrame Cue="0%">
           <!--Setting over a property does not work right now-->
-          <Setter Property="Width" Value="{StaticResource MaximizedSize}"/>
+          <Setter Property="Width" Value="{Binding $self.MaximizedSize}"/>
         </KeyFrame>
         <KeyFrame Cue="100%">
           <!--Setting over a property does not work right now-->
-          <Setter Property="Width" Value="{StaticResource MinimizedSize}"/>
+          <Setter Property="Width" Value="{Binding $self.MinimizedSize}"/>
         </KeyFrame>
       </Animation>
     </Style.Animations>
