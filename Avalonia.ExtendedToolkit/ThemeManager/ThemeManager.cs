@@ -109,7 +109,15 @@ namespace Avalonia.ExtendedToolkit
         /// </summary>
         public Theme SelectedTheme
         {
-            get => _selectedTheme;
+            get
+            {
+                if(_selectedTheme == null)
+                {
+                    _selectedTheme = Themes.FirstOrDefault();
+                }
+
+                return _selectedTheme;
+            }
             set
             {
                 this.RaiseAndSetIfChanged(ref _selectedTheme, value);
@@ -223,7 +231,7 @@ namespace Avalonia.ExtendedToolkit
             window.Opened += (o, e) =>
               {
 
-                  if(SelectedTheme==null)
+                  if (SelectedTheme == null)
                   {
                       SelectedTheme = Themes.FirstOrDefault();
                   }
@@ -338,7 +346,7 @@ namespace Avalonia.ExtendedToolkit
             var item = styles.GetThemeStyle();
 
             int index = styles.GetThemeStyleIndex(item);
-            if(index==-1)
+            if (index == -1)
             {
                 styles.Add(theme.ThemeStyle);
             }
