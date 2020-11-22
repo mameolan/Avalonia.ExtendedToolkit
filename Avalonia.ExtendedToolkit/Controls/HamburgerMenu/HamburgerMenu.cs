@@ -107,25 +107,35 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<int> SelectedIndexProperty =
             AvaloniaProperty.Register<HamburgerMenu, int>(nameof(SelectedIndex), defaultValue:0);
 
-        //Setting over a property does not work right now
-        //public double MaximizedSize
-        //{
-        //    get { return (double)GetValue(MaximizedSizeProperty); }
-        //    set { SetValue(MaximizedSizeProperty, value); }
-        //}
+        /// <summary>
+        /// get/set the size of the opened menu
+        /// </summary>
+        public double MaximizedSize
+        {
+            get { return (double)GetValue(MaximizedSizeProperty); }
+            set { SetValue(MaximizedSizeProperty, value); }
+        }
 
-        //public static readonly StyledProperty<double> MaximizedSizeProperty =
-        //    AvaloniaProperty.Register<HamburgerMenu, double>(nameof(MaximizedSize), defaultValue: 300d);
+        /// <summary>
+        /// <see cref="MaximizedSize"/>
+        /// </summary>
+        public static readonly StyledProperty<double> MaximizedSizeProperty =
+            AvaloniaProperty.Register<HamburgerMenu, double>(nameof(MaximizedSize), defaultValue: 300);
 
-        //Setting over a property does not work right now
-        //public double MinimizedSize
-        //{
-        //    get { return (double)GetValue(MinimizedSizeProperty); }
-        //    set { SetValue(MinimizedSizeProperty, value); }
-        //}
+        /// <summary>
+        /// get/set the size of the closed menu
+        /// </summary>
+        public double MinimizedSize
+        {
+            get { return (double)GetValue(MinimizedSizeProperty); }
+            set { SetValue(MinimizedSizeProperty, value); }
+        }
 
-        //public static readonly StyledProperty<double> MinimizedSizeProperty =
-        //    AvaloniaProperty.Register<HamburgerMenu, double>(nameof(MinimizedSize), defaultValue: 50d);
+        /// <summary>
+        /// <see cref="MinimizedSize"/>
+        /// </summary>
+        public static readonly StyledProperty<double> MinimizedSizeProperty =
+            AvaloniaProperty.Register<HamburgerMenu, double>(nameof(MinimizedSize), defaultValue: 50d);
 
         /// <summary>
         /// initilaize content and collection changed

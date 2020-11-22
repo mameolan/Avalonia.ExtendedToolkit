@@ -8,12 +8,13 @@
              x:Class="Avalonia.ExampleApp.Views.HamburgerMenuView">
   <Grid>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="Auto"/>
       <ColumnDefinition />
     </Grid.ColumnDefinitions>
     <Controls:HamburgerMenu Margin="10" Grid.Column="0"
                             MenuItemForeground="White"
-                            HorizontalAlignment="Left">
+                            HorizontalAlignment="Left"
+                            x:Name="menu">
       <Controls:HamburgerMenu.Content>
         <Controls:HamburgerMenuItem IconBlack="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.home-white.png"
                                     IconLight="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.home-black.png"
@@ -49,8 +50,5 @@
     <ContentControl Grid.Column="1"
           Content="{Binding CurrentHamburgerMenuContent}"                    
                     />
-
-    
-    
   </Grid>
 </UserControl>

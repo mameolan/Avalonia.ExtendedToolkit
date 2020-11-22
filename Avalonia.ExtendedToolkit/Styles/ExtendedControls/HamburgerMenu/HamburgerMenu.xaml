@@ -17,7 +17,7 @@
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}"/>
     <Setter Property="MenuIconColor" Value="{DynamicResource MahApps.Brushes.White}"/>
     <Setter Property="SelectionIndicatorColor" Value="{DynamicResource MahApps.Brushes.Accent}"/>
-    <Setter Property="Width" Value="50"/>
+    <Setter Property="Width" Value="{TemplateBinding MinimizedSize}"/>
     <Setter Property="IsVisible" Value="True"/>
     <Setter Property="IsOpen" Value="False"/>
     <Setter Property="Template">
@@ -29,7 +29,7 @@
                           VerticalAlignment="Top"
                           Height="40"
                           Width="50"
-                          IsChecked="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:HamburgerMenu}}, Path=IsOpen, Mode=TwoWay}"
+                          IsChecked="{TemplateBinding IsOpen, Mode=TwoWay}"
                           
               >
               <Path HorizontalAlignment="Center"
@@ -61,11 +61,11 @@
         <!--set init value otherwise it does not work-->
         <KeyFrame Cue="0%">
           <!--Setting over a property does not work right now-->
-          <Setter Property="Width" Value="{StaticResource MinimizedSize}"/>
+          <Setter Property="Width" Value="{Binding $self.MinimizedSize}"/>
         </KeyFrame>
         <KeyFrame Cue="100%">
           <!--Setting over a property does not work right now-->
-          <Setter Property="Width" Value="{StaticResource MaximizedSize}"/>
+          <Setter Property="Width" Value="{Binding $self.MaximizedSize}"/>
         </KeyFrame>
       </Animation>
     </Style.Animations>
@@ -73,15 +73,16 @@
 
   <Style Selector="Controls|HamburgerMenu[IsOpen=false]">
     <Style.Animations>
-      <Animation Duration="0:0:0.2">
+      <Animation Duration="0:0:0.2"
+                 FillMode="Forward">
         <!--set init value otherwise it does not work-->
         <KeyFrame Cue="0%">
           <!--Setting over a property does not work right now-->
-          <Setter Property="Width" Value="{StaticResource MaximizedSize}"/>
+          <Setter Property="Width" Value="{Binding $self.MaximizedSize}"/>
         </KeyFrame>
         <KeyFrame Cue="100%">
           <!--Setting over a property does not work right now-->
-          <Setter Property="Width" Value="{StaticResource MinimizedSize}"/>
+          <Setter Property="Width" Value="{Binding $self.MinimizedSize}"/>
         </KeyFrame>
       </Animation>
     </Style.Animations>
