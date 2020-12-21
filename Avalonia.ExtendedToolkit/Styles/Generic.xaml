@@ -82,7 +82,13 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BreadcrumbBar/BreadcrumbItem.xaml" />
 
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/AeroChrome.xaml"/>
-  
+
+  <!-- Child Window Start -->
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ChildWindow/ChildWindow.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ChildWindow/Icons.xaml"/>
+  <!-- Child Window End -->
+
+
   <!--PropertyGrid Start-->
   <!--Controls-->
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Controls/EnumDropdown.xaml"/>

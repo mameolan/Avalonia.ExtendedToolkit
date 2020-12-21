@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Avalonia.Controls;
 using Avalonia.LogicalTree;
@@ -11,6 +12,48 @@ namespace Avalonia.ExtendedToolkit.Extensions
     /// </summary>
     public static class TreeExtensions
     {
+        /// <summary>
+        /// (from avalonia master)
+        /// Gets a transform from an ancestor to a descendent.
+        /// </summary>
+        /// <param name="ancestor">The ancestor visual.</param>
+        /// <param name="visual">The visual.</param>
+        /// <returns>The transform.</returns>
+        public static Matrix GetOffsetFrom(IVisual ancestor, IVisual visual)
+        {
+            var result = Matrix.Identity;
+
+            while (visual != ancestor)
+            {
+                if (visual.RenderTransform?.Value != null)
+                {
+                    var origin = visual.RenderTransformOrigin.ToPixels(visual.Bounds.Size);
+                    var offset = Matrix.CreateTranslation(origin);
+                    var renderTransform = (-offset) * visual.RenderTransform.Value * (offset);
+
+                    result *= renderTransform;
+                }
+
+                var topLeft = visual.Bounds.TopLeft;
+
+                if (topLeft != default)
+                {
+                    result *= Matrix.CreateTranslation(topLeft);
+                }
+
+                visual = visual.VisualParent;
+
+                if (visual == null)
+                {
+                    throw new ArgumentException("'visual' is not a descendant of 'ancestor'.");
+                }
+            }
+
+            return result;
+        }
+
+
+
         /// <summary>
         /// tries to find the parent by type
         /// </summary>
