@@ -557,7 +557,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// Defines the <see cref="ChildWindowImage"/> property.
         /// </summary>
         public static readonly StyledProperty<MessageBoxImage> ChildWindowImageProperty =
-            AvaloniaProperty.Register<ChildWindow, MessageBoxImage>(nameof(ChildWindowImage), defaultValue: MessageBoxImage.None);
+            AvaloniaProperty.Register<ChildWindow, MessageBoxImage>(nameof(ChildWindowImage), defaultValue: MessageBoxImage.Hand);
 
 
 

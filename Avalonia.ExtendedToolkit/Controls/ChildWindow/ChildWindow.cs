@@ -10,12 +10,15 @@ using Avalonia.Data;
 using Avalonia.ExtendedToolkit.Extensions;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.LogicalTree;
 using Avalonia.Media;
 using Avalonia.Styling;
 using Avalonia.Threading;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
+    //ported from: https://github.com/punker76/MahApps.Metro.SimpleChildWindow/ 
+
     /// <summary>
     /// simple child window
     /// </summary>
@@ -32,8 +35,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             IsOpenProperty.Changed.AddClassHandler<ChildWindow>((x, y) => OnIsOpenChanged(x, y));
             IsAutoCloseEnabledProperty.Changed.AddClassHandler<ChildWindow>((o, e) => OnIsAutoCloseEnabledChanged(o, e));
             AutoCloseIntervalProperty.Changed.AddClassHandler<ChildWindow>((o, e) => OnAutoCloseIntervalChanged(o, e));
+
         }
 
+        /// <summary>
+        /// initialize the autoclose timer and
+        /// starts the autoclose timeer if is open and if is autoclosetime is enabled
+        /// </summary>
+        /// <param name="childWindow"></param>
+        /// <param name="e"></param>
         private void OnAutoCloseIntervalChanged(ChildWindow childWindow, AvaloniaPropertyChangedEventArgs e)
         {
             void AutoCloseIntervalChangedAction()
@@ -49,9 +59,13 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
 
             Dispatcher.UIThread.InvokeAsync((Action)AutoCloseIntervalChangedAction, DispatcherPriority.Background);
-            //childWindow.Dispatcher?.BeginInvoke(DispatcherPriority.Background, (Action)AutoCloseIntervalChangedAction);
         }
 
+        /// <summary>
+        /// starts or stopps the autoclose timer
+        /// </summary>
+        /// <param name="childWindow"></param>
+        /// <param name="e"></param>
         private void OnIsAutoCloseEnabledChanged(ChildWindow childWindow, AvaloniaPropertyChangedEventArgs e)
         {
             void AutoCloseEnabledChangedAction()
@@ -75,71 +89,80 @@ namespace Avalonia.ExtendedToolkit.Controls
             Dispatcher.UIThread.InvokeAsync((Action)AutoCloseEnabledChangedAction, DispatcherPriority.Background);
         }
 
+        /// <summary>
+        /// starts the open or close animation
+        /// </summary>
+        /// <param name="childWindow"></param>
+        /// <param name="e"></param>
         private void OnIsOpenChanged(ChildWindow childWindow, AvaloniaPropertyChangedEventArgs e)
         {
+            //skip other childs to display
+            if (childWindow != this)
+            {
+                return;
+            }
+
+
             if (Equals(e.OldValue, e.NewValue))
             {
                 return;
             }
 
-            void OpenChangedAction()
+            if ((bool)e.NewValue)
             {
-                if ((bool)e.NewValue)
+                if (_hideAnimationTask != null)
                 {
-                    if (_hideAnimationTask != null)
-                    {
-                        _hideAnimationTokenSource.Cancel(false);
-                        _hideAnimationTokenSource = null;
-                        _hideAnimationTask = null;
-                        // don't let the storyboard end it's completed event
-                        // otherwise it could be hidden on start
-                        //childWindow.hideStoryboard.Completed -= childWindow.HideStoryboard_Completed;
-                    }
+                    _hideAnimationTokenSource.Cancel(false);
+                    _hideAnimationTokenSource = null;
+                    _hideAnimationTask = null;
+                    // don't let the storyboard end it's completed event
+                    // otherwise it could be hidden on start
+                }
 
-                    _showAnimationTask = _showAnimation.RunAsync(childWindow).ContinueWith(
+                _showAnimationTask = _showAnimation.RunAsync(childWindow).ContinueWith(
+                 x =>
+                 {
+#warning little bit hacky should be done in the animation
+                     _partOverlay.IsVisible = true;
+
+                     _showAnimationTask = null;
+
+                     var parent = childWindow.Parent as Panel;
+                     childWindow.ZIndex = /*parent?.Children.Count + 1 ??*/ 99;
+
+                     childWindow.TryToSetFocusedElement();
+
+                     if (childWindow.IsAutoCloseEnabled)
+                     {
+                         childWindow.StartAutoCloseTimer();
+                     }
+
+                     childWindow.RaiseEvent(new RoutedEventArgs(IsOpenChangedEvent, childWindow));
+                 }, TaskScheduler.FromCurrentSynchronizationContext());
+            }
+            else
+            {
+                childWindow.StopAutoCloseTimer();
+
+                _hideAnimationTokenSource = new CancellationTokenSource();
+
+                _hideAnimationTask = _hideAnimation.RunAsync(childWindow).ContinueWith(
                      x =>
                      {
-#warning little bit hacky should be done in the animation
-                         _partOverlay.IsVisible = true;
-
-                         _showAnimationTask = null;
-
-                         var parent = childWindow.Parent as Panel;
-                         //Panel.SetZIndex(childWindow, parent?.Children.Count + 1 ?? 99);
-                         childWindow.ZIndex = /*parent?.Children.Count + 1 ??*/ 99;
-
-                         childWindow.TryToSetFocusedElement();
-
-                         if (childWindow.IsAutoCloseEnabled)
-                         {
-                             childWindow.StartAutoCloseTimer();
-                         }
-
-                         childWindow.RaiseEvent(new RoutedEventArgs(IsOpenChangedEvent, childWindow));
-                     }, TaskScheduler.FromCurrentSynchronizationContext());
-                }
-                else
-                {
-                    childWindow.StopAutoCloseTimer();
-
-                    _hideAnimationTokenSource = new CancellationTokenSource();
-
-                    _hideAnimationTask = _hideAnimation.RunAsync(childWindow).ContinueWith(
-                         x =>
-                         {
-                             childWindow.OnClosingFinished();
-                             _hideAnimationTask = null;
+                         childWindow.OnClosingFinished();
+                         _hideAnimationTask = null;
 
 #warning little bit hacky should be done in the animation
-                             _partOverlay.IsVisible = false;
-                         }, _hideAnimationTokenSource.Token,
-                            TaskContinuationOptions.None,
-                            TaskScheduler.FromCurrentSynchronizationContext());
-                }
+                         _partOverlay.IsVisible = false;
+                     }, _hideAnimationTokenSource.Token,
+                        TaskContinuationOptions.None,
+                        TaskScheduler.FromCurrentSynchronizationContext());
             }
-            Dispatcher.UIThread.InvokeAsync((Action)OpenChangedAction, DispatcherPriority.Background);
         }
-
+        
+        /// <summary>
+        /// tries to focus the element
+        /// </summary>
         private void TryToSetFocusedElement()
         {
             if (this.AllowFocusElement && !Design.IsDesignMode/*( !DesignerProperties.GetIsInDesignMode(this)*/)
@@ -175,27 +198,38 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        private void HideStoryboard_Completed(object sender, EventArgs e)
-        {
-            //this.hideStoryboard.Completed -= this.HideStoryboard_Completed;
-            this.OnClosingFinished();
-        }
-
+        /// <summary>
+        /// raises the <see cref="ClosingFinishedEvent"/>
+        /// </summary>
         private void OnClosingFinished()
         {
             this.RaiseEvent(new RoutedEventArgs(ClosingFinishedEvent, this));
         }
 
+        /// <summary>
+        /// moves in y orientation
+        /// </summary>
+        /// <param name="childWindow"></param>
+        /// <param name="args"></param>
         private void OnOffsetYChanged(ChildWindow childWindow, AvaloniaPropertyChangedEventArgs args)
         {
             childWindow._moveTransform.SetValue(TranslateTransform.YProperty, args.NewValue);
         }
 
+        /// <summary>
+        /// moves in x orientation
+        /// </summary>
+        /// <param name="childWindow"></param>
+        /// <param name="args"></param>
         private void OnOffsetXChanged(ChildWindow childWindow, AvaloniaPropertyChangedEventArgs args)
         {
             childWindow._moveTransform.SetValue(TranslateTransform.XProperty, args.NewValue);
         }
 
+        /// <summary>
+        /// sets the zindex
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPointerPressed(PointerPressedEventArgs e)
         {
             base.OnPointerPressed(e);
@@ -214,6 +248,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// initializes the autostop timer
+        /// </summary>
         private void InitializeAutoCloseTimer()
         {
             this.StopAutoCloseTimer();
@@ -223,6 +260,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             this._autoCloseTimer.Interval = TimeSpan.FromMilliseconds(this.AutoCloseInterval);
         }
 
+        /// <summary>
+        /// StopAutoCloseTimer and fires the close method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AutoCloseTimerCallback(object sender, EventArgs e)
         {
             this.StopAutoCloseTimer();
@@ -234,6 +276,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// starts the autoclose timer
+        /// </summary>
         private void StartAutoCloseTimer()
         {
             // in case it is already running
@@ -244,6 +289,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// stops the autoclose timer
+        /// </summary>
         private void StopAutoCloseTimer()
         {
             if ((_autoCloseTimer != null) && (_autoCloseTimer.IsEnabled))
@@ -252,8 +300,13 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// resolves the controls items
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
+            base.OnTemplateApplied(e);
             // really necessary?
             //if (this.Template == null)
             //{
@@ -336,9 +389,13 @@ namespace Avalonia.ExtendedToolkit.Controls
             _showAnimation = CreateShowAnimation();
 
             //UpdatePseudeoClasses();
-            base.OnTemplateApplied(e);
+
         }
 
+        /// <summary>
+        /// creates the hide animation
+        /// </summary>
+        /// <returns></returns>
         private Animation.Animation CreateHideAnimation()
         {
             Animation.Animation animation = new Animation.Animation();
@@ -371,6 +428,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             return animation;
         }
 
+        /// <summary>
+        /// creates the show animation
+        /// </summary>
+        /// <returns></returns>
         private Animation.Animation CreateShowAnimation()
         {
             Animation.Animation animation = new Animation.Animation();
@@ -386,29 +447,35 @@ namespace Avalonia.ExtendedToolkit.Controls
             });
             animation.Children.Add(keyFrame);
 
-            // keyFrame = new KeyFrame();
-            // //keyFrame.KeyTime = TimeSpan.FromMilliseconds(0);
-            // keyFrame.Cue = new Cue(0d);
-            // keyFrame.Setters.Add(new Setter
-            // {
-            //     Property = OpacityProperty,
-            //     Value = 0d
-            // });
-            // animation.Children.Add(keyFrame);
+            keyFrame = new KeyFrame();
+            //keyFrame.KeyTime = TimeSpan.FromMilliseconds(0);
+            keyFrame.Cue = new Cue(0d);
+            keyFrame.Setters.Add(new Setter
+            {
+                Property = OpacityProperty,
+                Value = 0d
+            });
+            animation.Children.Add(keyFrame);
 
-            // keyFrame = new KeyFrame();
-            // //keyFrame.KeyTime = TimeSpan.FromMilliseconds(200);
-            // keyFrame.Cue = new Cue(1d);
-            // keyFrame.Setters.Add(new Setter
-            // {
-            //     Property = OpacityProperty,
-            //     Value = 1d
-            // });
+            keyFrame = new KeyFrame();
+            //keyFrame.KeyTime = TimeSpan.FromMilliseconds(200);
+            keyFrame.Cue = new Cue(1d);
+            keyFrame.Setters.Add(new Setter
+            {
+                Property = OpacityProperty,
+                Value = 1d
+            });
 
-            // animation.Children.Add(keyFrame);
+            animation.Children.Add(keyFrame);
             return animation;
         }
 
+        /// <summary>
+        /// executes the <see cref="PartOverlay_SizeChanged"/>
+        /// if width or hight is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void partOverlayPropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
         {
             if (e.Property.Name == nameof(_partOverlay.Width)
@@ -418,6 +485,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// execeutes the close method if the pointer left button is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PartOverlayOnClose(object sender, PointerPressedEventArgs e)
         {
             if (e.GetCurrentPoint(_partOverlay).Properties.IsLeftButtonPressed == false)
@@ -429,11 +501,19 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// executes the <see cref="ProcessMove(double, double)"/>
+        /// </summary>
         private void PartOverlay_SizeChanged()
         {
             this.ProcessMove(0, 0);
         }
 
+        /// <summary>
+        /// moves this control
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HeaderThumbDragDelta(object sender, VectorEventArgs e)
         {
             var allowDragging = this.AllowMove && _partWindow.HorizontalAlignment != Layout.HorizontalAlignment.Stretch
@@ -445,7 +525,12 @@ namespace Avalonia.ExtendedToolkit.Controls
                 this.ProcessMove(e.Vector.X, e.Vector.Y);
             }
         }
-
+        
+        /// <summary>
+        /// function for moving the control
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         private void ProcessMove(double x, double y)
         {
             var width = _partOverlay./*RenderSize.*/Width;
@@ -500,6 +585,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// executes the close method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnCloseButtonClick(object sender, RoutedEventArgs e)
         {
             this.Close(CloseReason.Close);
@@ -561,6 +651,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// executes close if <see cref="CloseByEscape"/> is true and
+        /// <see cref="Key.Escape"/> is pressed
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if (this.CloseByEscape && e.Key == Key.Escape)

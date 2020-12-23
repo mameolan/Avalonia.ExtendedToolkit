@@ -10,53 +10,50 @@ namespace Avalonia.ExampleApp.Views
 {
     public class ChildWindowView : UserControl
     {
-        public Grid RootGrid { get; }
-
-        private ChildWindow child01;
+        private ChildWindow _child01;
+        TestChildWindow _testWindow;
 
         public ChildWindowView()
         {
             this.InitializeComponent();
-            RootGrid = this.FindControl<Grid>("RootGrid");
-            child01 = this.FindControl<ChildWindow>("child01");
-            child01.Closing += Child01_OnClosing;
+            
+             _child01 = this.FindControl<ChildWindow>("child01");
+             _child01.Closing += Child01_OnClosing;
+
+            _testWindow = this.FindControl<TestChildWindow>("testView");
+
 
             this.FindControl<Button>("btnFirstTest").Click += FirstTest_OnClick;
-            this.FindControl<Button>("btnCloseMe").Click += CloseMeButton_Click;
+            //this.FindControl<Button>("btnCloseMe").Click += CloseMeButton_Click;
             this.FindControl<Button>("btnSecTest").Click += SecTest_OnClick;
+
+            // this.FindControl<Button>("btnCloseSec").Click += CloseSec_OnClick;
 
 
         }
+
+        private void CloseSec_OnClick(object sender, RoutedEventArgs args)
+        {
+            _testWindow.Child.Close();
+        }
+
+
 
         private async void SecTest_OnClick(object sender, RoutedEventArgs e)
         {
             if (e.Source is Button button)
             {
-                MetroWindow metroWindow = this.TryFindParent<MetroWindow>();
-
-                var testWindow= new TestChildWindow();
-                
-                // This dialog should be displayed only once!
-                // So disable the button while the dialog is open.
-                button.IsEnabled = false;
-                await metroWindow.ShowChildWindowAsync(testWindow, this.RootGrid);
-
-                //this.RootGrid.Children.Add(testWindow);
-                //testWindow.IsOpen = true;
-
-
-                button.IsEnabled = true;
+                _testWindow.Child.IsOpen = true;
             }
         }
 
         private void CloseMeButton_Click(object sender, RoutedEventArgs e)
         {
-            this.child01.IsOpen = false;
+            _child01.IsOpen = false;
         }
-
         private void FirstTest_OnClick(object sender, RoutedEventArgs e)
         {
-            this.child01.IsOpen=!this.child01.IsOpen;
+            _child01.IsOpen=!_child01.IsOpen;
         }
 
 

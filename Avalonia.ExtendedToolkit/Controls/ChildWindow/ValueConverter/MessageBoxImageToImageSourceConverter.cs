@@ -5,7 +5,7 @@ using Avalonia.Markup.Xaml.Styling;
 
 namespace Avalonia.ExtendedToolkit.Controls.ChildWindowConverter
 {
-    //ported from: https://github.com/punker76/MahApps.Metro.SimpleChildWindow/ 
+    //ported from: https://github.com/punker76/MahApps.Metro.SimpleChildWindow/ï¿½
 
     /// <summary>
     /// tries to set the correct icon

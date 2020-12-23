@@ -65,18 +65,5 @@
 			<Private>true</Private>
 		</Reference>
 	</ItemGroup>
-
-	<ItemGroup>
-	  <AvaloniaResource Update="Views\ColorPickerExampleView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </AvaloniaResource>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Update="Views\ColorPickerExampleView.xaml.cs">
-	    <DependentUpon>%(Filename)</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
 	
 </Project>

@@ -204,7 +204,7 @@
                                            Mode=OneWay, Converter={StaticResource EnumToVisibilityCollapsedConverter},
                                            ConverterParameter={x:Static Controls:MessageBoxImage.None}}">
                       <Rectangle.Fill>
-                        <tk:VisualBrushExt x:Name="iconBrush"
+                        <VisualBrush 
                                         Stretch="Fill"
                                         Visual="{Binding RelativeSource={RelativeSource TemplatedParent}, 
                                         Path=ChildWindowImage, Mode=OneWay, 
