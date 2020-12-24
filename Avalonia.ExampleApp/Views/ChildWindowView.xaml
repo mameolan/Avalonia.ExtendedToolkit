@@ -7,38 +7,45 @@
               mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              Name="childWindowView"
              x:Class="Avalonia.ExampleApp.Views.ChildWindowView">
-  <DockPanel x:Name="RootGrid">
+  <Grid x:Name="RootGrid">
     
-          <StackPanel DockPanel.Dock="Top">
+          <StackPanel >
             <Button Margin="10"
                     VerticalAlignment="Top"
                     x:Name="btnFirstTest"
-                    Content="Hello to my test"
+                    Content="Open not draggable child"
                     FontSize="36"
                     FontWeight="Thin" />
 
             <Button Margin="10"
                     x:Name="btnSecTest"
                     VerticalAlignment="Top"
-                    Content="another testo..."
+                    Content="Open Dragable Child"
                     FontSize="36"
                     FontWeight="Thin" />
           </StackPanel>
 
           <Views:TestChildWindow x:Name="testView"
-                    DockPanel.Dock="Bottom"
                     />
 
 
            <Controls:ChildWindow  
                           x:Name="child01"
-                          DockPanel.Dock="Bottom"
                           Title="TestChild 1"
                           CloseByEscape="False"
-                          IsAutoCloseEnabled="False"
-                          OverlayBrush="Transparent"
+                          IsAutoCloseEnabled="True"
+                          OverlayBrush="{DynamicResource MahApps.Brushes.White}"
+                          Background="{DynamicResource MahApps.Brushes.White}"
                           HorizontalContentAlignment="Stretch"
-                          VerticalContentAlignment="Stretch">
+                          VerticalContentAlignment="Top"
+                          
+                          >
+                <!-- not working -->
+                <!-- ChildWindowImage="Hand" -->
+
+                <Controls:ChildWindow.Icon>
+                    <Image Width="15" Height="15" Source="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.home-white.png"/>
+                </Controls:ChildWindow.Icon>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -65,44 +72,5 @@
             </Grid>
         </Controls:ChildWindow>  
 
-        <!-- <Controls:ChildWindow Grid.Row="1"
-                             Title="Testing..."
-                             ChildWindowHeight="300"
-                             ChildWindowWidth="400"
-                             EnableDropShadow="False"
-                             x:Name="testView"
-                             >
-
-          <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0"
-                   Margin="10"
-                   FontSize="36"
-                   FontWeight="Thin"
-                   Text="das hier auch" />
-
-        <TextBox Grid.Row="1" Margin="10" />
-
-        <UniformGrid Grid.Row="3"
-                     Margin="5"
-                     Columns="2">
-
-            <Button Margin="5"
-                    x:Name="btnCloseSec"
-                    Content="Close Me"
-                    FontSize="20"
-                    FontWeight="Thin"
-                    IsDefault="True" />
-        </UniformGrid>
-    </Grid>
-
-        </Controls:ChildWindow> -->
-    
-
-  </DockPanel>
+  </Grid>
 </UserControl>

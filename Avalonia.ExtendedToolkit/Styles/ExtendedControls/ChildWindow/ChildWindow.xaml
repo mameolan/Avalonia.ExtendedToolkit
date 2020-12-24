@@ -159,7 +159,7 @@
                                                           Focusable="False"
                                                           FontFamily="{TemplateBinding TitleFontFamily}"
                                                           FontSize="{TemplateBinding TitleFontSize}">
-                      <!-- <ContentControl.Foreground>
+                      <ContentControl.Foreground>
                         <MultiBinding Converter="{x:Static Converter:BackgroundToForegroundConverter.Instance}">
                           <Binding Mode="OneWay"
                                    Path="TitleBarBackground"
@@ -168,7 +168,7 @@
                                    Path="TitleForeground"
                                    RelativeSource="{RelativeSource TemplatedParent}" />
                         </MultiBinding>
-                      </ContentControl.Foreground> -->
+                      </ContentControl.Foreground>
                     </Controls:MetroThumbContentControl>
 
                     <!--  close button  -->

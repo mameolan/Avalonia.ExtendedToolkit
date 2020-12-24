@@ -12,7 +12,10 @@
                              ChildWindowWidth="400"
                              EnableDropShadow="False"
                              x:Name="child"
-                             ChildWindowImage="Hand"
+                             AllowMove="True"
+                             IsModal="True"
+                             VerticalContentAlignment="Top"
+                             HorizontalContentAlignment="Left"
                              >
     <Grid>
         <Grid.RowDefinitions>
@@ -25,7 +28,7 @@
                    Margin="10"
                    FontSize="36"
                    FontWeight="Thin"
-                   Text="das hier auch" />
+                   Text="Input" />
 
         <TextBox Grid.Row="1" Margin="10" />
 

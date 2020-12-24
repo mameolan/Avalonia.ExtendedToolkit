@@ -16,35 +16,22 @@ namespace Avalonia.ExampleApp.Views
         public ChildWindowView()
         {
             this.InitializeComponent();
-            
-             _child01 = this.FindControl<ChildWindow>("child01");
-             _child01.Closing += Child01_OnClosing;
+
+            _child01 = this.FindControl<ChildWindow>("child01");
+            _child01.Closing += Child01_OnClosing;
 
             _testWindow = this.FindControl<TestChildWindow>("testView");
 
 
             this.FindControl<Button>("btnFirstTest").Click += FirstTest_OnClick;
-            //this.FindControl<Button>("btnCloseMe").Click += CloseMeButton_Click;
+            this.FindControl<Button>("btnCloseMe").Click += CloseMeButton_Click;
             this.FindControl<Button>("btnSecTest").Click += SecTest_OnClick;
 
-            // this.FindControl<Button>("btnCloseSec").Click += CloseSec_OnClick;
-
-
         }
 
-        private void CloseSec_OnClick(object sender, RoutedEventArgs args)
+        private void SecTest_OnClick(object sender, RoutedEventArgs e)
         {
-            _testWindow.Child.Close();
-        }
-
-
-
-        private async void SecTest_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (e.Source is Button button)
-            {
-                _testWindow.Child.IsOpen = true;
-            }
+            _testWindow.Child.IsOpen = true;
         }
 
         private void CloseMeButton_Click(object sender, RoutedEventArgs e)
@@ -53,7 +40,7 @@ namespace Avalonia.ExampleApp.Views
         }
         private void FirstTest_OnClick(object sender, RoutedEventArgs e)
         {
-            _child01.IsOpen=!_child01.IsOpen;
+            _child01.IsOpen = !_child01.IsOpen;
         }
 
 
