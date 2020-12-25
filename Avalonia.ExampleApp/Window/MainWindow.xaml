@@ -225,6 +225,9 @@
         <TabItem Header="Notification" Foreground="{DynamicResource MahApps.Brushes.Black}">
           <Views:NotifictionExampleView/>
         </TabItem>
+        <TabItem Header="Child Window" Foreground="{DynamicResource MahApps.Brushes.Black}">
+          <Views:ChildWindowView/>
+        </TabItem>
         <TabItem Header="ColorPicker" Foreground="{DynamicResource MahApps.Brushes.Black}">
           <Views:ColorPickerExampleView/>
         </TabItem>

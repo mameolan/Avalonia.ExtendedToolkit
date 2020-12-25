@@ -118,8 +118,44 @@
 
       
 
-      <Controls:BusyIndicator IsBusy="True" BusyContent="Message"/>
-     
+      <!--<Controls:BusyIndicator IsBusy="True" BusyContent="Message"/>-->
+
+      <Controls:ChildWindow IsVisible="True"
+                                      Grid.Row="1"
+                                       x:Name="child01" Width="100" Height="200"
+                                       Title="TestChild 1"
+                                       HorizontalContentAlignment="Stretch"
+                                       VerticalContentAlignment="Stretch"
+                                       CloseByEscape="False"
+                                       IsAutoCloseEnabled="False"
+                                       OverlayBrush="Transparent"
+                                       BorderBrush="Green"
+                                       >
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <TextBlock Grid.Row="0"
+                     Margin="20"
+                     FontSize="36"
+                     FontWeight="Bold"
+                     Text="awesome!" />
+          <TextBox Grid.Row="1"
+                   Margin="20"
+                   Text="Note: it's an auto closing window..." />
+          <Button Grid.Row="3"
+                  Margin="20"
+                  VerticalAlignment="Top"
+                  Content="Close Me"
+                  FontSize="20"
+                  FontWeight="Bold"
+                  IsDefault="True" />
+        </Grid>
+      </Controls:ChildWindow>
+
 
 
 

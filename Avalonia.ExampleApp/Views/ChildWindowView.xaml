@@ -1,0 +1,76 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             xmlns:Views="clr-namespace:Avalonia.ExampleApp.Views;assembly=Avalonia.ExampleApp"
+              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             Name="childWindowView"
+             x:Class="Avalonia.ExampleApp.Views.ChildWindowView">
+  <Grid x:Name="RootGrid">
+    
+          <StackPanel >
+            <Button Margin="10"
+                    VerticalAlignment="Top"
+                    x:Name="btnFirstTest"
+                    Content="Open not draggable child"
+                    FontSize="36"
+                    FontWeight="Thin" />
+
+            <Button Margin="10"
+                    x:Name="btnSecTest"
+                    VerticalAlignment="Top"
+                    Content="Open Dragable Child"
+                    FontSize="36"
+                    FontWeight="Thin" />
+          </StackPanel>
+
+          <Views:TestChildWindow x:Name="testView"
+                    />
+
+
+           <Controls:ChildWindow  
+                          x:Name="child01"
+                          Title="TestChild 1"
+                          CloseByEscape="False"
+                          IsAutoCloseEnabled="True"
+                          OverlayBrush="{DynamicResource MahApps.Brushes.White}"
+                          Background="{DynamicResource MahApps.Brushes.White}"
+                          HorizontalContentAlignment="Stretch"
+                          VerticalContentAlignment="Top"
+                          
+                          >
+                <!-- not working -->
+                <!-- ChildWindowImage="Hand" -->
+
+                <Controls:ChildWindow.Icon>
+                    <Image Width="15" Height="15" Source="resm:Avalonia.ExampleApp.Assets.HamburgerMenu.home-white.png"/>
+                </Controls:ChildWindow.Icon>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"
+                           Margin="20"
+                           FontSize="36"
+                           FontWeight="Bold"
+                           Text="awesome!" />
+                <TextBox Grid.Row="1"
+                         Margin="20"
+                         Text="Note: it's an auto closing window..." />
+                <Button Grid.Row="3"
+                        x:Name="btnCloseMe"
+                        Margin="20"
+                        VerticalAlignment="Top"
+                        Content="Close Me"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        IsDefault="True" />
+            </Grid>
+        </Controls:ChildWindow>  
+
+  </Grid>
+</UserControl>
