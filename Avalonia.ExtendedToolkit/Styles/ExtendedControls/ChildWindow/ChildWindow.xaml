@@ -232,7 +232,7 @@
     <Setter Property="Background" Value="{x:Null}" />
   </Style>
 
-  <Style Selector="Controls|ChildWindow[Icon=NULL] /template/ ContentControl#PART_Icon">
+  <Style Selector="Controls|ChildWindow[Icon=null] /template/ ContentControl#PART_Icon">
     <!-- [IconTemplate=NULL] is not allowed -->
     <Setter Property="IsVisible" Value="false" />
   </Style>

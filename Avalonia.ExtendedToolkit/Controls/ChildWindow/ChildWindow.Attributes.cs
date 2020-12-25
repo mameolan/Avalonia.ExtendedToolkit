@@ -441,24 +441,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             AvaloniaProperty.Register<ChildWindow, bool>(nameof(ShowCloseButton), defaultValue: true);
 
 
-
-        /// <summary>
-        /// Gets or sets CloseButtonStyle.
-        /// </summary>
-        public IStyle CloseButtonStyle
-        {
-            get { return (IStyle)GetValue(CloseButtonStyleProperty); }
-            set { SetValue(CloseButtonStyleProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the <see cref="CloseButtonStyle"/> property.
-        /// </summary>
-        public static readonly StyledProperty<IStyle> CloseButtonStyleProperty =
-            AvaloniaProperty.Register<ChildWindow, IStyle>(nameof(CloseButtonStyle));
-
-
-
         /// <summary>
         /// Gets or sets CloseButtonCommand.
         /// </summary>
@@ -557,7 +539,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// Defines the <see cref="ChildWindowImage"/> property.
         /// </summary>
         public static readonly StyledProperty<MessageBoxImage> ChildWindowImageProperty =
-            AvaloniaProperty.Register<ChildWindow, MessageBoxImage>(nameof(ChildWindowImage), defaultValue: MessageBoxImage.Hand);
+            AvaloniaProperty.Register<ChildWindow, MessageBoxImage>(nameof(ChildWindowImage), defaultValue: MessageBoxImage.None);
 
 
 
