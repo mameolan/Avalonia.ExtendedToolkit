@@ -1,4 +1,3 @@
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Generators;
 using Avalonia.Controls.Templates;
@@ -11,7 +10,7 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// partial taken from <see cref="TreeItemContainerGenerator{T}"/>
     /// </summary>
     public class IndexListItemGenerator : ItemContainerGenerator<IndexListHeaderItem>
-        
+
     {
         /// <summary>
         /// Gets the item container's Items property.
@@ -34,10 +33,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             ItemsProperty = itemsProperty;
         }
 
-
-
-
-
         /// <summary>
         /// tries to create a container from this item
         /// </summary>
@@ -56,19 +51,16 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
             else
             {
-                IndexList owner=Owner as IndexList;
+                IndexList owner = Owner as IndexList;
 
                 var template = GetTreeDataTemplate(item, ItemTemplate);
                 var result = new IndexListHeaderItem();
-                
 
                 result.SetValue(ContentProperty, template.Build(item), BindingPriority.Style);
-                Binding binding=new Binding();
-                binding.Source=owner;
-                binding.Path=nameof(owner.ShowEmptyItems);
+                Binding binding = new Binding();
+                binding.Source = owner;
+                binding.Path = nameof(owner.ShowEmptyItems);
                 result.Bind(IndexListHeaderItem.ShowEmptyItemsProperty, binding, BindingPriority.Style);
-
-
 
                 var itemsSelector = template.ItemsSelector(item);
 

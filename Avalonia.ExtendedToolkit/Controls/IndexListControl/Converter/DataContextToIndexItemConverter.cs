@@ -1,8 +1,7 @@
-using Avalonia;
-using Avalonia.Data.Converters;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using Avalonia.Data.Converters;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {

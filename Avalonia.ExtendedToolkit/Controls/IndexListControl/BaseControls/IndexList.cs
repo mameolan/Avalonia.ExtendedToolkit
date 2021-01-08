@@ -1,4 +1,6 @@
-using Avalonia;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Controls.Generators;
 using Avalonia.Controls.Primitives;
@@ -6,9 +8,6 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -17,7 +16,6 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class IndexList : ItemsControl
     {
-
         /// <summary>
         /// Gets or sets ShowEmptyItems.
         /// </summary>
@@ -32,7 +30,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public static readonly StyledProperty<bool> ShowEmptyItemsProperty =
         AvaloniaProperty.Register<IndexList, bool>(nameof(ShowEmptyItems), defaultValue: true);
-
 
         /// <summary>
         /// Occurs when the control's selection changes.
@@ -216,7 +213,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                     //remove selection if the item was already selected
                     SelectedItem = null;
                 }
-
 
                 var changed = new SelectionChangedEventArgs(
                     SelectingItemsControl.SelectionChangedEvent,

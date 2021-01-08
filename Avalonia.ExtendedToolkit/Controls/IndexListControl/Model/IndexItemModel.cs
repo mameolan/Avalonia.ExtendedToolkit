@@ -11,6 +11,10 @@ namespace Avalonia.ExtendedToolkit.Controls
     public class IndexItemModel : ReactiveObject
     {
         private bool _isVisible = true;
+
+        /// <summary>
+        /// property which is used to filter out this item
+        /// </summary>
         public bool IsVisible
         {
             get { return _isVisible; }
@@ -56,6 +60,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { this.RaiseAndSetIfChanged(ref _subItems, value); }
         }
 
+        /// <summary>
+        /// filters this item or subitems
+        /// </summary>
+        /// <param name="searchText"></param>
+        /// <returns></returns>
         internal bool ApplyFilter(string searchText)
         {
             if (string.IsNullOrEmpty(searchText))
@@ -65,18 +74,15 @@ namespace Avalonia.ExtendedToolkit.Controls
                 return true;
             }
 
-
             IsVisible = Text.Contains(searchText, StringComparison.OrdinalIgnoreCase);
 
             if (SubItems.Count > 0)
             {
-
                 var items = SubItems.Where(x => x.ApplyFilter(searchText));
                 items.ForEach(items => items.IsVisible = true);
 
                 IsVisible = items.Any();
             }
-
 
             return IsVisible;
         }

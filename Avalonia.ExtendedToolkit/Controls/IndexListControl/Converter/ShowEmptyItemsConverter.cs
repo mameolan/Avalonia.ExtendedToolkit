@@ -15,7 +15,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// if the first value is IEnumable amd second value is bool
         /// and count is zero and the bool value is false the result is false
-        /// else the result is true 
+        /// else the result is true
         /// /// </summary>
         /// <param name="values"></param>
         /// <param name="targetType"></param>
@@ -41,7 +41,5 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             return true;
         }
-
-
     }
 }

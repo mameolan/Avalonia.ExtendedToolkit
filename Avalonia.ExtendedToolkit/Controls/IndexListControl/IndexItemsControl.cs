@@ -1,22 +1,22 @@
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
-using Avalonia.ExtendedToolkit.Extensions;
-using ReactiveUI;
-using DynamicData;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Windows.Input;
 using System.Reactive.Linq;
+using System.Windows.Input;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
+using Avalonia.ExtendedToolkit.Extensions;
+using DynamicData;
 using DynamicData.Binding;
+using ReactiveUI;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
     /// <summary>
-    /// a control with a grouped list and 
+    /// a control with a grouped list and
     /// buttons to switch to this grouped section
     /// </summary>
     public class IndexItemsControl : TemplatedControl
@@ -32,7 +32,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         private IObservable<Func<IndexItemModel, bool>> _filter;
         private IObservable<IChangeSet<IndexItemModel>> _items;
         private IndexItemModels _indexEntries = new IndexItemModels();
-
+        private SourceList<IndexItemModel> _sourceList;
 
         private IndexList _contentIndexList;
 
@@ -55,12 +55,11 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// Defines the IndexEntries direct property.
         /// </summary>
         public static readonly DirectProperty<IndexItemsControl, ReadOnlyObservableCollection<IndexItemModel>> IndexItemsProperty =
-        AvaloniaProperty.RegisterDirect<IndexItemsControl, ReadOnlyObservableCollection<IndexItemModel>>(
-        nameof(IndexItems),
-        o => o.IndexItems);
+                AvaloniaProperty.RegisterDirect<IndexItemsControl, ReadOnlyObservableCollection<IndexItemModel>>(
+                nameof(IndexItems),
+                o => o.IndexItems);
 
         private ReadOnlyObservableCollection<IndexItemModel> _indexItems;
-        private SourceList<IndexItemModel> _sourceList;
 
         /// <summary>
         /// Gets or sets IndexEntries.
@@ -73,37 +72,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 SetAndRaise(IndexItemsProperty, ref _indexItems, value);
             }
         }
-
-
-
-        // /// <summary>
-        // /// Defines the IndexEnries direct property.
-        // /// </summary>
-        // public static readonly DirectProperty<IndexItemsControl, IndexItemModels> IndexEntriesProperty =
-        // AvaloniaProperty.RegisterDirect<IndexItemsControl, IndexItemModels>(
-        // nameof(IndexEntries),
-        // o => o.IndexEntries);
-
-
-
-        //private IndexItemModels _indexEnries = new IndexItemModels();
-
-        // /// <summary>
-        // /// Gets or sets IndexEnries.
-        // /// </summary>
-        // public IndexItemModels IndexEntries
-        // {
-        //     get { return _indexEnries; }
-        //     set
-        //     {
-        //         SetAndRaise(IndexEntriesProperty, ref _indexEnries, value);
-        //     }
-        // }
-
-
-
-
-
 
         /// <summary>
         /// Gets or sets ShowEmptyItems.
@@ -119,7 +87,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public static readonly StyledProperty<bool> ShowEmptyItemsProperty =
         AvaloniaProperty.Register<IndexItemsControl, bool>(nameof(ShowEmptyItems), defaultValue: true);
-
 
         /// <summary>
         /// Defines the PressedCommand direct property.
@@ -184,7 +151,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<string> SearchTextProperty =
         AvaloniaProperty.Register<IndexItemsControl, string>(nameof(SearchText));
 
-
         /// <summary>
         /// initilaizes som changed events
         /// and initilize the pressed command
@@ -204,28 +170,27 @@ namespace Avalonia.ExtendedToolkit.Controls
                         .Select(BuildFilter);
 
             this.WhenAnyValue(x => x.ShowSearch).Subscribe((showSearch) =>
-                      {
-                          //reset the filter if showSearch is false
-                          if (showSearch == false && string.IsNullOrEmpty(SearchText) == false)
-                          {
-                              SearchText = string.Empty;
-
-                          }
-
-
-                      });
-
-        }
-
-        private Func<IndexItemModel, bool> BuildFilter(string searchText)
-        {
-            return entry => (
-                                entry.ApplyFilter(searchText)
-                            );
+            {
+                //reset the filter if showSearch is false
+                if (showSearch == false && string.IsNullOrEmpty(SearchText) == false)
+                {
+                    SearchText = string.Empty;
+                }
+            });
         }
 
         /// <summary>
-        /// 
+        /// filter for the search text
+        /// </summary>
+        /// <param name="searchText"></param>
+        /// <returns></returns>
+        private Func<IndexItemModel, bool> BuildFilter(string searchText)
+        {
+            return entry => entry.ApplyFilter(searchText);
+        }
+
+        /// <summary>
+        ///
         /// </summary>
         /// <param name="o"></param>
         /// <param name="e"></param>
@@ -251,13 +216,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             UpdateData(DataContext);
         }
 
+        /// <summary>
+        /// creates the alphabeticall entries
+        /// </summary>
         private void CreateBaseSections()
         {
             _indexEntries.Clear();
 
             IndexSectionItems.ForEach(item => _indexEntries.Add(new IndexItemModel { Text = item }));
         }
-
 
         /// <summary>
         /// scrolls the item into the view
@@ -282,10 +249,12 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
 
             UpdateData(e.NewValue);
-
-
         }
 
+        /// <summary>
+        /// resets the <see cref="IndexItems"/>
+        /// </summary>
+        /// <param name="datacontext"></param>
         private void UpdateData(object datacontext)
         {
             if (datacontext is IEnumerable<IndexItemModel> items)
@@ -333,12 +302,9 @@ namespace Avalonia.ExtendedToolkit.Controls
                 .DisposeMany()
                 .Subscribe();
 
-
                 RaisePropertyChanged(IndexItemsProperty, null, _indexItems);
             }
         }
-
-
 
         /// <summary>
         /// gets the needed controls
@@ -352,6 +318,11 @@ namespace Avalonia.ExtendedToolkit.Controls
             _contentIndexList.SelectionChanged += OnSelectionChanged;
         }
 
+        /// <summary>
+        /// sets the <see cref="SelectedItem"/>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedItem = e.AddedItems.OfType<object>().FirstOrDefault();

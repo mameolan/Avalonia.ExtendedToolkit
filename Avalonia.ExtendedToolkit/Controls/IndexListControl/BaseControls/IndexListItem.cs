@@ -1,8 +1,6 @@
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Mixins;
 using Avalonia.Controls.Primitives;
-using Avalonia.Controls.Templates;
 using Avalonia.Data;
 
 namespace Avalonia.ExtendedToolkit.Controls
@@ -29,9 +27,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             set { SetValue(IsSelectedProperty, value); }
         }
 
-        private static readonly ITemplate<IPanel> DefaultPanel =
-            new FuncTemplate<IPanel>(() => new VirtualizingStackPanel());
-
         /// <summary>
         /// overrides some default values
         /// </summary>
@@ -40,18 +35,17 @@ namespace Avalonia.ExtendedToolkit.Controls
             SelectableMixin.Attach<IndexListItem>(IsSelectedProperty);
             FocusableProperty.OverrideDefaultValue<IndexListItem>(true);
             RequestBringIntoViewEvent.AddClassHandler<IndexListItem>((x, e) => x.OnRequestBringIntoView(e));
-            DataContextProperty.Changed.AddClassHandler<IndexListItem>((x,e)=> OnDataContextChanged(x,e));
-
+            DataContextProperty.Changed.AddClassHandler<IndexListItem>((x, e) => OnDataContextChanged(x, e));
         }
 
         private static void OnDataContextChanged(IndexListItem indexListItem, AvaloniaPropertyChangedEventArgs e)
         {
-            if(e.NewValue is IndexItemModel model)
+            if (e.NewValue is IndexItemModel model)
             {
-                Binding binding=new Binding();
-                binding.Source=model;
-                binding.Path=nameof(model.IsVisible);
-                binding.Mode= BindingMode.TwoWay;
+                Binding binding = new Binding();
+                binding.Source = model;
+                binding.Path = nameof(model.IsVisible);
+                binding.Mode = BindingMode.TwoWay;
 
                 indexListItem.Bind(IsVisibleProperty, binding);
             }

@@ -1,4 +1,3 @@
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Generators;
 using Avalonia.Controls.Primitives;
@@ -11,7 +10,6 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class IndexListHeaderItem : HeaderedItemsControl
     {
-
         /// <summary>
         /// Gets or sets ShowEmptyItems.
         /// </summary>
@@ -27,9 +25,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> ShowEmptyItemsProperty =
             //AvaloniaProperty.Register<IndexList, bool>(nameof(ShowEmptyItems));
             IndexList.ShowEmptyItemsProperty.AddOwner<IndexListHeaderItem>();
-
-
-
 
         private static readonly ITemplate<IPanel> DefaultPanel =
             new FuncTemplate<IPanel>(() => new StackPanel());
