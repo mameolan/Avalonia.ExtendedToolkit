@@ -18,6 +18,8 @@
 		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.9.12" />
 		<PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+		<PackageReference Include="DynamicData" Version="6.17.14" />
+    	<PackageReference Include="DynamicData.ReactiveUI" Version="6.11.0.2613" />
 	</ItemGroup>
 
 	<ItemGroup>

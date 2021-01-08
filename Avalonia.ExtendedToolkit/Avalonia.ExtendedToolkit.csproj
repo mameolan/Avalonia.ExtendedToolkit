@@ -33,6 +33,8 @@
 		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.9.12" />
 		<PackageReference Include="Avalonia.Xaml.Interactions" Version="0.9.12" />
 		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.9.12" />
+		<PackageReference Include="DynamicData" Version="6.17.14" />
+    	<PackageReference Include="DynamicData.ReactiveUI" Version="6.11.0.2613" />
 		<PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
 		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
 			<PrivateAssets>all</PrivateAssets>

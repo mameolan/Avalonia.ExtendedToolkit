@@ -123,8 +123,12 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/PropertyGrid.xaml"/>
   <!--PropertyGrid End-->
   
-
-
+  <!-- IndexList Start -->
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/IndexItemsControl/IndexItemsControl.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/IndexItemsControl/BaseControls/IndexList.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/IndexItemsControl/BaseControls/IndexListHeaderItem.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/IndexItemsControl/BaseControls/IndexListItem.xaml"/>
+  <!-- IndexList end -->
   
 
   

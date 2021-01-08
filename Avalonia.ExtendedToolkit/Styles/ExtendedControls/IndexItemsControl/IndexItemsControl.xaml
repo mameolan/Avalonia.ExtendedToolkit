@@ -1,0 +1,99 @@
+<Styles xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             >
+
+  <Style Selector="Button.Index">
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Margin" Value="0"/>
+    <Setter Property="FontSize" Value="8"/>
+    <Setter Property="Width" Value="20"/>
+    <Setter Property="FontWeight" Value="Bold"/>
+  </Style>
+
+  <Style Selector="Button.Index:pointerover">
+    <Setter Property="Background" Value="Gray"/>
+    <Setter Property="Opacity" Value="0.3"/>
+  </Style>
+
+  <Style Selector="Button.Index:pressed">
+    <Setter Property="Background" Value="Gray"/>
+    <Setter Property="Opacity" Value="0.7"/>
+  </Style>
+
+
+<Style Selector="TextBlock.innerContent:pointerover">
+  <Setter Property="Background" Value="Pink"/>
+</Style>
+
+  <Style Selector="Controls|IndexItemsControl">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+  
+          <StackPanel Margin="10" Orientation="Horizontal"
+                Width="{TemplateBinding Width}"
+                Height="{TemplateBinding Height}"
+              >
+
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+              </Grid.RowDefinitions>
+              <TextBox Grid.Row="0" Text="{TemplateBinding SearchText, Mode=TwoWay}" IsVisible="{TemplateBinding ShowSearch}"
+              Margin="0,0,0,10"  Watermark="Search" />
+
+
+              <Controls:IndexList Grid.Row="1" Items="{TemplateBinding IndexItems}"
+                    MinWidth="300" 
+                    Classes="indexDetailsList"
+                    VerticalAlignment="Stretch"
+                    x:Name="contentListBox" 
+                    >
+                    <Controls:IndexList.DataTemplates>
+                      <TreeDataTemplate ItemsSource="{Binding SubItems}" DataType="{x:Type Controls:IndexItemModel}">
+                        <TextBlock Text="{Binding Text}"/>
+                      </TreeDataTemplate>
+                    </Controls:IndexList.DataTemplates>
+
+                
+              </Controls:IndexList>
+            </Grid>
+
+            <ItemsControl Grid.Column="1" Items="{TemplateBinding IndexItems}"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          VerticalAlignment="Center"
+                  >
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <Grid >
+                    <Button Content="{Binding Text}"
+                            Classes="Index"
+                            Command="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                      AncestorType={x:Type Controls:IndexItemsControl}},Path= PressedCommand}"
+                            CommandParameter="{Binding .}"
+                            />  
+                  </Grid>
+                  
+
+
+
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+          </StackPanel>
+
+
+        </ControlTemplate>
+
+
+      </Setter.Value>
+
+    </Setter>
+  </Style>
+
+</Styles>

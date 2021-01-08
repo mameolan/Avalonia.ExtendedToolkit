@@ -231,6 +231,9 @@
         <TabItem Header="ColorPicker" Foreground="{DynamicResource MahApps.Brushes.Black}">
           <Views:ColorPickerExampleView/>
         </TabItem>
+        <TabItem Header="IndexListControls" Foreground="{DynamicResource MahApps.Brushes.Black}">
+          <Views:IndexListDemoView/>
+        </TabItem>
         <TabItem Header="Colors" Foreground="{DynamicResource MahApps.Brushes.Black}">
           <Views:ColorExample/>
         </TabItem>
