@@ -37,15 +37,15 @@
   </Style>
 
   <Style Selector="Controls|IndexListItem:selected /template/ Border#SelectionBorder">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent2}" />
   </Style>
 
   <Style Selector="Controls|IndexListItem:selected /template/ Border#SelectionBorder:focus">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent2}" />
   </Style>
 
   <Style Selector="Controls|IndexListItem:selected /template/ Border#SelectionBorder:pointerover">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent2}" />
   </Style>
 
   <Style Selector="Controls|IndexListItem:selected /template/ Border#SelectionBorder:pointerover:focus">

@@ -16,11 +16,11 @@
     </Grid.ColumnDefinitions>
 
     <Controls:IndexItemsControl x:Name="indexItemsList"
-      Grid.Column="0"
+      Grid.Column="0" 
       DataContext="{Binding Albums,
           Converter={StaticResource DataContextToIndexItemConverter}, ConverterParameter=Title}" />
 
-    <StackPanel Grid.Column="1">
+    <StackPanel Margin="10,0,0,0" Grid.Column="1">
 
       <Controls:MetroGroupBox Margin="0,10,0,0" Header="Options">
         <StackPanel>

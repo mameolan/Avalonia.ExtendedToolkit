@@ -30,11 +30,15 @@
       <Setter.Value>
         <ControlTemplate>
 
-          <StackPanel Margin="10" Orientation="Horizontal"
+          <Grid Margin="10"
                 Width="{TemplateBinding Width}"
                 Height="{TemplateBinding Height}">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+          </Grid.ColumnDefinitions>
 
-            <Grid>
+            <Grid Grid.Column="0">
               <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -58,7 +62,9 @@
             <ItemsControl Grid.Column="1" Items="{TemplateBinding IndexItems}"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                          VerticalAlignment="Center">
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Left"
+                          >
               <ItemsControl.ItemTemplate>
                 <DataTemplate>
                   <Grid>
@@ -71,7 +77,7 @@
                 </DataTemplate>
               </ItemsControl.ItemTemplate>
             </ItemsControl>
-          </StackPanel>
+          </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>

@@ -122,7 +122,7 @@
 
       <Grid.RowDefinitions>
         <RowDefinition Height="*"/>
-        <RowDefinition Height="35"/>
+        <!-- <RowDefinition Height="35"/> -->
       </Grid.RowDefinitions>
 
       <TabControl Grid.Row="0">
@@ -238,15 +238,6 @@
           <Views:ColorExample/>
         </TabItem>
       </TabControl>
-
-
-
-
-
     </Grid>
   </DockPanel>
-
-
-
-
 </Controls:MetroWindow>

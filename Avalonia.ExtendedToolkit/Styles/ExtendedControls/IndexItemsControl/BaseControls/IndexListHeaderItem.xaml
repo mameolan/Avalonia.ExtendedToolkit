@@ -7,9 +7,10 @@
   </Styles.Resources>
 
   <Style Selector="Controls|IndexListHeaderItem">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent2}" />
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
     <Setter Property="BorderBrush" Value="Transparent" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="FontSize" Value="{DynamicResource MahApps.Sizes.Font.Content}"/>
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="Padding" Value="2 1" />
     <Setter Property="Template">
@@ -28,13 +29,15 @@
                       BorderBrush="{TemplateBinding BorderBrush}"
                       BorderThickness="{TemplateBinding BorderThickness}"
                       TemplatedControl.IsTemplateFocusTarget="True">
-            <Grid Name="PART_Header">
+            <Grid Name="PART_Header" Margin="{DynamicResource GroupBoxHeaderThemePadding}">
               <ContentPresenter Name="PART_HeaderPresenter"
                                 Focusable="False"
                                 Content="{TemplateBinding Header}"
                                 HorizontalContentAlignment="{TemplateBinding HorizontalAlignment}"
                                 Padding="{TemplateBinding Padding}"
-                                TextBlock.FontWeight="Bold" />
+                                TextBlock.FontWeight="Bold" 
+                                TextBlock.FontSize="{TemplateBinding FontSize}"
+                                />
             </Grid>
           </Border>
           <ItemsPresenter Name="PART_ItemsPresenter"

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Windows.Input;
 using Avalonia;
@@ -19,7 +20,7 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// a control with a grouped list and
     /// buttons to switch to this grouped section
     /// </summary>
-    public class IndexItemsControl : TemplatedControl
+    public class IndexItemsControl : TemplatedControl, IDisposable
     {
         /// <summary>
         /// default index entries
@@ -32,7 +33,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         private IObservable<Func<IndexItemModel, bool>> _filter;
         private IObservable<IChangeSet<IndexItemModel>> _items;
         private IndexItemModels _indexEntries = new IndexItemModels();
-        private SourceList<IndexItemModel> _sourceList;
+        
+        private CompositeDisposable _disposables;
+
 
         private IndexList _contentIndexList;
 
@@ -106,20 +109,27 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         /// <summary>
+        /// Defines the IndexSectionItems direct property.
+        /// </summary>
+        public static readonly DirectProperty<IndexItemsControl, ObservableCollection<string>> IndexSectionItemsProperty =
+                        AvaloniaProperty.RegisterDirect<IndexItemsControl, ObservableCollection<string>>(
+                        nameof(IndexSectionItems),
+                        o => o.IndexSectionItems);
+
+        private ObservableCollection<string> _indexSectionItems
+                    = new ObservableCollection<string>(_defaultIndexes);
+
+        /// <summary>
         /// Gets or sets IndexSectionItems.
         /// </summary>
         public ObservableCollection<string> IndexSectionItems
         {
-            get { return (ObservableCollection<string>)GetValue(IndexSectionItemsProperty); }
-            set { SetValue(IndexSectionItemsProperty, value); }
+            get { return _indexSectionItems; }
+            set
+            {
+                SetAndRaise(IndexSectionItemsProperty, ref _indexSectionItems, value);
+            }
         }
-
-        /// <summary>
-        /// Defines the <see cref="IndexSectionItems"/> property.
-        /// </summary>
-        public static readonly StyledProperty<ObservableCollection<string>> IndexSectionItemsProperty =
-            AvaloniaProperty.Register<IndexItemsControl, ObservableCollection<string>>(nameof(IndexSectionItems),
-            defaultValue: new ObservableCollection<string>(_defaultIndexes));
 
         /// <summary>
         /// Gets or sets ShowSearch.
@@ -285,16 +295,16 @@ namespace Avalonia.ExtendedToolkit.Controls
                     item.Value.ForEach(it => mainIndex.SubItems.Add(it));
                 }
 
-                var comparer = SortExpressionComparer<IndexItemModel>.Ascending(l => l.Text);
+                var comparer = SortExpressionComparer<IndexItemModel>.Ascending(x => x.Compare(_indexSectionItems));
 
-                if (_sourceList != null)
+                if (_disposables != null)
                 {
-                    _sourceList.Dispose();
+                    _disposables.Dispose();
                 }
 
-                _sourceList = new SourceList<IndexItemModel>();
-                _sourceList.AddRange(_indexEntries);
-                _items = _sourceList.Connect();
+                var sourceList = new SourceList<IndexItemModel>();
+                sourceList.AddRange(_indexEntries);
+                _items = sourceList.Connect();
                 _items.Filter(_filter)
                 .Sort(comparer) /*need this here because after filtering the list is incorrect ordered*/
                 .ObserveOn(RxApp.MainThreadScheduler)
@@ -302,9 +312,13 @@ namespace Avalonia.ExtendedToolkit.Controls
                 .DisposeMany()
                 .Subscribe();
 
+                _disposables = new CompositeDisposable(sourceList);
+
                 RaisePropertyChanged(IndexItemsProperty, null, _indexItems);
             }
         }
+
+
 
         /// <summary>
         /// gets the needed controls
@@ -327,5 +341,27 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             SelectedItem = e.AddedItems.OfType<object>().FirstOrDefault();
         }
+
+        /// <summary>
+        /// calls <see cref="Dispose(bool)"/>
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// disposes the items
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _disposables?.Dispose();
+            }
+        }
+
     }
 }

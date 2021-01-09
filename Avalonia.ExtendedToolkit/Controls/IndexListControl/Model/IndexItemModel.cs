@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Avalonia.ExtendedToolkit.Extensions;
+using DynamicData;
 using ReactiveUI;
 
 namespace Avalonia.ExtendedToolkit.Controls
@@ -85,6 +88,17 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
 
             return IsVisible;
+        }
+
+        /// <summary>
+        /// returns the index of the IEnumerable if the first char
+        /// of the Text is found in the list
+        /// </summary>
+        /// <param name="indexSectionItems"></param>
+        /// <returns></returns>
+        internal int Compare(IEnumerable<string> indexSectionItems)
+        {
+            return indexSectionItems.IndexOf(Text.FirstOrDefault().ToString());
         }
     }
 }
