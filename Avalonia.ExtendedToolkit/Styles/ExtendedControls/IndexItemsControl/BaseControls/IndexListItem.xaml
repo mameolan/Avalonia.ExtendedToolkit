@@ -1,0 +1,54 @@
+<Styles xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit">
+
+  <Style Selector="Controls|IndexListItem">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="2 1" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <StackPanel>
+          <Border Name="SelectionBorder"
+                            Focusable="True"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            TemplatedControl.IsTemplateFocusTarget="True">
+            <Grid Name="PART_Header"
+                Margin="16,5,0,0"
+                VerticalAlignment="Stretch">
+              <ContentPresenter Name="PART_HeaderPresenter"
+                                Focusable="False"
+                                Content="{TemplateBinding Content}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalAlignment}"
+                                Padding="{TemplateBinding Padding}" />
+            </Grid>
+          </Border>
+        </StackPanel>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|IndexListItem /template/ Border#SelectionBorder:pointerover">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}" />
+  </Style>
+
+  <Style Selector="Controls|IndexListItem:selected /template/ Border#SelectionBorder">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent2}" />
+  </Style>
+
+  <Style Selector="Controls|IndexListItem:selected /template/ Border#SelectionBorder:focus">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent2}" />
+  </Style>
+
+  <Style Selector="Controls|IndexListItem:selected /template/ Border#SelectionBorder:pointerover">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent2}" />
+  </Style>
+
+  <Style Selector="Controls|IndexListItem:selected /template/ Border#SelectionBorder:pointerover:focus">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent2}" />
+  </Style>
+</Styles>

@@ -122,7 +122,7 @@
 
       <Grid.RowDefinitions>
         <RowDefinition Height="*"/>
-        <RowDefinition Height="35"/>
+        <!-- <RowDefinition Height="35"/> -->
       </Grid.RowDefinitions>
 
       <TabControl Grid.Row="0">
@@ -231,19 +231,13 @@
         <TabItem Header="ColorPicker" Foreground="{DynamicResource MahApps.Brushes.Black}">
           <Views:ColorPickerExampleView/>
         </TabItem>
+        <TabItem Header="IndexListControls" Foreground="{DynamicResource MahApps.Brushes.Black}">
+          <Views:IndexListDemoView/>
+        </TabItem>
         <TabItem Header="Colors" Foreground="{DynamicResource MahApps.Brushes.Black}">
           <Views:ColorExample/>
         </TabItem>
       </TabControl>
-
-
-
-
-
     </Grid>
   </DockPanel>
-
-
-
-
 </Controls:MetroWindow>

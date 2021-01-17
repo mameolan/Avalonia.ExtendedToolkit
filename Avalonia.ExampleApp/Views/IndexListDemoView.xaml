@@ -1,0 +1,64 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.IndexListDemoView"
+             x:Name="indexList">
+  <Grid>
+    <Grid.Resources>
+      <Controls:DataContextToIndexItemConverter x:Key="DataContextToIndexItemConverter" />
+    </Grid.Resources>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition />
+      <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+
+    <Controls:IndexItemsControl x:Name="indexItemsList"
+      Grid.Column="0" 
+      DataContext="{Binding Albums,
+          Converter={StaticResource DataContextToIndexItemConverter}, ConverterParameter=Title}" />
+
+    <StackPanel Margin="10,0,0,0" Grid.Column="1">
+
+      <Controls:MetroGroupBox Margin="0,10,0,0" Header="Options">
+        <StackPanel>
+          <CheckBox Content="Show Empty Items"
+            IsChecked="{Binding ElementName=indexItemsList, Path=ShowEmptyItems}" />
+          <CheckBox Margin="0,10,0,0" Content="Show Search"
+            IsChecked="{Binding ElementName=indexItemsList, Path=ShowSearch}" />
+        </StackPanel>
+      </Controls:MetroGroupBox>
+
+      <Controls:MetroGroupBox Margin="0,10,0,0" Header="Sorting">
+        <StackPanel>
+          <RadioButton x:Name="rbDefaultSort" GroupName="sortDirection" Content="Default Sort" IsChecked="True" />
+          <RadioButton x:Name="rbDefaultReverse" Margin="0,10,0,0" GroupName="sortDirection" Content="Reverse Sort" />
+        </StackPanel>
+      </Controls:MetroGroupBox>
+
+      <Controls:MetroGroupBox Margin="0,20,0,0" Header="Album"
+        DataContext="{Binding ElementName=indexItemsList, Path=SelectedItem.DataContext.ItemData}">
+
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+          </Grid.RowDefinitions>
+
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Text="Artist:" />
+          <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding Artist.Name}" />
+
+          <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Text="Album Title:" />
+          <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Text="{Binding Title}" />
+        </Grid>
+      </Controls:MetroGroupBox>
+    </StackPanel>
+  </Grid>
+</UserControl>
