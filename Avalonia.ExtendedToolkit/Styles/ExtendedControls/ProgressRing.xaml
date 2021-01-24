@@ -4,23 +4,22 @@
     xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
     xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit">
 
+	<!-- correct through style through: https://github.com/Deadpikle/AvaloniaProgressRing -->
+
   <Style Selector="Ellipse.ProgressRingEllipseStyle"  >
-    <Setter Property="HorizontalAlignment" Value="Left" />
-    <Setter Property="Opacity" Value="0" />
-    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="Opacity" Value="1" />
+    <Setter Property="IsVisible" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsActive}" />
   </Style>
 
   <Style Selector="Controls|ProgressRing">
-    <!--<Setter Property="Background" Value="White"/>-->
-    <Setter Property="IsVisible" Value="False"/>
+    <Setter Property="Background" Value="Transparent" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
-    <Setter Property="Height" Value="60" />
+    <Setter Property="IsHitTestVisible" Value="False" />
     <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Center" />
     <Setter Property="MinHeight" Value="20" />
     <Setter Property="MinWidth" Value="20" />
-    <Setter Property="VerticalAlignment" Value="Center" />
-    <Setter Property="Width" Value="60" />
-    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="ClipToBounds" Value="True" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
@@ -32,15 +31,8 @@
                   MaxHeight="{Binding MaxSideLength, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                   Margin="{TemplateBinding Padding}"
                   Background="Transparent"
-                  RenderTransformOrigin=".5,.5"
-                  IsVisible="False">
-              <!---->
-              <Canvas x:Name="E1R" RenderTransformOrigin=".5,.5"
-                      >
-                <Canvas.RenderTransform>
-                  <!--x:Name="E1R"--> 
-                  <RotateTransform />
-                </Canvas.RenderTransform>
+                  IsVisible="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsActive}">
+              <Canvas x:Name="E1R">
                 <Ellipse x:Name="E1"
                          Width="{Binding EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Height="{Binding EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
@@ -48,63 +40,45 @@
                          Fill="{TemplateBinding Foreground}"
                          Classes="ProgressRingEllipseStyle" />
               </Canvas>
-              <Canvas x:Name="E2R" RenderTransformOrigin=".5,.5">
-                <!--<Canvas.RenderTransform>
-                  <RotateTransform  />
-                </Canvas.RenderTransform>-->
+              <Canvas x:Name="E2R">
                 <Ellipse x:Name="E2"
                          Width="{Binding EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Height="{Binding EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Margin="{Binding EllipseOffset, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Fill="{TemplateBinding Foreground}"
-                         Classes="StaticResource ProgressRingEllipseStyle" />
+                         Classes="ProgressRingEllipseStyle" />
               </Canvas>
-              <Canvas x:Name="E3R" RenderTransformOrigin=".5,.5">
-                <!--<Canvas.RenderTransform>
-                  <RotateTransform  />
-                </Canvas.RenderTransform>-->
+              <Canvas x:Name="E3R">
                 <Ellipse x:Name="E3"
                          Width="{Binding EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Height="{Binding EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Margin="{Binding EllipseOffset, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Fill="{TemplateBinding Foreground}"
-                         Classes="StaticResource ProgressRingEllipseStyle" />
+                         Classes="ProgressRingEllipseStyle" />
               </Canvas>
-              <Canvas x:Name="E4R" RenderTransformOrigin=".5,.5">
-                <!--<Canvas.RenderTransform>
-                  <RotateTransform  />
-                </Canvas.RenderTransform>-->
+              <Canvas x:Name="E4R">
                 <Ellipse x:Name="E4"
                          Width="{Binding EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Height="{Binding EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Margin="{Binding EllipseOffset, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Fill="{TemplateBinding Foreground}"
-                         Classes="StaticResource ProgressRingEllipseStyle" />
+                         Classes="ProgressRingEllipseStyle" />
               </Canvas>
-              <Canvas x:Name="E5R" RenderTransformOrigin=".5,.5">
-                <!--<Canvas.RenderTransform>
-                  <RotateTransform  />
-                </Canvas.RenderTransform>-->
+              <Canvas x:Name="E5R">
                 <Ellipse x:Name="E5"
                          Width="{Binding EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Height="{Binding EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Margin="{Binding EllipseOffset, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Fill="{TemplateBinding Foreground}"
-                         Classes="StaticResource ProgressRingEllipseStyle" />
+                         Classes="ProgressRingEllipseStyle" />
               </Canvas>
-              <Canvas x:Name="SixthCircle"
-                      RenderTransformOrigin=".5,.5"
-                      IsVisible="False">
-                <!--<Canvas.RenderTransform>
-                  --><!--x:Name="E6R"--><!--
-                  <RotateTransform  />
-                </Canvas.RenderTransform>-->
+              <Canvas x:Name="E6R">
                 <Ellipse x:Name="E6"
                          Width="{Binding EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Height="{Binding EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Margin="{Binding EllipseOffset, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                          Fill="{TemplateBinding Foreground}"
-                         Classes="StaticResource ProgressRingEllipseStyle" />
+                         Classes="ProgressRingEllipseStyle" />
               </Canvas>
             </Grid>
           </Border>
@@ -112,10 +86,6 @@
       </Setter.Value>
     </Setter>
 
-  </Style>
-
-  <Style Selector="Controls|ProgressRing:large /template/ Canvas#SixthCircle">
-    <Setter Property="IsVisible" Value="True"/>
   </Style>
 
   <Style Selector="Controls|ProgressRing:active">
@@ -128,293 +98,288 @@
 
   <Style Selector="Controls|ProgressRing:active /template/ Ellipse#E1">
     <Style.Animations>
-      <Animation Duration="0:0:3.47" IterationCount="Infinite">
+      <Animation Duration="0:0:3.47" IterationCount="Infinite" Delay="0">
         <KeyFrame KeyTime="0" >
           <Setter Property="Opacity" Value="1" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:3.21" >
           <Setter Property="Opacity" Value="1" />
         </KeyFrame>
-        <KeyFrame KeyTime="0:0:3.22" >
+        <!-- <KeyFrame KeyTime="0:0:3.22" >
           <Setter Property="Opacity" Value="0" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:3.47" >
           <Setter Property="Opacity" Value="0" />
-        </KeyFrame>
+        </KeyFrame> -->
       </Animation>
     </Style.Animations>
   </Style>
 
   <Style Selector="Controls|ProgressRing:active /template/ Ellipse#E2">
     <Style.Animations>
-      <!--DelayBetweenIterations="00:00:00.167"-->
-      <Animation Duration="0:0:3.47" IterationCount="Infinite" >
+      <Animation Duration="0:0:3.47" IterationCount="Infinite" Delay="0:0:0.167">
         <KeyFrame KeyTime="0" >
           <Setter Property="Opacity" Value="1" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:3.21" >
           <Setter Property="Opacity" Value="1" />
         </KeyFrame>
-        <KeyFrame KeyTime="0:0:3.22" >
+        <!-- <KeyFrame KeyTime="0:0:3.22" >
           <Setter Property="Opacity" Value="0" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:3.47" >
           <Setter Property="Opacity" Value="0" />
-        </KeyFrame>
+        </KeyFrame> -->
       </Animation>
     </Style.Animations>
   </Style>
 
   <Style Selector="Controls|ProgressRing:active /template/ Ellipse#E3">
     <Style.Animations>
-      <!--DelayBetweenIterations="00:00:00.334"-->
-      <Animation Duration="0:0:3.47" IterationCount="Infinite" >
+      <Animation Duration="0:0:3.47" IterationCount="Infinite" Delay="0:0:0.334">
         <KeyFrame KeyTime="0" >
           <Setter Property="Opacity" Value="1" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:3.21" >
           <Setter Property="Opacity" Value="1" />
         </KeyFrame>
-        <KeyFrame KeyTime="0:0:3.22" >
+        <!-- <KeyFrame KeyTime="0:0:3.22" >
           <Setter Property="Opacity" Value="0" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:3.47" >
           <Setter Property="Opacity" Value="0" />
-        </KeyFrame>
+        </KeyFrame> -->
       </Animation>
     </Style.Animations>
   </Style>
 
   <Style Selector="Controls|ProgressRing:active /template/ Ellipse#E4">
     <Style.Animations>
-      <!--DelayBetweenIterations="00:00:00.501"-->
-      <Animation Duration="0:0:3.47" IterationCount="Infinite" >
+      <Animation Duration="0:0:3.47" IterationCount="Infinite" Delay="0:0:0.501">
         <KeyFrame KeyTime="0" >
           <Setter Property="Opacity" Value="1" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:3.21" >
           <Setter Property="Opacity" Value="1" />
         </KeyFrame>
-        <KeyFrame KeyTime="0:0:3.22" >
+        <!-- <KeyFrame KeyTime="0:0:3.22" >
           <Setter Property="Opacity" Value="0" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:3.47" >
           <Setter Property="Opacity" Value="0" />
-        </KeyFrame>
+        </KeyFrame> -->
       </Animation>
     </Style.Animations>
   </Style>
 
   <Style Selector="Controls|ProgressRing:active /template/ Ellipse#E5">
     <Style.Animations>
-      <!--DelayBetweenIterations="00:00:00.668"-->
-      <Animation Duration="0:0:3.47" IterationCount="Infinite" >
+      <Animation Duration="0:0:3.47" IterationCount="Infinite" Delay="0:0:0.668">
         <KeyFrame KeyTime="0" >
           <Setter Property="Opacity" Value="1" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:3.21" >
           <Setter Property="Opacity" Value="1" />
         </KeyFrame>
-        <KeyFrame KeyTime="0:0:3.22" >
-          <Setter Property="Opacity" Value="0" />
-        </KeyFrame>
-        <KeyFrame KeyTime="0:0:3.47" >
-          <Setter Property="Opacity" Value="0" />
-        </KeyFrame>
+          <!-- <KeyFrame KeyTime="0:0:3.22" >
+            <Setter Property="Opacity" Value="0" />
+          </KeyFrame>
+          <KeyFrame KeyTime="0:0:3.47" >
+            <Setter Property="Opacity" Value="0" />
+          </KeyFrame> -->
       </Animation>
     </Style.Animations>
   </Style>
 
   <Style Selector="Controls|ProgressRing:active /template/ Ellipse#E6">
     <Style.Animations>
-      <!--DelayBetweenIterations="00:00:00.835"-->
-      <Animation Duration="0:0:3.47" IterationCount="Infinite" >
+      <Animation Duration="0:0:3.47" IterationCount="Infinite" Delay="0:0:0.835">
         <KeyFrame KeyTime="0" >
           <Setter Property="Opacity" Value="1" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:3.21" >
           <Setter Property="Opacity" Value="1" />
         </KeyFrame>
-        <KeyFrame KeyTime="0:0:3.22" >
+        <!-- <KeyFrame KeyTime="0:0:3.22" >
           <Setter Property="Opacity" Value="0" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:3.47" >
           <Setter Property="Opacity" Value="0" />
+        </KeyFrame> -->
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|ProgressRing:active /template/ Canvas#E1R">
+    <Style.Animations>
+      <Animation Duration="0:0:3.47" IterationCount="Infinite" Delay="0:0:0.0" Easing="SineEaseInOut"
+                 PlaybackDirection="Reverse" FillMode="None">
+        <KeyFrame KeyTime="0" >
+          <Setter Property="RotateTransform.Angle" Value="-110"/>
+        </KeyFrame>
+        <KeyFrame KeyTime="0:0:0.433" >
+          <Setter Property="RotateTransform.Angle" Value="10" />
+        </KeyFrame>
+        <KeyFrame KeyTime="0:0:1.2"  >
+          <Setter Property="RotateTransform.Angle" Value="93" />
+        </KeyFrame>
+        <KeyFrame KeyTime="0:0:1.617" >
+          <Setter Property="RotateTransform.Angle" Value="205" />
+        </KeyFrame>
+        <KeyFrame KeyTime="0:0:2.017">
+          <Setter Property="RotateTransform.Angle" Value="357"/>
+        </KeyFrame>
+        <KeyFrame KeyTime="0:0:2.783" >
+          <Setter Property="RotateTransform.Angle" Value="439"/>
+        </KeyFrame>
+        <KeyFrame  KeyTime="0:0:3.217">
+          <Setter Property="RotateTransform.Angle" Value="720"/>
         </KeyFrame>
       </Animation>
     </Style.Animations>
   </Style>
 
-  <Style Selector="Controls|ProgressRing:active /template/ Canvas#E1R > RotateTransform">
+  <Style Selector="Controls|ProgressRing:active /template/ Canvas#E2R">
     <Style.Animations>
-      <Animation Duration="0:0:3.217" IterationCount="Infinite">
+      <Animation Duration="0:0:3.47" IterationCount="Infinite" Delay="0:0:0.167" Easing="SineEaseInOut"
+                 PlaybackDirection="Reverse" FillMode="None">
         <KeyFrame KeyTime="0" >
-          <Setter Property="Angle" Value="-110"/>
+          <Setter Property="RotateTransform.Angle" Value="-116"/>
         </KeyFrame>
         <KeyFrame KeyTime="0:0:0.433" >
-          <Setter Property="Angle" Value="10" />
+          <Setter Property="RotateTransform.Angle" Value="4" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:1.2"  >
-          <Setter Property="Angle" Value="93" />
+          <Setter Property="RotateTransform.Angle" Value="87"  />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:1.617" >
-          <Setter Property="Angle" Value="205" />
+          <Setter Property="RotateTransform.Angle" Value="199" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:2.017">
-          <Setter Property="Angle" Value="357"/>
+          <Setter Property="RotateTransform.Angle" Value="351"/>
         </KeyFrame>
         <KeyFrame KeyTime="0:0:2.783" >
-          <Setter Property="Angle" Value="439"/>
+          <Setter Property="RotateTransform.Angle" Value="433"/>
         </KeyFrame>
         <KeyFrame  KeyTime="0:0:3.217">
-          <Setter Property="Angle" Value="585"/>
+          <Setter Property="RotateTransform.Angle" Value="720"/>
         </KeyFrame>
       </Animation>
     </Style.Animations>
   </Style>
 
-  <Style Selector="Controls|ProgressRing:active /template/ Canvas#E2R > RotateTransform">
+  <Style Selector="Controls|ProgressRing:active /template/ Canvas#E3R">
     <Style.Animations>
-      <!--DelayBetweenIterations="00:00:00.167"-->
-      <Animation Duration="0:0:3.217" IterationCount="Infinite" >
+      <Animation Duration="0:0:3.47" IterationCount="Infinite" Delay="0:0:0.334" Easing="SineEaseInOut"
+                 PlaybackDirection="Reverse" FillMode="None">
         <KeyFrame KeyTime="0" >
-          <Setter Property="Angle" Value="-116"/>
+          <Setter Property="RotateTransform.Angle" Value="-122"/>
         </KeyFrame>
         <KeyFrame KeyTime="0:0:0.433" >
-          <Setter Property="Angle" Value="4" />
+          <Setter Property="RotateTransform.Angle" Value="-2"  />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:1.2"  >
-          <Setter Property="Angle" Value="87"  />
+          <Setter Property="RotateTransform.Angle" Value="81"  />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:1.617" >
-          <Setter Property="Angle" Value="199" />
+          <Setter Property="RotateTransform.Angle" Value="193" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:2.017">
-          <Setter Property="Angle" Value="351"/>
+          <Setter Property="RotateTransform.Angle" Value="345"/>
         </KeyFrame>
         <KeyFrame KeyTime="0:0:2.783" >
-          <Setter Property="Angle" Value="433"/>
+          <Setter Property="RotateTransform.Angle" Value="427"/>
         </KeyFrame>
         <KeyFrame  KeyTime="0:0:3.217">
-          <Setter Property="Angle" Value="579"/>
+          <Setter Property="RotateTransform.Angle" Value="720 "/>
         </KeyFrame>
       </Animation>
     </Style.Animations>
   </Style>
 
-  <Style Selector="Controls|ProgressRing:active /template/ Canvas#E3R > RotateTransform">
+  <Style Selector="Controls|ProgressRing:active /template/ Canvas#E4R">
     <Style.Animations>
-      <!--DelayBetweenIterations="00:00:00.334"-->
-      <Animation Duration="0:0:3.217" IterationCount="Infinite" >
+      <Animation Duration="0:0:3.47" IterationCount="Infinite" Delay="0:0:0.501" Easing="SineEaseInOut"
+                 PlaybackDirection="Reverse" FillMode="None">
         <KeyFrame KeyTime="0" >
-          <Setter Property="Angle" Value="-122"/>
+          <Setter Property="RotateTransform.Angle" Value="-128"/>
         </KeyFrame>
         <KeyFrame KeyTime="0:0:0.433" >
-          <Setter Property="Angle" Value="-2"  />
+          <Setter Property="RotateTransform.Angle" Value="-8"  />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:1.2"  >
-          <Setter Property="Angle" Value="81"  />
+          <Setter Property="RotateTransform.Angle" Value="75"  />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:1.617" >
-          <Setter Property="Angle" Value="193" />
+          <Setter Property="RotateTransform.Angle" Value="187" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:2.017">
-          <Setter Property="Angle" Value="345"/>
+          <Setter Property="RotateTransform.Angle" Value="339"/>
         </KeyFrame>
         <KeyFrame KeyTime="0:0:2.783" >
-          <Setter Property="Angle" Value="427"/>
+          <Setter Property="RotateTransform.Angle" Value="421"/>
         </KeyFrame>
         <KeyFrame  KeyTime="0:0:3.217">
-          <Setter Property="Angle" Value="573"/>
+          <Setter Property="RotateTransform.Angle" Value="720"/>
         </KeyFrame>
       </Animation>
     </Style.Animations>
   </Style>
 
-  <Style Selector="Controls|ProgressRing:active /template/ Canvas#E4R > RotateTransform">
+  <Style Selector="Controls|ProgressRing:active /template/ Canvas#E5R">
     <Style.Animations>
-      <!--DelayBetweenIterations="00:00:00.501"-->
-      <Animation Duration="0:0:3.217" IterationCount="Infinite" >
+      <Animation Duration="0:0:3.47" IterationCount="Infinite" Delay="0:0:0.668" Easing="SineEaseInOut"
+                 PlaybackDirection="Reverse" FillMode="None">
+
         <KeyFrame KeyTime="0" >
-          <Setter Property="Angle" Value="-128"/>
+          <Setter Property="RotateTransform.Angle" Value="-134"/>
         </KeyFrame>
         <KeyFrame KeyTime="0:0:0.433" >
-          <Setter Property="Angle" Value="-8"  />
+          <Setter Property="RotateTransform.Angle" Value="-14"  />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:1.2"  >
-          <Setter Property="Angle" Value="75"  />
+          <Setter Property="RotateTransform.Angle" Value="69"  />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:1.617" >
-          <Setter Property="Angle" Value="187" />
+          <Setter Property="RotateTransform.Angle" Value="181" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:2.017">
-          <Setter Property="Angle" Value="339"/>
+          <Setter Property="RotateTransform.Angle" Value="331"/>
         </KeyFrame>
         <KeyFrame KeyTime="0:0:2.783" >
-          <Setter Property="Angle" Value="421"/>
+          <Setter Property="RotateTransform.Angle" Value="415"/>
         </KeyFrame>
         <KeyFrame  KeyTime="0:0:3.217">
-          <Setter Property="Angle" Value="567"/>
+          <Setter Property="RotateTransform.Angle" Value="720"/>
         </KeyFrame>
       </Animation>
     </Style.Animations>
   </Style>
 
-  <Style Selector="Controls|ProgressRing:active /template/ Canvas#E5R > RotateTransform">
+  <Style Selector="Controls|ProgressRing:active /template/ Canvas#E6R">
     <Style.Animations>
-      <!--DelayBetweenIterations="00:00:00.668"-->
-      <Animation Duration="0:0:3.217"  
-        IterationCount="Infinite">
-
+      <Animation Duration="0:0:3.47" IterationCount="Infinite" Delay="0:0:0.835" Easing="SineEaseInOut"
+                 PlaybackDirection="Reverse" FillMode="None">
         <KeyFrame KeyTime="0" >
-          <Setter Property="Angle" Value="-134"/>
+          <Setter Property="RotateTransform.Angle" Value="-140"/>
         </KeyFrame>
         <KeyFrame KeyTime="0:0:0.433" >
-          <Setter Property="Angle" Value="-14"  />
+          <Setter Property="RotateTransform.Angle" Value="-20"  />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:1.2"  >
-          <Setter Property="Angle" Value="69"  />
+          <Setter Property="RotateTransform.Angle" Value="63"/>
         </KeyFrame>
         <KeyFrame KeyTime="0:0:1.617" >
-          <Setter Property="Angle" Value="181" />
+          <Setter Property="RotateTransform.Angle" Value="175" />
         </KeyFrame>
         <KeyFrame KeyTime="0:0:2.017">
-          <Setter Property="Angle" Value="331"/>
+          <Setter Property="RotateTransform.Angle" Value="325"/>
         </KeyFrame>
         <KeyFrame KeyTime="0:0:2.783" >
-          <Setter Property="Angle" Value="415"/>
+          <Setter Property="RotateTransform.Angle" Value="409"/>
         </KeyFrame>
         <KeyFrame  KeyTime="0:0:3.217">
-          <Setter Property="Angle" Value="561"/>
-        </KeyFrame>
-      </Animation>
-    </Style.Animations>
-  </Style>
-
-  <Style Selector="Controls|ProgressRing:active /template/ Canvas#SixthCircle > RotateTransform">
-    <Style.Animations>
-      <!--DelayBetweenIterations="00:00:00.835"-->
-      <Animation Duration="0:0:3.217" IterationCount="Infinite" >
-        <KeyFrame KeyTime="0" >
-          <Setter Property="Angle" Value="-140"/>
-        </KeyFrame>
-        <KeyFrame KeyTime="0:0:0.433" >
-          <Setter Property="Angle" Value="-20"  />
-        </KeyFrame>
-        <KeyFrame KeyTime="0:0:1.2"  >
-          <Setter Property="Angle" Value="63"/>
-        </KeyFrame>
-        <KeyFrame KeyTime="0:0:1.617" >
-          <Setter Property="Angle" Value="175" />
-        </KeyFrame>
-        <KeyFrame KeyTime="0:0:2.017">
-          <Setter Property="Angle" Value="325"/>
-        </KeyFrame>
-        <KeyFrame KeyTime="0:0:2.783" >
-          <Setter Property="Angle" Value="409"/>
-        </KeyFrame>
-        <KeyFrame  KeyTime="0:0:3.217">
-          <Setter Property="Angle" Value="555"/>
+          <Setter Property="RotateTransform.Angle" Value="720"/>
         </KeyFrame>
       </Animation>
     </Style.Animations>

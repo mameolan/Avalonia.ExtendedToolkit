@@ -13,12 +13,9 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class ProgressRing : TemplatedControl
     {
-        private const string PseudoClass_Large = ":large";
-        private const string PseudoClass_Small = ":small";
         private const string PseudoClass_Active = ":active";
         private const string PseudoClass_Inactive = ":inactive";
 
-        private List<Action> _deferredActions = new List<Action>();
 
         /// <summary>
         /// get /set BindableWidth
@@ -49,21 +46,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public static readonly StyledProperty<bool> IsActiveProperty =
             AvaloniaProperty.Register<ProgressRing, bool>(nameof(IsActive), defaultValue: true);
-
-        /// <summary>
-        /// get/sets IsLarge
-        /// </summary>
-        public bool IsLarge
-        {
-            get { return (bool)GetValue(IsLargeProperty); }
-            set { SetValue(IsLargeProperty, value); }
-        }
-
-        /// <summary>
-        /// <see cref="IsLarge"/>
-        /// </summary>
-        public static readonly StyledProperty<bool> IsLargeProperty =
-            AvaloniaProperty.Register<ProgressRing, bool>(nameof(IsLarge), defaultValue: true);
 
         /// <summary>
         /// get/sets MaxSideLength
@@ -135,12 +117,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             IsVisibleProperty.Changed.AddClassHandler<ProgressRing>((o, e) => IsVisibleChanged(o, e));
             WidthProperty.Changed.AddClassHandler<ProgressRing>((o, e) => OnSizeChanged(o, e));
             HeightProperty.Changed.AddClassHandler<ProgressRing>((o, e) => OnSizeChanged(o, e));
-            IsLargeProperty.Changed.AddClassHandler<ProgressRing>((o, e) => IsLargeChangedCallback(o, e));
-        }
-
-        private static void IsLargeChangedCallback(ProgressRing ring, AvaloniaPropertyChangedEventArgs e)
-        {
-            ring.UpdateLargeState();
         }
 
         private static void OnSizeChanged(ProgressRing ring, AvaloniaPropertyChangedEventArgs e)
@@ -165,51 +141,14 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private static void IsActiveChanged(ProgressRing ring, AvaloniaPropertyChangedEventArgs e)
         {
-            //if(e.NewValue is bool)
-            //    ring.IsVisible = (bool)e.NewValue;
-            ring.UpdateActiveState();
-        }
-
-        private void UpdateActiveState()
-        {
-            PseudoClasses.Remove(PseudoClass_Inactive);
-            PseudoClasses.Remove(PseudoClass_Active);
-            Action action;
-
-            PseudoClasses.Set(PseudoClass_Active, IsActive);
-            PseudoClasses.Set(PseudoClass_Inactive, IsActive == false);
-
-            //if (IsActive)
-            //{  /*action = () =>*/
-            //    this.PseudoClasses.Add(PseudoClass_Active);
-
-            //}
-            //else
-            ///*action = () =>*/
-            //{
-            //    this.PseudoClasses.Add(PseudoClass_Inactive);
-
-            //}
-
-            //if (_deferredActions != null)
-            //    _deferredActions.Add(action);
-            //else
-            //    action();
+            ring.UpdatePseudoClasses();
         }
 
         private static void BindableWidthCallback(ProgressRing ring, AvaloniaPropertyChangedEventArgs e)
         {
-            //var action = new Action(() =>
-            //{
             ring.SetEllipseDiameter((double)e.NewValue);
             ring.SetEllipseOffset((double)e.NewValue);
             ring.SetMaxSideLength((double)e.NewValue);
-            //});
-
-            //if (ring._deferredActions != null)
-            //    ring._deferredActions.Add(action);
-            //else
-            //    action();
         }
 
         private void SetMaxSideLength(double width)
@@ -227,26 +166,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             SetValue(EllipseOffsetProperty, new Thickness(0, width / 2, 0, 0));
         }
 
-        private void UpdateLargeState()
-        {
-            PseudoClasses.Remove(PseudoClass_Large);
-            PseudoClasses.Remove(PseudoClass_Small);
-
-            Action action;
-
-            PseudoClasses.Set(PseudoClass_Large, IsLarge);
-            PseudoClasses.Set(PseudoClass_Small, IsLarge == false);
-            //if (IsLarge)
-            //    /*action = () =>*/ this.PseudoClasses.Add(PseudoClass_Large);
-            //else
-            //    /*action = () =>*/ this.PseudoClasses.Add(PseudoClass_Small);
-
-            //if (_deferredActions != null)
-            //    _deferredActions.Add(action);
-            //else
-            //    action();
-        }
-
         /// <summary>
         /// UpdateLargeState, UpdateActiveState
         /// </summary>
@@ -254,18 +173,22 @@ namespace Avalonia.ExtendedToolkit.Controls
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             base.OnTemplateApplied(e);
+            
             //make sure the states get updated
-            UpdateLargeState();
-            UpdateActiveState();
-            if (_deferredActions != null)
-            {
-                foreach (var action in _deferredActions)
-                {
-                    action();
-                }
-            }
-            _deferredActions = null;
+            UpdatePseudoClasses();
         }
+
+        private void UpdatePseudoClasses()
+        {
+            PseudoClasses.Remove(PseudoClass_Active);
+            PseudoClasses.Remove(PseudoClass_Inactive);
+
+            PseudoClasses.Add(IsActive ? PseudoClass_Active : PseudoClass_Inactive);
+        }
+
+
+
+
 
         /// <summary>
         /// sets the pseudo classes 
@@ -273,24 +196,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <param name="context"></param>
         public override void Render(DrawingContext context)
         {
-            if (IsLarge)
-            {
-                PseudoClasses.Set(PseudoClass_Large, IsLarge);
-            }
-            else
-            {
-                PseudoClasses.Set(PseudoClass_Small, IsLarge == false);
-            }
-
-            if (IsActive)
-            {
-                PseudoClasses.Set(PseudoClass_Active, IsActive);
-            }
-            else
-            {
-                PseudoClasses.Set(PseudoClass_Inactive, IsActive == false);
-            }
-
+            UpdatePseudoClasses();
             base.Render(context);
         }
     }
