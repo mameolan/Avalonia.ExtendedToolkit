@@ -80,7 +80,7 @@
       </ComboBox>
 
       <TextBlock Margin="10,0,0,0" Text="Color Schemes" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
-      <ComboBox IsEnabled="False"  Name="cmbColorScheme" Margin="10,1,0,1" Items="{Binding ColorSchemes}"
+      <ComboBox  Name="cmbColorScheme" Margin="10,1,0,1" Items="{Binding ColorSchemes}"
          SelectedIndex="0" SelectedItem="{Binding SelectedColorScheme}" Width="100"
                 >
         <ComboBox.ItemTemplate>
@@ -92,8 +92,8 @@
         </ComboBox.ItemTemplate>
       </ComboBox>
 
-      <TextBlock Margin="10,0,0,0" Text="Skins" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
-      <ComboBox IsEnabled="False"  Margin="10,1,0,1" Items="{Binding Skins}"
+      <!-- <TextBlock Margin="10,0,0,0" Text="Skins" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+      <ComboBox Margin="10,1,0,1" Items="{Binding Skins}"
          SelectedIndex="0" SelectedItem="{Binding SelectedSkin, Mode=TwoWay}" Width="100"
                 >
         <ComboBox.ItemTemplate>
@@ -103,62 +103,20 @@
           </DataTemplate>
 
         </ComboBox.ItemTemplate>
-      </ComboBox>
+      </ComboBox> -->
 
     </StackPanel>
     <Grid DockPanel.Dock="Bottom" HorizontalAlignment="Stretch">
-      <!--<Grid.ColumnDefinitions>
-        <ColumnDefinition/>
-        <ColumnDefinition/>
-      </Grid.ColumnDefinitions>-->
-
-      <!--<Controlz:SliderEx VerticalAlignment="Center" Width="300" Orientation="Horizontal"
-                         TickPlacement="TopLeft" TickFrequency="2"
-                         />-->
-
       
 
-      <!--<Controls:BusyIndicator IsBusy="True" BusyContent="Message"/>-->
 
-      <Controls:ChildWindow IsVisible="True"
-                                      Grid.Row="1"
-                                       x:Name="child01" Width="100" Height="200"
-                                       Title="TestChild 1"
-                                       HorizontalContentAlignment="Stretch"
-                                       VerticalContentAlignment="Stretch"
-                                       CloseByEscape="False"
-                                       IsAutoCloseEnabled="False"
-                                       OverlayBrush="Transparent"
-                                       BorderBrush="Green"
-                                       >
-        <Grid>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-          </Grid.RowDefinitions>
-          <TextBlock Grid.Row="0"
-                     Margin="20"
-                     FontSize="36"
-                     FontWeight="Bold"
-                     Text="awesome!" />
-          <TextBox Grid.Row="1"
-                   Margin="20"
-                   Text="Note: it's an auto closing window..." />
-          <Button Grid.Row="3"
-                  Margin="20"
-                  VerticalAlignment="Top"
-                  Content="Close Me"
-                  FontSize="20"
-                  FontWeight="Bold"
-                  IsDefault="True" />
-        </Grid>
-      </Controls:ChildWindow>
-
-
-
-
+      <!-- <Controlz:SliderEx VerticalAlignment="Center" Width="300" Orientation="Horizontal"
+                         TickPlacement="TopLeft" TickFrequency="2"
+                         /> -->
+  
+      <Views:StepBarView/>
+  
+  
     </Grid>
 
   </DockPanel>

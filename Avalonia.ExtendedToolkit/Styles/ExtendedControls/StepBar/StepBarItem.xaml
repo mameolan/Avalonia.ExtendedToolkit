@@ -1,0 +1,50 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+  <!--ported from https://github.com/HandyOrg/HandyControl-->
+  <Style Selector="Controls|StepBarItem">
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="ZIndex" Value="99" />
+    <Setter Property="ContentBorderBackground" Value="{DynamicResource MahApps.Brushes.White}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <StackPanel>
+            <Border Background="{TemplateBinding ContentBorderBackground}" ZIndex="99"
+                    HorizontalAlignment="Center"
+                    CornerRadius="12"
+                    BorderThickness="2"
+                    BorderBrush="{TemplateBinding Foreground}"
+                    Height="24"
+                    MinWidth="24">
+              <TextBlock Foreground="{TemplateBinding Foreground}"
+                         Margin="5,0,0,0"
+                         Text="{Binding Index,RelativeSource={RelativeSource TemplatedParent}}" />
+            </Border>
+            <ContentPresenter HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Content="{TemplateBinding Content}"
+                              TextBlock.Foreground="{TemplateBinding Foreground}"
+                              Margin="0,4,0,0" />
+          </StackPanel>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|StepBarItem[Status=Complete]">
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent3}" />
+  </Style>
+
+  <Style Selector="Controls|StepBarItem[Status=UnderWay]">
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+  </Style>
+
+  <Style Selector="Controls|StepBarItem[Status=Waiting]">
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent2}" />
+  </Style>
+</Styles>

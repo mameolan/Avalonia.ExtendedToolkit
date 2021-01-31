@@ -175,6 +175,13 @@
             </Grid>
           </ScrollViewer>
         </TabItem>
+        <TabItem Header="Step Bar" Foreground="{DynamicResource MahApps.Brushes.Black}">
+          <ScrollViewer>
+            <Grid>
+              <Views:StepBarView/>
+            </Grid>
+          </ScrollViewer>
+        </TabItem>
         <TabItem Header="Sliders" Foreground="{DynamicResource MahApps.Brushes.Black}">
           <ScrollViewer>
             <Grid>
