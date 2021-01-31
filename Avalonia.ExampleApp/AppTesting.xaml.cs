@@ -40,7 +40,7 @@ namespace Avalonia.ExampleApp
             //    singleViewLifetime.MainView = new MainView();
 
 
-            //ThemeManager.Instance.EnableTheme(mainWindow);
+            ThemeManager.Instance.EnableTheme(mainWindow);
 //            SkinManager.Instance.EnableSkin(mainWindow);
 
             //Splat.Locator.CurrentMutable.Register(

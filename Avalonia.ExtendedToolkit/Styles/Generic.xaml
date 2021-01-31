@@ -130,8 +130,8 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/IndexItemsControl/BaseControls/IndexListItem.xaml"/>
   <!-- IndexList end -->
   
-
-  
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/StepBar/StepBarItem.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/StepBar/StepBar.xaml"/>
   
 
 
