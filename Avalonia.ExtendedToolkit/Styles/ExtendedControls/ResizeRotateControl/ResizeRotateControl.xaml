@@ -1,0 +1,330 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit">
+
+  <Style Selector="Ellipse.ThumbCorner">
+    <Setter Property="Stroke" Value="Gray" />
+    <Setter Property="StrokeThickness" Value=".5" />
+    <Setter Property="Width" Value="7" />
+    <Setter Property="Height" Value="7" />
+    <Setter Property="Margin" Value="-2" />
+    <Setter Property="Fill" Value="Gray"/>
+  </Style>
+
+
+  <Style Selector="Ellipse.ThumbCornerThick">
+    <Setter Property="Stroke" Value="Gray" />
+    <Setter Property="StrokeThickness" Value=".5" />
+    <Setter Property="Width" Value="10" />
+    <Setter Property="Height" Value="10" />
+    <Setter Property="Margin" Value="-3" />
+    <Setter Property="Fill" Value="Gray"/>
+  </Style>
+
+
+  <Style Selector="Controls|MoveThumb">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Rectangle Fill="Transparent" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|RotateThumb">
+    <Setter Property="Width" Value="7"/>
+    <Setter Property="Height" Value="7"/>
+    <Setter Property="Margin" Value="0,-20,0,0"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+            <Ellipse Classes="ThumbCorner" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|ResizeThumb">
+    <Setter Property="Width" Value="7"/>
+    <Setter Property="Height" Value="7"/>
+    <Setter Property="Margin" Value="-2"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Ellipse Classes="ThumbCorner"/>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+
+  <Style Selector="Controls|RotateThumb.ThickStyle">
+    <Setter Property="Width" Value="10"/>
+    <Setter Property="Height" Value="10"/>
+    <Setter Property="Margin" Value="0,-25,0,0"/>
+     <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+            <Ellipse Classes="ThumbCornerThick" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|ResizeThumb.ThickStyle">
+    <Setter Property="Width" Value="10"/>
+    <Setter Property="Height" Value="10"/>
+    <Setter Property="Margin" Value="-3"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Ellipse Classes="ThumbCornerThick"/>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+             
+  </Style>
+  
+  
+
+  
+
+  
+  <Style Selector="Controls|ResizeRotateControl">
+    <Setter Property="MinHeight" Value="50" />
+    <Setter Property="MinWidth" Value="50" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
+            <Grid Margin="3,20,3,3">
+              <ContentControl Content="{TemplateBinding Content}"
+                              Margin="{TemplateBinding Padding}" />
+            </Grid>
+
+            <Controls:MoveThumb Cursor="SizeAll"
+                                x:Name="PART_MoveThumb"
+                                IsVisible="{TemplateBinding CanDrag}"
+                                Margin="10,24,10,10" />
+
+            <Grid IsHitTestVisible="False" Margin="3,20,3,3" x:Name="PART_VisualGrid"
+              >
+              <Rectangle StrokeThickness="1"
+                        Margin="1"
+                        Stroke="Gray"
+                        ZIndex="-99" />
+              <Line StrokeThickness="1" StartPoint="0,0" EndPoint="0,20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Margin="0,-19,0,0"
+                    Stroke="Gray" 
+                    IsVisible="{TemplateBinding IsRotationEnabled}"
+                    />
+            </Grid>
+
+            <Grid Margin="3,20,3,3" x:Name="PART_ThumbGrid">
+              <Controls:RotateThumb 
+                            Cursor="Hand"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Center"
+                            IsVisible="{TemplateBinding IsRotationEnabled}"
+                            >
+                
+              </Controls:RotateThumb>
+
+              <Controls:ResizeThumb
+                           Cursor="SizeNorthSouth"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Stretch"
+                           x:Name="PART_ResizeThumbTopCenter"
+                           IsVisible="{TemplateBinding CanResize}"
+                           />
+                
+              <Controls:ResizeThumb
+                           Cursor="SizeWestEast"
+                           VerticalAlignment="Stretch"
+                           HorizontalAlignment="Left"
+                           x:Name="PART_ResizeThumbLeftCenter"
+                           IsVisible="{TemplateBinding CanResize}"
+                           />
+                
+              <Controls:ResizeThumb
+                              Cursor="SizeWestEast"
+                              VerticalAlignment="Stretch"
+                              HorizontalAlignment="Right"
+                              x:Name="PART_ResizeThumbRightCenter"
+                              IsVisible="{TemplateBinding CanResize}"
+                              />
+                
+              <Controls:ResizeThumb 
+                            Cursor="SizeNorthSouth"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Stretch"
+                            x:Name="PART_ResizeThumbBottomCenter"
+                            IsVisible="{TemplateBinding CanResize}"
+                            />
+                
+              <Controls:ResizeThumb 
+                             Cursor="TopLeftCorner"
+                             VerticalAlignment="Top"
+                             HorizontalAlignment="Left"
+                             x:Name="PART_ResizeThumbTopLeft"
+                             IsVisible="{TemplateBinding CanResize}"
+                             />
+                
+              <Controls:ResizeThumb 
+                             Cursor="TopRightCorner"
+                             VerticalAlignment="Top"
+                             HorizontalAlignment="Right"
+                             x:Name="PART_ResizeThumbTopRight"
+                             IsVisible="{TemplateBinding CanResize}"
+                             />
+                
+              <Controls:ResizeThumb 
+                             Cursor="BottomLeftCorner"
+                             VerticalAlignment="Bottom"
+                             HorizontalAlignment="Left"
+                             x:Name="PART_ResizeThumbBottomLeft"
+                             IsVisible="{TemplateBinding CanResize}"
+                             />
+                
+              <Controls:ResizeThumb 
+                             Cursor="BottomRightCorner"
+                             VerticalAlignment="Bottom"
+                             HorizontalAlignment="Right"
+                             x:Name="PART_ResizeThumbBottomRight"
+                             IsVisible="{TemplateBinding CanResize}"
+                             />
+            </Grid>
+         
+            <Controls:SizeChrome VerticalAlignment="Center" Margin="3,8,3,3"  
+                  x:Name="PART_SizeChrome" IsVisible="{TemplateBinding ShowAlwaysSizing}"/>
+         
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|ResizeRotateControl.ThickStyle">
+    <Setter Property="MinHeight" Value="60" />
+    <Setter Property="MinWidth" Value="60" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
+            <Grid Margin="3,23,3,3">
+              <ContentControl Content="{TemplateBinding Content}"
+                              Margin="{TemplateBinding Padding}" />
+            </Grid>
+
+            <Controls:MoveThumb Cursor="SizeAll"
+                                x:Name="PART_MoveThumb"
+                                IsVisible="{TemplateBinding CanDrag}"
+                                Margin="10,27,10,10" />
+
+            <Grid IsHitTestVisible="False" Margin="3,23,3,3" x:Name="PART_VisualGrid"
+              >
+              <Rectangle StrokeThickness="2"
+                        Margin="1"
+                        Stroke="Gray"
+                        ZIndex="-99" />
+              <Line StrokeThickness="2" StartPoint="0,0" EndPoint="0,25"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Margin="0,-23,0,0"
+                    Stroke="Gray" 
+                    IsVisible="{TemplateBinding IsRotationEnabled}"
+                    />
+            </Grid>
+
+            <Grid Margin="3,25,3,3" x:Name="PART_ThumbGrid">
+              <Controls:RotateThumb 
+                            Classes="ThickStyle"
+                            Cursor="Hand"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Center"
+                            IsVisible="{TemplateBinding IsRotationEnabled}"
+                            />
+                
+              <Controls:ResizeThumb
+                           Classes="ThickStyle"
+                           Cursor="SizeNorthSouth"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Stretch"
+                           x:Name="PART_ResizeThumbTopCenter"
+                           />
+                
+
+              <Controls:ResizeThumb
+                           Classes="ThickStyle"
+                           Cursor="SizeWestEast"
+                           VerticalAlignment="Stretch"
+                           HorizontalAlignment="Left"
+                           x:Name="PART_ResizeThumbLeftCenter"
+                           />
+                
+              
+              <Controls:ResizeThumb
+                              Classes="ThickStyle"
+                              Cursor="SizeWestEast"
+                              VerticalAlignment="Stretch"
+                              HorizontalAlignment="Right"
+                              x:Name="PART_ResizeThumbRightCenter"
+                              />
+                
+              
+              <Controls:ResizeThumb 
+                            Classes="ThickStyle"
+                            Cursor="SizeNorthSouth"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Stretch"
+                            x:Name="PART_ResizeThumbBottomCenter"
+                            />
+                
+              
+              <Controls:ResizeThumb 
+                             Classes="ThickStyle"
+                             Cursor="TopLeftCorner"
+                             VerticalAlignment="Top"
+                             HorizontalAlignment="Left"
+                             x:Name="PART_ResizeThumbTopLeft"
+                             />
+                
+
+              <Controls:ResizeThumb 
+                             Classes="ThickStyle"
+                             Cursor="TopRightCorner"
+                             VerticalAlignment="Top"
+                             HorizontalAlignment="Right"
+                             x:Name="PART_ResizeThumbTopRight"
+                             />
+                
+              <Controls:ResizeThumb 
+                             Classes="ThickStyle"
+                             Cursor="BottomLeftCorner"
+                             VerticalAlignment="Bottom"
+                             HorizontalAlignment="Left"
+                             x:Name="PART_ResizeThumbBottomLeft"
+                             />
+                
+              <Controls:ResizeThumb 
+                             Classes="ThickStyle"
+                             Cursor="BottomRightCorner"
+                             VerticalAlignment="Bottom"
+                             HorizontalAlignment="Right"
+                             x:Name="PART_ResizeThumbBottomRight"
+                             />
+            </Grid>
+         
+            <Controls:SizeChrome VerticalAlignment="Center" Margin="3,8,3,3"  
+                  x:Name="PART_SizeChrome" IsVisible="{TemplateBinding ShowAlwaysSizing}"/>
+         
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+</Styles>

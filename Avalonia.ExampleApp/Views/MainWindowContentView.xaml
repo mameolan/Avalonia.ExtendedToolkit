@@ -182,6 +182,9 @@
         <TabItem Header="IndexListControls">
           <Views:IndexListDemoView/>
         </TabItem>
+        <TabItem Header="Resize Rotate Control">
+          <Views:ResizeRotateControlDemoView/>
+        </TabItem>
         <TabItem Header="Colors" >
           <Views:ColorExample/>
         </TabItem> 

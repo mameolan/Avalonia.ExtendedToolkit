@@ -1,0 +1,32 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit">
+
+  <Styles.Resources>
+    <Controls:DoubleFormatConverter x:Key="doubleFormatConverter" />
+  </Styles.Resources>
+
+  <Style Selector="Controls|SizeChrome">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Background="{TemplateBinding Background}">
+            <TextBlock Text="{Binding Path=Width, Converter={StaticResource doubleFormatConverter}, StringFormat={}{0}}"
+                       Background="Transparent"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="10" />
+            <TextBlock Text="{Binding Path=Height, Converter={StaticResource doubleFormatConverter}, StringFormat={}{0}}"
+                       Background="Transparent"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="0,25,0,0"
+                       FontSize="10" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</Styles>

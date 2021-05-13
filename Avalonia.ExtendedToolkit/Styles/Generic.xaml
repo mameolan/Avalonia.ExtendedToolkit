@@ -135,7 +135,9 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/StepBar/StepBarItem.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/StepBar/StepBar.xaml"/>
   
-
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ResizeRotateControl/ResizeRotateControl.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ResizeRotateControl/ResizeRotateChrome.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ResizeRotateControl/SizeChrome.xaml"/>
 
 
 </Styles>
