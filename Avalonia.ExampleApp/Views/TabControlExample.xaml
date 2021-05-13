@@ -1,0 +1,164 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             xmlns:tk="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.TabControlExample">
+
+  <UserControl.Resources>
+    <ControlTemplate x:Key="TabControlConfigDataTemplate">
+      <Grid>
+        <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="5 5"
+                               VerticalAlignment="Center"
+                               Text="Underlined type" 
+                               Foreground="{DynamicResource MahApps.Brushes.Black}"
+                               />
+                    <ComboBox x:Name="UnderlinedComboBox"
+                              Width="100"
+                              Margin="5 5"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              Items="{Binding UnderlineValues}"
+                              SelectedItem="{Binding SelectedUnderline, Mode=TwoWay}" />
+                    <TextBlock Margin="5 5"
+                               VerticalAlignment="Center"
+                               Text="TabStripPlacement" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+                    <ComboBox x:Name="TabStripPlacementComboBox"
+                              Width="100"
+                              Margin="5 5"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              Items="{Binding TabStripPlacementValues}"
+                              SelectedItem="{Binding SelectedTabStripPlacement, Mode=TwoWay}" />
+                    <TextBlock Margin="5 5"
+                               VerticalAlignment="Center"
+                               Text="UnderlinePlacement" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+                    <ComboBox x:Name="UnderlinePlacementComboBox"
+                              Width="100"
+                              Margin="5 5"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              Items="{Binding UnderlinedPlacementValues}"
+                              SelectedItem="{Binding SelectedUnderlinedPlacement, Mode=TwoWay}" />
+                </StackPanel>
+      </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="MetroTabControlConfigDataTemplate">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="5 5"
+                               VerticalAlignment="Center"
+                               Text="Keep VisualTree in memory" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+                    <!-- <CheckBox x:Name="KeepVisualTreeInMemoryCheckBox"
+                              Margin="5 5"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              IsChecked="{Binding Path=KeepVisualTreeInMemoryWhenChangingTabs, Mode=TwoWay}" /> -->
+                    <TextBlock Margin="5 5"
+                               VerticalAlignment="Center"
+                               Text="Underlined type" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+                    <ComboBox x:Name="UnderlinedComboBox"
+                              Width="100"
+                              Margin="5 5"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              Items="{Binding UnderlineValues}"
+                              SelectedItem="{Binding SelectedUnderline, Mode=TwoWay}" />
+                    <TextBlock Margin="5 5"
+                               VerticalAlignment="Center"
+                               Text="TabStripPlacement" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+                    <ComboBox x:Name="TabStripPlacementComboBox"
+                              Width="100"
+                              Margin="5 5"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              Items="{Binding TabStripPlacementValues}"
+                              SelectedItem="{Binding SelectedTabStripPlacement, Mode=TwoWay}" />
+                    <TextBlock Margin="5 5"
+                               VerticalAlignment="Center"
+                               Text="UnderlinePlacement" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+                    <ComboBox x:Name="UnderlinePlacementComboBox"
+                              Width="100"
+                              Margin="5 5"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              Items="{Binding UnderlinedPlacementValues}"
+                              SelectedItem="{Binding SelectedUnderlinedPlacement, Mode=TwoWay}" />
+                </StackPanel>
+            </Grid>
+        </ControlTemplate>
+
+  </UserControl.Resources>
+  <Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+    </Grid.RowDefinitions>
+    <StackPanel Margin="5 10 5 0" Grid.Row="0">
+        <!-- <Expander Margin="0"
+                  Header="TabControlExt TabControl"
+                  IsExpanded="True"> -->
+            <StackPanel Margin="15 5 15 5">
+                <TextBlock Text="TabControlExt" Classes="DescriptionHeaderStyle" />
+                <ContentControl Template="{StaticResource TabControlConfigDataTemplate}" />
+                <Controls:TabControlExt x:Name="DefaultTabControl"
+                            Height="200"
+                            HeaderFontFamily="Segoe Script"
+                            HeaderFontSize="18"
+                            UnderlinePlacement="{Binding SelectedUnderlinedPlacement, Mode=TwoWay}"
+                            TabStripPlacement="{Binding SelectedTabStripPlacement, Mode=TwoWay}"
+                            Underlined="{Binding SelectedUnderline, Mode=TwoWay}"
+                            >
+                    <Controls:TabItemExt Header="Item _1">
+                        <TextBlock FontSize="30" Text="Content" Classes="DescriptionHeaderStyle"/>
+                    </Controls:TabItemExt>
+                    <Controls:TabItemExt Header="Item _2">
+                        <TextBlock FontSize="30" Text="More content" Classes="DescriptionHeaderStyle" />
+                    </Controls:TabItemExt>
+                    <Controls:TabItemExt Header="Item _3">
+                        <TextBlock FontSize="30" Text="More more content" Classes="DescriptionHeaderStyle"/>
+                    </Controls:TabItemExt>
+                    <Controls:TabItemExt Header="Item _4">
+                        <TextBlock FontSize="30" Text="So much content!" Classes="DescriptionHeaderStyle"/>
+                    </Controls:TabItemExt>
+                    <Controls:TabItemExt Header="Item _5">
+                        <TextBlock FontSize="30" Text="Content!" Classes="DescriptionHeaderStyle"/>
+                    </Controls:TabItemExt>
+                    <Controls:TabItemExt Header="Item _6">
+                        <TextBlock FontSize="30" Text="This is not content (it is)" Classes="DescriptionHeaderStyle"/>
+                    </Controls:TabItemExt>
+                </Controls:TabControlExt>
+                </StackPanel>
+                <!-- </Expander>     -->
+    </StackPanel>
+
+    <StackPanel Grid.Row="1" Margin="5 10 5 0">
+        <TextBlock Text="TabControl" Classes="DescriptionHeaderStyle" />
+        <TabControl TabStripPlacement="{Binding SelectedTabStripPlacement}"
+                >
+                <TabItem Header="Item _1">
+                    <TextBlock FontSize="30" Text="Content" Classes="DescriptionHeaderStyle"/>
+                </TabItem>
+                <TabItem Header="Item _2">
+                    <TextBlock FontSize="30" Text="More content" Classes="DescriptionHeaderStyle"/>
+                </TabItem>
+                <TabItem Header="Item _3">
+                    <TextBlock FontSize="30" Text="More more content" Classes="DescriptionHeaderStyle"/>
+                </TabItem>
+                <TabItem Header="Item _4">
+                    <TextBlock FontSize="30" Text="So much content!" Classes="DescriptionHeaderStyle"/>
+                </TabItem>
+                <TabItem Header="Item _5">
+                    <TextBlock FontSize="30" Text="Content!" Classes="DescriptionHeaderStyle"/>
+                </TabItem>
+                <TabItem Header="Item _6">
+                    <TextBlock FontSize="30" Text="This is not content (it is)" Classes="DescriptionHeaderStyle"/>
+                </TabItem>
+        </TabControl>
+    </StackPanel>
+  </Grid>
+</UserControl>

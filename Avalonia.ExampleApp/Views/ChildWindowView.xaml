@@ -7,6 +7,13 @@
               mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              Name="childWindowView"
              x:Class="Avalonia.ExampleApp.Views.ChildWindowView">
+    <UserControl.Styles>
+    <Style Selector="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+    </Style>
+    </UserControl.Styles>
+
   <Grid x:Name="RootGrid">
     
           <StackPanel >

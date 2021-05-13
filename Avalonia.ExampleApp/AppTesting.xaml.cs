@@ -29,10 +29,10 @@ namespace Avalonia.ExampleApp
 
             TestMainWindow mainWindow = new TestMainWindow();
             mainWindow.DataContext = vm;
-            mainWindow.WindowState = Controls.WindowState.Maximized;
+            //mainWindow.WindowState = Controls.WindowState.Maximized;
             mainWindow.WindowState = Controls.WindowState.Normal;
-            mainWindow.HorizontalContentAlignment = Layout.HorizontalAlignment.Stretch;
-            mainWindow.HorizontalAlignment = Layout.HorizontalAlignment.Stretch;
+            // mainWindow.HorizontalContentAlignment = Layout.HorizontalAlignment.Stretch;
+            // mainWindow.HorizontalAlignment = Layout.HorizontalAlignment.Stretch;
 
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
                 desktopLifetime.MainWindow = mainWindow;

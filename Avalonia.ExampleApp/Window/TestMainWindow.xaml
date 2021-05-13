@@ -114,8 +114,13 @@
                          TickPlacement="TopLeft" TickFrequency="2"
                          /> -->
   
-      <Views:StepBarView/>
+      <!-- <Controls:TabControlExt Underlined="TabItems" UnderlinePlacement="Bottom">
+        <Controls:TabItemExt Header="Test1" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+        <Controls:TabItemExt Header="Test2" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+      </Controls:TabControlExt> -->
   
+      <Views:TabControlExample/>
+
   
     </Grid>
 

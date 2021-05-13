@@ -5,6 +5,13 @@
              xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.OutlookBarView">
+  <UserControl.Styles>
+    <Style Selector="TextBlock">
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+    </Style>
+  </UserControl.Styles>
+
   <DockPanel>
     <Controls:OutlookBar DockPanel.Dock="Left"  Name="outlook1"   Header="OutlookBar"
                          IsCloseButtonVisible="False"

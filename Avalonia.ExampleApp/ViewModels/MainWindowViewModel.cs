@@ -1,4 +1,5 @@
 ﻿using Avalonia.Collections;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.ExampleApp.Model;
 using Avalonia.ExampleApp.Views;
@@ -210,6 +211,66 @@ namespace Avalonia.ExampleApp.ViewModels
             }
         }
 
+        private ObservableCollection<Dock> _tabStripPlacementValues;
+        public ObservableCollection<Dock> TabStripPlacementValues
+        {
+            get { return _tabStripPlacementValues; }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _tabStripPlacementValues, value);
+            }
+        }
+
+        private Dock _selectedTabStripPlacement;
+        public Dock SelectedTabStripPlacement
+        {
+            get { return _selectedTabStripPlacement; }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedTabStripPlacement, value);
+            }
+        }
+
+        private ObservableCollection<UnderlinedType> _underlineValues;
+        public ObservableCollection<UnderlinedType> UnderlineValues
+        {
+            get { return _underlineValues; }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _underlineValues, value);
+            }
+        }
+
+
+        private UnderlinedType _selectedUnderline;
+        public UnderlinedType SelectedUnderline
+        {
+            get { return _selectedUnderline; }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedUnderline, value);
+            }
+        }
+
+        private ObservableCollection<Dock?> _underlinedPlacementValues;
+        public ObservableCollection<Dock?> UnderlinedPlacementValues
+        {
+            get { return _underlinedPlacementValues; }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _underlinedPlacementValues, value);
+            }
+        }
+
+        private Dock? _selectedUnderlinedPlacemet;
+        public Dock? SelectedUnderlinedPlacement
+        {
+            get { return _selectedUnderlinedPlacemet; }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedUnderlinedPlacemet, value);
+            }
+        }
 
 
 
@@ -284,7 +345,27 @@ namespace Avalonia.ExampleApp.ViewModels
             HamburgerMenuListsCommand = ReactiveCommand.Create<object>(x => ExecuteHamburgerMenuListsCommand(x), outputScheduler: RxApp.MainThreadScheduler);
             HamburgerMenuProfileCommand = ReactiveCommand.Create<object>(x => ExecuteHamburgerMenuProfileCommand(x), outputScheduler: RxApp.MainThreadScheduler);
 
+            UnderlinedPlacementValues = new ObservableCollection<Dock?>();
+            UnderlinedPlacementValues.Add(null);
+            foreach (Dock entry in Enum.GetValues(typeof(Dock)))
+            {
+                UnderlinedPlacementValues.Add(entry);
+            }
+            SelectedUnderlinedPlacement=UnderlinedPlacementValues.FirstOrDefault();
 
+            TabStripPlacementValues = new ObservableCollection<Dock>();
+            foreach (Dock entry in Enum.GetValues(typeof(Dock)))
+            {
+                TabStripPlacementValues.Add(entry);
+            }
+            SelectedTabStripPlacement=TabStripPlacementValues.FirstOrDefault();
+
+            UnderlineValues = new ObservableCollection<UnderlinedType>();
+            foreach (UnderlinedType entry in Enum.GetValues(typeof(UnderlinedType)))
+            {
+                UnderlineValues.Add(entry);
+            }
+            SelectedUnderline=UnderlineValues.FirstOrDefault();
 
 
         }

@@ -6,158 +6,79 @@
     xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
     xmlns:Controlz="clr-namespace:Avalonia.Controlz.Controls;assembly=Avalonia.Controlz"
     xmlns:System="clr-namespace:System;assembly=mscorlib">
-  <Styles.Resources>
-    <converters:UnderlinedTypeToBoolConverter x:Key="UnderlinedTypeToBoolConverter"/>
-  </Styles.Resources>
 
-  <Style Selector="TabControl">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
-    <Setter Property="BorderBrush" Value="{x:Null}" />
-    <Setter Property="Controls:ControlsHelper.HeaderFontSize" Value="{DynamicResource MahApps.Sizes.Font.TabItem}" />
-    <Setter Property="Controls:TabControlHelper.UnderlineBrush" Value="{DynamicResource MahApps.Brushes.GrayNormal}" />
-    <Setter Property="Controls:TabControlHelper.UnderlineMouseOverBrush" Value="{DynamicResource MahApps.Brushes.GrayHover}" />
-    <Setter Property="Controls:TabControlHelper.UnderlineMouseOverSelectedBrush" Value="{DynamicResource MahApps.Brushes.Highlight}" />
-    <Setter Property="Controls:TabControlHelper.UnderlineSelectedBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Grid>
-            <Grid.ColumnDefinitions>
-              <tk:ColumnDefinitionExt Name="ColumnDefinition0" />
-              <tk:ColumnDefinitionExt Name="ColumnDefinition1" Width="0" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-              <tk:RowDefinitionExt Name="RowDefinition0" Height="Auto" />
-              <tk:RowDefinitionExt Name="RowDefinition1" Height="*" />
-            </Grid.RowDefinitions>
-            <Grid x:Name="HeaderPanelGrid"
-                  Grid.Row="0"
-                  Grid.Column="0"
-                  ZIndex="1">
-              <ScrollViewer HorizontalScrollBarVisibility="Auto">
-                <Grid Margin="10">
-                  <Controls:Underline x:Name="Underline"
-                                      Background="Transparent"
-                                      BorderBrush="{TemplateBinding Controls:TabControlHelper.UnderlineBrush}"
-                                      LineThickness="1"
-                                      Placement="Bottom"
-                                      IsVisible="False" />
-                  <ItemsPresenter Name="PART_ItemsPresenter"
-                                    Items="{TemplateBinding Items}"
-                                    ItemTemplate="{TemplateBinding ItemTemplate}"
-                                    ItemsPanel="{TemplateBinding ItemsPanel}"
-                                />
-                </Grid>
-              </ScrollViewer>
-              
-              
-            </Grid>
-            <Border x:Name="ContentPanel"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Background="{TemplateBinding Background}"
+    <Style Selector="TabControl">        
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border
+                    Margin="{TemplateBinding Margin}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
-                    >
-              <ContentPresenter x:Name="PART_SelectedContentHost"
-                                Margin="{TemplateBinding Padding}"
-                                Content="{TemplateBinding SelectedContent}"
-                                 />
-            </Border>
-          </Grid>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
+                    Background="{TemplateBinding Background}"
+                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                    <DockPanel>
+                        <ItemsPresenter
+                            Name="PART_ItemsPresenter"
+                            Items="{TemplateBinding Items}"
+                            ItemsPanel="{TemplateBinding ItemsPanel}"
+                            ItemTemplate="{TemplateBinding ItemTemplate}">
+                        </ItemsPresenter>
+                        <ContentPresenter
+                            Name="PART_SelectedContentHost"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding SelectedContent}"
+                            ContentTemplate="{TemplateBinding SelectedContentTemplate}">
+                        </ContentPresenter>
+                    </DockPanel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    
+    <Style Selector="TabControl[TabStripPlacement=Top]">
+        <Setter Property="Padding" Value="0 4 0 0"/>
+    </Style>
+    
+    <Style Selector="TabControl[TabStripPlacement=Top] /template/ ItemsPresenter#PART_ItemsPresenter">
+        <Setter Property="DockPanel.Dock" Value="Top"/>
+    </Style>
+    
+    <Style Selector="TabControl[TabStripPlacement=Bottom] /template/ ItemsPresenter#PART_ItemsPresenter">
+        <Setter Property="DockPanel.Dock" Value="Bottom"/>
+    </Style>
+    
+    <Style Selector="TabControl[TabStripPlacement=Bottom]">
+        <Setter Property="Padding" Value="0 0 0 4"/>
+    </Style>
+    
+    <Style Selector="TabControl[TabStripPlacement=Left] /template/ ItemsPresenter#PART_ItemsPresenter">
+        <Setter Property="DockPanel.Dock" Value="Left"/>
+    </Style>
+    
+    <Style Selector="TabControl[TabStripPlacement=Left] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+        <Setter Property="Orientation" Value="Vertical"/>
+    </Style>
+    
+    <Style Selector="TabControl[TabStripPlacement=Left]">
+        <Setter Property="Padding" Value="4 0 0 0"/>
+    </Style>
+    
+    <Style Selector="TabControl[TabStripPlacement=Right] /template/ ItemsPresenter#PART_ItemsPresenter">
+        <Setter Property="DockPanel.Dock" Value="Right"/>
+    </Style>
+    
+    <Style Selector="TabControl[TabStripPlacement=Right] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+        <Setter Property="Orientation" Value="Vertical"/>
+    </Style>
+    
+    <Style Selector="TabControl[TabStripPlacement=Right]">
+        <Setter Property="Padding" Value="0 0 0 4"/>
+    </Style>
 
-  <Style Selector="TabControl /template/ Controls|Underline#Underline">
-    <Setter Property="IsVisible" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Converter={StaticResource UnderlinedTypeToBoolConverter}, ConverterParameter={x:Static Controls:UnderlinedType.TabPanel}}"/>
-  </Style>
-
-  <!--TabStripPlacement Bottom-->
-  <Style Selector="TabControl[TabStripPlacement=Bottom] /template/ Border#ContentPanel">
-    <Setter Property="Grid.Row" Value="0" />
-  </Style>
-
-  <Style Selector="TabControl[TabStripPlacement=Bottom] /template/ Grid#HeaderPanelGrid">
-    <Setter Property="Grid.Row" Value="1" />
-    <Setter Property="Margin" Value="2 0 2 2" />
-  </Style>
-
-  <Style Selector="TabControl[TabStripPlacement=Bottom] /template/ tk|RowDefinitionExt#RowDefinition0">
-    <Setter Property="Height" Value="*" />
-  </Style>
-
-  <Style Selector="TabControl[TabStripPlacement=Bottom] /template/ tk|RowDefinitionExt#RowDefinition1">
-    <Setter Property="Height" Value="Auto" />
-  </Style>
-
-  <Style Selector="TabControl[TabStripPlacement=Bottom] /template/ Controls|Underline#Underline">
-    <Setter Property="Placement" Value="Top" />
-  </Style>
-
-  <!--TabStripPlacement Left-->
-  <Style Selector="TabControl[TabStripPlacement=Left] /template/ tk|ColumnDefinitionExt#ColumnDefinition0">
-    <Setter Property="Width" Value="Auto" />
-  </Style>
-
-  <Style Selector="TabControl[TabStripPlacement=Left] /template/ tk|ColumnDefinitionExt#ColumnDefinition1">
-    <Setter Property="Width" Value="*" />
-  </Style>
-
-  <Style Selector="TabControl[TabStripPlacement=Left] /template/ Border#ContentPanel">
-    <Setter Property="Grid.Column" Value="1" />
-    <Setter Property="Grid.Row" Value="0" />
-  </Style>
-
-  <Style Selector="TabControl[TabStripPlacement=Left] /template/ Grid#HeaderPanelGrid">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="0" />
-    <Setter Property="Margin" Value="2 2 0 2" />
-  </Style>
-
-  <Style Selector="TabControl[TabStripPlacement=Left] /template/ tk|RowDefinitionExt#RowDefinition0">
-    <Setter  Property="Height" Value="*" />
-  </Style>
-
-  <Style Selector="TabControl[TabStripPlacement=Left] /template/ tk|RowDefinitionExt#RowDefinition1">
-    <Setter  Property="Height" Value="0" />
-  </Style>
-
-  <Style Selector="TabControl[TabStripPlacement=Left] /template/ Controls|Underline#Underline">
-    <Setter Property="Placement" Value="Right" />
-  </Style>
-
-  <!--TabStripPlacement Right-->
-  <Style Selector="TabControl[TabStripPlacement=Right] /template/ tk|ColumnDefinitionExt#ColumnDefinition0">
-    <Setter Property="Width" Value="*" />
-  </Style>
-
-  <Style Selector="TabControl[TabStripPlacement=Right] /template/ tk|ColumnDefinitionExt#ColumnDefinition1">
-    <Setter Property="Width" Value="Auto" />
-  </Style>
-
-  <Style Selector="TabControl[TabStripPlacement=Right] /template/ Border#ContentPanel">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="0" />
-  </Style>
-
-  <Style Selector="TabControl[TabStripPlacement=Right] /template/ Grid#HeaderPanelGrid">
-    <Setter Property="Grid.Column" Value="1" />
-    <Setter Property="Grid.Row" Value="0" />
-    <Setter Property="Margin" Value="0 2 2 2" />
-  </Style>
-
-  <Style Selector="TabControl[TabStripPlacement=Right] /template/ tk|RowDefinitionExt#RowDefinition0">
-    <Setter Property="Height" Value="*" />
-  </Style>
-
-  <Style Selector="TabControl[TabStripPlacement=Right] /template/ tk|RowDefinitionExt#RowDefinition1">
-    <Setter Property="Height" Value="0" />
-  </Style>
-
-  <Style Selector="TabControl[TabStripPlacement=Right] /template/ Controls|Underline#Underline">
-    <Setter Property="Placement" Value="Left" />
-  </Style>
 
 </Styles>

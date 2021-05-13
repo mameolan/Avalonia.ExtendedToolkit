@@ -5,7 +5,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.DataGridView">
   <TabControl>
-    <TabItem Header="Metro Style" Foreground="{DynamicResource MahApps.Brushes.Black}">
+    <TabItem Header="Metro Style">
       <Grid>
       <DataGrid Items="{Binding Albums}"
                  RowHeaderWidth="20"
@@ -16,6 +16,12 @@
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"
         >
+        <DataGrid.Styles>
+          <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+          </Style>
+        </DataGrid.Styles>
+
         <DataGrid.Columns>
           <DataGridCheckBoxColumn
             Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
@@ -40,7 +46,7 @@
 
       </Grid>
     </TabItem>
-    <TabItem Header="Azure Style" Foreground="{DynamicResource MahApps.Brushes.Black}">
+    <TabItem Header="Azure Style">
       <Grid>
       <DataGrid Classes="Azure" Items="{Binding Albums}"
                  RowHeaderWidth="20"
@@ -50,8 +56,12 @@
                 VerticalScrollBarVisibility="Auto"
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"
-                
         >
+        <DataGrid.Styles>
+          <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+          </Style>
+        </DataGrid.Styles>
         <DataGrid.Columns>
           <DataGridCheckBoxColumn
             Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
@@ -59,7 +69,6 @@
             />
           <DataGridCheckBoxColumn Binding="{Binding IsSelected, Mode=TwoWay}"
              Header="Album Selected"
-                                  
            />
 
           <DataGridTextColumn Binding="{Binding Title}" Header="Title" />

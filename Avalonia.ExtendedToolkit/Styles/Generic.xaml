@@ -47,6 +47,8 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/WindowCommands.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ToggleSwitch.xaml"/>
 
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/TabControlExt/TabControlExt.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/TabControlExt/TabItemExt.xaml"/>
 
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BusyIndicator.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Badget.xaml"/>

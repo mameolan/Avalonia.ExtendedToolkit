@@ -76,7 +76,7 @@
 
 
     <StackPanel Grid.Column="1" Margin="10">
-        <TextBlock Text="Formated Output:"/>       
+        <TextBlock Text="Formated Output:" Foreground="{DynamicResource MahApps.Brushes.Black}"/>       
 
         <TextBlock DataContext="{Binding SelectedObject, ElementName=pg}" Margin="0,20,0,0" 
                    Text="{Binding Name}"
@@ -84,6 +84,7 @@
                    FontSize="{Binding FontSize}"
                    FontWeight="{Binding FontWeight}"
                    FontStyle="{Binding FontStyle}"
+                   Foreground="{DynamicResource MahApps.Brushes.Black}"
                    />  
       
     </StackPanel>
