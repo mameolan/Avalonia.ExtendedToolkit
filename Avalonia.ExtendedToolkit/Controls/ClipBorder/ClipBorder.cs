@@ -272,9 +272,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             var backgroundGeometry = _backgroundGeometryCache;
             var optimizeClipRendering = OptimizeClipRendering;
 
+
+
             // First check if the user wants optimized rendering of the clipped Child
             if (optimizeClipRendering)
             {
+                if(borderGeometry==null)
+                {
+                    return;
+                }
                 // In order to optimize the rendering of the clipped Child,
                 // just draw the borderGeometry filled with BorderBrush. The Child
                 // will be rendered on top of it. This is done to prevent any gaps

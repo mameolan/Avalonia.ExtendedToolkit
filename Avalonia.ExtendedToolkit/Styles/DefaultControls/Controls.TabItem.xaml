@@ -4,417 +4,67 @@
     xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
     xmlns:tk="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit"
     xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
-    
     xmlns:System="clr-namespace:System;assembly=mscorlib">
-  <Styles.Resources>
-    <converters:UnderlinedTypeToBoolConverter x:Key="UnderlinedTypeToBoolConverter"/>
-    <converters:UnderlinedTypeToInverseBoolConverter x:Key="UnderlinedTypeToInverseBoolConverter"/>
-  </Styles.Resources>
 
-
-  <Style Selector="TabItem">
-    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=Background, Mode=OneWay}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
-    <Setter Property="BorderThickness" Value="0" />
-    <Setter Property="Controls:ControlsHelper.HeaderFontFamily" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=(Controls:ControlsHelper.HeaderFontFamily), Mode=OneWay}" />
-    <Setter Property="Controls:ControlsHelper.HeaderFontSize" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=(Controls:ControlsHelper.HeaderFontSize), Mode=OneWay}" />
-    <!--<Setter Property="Controls:ControlsHelper.HeaderFontStretch" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=(Controls:ControlsHelper.HeaderFontStretch), Mode=OneWay}" />-->
-    <Setter Property="Controls:ControlsHelper.HeaderFontWeight" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=(Controls:ControlsHelper.HeaderFontWeight), Mode=OneWay}" />
-    <Setter Property="Controls:TabControlHelper.UnderlineBrush" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=(Controls:TabControlHelper.UnderlineBrush), Mode=OneWay}" />
-    <Setter Property="Controls:TabControlHelper.UnderlineMouseOverBrush" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=(Controls:TabControlHelper.UnderlineMouseOverBrush), Mode=OneWay}" />
-    <Setter Property="Controls:TabControlHelper.UnderlineMouseOverSelectedBrush" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=(Controls:TabControlHelper.UnderlineMouseOverSelectedBrush), Mode=OneWay}" />
-    <Setter Property="Controls:TabControlHelper.UnderlinePlacement" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=(Controls:TabControlHelper.UnderlinePlacement), Mode=OneWay}" />
-    <Setter Property="Controls:TabControlHelper.UnderlineSelectedBrush" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=(Controls:TabControlHelper.UnderlineSelectedBrush), Mode=OneWay}" />
-    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}" />
-    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-    <Setter Property="VerticalContentAlignment" Value="Stretch" />
-    <Setter Property="MinHeight" Value="5" />
-    <Setter Property="MinWidth" Value="5" />
-    <Setter Property="Padding" Value="6 2 6 2" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Border x:Name="Border"
-                  HorizontalAlignment="Stretch"
-                  Background="{TemplateBinding Background}"
-                  BorderBrush="{TemplateBinding BorderBrush}"
-                  BorderThickness="{TemplateBinding BorderThickness}"
-                  >
-            <Grid HorizontalAlignment="Stretch"
-                  VerticalAlignment="Stretch"
-                  UseLayoutRounding="True">
-              <Grid.ColumnDefinitions>
-                <tk:ColumnDefinitionExt Name="PART_ContentLeftCol"  Width="Auto" />
-                <tk:ColumnDefinitionExt Name="PART_ContentRightCol"  Width="Auto" />
-              </Grid.ColumnDefinitions>
-              <Grid.RowDefinitions>
-                <tk:RowDefinitionExt Name="PART_ContentTopRow" Height="Auto" />
-                <tk:RowDefinitionExt Name="PART_ContentBottomRow"  Height="Auto" />
-              </Grid.RowDefinitions>
-              <Controls:ContentControlEx x:Name="ContentSite"
-                                         Grid.Row="0"
-                                         Grid.Column="0"
-                                         Padding="{TemplateBinding Padding}"
-                                         Content="{TemplateBinding Header}"
-                                         ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.ContentCharacterCasing)}"
-                                         ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                         FontFamily="{TemplateBinding Controls:ControlsHelper.HeaderFontFamily}"
-                                         FontSize="{TemplateBinding Controls:ControlsHelper.HeaderFontSize}"
-                                         FontStyle="{TemplateBinding FontStyle}"
-                                         FontWeight="{TemplateBinding Controls:ControlsHelper.HeaderFontWeight}"
-                                         Foreground="{TemplateBinding Foreground}"
-                                         RecognizesAccessKey="True"
-                                         UseLayoutRounding="False" />
-              <Controls:Underline x:Name="Underline"
-                                  Grid.Row="1"
-                                  Grid.Column="0"
-                                  HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Stretch"
-                                  Background="{TemplateBinding Background}"
-                                  BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:TabControlHelper.UnderlineBrush), Mode=OneWay}"
-                                  LineExtent="3"
-                                  LineThickness="2"
-                                  Placement="Bottom"
-                                   />
-            </Grid>
-          </Border>
-
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
-
-  <!--From Avalonia with changes-->
-  <Style Selector="TabItem:selected">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent4}"/>
-  </Style>
-
-  <Style Selector="TabItem:selected:focus">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}"/>
-  </Style>
-
-  <Style Selector="TabItem:selected:pointerover">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}"/>
-  </Style>
-
-  <Style Selector="TabItem:pointerover">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent2}"/>
-  </Style>
-
-  <!--TabStripPlacement Left-->
-
-  <Style Selector="TabItem[TabStripPlacement=Left] /template/ Controls|ContentControlEx#ContentSite">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="0" />
-  </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Left] /template/ tk|RowDefinitionExt#PART_ContentBottomRow">
-    <Setter Property="Height" Value="Auto" />
-  </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Left] /template/ tk|ColumnDefinitionExt#PART_ContentLeftCol">
-    <Setter Property="Width" Value="*" />
-  </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Left] /template/ tk|ColumnDefinitionExt#PART_ContentRightCol">
-    <Setter Property="Width" Value="Auto" />
-  </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Left] /template/ tk|RowDefinitionExt#PART_ContentTopRow">
-    <Setter Property="Height" Value="*" />
-  </Style>
-
-  <!--TabStripPlacement Top-->
-  <Style Selector="TabItem[TabStripPlacement=Top] /template/ Controls|ContentControlEx#ContentSite">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="0" />
-  </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Top] /template/ tk|RowDefinitionExt#PART_ContentBottomRow">
-    <Setter Property="Height" Value="Auto" />
-  </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Top] /template/ tk|ColumnDefinitionExt#PART_ContentLeftCol">
-    <Setter Property="Width" Value="*" />
-  </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Top] /template/ tk|ColumnDefinitionExt#PART_ContentRightCol">
-    <Setter Property="Width" Value="Auto" />
-  </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Top] /template/ tk|RowDefinitionExt#PART_ContentTopRow">
-    <Setter Property="Height" Value="*" />
-  </Style>
-
-  <!--TabStripPlacement Right-->
-  <Style Selector="TabItem[TabStripPlacement=Right] /template/ Controls|ContentControlEx#ContentSite">
-    <Setter Property="Grid.Column" Value="1" />
-    <Setter Property="Grid.Row" Value="0" />
-  </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Right] /template/ tk|RowDefinitionExt#PART_ContentBottomRow">
-    <Setter Property="Height" Value="Auto" />
-  </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Right] /template/ tk|ColumnDefinitionExt#PART_ContentLeftCol">
-    <Setter Property="Width" Value="Auto" />
-  </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Right] /template/ tk|ColumnDefinitionExt#PART_ContentRightCol">
-    <Setter Property="Width" Value="*" />
-  </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Right] /template/ tk|RowDefinitionExt#PART_ContentTopRow">
-    <Setter Property="Height" Value="*" />
-  </Style>
-
-  <!--TabStripPlacement Bottom-->
-  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ Controls|ContentControlEx#ContentSite">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="1" />
-  </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ tk|RowDefinitionExt#PART_ContentBottomRow">
-    <Setter Property="Height" Value="*" />
-  </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ tk|ColumnDefinitionExt#PART_ContentLeftCol">
-    <Setter Property="Width" Value="*" />
-  </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ tk|ColumnDefinitionExt#PART_ContentRightCol">
-    <Setter Property="Width" Value="Auto" />
-  </Style>
-
-  <Style Selector="TabItem[TabStripPlacement=Bottom] /template/ tk|RowDefinitionExt#PART_ContentTopRow">
-    <Setter Property="Height" Value="Auto" />
-  </Style>
-
-  <Style Selector="TabItem:selected /template/ Controls|ContentControlEx#ContentSite">
-    <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
-  </Style>
-
-  <Style Selector="TabItem:selected /template/ Controls|Underline#Underline">
-    <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:TabControlHelper.UnderlineSelectedBrush), Mode=OneWay}" />
-  </Style>
-
-  <Style Selector="TabItem[IsSelected=false] /template/ Controls|ContentControlEx#ContentSite">
-    <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.GrayNormal}" />
-  </Style>
-
-  <Style Selector="TabItem /template/ Border#Border:pointerover /template/ Controls|ContentControlEx#ContentSite">
-    <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.GrayHover}" />
-  </Style>
-
-
-  <Style Selector="TabItem /template/ Border#Border:pointerover /template/ Controls|Underline#Underline">
-    <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:TabControlHelper.UnderlineMouseOverBrush), Mode=OneWay}" />
-  </Style>
-
-  <Style Selector="TabControl:underlinednone /template/ Controls|Underline#Underline">
-    <Setter Property="IsVisible" Value="False"/>
-    <Setter Property="LineThickness" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_none /template/ Controls|Underline#Underline">
-    <Setter Property="IsVisible" Value="False"/>
-  </Style>
-
-  <Style Selector="TabControl:underlined_selectedtabitem /template/ Controls|Underline#Underline">
-    <Setter Property="LineThickness" Value="0" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_tabpanel /template/ Controls|Underline#Underline">
-    <Setter Property="LineExtent" Value="4" />
-    <Setter Property="LineThickness" Value="1" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_tabpanel /template/ TabItem:selected /template/ Controls|Underline#Underline">
-    <Setter Property="LineThickness" Value="3" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_selectedtabitem /template/ TabItem:selected /template/ Controls|Underline#Underline">
-    <Setter Property="LineThickness" Value="2" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_tabpanel /template/ TabItem:selected /template/  Border#Border /template/ Controls|Underline#Underline">
-    <Setter Property="LineThickness" Value="2" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_selectedtabitem /template/ TabItem[IsSelected=false] /template/  Border#Border:pointerover /template/ Controls|Underline#Underline">
-    <Setter Property="LineThickness" Value="2" />
-  </Style>
-
-  <Style Selector="TabItem:selected /template/ Border#Border:pointerover /template/ Controls|ContentControlEx#ContentSite">
-    <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.Highlight}" />
-  </Style>
-
-  <Style Selector="TabItem:selected /template/ Border#Border:pointerover /template/ Controls|Underline#Underline">
-    <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:TabControlHelper.UnderlineMouseOverSelectedBrush), Mode=OneWay}" />
-  </Style>
-
-  <!--:underlineplacementnotset-->
-  <Style Selector="TabControl /template/ TabItem[TabStripPlacement=Top] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="1" />
-    <Setter Property="HorizontalAlignment" Value="Stretch" />
-    <Setter Property="Placement" Value="Bottom" />
-    <Setter Property="VerticalAlignment" Value="Bottom" />
-  </Style>
-
-  <!--:underlineplacementnotset-->
-  <Style Selector="TabControl /template/ TabItem[TabStripPlacement=Bottom] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="0" />
-    <Setter Property="HorizontalAlignment" Value="Stretch" />
-    <Setter Property="Placement" Value="Top" />
-    <Setter Property="VerticalAlignment" Value="Top" />
-  </Style>
-
-  <!--:underlineplacementnotset-->
-  <Style Selector="TabControl /template/ TabItem[TabStripPlacement=Left] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="0" />
-    <Setter Property="HorizontalAlignment" Value="Right" />
-    <Setter Property="Placement" Value="Right" />
-    <Setter Property="VerticalAlignment" Value="Stretch" />
-  </Style>
-
-  <!--:underlineplacementnotset-->
-  <Style Selector="TabControl /template/ TabItem[TabStripPlacement=Right] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="0" />
-    <Setter Property="HorizontalAlignment" Value="Left" />
-    <Setter Property="Placement" Value="Left" />
-    <Setter Property="VerticalAlignment" Value="Stretch" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_top /template/ TabItem[TabStripPlacement=Top] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="0" />
-    <Setter Property="HorizontalAlignment" Value="Stretch" />
-    <Setter Property="Placement" Value="Top" />
-    <Setter Property="VerticalAlignment" Value="Top" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_top /template/ TabItem[TabStripPlacement=Bottom] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="0" />
-    <Setter Property="HorizontalAlignment" Value="Stretch" />
-    <Setter Property="Placement" Value="Top" />
-    <Setter Property="VerticalAlignment" Value="Top" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_top /template/ TabItem[TabStripPlacement=Left] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="0" />
-    <Setter Property="HorizontalAlignment" Value="Stretch" />
-    <Setter Property="Placement" Value="Top" />
-    <Setter Property="VerticalAlignment" Value="Top" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_top /template/ TabItem[TabStripPlacement=Right] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="1" />
-    <Setter Property="Grid.Row" Value="0" />
-    <Setter Property="HorizontalAlignment" Value="Stretch" />
-    <Setter Property="Placement" Value="Top" />
-    <Setter Property="VerticalAlignment" Value="Top" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_bottom /template/ TabItem[TabStripPlacement=Top] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="1" />
-    <Setter Property="HorizontalAlignment" Value="Stretch" />
-    <Setter Property="Placement" Value="Bottom" />
-    <Setter Property="VerticalAlignment" Value="Bottom" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_bottom /template/ TabItem[TabStripPlacement=Bottom] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="1" />
-    <Setter Property="HorizontalAlignment" Value="Stretch" />
-    <Setter Property="Placement" Value="Bottom" />
-    <Setter Property="VerticalAlignment" Value="Bottom" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_bottom /template/ TabItem[TabStripPlacement=Left] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="1" />
-    <Setter Property="HorizontalAlignment" Value="Stretch" />
-    <Setter Property="Placement" Value="Bottom" />
-    <Setter Property="VerticalAlignment" Value="Bottom" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_bottom /template/ TabItem[TabStripPlacement=Right] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="1" />
-    <Setter Property="Grid.Row" Value="1" />
-    <Setter Property="HorizontalAlignment" Value="Stretch" />
-    <Setter Property="Placement" Value="Bottom" />
-    <Setter Property="VerticalAlignment" Value="Bottom" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_left /template/ TabItem[TabStripPlacement=Top] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="0" />
-    <Setter Property="HorizontalAlignment" Value="Left" />
-    <Setter Property="Placement" Value="Left" />
-    <Setter Property="VerticalAlignment" Value="Stretch" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_left /template/ TabItem[TabStripPlacement=Bottom] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="1" />
-    <Setter Property="HorizontalAlignment" Value="Left" />
-    <Setter Property="Placement" Value="Left" />
-    <Setter Property="VerticalAlignment" Value="Stretch" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_left /template/ TabItem[TabStripPlacement=Left] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="0" />
-    <Setter Property="HorizontalAlignment" Value="Left" />
-    <Setter Property="Placement" Value="Left" />
-    <Setter Property="VerticalAlignment" Value="Stretch" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_left /template/ TabItem[TabStripPlacement=Right] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="0" />
-    <Setter Property="HorizontalAlignment" Value="Left" />
-    <Setter Property="Placement" Value="Left" />
-    <Setter Property="VerticalAlignment" Value="Stretch" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_right /template/ TabItem[TabStripPlacement=Top] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="0" />
-    <Setter Property="HorizontalAlignment" Value="Right" />
-    <Setter Property="Placement" Value="Right" />
-    <Setter Property="VerticalAlignment" Value="Stretch" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_right /template/ TabItem[TabStripPlacement=Bottom] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="1" />
-    <Setter Property="Grid.Row" Value="1" />
-    <Setter Property="HorizontalAlignment" Value="Right" />
-    <Setter Property="Placement" Value="Right" />
-    <Setter Property="VerticalAlignment" Value="Stretch" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_right /template/ TabItem[TabStripPlacement=Left] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="0" />
-    <Setter Property="Grid.Row" Value="0" />
-    <Setter Property="HorizontalAlignment" Value="Right" />
-    <Setter Property="Placement" Value="Right" />
-    <Setter Property="VerticalAlignment" Value="Stretch" />
-  </Style>
-
-  <Style Selector="TabControl:underlined_right /template/ TabItem[TabStripPlacement=Right] /template/ Controls|Underline#Underline">
-    <Setter Property="Grid.Column" Value="1" />
-    <Setter Property="Grid.Row" Value="0" />
-    <Setter Property="HorizontalAlignment" Value="Right" />
-    <Setter Property="Placement" Value="Right" />
-    <Setter Property="VerticalAlignment" Value="Stretch" />
-  </Style>
-
+   <Style Selector="TabItem">
+        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="FontSize" Value="{DynamicResource MahApps.Sizes.Font.TabItem}"/>
+        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="MinHeight" Value="5" />
+        <Setter Property="MinWidth" Value="5" />
+        <Setter Property="Padding" Value="6 2 6 2" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ContentPresenter
+                    Name="PART_ContentPresenter"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                    Content="{TemplateBinding Header}"
+                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                    Margin="{TemplateBinding Margin}"
+                    Padding="{TemplateBinding Padding}"/>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style Selector="TabItem:disabled">
+        <Setter Property="Opacity" Value="{DynamicResource ThemeDisabledOpacity}"/>
+    </Style>
+    <Style Selector="TabItem:pointerover">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.GrayHover}"/>
+    </Style>
+    <Style Selector="TabItem:selected">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.Accent2}"/>
+    </Style>
+    <Style Selector="TabItem[IsSelected=false]">
+        <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.GrayNormal}" />
+    </Style>
+    <Style Selector="TabItem[IsSelected=false][IsPointerOver=True]">
+        <Setter Property="TextBox.Foreground" Value="{DynamicResource  MahApps.Brushes.GrayHover}" />
+    </Style>
+
+
+    <Style Selector="TabItem:selected:focus">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.Accent2}"/>
+    </Style>
+    <Style Selector="TabItem:selected:pointerover">
+        <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+    </Style>
+    <Style Selector="TabItem:selected:focus:pointerover">
+        <Setter Property="TextBox.Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+    </Style>
+    <Style Selector="TabItem[TabStripPlacement=Right]">
+        <Setter Property="HorizontalContentAlignment" Value="Right"/>
+    </Style>
+
+  
 </Styles>

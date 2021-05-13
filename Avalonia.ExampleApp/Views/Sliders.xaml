@@ -14,7 +14,7 @@
     
     <StackPanel Grid.Column="0" VerticalAlignment="Center" 
                 ScrollViewer.HorizontalScrollBarVisibility="Auto" >
-      <TextBlock Text="Avalonia Slider"/>
+      <TextBlock Classes="DescriptionHeaderStyle" Text="Avalonia Slider"/>
       <Slider Orientation="Horizontal" Width="400" 
               />
 
@@ -25,7 +25,7 @@
 
     <StackPanel Grid.Column="1" VerticalAlignment="Center"
                 ScrollViewer.HorizontalScrollBarVisibility="Auto">
-      <TextBlock Text="Slider Ex"/>
+      <TextBlock Classes="DescriptionHeaderStyle" Text="Slider Ex"/>
       
       <Controlz:SliderEx Orientation="Horizontal" TickPlacement="Both" 
                          Width="400"

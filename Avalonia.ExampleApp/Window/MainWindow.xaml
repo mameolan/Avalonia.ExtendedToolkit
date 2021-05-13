@@ -14,29 +14,29 @@
         Title="Avalonia.ExampleApp"
         >
 
-  <Controls:MetroWindow.Resources>
+  <Window.Resources>
     <Thickness x:Key="ControlMargin">0 5 0 0</Thickness>
     <!--<behaviors:CommandSelectedChangedBehavior x:Key="CommandSelectedChangedBehavior"/>-->
-  </Controls:MetroWindow.Resources>
+  </Window.Resources>
 
 
 
 
-  <Controls:MetroWindow.Styles>
+  <Window.Styles>
     <Style Selector="TextBlock.DescriptionHeaderStyle">
       <Setter Property="FontSize" Value="22" />
       <Setter Property="HorizontalAlignment" Value="Center" />
       <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
     </Style>
-    <Style Selector="TextBox">
+    <!-- <Style Selector="TextBox">
       <Setter Property="VerticalAlignment" Value="Center"/>
       <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
     </Style>
     <Style Selector="TextBlock">
       <Setter Property="VerticalAlignment" Value="Center"/>
       <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
-    </Style>
-  </Controls:MetroWindow.Styles>
+    </Style> -->
+  </Window.Styles>
 
   <!--<Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands ShowLastSeparator="False">
@@ -76,175 +76,50 @@
         </Controls:FlyoutsControl>
     </Controls:MetroWindow.Flyouts>-->
 
-  <Design.DataContext>
+  <!-- <Design.DataContext>
     <vm:MainWindowViewModel/>
-  </Design.DataContext>
+  </Design.DataContext> -->
   <DockPanel>
-    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-      <TextBlock Text="Themes" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="35">
+      <TextBlock Text="Themes" Foreground="{DynamicResource MahApps.Brushes.Black}"
+        VerticalAlignment="Center"/>
       <ComboBox Name="cmbThemes" Margin="10,1,0,1" Items="{Binding BaseColors}"
-               SelectedIndex="0" SelectedItem="{Binding SelectedBaseColor}" Width="100">
-        <ComboBox.Styles>
-          <Style Selector="ComboBoxItem">
-            <Setter Property="Content" Value="{Binding .}"/>
-          </Style>
-        </ComboBox.Styles>
+         SelectedIndex="0" SelectedItem="{Binding SelectedBaseColor}" Width="100">
+        <ComboBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding .}" />
+          </DataTemplate>
+        </ComboBox.ItemTemplate>
       </ComboBox>
 
-      <TextBlock Margin="10,0,0,0" Text="Color Schemes" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
-      <ComboBox Name="cmbColorScheme" Margin="10,1,0,1" Items="{Binding ColorSchemes}"
-               SelectedIndex="0" SelectedItem="{Binding SelectedColorScheme}" Width="100"
-                
+      <TextBlock Margin="10,0,0,0" Text="Color Schemes" Foreground="{DynamicResource MahApps.Brushes.Black}"
+          VerticalAlignment="Center"/>
+      <ComboBox  Name="cmbColorScheme" Margin="10,1,0,1" Items="{Binding ColorSchemes}"
+         SelectedIndex="0" SelectedItem="{Binding SelectedColorScheme}" Width="100"
                 >
-        <ComboBox.Styles>
+        <ComboBox.ItemTemplate>
 
-          <Style Selector="ComboBoxItem">
-            <Setter Property="Content" Value="{Binding Name}"/>
-          </Style>
+          <DataTemplate>
+            <TextBlock Text="{Binding Name}"/>
+          </DataTemplate>
 
-        </ComboBox.Styles>
-        <i:Interaction.Behaviors>
-          <!--<behaviors:CommandSelectedChangedBehavior Command="{Binding ElementName=mainWindow, Path=DataContext.ChangeBaseColorsCommand}"
-                                                    CommandParameter="{Binding ElementName=cmbColorScheme, Path=SelectedItem}"
-                                                    />-->
-          <!--<ia:EventTriggerBehavior EventName="SelectionChanged" SourceObject="{Binding #cmbColorScheme}">
-            <ia:InvokeCommandAction Command="{Binding ElementName=mainWindow, Path=DataContext.ChangeColorSchemeCommand}"
-                                    CommandParameter="{Binding ElementName=cmbColorScheme, Path=SelectedItem}"
-                                      />
-          </ia:EventTriggerBehavior>-->
-        </i:Interaction.Behaviors>
+        </ComboBox.ItemTemplate>
       </ComboBox>
 
+      <!-- <TextBlock Margin="10,0,0,0" Text="Skins" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+      <ComboBox Margin="10,1,0,1" Items="{Binding Skins}"
+         SelectedIndex="0" SelectedItem="{Binding SelectedSkin, Mode=TwoWay}" Width="100"
+                >
+        <ComboBox.ItemTemplate>
 
+          <DataTemplate>
+            <TextBlock Text="{Binding Name}"/>
+          </DataTemplate>
+
+        </ComboBox.ItemTemplate>
+      </ComboBox> -->
 
     </StackPanel>
-    <Grid DockPanel.Dock="Bottom" Margin="5">
-
-      <Grid.RowDefinitions>
-        <RowDefinition Height="*"/>
-        <!-- <RowDefinition Height="35"/> -->
-      </Grid.RowDefinitions>
-
-      <TabControl Grid.Row="0">
-        <TabItem Header="Buttons" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <ScrollViewer>
-            <Views:ButtonView/>
-          </ScrollViewer>
-        </TabItem>
-        <TabItem Header="Group Box" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <ScrollViewer>
-            <Views:GroupBoxView/>
-          </ScrollViewer>
-        </TabItem>
-        <TabItem Header="List Controls" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <ScrollViewer>
-            <Grid>
-              <Views:ListControlsView/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>
-        <TabItem Header="Tree View" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <ScrollViewer>
-            <Grid>
-              <Views:TreeViewExample/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>
-        <TabItem Header="Wizard" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <ScrollViewer>
-            <Views:WizardView/>
-          </ScrollViewer>
-        </TabItem>
-        <TabItem Header="DataGrid" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <Grid>
-            <Views:DataGridView/>
-          </Grid>
-        </TabItem>
-        <!--not working-->
-        <!--<TabItem Header="TreeGrid" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <Grid>
-            <ScrollViewer>
-              <Views:TreeGridView/>
-            </ScrollViewer>
-          </Grid>
-        </TabItem>-->
-        <TabItem Header="Progress Controls" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <ScrollViewer>
-            <Grid>
-              <Views:ProgressControls/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>
-        <TabItem Header="Step Bar" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <ScrollViewer>
-            <Grid>
-              <Views:StepBarView/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>
-        <TabItem Header="Sliders" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <ScrollViewer>
-            <Grid>
-              <Views:Sliders/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>
-        <TabItem Header="Date Controls" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <ScrollViewer>
-            <Grid>
-              <Views:DateExamples/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>
-        <TabItem Header="Hamburger Menu" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <ScrollViewer>
-            <Grid>
-              <Views:HamburgerMenuView/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>
-
-        <TabItem Header="Tiles" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <ScrollViewer>
-            <Grid>
-              <Views:TilesExample/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>
-          <!--Not  working-->
-        <!--<TabItem Header="Split View" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <ScrollViewer>
-            <Grid>
-              <Views:SplitViewExamples/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>-->
-        <TabItem Header="Outlook Bar" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <Views:OutlookBarView/>
-        </TabItem>
-
-        <TabItem Header="Explorer Bar" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <Views:ExplorerBarView/>
-        </TabItem>
-        <TabItem Header="Property Grid" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <Views:PropertyGridExamples/>
-        </TabItem>
-        <TabItem Header="Notification" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <Views:NotifictionExampleView/>
-        </TabItem>
-        <TabItem Header="Child Window" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <Views:ChildWindowView/>
-        </TabItem>
-        <TabItem Header="ColorPicker" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <Views:ColorPickerExampleView/>
-        </TabItem>
-        <TabItem Header="IndexListControls" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <Views:IndexListDemoView/>
-        </TabItem>
-        <TabItem Header="Colors" Foreground="{DynamicResource MahApps.Brushes.Black}">
-          <Views:ColorExample/>
-        </TabItem>
-      </TabControl>
-    </Grid>
+    <Views:MainWindowContentView DockPanel.Dock="Bottom"/>
   </DockPanel>
 </Controls:MetroWindow>

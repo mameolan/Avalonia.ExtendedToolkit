@@ -1,12 +1,16 @@
-﻿using Avalonia.Controls;
+﻿using System;
+using Avalonia.Controls;
 
 namespace Avalonia.ExtendedToolkit
 {
     /// <summary>
     /// should be remove if avalonia supports naming of ColumnDefinition
     /// </summary>
-    public class ColumnDefinitionExt: ColumnDefinition
+    public class ColumnDefinitionExt : ColumnDefinition
     {
+        public Type StyleKey { get { return typeof(ColumnDefinition); } }
+
+
         /// <summary>
         /// get / get Name
         /// </summary>

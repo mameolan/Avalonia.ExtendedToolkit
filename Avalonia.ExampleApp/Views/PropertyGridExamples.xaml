@@ -7,31 +7,28 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.PropertyGridExamples">
   <Grid HorizontalAlignment="Stretch">
-    <TabControl>
-      <TabItem Header="BrushCategory" Foreground="{DynamicResource MahApps.Brushes.Black}">
+    <TabControl Classes="sidebar">
+      <TabItem Header="BrushCategory">
         <Views:PropertyGridExample_BrushCategory/>
       </TabItem>
-      <TabItem Header="CategoryEditor" Foreground="{DynamicResource MahApps.Brushes.Black}">
+      <TabItem Header="CategoryEditor">
         <Views:PropertyGridExample_CategoryEditor/>
       </TabItem>
-      <TabItem Header="ComplexProperty" Foreground="{DynamicResource MahApps.Brushes.Black}">
+      <TabItem Header="ComplexProperty">
         <Views:PropertyGridExample_ComplexProperty/>
       </TabItem>
-      <TabItem Header="CustomTypeEditors" Foreground="{DynamicResource MahApps.Brushes.Black}">
+      <TabItem Header="CustomTypeEditors">
         <Views:PropertyGridExample_CustomTypeEditors/>
       </TabItem>
-      <TabItem Header="DialogEditor" Foreground="{DynamicResource MahApps.Brushes.Black}">
+      <TabItem Header="DialogEditor">
         <Views:PropertyGridExample_DialogEditor/>
       </TabItem>
-      <TabItem Header="ExtendedEditor" Foreground="{DynamicResource MahApps.Brushes.Black}">
+      <TabItem Header="ExtendedEditor">
         <Views:PropertyGridExample_ExtendedEditor/>
       </TabItem>
-      <TabItem Header="ProxyExample" Foreground="{DynamicResource MahApps.Brushes.Black}">
+      <TabItem Header="ProxyExample">
         <Views:PropertyGridExample_ProxyExample/>
       </TabItem>
-      
-      
-
     </TabControl>
   </Grid>
 </UserControl>

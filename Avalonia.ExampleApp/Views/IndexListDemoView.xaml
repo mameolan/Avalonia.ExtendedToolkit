@@ -6,7 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.IndexListDemoView"
              x:Name="indexList">
-  <Grid>
+  <Grid x:Name="panel">
     <Grid.Resources>
       <Controls:DataContextToIndexItemConverter x:Key="DataContextToIndexItemConverter" />
     </Grid.Resources>
@@ -15,10 +15,13 @@
       <ColumnDefinition />
     </Grid.ColumnDefinitions>
 
+    <!-- have to set a fix size here because the tabcontrol style makes the control style broken -->
     <Controls:IndexItemsControl x:Name="indexItemsList"
-      Grid.Column="0" 
+      Grid.Column="0"
       DataContext="{Binding Albums,
-          Converter={StaticResource DataContextToIndexItemConverter}, ConverterParameter=Title}" />
+          Converter={StaticResource DataContextToIndexItemConverter}, ConverterParameter=Title}" 
+          Height="505" VerticalAlignment="Top"
+          />
 
     <StackPanel Margin="10,0,0,0" Grid.Column="1">
 

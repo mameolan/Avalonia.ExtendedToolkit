@@ -26,7 +26,10 @@
         <RowDefinition Height="35"/>
       </Grid.RowDefinitions>
 
-      <TextBlock Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,10" FontWeight="Bold" Text="Top"/>
+      <TextBlock Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,10" 
+              FontWeight="Bold" Text="Top"
+              Classes="DescriptionHeaderStyle"
+              />
 
       <Controls:StepBar Grid.Row="1" x:Name="stepbarTop" StepIndex="0">
         <Controls:StepBarItem Content="Register" />
@@ -48,7 +51,9 @@
         <RowDefinition Height="35"/>
       </Grid.RowDefinitions>
 
-      <TextBlock Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,10" FontWeight="Bold" Text="Button"/>
+      <TextBlock Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,10"
+        Classes="DescriptionHeaderStyle"
+        FontWeight="Bold" Text="Button"/>
 
       <Controls:StepBar Grid.Row="1" x:Name="stepbarButton" Dock="Bottom" StepIndex="0">
         <Controls:StepBarItem Content="Register" />
@@ -74,7 +79,9 @@
         <ColumnDefinition Width="Auto"/>
       </Grid.ColumnDefinitions>
 
-      <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Margin="0,0,0,10" FontWeight="Bold" Text="Left"/>
+      <TextBlock Grid.Row="0" Grid.Column="0" 
+          Classes="DescriptionHeaderStyle"
+          HorizontalAlignment="Center" Margin="0,0,0,10" FontWeight="Bold" Text="Left"/>
 
       <Controls:StepBar Grid.Row="1" Grid.Column="0" x:Name="stepbarLeft" Dock="Left" StepIndex="0">
         <Controls:StepBarItem Content="Register" />
@@ -100,7 +107,10 @@
         <ColumnDefinition Width="Auto"/>
       </Grid.ColumnDefinitions>
 
-      <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Margin="0,0,0,10" FontWeight="Bold" Text="Right"/>
+      <TextBlock Grid.Row="0" Grid.Column="0" 
+        HorizontalAlignment="Center" Margin="0,0,0,10" FontWeight="Bold" Text="Right"
+        Classes="DescriptionHeaderStyle"
+        />
 
       <Controls:StepBar Grid.Row="1" Grid.Column="0" x:Name="stepbarRight" Dock="Right" StepIndex="0">
         <Controls:StepBarItem Content="Register" />

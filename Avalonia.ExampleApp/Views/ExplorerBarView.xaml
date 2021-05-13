@@ -6,6 +6,12 @@
              xmlns:model="clr-namespace:Avalonia.ExampleApp.Model;assembly=Avalonia.ExampleApp"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.ExplorerBarView">
+  <UserControl.Styles>
+    <Style Selector="TextBlock">
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+    </Style>
+  </UserControl.Styles>
   <Grid>
     <Grid.Resources>
       <DataTemplate DataType="{x:Type model:FolderItem}" x:Key="folder">

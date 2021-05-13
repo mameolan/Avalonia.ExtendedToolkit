@@ -1,6 +1,8 @@
 ﻿using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.ExtendedToolkit.Extensions;
+using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -8,11 +10,13 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// <summary>
     /// control with an underlining border
     /// </summary>
-    public class Underline: ContentControl
+    public class Underline : ContentControl
     {
         private const string UnderlineBorderPartName = "PART_UnderlineBorder";
-        
+
         private Border _underlineBorder;
+
+
 
         /// <summary>
         /// get/sets Placement
@@ -42,7 +46,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <see cref="LineThickness"/>
         /// </summary>
         public static readonly StyledProperty<double> LineThicknessProperty =
-            AvaloniaProperty.Register<Underline, double>(nameof(LineThickness),defaultValue: 1d);
+            AvaloniaProperty.Register<Underline, double>(nameof(LineThickness), defaultValue: 1d);
 
         /// <summary>
         /// get/sets LineExtent
@@ -57,7 +61,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <see cref="LineExtent"/>
         /// </summary>
         public static readonly StyledProperty<double> LineExtentProperty =
-            AvaloniaProperty.Register<Underline, double>(nameof(LineExtent),defaultValue: double.NaN);
+            AvaloniaProperty.Register<Underline, double>(nameof(LineExtent), defaultValue: double.NaN);
 
         /// <summary>
         /// registers some changed handler
@@ -69,6 +73,12 @@ namespace Avalonia.ExtendedToolkit.Controls
             LineExtentProperty.Changed.AddClassHandler<Underline>((o, e) => ApplyBorderProperties(o, e));
         }
 
+        protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+        {
+            base.OnAttachedToVisualTree(e);
+            ApplyBorderProperties();
+        }
+
         /// <summary>
         /// gets the underline border from the style
         /// </summary>
@@ -77,6 +87,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             base.OnTemplateApplied(e);
             _underlineBorder = e.NameScope.Find<Border>(UnderlineBorderPartName);
+
+
             ApplyBorderProperties();
         }
 
@@ -88,43 +100,93 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// updates the underline by placement
         /// </summary>
-        private void ApplyBorderProperties()
+        internal void ApplyBorderProperties()
         {
             if (_underlineBorder == null)
             {
                 return;
             }
 
+            // TabControl tabControl = this.TryFindParent<TabControl>();
+            TabItem tabItem = this.TryFindParent<TabItem>();
+            double width = double.NaN;
+            double height = double.NaN;
+#warning Underline: here is a sizing workaround
+            if (tabItem != null)
+            {
+
+                if (tabItem.DesiredSize.Width > 0)
+                {
+                    width = tabItem.DesiredSize.Width - LineExtent;
+                }
+                else
+                {
+                    width = tabItem.MinWidth- LineExtent;
+                }
+                if (tabItem.DesiredSize.Height > 0)
+                {
+                    height = tabItem.DesiredSize.Height - LineExtent;
+                }
+                else
+                {
+                    height = tabItem.MinHeight - LineExtent;
+                }
+
+            }
+
+
             _underlineBorder.Height = double.NaN;
             _underlineBorder.Width = double.NaN;
-            _underlineBorder.BorderThickness = new Thickness();
+            _underlineBorder.BorderThickness = new Thickness(0);
+
             switch (Placement)
             {
                 case Dock.Left:
                     _underlineBorder.Width = LineExtent;
-                    _underlineBorder.BorderThickness = new Thickness(LineThickness, 0d, 0d, 0d);
+                    _underlineBorder.Height = height;
+                    _underlineBorder.BorderThickness = new Thickness(0d, 0d, LineThickness, 0d);
+                    VerticalAlignment = Layout.VerticalAlignment.Stretch;
+                    HorizontalAlignment = Layout.HorizontalAlignment.Left;
                     break;
 
                 case Dock.Top:
+                    //little error somehow border is one pixel too height
                     _underlineBorder.Height = LineExtent;
+                    _underlineBorder.Width = width;
                     _underlineBorder.BorderThickness = new Thickness(0d, LineThickness, 0d, 0d);
+                    VerticalAlignment = Layout.VerticalAlignment.Top;
+                    HorizontalAlignment = Layout.HorizontalAlignment.Stretch;
                     break;
 
                 case Dock.Right:
                     _underlineBorder.Width = LineExtent;
+                    _underlineBorder.Height = height;
                     _underlineBorder.BorderThickness = new Thickness(0d, 0d, LineThickness, 0d);
+                    VerticalAlignment = Layout.VerticalAlignment.Stretch;
+                    HorizontalAlignment = Layout.HorizontalAlignment.Right;
                     break;
 
                 case Dock.Bottom:
                     _underlineBorder.Height = LineExtent;
+                    _underlineBorder.Width = width;
                     _underlineBorder.BorderThickness = new Thickness(0d, 0d, 0d, LineThickness);
+                    VerticalAlignment = Layout.VerticalAlignment.Bottom;
+                    HorizontalAlignment = Layout.HorizontalAlignment.Stretch;
                     break;
 
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
+
+
             InvalidateVisual();
+            InvalidateMeasure();
+            InvalidateArrange();
+
+
+
+
         }
     }
 }

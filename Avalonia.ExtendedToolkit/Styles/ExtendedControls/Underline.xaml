@@ -15,19 +15,24 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
-          <Border x:Name="PART_UnderlineBorder"
-                  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                  VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                  Background="{TemplateBinding Background}"
-                  BorderBrush="{TemplateBinding BorderBrush}"
-                  UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-            <Controls:ClipBorder Background="{TemplateBinding Background}"
-                                 BorderThickness="0"
-                                 >
-              <ContentPresenter Margin="{TemplateBinding Padding}"
-                                UseLayoutRounding="False" />
-            </Controls:ClipBorder>
-          </Border>
+          <!--  -->
+          <Grid>
+            <Border x:Name="PART_UnderlineBorder"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+              <Controls:ClipBorder Background="{TemplateBinding Background}"
+                                  BorderThickness="0"
+                                  >
+                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                  Content="{TemplateBinding Content}"
+                                  UseLayoutRounding="False" />
+              </Controls:ClipBorder>
+            </Border>
+          </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>

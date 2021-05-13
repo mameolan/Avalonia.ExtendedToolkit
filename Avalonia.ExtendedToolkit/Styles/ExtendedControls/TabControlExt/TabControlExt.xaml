@@ -1,0 +1,129 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+    xmlns:tk="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit"
+    xmlns:Controlz="clr-namespace:Avalonia.Controlz.Controls;assembly=Avalonia.Controlz"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    >
+  
+  <Styles.Resources>
+    <converters:EqualToBoolConverter x:Key="EqualToBoolConverter"/>
+  </Styles.Resources>
+
+
+  <Style Selector="Controls|TabControlExt">
+    <Setter Property="TabStripPlacement" Value="Top"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    <Setter Property="VerticalAlignment" Value="Stretch"/>
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
+    <Setter Property="BorderBrush" Value="{x:Null}" />
+    <!--  special property for header font size  -->
+    <Setter Property="HeaderFontSize" Value="{DynamicResource MahApps.Sizes.Font.TabItem}" />
+    <Setter Property="UnderlineBrush" Value="{DynamicResource MahApps.Brushes.GrayNormal}" />
+    <Setter Property="UnderlineMouseOverBrush" Value="{DynamicResource MahApps.Brushes.GrayHover}" />
+    <Setter Property="UnderlineMouseOverSelectedBrush" Value="{DynamicResource MahApps.Brushes.Highlight}" />
+    <Setter Property="UnderlineSelectedBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+    <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                        <DockPanel
+                            Margin="{TemplateBinding Margin}"
+                            Background="{TemplateBinding Background}"
+                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                            >
+                        <Grid x:Name="HeaderPanelGrid"
+                              
+                              ZIndex="1">
+                            <Controls:Underline x:Name="Underline"
+                                                Background="Transparent"
+                                                BorderBrush="{TemplateBinding UnderlineBrush}"
+                                                LineThickness="1"
+                                                Placement="Bottom"
+                                                IsVisible="False"
+                                                 />
+                               <ItemsPresenter Name="PART_ItemsPresenter"
+                                    Items="{TemplateBinding Items}"
+                                    ItemsPanel="{TemplateBinding ItemsPanel}"
+                                    ItemTemplate="{TemplateBinding ItemTemplate}"
+                                />
+                        </Grid>
+                        <Border x:Name="ContentPanel"
+                                
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter x:Name="PART_SelectedContentHost"
+                                              Margin="{TemplateBinding Padding}"
+                                              Content="{TemplateBinding SelectedContent}"
+                                               />
+                        </Border>
+                        </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|TabControlExt[TabStripPlacement=Top] /template/ Grid#HeaderPanelGrid">
+    <Setter Property="DockPanel.Dock" Value="Top"/>
+  </Style>
+
+  <Style Selector="Controls|TabControlExt[Underlined=TabPanel] /template/ Controls|Underline#Underline">
+    <Setter Property="IsVisible" Value="true" />
+  </Style>
+  
+  <Style Selector="Controls|TabControlExt[TabStripPlacement=Bottom] /template/ Grid#HeaderPanelGrid">
+    <Setter Property="Margin" Value="2,0,2,2" />
+  </Style>
+
+  <Style Selector="Controls|TabControlExt[TabStripPlacement=Bottom] /template/ Controls|Underline#Underline">
+    <Setter Property="Placement" Value="Top" />
+  </Style>
+
+  <Style Selector="Controls|TabControlExt[TabStripPlacement=Left] /template/ Grid#HeaderPanelGrid">
+    <Setter Property="Margin" Value="2,2,0,2" />
+  </Style>
+
+  <Style Selector="Controls|TabControlExt[TabStripPlacement=Left] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+    <Setter Property="Orientation" Value="Vertical"/>
+  </Style>
+
+  <Style Selector="Controls|TabControlExt[TabStripPlacement=Left] /template/ Controls|Underline#Underline">
+    <Setter Property="Placement" Value="Right" />
+  </Style>
+
+  <Style Selector="Controls|TabControlExt[TabStripPlacement=Right] /template/ Grid#HeaderPanelGrid">
+    <Setter Property="Margin" Value="0,2,2,2" />
+  </Style>
+
+  <Style Selector="Controls|TabControlExt[TabStripPlacement=Right] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+    <Setter Property="Orientation" Value="Vertical"/>
+  </Style>
+
+  <Style Selector="Controls|TabControlExt[TabStripPlacement=Right] /template/ Controls|Underline#Underline">
+    <Setter Property="Placement" Value="Left" />
+  </Style>
+
+  <Style Selector="Controls|TabControlExt[TabStripPlacement=Right] /template/ Grid#HeaderPanelGrid">
+    <Setter Property="DockPanel.Dock" Value="Right"/>
+  </Style>
+
+  <Style Selector="Controls|TabControlExt[TabStripPlacement=Right] /template/ Border#ContentPanel">
+    <Setter Property="DockPanel.Dock" Value="Left"/>
+  </Style>
+
+  <Style Selector="Controls|TabControlExt[TabStripPlacement=Bottom] /template/ Grid#HeaderPanelGrid">
+    <Setter Property="DockPanel.Dock" Value="Bottom"/>
+  </Style>
+
+  <Style Selector="Controls|TabControlExt[TabStripPlacement=Bottom] /template/ Border#ContentPanel">
+    <Setter Property="DockPanel.Dock" Value="Top"/>
+  </Style>
+
+  <Style Selector="Controls|TabControlExt[TabStripPlacement=Top] /template/ Border#ContentPanel">
+    <Setter Property="DockPanel.Dock" Value="Bottom"/>
+  </Style>
+
+</Styles>

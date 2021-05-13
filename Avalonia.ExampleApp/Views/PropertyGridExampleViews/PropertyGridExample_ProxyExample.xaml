@@ -5,6 +5,13 @@
              xmlns:tk="https://github.com/avalonia_extendedtoolkit"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.PropertyGridExample_ProxyExample">
+  <UserControl.Styles>
+    <Style Selector="TextBlock">
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+    </Style>
+  </UserControl.Styles>
+  
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition />
