@@ -1,0 +1,58 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Avalonia.ExampleApp.Views.ResizeRotateControlDemoView"
+        >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <CheckBox Content="IsRotationEnabled" Name="chkIsRotationEnabled" IsChecked="True"/>
+                <CheckBox Margin="10,0,0,0" Content="ShowAlwaysSizing" Name="chkShowAlwaysSizing"/>
+                <CheckBox Margin="10,0,0,0" Content="CanDrag" Name="chkCanDrag" IsChecked="True"/>
+                <CheckBox Margin="10,0,0,0" Content="CanResize" Name="chkCanResize" IsChecked="True"/>
+                
+            </StackPanel>
+
+            <Canvas x:Name="DesignerCanvas" Grid.Row="1">
+            <!--Ellipse-->
+                <Controls:ResizeRotateControl 
+                        IsRotationEnabled="{Binding ElementName=chkIsRotationEnabled, Path=IsChecked, Mode=TwoWay}"
+                        ShowAlwaysSizing="{Binding ElementName=chkShowAlwaysSizing, Path=IsChecked, Mode=TwoWay}"
+                        CanDrag="{Binding ElementName=chkCanDrag, Path=IsChecked, Mode=TwoWay}"
+                        CanResize="{Binding ElementName=chkCanResize, Path=IsChecked, Mode=TwoWay}"
+                        Padding="1"
+                        Width="200"
+                        Height="100"
+                        Canvas.Left="100" Canvas.Top="100"   >
+                    <Grid>
+                        <Ellipse IsHitTestVisible="False" Fill="Green"/>
+                        <TextBlock Text="Normal Style" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="10" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+                    </Grid>
+
+                </Controls:ResizeRotateControl>
+                
+                <Controls:ResizeRotateControl 
+                        Padding="1"
+                        Width="200"
+                        Height="100"
+                        Classes="ThickStyle"
+                        Canvas.Left="400" Canvas.Top="100"   >
+                    <Grid>
+                        <Ellipse IsHitTestVisible="False" Fill="Green"/>
+                        <TextBlock Text="Thick Style" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="10" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+                    </Grid>
+                    
+                        
+                    
+                </Controls:ResizeRotateControl>
+
+
+            </Canvas>
+    </Grid>
+</UserControl>
