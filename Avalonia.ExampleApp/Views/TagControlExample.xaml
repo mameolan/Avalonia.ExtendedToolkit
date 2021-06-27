@@ -1,0 +1,25 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             xmlns:tk="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.TagControlExample">
+  <UserControl.Styles>
+    <!-- <Style Selector="TextBlock">
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+    </Style> -->
+  </UserControl.Styles>
+
+  <DockPanel VerticalAlignment="Stretch">
+    <Controls:TagControl ShowAddButton="True" Items="{Binding Categories, Mode=OneWay}" 
+                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                    AddTagCommand="{Binding AddTagCommand}"
+                    CloseTagCommand="{Binding RemoveTagCommand}"
+                    SuggestedTags="{Binding SuggestedTags}"
+                    VerticalAlignment="Stretch"
+                    />    
+  </DockPanel>
+</UserControl>

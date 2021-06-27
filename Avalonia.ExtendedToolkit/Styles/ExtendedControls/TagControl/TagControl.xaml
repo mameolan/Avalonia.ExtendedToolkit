@@ -1,0 +1,70 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+        >
+    
+    <Style Selector="Button.AddTagButton">
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}"/>
+        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Content">
+            <Setter.Value>
+                <Template>
+                
+                        <Path 
+                              Data="{StaticResource AddGeometry}"
+                              StrokeThickness="1"
+                              Fill="{DynamicResource MahApps.Brushes.Black}"
+                              Stretch="Fill"  />
+                </Template>
+          </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style Selector="Controls|TagControl">
+       <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
+       <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Black}" />
+       <Setter Property="ItemsPanel">
+        <Setter.Value>
+          <ItemsPanelTemplate>
+            <WrapPanel Orientation="Horizontal"/>
+          </ItemsPanelTemplate>
+        </Setter.Value>
+       </Setter>
+       <Setter Property="Template">
+       <Setter.Value>
+        <ControlTemplate>
+          <Border Name="Border"
+                           Background="{TemplateBinding Background}"
+                           BorderBrush="{TemplateBinding BorderBrush}"
+                           BorderThickness="{TemplateBinding BorderThickness}">
+          <Grid VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" MaxWidth="500"/>
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+                <ItemsPresenter Grid.Column="0"
+                            Name="PART_ItemsPresenter"
+                            Items="{TemplateBinding Items}"
+                            ItemsPanel="{TemplateBinding ItemsPanel}"
+                            ItemTemplate="{TemplateBinding ItemTemplate}"
+                            VirtualizationMode="{TemplateBinding VirtualizationMode}"
+                            />
+                  
+                 <Button Grid.Column="1" Classes="AddTagButton" HorizontalAlignment="Left" VerticalAlignment="Top"
+                          Name="btnAddTagButton"
+                          IsVisible="{TemplateBinding ShowAddButton}"
+                          Margin="{TemplateBinding TagMargin}"
+                          />
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    </Style>
+
+
+
+
+</Styles>

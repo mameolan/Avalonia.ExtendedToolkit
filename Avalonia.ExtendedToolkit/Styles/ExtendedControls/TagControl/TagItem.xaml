@@ -1,0 +1,147 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+        xmlns:tkConverter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+        >
+    <Styles.Resources>
+        <Geometry x:Key="AddGeometry">M938.666667 426.666667h-341.333334V85.333333c0-46.933333-38.4-85.333333-85.333333-85.333333s-85.333333 38.4-85.333333 85.333333v341.333334H85.333333c-46.933333 0-85.333333 38.4-85.333333 85.333333s38.4 85.333333 85.333333 85.333333h341.333334v341.333334c0 46.933333 38.4 85.333333 85.333333 85.333333s85.333333-38.4 85.333333-85.333333v-341.333334h341.333334c46.933333 0 85.333333-38.4 85.333333-85.333333s-38.4-85.333333-85.333333-85.333333z</Geometry>
+        <Geometry x:Key="DeleteGeometry">M512 620.544l253.3376 253.3376a76.6976 76.6976 0 1 0 108.544-108.544L620.6464 512l253.2352-253.3376a76.6976 76.6976 0 1 0-108.544-108.544L512 403.3536 258.6624 150.1184a76.6976 76.6976 0 1 0-108.544 108.544L403.3536 512 150.1184 765.3376a76.6976 76.6976 0 1 0 108.544 108.544L512 620.6464z</Geometry>
+        <Geometry x:Key="DeleteFillCircleGeometry">M7.4038057,6.4038057 C7.1478834,6.4038057 6.8919611,6.5014372 6.6966991,6.6966991 6.3061748,7.0872235 6.3061748,7.7203884 6.6966991,8.1109123 L10.585787,12 6.6966991,15.889088 C6.3061748,16.279612 6.3061748,16.912777 6.6966991,17.303301 7.0872235,17.693825 7.7203879,17.693825 8.1109123,17.303301 L12,13.414213 15.889088,17.303301 C16.279612,17.693825 16.912777,17.693825 17.303301,17.303301 17.693825,16.912777 17.693825,16.279612 17.303301,15.889088 L13.414213,12 17.303301,8.1109123 C17.693825,7.7203884 17.693825,7.0872235 17.303301,6.6966991 16.912777,6.3061748 16.279612,6.3061748 15.889088,6.6966991 L12,10.585787 8.1109123,6.6966991 C7.9156504,6.5014372 7.6597281,6.4038057 7.4038057,6.4038057 z M12,0 C18.627417,0 24,5.3725829 24,12 24,18.627417 18.627417,24 12,24 5.3725829,24 0,18.627417 0,12 0,5.3725829 5.3725829,0 12,0 z</Geometry>
+        <tkConverter:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </Styles.Resources>
+    
+    <Style Selector="Controls|TagItem">
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray}"/>
+        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Black}"/>
+        <Setter Property="BorderThickness" Value="0.5"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="MinWidth" Value="100"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                  <Grid>                    
+                  <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                          BorderThickness="{TemplateBinding BorderThickness}" 
+                          Background="{TemplateBinding Background}" 
+                          Padding="{TemplateBinding Padding}" 
+                          CornerRadius="4"
+                          Name="PART_Border"
+                          >
+                        
+                        <Grid Name="mainGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:TagItem}}, Path=Text}"
+                                    IsVisible="{TemplateBinding IsInEditMode, Converter={StaticResource InverseBooleanConverter}}"
+                                    Margin="1"
+                                    Background="Transparent"
+                                    />
+                                <Button 
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Name="ButtonClose" 
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:TagItem}}, Path=CloseCommand}" 
+                                    Margin="10,1,1,1"
+                                    VerticalAlignment="Center" 
+                                    Height="16"
+                                    Width="16" 
+                                    Grid.Column="1" 
+                                    >
+                                    <Path Data="{StaticResource DeleteGeometry}"
+                                            StrokeThickness="1"
+                                            Fill="{TemplateBinding Foreground}"
+                                            Stretch="Fill"     
+                                            />
+                            </Button>
+                        </Grid>
+                  </Border>                
+                  </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+
+    <Style Selector="Controls|TagItem:pointover /template/ Button#ButtonClose">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Template>
+                    <Path 
+                        Data="{StaticResource DeleteFillCircleGeometry}"
+                        StrokeThickness="1"
+                        Fill="{DynamicResource MahApps.Brushes.Accent2}"
+                        Stretch="Fill"
+                        />
+                </Template>
+                
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Padding" Value="0,6"/>
+    </Style>
+
+    <Style Selector="Controls|TagItem:disabled">
+        <Setter Property="Opacity" Value="0.4"/>
+    </Style>
+
+    <Style Selector="Controls|TagItem:pointerover">
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}"/>
+    </Style>
+
+    <Style Selector="Controls|TagItem[IsSelected=true][IsPointerOver=True]">
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}"/>
+    </Style>
+
+    <Style Selector="Controls|TagItem[IsSelected=true][IsPointerOver=False]">
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent4}"/>
+    </Style>
+
+    <Style Selector="Controls|TagItem[IsSelected=false][IsPointerOver=False]">
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}"/>
+    </Style>
+    
+    <Style Selector="Controls|TagItem[IsInEditMode=True]">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                          BorderThickness="{TemplateBinding BorderThickness}" 
+                          Background="{TemplateBinding Background}" 
+                          Padding="{TemplateBinding Padding}" 
+                          CornerRadius="4"
+                          Name="PART_Border"
+                          Focusable="False"
+                          >
+                            <AutoCompleteBox
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Items="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:TagControl}}, Path=PossibleSuggestedTags}"
+                                        Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:TagItem}}, Path=Text, Mode=TwoWay}"
+                                        BorderThickness="0"
+                                        Background="Transparent"
+                                        Foreground="{TemplateBinding Foreground}"
+                                        x:Name="txtInput"
+                                        IsTextCompletionEnabled="True"
+                                        Focusable="True"
+
+                                    />
+                        </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+                                
+
+</Styles>

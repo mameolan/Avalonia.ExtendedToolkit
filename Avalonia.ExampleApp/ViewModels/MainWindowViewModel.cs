@@ -272,6 +272,44 @@ namespace Avalonia.ExampleApp.ViewModels
             }
         }
 
+        private ObservableCollection<string> _categories;
+        public ObservableCollection<string> Categories
+        {
+            get { return _categories; }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _categories, value);
+            }
+        }
+
+        private ObservableCollection<string> _suggestedTags;
+        public ObservableCollection<string> SuggestedTags
+
+        {
+            get { return _suggestedTags; }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _suggestedTags, value);
+            }
+        }
+
+
+        private string _selectedItem;
+        public string SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedItem, value);
+            }
+        }
+
+
+        public ICommand AddTagCommand { get; set; }
+
+        public ICommand RemoveTagCommand{get; set;}
+
+
 
 
 
@@ -366,6 +404,17 @@ namespace Avalonia.ExampleApp.ViewModels
                 UnderlineValues.Add(entry);
             }
             SelectedUnderline=UnderlineValues.FirstOrDefault();
+
+            Categories = new ObservableCollection<string>();
+            Categories.Add("Test");
+
+            SuggestedTags=new ObservableCollection<string>();
+            SuggestedTags.Add("c#");
+            SuggestedTags.Add("dotnet");
+            SuggestedTags.Add("c++");
+
+			AddTagCommand = ReactiveCommand.Create(() => ExecuteAddTagCommand(), outputScheduler: RxApp.MainThreadScheduler);
+            RemoveTagCommand= ReactiveCommand.Create(() => ExecuteRemoveTagCommand(null), outputScheduler: RxApp.MainThreadScheduler);
 
 
         }
@@ -498,6 +547,16 @@ namespace Avalonia.ExampleApp.ViewModels
             }
 
             return new AvaloniaList<BrushResource>();
+        }
+
+        private void ExecuteRemoveTagCommand(object item)
+        {
+            Categories.Remove(SelectedItem);
+        }
+
+        private void ExecuteAddTagCommand()
+        {
+            Categories.Add("");
         }
 
 
