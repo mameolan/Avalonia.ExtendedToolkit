@@ -186,7 +186,7 @@
           <Views:ResizeRotateControlDemoView/>
         </TabItem>
         <TabItem Header="Tag Control Example">
-          <Views:TagControlExample/>
+          <Views:TagControlExample VerticalAlignment="Stretch"/>
         </TabItem>
         <TabItem Header="Colors" >
           <Views:ColorExample/>

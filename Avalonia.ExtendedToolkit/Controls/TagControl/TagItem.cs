@@ -1,204 +1,21 @@
-using Avalonia;
+using System;
 using Avalonia.Controls;
+using Avalonia.Controls.Mixins;
 using Avalonia.Controls.Primitives;
+using Avalonia.Data;
+using Avalonia.ExtendedToolkit.Extensions;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Layout;
 using ReactiveUI;
-using System;
-using System.Linq;
-using System.Windows.Input;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
     /// <summary>
     /// represents an item in the tagcontrol
+    /// base on the work of: https://github.com/niieani/TokenizedInputCs
     /// </summary>
-    public class TagItem : TemplatedControl, ISelectable
+    public partial class TagItem : TemplatedControl, ISelectable
     {
-        private const string TxtInput = "txtInput";
-        private const string ButtonClose = "ButtonClose";
-
-        private AutoCompleteBox _txtInput;
-
-        private string valueBeforeEditing = "";
-        private bool isEscapeClicked;
-        private Button _buttonClose;
-
-        /// <summary>
-        /// Gets or sets Text.
-        /// </summary>
-        public string Text
-        {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the Text property.
-        /// </summary>
-        public static readonly StyledProperty<string> TextProperty =
-        AvaloniaProperty.Register<TabControl, string>(nameof(Text));
-
-        /// <summary>
-        /// Gets or sets ShowCloseButton.
-        /// </summary>
-        public bool ShowCloseButton
-        {
-            get { return (bool)GetValue(ShowCloseButtonProperty); }
-            set { SetValue(ShowCloseButtonProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the ShowCloseButton property.
-        /// </summary>
-        public static readonly StyledProperty<bool> ShowCloseButtonProperty =
-        AvaloniaProperty.Register<TagItem, bool>(nameof(ShowCloseButton), defaultValue: true);
-
-        /// <summary>
-        /// Gets or sets Selectable.
-        /// </summary>
-        public bool Selectable
-        {
-            get { return (bool)GetValue(SelectableProperty); }
-            set { SetValue(SelectableProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the Selectable property.
-        /// </summary>
-        public static readonly StyledProperty<bool> SelectableProperty =
-        AvaloniaProperty.Register<TagItem, bool>(nameof(Selectable), defaultValue: true);
-
-        /// <summary>
-        /// Gets or sets IsInEditMode.
-        /// </summary>
-        public bool IsInEditMode
-        {
-            get { return (bool)GetValue(IsInEditModeProperty); }
-            set { SetValue(IsInEditModeProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the IsInEditMode property.
-        /// </summary>
-        public static readonly StyledProperty<bool> IsInEditModeProperty =
-        AvaloniaProperty.Register<TagItem, bool>(nameof(IsInEditMode));
-
-        /// <summary>
-        /// Gets or sets HorizontalContentAlignment.
-        /// </summary>
-        public HorizontalAlignment HorizontalContentAlignment
-        {
-            get { return (HorizontalAlignment)GetValue(HorizontalContentAlignmentProperty); }
-            set { SetValue(HorizontalContentAlignmentProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the HorizontalContentAlignment property.
-        /// </summary>
-        public static readonly StyledProperty<HorizontalAlignment> HorizontalContentAlignmentProperty =
-        AvaloniaProperty.Register<TagItem, HorizontalAlignment>(nameof(HorizontalContentAlignment));
-
-        /// <summary>
-        /// Gets or sets VerticalContentAlignment.
-        /// </summary>
-        public VerticalAlignment VerticalContentAlignment
-        {
-            get { return (VerticalAlignment)GetValue(VerticalContentAlignmentProperty); }
-            set { SetValue(VerticalContentAlignmentProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the VerticalContentAlignment property.
-        /// </summary>
-        public static readonly StyledProperty<VerticalAlignment> VerticalContentAlignmentProperty =
-        AvaloniaProperty.Register<TagItem, VerticalAlignment>(nameof(VerticalContentAlignment));
-
-        /// <summary>
-        /// Gets or sets IsSelected.
-        /// </summary>
-        public bool IsSelected
-        {
-            get { return (bool)GetValue(IsSelectedProperty); }
-            set { SetValue(IsSelectedProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the IsSelected property.
-        /// </summary>
-        public static readonly StyledProperty<bool> IsSelectedProperty =
-        AvaloniaProperty.Register<TagItem, bool>(nameof(IsSelected), defaultValue: false);
-
-        /// <summary>
-        /// Defines the Selected routed event.
-        /// </summary>
-        public static readonly RoutedEvent<RoutedEventArgs> SelectedEvent =
-        RoutedEvent.Register<TagItem, RoutedEventArgs>(nameof(SelectedEvent), RoutingStrategies.Bubble);
-
-        /// <summary>
-        /// Gets or sets Selected eventhandler.
-        /// </summary>
-        public event EventHandler Selected
-        {
-            add
-            {
-                AddHandler(SelectedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(SelectedEvent, value);
-            }
-        }
-
-        /// <summary>
-        /// Defines the Closing routed event.
-        /// </summary>
-        public static readonly RoutedEvent<RoutedEventArgs> ClosingEvent =
-        RoutedEvent.Register<TagItem, RoutedEventArgs>(nameof(ClosingEvent), RoutingStrategies.Bubble);
-
-        /// <summary>
-        /// Gets or sets Closing eventhandler.
-        /// </summary>
-        public event EventHandler Closing
-        {
-            add
-            {
-                AddHandler(ClosingEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(ClosingEvent, value);
-            }
-        }
-
-        /// <summary>
-        /// Defines the Closed routed event.
-        /// </summary>
-        public static readonly RoutedEvent<RoutedEventArgs> ClosedEvent =
-        RoutedEvent.Register<TagItem, RoutedEventArgs>(nameof(ClosedEvent), RoutingStrategies.Bubble);
-
-        /// <summary>
-        /// Gets or sets Closed eventhandler.
-        /// </summary>
-        public event EventHandler Closed
-        {
-            add
-            {
-                AddHandler(ClosedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(ClosedEvent, value);
-            }
-        }
-
-        /// <summary>
-        /// command which is exceuted after the close event is fired
-        /// </summary>
-        /// <value></value>
-        internal ICommand CloseCommand { get; private set; }
-
         /// <summary>
         /// registers IsSelected changed
         /// LostFocus, and creates the CloseCommand
@@ -212,15 +29,46 @@ namespace Avalonia.ExtendedToolkit.Controls
             DoubleTapped += OnDoubleTapped;
         }
 
+        internal static TagItem CreateTagItem(
+                        object dataContext,
+                        EventHandler closedEvent,
+                        EventHandler selectedEvent,
+                        EventHandler<AvaloniaPropertyChangedEventArgs> propertyChangedEvent,
+                        Action<TagItem> acceptEdit,
+                        Thickness margin)
+        {
+            TagItem tagItem = new TagItem();
+            Binding binding = new Binding();
+            binding.Source = dataContext;
+            tagItem.Bind(TagItem.TextProperty, binding, BindingPriority.LocalValue);
+            tagItem.Closed += closedEvent;
+            tagItem.Selected += selectedEvent;
+            tagItem.PropertyChanged += propertyChangedEvent;
+            tagItem.AcceptEdit += acceptEdit;
+            tagItem.Margin = margin;
+            return tagItem;
+        }
+
+        internal void UnregisterEvents(
+                        EventHandler closedEvent,
+                        EventHandler selectedEvent,
+                        EventHandler<AvaloniaPropertyChangedEventArgs> propertyChangedEvent,
+                        Action<TagItem> acceptEdit)
+        {
+            Closed -= closedEvent;
+            Selected -= selectedEvent;
+            PropertyChanged -= propertyChangedEvent;
+            AcceptEdit -= acceptEdit;
+        }
+
         /// <summary>
         /// sets <see cref="IsInEditMode"/> to true
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void OnDoubleTapped(object sender, RoutedEventArgs e)
         {
             IsSelected = true;
             IsInEditMode = true;
+            ParentControl.SelectedItem = this.Text;
         }
 
         /// <summary>
@@ -228,6 +76,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         private void ExecuteCloseCommand()
         {
+            //this.IsSelected = true;
+
             RaiseEvent(new RoutedEventArgs(ClosingEvent, this));
 
             RaiseEvent(new RoutedEventArgs(ClosedEvent, this));
@@ -237,31 +87,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// raises the SelectedEvent
         /// and sets the IsReadonly flag
         /// </summary>
-        /// <param name="tagControl"></param>
-        /// <param name="e"></param>
         private void IsSelectedChanged(TagItem tagControl, AvaloniaPropertyChangedEventArgs e)
         {
             tagControl.RaiseEvent(new RoutedEventArgs(SelectedEvent, tagControl));
-        }
-
-        /// <summary>
-        /// on left click the IsSelected flag is set
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnPointerPressed(PointerPressedEventArgs e)
-        {
-            base.OnPointerPressed(e);
-
-            if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed && Selectable)
-            {
-                IsSelected = !IsSelected;
-
-                if (IsSelected == false)
-                {
-                    IsInEditMode = false;
-                    this.Focus();
-                }
-            }
         }
 
         /// <summary>
@@ -291,29 +119,46 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         /// <summary>
-        /// resolves the controls from the template
+        /// handels the key return for the <see cref="AutoCompleteBox"/>
+        /// since the keyup is not handled by the control somehow (?)
         /// </summary>
         /// <param name="e"></param>
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            base.OnKeyUp(e);
+            if (e.Key == Key.Return && _txtInput != null)
+            {
+                OnInputKeyUp(_txtInput, e);
+            }
+        }
+
+        /// <summary>
+        /// resolves the controls from the template
+        /// </summary>
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             base.OnTemplateApplied(e);
             UnregisterEvents();
             _txtInput = e.NameScope.Find<AutoCompleteBox>(TxtInput);
             _buttonClose = e.NameScope.Find<Button>(ButtonClose);
+
             RegisterEvents();
             _txtInput?.Focus();
         }
 
+        /// <summary>
+        /// manage the availability of the TagItem
+        /// </summary>
         private void txtInput_LostFocus(object sender, RoutedEventArgs e)
         {
-            var parent = GetParent();
+            var parent = ParentControl;
             if (string.IsNullOrEmpty(Text) == false)
             {
-                if (IsDuplicate(parent, Text) && string.IsNullOrEmpty(valueBeforeEditing))
+                if (parent.ContainsTagText(this, Text) && string.IsNullOrEmpty(valueBeforeEditing))
                 {
                     parent.RemoveTag(this, true); // do not raise RemoveTag event
                 }
-                else if (IsDuplicate(parent, Text) && valueBeforeEditing != "")
+                else if (parent.ContainsTagText(this, Text) && string.IsNullOrEmpty(valueBeforeEditing) == false)
                 {
                     Text = valueBeforeEditing;
                 }
@@ -340,6 +185,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             isEscapeClicked = false;
         }
 
+        /// <summary>
+        /// sets the focus to the <see cref="AutoCompleteBox"/>
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnGotFocus(GotFocusEventArgs e)
         {
             e.Handled = true;
@@ -349,8 +198,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// sets the previous text to an internal variable
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void txtInput_GotFocus(object sender, GotFocusEventArgs e)
         {
             valueBeforeEditing = _txtInput.Text;
@@ -364,28 +211,35 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <param name="e"></param>
         private void OnInputKeyUp(object sender, KeyEventArgs e)
         {
-            var parent = GetParent();
+            var parent = ParentControl;
             switch (e.Key)
             {
                 case Key.Tab:
                 case Key.Enter:
                     // accept tag
+                    IsSelected = false;
+                    IsInEditMode = false;
 
                     if (!string.IsNullOrWhiteSpace(Text))
                     {
-                        if (IsDuplicate(parent, Text))
+                        if (parent.ContainsTagText(this, Text))
                         {
                             break;
                         }
+
+                        AcceptEdit?.Invoke(this);
+
+                        // if (parent?.AddTagCommand.CanExecute(parent.AddTagCommandParameter) == true)
+                        // {
+                        //     parent?.AddTagCommand.Execute(parent.AddTagCommandParameter);
+                        // }
                     }
                     else
                     {
                         parent.Focus();
                     }
                     e.Handled = true;
-                    IsInEditMode = false;
-                    IsSelected = false;
-                    IsSelected = true;
+                    parent.Focus();
                     break;
 
                 case Key.Escape: // reject tag
@@ -400,26 +254,14 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets the parent control
         /// </summary>
         /// <returns></returns>
-        private TagControl GetParent()
+        private TagControl ParentControl
         {
-            return Parent as TagControl;
+            get { return this.TryFindParent<TagControl>(); }
         }
 
-        /// <summary>
-        /// checks for duplicated items
-        /// </summary>
-        /// <param name="tagControl"></param>
-        /// <param name="compareTo"></param>
-        /// <returns></returns>
-        private static bool IsDuplicate(TagControl tagControl, string compareTo)
+        static TagItem()
         {
-            var duplicateCount = (from TagItem item in tagControl.GetTagItems()
-                                  where item.Text.ToLower() == compareTo.ToLower()
-                                  select item).Count();
-            if (duplicateCount > 1)
-                return true;
-
-            return false;
+            SelectableMixin.Attach<TagItem>(IsSelectedProperty);
         }
     }
 }

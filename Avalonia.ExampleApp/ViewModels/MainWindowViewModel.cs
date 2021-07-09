@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Text;
@@ -305,9 +306,7 @@ namespace Avalonia.ExampleApp.ViewModels
         }
 
 
-        public ICommand AddTagCommand { get; set; }
-
-        public ICommand RemoveTagCommand{get; set;}
+       
 
 
 
@@ -389,34 +388,29 @@ namespace Avalonia.ExampleApp.ViewModels
             {
                 UnderlinedPlacementValues.Add(entry);
             }
-            SelectedUnderlinedPlacement=UnderlinedPlacementValues.FirstOrDefault();
+            SelectedUnderlinedPlacement = UnderlinedPlacementValues.FirstOrDefault();
 
             TabStripPlacementValues = new ObservableCollection<Dock>();
             foreach (Dock entry in Enum.GetValues(typeof(Dock)))
             {
                 TabStripPlacementValues.Add(entry);
             }
-            SelectedTabStripPlacement=TabStripPlacementValues.FirstOrDefault();
+            SelectedTabStripPlacement = TabStripPlacementValues.FirstOrDefault();
 
             UnderlineValues = new ObservableCollection<UnderlinedType>();
             foreach (UnderlinedType entry in Enum.GetValues(typeof(UnderlinedType)))
             {
                 UnderlineValues.Add(entry);
             }
-            SelectedUnderline=UnderlineValues.FirstOrDefault();
+            SelectedUnderline = UnderlineValues.FirstOrDefault();
 
             Categories = new ObservableCollection<string>();
-            Categories.Add("Test");
+            Categories.Add("TagItem");
 
-            SuggestedTags=new ObservableCollection<string>();
+            SuggestedTags = new ObservableCollection<string>();
             SuggestedTags.Add("c#");
             SuggestedTags.Add("dotnet");
             SuggestedTags.Add("c++");
-
-			AddTagCommand = ReactiveCommand.Create(() => ExecuteAddTagCommand(), outputScheduler: RxApp.MainThreadScheduler);
-            RemoveTagCommand= ReactiveCommand.Create(() => ExecuteRemoveTagCommand(null), outputScheduler: RxApp.MainThreadScheduler);
-
-
         }
 
         private void ExecuteShowFlyoutDemo(object x)
@@ -549,16 +543,7 @@ namespace Avalonia.ExampleApp.ViewModels
             return new AvaloniaList<BrushResource>();
         }
 
-        private void ExecuteRemoveTagCommand(object item)
-        {
-            Categories.Remove(SelectedItem);
-        }
-
-        private void ExecuteAddTagCommand()
-        {
-            Categories.Add("");
-        }
-
+        
 
     }
 }

@@ -5,21 +5,42 @@
              xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
              xmlns:tk="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Avalonia.ExampleApp.Views.TagControlExample">
-  <UserControl.Styles>
-    <!-- <Style Selector="TextBlock">
-      <Setter Property="VerticalAlignment" Value="Center"/>
-      <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
-    </Style> -->
-  </UserControl.Styles>
+             x:Class="Avalonia.ExampleApp.Views.TagControlExample"
+             >
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+          <Grid Grid.Row="0">
+          <Controls:MetroGroupBox  Header="Usage" Margin="10" HorizontalAlignment="Center">
+            <StackPanel>
+              <StackPanel.Styles>
+                <Style Selector="TextBlock">
+                  <Setter Property="FontSize" Value="14"/>
+                </Style>
+              </StackPanel.Styles>
 
-  <DockPanel VerticalAlignment="Stretch">
-    <Controls:TagControl ShowAddButton="True" Items="{Binding Categories, Mode=OneWay}" 
+              <TextBlock Text=" -Only new items can created with the plus-Button if no item is in editmode."/>
+              <TextBlock Margin="0,2,0,0" Text=" -To start editmode double click an item."/>
+              <TextBlock Margin="0,2,0,0" Text="- If an item is in editmode:"/>
+              <TextBlock Margin="0,2,0,0" Text="  - If the text is empty, ESC deletes the item."/>
+              <TextBlock Margin="0,2,0,0" Text="  - If the text is NOT empty, ESC cancels the edit and leaves the edit mode."/>
+              <TextBlock Margin="0,2,0,0" Text="  - TAB/Enter accepts the edit and leaves the editmode."/>
+              <TextBlock Margin="0,2,0,0" Text="  - If TagItem text exist (case sensitive) and TAB/Enter is pressed than the item is removed."/>
+            </StackPanel>
+          </Controls:MetroGroupBox>
+            
+          </Grid>
+
+            <Controls:TagControl Grid.Row="1" ShowAddButton="True" 
+                    Items="{Binding Categories, Mode=TwoWay}" 
                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                    AddTagCommand="{Binding AddTagCommand}"
-                    CloseTagCommand="{Binding RemoveTagCommand}"
                     SuggestedTags="{Binding SuggestedTags}"
                     VerticalAlignment="Stretch"
-                    />    
-  </DockPanel>
+                    HorizontalAlignment="Stretch"
+                    />
+                    <!-- AddTagCommand="{Binding AddTagCommand}"
+                    CloseTagCommand="{Binding RemoveTagCommand}" -->
+  </Grid>
 </UserControl>
