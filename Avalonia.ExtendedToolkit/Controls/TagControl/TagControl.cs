@@ -59,6 +59,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         private void AddTagButton_Click(object sender, RoutedEventArgs e)
         {
+            CreateNewTagItem();
+        }
+
+        /// <summary>
+        /// - Raises the <see cref="TagAdded"/>
+        /// - Creates a new <see cref="TagItem"/> in edit mode
+        /// - executes <see cref="TagAddedCommand"/>
+        /// </summary>
+        internal void CreateNewTagItem()
+        {
             RaiseEvent(new RoutedEventArgs(TagAddedEvent, this));
 
             var item = TagItem.

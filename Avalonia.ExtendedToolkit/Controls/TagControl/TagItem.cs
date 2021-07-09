@@ -229,10 +229,10 @@ namespace Avalonia.ExtendedToolkit.Controls
 
                         AcceptEdit?.Invoke(this);
 
-                        // if (parent?.AddTagCommand.CanExecute(parent.AddTagCommandParameter) == true)
-                        // {
-                        //     parent?.AddTagCommand.Execute(parent.AddTagCommandParameter);
-                        // }
+                        if (e.Key == Key.Tab)
+                        {
+                            parent.CreateNewTagItem();
+                        }
                     }
                     else
                     {

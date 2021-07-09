@@ -26,7 +26,8 @@
               <TextBlock Margin="0,2,0,0" Text="- If an item is in editmode:"/>
               <TextBlock Margin="0,2,0,0" Text="  - If the text is empty, ESC deletes the item."/>
               <TextBlock Margin="0,2,0,0" Text="  - If the text is NOT empty, ESC cancels the edit and leaves the edit mode."/>
-              <TextBlock Margin="0,2,0,0" Text="  - TAB/Enter accepts the edit and leaves the editmode."/>
+              <TextBlock Margin="0,2,0,0" Text="  - Enter accepts the edit and leaves the editmode."/>
+              <TextBlock Margin="0,2,0,0" Text="  - TAB accepts the edit and leaves the editmode and creates an new TagItem."/>
               <TextBlock Margin="0,2,0,0" Text="  - If TagItem text exist (case sensitive) and TAB/Enter is pressed than the item is removed."/>
             </StackPanel>
           </Controls:MetroGroupBox>
