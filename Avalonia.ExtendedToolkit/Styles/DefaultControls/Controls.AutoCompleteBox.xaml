@@ -1,0 +1,50 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Behaviors="clr-namespace:Avalonia.ExtendedToolkit.Behaviours;assembly=Avalonia.ExtendedToolkit"
+        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+        >
+  <Style Selector="AutoCompleteBox">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}"/>
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderMidBrush}"/>
+    <Setter Property="BorderThickness" Value="{DynamicResource ThemeBorderThickness}"/>
+    <Setter Property="Padding" Value="4"/>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <TextBox Name="PART_TextBox"
+                   Background="{TemplateBinding Background}" 
+                   BorderBrush="{TemplateBinding BorderBrush}" 
+                   BorderThickness="{TemplateBinding BorderThickness}"
+                   Foreground="{TemplateBinding Foreground}"
+                   CaretBrush="{TemplateBinding Foreground}"
+                   Padding="{TemplateBinding Padding}"
+                   Watermark="{TemplateBinding Watermark}"
+                   SelectionBrush="{DynamicResource MahApps.Brushes.Highlight}"
+                   DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}" >
+            <i:Interaction.Behaviors>
+              <Behaviors:SelectTextBoxBehavior IsSelectAll="false"/>
+            </i:Interaction.Behaviors>
+          </TextBox>
+          <Popup Name="PART_Popup"
+                 MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                 MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                 PlacementTarget="{TemplateBinding}"
+                 StaysOpen="False">
+            <Border BorderBrush="{DynamicResource MahApps.Brushes.Black}"
+                    BorderThickness="1">
+              <ListBox Name="PART_SelectingItemsControl"
+                       BorderThickness="0"
+                       Background="{TemplateBinding Background}"
+                       Foreground="{TemplateBinding Foreground}"
+                       ItemTemplate="{TemplateBinding ItemTemplate}"
+                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                       ScrollViewer.VerticalScrollBarVisibility="Auto" />
+            </Border>
+          </Popup>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+</Styles>

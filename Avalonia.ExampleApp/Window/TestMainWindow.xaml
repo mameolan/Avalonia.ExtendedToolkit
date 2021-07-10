@@ -119,7 +119,7 @@
         <Controls:TabItemExt Header="Test2" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
       </Controls:TabControlExt> -->
   
-      <Views:TabControlExample/>
+      <Views:TagControlExample/>
 
   
     </Grid>

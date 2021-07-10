@@ -2,6 +2,9 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Fonts.xaml"/>
   <StyleInclude Source="avares://Avalonia.Controlz/Styles/Generic.xaml"/>
   <!--Default Controls-->
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.AutoCompleteBox.xaml"/>
+
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataValidationErrors.xaml"/>
   
@@ -139,5 +142,7 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ResizeRotateControl/ResizeRotateChrome.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ResizeRotateControl/SizeChrome.xaml"/>
 
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/TagControl/TagItem.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/TagControl/TagControl.xaml"/>
 
 </Styles>

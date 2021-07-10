@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Text;
@@ -272,6 +273,42 @@ namespace Avalonia.ExampleApp.ViewModels
             }
         }
 
+        private ObservableCollection<string> _categories;
+        public ObservableCollection<string> Categories
+        {
+            get { return _categories; }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _categories, value);
+            }
+        }
+
+        private ObservableCollection<string> _suggestedTags;
+        public ObservableCollection<string> SuggestedTags
+
+        {
+            get { return _suggestedTags; }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _suggestedTags, value);
+            }
+        }
+
+
+        private string _selectedItem;
+        public string SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedItem, value);
+            }
+        }
+
+
+       
+
+
 
 
 
@@ -351,23 +388,29 @@ namespace Avalonia.ExampleApp.ViewModels
             {
                 UnderlinedPlacementValues.Add(entry);
             }
-            SelectedUnderlinedPlacement=UnderlinedPlacementValues.FirstOrDefault();
+            SelectedUnderlinedPlacement = UnderlinedPlacementValues.FirstOrDefault();
 
             TabStripPlacementValues = new ObservableCollection<Dock>();
             foreach (Dock entry in Enum.GetValues(typeof(Dock)))
             {
                 TabStripPlacementValues.Add(entry);
             }
-            SelectedTabStripPlacement=TabStripPlacementValues.FirstOrDefault();
+            SelectedTabStripPlacement = TabStripPlacementValues.FirstOrDefault();
 
             UnderlineValues = new ObservableCollection<UnderlinedType>();
             foreach (UnderlinedType entry in Enum.GetValues(typeof(UnderlinedType)))
             {
                 UnderlineValues.Add(entry);
             }
-            SelectedUnderline=UnderlineValues.FirstOrDefault();
+            SelectedUnderline = UnderlineValues.FirstOrDefault();
 
+            Categories = new ObservableCollection<string>();
+            Categories.Add("TagItem");
 
+            SuggestedTags = new ObservableCollection<string>();
+            SuggestedTags.Add("c#");
+            SuggestedTags.Add("dotnet");
+            SuggestedTags.Add("c++");
         }
 
         private void ExecuteShowFlyoutDemo(object x)
@@ -500,6 +543,7 @@ namespace Avalonia.ExampleApp.ViewModels
             return new AvaloniaList<BrushResource>();
         }
 
+        
 
     }
 }
