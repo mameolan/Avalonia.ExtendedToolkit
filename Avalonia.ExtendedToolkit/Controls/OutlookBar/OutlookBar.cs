@@ -186,10 +186,22 @@ namespace Avalonia.ExtendedToolkit.Controls
                     return;
 
                 //IsOverflowVisible = !IsOverflowVisible;
+
                 if (btnMenu.ContextMenu.IsOpen == false)
                 {
                     btnMenu.ContextMenu.Items = OverflowMenuItems;
-                    btnMenu.ContextMenu.Open(this);
+                    try
+                    {
+                        //alway set to null otherwise an exeption is raised on second call
+                        ((ISetLogicalParent)btnMenu.ContextMenu).SetParent(null);
+                        btnMenu.ContextMenu.Open(btnMenu);
+
+
+                    }
+                    catch
+                    {
+                        btnMenu.ContextMenu.Close();
+                    }
                 }
                 else
                 {

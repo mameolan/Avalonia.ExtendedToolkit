@@ -4,6 +4,7 @@
         xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit">
   <Styles.Resources>
     <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    <converters:IsAddTagButtonVisibleConveter x:Key="IsAddTagButtonVisibleConveter"/>
   </Styles.Resources>
   <Style Selector="Controls|TagControl">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
@@ -32,15 +33,20 @@
               <Button Grid.Column="0" Classes="AddTagButton"
                         HorizontalAlignment="Left" VerticalAlignment="Top"
                         Name="btnAddTagButton"
-                        IsVisible="{TemplateBinding ShowAddButton}"
                         Margin="{TemplateBinding TagMargin}"
-                        IsEnabled="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:TagControl}} ,Path=IsAnyItemInEditMode, Converter={StaticResource InverseBooleanConverter}}" />
+                        IsEnabled="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:TagControl}} ,Path=IsAnyItemInEditMode, Converter={StaticResource InverseBooleanConverter}}" 
+                        >
+                <Button.IsVisible>
+                    <MultiBinding Converter="{StaticResource IsAddTagButtonVisibleConveter}">
+                      <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ShowAddButton"/>
+                      <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsEnabled"/>
+                    </MultiBinding> 
+                </Button.IsVisible>
+                </Button>
               <ItemsPresenter Grid.Column="1"
                           Name="PART_ItemsPresenter"
                           Items="{TemplateBinding ItemsSource}"
                           ItemsPanel="{TemplateBinding ItemsPanel}"
-                          ItemTemplate="{TemplateBinding ItemTemplate}"
-                          VirtualizationMode="{TemplateBinding VirtualizationMode}"
                           MaxWidth="500" />
             </Grid>
           </Border>

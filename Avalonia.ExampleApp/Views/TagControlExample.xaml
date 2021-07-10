@@ -39,9 +39,7 @@
                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                     SuggestedTags="{Binding SuggestedTags}"
                     VerticalAlignment="Stretch"
-                    HorizontalAlignment="Stretch"
-                    />
-                    <!-- AddTagCommand="{Binding AddTagCommand}"
-                    CloseTagCommand="{Binding RemoveTagCommand}" -->
+                    HorizontalAlignment="Stretch"/>
+                    
   </Grid>
 </UserControl>

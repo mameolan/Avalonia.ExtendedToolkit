@@ -14,7 +14,6 @@ namespace Avalonia.ExtendedToolkit.Controls
     public partial class TagControl
     {
         private const string AddTagButton = "btnAddTagButton";
-        private const string PART_ItemsPresenter = "PART_ItemsPresenter";
         private Button _addTagButton;
 
         /// <summary>
@@ -75,21 +74,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public static readonly StyledProperty<ITemplate<IPanel>> ItemsPanelProperty =
         AvaloniaProperty.Register<TagControl, ITemplate<IPanel>>(nameof(ItemsPanel));
-
-        /// <summary>
-        /// Gets or sets ItemTemplate.
-        /// </summary>
-        public IDataTemplate ItemTemplate
-        {
-            get { return (IDataTemplate)GetValue(ItemTemplateProperty); }
-            set { SetValue(ItemTemplateProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the ItemTemplate property.
-        /// </summary>
-        public static readonly StyledProperty<IDataTemplate> ItemTemplateProperty =
-        AvaloniaProperty.Register<TagControl, IDataTemplate>(nameof(ItemTemplate));
 
         /// <summary>
         /// Defines the <see cref="SelectedItem"/> property.
@@ -165,21 +149,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         AvaloniaProperty.RegisterDirect<TagControl, bool>(
         nameof(IsAnyItemInEditMode),
         o => o.IsAnyItemInEditMode);
-
-        /// <summary>
-        /// Defines the <see cref="VirtualizationMode"/> property.
-        /// </summary>
-        public static readonly StyledProperty<ItemVirtualizationMode> VirtualizationModeProperty =
-            ItemsPresenter.VirtualizationModeProperty.AddOwner<TagControl>();
-
-        /// <summary>
-        /// Gets or sets the virtualization mode for the items.
-        /// </summary>
-        public ItemVirtualizationMode VirtualizationMode
-        {
-            get { return GetValue(VirtualizationModeProperty); }
-            set { SetValue(VirtualizationModeProperty, value); }
-        }
 
         /// <summary>
         /// Gets or sets IsAnyItemInEditMode.

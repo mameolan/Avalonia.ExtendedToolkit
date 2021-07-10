@@ -254,14 +254,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         /// <summary>
-        /// sets the ItemsPanelProperty
-        /// </summary>
-        static TagControl()
-        {
-            VirtualizationModeProperty.OverrideDefaultValue<TagControl>(ItemVirtualizationMode.Simple);
-        }
-
-        /// <summary>
         /// registers the ItemsProperty changes event
         /// </summary>
         public TagControl()
