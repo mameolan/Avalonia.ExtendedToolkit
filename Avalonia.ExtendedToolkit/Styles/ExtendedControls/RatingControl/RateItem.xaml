@@ -1,0 +1,48 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit">
+
+    <Style Selector="Controls|RateItem">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate>
+                <Grid x:Name="mainGrid" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid.RenderTransform>
+                        <ScaleTransform />
+                    </Grid.RenderTransform>
+                        <Path   Width="{Binding Width,ElementName=mainGrid}"
+                                Height="{Binding Height,ElementName=mainGrid}"
+                                Data="{TemplateBinding Icon}"
+                                Fill="{TemplateBinding Background}"
+                                Stretch="Uniform" />
+                        <Border x:Name="PART_Icon" IsVisible="False">
+                            <Path x:Name="fillPath"
+                                HorizontalAlignment="Left"
+                                Data="{TemplateBinding Icon}"
+                                Fill="{TemplateBinding Foreground}"
+                                Height="{Binding Height,ElementName=mainGrid}"
+                                Stretch="Uniform" />
+                        </Border>
+                </Grid>
+            </ControlTemplate>
+        </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style Selector="Controls|RateItem:pointerenter /template/ Grid#mainGrid">
+        <Setter Property="ScaleTransform.ScaleX" Value="1.1" />
+        <Setter Property="ScaleTransform.ScaleY" Value="1.1" />
+    </Style>
+
+    <Style Selector="Controls|RateItem:pointerleave /template/ Grid#mainGrid">
+        <Setter Property="ScaleTransform.ScaleX" Value="1" />
+        <Setter Property="ScaleTransform.ScaleY" Value="1" />
+    </Style>
+
+    <Style Selector="Controls|RateItem:ishalf /template/ Border#PART_Icon">
+        <!-- does not work perfectly-->
+        <Setter Property="Width"  Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:RateItem}},Path=HalfWidth}" />
+        <!-- <Setter Property="Clip" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:RateItem}},Path=ClipRectangleGeometry}" /> -->
+    </Style>
+</Styles>

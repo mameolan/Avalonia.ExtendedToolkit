@@ -145,4 +145,12 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/TagControl/TagItem.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/TagControl/TagControl.xaml"/>
 
+  <!-- Panels -->
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Panels/RegularItemsControl.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Panels/SimpleItemsControl.xaml"/>
+
+  <!-- RateControl -->
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/RatingControl/RateItem.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/RatingControl/RatingControl.xaml"/>
+
 </Styles>

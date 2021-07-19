@@ -188,6 +188,9 @@
         <TabItem Header="Tag Control Example">
           <Views:TagControlExample VerticalAlignment="Stretch"/>
         </TabItem>
+        <TabItem Header="Rating Control Example">
+          <Views:RatingControlExampleView/>
+        </TabItem>
         <TabItem Header="Colors" >
           <Views:ColorExample/>
         </TabItem> 
