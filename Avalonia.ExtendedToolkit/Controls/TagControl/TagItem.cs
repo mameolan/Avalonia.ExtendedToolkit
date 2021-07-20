@@ -228,11 +228,9 @@ namespace Avalonia.ExtendedToolkit.Controls
                         }
 
                         AcceptEdit?.Invoke(this);
-
-                        if (e.Key == Key.Tab)
-                        {
-                            parent.CreateNewTagItem();
-                        }
+                        
+                        parent.CreateNewTagItem();
+                        
                     }
                     else
                     {
