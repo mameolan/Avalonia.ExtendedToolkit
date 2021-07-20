@@ -8,6 +8,8 @@
   <Style Selector="Controls|RatingControl">
     <Setter Property="Focusable" Value="False" />
     <Setter Property="ItemMargin" Value="5,0" />
+    <Setter Property="ItemWidth" Value="25" />
+    <Setter Property="ItemHeight" Value="25" />
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="VerticalAlignment" Value="Stretch" />
     <Setter Property="Icon" Value="{StaticResource StarGeometry}" />

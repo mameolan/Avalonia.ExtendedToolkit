@@ -20,7 +20,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// Defines the ItemWidth property.
         /// </summary>
         public static readonly StyledProperty<double> ItemWidthProperty =
-        AvaloniaProperty.Register<RegularItemsControl, double>(nameof(ItemWidth), defaultValue: 20d);
+        AvaloniaProperty.Register<RegularItemsControl, double>(nameof(ItemWidth), defaultValue: 200d);
 
         /// <summary>
         /// Gets or sets ItemHeight.
@@ -35,7 +35,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// Defines the ItemHeight property.
         /// </summary>
         public static readonly StyledProperty<double> ItemHeightProperty =
-        AvaloniaProperty.Register<RegularItemsControl, double>(nameof(ItemHeight), defaultValue: 20d);
+        AvaloniaProperty.Register<RegularItemsControl, double>(nameof(ItemHeight), defaultValue: 200d);
 
         /// <summary>
         /// Gets or sets ItemMargin.

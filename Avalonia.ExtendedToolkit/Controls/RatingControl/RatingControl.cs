@@ -186,6 +186,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             UpdateItems();
         }
 
+        /// <summary>
+        /// sets the Value from the selected item
+        /// </summary>
         private void RateItemValueChanged(object sender, RoutedEventArgs e)
         {
             Value = (from RateItem item in Items.OfType<RateItem>()
@@ -194,6 +197,9 @@ namespace Avalonia.ExtendedToolkit.Controls
                     .Sum();
         }
 
+        /// <summary>
+        /// manage the selection and ishalf
+        /// </summary>
         private void RateItemSelectedChanged(object sender, RoutedEventArgs e)
         {
             var items = Items as AvaloniaList<object>;
@@ -220,6 +226,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// adds the <see cref="RateItem"/> by <see cref="Count"/>
+        /// </summary>
         private void OnApplyTemplateInternal()
         {
             AvaloniaList<object> items = Items as AvaloniaList<object>;
@@ -368,6 +377,9 @@ namespace Avalonia.ExtendedToolkit.Controls
               };
         }
 
+        /// <summary>
+        /// sets <see cref="AllowHalf"/> to the items
+        /// </summary>
         private void OnAllowHaveChanged(RatingControl o, AvaloniaPropertyChangedEventArgs e)
         {
             if (e.NewValue is bool allowHalf)
@@ -381,6 +393,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
+        /// <summary>
+        /// raises the OnValueChanged event
+        /// </summary>
         private void OnValueChanged(RatingControl ratingControl, AvaloniaPropertyChangedEventArgs e)
         {
             if ((e.NewValue is double) == false)

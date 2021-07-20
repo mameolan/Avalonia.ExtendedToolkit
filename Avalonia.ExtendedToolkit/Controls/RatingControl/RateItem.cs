@@ -51,8 +51,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> AllowClearProperty =
         RatingControl.AllowClearProperty.AddOwner<RateItem>();
 
-        //AvaloniaProperty.Register<RateItem, bool>(nameof(AllowClear));
-
         /// <summary>
         /// Gets or sets AllowHalf.
         /// </summary>
@@ -67,8 +65,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public static readonly StyledProperty<bool> AllowHalfProperty =
         RatingControl.AllowHalfProperty.AddOwner<RateItem>();
-
-        //AvaloniaProperty.Register<RateItem, bool>(nameof(AllowHalf));
 
         /// <summary>
         /// Gets or sets Icon.
@@ -85,8 +81,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<Geometry> IconProperty =
         RatingControl.IconProperty.AddOwner<RateItem>();
 
-        //AvaloniaProperty.Register<RateItem, Geometry>(nameof(Icon));
-
         /// <summary>
         /// Gets or sets IsReadOnly.
         /// </summary>
@@ -101,8 +95,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public static readonly StyledProperty<bool> IsReadOnlyProperty =
         RatingControl.IsReadOnlyProperty.AddOwner<RateItem>();
-
-        //AvaloniaProperty.Register<RateItem, bool>(nameof(IsReadOnlyProperty));
 
         /// <summary>
         /// Gets or sets IsSelected.
