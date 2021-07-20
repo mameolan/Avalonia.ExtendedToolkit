@@ -30,7 +30,7 @@
   </Style>
 
   <Style Selector="Controls|TagItem">
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray}" />
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray6}" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Black}" />
     <Setter Property="BorderThickness" Value="0.5" />
