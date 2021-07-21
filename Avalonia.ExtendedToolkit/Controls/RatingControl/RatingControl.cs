@@ -242,21 +242,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             for (var i = 1; i <= Count; i++)
             {
-                RateItem rateItem = new RateItem
-                {
-                    Index = i,
-                    Width = ItemWidth,
-                    Height = ItemHeight,
-                    Margin = ItemMargin,
-                    AllowHalf = AllowHalf,
-                    AllowClear = AllowClear,
-                    Icon = Icon,
-                    IsReadOnly = IsReadOnly,
-                    Background = Background,
-                    Foreground = Foreground
-                };
-
-                items.Add(rateItem);
+                items.Add(RateItem.Create(this, i));
             }
         }
 

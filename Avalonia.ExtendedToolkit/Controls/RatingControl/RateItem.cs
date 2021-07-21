@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
@@ -223,6 +224,35 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         /// <summary>
+        /// Creates a RateItem with values from the <see cref="RatingControl"/>
+        /// and sets some Bindings
+        /// </summary>
+        internal static RateItem Create(RatingControl ratingControl, int i)
+        {
+            RateItem rateItem = new RateItem();
+            rateItem.Index = i;
+            rateItem.Width = ratingControl.ItemWidth;
+            rateItem.Height = ratingControl.ItemHeight;
+            rateItem.Margin = ratingControl.ItemMargin;
+            rateItem.AllowHalf = ratingControl.AllowHalf;
+            rateItem.AllowClear = ratingControl.AllowClear;
+            rateItem.Icon = ratingControl.Icon;
+            rateItem.IsReadOnly = ratingControl.IsReadOnly;
+
+            Binding binding = new Binding();
+            binding.Source = ratingControl;
+            binding.Path = RateItem.BackgroundProperty.Name;
+            rateItem.Bind(RateItem.BackgroundProperty, binding);
+
+            binding = new Binding();
+            binding.Source = ratingControl;
+            binding.Path = RateItem.ForegroundProperty.Name;
+            rateItem.Bind(RateItem.ForegroundProperty, binding);
+
+            return rateItem;
+        }
+
+        /// <summary>
         /// updates <see cref="HalfWidth"/> and <see cref="ClipRectangleGeometry"/>
         /// </summary>
         private void OnSizeChanged(RateItem o, AvaloniaPropertyChangedEventArgs e)
@@ -246,6 +276,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             rateItem.PseudoClasses.Set(IsSelected_PseudoClass, isSelected);
             rateItem._icon.IsVisible = isSelected;
         }
+
+       
 
         /// <summary>
         /// add or remove the PointerMoved event
