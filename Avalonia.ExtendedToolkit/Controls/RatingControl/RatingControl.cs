@@ -252,7 +252,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                     AllowClear = AllowClear,
                     Icon = Icon,
                     IsReadOnly = IsReadOnly,
-                    Background = Background
+                    Background = Background,
+                    Foreground = Foreground
                 };
 
                 items.Add(rateItem);

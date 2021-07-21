@@ -18,15 +18,15 @@
     <!-- <Setter Property="ItemContainerStyle" Value="{StaticResource RateRateItemBaseStyle}" /> -->
     <Setter Property="Text" Value="{Binding Value,RelativeSource={RelativeSource Self},StringFormat={}{0:0.0}}" />
     <Setter Property="Template">
-        <Setter.Value>
-            <ControlTemplate>
-                <StackPanel Background="Transparent" Orientation="Horizontal">
-                    <UniformGrid Rows="1" Margin="-5,0" x:Name="PART_Panel" />
-                    <TextBlock IsVisible="{TemplateBinding ShowText}"
-                      Text="{TemplateBinding Text}" Margin="10,0,0,0" VerticalAlignment="Center" />
-                </StackPanel>
-            </ControlTemplate>
-        </Setter.Value>
+      <Setter.Value>
+        <ControlTemplate>
+          <StackPanel Background="Transparent" Orientation="Horizontal">
+            <UniformGrid Rows="1" Margin="-5,0" x:Name="PART_Panel" />
+            <TextBlock IsVisible="{TemplateBinding ShowText}"
+              Text="{TemplateBinding Text}" Margin="10,0,0,0" VerticalAlignment="Center" />
+          </StackPanel>
+        </ControlTemplate>
+      </Setter.Value>
     </Setter>
   </Style>
 </Styles>
