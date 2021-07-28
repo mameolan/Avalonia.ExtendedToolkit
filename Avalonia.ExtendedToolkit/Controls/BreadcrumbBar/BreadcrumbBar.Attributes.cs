@@ -373,8 +373,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <see cref="ProgressValue"/>
         /// </summary>
         public static readonly StyledProperty<double> ProgressValueProperty =
-            AvaloniaProperty.Register<BreadcrumbBar, double>(nameof(ProgressValue), defaultValue: 0.0d,
-                validate: (o, e) => { return CoerceProgressValue(o, e); });
+            AvaloniaProperty.Register<BreadcrumbBar, double>(nameof(ProgressValue), defaultValue: 0.0d
+                , coerce: (o, e) => { return CoerceProgressValue(o, e); });
+                
 
         /// <summary>
         /// Gets or sets the maximum progress value.
@@ -390,7 +391,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public static readonly StyledProperty<double> ProgressMaximumProperty =
             AvaloniaProperty.Register<BreadcrumbBar, double>(nameof(ProgressMaximum), defaultValue: 100d
-                , validate: (o, e) => { return CoerceProgressMaximum(o, e); });
+                , coerce: (o, e) => { return CoerceProgressMaximum(o, e); });
 
         /// <summary>
         /// Gets or sets the minimum progess value.
@@ -406,7 +407,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public static readonly StyledProperty<double> ProgressMinimumProperty =
             AvaloniaProperty.Register<BreadcrumbBar, double>(nameof(ProgressMinimum), defaultValue: 0.0d
-                , validate: (o, e) => { return CoerceProgressMinimum(o, e); });
+                , coerce: (o, e) => { return CoerceProgressMinimum(o, e); });
 
         /// <summary>
         /// This command shows the drop down part of the combobox.

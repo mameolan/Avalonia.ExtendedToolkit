@@ -1,0 +1,77 @@
+<Controls:MetroWindow xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+        xmlns:Controlz="clr-namespace:Avalonia.Controlz.Controls;assembly=Avalonia.Controlz"
+        xmlns:Views="clr-namespace:Avalonia.ExampleApp.Views;assembly=Avalonia.ExampleApp"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Avalonia.ExampleApp.Views.MainWindow"
+        Title="MainWindow">
+    <DockPanel>
+        <!--<DockPanel.Styles>
+      <Style Selector="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+      </Style>
+
+    </DockPanel.Styles>-->
+
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="35">
+            <TextBlock Text="Themes" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+            <ComboBox Name="cmbThemes" Margin="10,1,0,1" Items="{Binding BaseColors}"
+               SelectedIndex="0" SelectedItem="{Binding SelectedBaseColor}" Width="100">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding .}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Margin="10,0,0,0" Text="Color Schemes" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+            <ComboBox  Name="cmbColorScheme" Margin="10,1,0,1" Items="{Binding ColorSchemes}"
+               SelectedIndex="0" SelectedItem="{Binding SelectedColorScheme}" Width="100"
+                >
+                <ComboBox.ItemTemplate>
+
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <!-- <TextBlock Margin="10,0,0,0" Text="Skins" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+      <ComboBox Margin="10,1,0,1" Items="{Binding Skins}"
+         SelectedIndex="0" SelectedItem="{Binding SelectedSkin, Mode=TwoWay}" Width="100"
+                >
+        <ComboBox.ItemTemplate>
+
+          <DataTemplate>
+            <TextBlock Text="{Binding Name}"/>
+          </DataTemplate>
+
+        </ComboBox.ItemTemplate>
+      </ComboBox> -->
+
+        </StackPanel>
+        <Grid DockPanel.Dock="Bottom" HorizontalAlignment="Stretch">
+
+
+
+            <!-- <Controlz:SliderEx VerticalAlignment="Center" Width="300" Orientation="Horizontal"
+                         TickPlacement="TopLeft" TickFrequency="2"
+                         /> -->
+
+            <!-- <Controls:TabControlExt Underlined="TabItems" UnderlinePlacement="Bottom">
+        <Controls:TabItemExt Header="Test1" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+        <Controls:TabItemExt Header="Test2" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+      </Controls:TabControlExt> -->
+
+            <!--<Views:TagControlExample/>-->
+
+            <Views:MainWindowContentView DockPanel.Dock="Bottom"/>
+
+        </Grid>
+
+    </DockPanel>
+</Controls:MetroWindow>

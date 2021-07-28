@@ -161,7 +161,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             popup = e.NameScope.Find<Popup>(partPopup);
             if (popup != null)
             {
-                popup.Closed += new EventHandler(OnPopupClosed);
+                popup.Closed += OnPopupClosed;
                 popup.Opened += new EventHandler(OnPopupOpened);
             }
 

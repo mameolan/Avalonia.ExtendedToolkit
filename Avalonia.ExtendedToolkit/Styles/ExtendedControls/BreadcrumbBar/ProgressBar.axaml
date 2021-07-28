@@ -1,0 +1,119 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+        xmlns:s="clr-namespace:System;assembly=mscorlib"
+        >
+  
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BreadcrumbBar/Brushes.axaml" />
+
+  <Style Selector="ProgressBar.progressBarTemplate">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid Name="Background">
+            <Rectangle Name="PART_Track" Margin="1,1,1,1" />
+            <Decorator Name="PART_Indicator" Margin="1,1,1,1" HorizontalAlignment="Left">
+              <Grid Name="Foreground">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition MaxWidth="15" />
+                  <ColumnDefinition Width="0.1*" />
+                  <ColumnDefinition MaxWidth="15" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition />
+                  <RowDefinition />
+                </Grid.RowDefinitions>
+                <Rectangle Fill="{TemplateBinding TextBox.Foreground}" Name="Indicator" Grid.ColumnSpan="3"
+                        Grid.RowSpan="2" />
+                <Rectangle Fill="{TemplateBinding TextBox.Foreground}" Name="Animation" OpacityMask="{x:Null}"
+                        Grid.ColumnSpan="3" Grid.RowSpan="2" />
+                <Rectangle Name="LeftDark" Margin="1,1,0,1" Grid.RowSpan="2">
+                  <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                      <LinearGradientBrush.GradientStops>
+                        <GradientStop Color="#0C000000" Offset="0" />
+                        <GradientStop Color="#20000000" Offset="0.3" />
+                        <GradientStop Color="#00000000" Offset="1" />
+                      </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                  </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle Name="RightDark" Margin="0,1,1,1" Grid.Column="2"
+                        Grid.RowSpan="2">
+                  <!--RadiusX="1" RadiusY="1"-->
+
+                  <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                      <LinearGradientBrush.GradientStops>
+                        <GradientStop Color="#00000000" Offset="0" />
+                        <GradientStop Color="#20000000" Offset="0.7" />
+                        <GradientStop Color="#0C000000" Offset="1" />
+                      </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                  </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle Name="LeftLight" Grid.Column="0" Grid.Row="2">
+                  <Rectangle.Fill>
+                    <RadialGradientBrush Radius="1"   >
+                      <!--RelativeTransform="1,0,0,1,0.5,0.5"-->
+                      <RadialGradientBrush.GradientStops>
+                        <GradientStop Color="#60FFFFC4" Offset="0" />
+                        <GradientStop Color="#00FFFFC4" Offset="1" />
+                      </RadialGradientBrush.GradientStops>
+                    </RadialGradientBrush>
+                  </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle Name="CenterLight" Grid.Column="1" Grid.Row="2">
+                  <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                      <LinearGradientBrush.GradientStops>
+                        <GradientStop Color="#60FFFFC4" Offset="0" />
+                        <GradientStop Color="#00FFFFC4" Offset="1" />
+                      </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                  </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle Name="RightLight" Grid.Column="2" Grid.Row="2">
+                  <Rectangle.Fill>
+                    <RadialGradientBrush Radius="1" >
+                      
+                      <!--RelativeTransform="1,0,0,1,-0.5,0.5"-->
+                      <RadialGradientBrush.GradientStops>
+                        <GradientStop Color="#60FFFFC4" Offset="0" />
+                        <GradientStop Color="#00FFFFC4" Offset="1" />
+                      </RadialGradientBrush.GradientStops>
+                    </RadialGradientBrush>
+                  </Rectangle.Fill>
+                </Rectangle>
+                <Border Name="Highlight1" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                  <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                      <LinearGradientBrush.GradientStops>
+                        <GradientStop Color="#90FFFFFF" Offset="0.5385" />
+                        <GradientStop Color="#00FFFFFF" Offset="0.5385" />
+                      </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                  </Border.Background>
+                </Border>
+                <Border Name="Highlight2" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                  <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                      <LinearGradientBrush.GradientStops>
+                        <GradientStop Color="#80FFFFFF" Offset="0.05" />
+                        <GradientStop Color="#00FFFFFF" Offset="0.25" />
+                      </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                  </Border.Background>
+                </Border>
+              </Grid>
+            </Decorator>
+            <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
+                    BorderBrush="{TemplateBinding Border.BorderBrush}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  
+</Styles>

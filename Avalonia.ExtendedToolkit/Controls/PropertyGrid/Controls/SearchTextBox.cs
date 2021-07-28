@@ -252,7 +252,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
         /// that exist on the element have had their effective values changed.
         /// </summary>
         /// <param name="e">Arguments for the associated event.</param>
-        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
+        protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> e)
         {
             if(e.Property== IsVisibleProperty)
             {

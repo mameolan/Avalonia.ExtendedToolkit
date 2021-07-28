@@ -288,8 +288,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 var flyouts = this.Flyouts.GetFlyouts().ToList();
                 // since we disabled the ThemeManager OnThemeChanged part, we must change all children flyouts too
                 // e.g if the FlyoutsControl is hosted in a UserControl
-                var allChildFlyouts = (this.Content as IVisual).GetSelfAndVisualDescendants().OfType<FlyoutsControl>().ToList();
-                if (allChildFlyouts.Any())
+                var allChildFlyouts = (this.Content as IVisual)?.GetSelfAndVisualDescendants().OfType<FlyoutsControl>().ToList();
+                if (allChildFlyouts?.Any()==true)
                 {
                     flyouts.AddRange(allChildFlyouts.SelectMany(flyoutsControl => flyoutsControl.GetFlyouts()));
                 }

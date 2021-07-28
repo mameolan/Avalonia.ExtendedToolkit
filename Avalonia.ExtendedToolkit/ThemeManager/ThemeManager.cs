@@ -316,7 +316,7 @@ namespace Avalonia.ExtendedToolkit
                     {
                         string themeName = $"{baseColorScheme}.{colorScheme}";
 
-                        string xamlPathName = basePath + $"{themeName}.xaml";
+                        string xamlPathName = basePath + $"{themeName}.axaml";
                         availableXamlThemes.Add(xamlPathName);
                     }
                 }
@@ -328,7 +328,7 @@ namespace Avalonia.ExtendedToolkit
 
                     var theme = new StyleInclude(new Uri("resm:Styles?assembly=Avalonia.ExtendedToolkit"))
                     {
-                        //resm:Avalonia.Controls.DataGrid.Themes.Default.xaml?assembly=Avalonia.Controls.DataGrid
+                        //resm:Avalonia.Controls.DataGrid.Themes.Default.axaml?assembly=Avalonia.Controls.DataGrid
                         Source = new Uri($"avares://{xamlFile}")
                         //Source = new Uri($"resm:{tempXamlPath}?assembly=Avalonia.ExtendedToolkit")
                     };

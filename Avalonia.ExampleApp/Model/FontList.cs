@@ -7,7 +7,7 @@ namespace Avalonia.ExampleApp.Model
     {
         public FontList()
         {
-            foreach (var item in FontFamily.SystemFontFamilies)
+            foreach (var item in FontFamily.Default.FamilyNames)
             {
                 this.Add(item);
             }

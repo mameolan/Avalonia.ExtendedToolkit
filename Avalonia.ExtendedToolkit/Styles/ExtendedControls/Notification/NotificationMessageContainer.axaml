@@ -1,0 +1,43 @@
+<Styles xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls"
+             >
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Notification/Notification.Base.axaml" />
+
+  <Style Selector="Controls|NotificationMessageContainer">
+    <Setter Property="ItemsPanel">
+      <Setter.Value>
+        <ItemsPanelTemplate>
+          <StackPanel Orientation="Vertical" />
+        </ItemsPanelTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid>
+            <Border
+                x:Name="ItemsBorder"
+                Margin="12,0,12,12"
+                Padding="{TemplateBinding Padding}"
+                Background="{TemplateBinding Background}"
+                UseLayoutRounding="True">
+              <ItemsPresenter Items="{TemplateBinding Items}">
+                <!--<ItemsPresenter.Effect>
+                  <DropShadowEffect
+                      BlurRadius="10"
+                      Direction="270"
+                      Opacity="0.3"
+                      Color="Black" />
+                </ItemsPresenter.Effect>-->
+              </ItemsPresenter>
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalAlignment" Value="Top" />
+  </Style>
+  
+  
+</Styles>

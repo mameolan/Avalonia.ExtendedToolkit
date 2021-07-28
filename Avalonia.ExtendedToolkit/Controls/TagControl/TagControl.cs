@@ -50,7 +50,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         private void OnTagItemPropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
         {
-            RaisePropertyChanged(IsAnyItemInEditModeProperty, null, ItemsSource.Any(x => x.IsInEditMode));
+            RaisePropertyChanged(IsAnyItemInEditModeProperty, new Data.Optional<bool>(), ItemsSource.Any(x => x.IsInEditMode));
         }
 
         /// <summary>
@@ -280,7 +280,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                                           OnAcceptEdit,
                                           TagMargin));
                 }
-                RaisePropertyChanged(IsAnyItemInEditModeProperty, null, ItemsSource.Any(x => x.IsInEditMode));
+                RaisePropertyChanged(IsAnyItemInEditModeProperty, new Data.Optional<bool>(), ItemsSource.Any(x => x.IsInEditMode));
             }
         }
 

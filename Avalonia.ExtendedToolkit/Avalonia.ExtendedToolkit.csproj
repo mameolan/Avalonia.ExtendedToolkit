@@ -26,32 +26,32 @@
 
 
 	<ItemGroup>
-		<PackageReference Include="Avalonia" Version="0.9.12" />
-		<PackageReference Include="Avalonia.Controls.DataGrid" Version="0.9.12" />
-		<PackageReference Include="Avalonia.Desktop" Version="0.9.12" />
-		<PackageReference Include="Avalonia.ReactiveUI" Version="0.9.12" />
-		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.9.12" />
-		<PackageReference Include="Avalonia.Xaml.Interactions" Version="0.9.12" />
-		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.9.12" />
-		<PackageReference Include="DynamicData" Version="6.17.14" />
+		<PackageReference Include="Avalonia" Version="0.10.6" />
+		<PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.6" />
+		<PackageReference Include="Avalonia.Desktop" Version="0.10.6" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="0.10.6" />
+		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.6.10" />
+		<PackageReference Include="Avalonia.Xaml.Interactions" Version="0.10.6.10" />
+		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.10.6.10" />
+		<PackageReference Include="DynamicData" Version="7.2.1" />
     	<PackageReference Include="DynamicData.ReactiveUI" Version="6.11.0.2613" />
 		<PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
-		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
+		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-		<PackageReference Include="ReactiveHistory" Version="0.9.4" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="ReactiveHistory" Version="0.10.2" />
 		<PackageReference Include="XamlColorSchemeGenerator" Version="3.0.0.31">
 			<NoWarn>NU1701</NoWarn>
 		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="**\*.xaml.cs">
+		<Compile Update="**\*.axaml.cs">
 			<DependentUpon>%(Filename)</DependentUpon>
 		</Compile>
-		<AvaloniaResource Include="**\*.xaml" Exclude="**\*.Template.xaml">
+		<AvaloniaResource Exclude="**\*.Template.axaml" Include="**\*.axaml">
 			<SubType>Designer</SubType>
 		</AvaloniaResource>
     <AvaloniaResource Include="Assets\*" />
@@ -62,6 +62,10 @@
 	  <Compile Remove="Controls\Wizard\ViewModel\**" />
 	  <EmbeddedResource Remove="Controls\Wizard\ViewModel\**" />
 	  <None Remove="Controls\Wizard\ViewModel\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AvaloniaXaml Remove="Styles\Themes\Theme.Template.axaml" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -225,10 +225,10 @@ namespace Avalonia.ExampleApp.Model.PropertyGrid_CustomTypeEditors
         public static readonly StyledProperty<VideoDevices> CameraProperty =
             AvaloniaProperty.Register<BusinessObject, VideoDevices>(nameof(Camera)
                 , defaultValue: VideoDevices.UNSPECIFIED
-                , validate: (o, e) => { return ValidateDevice(o, e); }
+                , coerce: (o, e) => { return ValidateDevice(o, e); }
                 );
 
-        private static VideoDevices ValidateDevice(BusinessObject o, VideoDevices e)
+        private static VideoDevices ValidateDevice(IAvaloniaObject o, VideoDevices e)
         {
             if (IsDeviceLegal(e) == false)
             {

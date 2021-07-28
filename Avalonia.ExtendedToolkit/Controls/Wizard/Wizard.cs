@@ -89,7 +89,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// fires can execute on the commands
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
+        protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> e)
         {
             base.OnPropertyChanged(e);
             if (

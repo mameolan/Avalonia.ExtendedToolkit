@@ -1,0 +1,257 @@
+<Styles xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls"
+             xmlns:Converter="clr-namespace:Avalonia.ExtendedToolkit.Converters"
+        >
+  <Styles.Resources>
+    <Converter:NullToBoolConverter x:Key="NullToBoolConverter"/>
+  </Styles.Resources>
+  
+  
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Notification/Notification.Base.axaml" />
+
+  <!--  Accent Button Style  -->
+  <Style Selector="Controls|NotificationMessageButton">
+    <Setter Property="Foreground" Value="#EAEAEA" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="Padding" Value="12,2" />
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource FindAncestor, 
+            AncestorType={x:Type Controls:NotificationMessage}}, Path=ButtonAccentBrush}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid>
+            <Border
+                x:Name="backgroundBorder"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding Background}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                />
+            <Border
+                x:Name="backgroundOverlay"
+                BorderThickness="0"
+                Opacity="0.3"
+                />
+            <ContentPresenter
+                x:Name="contentPresenter"
+                Margin="{TemplateBinding Padding}"
+                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                Content="{TemplateBinding Content}"
+                ContentTemplate="{TemplateBinding ContentTemplate}"
+                Focusable="False"
+                 />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="Controls|NotificationMessageButton[IsDefault=true] /template/ Border#backgroundBorder">
+    <Setter Property="BorderBrush" Value="{DynamicResource ThemeControlHighlightHighBrush}" />
+  </Style>
+
+  <Style Selector="Controls|NotificationMessageButton:pointerover /template/ Border#backgroundOverlay">
+    <Setter Property="Background" Value="{DynamicResource NotificationButtonDarkBackgroundOverlayBrush}" />
+  </Style>
+
+  <Style Selector="Controls|NotificationMessageButton:pressed /template/ Border#backgroundOverlay">
+    <Setter Property="Background" Value="{DynamicResource NotificationButtonDarkBackgroundOverlayPressedBrush}" />
+  </Style>
+
+  <Style Selector="Controls|NotificationMessageButton:disabled /template/ Border#backgroundOverlay">
+    <Setter Property="Background" Value="{StaticResource NotificationButtonDarkBackgroundOverlayDisabledBrush}" />
+  </Style>
+
+
+  <!--Background="{Binding RelativeSource={RelativeSource FindAncestor,
+  AncestorType={x:Type Controls:NotificationMessage}}, Path=ButtonAccentBrush, Mode=OneWay}"-->
+
+  <!--  Accent Badge Style  -->
+  <Style Selector="TextBlock.NotificationBadgeAccentStyle">
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="Foreground" Value="White" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="10,2,0,2" />
+    <!--<Setter Property="Padding" Value="4,2" />-->
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource FindAncestor
+                  , AncestorType={x:Type Controls:NotificationMessage}}, Path=BadgeAccentBrush}" />
+  </Style>
+
+  <Style Selector="Controls|NotificationMessage">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <!--  Border for the Notification Message  -->
+          <Border
+              x:Name="notificationMessageBorder"
+              MinHeight="35"
+              VerticalAlignment="Top"
+              Background="{TemplateBinding Background}"
+              BorderBrush="#882F2F2F"
+              BorderThickness="0,0,0,1"
+              UseLayoutRounding="True">
+            <!--  Outer Grid  -->
+            <Grid x:Name="outerGrid" VerticalAlignment="Stretch"
+                  >
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+
+              <!--  Additional Content - Outer Grid  -->
+              <ContentControl
+                  x:Name="additionalContentTop"
+                  Grid.Row="0"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="4"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Content="{TemplateBinding AdditionalContentTop}" />
+              <ContentControl
+                  x:Name="additionalContentBottom"
+                  Grid.Row="2"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="4"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Content="{TemplateBinding AdditionalContentBottom}" />
+              <ContentControl
+                  x:Name="additionalContentLeft"
+                  Grid.Row="1"
+                  Grid.Column="0"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Content="{TemplateBinding AdditionalContentLeft}" />
+              <ContentControl
+                  x:Name="additionalContentRight"
+                  Grid.Row="1"
+                  Grid.Column="3"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Content="{TemplateBinding AdditionalContentRight}" />
+              <ContentControl
+                  x:Name="additionalContentCenter"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Content="{TemplateBinding AdditionalContentMain}" />
+
+              <!--  Inner Grid  -->
+              <Grid 
+                  x:Name="innerGrid"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!--  Badge Grid  -->
+                <Grid 
+                    x:Name="badgeGrid"
+                    Grid.Column="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    >
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                  </Grid.RowDefinitions>
+                  <!--  Additional Content - Over Badge  -->
+                  <ContentControl
+                      x:Name="additionalContentOverBadge"
+                      Grid.Row="1"
+                      Content="{TemplateBinding AdditionalContentOverBadge}"
+                      Classes="NotificationAdditionalContentOverBadgeStyle" 
+                      IsVisible="{TemplateBinding AdditionalContentOverBadge, Converter={StaticResource NullToBoolConverter}}"
+                      />
+                  <!--  Badge  -->
+                  <TextBlock
+                      Grid.Row="2"
+                      Classes="NotificationBadgeAccentStyle"
+                      Text="{TemplateBinding BadgeText}"
+                      IsVisible="{TemplateBinding IsBadgeVisible}"
+                      VerticalAlignment="Stretch"
+                      />
+                </Grid>
+                <!--  Text Grid  -->
+                <Grid
+                    x:Name="textGrid"
+                    Grid.Column="1"
+                    Margin="10,8"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                  </Grid.RowDefinitions>
+                  <!--  Header and Message  -->
+                  <TextBlock
+                      x:Name="headerTextBlock"
+                      Grid.Row="0"
+                      Classes="NotificationHeaderTextStyle"
+                      Text="{TemplateBinding Header}"
+                      IsVisible="{TemplateBinding IsHeaderVisible}" />
+                  <TextBlock
+                      x:Name="messageTextBlock"
+                      Grid.Row="1"
+                      Classes="NotificationMessageTextStyle"
+                      Text="{TemplateBinding Message}"
+                      IsVisible="{TemplateBinding IsMessageVisible}" />
+                </Grid>
+              </Grid>
+
+              <!--  Buttons  -->
+              <ItemsControl
+                  Grid.Row="1"
+                  Grid.Column="2"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Items="{TemplateBinding Buttons}">
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" Spacing="1" />
+                  </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate DataType="Controls:INotificationMessageButton">
+                    <Controls:NotificationMessageButton Margin="1,0,1,0"
+                      Content="{Binding Content}" IsEnabled="{Binding IsEnabled}" 
+                      />
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+
+              <!--  Overlay Content  -->
+              <ContentControl
+                  x:Name="overlayContainer"
+                  Grid.Row="0"
+                  Grid.RowSpan="3"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="4"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Content="{TemplateBinding OverlayContent}" />
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</Styles>

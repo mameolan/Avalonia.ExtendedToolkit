@@ -128,7 +128,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void ToggleButtonPreviewMouseUp(object sender, PointerReleasedEventArgs e)
         {
-            KeyboardDevice.Instance.SetFocusedElement(this, NavigationMethod.Unspecified, InputModifiers.None);
+            KeyboardDevice.Instance.SetFocusedElement(this, NavigationMethod.Unspecified, KeyModifiers.None);
         }
 
         /// <summary>

@@ -16,7 +16,7 @@ namespace Avalonia.ExtendedToolkit.Controls.ChildWindowConverter
     {
         private readonly IVisual hand_stop_error;
 
-        private const string HandStopErrorResource = "avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ChildWindow/Icons.xaml";
+        private const string HandStopErrorResource = "avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ChildWindow/Icons.axaml";
 
         /// <summary>
         /// gets the correct visual from the xaml

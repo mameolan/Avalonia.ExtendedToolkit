@@ -361,10 +361,10 @@ namespace Avalonia.ExtendedToolkit.Controls
                 return;
 
             IStyle menuStyle = e.NewValue as IStyle;
-            if (menuStyle == null)
+            if (menuStyle == null|| _menu.Styles.Contains(menuStyle))
                 return;
 
-            _menu.Styles.Add(menuStyle);
+           //_menu.Styles.Add(menuStyle);
         }
 
         /// <summary>
@@ -438,7 +438,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 }
                 _menu.Items = list;
             }
-            this.RaisePropertyChanged(MenuStyleProperty, null, (IStyle)MenuStyle);
+            this.RaisePropertyChanged(MenuStyleProperty, new Data.Optional<IStyle>(), new Data.Optional<IStyle>(MenuStyle));
             //RaisePropertyChanged<IStyle>(MenuStyleProperty, null, MenuStyle);
             //this.OnPropertyChanged<IStyle>(MenuStyleProperty, null, new Data.BindingValue<IStyle>( MenuStyle), Data.BindingPriority.Style);
         }
