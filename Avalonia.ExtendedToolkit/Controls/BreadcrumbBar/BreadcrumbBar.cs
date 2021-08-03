@@ -607,9 +607,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets the controls from the styles
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
             comboBox = e.NameScope.Find<ComboBox>(partComboBox);
             rootButton = e.NameScope.Find<BreadcrumbButton>(partRoot);
 

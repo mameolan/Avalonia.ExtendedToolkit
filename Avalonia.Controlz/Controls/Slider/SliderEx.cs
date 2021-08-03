@@ -902,7 +902,7 @@ namespace Avalonia.Controlz.Controls
         /// gets the controls from style
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             SelectionRangeElement = e.NameScope.Find<AvaloniaObject>(SelectionRangeElementName);
             Track = e.NameScope.Find<Track>(TrackName);
@@ -917,7 +917,7 @@ namespace Avalonia.Controlz.Controls
             //}
 
             RaisePropertyChanged(TickPlacementProperty, TickPlacement.None, TickPlacement);
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
         }
 
         /// <summary>

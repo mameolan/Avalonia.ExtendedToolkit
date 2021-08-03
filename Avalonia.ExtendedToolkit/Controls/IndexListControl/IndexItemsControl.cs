@@ -324,9 +324,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets the needed controls
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
             _contentIndexList = e.NameScope.Find<IndexList>("contentListBox");
             _contentIndexList.ShowEmptyItems = ShowEmptyItems;
             _contentIndexList.SelectionChanged += OnSelectionChanged;

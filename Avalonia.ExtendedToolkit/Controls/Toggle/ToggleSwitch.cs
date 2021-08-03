@@ -59,9 +59,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets some controls from the style
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
             if (_toggleButton != null)
             {
                 //_toggleButton.Checked -= CheckedHandler;

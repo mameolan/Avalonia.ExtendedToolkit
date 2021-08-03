@@ -249,7 +249,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// updates the items
         /// </summary>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             if (!_isLoaded)
             {
@@ -258,7 +258,9 @@ namespace Avalonia.ExtendedToolkit.Controls
                 _updateItems = false;
             }
 
-            base.OnTemplateApplied(e);
+            
+
+            base.OnApplyTemplate(e);
         }
 
         /// <summary>
@@ -330,38 +332,43 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             ValueProperty.Changed.AddClassHandler<RatingControl>((o, e) => OnValueChanged(o, e));
             AllowHalfProperty.Changed.AddClassHandler<RatingControl>((o, e) => OnAllowHaveChanged(o, e));
-            AttachedToVisualTree += (o, e) =>
-              {
-                  if (Design.IsDesignMode)
-                  {
-                      return;
-                  }
 
-                  _updateItems = false;
-                  OnApplyTemplateInternal();
-                  _updateItems = true;
-                  UpdateItems();
+            IsVisibleProperty.Changed.AddClassHandler<RatingControl>((o, e) => 
+            {
 
-                  if (_isLoaded)
-                  {
-                      return;
-                  }
+                if (Design.IsDesignMode)
+                {
+                    return;
+                }
 
-                  _isLoaded = true;
+                _updateItems = false;
+                OnApplyTemplateInternal();
+                _updateItems = true;
+                UpdateItems();
 
-                  if (Value <= 0)
-                  {
-                      if (DefaultValue > 0)
-                      {
-                          Value = DefaultValue;
-                          UpdateItems();
-                      }
-                  }
-                  else
-                  {
-                      UpdateItems();
-                  }
-              };
+                if (_isLoaded)
+                {
+                    return;
+                }
+
+                _isLoaded = true;
+
+                if (Value <= 0)
+                {
+                    if (DefaultValue > 0)
+                    {
+                        Value = DefaultValue;
+                        UpdateItems();
+                    }
+                }
+                else
+                {
+                    UpdateItems();
+                }
+
+
+            });
+
         }
 
         /// <summary>

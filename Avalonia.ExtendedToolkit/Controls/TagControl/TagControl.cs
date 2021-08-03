@@ -301,9 +301,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// gets the needed template controls
         /// </summary>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             _addTagButton = e.NameScope.Find<Button>(AddTagButton);
             _addTagButton.Click += AddTagButton_Click;

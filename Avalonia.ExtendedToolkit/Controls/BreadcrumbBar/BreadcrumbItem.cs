@@ -232,9 +232,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// calls <see cref="ApplyBinding"/>
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             headerControl = e.NameScope.Find(partHeader) as Layoutable;
             selectedControl = e.NameScope.Find(partSelected) as Layoutable;

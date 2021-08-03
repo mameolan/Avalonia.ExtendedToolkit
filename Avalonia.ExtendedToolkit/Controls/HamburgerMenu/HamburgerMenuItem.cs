@@ -113,9 +113,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets some controls from the style
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
             _imageCtl = e.NameScope.Find<Image>(ImageCtrlName);
             Button _button = e.NameScope.Find<Button>("ListBoxItemButton");
             _button.Tapped += (o, f) =>

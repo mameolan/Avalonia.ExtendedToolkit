@@ -255,9 +255,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets the progressbar from style
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
             _progressBarBack = e.NameScope.Find<ProgressBar>(ElementProgressBarBack);
         }
 

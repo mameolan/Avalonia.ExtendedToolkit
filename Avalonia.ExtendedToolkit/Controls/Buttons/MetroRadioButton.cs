@@ -89,7 +89,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// inits the default check state
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             _checkedEllipse = e.NameScope.Find<Ellipse>("Checked1");
 
@@ -106,7 +106,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             IsChecked = isChecked;
 
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
         }
     }
 }

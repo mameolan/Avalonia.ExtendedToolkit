@@ -179,7 +179,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             return new TabItemExtContainerGenerator(this);
         }
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             // _mainGrid = e.NameScope.Find<Grid>(PART_MainGrid);
 
@@ -207,7 +207,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             InvalidateVisual();
 
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
 
         }

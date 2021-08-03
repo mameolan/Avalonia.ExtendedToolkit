@@ -631,9 +631,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         /// <inheritdoc/>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             LeftWindowCommandsPresenter = e.NameScope.Find<ContentPresenter>(PART_LeftWindowCommands);
             RightWindowCommandsPresenter = e.NameScope.Find<ContentPresenter>(PART_RightWindowCommands);

@@ -419,9 +419,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets some controls from the style
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
             _clickButton = this.EnforceInstance<Button>(e, "PART_Button");
             _menu = this.EnforceInstance<ContextMenu>(e, "PART_Menu");
             _contextMenuBorder = e.NameScope.Find<Border>("PART_Border");
