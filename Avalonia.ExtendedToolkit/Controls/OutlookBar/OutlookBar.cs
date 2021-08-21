@@ -149,7 +149,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets controls from the style
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             if (popup != null)
             {
@@ -201,12 +201,18 @@ namespace Avalonia.ExtendedToolkit.Controls
                     catch
                     {
                         btnMenu.ContextMenu.Close();
+                        InvalidateMeasure();
+                        InvalidateArrange();
+                        InvalidateVisual();
                     }
                 }
                 else
                 {
                     btnMenu.ContextMenu.Close();
                 }
+
+
+
             };
 
             //Border headerBorder = e.NameScope.Find<Border>("headerBorder");
@@ -235,7 +241,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 StartDraggingCommand.Execute(o);
             };
 
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             RaisePropertyChanged(OdcExpanderClassesProperty, null, (Classes)OdcExpanderClasses);
             ApplySections();
@@ -250,7 +256,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             //          e.Pointer.Capture(null);
 
-            popup.StaysOpen = false;
+            popup.IsLightDismissEnabled = false;
         }
 
         /// <summary>
@@ -310,6 +316,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             SectionContent = IsMaximized ? content : null;
         }
 
+
         /// <summary>
         /// init some properties and registered some changed events
         /// </summary>
@@ -353,6 +360,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             OdcExpanderClassesProperty.Changed.AddClassHandler<OutlookBar>((o, e) => OnOdcExpanderClassesChanged(o, e));
             OptionButtonClassesProperty.Changed.AddClassHandler<OutlookBar>((o, e) => OnOptionButtonClassesChanged(o, e));
             OptionToggleButtonClassesProperty.Changed.AddClassHandler<OutlookBar>((o, e) => OnOptionToggleButtonClassesChanged(o, e));
+
+
         }
 
         private void OnOptionToggleButtonClassesChanged(OutlookBar o, AvaloniaPropertyChangedEventArgs e)
@@ -605,7 +614,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             if (properties.IsLeftButtonPressed)
             {
                 Point pos = e.GetPosition(this);
-                double h = _finalSize.Height - 1 - ButtonHeight - pos.Y;
+                
+                double h = DesiredSize.Height - 1 - ButtonHeight - pos.Y;
                 MaxNumberOfButtons = (int)((double)(h / ButtonHeight));
             }
             else
@@ -677,29 +687,59 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             if (this.IsInitialized)
             {
-                _maximizedSections = new ObservableCollection<OutlookSection>();
-                _minimizedSections = new ObservableCollection<OutlookSection>();
+                foreach (var item in _maximizedSections)
+                {
+                    ((ISetLogicalParent)item).SetParent(null);
+                    //item.IsVisible = false;
+                }
+
+                foreach (var item in _minimizedSections)
+                {
+                    ((ISetLogicalParent)item).SetParent(null);
+                    //item.IsVisible = false;
+                }
+
+                if (_maximizedSections == null)
+                {
+                    _maximizedSections = new ObservableCollection<OutlookSection>();
+                }
+                else
+                {
+                    _maximizedSections.Clear();
+                }
+
+
+                if (_minimizedSections == null)
+                {
+                    _minimizedSections = new ObservableCollection<OutlookSection>();
+                }
+                else
+                {
+                    _minimizedSections.Clear();
+                }
+
                 int max = MaxNumberOfButtons;
                 int index = 0;
                 int selectedIndex = SelectedSectionIndex;
                 OutlookSection selectedContent = null;
 
-                int n = GetNumberOfMinimizedButtons();
+                int numberOfMinimizedButtons = GetNumberOfMinimizedButtons();
 
-                foreach (OutlookSection e in Items.OfType<OutlookSection>())
+                foreach (OutlookSection e in Items.OfType<OutlookSection>().ToList())
                 {
-                    ((ISetLogicalParent)e).SetParent(null);
+                    ((ISetInheritanceParent)e).SetParent(null);
                     e.OutlookBar = this;
                     e.Height = ButtonHeight;
                     if (max-- > 0)
                     {
                         e.IsMaximized = true;
+
                         _maximizedSections.Add(e);
                     }
                     else
                     {
                         e.IsMaximized = false;
-                        if (_minimizedSections.Count < n)
+                        if (_minimizedSections.Count < numberOfMinimizedButtons)
                         {
                             _minimizedSections.Add(e);
                         }
@@ -714,13 +754,16 @@ namespace Avalonia.ExtendedToolkit.Controls
                 try
                 {
                     SetValue(MaximizedSectionsProperty, _maximizedSections);
+                    //MaximizedSections = maximizedSections;
                 }
                 catch
                 {
                     //already has parent exception
                     InvalidateVisual();
-                    InvalidateMeasure();
                     InvalidateArrange();
+                    InvalidateMeasure();
+
+
                 }
 
                 try
@@ -730,9 +773,18 @@ namespace Avalonia.ExtendedToolkit.Controls
                 catch
                 {
                     //already has parent exception
+
+                    InvalidateVisual();
+                    InvalidateMeasure();
+                    InvalidateArrange();
+
                 }
 
                 SetValue(SelectedSectionProperty, selectedContent);
+
+                InvalidateVisual();
+                InvalidateMeasure();
+                InvalidateArrange();
             }
         }
 
@@ -744,7 +796,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             if (popup != null)
             {
-                popup.StaysOpen = true;
+                popup.IsLightDismissEnabled = true;
                 popup.IsOpen = isPopupVisible;
             }
             if (isPopupVisible)

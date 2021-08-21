@@ -246,10 +246,33 @@ namespace Avalonia.ExtendedToolkit
                       var result = window.CheckAccess();
                       if (index == -1)
                       {
-                          window.Styles.Add(x.ThemeStyle);
+                          try
+                          {
+                              window.Styles.Add(x.ThemeStyle);
+                          }
+                          catch(InvalidOperationException)
+                          {
+                              //HACK: just reload the theme
+                              StyleInclude themeStyleInclude = x.ThemeStyle as StyleInclude;
+
+                              var theme = new StyleInclude(new Uri("resm:Styles?assembly=Avalonia.ExtendedToolkit"))
+                              {
+                                  Source = themeStyleInclude.Source
+                              };
+                              window.Styles.Add(theme);
+                          }
+                          catch
+                          {
+                              
+
+                          }
+
+                          
                       }
                       else
                       {
+                         
+
                           window.Styles.Remove(item);
                           window.Styles.Add(x.ThemeStyle);
                       }
