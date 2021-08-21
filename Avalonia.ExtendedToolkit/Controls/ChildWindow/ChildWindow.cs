@@ -304,9 +304,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// resolves the controls items
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
             // really necessary?
             //if (this.Template == null)
             //{

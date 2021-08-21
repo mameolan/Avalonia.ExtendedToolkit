@@ -1,0 +1,4 @@
+﻿<Styles xmlns="https://github.com/avaloniaui">
+  <StyleInclude Source="avares://Avalonia.Controlz/Styles/Controls/GroupBox.axaml" />
+  <StyleInclude Source="avares://Avalonia.Controlz/Styles/Controls/SliderEx.axaml" />
+ </Styles>

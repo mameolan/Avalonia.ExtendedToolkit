@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using System;
 using System.IO;
 
@@ -22,7 +23,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             System.Drawing.Color color;
             using (var mem = new MemoryStream())
             {
-                image.Source.Save(mem);
+
+                (image.Source as Bitmap).Save(mem);
                 System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(mem);
                 color = bitmap.GetPixel(i, j);
             }

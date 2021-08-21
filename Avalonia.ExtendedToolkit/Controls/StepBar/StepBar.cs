@@ -57,10 +57,11 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public static readonly StyledProperty<int> StepIndexProperty =
         AvaloniaProperty.Register<StepBar, int>(nameof(StepIndex), defaultValue: 0,
-        validate: (o, e) => { return CoerceStepIndex(o, e); });
+        coerce: (o, e) => { return CoerceStepIndex(o, e); });
 
-        private static int CoerceStepIndex(StepBar stepBar, int stepIndex)
+        private static int CoerceStepIndex(IAvaloniaObject ctrl, int stepIndex)
         {
+            StepBar stepBar = ctrl as StepBar;
             int itemsCount = stepBar.Items.OfType<object>().Count();
 
             if (itemsCount == 0 && stepIndex > 0)
@@ -254,9 +255,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets the progressbar from style
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
             _progressBarBack = e.NameScope.Find<ProgressBar>(ElementProgressBarBack);
         }
 

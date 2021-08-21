@@ -81,13 +81,13 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// raises header classes propertychanged
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             _header = e.NameScope.Find<OdcExpanderHeader>("PART_HEADER");
             //ExpanderHeaderHight = _header.Height;
             //ExpanderHeaderWidth = _header.Width;
 
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             RaisePropertyChanged(HeaderClassesProperty, null, HeaderClasses);
         }

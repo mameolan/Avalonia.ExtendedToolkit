@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Avalonia.ExtendedToolkit.Extensions;
 using Avalonia.Media;
 
 namespace Avalonia.ExampleApp.Model
@@ -7,10 +8,7 @@ namespace Avalonia.ExampleApp.Model
     {
         public FontList()
         {
-            foreach (var item in FontFamily.SystemFontFamilies)
-            {
-                this.Add(item);
-            }
+            FontFamilyExtensions.InstalledFontFamilies.ForEach(x=> this.Add(x));
         }
     }
 }

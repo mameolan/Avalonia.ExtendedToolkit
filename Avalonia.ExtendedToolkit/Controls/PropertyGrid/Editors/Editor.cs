@@ -91,13 +91,14 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
             if (template is string)
             {
                 var genericStyle = Application.Current.Styles.OfType<StyleInclude>().FirstOrDefault(styleInclude => styleInclude.
-                             Source.AbsoluteUri.StartsWith("avares://Avalonia.ExtendedToolkit/Styles/Generic.xaml"));
+                             Source.AbsoluteUri.StartsWith("avares://Avalonia.ExtendedToolkit/Styles/Generic.axaml"));
 
                 var result = (genericStyle.Loaded as Styles)?.OfType<StyleInclude>()
                         .FirstOrDefault(styleInclude => styleInclude.
-                             Source.AbsoluteUri.EndsWith("PropertyGrid/Editor/EditorResources.xaml"));
+                             Source.AbsoluteUri.EndsWith("PropertyGrid/Editor/EditorResources.axaml"));
 
-                result.Loaded.TryGetResource(template, out object resourceValue);
+                //result.Loaded.TryGetResource(template, out object resourceValue);
+                result.TryGetResource(template, out object resourceValue);
 
                 ControlTemplate controlTemplate = resourceValue as ControlTemplate;
 

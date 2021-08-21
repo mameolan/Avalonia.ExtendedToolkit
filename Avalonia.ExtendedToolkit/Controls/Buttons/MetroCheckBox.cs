@@ -135,7 +135,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// initilaize default value
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             _checkBoxPath = e.NameScope.Find<Path>("checkBox");
             _indeterminateCheck = e.NameScope.Find<Rectangle>("IndeterminateCheck");
@@ -153,7 +153,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             IsChecked = isChecked;
 
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
         }
     }
 }

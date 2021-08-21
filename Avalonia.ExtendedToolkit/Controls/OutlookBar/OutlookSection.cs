@@ -140,9 +140,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets the buttom from the style
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
             Button button=e.NameScope.Find<Button>("button");
             button.Click += buttonClickedEvent;
         }

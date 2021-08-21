@@ -44,15 +44,15 @@ namespace Avalonia.ExtendedToolkit
             this.ThemeStyle = style ?? throw new ArgumentNullException(nameof(style));
 
             object result;
-            style.TryGetResource(ThemeNameKey, out result);
+            (style as StyleInclude).TryGetResource(ThemeNameKey, out result);
             this.Name = (string)result;
-            style.TryGetResource(ThemeDisplayNameKey, out result);
+            (style as StyleInclude).TryGetResource(ThemeDisplayNameKey, out result);
             this.DisplayName = (string)result;
-            style.TryGetResource(ThemeBaseColorSchemeKey, out result);
+            (style as StyleInclude).TryGetResource(ThemeBaseColorSchemeKey, out result);
             this.BaseColorScheme = (string)result;
-            style.TryGetResource(ThemeColorSchemeKey, out result);
+            (style as StyleInclude).TryGetResource(ThemeColorSchemeKey, out result);
             this.ColorScheme = (string)result;
-            style.TryGetResource(ThemeShowcaseBrushKey, out result);
+            (style as StyleInclude).TryGetResource(ThemeShowcaseBrushKey, out result);
             this.ShowcaseBrush = (SolidColorBrush)result;
         }
 

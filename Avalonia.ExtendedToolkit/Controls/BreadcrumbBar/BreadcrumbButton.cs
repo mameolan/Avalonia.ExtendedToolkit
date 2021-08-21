@@ -279,7 +279,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets some controls from the style
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             dropDownBtn = e.NameScope.Find<Control>(partDropDown);
 
@@ -297,9 +297,9 @@ namespace Avalonia.ExtendedToolkit.Controls
                 dropDownBtn.PointerPressed += dropDownBtn_MouseDown;// += new MouseButtonEventHandler(dropDownBtn_MouseDown);
             }
 
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
-            RaisePropertyChanged(ItemsProperty, null, (IEnumerable)Items);
+            RaisePropertyChanged(ItemsProperty, new Data.Optional<IEnumerable>(), new Data.Optional<IEnumerable>(Items));
         }
 
         private void dropDownBtn_MouseDown(object sender, EventArgs e)

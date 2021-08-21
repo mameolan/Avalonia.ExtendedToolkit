@@ -205,7 +205,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets the controls of the style
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             if (IsTransitioning)
             {
@@ -224,7 +224,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             //    }
             //}
 
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             previousContentPresentationSite = e.NameScope.Find(PreviousContentPresentationSitePartName) as ContentPresenter;
             currentContentPresentationSite = e.NameScope.Find(CurrentContentPresentationSitePartName) as ContentPresenter;

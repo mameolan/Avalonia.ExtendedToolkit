@@ -89,7 +89,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// fires can execute on the commands
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
+        protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> e)
         {
             base.OnPropertyChanged(e);
             if (
@@ -340,7 +340,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets the controls from the style
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             btnHelp = e.NameScope.Find<Button>(ButtonName_Help);
             btnBack = e.NameScope.Find<Button>(ButtonName_Back);
@@ -354,7 +354,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             btnFinish.Click += BtnFinish_Click;
             btnCancel.Click += BtnCancel_Click;
             UpdateButtonState();
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
         }
 
         private void UpdateButtonState()

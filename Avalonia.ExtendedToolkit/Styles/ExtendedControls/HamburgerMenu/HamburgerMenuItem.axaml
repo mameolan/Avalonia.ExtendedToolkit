@@ -1,0 +1,59 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+        >
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/HamburgerMenu/ButtonStyle.axaml"/>
+
+  <Style Selector="Controls|HamburgerMenuItem">
+    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:HamburgerMenu}}, Path=MenuItemForeground}"/>
+    <Setter Property="SelectionIndicatorColor" Value="{DynamicResource MahApps.Brushes.Black}"/>
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Button Classes="HamburgerMenu" x:Name="ListBoxItemButton" 
+                  Command="{TemplateBinding SelectionCommand}"
+                  HorizontalContentAlignment="Stretch" 
+                  VerticalContentAlignment="Stretch"
+                  >
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+              </Grid.ColumnDefinitions>
+              <Grid Grid.Column="1">
+                <Grid Background="Transparent" Margin="0" Width="300">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition/>
+                  </Grid.ColumnDefinitions>
+                  <Grid Grid.Column="1">
+                    <TextBlock Text="{TemplateBinding Text}" Margin="10,0,0,0"
+                               HorizontalAlignment="Left" VerticalAlignment="Center"
+                               FontSize="18"
+                               Foreground="{DynamicResource MahApps.Brushes.Label.Text}"
+                               />
+                  </Grid>
+                  <Grid Grid.Column="0">
+                    <Image x:Name="menuImage" Margin="10,5,5,5"
+                           />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid Name="ItemSelectedIndicator"  Grid.Column="0"
+                     />
+            </Grid>
+          </Button>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|HamburgerMenuItem:selected /template/ Grid#ItemSelectedIndicator">
+    <!--IsVisible is somehow not working using color instead.-->
+    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Controls:HamburgerMenuItem}}, Path=SelectionIndicatorColor}" />
+  </Style>
+
+  
+  
+</Styles>

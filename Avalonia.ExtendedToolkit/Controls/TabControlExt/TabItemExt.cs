@@ -212,7 +212,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
 
             _underline = e.NameScope.Find<Underline>(PART_Underline);
@@ -229,7 +229,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             //_topRow = e.NameScope.Find<RowDefinitionExt>(PART_ContentTopRow);
             _isTemplateApplied = true;
 
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
         }
 
         public override void Render(DrawingContext context)

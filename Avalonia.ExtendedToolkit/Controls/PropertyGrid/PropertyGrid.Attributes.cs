@@ -306,7 +306,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                 RaisePropertyChanged(HasPropertiesProperty, !HasProperties, HasProperties);
                 //OnPropertyChanged("HasProperties");
 
-                RaisePropertyChanged(BrowsablePropertiesProperty, null, BrowsableProperties);
+                RaisePropertyChanged(BrowsablePropertiesProperty, new Data.Optional<IEnumerable<PropertyItem>>(), new Data.BindingValue<IEnumerable<PropertyItem>>(BrowsableProperties));
                 //OnPropertyChanged("BrowsableProperties");
             }
         }
@@ -421,7 +421,9 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                     _categories.Sort(CategoryComparer);
 
                 RaisePropertyChanged(HasCategoriesProperty, !HasCategories, HasCategories);
-                RaisePropertyChanged(BrowsablePropertiesProperty, null, BrowsableProperties);
+                RaisePropertyChanged(BrowsablePropertiesProperty, 
+                            new Data.Optional<IEnumerable<PropertyItem>>(), 
+                            new Data.BindingValue<IEnumerable<PropertyItem>>(BrowsableProperties));
                 //        OnPropertyChanged("BrowsableCategories");
             }
         }

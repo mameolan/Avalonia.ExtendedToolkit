@@ -607,9 +607,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets the controls from the styles
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
             comboBox = e.NameScope.Find<ComboBox>(partComboBox);
             rootButton = e.NameScope.Find<BreadcrumbButton>(partRoot);
 
@@ -645,7 +645,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             BreadcrumbItem breadcrumbItem = Content as BreadcrumbItem;
 
             _isInitial = true;
-            RaisePropertyChanged(RootProperty, null, breadcrumbItem.Items);
+            RaisePropertyChanged(RootProperty, new Optional<object>(), new Optional<object>(breadcrumbItem.Items));
             _isInitial = false;
 
             //RaisePropertyChanged(PathProperty, string.Empty, Path);

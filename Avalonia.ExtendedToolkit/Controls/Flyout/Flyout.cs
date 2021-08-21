@@ -158,8 +158,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             styles.Remove(item);
 
             ResourceDictionary resources = (item.Loaded as Style).Resources as ResourceDictionary;
-
-            var fromColor = (Color)item.FindResource(fromColorKey);
+            item.TryGetResource(fromColorKey, out object result);
+            var fromColor = (Color)result;
 
             resources["MahApps.Colors.White"] = fromColor;
             resources["MahApps.Colors.Flyout"] = fromColor;
@@ -260,7 +260,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets the controls from the style
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             this.flyoutRoot = e.NameScope.Find<Border>("PART_Root");
             if (this.flyoutRoot == null)
@@ -306,7 +306,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             //    return;
             //}
 
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
             UpdateOpacityChange();
             UpdateFlyoutTheme();
             this.ApplyAnimation(this.Position, this.AnimateOpacity);

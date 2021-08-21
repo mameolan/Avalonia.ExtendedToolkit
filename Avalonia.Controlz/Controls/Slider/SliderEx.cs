@@ -486,13 +486,23 @@ namespace Avalonia.Controlz.Controls
         /// updates the pseudo classes
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
+        protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> e)
         {
-            if (e.Property == OrientationProperty && e.NewValue is Orientation newValue)
+            base.OnPropertyChanged(e);
+            if(e.Property == OrientationProperty && e.NewValue is Orientation newValue)
             {
                 UpdatePseudoClassesForOrientation(newValue);
             }
+
+
         }
+        //protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
+        //{
+        //    if (e.Property == OrientationProperty && e.NewValue is Orientation newValue)
+        //    {
+        //        UpdatePseudoClassesForOrientation(newValue);
+        //    }
+        //}
 
 
         /// <summary>
@@ -892,7 +902,7 @@ namespace Avalonia.Controlz.Controls
         /// gets the controls from style
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             SelectionRangeElement = e.NameScope.Find<AvaloniaObject>(SelectionRangeElementName);
             Track = e.NameScope.Find<Track>(TrackName);
@@ -907,7 +917,7 @@ namespace Avalonia.Controlz.Controls
             //}
 
             RaisePropertyChanged(TickPlacementProperty, TickPlacement.None, TickPlacement);
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
         }
 
         /// <summary>

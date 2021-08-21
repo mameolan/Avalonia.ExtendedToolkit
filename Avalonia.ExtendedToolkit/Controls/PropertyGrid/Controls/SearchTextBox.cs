@@ -163,7 +163,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
         /// gets the border from the style
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             var iconBorder = e.NameScope.Find<Border>("PART_SearchIconBorder");
             if (iconBorder != null)
@@ -173,7 +173,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
                 iconBorder.PointerLeave += IconBorderMouseLeave;
                 ;
             }
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
         }
 
         private void IconBorderMouseLeave(object sender, Input.PointerEventArgs e)
@@ -252,7 +252,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls
         /// that exist on the element have had their effective values changed.
         /// </summary>
         /// <param name="e">Arguments for the associated event.</param>
-        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
+        protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> e)
         {
             if(e.Property== IsVisibleProperty)
             {

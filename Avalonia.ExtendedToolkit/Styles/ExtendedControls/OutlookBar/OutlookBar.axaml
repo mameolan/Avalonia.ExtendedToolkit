@@ -1,0 +1,477 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+        xmlns:ext="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit">
+    <!--xmlns:mwt="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"-->
+
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ExplorerBar/OdcExpander.axaml" />
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ExplorerBar/OdcExpanderHeader.axaml" />
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/OutlookBar/ToggleButton.axaml" />
+
+    <Style Selector="Controls|OdcExpanderHeader.odcHeader[IsChecked=true] /template/ Path#path">
+        <Setter Property="RenderTransform">
+            <RotateTransform Angle="270" />
+        </Setter>
+    </Style>
+
+    <Style Selector="Controls|OdcExpanderHeader.odcHeader[IsChecked=false] /template/ Path#path">
+        <Setter Property="RenderTransform">
+            <RotateTransform Angle="90" />
+        </Setter>
+    </Style>
+
+    <Style Selector="Controls|OdcExpander.odcExpander">
+        <Setter Property="CanAnimate" Value="True" />
+        <Setter Property="HeaderBackground" Value="{DynamicResource Odc.Brushes.LightBackground}" />
+        <Setter Property="MouseOverHeaderBackground"
+                Value="{DynamicResource Odc.Brushes.HighlightedExpanderHeader}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Odc.Brushes.Border}" />
+        <Setter Property="Background" Value="{DynamicResource Odc.Brushes.White}" />
+        <Setter Property="ShowEllipse" Value="False" />
+        <Setter Property="Foreground" Value="{DynamicResource Odc.Brushes.Foreground}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="HeaderBorderThickness" Value="0,1,0,1" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="HeaderClasses" Value="odcHeader" />
+    </Style>
+
+    <Style Selector="Button.buttonStyle">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Odc.Brushes.Border}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}" Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}" Focusable="False" x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{DynamicResource DynamicResource Odc.Brushes.Border}">
+                        <ContentPresenter Focusable="False"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style Selector="Button.buttonStyle:pointerover /template/ Border#border">
+        <Setter Property="Background"
+                          Value="{DynamicResource Odc.Brushes.HighlightButtonGradient}" />
+    </Style>
+
+    <Style Selector="Button.buttonStyle:pointerover /template/ ContentPresenter">
+        <Setter Property="Background"
+                          Value="{DynamicResource Odc.Brushes.HighlightButtonGradient}" />
+    </Style>
+
+    <Style Selector="Button.buttonStyle:pressed /template/ Border#border">
+        <Setter Property="Background"
+                          Value="{DynamicResource Odc.Brushes.SectionButtonGradient}" />
+    </Style>
+
+    <Style Selector="Button.buttonStyle:pressed /template/ ContentPresenter">
+        <Setter Property="Background"
+                          Value="{DynamicResource Odc.Brushes.SectionButtonGradient}" />
+    </Style>
+
+    <!--BasedOn="{StaticResource }"-->
+    <Style Selector="Button.verticalButtonStyle">
+        <Setter Property="BorderThickness" Value="0,0,1,0" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Odc.Brushes.Border}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <LayoutTransformControl>
+                        <Border Background="{TemplateBinding Background}" Focusable="False" x:Name="border"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{DynamicResource DynamicResource Odc.Brushes.Border}">
+                            <Border Background="Transparent" BorderBrush="{DynamicResource Odc.Brushes.White}" BorderThickness="0,1,1,0">
+                                <ContentPresenter Focusable="False" Margin="4,0,4,0" Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}" VerticalAlignment="Center"
+                                        HorizontalAlignment="Center" />
+                            </Border>
+                        </Border>
+                        <LayoutTransformControl.LayoutTransform>
+                            <RotateTransform Angle="-90" />
+                        </LayoutTransformControl.LayoutTransform>
+                    </LayoutTransformControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style Selector="Button.verticalButtonStyle:pointerover /template/ Border#border">
+        <Setter Property="Background"
+                          Value="{DynamicResource Odc.Brushes.HighlightButtonGradient}" />
+    </Style>
+
+    <Style Selector="Button.buttonStyle:pointerover /template/ ContentPresenter">
+        <Setter Property="Background"
+                          Value="{DynamicResource Odc.Brushes.HighlightButtonGradient}" />
+    </Style>
+
+    <Style Selector="Button.verticalButtonStyle:pressed /template/ Border#border">
+        <Setter Property="Background"
+                          Value="{DynamicResource Odc.Brushes.SelectedButton}" />
+    </Style>
+
+    <Style Selector="Button.verticalButtonStyle:pressed /template/ ContentPresenter">
+        <Setter Property="Background"
+                          Value="{DynamicResource Odc.Brushes.SelectedButton}" />
+    </Style>
+
+    <!--BasedOn="{StaticResource buttonStyle}"-->
+    <Style Selector="ToggleButton.verticalToggleButtonStyle">
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Odc.Brushes.Border}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <LayoutTransformControl>
+                        <Border Background="{TemplateBinding Background}" Focusable="False" x:Name="border"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <Border Background="Transparent" BorderBrush="{DynamicResource TemplateBinding BorderBrush}"
+                                      BorderThickness="1">
+                                <ContentPresenter Focusable="False" Margin="4,0,4,0" Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}" VerticalAlignment="Center"
+                                        HorizontalAlignment="Center" />
+                            </Border>
+                        </Border>
+                        <LayoutTransformControl.LayoutTransform>
+                            <RotateTransform Angle="-90" />
+                        </LayoutTransformControl.LayoutTransform>
+                    </LayoutTransformControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style Selector="ToggleButton.verticalToggleButtonStyle[IsChecked=true] /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource Odc.Brushes.SelectedButton}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Odc.Brushes.SelectedButton}" />
+    </Style>
+
+    <Style Selector="ToggleButton.verticalToggleButtonStyle[IsChecked=true] /template/ Border#border">
+        <Setter Property="Background" Value="{DynamicResource Odc.Brushes.SelectedButton}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Odc.Brushes.SelectedButton}" />
+    </Style>
+
+    <Style Selector="ToggleButton.verticalToggleButtonStyle[IsChecked=true]">
+        <Setter Property="Background" Value="{DynamicResource Odc.Brushes.SelectedButton}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Odc.Brushes.SelectedButton}" />
+    </Style>
+
+    <Style Selector="ToggleButton.verticalToggleButtonStyle[IsPointerOver=true][IsChecked=false]">
+        <Setter Property="Background" Value="{DynamicResource Odc.Brushes.HighlightButtonGradient}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Odc.Brushes.HighlightButtonGradient}" />
+    </Style>
+
+    <Style Selector="ToggleButton.verticalToggleButtonStyle[IsPointerOver=true][IsChecked=false] /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource Odc.Brushes.HighlightButtonGradient}" />
+    </Style>
+
+    <Style Selector="ToggleButton.verticalToggleButtonStyle[IsPointerOver=true][IsChecked=false] /template/ Border#border">
+        <Setter Property="Background" Value="{DynamicResource Odc.Brushes.HighlightButtonGradient}" />
+    </Style>
+
+    <Style Selector="ToggleButton.verticalToggleButtonStyle[IsPointerOver=true][IsChecked=true]">
+        <Setter Property="Background" Value="{DynamicResource Odc.Brushes.HighlightButtonGradient}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Odc.Brushes.HighlightButtonGradient}" />
+    </Style>
+
+    <Style Selector="ToggleButton.verticalToggleButtonStyle[IsPointerOver=true][IsChecked=true] /template/ ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource Odc.Brushes.HighlightButtonGradient}" />
+    </Style>
+
+    <Style Selector="ToggleButton.verticalToggleButtonStyle[IsPointerOver=true][IsChecked=true] /template/ Border#border">
+        <Setter Property="Background" Value="{DynamicResource Odc.Brushes.HighlightButtonGradient}" />
+    </Style>
+
+    <Style Selector="Controls|OutlookBar">
+        <!--<Setter Property="odc:KeyTip.Stop" Value="false" />
+    <Setter Property="odc:KeyTip.YOffset" Value="2" />
+    <Setter Property="odc:KeyTip.XOffset" Value="-24" />-->
+        <Setter Property="Height" Value="700" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Odc.Brushes.Border}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="{DynamicResource Odc.Brushes.LightBackground}" />
+        <Setter Property="OdcExpanderClasses" Value="odcExpander" />
+        <Setter Property="OptionButtonClasses" Value="verticalButtonStyle" />
+        <Setter Property="OptionToggleButtonClasses" Value="verticalToggleButtonStyle" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <DockPanel x:Name="mainPanel">
+
+                        <Button x:Name="resizeButton" Width="4" DockPanel.Dock="Right"
+                                IsVisible="{Binding CanResize}"
+                                 ClickMode="Press"
+                                Cursor="SizeWestEast">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Border Background="Transparent" />
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Border Background="{TemplateBinding Background}" Focusable="False"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid Background="{DynamicResource Odc.Brushes.White}" Focusable="False">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0" Height="24" DockPanel.Dock="Top" BorderThickness="0,0,0,1" Focusable="False"
+                                        TextBlock.Foreground="{DynamicResource Odc.Brushes.Foreground}"
+                                        Background="{DynamicResource Odc.Brushes.HighlightedExpanderHeader}"
+                                        BorderBrush="{DynamicResource Odc.Brushes.Border}"
+                                        x:Name="headerBorder">
+                                    <DockPanel>
+                                        <Button x:Name="closeButton" DockPanel.Dock="Right"
+                                                IsVisible="{Binding IsCloseButtonVisible, RelativeSource={RelativeSource TemplatedParent}}"
+                                                Classes="buttonStyle" Width="18" Height="18" Margin="2">
+                                            <Button.Content>
+                                                <Path Stroke="{DynamicResource Odc.Brushes.Path.Stroke}"
+                                                      Fill="{DynamicResource Odc.Brushes.Path.Fill}"
+                                                      UseLayoutRounding="False"
+                                                      Stretch="Uniform"
+                                                      Width="6"
+                                                      Data="M 10.009,1.704 L 8.331,0.026 5.03,3.327 1.703,0 0,1.704 3.326,5.031 0.025,8.332 1.703,10.009 5.004,6.708 8.305,10.009 10.009,8.305 6.708,5.005"
+                                                      VerticalAlignment="Center" />
+                                            </Button.Content>
+                                        </Button>
+                                        <Button x:Name="toggleMinimizeButton" DockPanel.Dock="Right"
+                                                 Width="18"
+                                                Height="18" Margin="2"
+                                                Classes="buttonStyle">
+                                            <Button.Content>
+                                                <Path x:Name="expandPath"
+                                                        Stroke="{DynamicResource Odc.Brushes.Image}"
+                                                        Fill="{DynamicResource Odc.Brushes.Foreground}"
+                                                        Data="M0,0 L3,3 0,6 M3,0 L6,3 3,6" />
+                                            </Button.Content>
+                                        </Button>
+                                        <TextBlock x:Name="headerText"
+                                                Text="{Binding Path=SelectedSection.Header, RelativeSource={RelativeSource TemplatedParent}}"
+                                                TextBlock.Foreground="{DynamicResource OdcExpanderHeader.Brushes.TextForeground}"
+                                                TextBlock.FontSize="14" Margin="4,0,4,0" VerticalAlignment="Center"
+                                                HorizontalAlignment="Left" TextBlock.FontWeight="Bold" />
+                                    </DockPanel>
+                                </Border>
+                                <Grid Grid.Row="1" x:Name="contentGrid">
+                                    <ContentControl x:Name="content" Focusable="False"
+                                            Content="{Binding SectionContent, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <DockPanel x:Name="optionButtons" IsVisible="False" Focusable="False"
+                                               Height="{Binding ElementName=contentGrid, Path=Height}">
+                                        <ItemsControl DockPanel.Dock="Bottom"
+                                                      Items="{TemplateBinding OptionButtons}"
+                                               Focusable="False" />
+                                        <ToggleButton Content="{TemplateBinding NavigationPaneText}" ClickMode="Press"
+                                                x:Name="PART_ToggleButton"
+                                                IsChecked="{Binding IsPopupVisible,RelativeSource={RelativeSource TemplatedParent},Mode=TwoWay}"
+                                                TextBlock.FontSize="14" BorderThickness="1"
+                                                      Classes="verticalToggleButtonStyle" />
+                                        <DockPanel.Resources>
+                                            <!--<Style TargetType="{x:Type Button}" BasedOn="{StaticResource verticalButtonStyle}" />
+                      <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource verticalToggleButtonStyle}" />-->
+                                        </DockPanel.Resources>
+                                    </DockPanel>
+                                    <Popup x:Name="PART_Popup" PlacementMode="Right"
+                                            StaysOpen="False">
+                                        <!--
+                    PopupAnimation="Fade"
+                    AllowsTransparency="True"
+                    -->
+                                        <Popup.Child>
+                                            <!--<mwt:SystemDropShadowChrome Margin="0,0,5,5" CornerRadius="3" Color="" Name="Shdw"
+                              MinWidth="{TemplateBinding FrameworkElement.Width}" VerticalAlignment="Stretch">-->
+                                            <Border Background="Transparent">
+                                                <Border
+                                                        Background="{DynamicResource Odc.Brushes.LightBackground}"
+                                                        BorderBrush="{DynamicResource Odc.Brushes.Border}"
+                                                        BorderThickness="1">
+                                                    <Border
+                                                            Background="{DynamicResource Odc.Brushes.LightBackground}"
+                                                            BorderBrush="{DynamicResource Odc.Brushes.Border}"
+                                                            BorderThickness="1" MinWidth="200" Margin="4"
+                                                            Width="{TemplateBinding PopupWidth}">
+                                                        <ContentControl Focusable="False"
+                                                                Content="{Binding CollapsedSectionContent, RelativeSource={RelativeSource TemplatedParent}}" />
+                                                    </Border>
+                                                </Border>
+                                            </Border>
+                                            <!--</mwt:SystemDropShadowChrome>-->
+                                        </Popup.Child>
+                                    </Popup>
+                                </Grid>
+                                <StackPanel Grid.Row="2" Focusable="False" x:Name="contentBottom">
+                                    <Button x:Name="splitter" Classes="buttonStyle"
+                                            Background="{DynamicResource Odc.Brushes.SectionButtonGradient}"
+                                            Height="5" Cursor="SizeNorthSouth"
+                                            IsVisible="{Binding IsButtonSplitterVisible, RelativeSource={RelativeSource TemplatedParent}}"
+                                            ClickMode="Press"  BorderThickness="0,1,0,0">
+                                        <Button.Content>
+                                            <Canvas Height="5" Width="24" HorizontalAlignment="Center">
+                                                <Path Stroke="{DynamicResource Odc.Brushes.Image}"
+                                                        Fill="Transparent" Data="M0,1 L0,0 1,0" Canvas.Left="4" Canvas.Top="2" />
+                                                <Path Stroke="{DynamicResource Odc.Brushes.White}" Fill="Transparent" Data="M2,1 L2,3 1,3" Canvas.Left="4" Canvas.Top="2" />
+
+                                                <Path Stroke="{DynamicResource Odc.Brushes.Image}"
+                                                        Fill="Transparent" Data="M0,1 L0,0 1,0" Canvas.Left="8" Canvas.Top="2" />
+                                                <Path Stroke="{DynamicResource Odc.Brushes.White}" Fill="Transparent" Data="M2,1 L2,3 1,3" Canvas.Left="8" Canvas.Top="2" />
+
+                                                <Path Stroke="{DynamicResource Odc.Brushes.Image}"
+                                                        Fill="Transparent" Data="M0,1 L0,0 1,0" Canvas.Left="12" Canvas.Top="2" />
+                                                <Path Stroke="{DynamicResource Odc.Brushes.White}" Fill="Transparent" Data="M2,1 L2,3 1,3" Canvas.Left="12" Canvas.Top="2" />
+
+                                                <Path Stroke="{DynamicResource Odc.Brushes.Image}"
+                                                        Fill="Transparent" Data="M0,1 L0,0 1,0" Canvas.Left="16" Canvas.Top="2" />
+                                                <Path Stroke="{DynamicResource Odc.Brushes.White}" Fill="Transparent" Data="M2,1 L2,3 1,3" Canvas.Left="16" Canvas.Top="2" />
+
+                                                <Path Stroke="{DynamicResource Odc.Brushes.Image}"
+                                                        Fill="Transparent" Data="M0,1 L0,0 1,0" Canvas.Left="20" Canvas.Top="2" />
+                                                <Path Stroke="{DynamicResource Odc.Brushes.White}" Fill="Transparent" Data="M2,1 L2,3 1,3" Canvas.Left="20" Canvas.Top="2" />
+                                            </Canvas>
+                                        </Button.Content>
+                                    </Button>
+                                    <ItemsControl
+                                      Items="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:OutlookBar}}, Path=MaximizedSections, Mode=TwoWay}"
+                                      Focusable="False"
+                      />
+                                    <Border Height="{TemplateBinding ButtonHeight}" x:Name="PART_MinimizedContainer"
+                                            Background="{DynamicResource Odc.Brushes.SectionButtonGradient}"
+                                            BorderBrush="Transparent"
+                                            BorderThickness="1">
+                                        <Grid HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="80*" />
+                                                <ColumnDefinition Width="20*" MinWidth="20" />
+                                            </Grid.ColumnDefinitions>
+                                            <ItemsControl Grid.Column="0" x:Name="minimizedButtons"
+                                                  Items="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:OutlookBar}}, Path=MinimizedSections, Mode=TwoWay}"
+                                                  ClipToBounds="True" Focusable="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                  Margin="1" >
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel  Orientation="Horizontal" VerticalAlignment="Stretch"  />
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                            </ItemsControl>
+                                            <ToggleButton Grid.Column="1" Classes="buttonInSection"  Margin="1"
+                                                          x:Name="toggleMenu" ClickMode="Press" IsThreeState="False"
+                                                          VerticalContentAlignment="Stretch"
+                                                    IsChecked="{Binding IsOverflowVisible, RelativeSource={RelativeSource TemplatedParent},Mode=TwoWay}">
+                                                <ToggleButton.Content>
+                                                    <Path VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                            Fill="{DynamicResource Odc.Brushes.Path.Fill}"
+                                                            Stroke="{DynamicResource Odc.Brushes.Path.Stroke}" Data="M2,4 L5,7 8,4" />
+                                                </ToggleButton.Content>
+                                                <ToggleButton.ContextMenu>
+                                                    <ContextMenu
+                                                            Items="{TemplateBinding OverflowMenuItems}"
+                                                            ItemTemplate="{TemplateBinding ItemTemplate}"
+                                                            ItemsPanel="{TemplateBinding ItemsPanel}"
+                                                            UseLayoutRounding="False">
+                                                    </ContextMenu>
+                                                </ToggleButton.ContextMenu>
+                                            </ToggleButton>
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style Selector="Controls|OutlookBar[IsMaximized=True][DockPosition=Left] /template/ Path#expandPath">
+        <Setter Property="Data" Value="M3,0 L0,3 3,6 M6,0 L3,3 6,6" />
+    </Style>
+
+    <Style Selector="Controls|OutlookBar[IsMaximized=False] /template/ Path#expandPath">
+        <Setter Property="RenderTransform">
+            <RotateTransform Angle="180" />
+        </Setter>
+    </Style>
+
+    <Style Selector="Controls|OutlookBar[IsMaximized=False][DockPosition=Right] /template/ Path#expandPath">
+        <Setter Property="Data" Value="M3,0 L0,3 3,6 M6,0 L3,3 6,6" />
+    </Style>
+
+    <Style Selector="Controls|OutlookBar[IsMaximized=False]">
+        <!--<Setter Property="HorizontalAlignment" Value="Left" />-->
+    </Style>
+
+    <Style Selector="Controls|OutlookBar[IsMaximized=True] /template/ DockPanel#mainPanel">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <!--<Setter Property="HorizontalAlignment" Value="Left" />-->
+    </Style>
+
+    <Style Selector="Controls|OutlookBar[IsMaximized=False] /template/ ContentControl#content">
+        <!--<Setter Property="IsVisible" Value="False" />-->
+    </Style>
+
+    <Style Selector="Controls|OutlookBar[IsMaximized=False] /template/ ContentControl#headerText">
+        <Setter Property="IsVisible" Value="False" />
+    </Style>
+
+    <Style Selector="Controls|OutlookBar[IsMaximized=False] /template/ DockPanel#optionButtons">
+        <Style.Animations>
+            <Animation Duration="00:00:00:01" FillMode="Forward">
+                <KeyFrame Cue="0%">
+                    <Setter Property="IsVisible" Value="True" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="IsVisible" Value="True" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+
+    <Style Selector="Controls|OutlookBar[IsMaximized=True] /template/ DockPanel#optionButtons">
+        <Style.Animations>
+            <Animation Duration="00:00:00:01" FillMode="Forward">
+                <KeyFrame Cue="0%">
+                    <Setter Property="IsVisible" Value="False" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="IsVisible" Value="False" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+
+    <Style Selector="Controls|OutlookBar[IsMaximized=False] /template/ ItemsControl#minimizedButtons">
+        <Setter Property="IsVisible" Value="False" />
+    </Style>
+
+    <Style Selector="Controls|OutlookBar[IsMaximized=false] /template/ Button#closeButton">
+        <Setter Property="IsVisible" Value="False" />
+    </Style>
+
+    <Style Selector="Controls|OutlookBar[DockPosition=Right] /template/ Popup#PART_Popup">
+        <Setter Property="PlacementMode" Value="Left" />
+    </Style>
+
+    <Style Selector="Controls|OutlookBar[DockPosition=Right] /template/ Button#resizeButton">
+        <Setter Property="DockPanel.Dock" Value="Left" />
+    </Style>
+
+    <Style Selector="Controls|OutlookBar[ShowButtons=false] /template/ Grid#contentGrid">
+        <Setter Property="Grid.RowSpan" Value="2" />
+    </Style>
+
+    <Style Selector="Controls|OutlookBar[ShowButtons=false] /template/ StackPanel#contentBottom">
+        <Setter Property="IsVisible" Value="False" />
+    </Style>
+</Styles>
