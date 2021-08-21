@@ -363,8 +363,15 @@ namespace Avalonia.ExtendedToolkit.Controls
             IStyle menuStyle = e.NewValue as IStyle;
             if (menuStyle == null|| _menu.Styles.Contains(menuStyle))
                 return;
-
-           //_menu.Styles.Add(menuStyle);
+            try
+            {
+                _menu.Styles.Add(menuStyle);
+            }
+            catch
+            {
+                //has already a parent exception
+            }
+           
         }
 
         /// <summary>
