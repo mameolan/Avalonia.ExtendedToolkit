@@ -1,0 +1,22 @@
+<Styles xmlns="https://github.com/avaloniaui">
+ 
+  <Style Selector="DataGridRowHeader">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid
+        RowDefinitions="*,*,Auto"
+        ColumnDefinitions="Auto,*">
+
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="DataGridRowHeader:pointerover">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray3}" />
+  </Style>
+
+  
+
+
+</Styles>

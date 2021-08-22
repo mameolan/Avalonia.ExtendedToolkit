@@ -5,7 +5,13 @@
     xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
     xmlns:System="clr-namespace:System;assembly=mscorlib">
 
-  <Style Selector="DataGrid.Metro">
+
+  <!-- <Style Selector="DataGrid.Metro">
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataGridCell.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataGridColumn.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataGridRow.axaml"/> -->
+  
+  <Style Selector="DataGrid">
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}" />
     <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
     <Setter Property="BorderThickness" Value="0 0 0 0" />

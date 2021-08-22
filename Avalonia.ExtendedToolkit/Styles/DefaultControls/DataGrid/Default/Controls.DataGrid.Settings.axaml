@@ -1,0 +1,14 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Controls;assembly=Controls"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+        >
+    <Styles.Resources>
+        <system:Double x:Key="DataGridRowHeight">25</system:Double>
+        <system:Double x:Key="DataGridHeaderHeight">30</system:Double>
+        <system:Double x:Key="DataGridGroupHeaderHeight">30</system:Double>
+    </Styles.Resources>
+    
+    
+</Styles>

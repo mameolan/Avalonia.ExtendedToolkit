@@ -1,0 +1,61 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+  
+  <Style Selector="DataGridRow.Metro">
+    <!--<Setter Property="Controls:DataGridRowHelper.SelectionUnit" Value="{Binding Path=SelectionUnit, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />-->
+    <Setter Property="Margin" Value="0 0 0 0" />
+    <!--<Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
+    <Setter Property="ValidationErrorTemplate" Value="{StaticResource MahApps.Templates.DataGridRow.ValidationError}" />-->
+  </Style>
+
+  <Style Selector="DataGridRow.Metro:selected">
+    <!--SelectionUnit" Value="FullRow"-->
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.DataGrid.Highlight}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.DataGrid.Highlight}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.DataGrid.HighlightText}" />
+  </Style>
+
+  <Style Selector="DataGridRow.Metro:selected:isactive">
+    <!--SelectionUnit" Value="FullRow"-->
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.DataGrid.InactiveSelectionHighlight}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.DataGrid.InactiveSelectionHighlight}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.DataGrid.InactiveSelectionHighlightText}" />
+  </Style>
+
+  <Style Selector="DataGridRow.Metro:pointerover">
+    <!--SelectionUnit" Value="FullRow"-->
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.DataGrid.MouseOverHighlight}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.DataGrid.MouseOverHighlight}" />
+  </Style>
+
+  <Style Selector="DataGridRow.Metro:disabled">
+    <!--SelectionUnit" Value="FullRow"-->
+    <!--<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />-->
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.DarkIdealForegroundDisabled}" />
+  </Style>
+
+  <Style Selector="DataGridRow.Metro:disabled:selected">
+    <!--SelectionUnit" Value="FullRow"-->
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.DataGrid.DisabledHighlight}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.DataGrid.DisabledHighlight}" />
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.DataGrid.HighlightText}" />
+  </Style>
+
+  <Style Selector="DataGridRow.Azure"></Style>
+
+  <Style Selector="DataGridRow.AzureWithMargin">
+    <Setter Property="Margin" Value="0 0 0 1" />
+  </Style>
+  
+  
+  
+  
+  
+  
+  
+</Styles>
