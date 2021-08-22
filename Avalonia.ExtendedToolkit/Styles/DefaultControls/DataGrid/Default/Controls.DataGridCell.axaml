@@ -1,0 +1,41 @@
+<Styles xmlns="https://github.com/avaloniaui">
+  
+  
+
+  <Style Selector="DataGridCell">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid ColumnDefinitions="*,Auto"
+              Background="{TemplateBinding Background}">
+          <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}"
+                            Content="{TemplateBinding Content}"
+                            Margin="{TemplateBinding Padding}"
+                            TextBlock.Foreground="{TemplateBinding Foreground}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+          <Rectangle Name="PART_RightGridLine"
+                     Grid.Column="1"
+                     VerticalAlignment="Stretch"
+                     StrokeThickness="0.1"
+                     Stroke="{DynamicResource MahApps.Brushes.Black}"
+                     />
+
+          <Rectangle Name="HorizontalSeparator"
+                     Grid.Column="0" Height="0.1"
+                     StrokeThickness="0.1"
+                     Stroke="{DynamicResource MahApps.Brushes.Black}"
+                     Grid.ColumnSpan="2"
+                     HorizontalAlignment="Stretch"
+                     VerticalAlignment="Bottom"
+                     
+                     />
+          
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+  </Styles>

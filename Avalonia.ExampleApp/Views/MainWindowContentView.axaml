@@ -96,10 +96,10 @@
             <Views:WizardView/>
           </ScrollViewer>
         </TabItem>
-        <TabItem Header="DataGrid" >
-          <Grid>
-            <Views:DataGridView/>
-          </Grid>
+        <TabItem Header="DataGrid" 
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+            ScrollViewer.VerticalScrollBarVisibility="Disabled" >
+           <Views:DataGridView/>
         </TabItem>
         <!--not working-->
         <!--<TabItem Header="TreeGrid" >

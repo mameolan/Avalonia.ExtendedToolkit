@@ -4,90 +4,112 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.DataGridView">
-  <TabControl>
-    <TabItem Header="Metro Style">
-      <Grid>
-      <DataGrid Items="{Binding Albums}"
-                 RowHeaderWidth="20"
-                 SelectionMode="Single"
-                 Margin="10"
-                HorizontalScrollBarVisibility="Auto"
-                VerticalScrollBarVisibility="Auto"
-                VerticalAlignment="Stretch"
-                HorizontalAlignment="Stretch"
-        >
-        <DataGrid.Styles>
-          <Style Selector="TextBlock">
-            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
-          </Style>
-        </DataGrid.Styles>
+  <Grid>
+    <TabControl>
+      <TabItem Header="Default Style">
+        <Grid>
+          <DataGrid Items="{Binding Albums}"
+                    RowHeaderWidth="20"
+                    SelectionMode="Single"
+                    Margin="10"
+                    HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Auto"
+            >
+            <DataGrid.Styles>
+              <Style Selector="TextBlock">
+                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+              </Style>
+            </DataGrid.Styles>
 
-        <DataGrid.Columns>
-          <DataGridCheckBoxColumn
-            Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
-            Header="Row Selected" 
-            />
-          <DataGridCheckBoxColumn Binding="{Binding IsSelected, Mode=TwoWay}"
-             Header="Album Selected"
-                                  
-           />
-          
-          <DataGridTextColumn Binding="{Binding Title}" Header="Title" />
-          <DataGridTextColumn Binding="{Binding Artist.Name}" Header="Artist" />
-          <DataGridTextColumn Binding="{Binding Genre.Name}" Header="Genre" />
-          
-          
-        </DataGrid.Columns>
-        
-        
-      </DataGrid>
+            <DataGrid.Columns>
+              <DataGridTextColumn IsReadOnly="True" Binding="{Binding Title}" Header="Title" />
+              <DataGridTextColumn IsReadOnly="True" Binding="{Binding Artist.Name}" Header="Artist" />
+              <DataGridTextColumn IsReadOnly="True" Binding="{Binding Genre.Name}" Header="Genre" />
+            </DataGrid.Columns>
+            
+            
+          </DataGrid>
+        </Grid>
+      </TabItem>
 
+      <TabItem Header="Default Style Grouped">
+        <Grid>
+          <DataGrid Items="{Binding GroupedAlbums}"
+                    RowHeaderWidth="20"
+                    SelectionMode="Single"
+                    Margin="10"
+                    HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Auto"
+            >
+            <DataGrid.Styles>
+              <Style Selector="TextBlock">
+                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+              </Style>
+            </DataGrid.Styles>
 
-
-      </Grid>
-    </TabItem>
-    <TabItem Header="Azure Style">
-      <Grid>
-      <DataGrid Classes="Azure" Items="{Binding Albums}"
-                 RowHeaderWidth="20"
-                 SelectionMode="Single"
-                 Margin="10"
-                HorizontalScrollBarVisibility="Auto"
-                VerticalScrollBarVisibility="Auto"
-                VerticalAlignment="Stretch"
-                HorizontalAlignment="Stretch"
-        >
-        <DataGrid.Styles>
-          <Style Selector="TextBlock">
-            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
-          </Style>
-        </DataGrid.Styles>
-        <DataGrid.Columns>
-          <DataGridCheckBoxColumn
-            Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
-            Header="Row Selected"
-            />
-          <DataGridCheckBoxColumn Binding="{Binding IsSelected, Mode=TwoWay}"
-             Header="Album Selected"
-           />
-
-          <DataGridTextColumn Binding="{Binding Title}" Header="Title" />
-          <DataGridTextColumn Binding="{Binding Artist.Name}" Header="Artist" />
-          <DataGridTextColumn Binding="{Binding Genre.Name}" Header="Genre" />
+            <DataGrid.Columns>
+              <DataGridTextColumn IsReadOnly="True" Binding="{Binding Title}" Header="Title" />
+              <DataGridTextColumn IsReadOnly="True" Binding="{Binding Artist.Name}" Header="Artist" />
+              <DataGridTextColumn IsReadOnly="True" Binding="{Binding Genre.Name}" Header="Genre" />
+            </DataGrid.Columns>
+            
+            
+          </DataGrid>
+        </Grid>
+      </TabItem>
 
 
-        </DataGrid.Columns>
-
-
-      </DataGrid>
-
-
-
-      </Grid>
-    </TabItem>
-    
-  </TabControl>
-  
+      <TabItem Header="Metro Style">
+        <Grid>
+        <DataGrid Classes="Metro" Items="{Binding Albums}"
+                  RowHeaderWidth="20"
+                  SelectionMode="Single"
+                  Margin="10"
+                  HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto"
+                  VerticalAlignment="Stretch"
+                  HorizontalAlignment="Stretch"
+          >
+          <DataGrid.Styles>
+            <Style Selector="TextBlock">
+              <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+            </Style>
+          </DataGrid.Styles>
+          <DataGrid.Columns>
+            <DataGridTextColumn IsReadOnly="True" Binding="{Binding Title}" Header="Title" />
+            <DataGridTextColumn IsReadOnly="True" Binding="{Binding Artist.Name}" Header="Artist" />
+            <DataGridTextColumn IsReadOnly="True" Binding="{Binding Genre.Name}" Header="Genre" />
+          </DataGrid.Columns>
+        </DataGrid>
+        </Grid>
+      </TabItem>
+      <TabItem Header="Metro Style Grouped">
+        <Grid>
+        <DataGrid Classes="Metro" Items="{Binding GroupedAlbums}"
+                  RowHeaderWidth="20"
+                  SelectionMode="Single"
+                  Margin="10"
+                  HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto"
+                  VerticalAlignment="Stretch"
+                  HorizontalAlignment="Stretch"
+          >
+          <DataGrid.Styles>
+            <Style Selector="TextBlock">
+              <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+            </Style>
+          </DataGrid.Styles>
+          <DataGrid.Columns>
+            <DataGridTextColumn IsReadOnly="True" Binding="{Binding Title}" Header="Title" />
+            <DataGridTextColumn IsReadOnly="True" Binding="{Binding Artist.Name}" Header="Artist" />
+            <DataGridTextColumn IsReadOnly="True" Binding="{Binding Genre.Name}" Header="Genre" />
+          </DataGrid.Columns>
+        </DataGrid>
+        </Grid>
+      </TabItem>
+      
+    </TabControl>
+  </Grid>
   
   
 </UserControl>
