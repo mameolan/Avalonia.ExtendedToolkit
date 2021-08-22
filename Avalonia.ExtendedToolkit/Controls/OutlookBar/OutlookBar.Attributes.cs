@@ -21,7 +21,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         private Control _minimizedButtonContainer;
 
         //Workaround remember size from ArrangeOverride
-        private Size _finalSize = new Size();
+        private Size _finalSize = new Size(0, 0);
 
         private ObservableCollection<OutlookSection> _maximizedSections;
         private ObservableCollection<OutlookSection> _minimizedSections;

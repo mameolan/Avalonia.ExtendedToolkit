@@ -1,0 +1,131 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls.PropertyGrid.Controls;assembly=Avalonia.ExtendedToolkit"
+    >
+
+  <Style Selector="Controls|SearchTextBox">
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}"/>
+    <!--<Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderMidBrush}"/>-->
+    <Setter Property="BorderThickness" Value="{DynamicResource ThemeBorderThickness}"/>
+    <Setter Property="SelectionBrush" Value="{DynamicResource MahApps.Brushes.Highlight}"/>
+    <Setter Property="SelectionForegroundBrush" Value="{DynamicResource HighlightForegroundBrush}"/>
+    <Setter Property="Padding" Value="4"/>
+    <Setter Property="Watermark" Value="Search" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Border Name="border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+            <DockPanel Margin="{TemplateBinding Padding}"
+                       >
+              <!--HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"-->
+
+
+              <TextBlock Name="floatingWatermark"
+                         Background="{TemplateBinding Background}"
+                         Foreground="{TemplateBinding Foreground}"
+                         TextBlock.Foreground="{TemplateBinding Foreground}"
+                         FontSize="{DynamicResource FontSizeSmall}"
+                         Text="{TemplateBinding Watermark}"
+                         DockPanel.Dock="Top">
+                <TextBlock.IsVisible>
+                  <MultiBinding Converter="{x:Static BoolConverters.And}">
+                    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                             Path="UseFloatingWatermark"/>
+                    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                             Path="Text"
+                             Converter="{x:Static StringConverters.IsNotNullOrEmpty}"/>
+                  </MultiBinding>
+                </TextBlock.IsVisible>
+              </TextBlock>
+
+              <DataValidationErrors>
+                <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                              VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
+
+                  <Panel>
+                    <TextBlock Name="watermark"
+                               Opacity="0.5"
+                               Foreground="{TemplateBinding Foreground}"
+                               Text="{TemplateBinding Watermark}"
+                               IsVisible="{TemplateBinding Text, Converter={x:Static StringConverters.IsNullOrEmpty}}"/>
+                      <!--only set the foreground there not the backgoround otherwise the text 
+                                disappears on light/dark theme switching-->
+                    <!--Foreground="{TemplateBinding Foreground}"-->
+                    <TextPresenter Name="PART_TextPresenter"
+                                   
+                                   Text="{TemplateBinding Text, Mode=TwoWay}"
+                                   CaretIndex="{TemplateBinding CaretIndex}"
+                                   SelectionStart="{TemplateBinding SelectionStart}"
+                                   SelectionEnd="{TemplateBinding SelectionEnd}"
+                                   TextAlignment="{TemplateBinding TextAlignment}"
+                                   TextWrapping="{TemplateBinding TextWrapping}"
+                                   PasswordChar="{TemplateBinding PasswordChar}"
+                                   SelectionBrush="{TemplateBinding SelectionBrush}"
+                                   SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                                   CaretBrush="{TemplateBinding CaretBrush}"/>
+                  </Panel>
+                </ScrollViewer>
+              </DataValidationErrors>
+            </DockPanel>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|SearchTextBox:pointerover /template/ Border#border">
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.MouseOverBorder}"/>
+  </Style>
+  <Style Selector="Controls|SearchTextBox:focus /template/ Border#border">
+    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.TextBox.FocusBorder}"/>
+  </Style>
+  <Style Selector="Controls|SearchTextBox:error /template/ Border#border">
+    <Setter Property="BorderBrush" Value="{DynamicResource ErrorBrush}"/>
+  </Style>
+  <Style Selector="Controls|SearchTextBox /template/ DockPanel">
+    <Setter Property="Cursor" Value="IBeam" />
+  </Style>
+  <Style Selector="Controls|SearchTextBox:disabled /template/ Border#border">
+      <Setter Property="Opacity" Value="{DynamicResource ThemeDisabledOpacity}" />
+  </Style>
+
+  <!--<Style Selector="Controls|SearchTextBox:pointerover">
+    <Setter Property="BorderBrush" Value="{StaticResource SearchTextBox_BorderMouseOver}" />
+  </Style>
+
+  --><!--<Trigger Property="IsKeyboardFocusWithin" Value="True">
+    <Setter Property="BorderBrush" Value="{StaticResource SearchTextBox_BorderMouseOver}" />
+  </Trigger>--><!--
+
+  <Style Selector="Controls|SearchTextBox[HasText=true] /template/ TextBlock#LabelText">
+    <Setter Property="IsVisible" Value="false" />
+  </Style>
+
+  <Style Selector="Controls|SearchTextBox[HasText=true][SearchMode=Instant] /template/ Image#SearchIcon">
+    --><!--<Setter Property="Source" Value="/Controls/PropertyGrid/Themes/Images/clear.png" />--><!--
+  </Style>
+
+  <Style Selector="Controls|SearchTextBox[HasText=true] /template/ Border#PART_SearchIconBorder:pointerover">
+    <Setter Property="BorderBrush"
+            Value="{StaticResource SearchTextBox_SearchIconBorder_MouseOver}" />
+    <Setter Property="Background"
+            Value="{StaticResource SearchTextBox_SearchIconBackground_MouseOver}" />
+  </Style>
+
+  <Style Selector="Controls|SearchTextBox[HasText=true][IsMouseLeftButtonDown=true] /template/ Border#PART_SearchIconBorder:pointerover">
+    <Setter Property="Padding"
+                     Value="2,0,0,0" />
+    <Setter Property="BorderBrush"
+            Value="{StaticResource SearchTextBox_SearchIconBorder_MouseOver}" />
+    <Setter Property="Background"
+            Value="{StaticResource SearchTextBox_SearchIconBackground_MouseOver}" />
+  </Style>-->
+  
+
+</Styles>

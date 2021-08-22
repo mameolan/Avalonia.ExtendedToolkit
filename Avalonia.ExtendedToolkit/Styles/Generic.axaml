@@ -1,0 +1,180 @@
+﻿<Styles xmlns="https://github.com/avaloniaui">
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Fonts.axaml"/>
+  <StyleInclude Source="avares://Avalonia.Controlz/Styles/Generic.axaml"/>
+  <!--Default Controls-->
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.AutoCompleteBox.axaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataValidationErrors.axaml"/>
+  
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Buttons.Chromless.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Buttons.Circle.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Buttons.Flat.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Buttons.Square.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Buttons.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.CheckBox.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Calendar.axaml"/>
+  
+  <!-- datagrid start-->
+    <!-- default start -->
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGrid.axaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGridCell.axaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGridColumnHeader.axaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGridRow.axaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGridRowGroupHeader.axaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGridRowHeader.axaml"/>
+    <!-- default end -->
+    <!-- metro start -->
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGrid.axaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGridCell.axaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGridColumnHeader.axaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGridRow.axaml"/>
+    <!-- <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGridRowGroupHeader.axaml"/> -->
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGridRowHeader.axaml"/>
+    
+    <!-- metro end -->
+
+
+    <!-- datagrid end-->
+  
+  <!-- <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataGridCell.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataGridColumn.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataGridRow.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataGrid.xaml"/> -->
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Expander.axaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ComboBox.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ListBox.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.RadioButton.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Thumb.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.GroupBox.axaml"/>
+
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ProgressBar.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ScrollBar.axaml"/>
+  <!-- <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ScrollViewer.axaml"/> -->
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Slider.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.SliderEx.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.StatusBar.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.TabControl.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.TabItem.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.TextBox.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.TextBlock.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ToolTip.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.TreeView.axaml"/>
+
+
+  <!--Extended Controls-->
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/MetroWindow.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/MetroContentControl.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/MetroThumbContentControl.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/WindowButtonCommands.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/WindowCommands.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ToggleSwitch.axaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/TabControlExt/TabControlExt.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/TabControlExt/TabItemExt.axaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BusyIndicator.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Badget.axaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ColorPicker/ColorPicker.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ColorPicker/ColorSelector.axaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Notification/Notification.Base.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Notification/NotificationMessage.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Notification/NotificationMessageContainer.axaml"/>
+  
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/HamburgerMenu/HamburgerMenu.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/HamburgerMenu/HamburgerMenuItem.axaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Wizard.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ContentControlEx.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/DropDownButton.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/FlyoutsControl.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Flyout.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Tile.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/SplitView.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ProgressRing.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/TransitioningContentControl.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/MetroHeader.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Underline.axaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/OutlookBar/OutlookBar.axaml" />
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/OutlookBar/OutlookSection.axaml" />
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ExplorerBar/ExplorerBar.axaml" />
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BreadcrumbBar/BreadcrumbBar.axaml" />
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BreadcrumbBar/BreadcrumbButton.axaml" />
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BreadcrumbBar/BreadcrumbItem.axaml" />
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/AeroChrome.axaml"/>
+
+  <!-- Child Window Start -->
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ChildWindow/ChildWindow.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ChildWindow/Icons.axaml"/>
+  <!-- Child Window End -->
+
+
+  <!--PropertyGrid Start-->
+  <!--Controls-->
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Controls/EnumDropdown.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Controls/SearchTextBox.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Controls/SliderEditorBase.axaml"/>
+  
+  
+  <!--Design-->
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Design/AlphabeticalLayout.axaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Design/CategorizedLayout.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Design/CategoryContainer.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Design/CategoryEditorContentPresenter.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Design/CategoryItemsLayout.axaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Design/ExtendedPropertyEditorTab.axaml"/>
+  
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Design/PropertyContainer.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Design/PropertyEditorContentPresenter.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Design/PropertyItemsLayout.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Design/PropertyNameTextBlock.axaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Design/TabbedLayout.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Design/TabbedLayoutItem.Base.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Design/TabbedLayoutItem.axaml"/>
+  
+  <!--Editor-->
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Editor/DoubleEditor.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Editor/EditorResources.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/Editor/TypeEditor.axaml"/>
+  
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/PropertyGrid/PropertyGrid.axaml"/>
+  <!--PropertyGrid End-->
+  
+  <!-- IndexList Start -->
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/IndexItemsControl/IndexItemsControl.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/IndexItemsControl/BaseControls/IndexList.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/IndexItemsControl/BaseControls/IndexListHeaderItem.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/IndexItemsControl/BaseControls/IndexListItem.axaml"/>
+  <!-- IndexList end -->
+  
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/StepBar/StepBarItem.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/StepBar/StepBar.axaml"/>
+  
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ResizeRotateControl/ResizeRotateControl.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ResizeRotateControl/ResizeRotateChrome.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ResizeRotateControl/SizeChrome.axaml"/>
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/TagControl/TagItem.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/TagControl/TagControl.axaml"/>
+
+  <!-- Panels -->
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Panels/RegularItemsControl.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Panels/SimpleItemsControl.axaml"/>
+
+  <!-- RateControl -->
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/RatingControl/RateItem.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/RatingControl/RatingControl.axaml"/>
+
+</Styles>

@@ -288,8 +288,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 var flyouts = this.Flyouts.GetFlyouts().ToList();
                 // since we disabled the ThemeManager OnThemeChanged part, we must change all children flyouts too
                 // e.g if the FlyoutsControl is hosted in a UserControl
-                var allChildFlyouts = (this.Content as IVisual).GetSelfAndVisualDescendants().OfType<FlyoutsControl>().ToList();
-                if (allChildFlyouts.Any())
+                var allChildFlyouts = (this.Content as IVisual)?.GetSelfAndVisualDescendants().OfType<FlyoutsControl>().ToList();
+                if (allChildFlyouts?.Any()==true)
                 {
                     flyouts.AddRange(allChildFlyouts.SelectMany(flyoutsControl => flyoutsControl.GetFlyouts()));
                 }
@@ -631,9 +631,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         /// <inheritdoc/>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             LeftWindowCommandsPresenter = e.NameScope.Find<ContentPresenter>(PART_LeftWindowCommands);
             RightWindowCommandsPresenter = e.NameScope.Find<ContentPresenter>(PART_RightWindowCommands);

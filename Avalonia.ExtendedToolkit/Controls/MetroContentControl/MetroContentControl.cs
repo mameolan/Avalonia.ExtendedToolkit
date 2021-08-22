@@ -229,10 +229,10 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets the root grid 
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             _root = e.NameScope.Find<Grid>("root");
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
         }
 
         //public override void OnApplyTemplate()

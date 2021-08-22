@@ -86,7 +86,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             public IControl Build(object param) => _inner.Build(param);
 
-            public bool SupportsRecycling => _inner.SupportsRecycling;
+            //public bool SupportsRecycling => _inner.SupportsRecycling;
 
             public bool Match(object data) => _inner.Match(data);
 

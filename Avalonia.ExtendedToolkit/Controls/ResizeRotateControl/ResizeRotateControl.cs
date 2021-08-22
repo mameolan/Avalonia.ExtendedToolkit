@@ -105,9 +105,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             base.OnDetachedFromVisualTree(e);
         }
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
             _sizeChrome = e.NameScope.Find<SizeChrome>(PART_SizeChrome);
 
             _resizeThumbs.Add(e.NameScope.Find<ResizeThumb>(PART_ResizeThumbTopCenter));

@@ -1,0 +1,21 @@
+﻿<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Avalonia.ExampleApp.App">
+
+    <Application.Styles>
+        <StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.xaml"/>
+        <StyleInclude Source="avares://Avalonia.Themes.Default/Accents/BaseLight.xaml"/>
+        <StyleInclude Source="resm:Avalonia.Controls.DataGrid.Themes.Default.xaml?assembly=Avalonia.Controls.DataGrid" />
+        <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Themes/Light.Blue.axaml"/>
+        <StyleInclude Source="avares://Avalonia.Controlz/Styles/Generic.axaml"/>
+        <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Generic.axaml"/>
+        <Style Selector="TextBlock.DescriptionHeaderStyle">
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+        </Style>
+    </Application.Styles>
+    <Application.Resources>
+        <Thickness x:Key="ControlMargin">0 5 0 0</Thickness>
+    </Application.Resources>
+</Application>

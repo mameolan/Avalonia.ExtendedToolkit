@@ -135,9 +135,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// resolves the controls from the template
         /// </summary>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
             UnregisterEvents();
             _txtInput = e.NameScope.Find<AutoCompleteBox>(TxtInput);
             _buttonClose = e.NameScope.Find<Button>(ButtonClose);

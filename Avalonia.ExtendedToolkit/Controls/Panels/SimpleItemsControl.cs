@@ -119,10 +119,10 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
         }
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             ItemsHost?.Children.Clear();
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             ItemsHost = e.NameScope.Find<IPanel>(ElementPanel);
             Refresh();

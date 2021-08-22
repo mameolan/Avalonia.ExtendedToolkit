@@ -534,7 +534,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             Expander epDefaultcolor = e.NameScope.Find<Expander>(PART_DefaultColorSection);
             Expander epCustomcolor = e.NameScope.Find<Expander>(PART_CustomColorSection);

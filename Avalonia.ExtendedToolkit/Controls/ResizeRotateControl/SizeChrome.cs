@@ -16,9 +16,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public Type StyleKey => typeof(SizeChrome);
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
         }
     }
 }

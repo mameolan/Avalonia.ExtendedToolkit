@@ -148,9 +148,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             _isContexMenuOpened = false;
         }
 
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             button = e.NameScope.Find<ToggleButton>(PART_Button);
             button.Click += Button_Click;

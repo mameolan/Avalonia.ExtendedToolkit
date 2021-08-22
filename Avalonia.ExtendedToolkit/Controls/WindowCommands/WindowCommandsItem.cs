@@ -54,9 +54,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// tries to get ItemsControlFromItemContainer
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 #warning does this work?
             var windowCommands = ItemsControlExtensions.ItemsControlFromItemContainer(this) as WindowCommands;
             this.SetValue(WindowCommandsItem.ParentWindowCommandsProperty, windowCommands);

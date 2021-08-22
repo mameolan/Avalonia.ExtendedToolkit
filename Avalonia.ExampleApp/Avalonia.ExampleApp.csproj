@@ -6,29 +6,30 @@
 		<TargetFrameworks>netcoreapp3.1</TargetFrameworks>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<IsPackable>false</IsPackable>
+		<StartupObject></StartupObject>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Avalonia" Version="0.9.12" />
-		<PackageReference Include="Avalonia.Controls.DataGrid" Version="0.9.12" />
-		<PackageReference Include="Avalonia.Desktop" Version="0.9.12" />
-		<PackageReference Include="Avalonia.ReactiveUI" Version="0.9.12" />
-		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.9.12" />
-		<PackageReference Include="Avalonia.Xaml.Interactions" Version="0.9.12" />
-		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.9.12" />
+		<PackageReference Include="Avalonia" Version="0.10.7" />
+		<PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.7" />
+		<PackageReference Include="Avalonia.Desktop" Version="0.10.7" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="0.10.7" />
+		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.7" />
+		<PackageReference Include="Avalonia.Xaml.Interactions" Version="0.10.7" />
+		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.10.7" />
 		<PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
-		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-		<PackageReference Include="DynamicData" Version="6.17.14" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="DynamicData" Version="7.3.1" />
     	<PackageReference Include="DynamicData.ReactiveUI" Version="6.11.0.2613" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="**\*.xaml.cs">
+		<!--<Compile Update="**\*.axaml.cs">
 			<DependentUpon>%(Filename)</DependentUpon>
 		</Compile>
-		<AvaloniaResource Include="**\*.xaml">
+    <AvaloniaResource Include="**\*.axaml">
 			<SubType>Designer</SubType>
-		</AvaloniaResource>
+		</AvaloniaResource>-->
 		<AvaloniaResource Include="Assets\*" />
 	</ItemGroup>
 

@@ -50,7 +50,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         private void OnTagItemPropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
         {
-            RaisePropertyChanged(IsAnyItemInEditModeProperty, null, ItemsSource.Any(x => x.IsInEditMode));
+            RaisePropertyChanged(IsAnyItemInEditModeProperty, new Data.Optional<bool>(), ItemsSource.Any(x => x.IsInEditMode));
         }
 
         /// <summary>
@@ -280,7 +280,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                                           OnAcceptEdit,
                                           TagMargin));
                 }
-                RaisePropertyChanged(IsAnyItemInEditModeProperty, null, ItemsSource.Any(x => x.IsInEditMode));
+                RaisePropertyChanged(IsAnyItemInEditModeProperty, new Data.Optional<bool>(), ItemsSource.Any(x => x.IsInEditMode));
             }
         }
 
@@ -301,9 +301,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// gets the needed template controls
         /// </summary>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
 
             _addTagButton = e.NameScope.Find<Button>(AddTagButton);
             _addTagButton.Click += AddTagButton_Click;

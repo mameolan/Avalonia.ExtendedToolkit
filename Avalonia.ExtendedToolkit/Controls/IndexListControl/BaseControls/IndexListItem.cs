@@ -74,9 +74,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets the requirement controls from the style
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
             _header = e.NameScope.Find<IControl>("PART_Header");
         }
     }

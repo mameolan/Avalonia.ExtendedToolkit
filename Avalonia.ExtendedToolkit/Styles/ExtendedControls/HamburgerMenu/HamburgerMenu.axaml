@@ -1,0 +1,92 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        >
+  <Styles.Resources>
+    
+      <sys:Double x:Key="MinimizedSize">50</sys:Double>
+      <sys:Double x:Key="MaximizedSize">300</sys:Double>
+  
+  </Styles.Resources>
+  
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/HamburgerMenu/ListBoxStyle.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/HamburgerMenu/ToggleButtonStyle.axaml"/>
+
+  <Style Selector="Controls|HamburgerMenu">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}"/>
+    <Setter Property="MenuIconColor" Value="{DynamicResource MahApps.Brushes.White}"/>
+    <Setter Property="SelectionIndicatorColor" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+    <Setter Property="Width" Value="{TemplateBinding MinimizedSize}"/>
+    <Setter Property="IsVisible" Value="True"/>
+    <Setter Property="IsOpen" Value="False"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Grid x:Name="mainGrid" Background="{TemplateBinding Background}">
+            <ToggleButton Classes="HamburgerMenu" x:Name="menuIcon"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          Height="40"
+                          Width="50"
+                          IsChecked="{TemplateBinding IsOpen, Mode=TwoWay}"
+                          
+              >
+              <Path HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Stretch="Uniform"
+                    Width="30"
+                    Fill="{DynamicResource MahApps.Brushes.Black}"
+                    Data="M2,15.5L22,15.5 22,17.5 2,17.5 2,15.5z M2,10.5L22,10.5 22,12.5 2,12.5 2,10.5z M2,5.5L22,5.5 22,7.5 2,7.5 2,5.5z"
+                    
+                    Focusable="false"
+                    />
+            </ToggleButton>
+            <ListBox Classes="HamburgerMenu"
+                     x:Name="contentList"
+                     Items="{TemplateBinding Content}"
+                     HorizontalAlignment="Left" Margin="0,40,0,0"
+                     VerticalAlignment="Top"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     SelectedIndex="{TemplateBinding SelectedIndex}"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|HamburgerMenu[IsOpen=true]">
+    <Style.Animations>
+      <Animation Duration="0:0:0.2" FillMode="Forward">
+        <!--set init value otherwise it does not work-->
+        <KeyFrame Cue="0%">
+          <!--Setting over a property does not work right now-->
+          <Setter Property="Width" Value="{Binding $self.MinimizedSize}"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <!--Setting over a property does not work right now-->
+          <Setter Property="Width" Value="{Binding $self.MaximizedSize}"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+  <Style Selector="Controls|HamburgerMenu[IsOpen=false]">
+    <Style.Animations>
+      <Animation Duration="0:0:0.2"
+                 FillMode="Forward">
+        <!--set init value otherwise it does not work-->
+        <KeyFrame Cue="0%">
+          <!--Setting over a property does not work right now-->
+          <Setter Property="Width" Value="{Binding $self.MaximizedSize}"/>
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <!--Setting over a property does not work right now-->
+          <Setter Property="Width" Value="{Binding $self.MinimizedSize}"/>
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+
+
+</Styles>

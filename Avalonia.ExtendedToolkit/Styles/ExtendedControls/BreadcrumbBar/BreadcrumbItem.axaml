@@ -1,0 +1,41 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit">
+
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/BreadcrumbBar/Brushes.axaml" />
+
+  <Style Selector="Controls|BreadcrumbItem">
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="BorderBrush" Value="{DynamicResource borderBrush}" />
+    <Setter Property="Template" >
+      <Setter.Value>
+        <ControlTemplate>
+          <Border Background="Transparent" Focusable="False" BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}">
+            <DockPanel>
+              <Controls:BreadcrumbButton x:Name="PART_Header"
+                                         DataContext="{Binding}"
+                      IsImageVisible="{TemplateBinding IsRoot}"
+                      IsButtonVisible="{TemplateBinding IsButtonVisible}"
+                      ItemTemplate="{TemplateBinding OverflowItemTemplate}" Foreground="Black"
+                      IsDropDownPressed="{Binding IsDropDownPressed, RelativeSource={RelativeSource TemplatedParent},Mode=TwoWay}"
+                      SelectedItem="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent},Mode=TwoWay}"
+                      Image="{TemplateBinding Image}" Header="{TemplateBinding Header}"
+                      Items="{Binding Items, RelativeSource={RelativeSource TemplatedParent}}">
+                <!--ItemTemplateSelector="{TemplateBinding OverflowItemTemplateSelector}"-->
+              </Controls:BreadcrumbButton>
+              <ContentControl x:Name="PART_Selected" Focusable="False"
+                              Content="{TemplateBinding SelectedBreadcrumb}" />
+            </DockPanel>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|BreadcrumbItem[IsRoot=true] /template/ Controls|BreadcrumbButton#PART_Header">
+    <Setter Property="EnableVisualButtonStyle" Value="False" />
+  </Style>
+
+</Styles>

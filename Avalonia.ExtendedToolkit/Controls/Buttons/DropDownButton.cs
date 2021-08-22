@@ -361,10 +361,17 @@ namespace Avalonia.ExtendedToolkit.Controls
                 return;
 
             IStyle menuStyle = e.NewValue as IStyle;
-            if (menuStyle == null)
+            if (menuStyle == null|| _menu.Styles.Contains(menuStyle))
                 return;
-
-            _menu.Styles.Add(menuStyle);
+            try
+            {
+                _menu.Styles.Add(menuStyle);
+            }
+            catch
+            {
+                //has already a parent exception
+            }
+           
         }
 
         /// <summary>
@@ -419,9 +426,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// gets some controls from the style
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnTemplateApplied(e);
+            base.OnApplyTemplate(e);
             _clickButton = this.EnforceInstance<Button>(e, "PART_Button");
             _menu = this.EnforceInstance<ContextMenu>(e, "PART_Menu");
             _contextMenuBorder = e.NameScope.Find<Border>("PART_Border");
@@ -438,7 +445,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 }
                 _menu.Items = list;
             }
-            this.RaisePropertyChanged(MenuStyleProperty, null, (IStyle)MenuStyle);
+            this.RaisePropertyChanged(MenuStyleProperty, new Data.Optional<IStyle>(), new Data.Optional<IStyle>(MenuStyle));
             //RaisePropertyChanged<IStyle>(MenuStyleProperty, null, MenuStyle);
             //this.OnPropertyChanged<IStyle>(MenuStyleProperty, null, new Data.BindingValue<IStyle>( MenuStyle), Data.BindingPriority.Style);
         }

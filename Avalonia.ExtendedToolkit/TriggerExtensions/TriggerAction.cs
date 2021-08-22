@@ -9,7 +9,7 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
     /// </summary>
     public abstract class TriggerAction :Animatable, IBehavior, IAction
     {
-        private AvaloniaObject associatedObject;
+        private IAvaloniaObject _associatedObject;
         private Type associatedObjectTypeConstraint;
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
         /// <summary>
         /// returns the AssociatedObject
         /// </summary>
-        public AvaloniaObject AssociatedObject => associatedObject;
+        public IAvaloniaObject AssociatedObject => _associatedObject;
 
         /// <summary>
         /// Gets the associated object type constraint.
@@ -43,6 +43,8 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
                 return associatedObjectTypeConstraint;
             }
         }
+
+        IAvaloniaObject IBehavior.AssociatedObject => throw new NotImplementedException();
 
         internal TriggerAction(Type associatedObjectTypeConstraint)
         {
@@ -100,7 +102,7 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
                     throw new InvalidOperationException($"Cannot assign {this.GetType().Name} {avaloniaObject.GetType().Name} {this.AssociatedObjectTypeConstraint.Name}");
                 }
 
-                this.associatedObject = avaloniaObject;
+                this._associatedObject = avaloniaObject;
                 this.OnAttached();
             }
         }
@@ -111,7 +113,7 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
         public void Detach()
         {
             this.OnDetaching();
-            this.associatedObject = null;
+            this._associatedObject = null;
         }
 
         /// <summary>
@@ -125,6 +127,11 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
             CallInvoke(parameter);
 
             return true;
+        }
+
+        public void Attach(IAvaloniaObject associatedObject)
+        {
+            _associatedObject = associatedObject;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Avalonia.ExtendedToolkit
         private const string Windows7StylePrefix = "Win7";
         private const string MahAppsStylePrefix = "MahApps";
 
-        private const string FormatedStyleResource = "avares://Avalonia.ExtendedToolkit/Styles/Skins/{0}Skin.xaml";
+        private const string FormatedStyleResource = "avares://Avalonia.ExtendedToolkit/Styles/Skins/{0}Skin.axaml";
 
         private static object _lockObject = new object();
 
