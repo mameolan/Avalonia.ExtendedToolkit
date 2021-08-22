@@ -1,10 +1,9 @@
 <Styles xmlns="https://github.com/avaloniaui">
   <Style Selector="DataGrid">
 
-    <!-- {DynamicResource MahApps.Brushes.Gray7} -->
-    <!-- <Setter Property="RowBackground" Value="Transparent" /> -->
+   
     <Setter Property="RowBackground" Value="{DynamicResource MahApps.Brushes.Accent4}" />
-    <!-- {DynamicResource MahApps.Brushes.White} -->
+   
     <Setter Property="AlternatingRowBackground" Value="Transparent" />
     <Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}" />
     <Setter Property="HeadersVisibility" Value="Column" />
