@@ -15,10 +15,33 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Buttons.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.CheckBox.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Calendar.xaml"/>
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataGridCell.xaml"/>
+  
+  <!-- datagrid start-->
+    <!-- default start -->
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGrid.xaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGridCell.xaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGridColumnHeader.xaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGridRow.xaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGridRowGroupHeader.xaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGridRowHeader.xaml"/>
+    <!-- default end -->
+    <!-- metro start -->
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGrid.xaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGridCell.xaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGridColumnHeader.xaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGridRow.xaml"/>
+    <!-- <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGridRowGroupHeader.xaml"/> -->
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGridRowHeader.xaml"/>
+    
+    <!-- metro end -->
+
+
+    <!-- datagrid end-->
+  
+  <!-- <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataGridCell.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataGridColumn.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataGridRow.xaml"/>
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataGrid.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.DataGrid.xaml"/> -->
 
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Expander.xaml"/>
 
@@ -30,7 +53,8 @@
 
 
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ProgressBar.xaml"/>
-  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ScrollBars.xaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ScrollBar.xaml"/>
+  <!-- <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.ScrollViewer.xaml"/> -->
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.Slider.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.SliderEx.xaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/Controls.StatusBar.xaml"/>

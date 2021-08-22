@@ -1,0 +1,100 @@
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+    xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+  <Styles.Resources>
+    <converters:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter"/>
+  </Styles.Resources>
+
+  <Style Selector="ScrollViewer">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Controls:ScrollViewerHelper.VerticalScrollBarOnLeftSide" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate >
+          <Grid x:Name="Grid" Background="{TemplateBinding Background}">
+            <Grid.ColumnDefinitions>
+              <!--x:Name="leftColumn"-->
+              <ColumnDefinition Width="*" />
+              <!--x:Name="rightColumn"-->
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="*" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Background="{TemplateBinding Background}"
+                                    CanHorizontallyScroll="{TemplateBinding CanHorizontallyScroll}"
+                                    CanVerticallyScroll="{TemplateBinding CanVerticallyScroll}"
+                                    Content="{TemplateBinding Content}"
+                                    Extent="{TemplateBinding Extent, Mode=TwoWay}"
+                                    Margin="{TemplateBinding Padding}"
+                                    Offset="{TemplateBinding Offset, Mode=TwoWay}"
+                                    Viewport="{TemplateBinding Viewport, Mode=TwoWay}"
+                                    >
+              <ScrollContentPresenter.GestureRecognizers>
+                <ScrollGestureRecognizer
+                  CanHorizontallyScroll="{TemplateBinding CanHorizontallyScroll}"
+                  CanVerticallyScroll="{TemplateBinding CanVerticallyScroll}"
+            />
+              </ScrollContentPresenter.GestureRecognizers>
+            </ScrollContentPresenter>
+            <!--CanHorizontallyScroll="False"
+            CanVerticallyScroll="False"-->
+
+            <ScrollBar x:Name="verticalScrollBar"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       Cursor="Arrow"
+                       Maximum="{TemplateBinding VerticalScrollBarMaximum}"
+                       Value="{TemplateBinding VerticalScrollBarValue, Mode=TwoWay}"
+                       Minimum="0"
+                       ViewportSize="{TemplateBinding VerticalScrollBarViewportSize}"
+                       Visibility="{TemplateBinding VerticalScrollBarVisibility}"
+                        />
+            <ScrollBar x:Name="horizontalScrollBar"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       Cursor="Arrow"
+                       Minimum="0"
+                       Maximum="{TemplateBinding HorizontalScrollBarMaximum}"
+                       Value="{TemplateBinding HorizontalScrollBarValue, Mode=TwoWay}"
+                       Orientation="Horizontal"
+                       ViewportSize="{TemplateBinding HorizontalScrollBarViewportSize}"
+                       Visibility="{TemplateBinding HorizontalScrollBarVisibility}"
+                        />
+          </Grid>
+          
+          
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+
+  </Style>
+
+  <!--TODO-->
+  
+  <!-- <Style Selector="ScrollViewer Controls:ScrollViewerHelper.VerticalScrollBarOnLeftSide /template/ ScrollBar#PART_HorizontalScrollBar">
+    <Setter Property="Grid.Column" Value="1" />
+  </Style>
+
+  <Style Selector="ScrollViewer Controls:ScrollViewerHelper.VerticalScrollBarOnLeftSide /template/ ScrollContentPresenter#PART_ScrollContentPresenter">
+    <Setter Property="Grid.Column" Value="1" />
+  </Style>
+
+  <Style Selector="ScrollViewer Controls:ScrollViewerHelper.VerticalScrollBarOnLeftSide /template/ ScrollBar#PART_VerticalScrollBar">
+    <Setter Property="Grid.Column" Value="0" />
+  </Style> -->
+
+  <!--<Setter TargetName="leftColumn" Property="Width" Value="Auto" />
+  <Setter TargetName="rightColumn" Property="Width" Value="*" />-->
+  <!--<Style Selector="ScrollViewer Controls:ScrollViewerHelper.VerticalScrollBarOnLeftSide /template/ Grid#Grid">
+    <Setter Property="Grid.Column" Value="0" />
+  </Style>-->
+</Styles>

@@ -1,0 +1,45 @@
+<Styles xmlns="https://github.com/avaloniaui">
+ 
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGrid.Settings.xaml"/>
+
+  <Style Selector="DataGridRow">
+    <Setter Property="Height" Value="{StaticResource DataGridRowHeight}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <DataGridFrozenGrid Name="PART_Root"
+                                 RowDefinitions="*,Auto,Auto"
+                                 ColumnDefinitions="Auto,*">
+
+          <Rectangle Name="BackgroundRectangle" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+
+          <DataGridRowHeader Grid.RowSpan="3" Name="PART_RowHeader" DataGridFrozenGrid.IsFrozen="True" />
+          <DataGridCellsPresenter Grid.Column="1" Name="PART_CellsPresenter" DataGridFrozenGrid.IsFrozen="True" />
+          <DataGridDetailsPresenter Grid.Row="1" Grid.Column="1" Name="PART_DetailsPresenter"/>
+          <Rectangle Grid.Row="2" Grid.Column="1" Name="PART_BottomGridLine" 
+                HorizontalAlignment="Stretch" Height="1"/>
+
+        </DataGridFrozenGrid>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="DataGridRow /template/ Rectangle#BackgroundRectangle">
+    <Setter Property="IsVisible" Value="False"/>
+    <Setter Property="Fill" Value="{DynamicResource MahApps.Brushes.Gray3}" />
+  </Style>
+
+  <Style Selector="DataGridRow:pointerover /template/ Rectangle#BackgroundRectangle">
+    <Setter Property="IsVisible" Value="True"/>
+    <Setter Property="Opacity" Value="0.5"/>
+  </Style>
+
+  <Style Selector="DataGridRow:selected /template/ Rectangle#BackgroundRectangle">
+    <Setter Property="IsVisible" Value="True"/>
+    <Setter Property="Opacity" Value="1"/>
+  </Style>
+
+  <!-- <Style Selector="DataGridRow:selected">
+    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray3}" />
+  </Style> -->
+
+  </Styles>

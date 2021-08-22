@@ -41,6 +41,16 @@ namespace Avalonia.ExampleApp.ViewModels
             set { this.RaiseAndSetIfChanged(ref _albums, value); }
         }
 
+        private DataGridCollectionView _groupedAlbums;
+        public DataGridCollectionView GroupedAlbums
+        {
+            get { return _groupedAlbums; }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _groupedAlbums, value);
+            }
+        }
+
         private ObservableCollection<Artist> _artists;
         public ObservableCollection<Artist> Artists
         {
@@ -317,8 +327,13 @@ namespace Avalonia.ExampleApp.ViewModels
             //ThemeManager.Instance.PropertyChanged += ThemeManager_PropertyChanged;
 
             SampleData.Seed();
+            
             this.Albums = SampleData.Albums;
             this.Artists = SampleData.Artists;
+            
+            var collectionView= new DataGridCollectionView(SampleData.Albums);
+            collectionView.GroupDescriptions.Add(new DataGridPathGroupDescription(nameof(Album.Artist.Name)));
+            GroupedAlbums=collectionView;
 
 
             ColorSchemes = ThemeManager.Instance.ColorSchemes;
