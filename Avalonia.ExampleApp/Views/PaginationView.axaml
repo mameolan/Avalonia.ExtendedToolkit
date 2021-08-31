@@ -1,0 +1,47 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.PaginationView">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="35"/>
+    </Grid.RowDefinitions>
+
+    <DataGrid Grid.Row="0" Items="{Binding AlbumsPagnitation}"
+                    RowHeaderWidth="20"
+                    SelectionMode="Single"
+                    Margin="10"
+                    HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Auto">
+             <DataGrid.Styles>
+              <Style Selector="TextBlock">
+                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+              </Style>
+            </DataGrid.Styles>
+            
+        <DataGrid.Columns>
+              <DataGridTextColumn IsReadOnly="True" Binding="{Binding Title}" Header="Title" />
+              <DataGridTextColumn IsReadOnly="True" Binding="{Binding Artist.Name}" Header="Artist" />
+              <DataGridTextColumn IsReadOnly="True" Binding="{Binding Genre.Name}" Header="Genre" />
+        </DataGrid.Columns>
+    </DataGrid>
+
+    <Controls:Pagination Grid.Row="1" PageIndex="{Binding PageIndex}" MaxPageCount="10" x:Name="pagination"
+          PageUpdatedCommand="{Binding PageChangedCommand}">
+      <!-- <i:Interaction.Behaviors>
+        <ia:EventTriggerBehavior EventName="PageUpdated">
+          <ia:InvokeCommandAction Command="{Binding PageChangedCommand}" CommandParameter="{Binding PageIndex}"/>
+        </ia:EventTriggerBehavior>
+      </i:Interaction.Behaviors> -->
+    
+    </Controls:Pagination>
+
+  </Grid>
+
+</UserControl>
