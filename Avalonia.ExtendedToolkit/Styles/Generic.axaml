@@ -177,4 +177,6 @@
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/RatingControl/RateItem.axaml"/>
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/RatingControl/RatingControl.axaml"/>
 
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Pagination.axaml"/>
+
 </Styles>

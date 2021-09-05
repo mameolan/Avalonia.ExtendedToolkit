@@ -125,8 +125,10 @@
 
       <!--<Views:TagControlExample/>-->
       
-      <Views:MainWindowContentView DockPanel.Dock="Bottom"/>
+      <!-- <Views:MainWindowContentView DockPanel.Dock="Bottom"/> -->
      
+      <Views:PaginationView/>
+
     </Grid>
 
   </DockPanel>

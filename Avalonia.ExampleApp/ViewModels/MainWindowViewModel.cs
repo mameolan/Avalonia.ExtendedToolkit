@@ -315,10 +315,24 @@ namespace Avalonia.ExampleApp.ViewModels
             }
         }
 
+        private int _currentPageIndex = 1;
+        public int CurrentPageIndex
+        {
+            get { return _currentPageIndex; }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _currentPageIndex, value);
+            }
+        }
 
-       
+        private ObservableCollection<Album> _albumsPagnitation = new ObservableCollection<Album>();
+        public ObservableCollection<Album> AlbumsPagnitation
+        {
+            get { return _albumsPagnitation; }
+            set { this.RaiseAndSetIfChanged(ref _albumsPagnitation, value); }
+        }
 
-
+        public ICommand PageChangedCommand { get; set; }
 
 
 
@@ -327,13 +341,13 @@ namespace Avalonia.ExampleApp.ViewModels
             //ThemeManager.Instance.PropertyChanged += ThemeManager_PropertyChanged;
 
             SampleData.Seed();
-            
+
             this.Albums = SampleData.Albums;
             this.Artists = SampleData.Artists;
-            
-            var collectionView= new DataGridCollectionView(SampleData.Albums);
+
+            var collectionView = new DataGridCollectionView(SampleData.Albums);
             collectionView.GroupDescriptions.Add(new DataGridPathGroupDescription(nameof(Album.Artist.Name)));
-            GroupedAlbums=collectionView;
+            GroupedAlbums = collectionView;
 
 
             ColorSchemes = ThemeManager.Instance.ColorSchemes;
@@ -426,6 +440,16 @@ namespace Avalonia.ExampleApp.ViewModels
             SuggestedTags.Add("c#");
             SuggestedTags.Add("dotnet");
             SuggestedTags.Add("c++");
+
+            PageChangedCommand = ReactiveCommand.Create<int>(x => UpdatePaginationItems(x), outputScheduler: RxApp.MainThreadScheduler);
+
+            SampleData.Albums.Take(10).ToList().ForEach(item => AlbumsPagnitation.Add(item));
+
+        }
+
+        private void UpdatePaginationItems(int val)
+        {
+            AlbumsPagnitation = new ObservableCollection<Album>(SampleData.Albums.Skip((val - 1) * 10).Take(10).ToList());
         }
 
         private void ExecuteShowFlyoutDemo(object x)
@@ -558,7 +582,7 @@ namespace Avalonia.ExampleApp.ViewModels
             return new AvaloniaList<BrushResource>();
         }
 
-        
+
 
     }
 }

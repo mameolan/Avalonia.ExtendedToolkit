@@ -101,6 +101,9 @@
             ScrollViewer.VerticalScrollBarVisibility="Disabled" >
            <Views:DataGridView/>
         </TabItem>
+        <TabItem Header="Pagination">
+          <Views:PaginationView/>
+        </TabItem>
         <!--not working-->
         <!--<TabItem Header="TreeGrid" >
           <Grid>

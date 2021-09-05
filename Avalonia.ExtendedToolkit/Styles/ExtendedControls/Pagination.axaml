@@ -1,0 +1,159 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+        xmlns:tkConverter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        >
+    <Styles.Resources>
+     <Geometry x:Key="LeftGeometry">M394.24 512L683.52 248.32c10.24-10.24 10.24-25.6 0-35.84-10.24-10.24-25.6-10.24-35.84 0l-307.2 279.04c-5.12 5.12-7.68 12.8-7.68 20.48 0 7.68 2.56 15.36 7.68 20.48l307.2 279.04c10.24 10.24 25.6 10.24 35.84 0 10.24-10.24 10.24-25.6 0-35.84L394.24 512z</Geometry>
+     <Geometry x:Key="RightGeometry">M4.1666641,0 C5.2083321,0 6.25,0.41666794 7.0833321,1.25 L57.083331,46.666664 C57.916664,47.499998 58.33333,48.749998 58.333329,49.999998 58.33333,51.249997 57.916664,52.499997 57.083331,53.333331 L7.0833321,98.749996 C5.4166641,100.41666 2.9166641,100.41666 1.2499962,98.749996 -0.41666794,97.083328 -0.41666794,94.583328 1.2499962,92.916664 L48.333331,49.999998 1.2499962,7.0833321 C-0.41666794,5.4166641 -0.41666794,2.9166641 1.2499962,1.25 2.0833282,0.41666794 3.1249962,0 4.1666641,0 z</Geometry>   
+    </Styles.Resources>
+
+    <!--ported from https://github.com/HandyOrg/HandyControl-->
+
+    <Style Selector="RadioButton.PaginationButtonStyle">
+        <Setter Property="GroupName" Value="1"/>
+        <Setter Property="MinWidth" Value="30"/>
+        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Padding" Value="10,0"/>
+        <Setter Property="Margin" Value="-1,0,0,0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border x:Name="BorderRoot" 
+                        Background="{TemplateBinding Background}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                        <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                            Margin="{TemplateBinding Padding}">
+                            <Path x:Name="PathMain" 
+                                Fill="{TemplateBinding Foreground}" 
+                                Stretch="Uniform" 
+                                />
+                            <ContentPresenter 
+                                x:Name="contentPresenter" 
+                                VerticalAlignment="Center" 
+                                Margin="6,0,0,0" 
+                                Content="{TemplateBinding Content}"
+                                />
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+                </Setter.Value>
+                </Setter>
+    </Style>    
+    
+    <Style Selector="RadioButton.PaginationButtonStyle:pointerover /template/ ContentPresenter#contentPresenter">
+        <Setter Property="TextBlock.Foreground" Value="{DynamicResource MahApps.Brushes.GrayHover}"/>
+    </Style>                                
+
+    <Style Selector="RadioButton.PaginationButtonStyle:checked /template/ Border#BorderRoot">
+        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.GrayHover}"/>
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+
+    </Style>
+
+    <Style Selector="RadioButton.PaginationButtonStyle:checked /template/ ContentPresenter#contentPresenter">
+        <Setter Property="TextBlock.Foreground" Value="{DynamicResource MahApps.Brushes.Text}"/>
+    </Style>
+    
+    <Style Selector="RadioButton.PaginationButtonStyle[Content=null] /template/ ContentPresenter#contentPresenter">
+        <Setter Property="IsVisible" Value="false"/>
+    </Style>
+
+    <Style Selector="RadioButton.PaginationButtonStyle:checked">
+        <Setter Property="ZIndex" Value="{x:Static system:Int32.MaxValue}"/>
+    </Style>
+
+    <Style Selector="RadioButton.PaginationButtonStyle:pointerover">
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent3}"/>
+    </Style>
+
+    <Style Selector="RadioButton.PaginationButtonStyle:pressed">
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent2}"/>
+    </Style>
+
+    <Style Selector="Controls|Pagination">
+        <Setter Property="HighlightBorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+        <Setter Property="HighlightBackground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+        <Setter Property="HighlightForeground" Value="{DynamicResource MahApps.Brushes.Accen3}"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}"/>
+        <Setter Property="Width" Value="400"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                      </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" x:Name="PART_ButtonLeft" Width="30" Height="30"
+                                Padding="10,8" 
+                                Command="{TemplateBinding PreviousCommand}">
+                            <Path Data="{StaticResource LeftGeometry}" Stretch="Fill"
+                                Fill="{TemplateBinding Foreground}"/>
+                        </Button>
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                            <RadioButton Name="PART_ButtonFirst" 
+                                        Content="1" 
+                                        IsChecked="True" 
+                                        Classes="PaginationButtonStyle"/>
+                            <Border Name="PART_MoreLeft" 
+                                    Cursor="No" 
+                                    BorderThickness="1" 
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    Background="Transparent"
+                                    Padding="10,8" >
+                                <TextBlock FontWeight="Bold" 
+                                           Margin="5"
+                                           Foreground="{DynamicResource MahApps.Brushes.Black}" 
+                                           Text="..." 
+                                           VerticalAlignment="Center" />
+                            </Border>
+                            <StackPanel Orientation="Horizontal" Name="PART_PanelMain"/>
+                                <Border Name="PART_MoreRight" 
+                                        Cursor="No" 
+                                        BorderThickness="1" 
+                                        BorderBrush="{TemplateBinding BorderBrush}" 
+                                        Background="Transparent"
+                                        Padding="10,8">
+                                    <TextBlock FontWeight="Bold"
+                                               Margin="5"
+                                               Foreground="{DynamicResource MahApps.Brushes.Black}" 
+                                               Text="..." 
+                                               VerticalAlignment="Center"/>
+                                </Border>
+                            <RadioButton Name="PART_ButtonLast" 
+                                         Content="10" Classes="PaginationButtonStyle"/>
+                        </StackPanel>
+                        <Button Grid.Column="2" x:Name="PART_ButtonRight" 
+                                Width="30" Padding="10,8" Height="30"
+                                Margin="-1,0,0,0" Command="{TemplateBinding NextCommand}">
+                            <Path Data="{StaticResource RightGeometry}" Stretch="Fill"
+                                Fill="{TemplateBinding Foreground}"/>
+                        </Button>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</Styles>
