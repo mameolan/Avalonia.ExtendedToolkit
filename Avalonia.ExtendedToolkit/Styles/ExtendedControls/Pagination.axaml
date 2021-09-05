@@ -11,6 +11,8 @@
      <Geometry x:Key="RightGeometry">M4.1666641,0 C5.2083321,0 6.25,0.41666794 7.0833321,1.25 L57.083331,46.666664 C57.916664,47.499998 58.33333,48.749998 58.333329,49.999998 58.33333,51.249997 57.916664,52.499997 57.083331,53.333331 L7.0833321,98.749996 C5.4166641,100.41666 2.9166641,100.41666 1.2499962,98.749996 -0.41666794,97.083328 -0.41666794,94.583328 1.2499962,92.916664 L48.333331,49.999998 1.2499962,7.0833321 C-0.41666794,5.4166641 -0.41666794,2.9166641 1.2499962,1.25 2.0833282,0.41666794 3.1249962,0 4.1666641,0 z</Geometry>   
     </Styles.Resources>
 
+    <!--ported from https://github.com/HandyOrg/HandyControl-->
+
     <Style Selector="RadioButton.PaginationButtonStyle">
         <Setter Property="GroupName" Value="1"/>
         <Setter Property="MinWidth" Value="30"/>
@@ -109,22 +111,16 @@
                                 Fill="{TemplateBinding Foreground}"/>
                         </Button>
                             <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
-                            <!-- <interactivity:Interaction.Triggers>
-                                <interactivity:RoutedEventTrigger RoutedEvent="RadioButton.Checked">
-                                    <interactivity:EventToCommand Command="interactivity:ControlCommands.Selected" PassEventArgsToCommand="True" />
-                                </interactivity:RoutedEventTrigger>
-                            </interactivity:Interaction.Triggers> -->
                             <RadioButton Name="PART_ButtonFirst" 
                                         Content="1" 
                                         IsChecked="True" 
                                         Classes="PaginationButtonStyle"/>
                             <Border Name="PART_MoreLeft" 
                                     Cursor="No" 
-                                    Margin="-1,0,0,0" 
                                     BorderThickness="1" 
                                     BorderBrush="{TemplateBinding BorderBrush}" 
-                                    Background="{DynamicResource MahApps.Brushes.White}" 
-                                    >
+                                    Background="Transparent"
+                                    Padding="10,8" >
                                 <TextBlock FontWeight="Bold" 
                                            Margin="5"
                                            Foreground="{DynamicResource MahApps.Brushes.Black}" 
@@ -134,12 +130,12 @@
                             <StackPanel Orientation="Horizontal" Name="PART_PanelMain"/>
                                 <Border Name="PART_MoreRight" 
                                         Cursor="No" 
-                                        Margin="-1,0,0,0" 
                                         BorderThickness="1" 
                                         BorderBrush="{TemplateBinding BorderBrush}" 
-                                        Background="{DynamicResource MahApps.Brushes.White}" 
-                                        Padding="10,0">
-                                    <TextBlock FontWeight="Bold" 
+                                        Background="Transparent"
+                                        Padding="10,8">
+                                    <TextBlock FontWeight="Bold"
+                                               Margin="5"
                                                Foreground="{DynamicResource MahApps.Brushes.Black}" 
                                                Text="..." 
                                                VerticalAlignment="Center"/>
