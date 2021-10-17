@@ -58,6 +58,17 @@ namespace Avalonia.ExampleApp.ViewModels
             set { this.RaiseAndSetIfChanged(ref _artists, value); }
         }
 
+        private Artist _selectedArtist;
+        public Artist SelectedArtist
+        {
+            get { return _selectedArtist; }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedArtist, value);
+            }
+        }
+
+
         public ICommand GenreDropDownMenuItemCommand { get; }
 
         public ICommand ChangeColorSchemeCommand { get; }
@@ -344,6 +355,8 @@ namespace Avalonia.ExampleApp.ViewModels
 
             this.Albums = SampleData.Albums;
             this.Artists = SampleData.Artists;
+
+            SelectedArtist=Artists.FirstOrDefault();
 
             var collectionView = new DataGridCollectionView(SampleData.Albums);
             collectionView.GroupDescriptions.Add(new DataGridPathGroupDescription(nameof(Album.Artist.Name)));

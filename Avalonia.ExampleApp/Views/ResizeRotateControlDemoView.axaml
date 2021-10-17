@@ -9,30 +9,46 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Row="0">
-                <CheckBox Content="IsRotationEnabled" Name="chkIsRotationEnabled" IsChecked="True"/>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center" Text="Thumb fill color:" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+                    <Controls:ColorPicker Margin="5,0,0,0" x:Name="thumbFillPicker" PreviewColorBrush="Gray"/>
+                </StackPanel> 
+                <StackPanel Margin="10,0,0,0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center" Text="Outerrect fill color:" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+                    <Controls:ColorPicker Margin="5,0,0,0" x:Name="outerrecrFillPicker" PreviewColorBrush="Gray"/>
+                </StackPanel>
+
+                <CheckBox Margin="10,0,0,0" Content="IsRotationEnabled" Name="chkIsRotationEnabled" IsChecked="True"/>
+
                 <CheckBox Margin="10,0,0,0" Content="ShowAlwaysSizing" Name="chkShowAlwaysSizing"/>
-                <CheckBox Margin="10,0,0,0" Content="CanDrag" Name="chkCanDrag" IsChecked="True"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <CheckBox Content="CanDrag" Name="chkCanDrag" IsChecked="True"/>
                 <CheckBox Margin="10,0,0,0" Content="CanResize" Name="chkCanResize" IsChecked="True"/>
-                
+                <CheckBox Margin="10,0,0,0" Content="ShowOuterRect" Name="chkShowOuterRect" IsChecked="True"/> 
             </StackPanel>
 
-            <Canvas x:Name="DesignerCanvas" Grid.Row="1">
+            <Canvas x:Name="DesignerCanvas" Grid.Row="2">
             <!--Ellipse-->
-                <Controls:ResizeRotateControl 
+                <Controls:ResizeRotateControl x:Name="resizeRotateControl"
                         IsRotationEnabled="{Binding ElementName=chkIsRotationEnabled, Path=IsChecked, Mode=TwoWay}"
                         ShowAlwaysSizing="{Binding ElementName=chkShowAlwaysSizing, Path=IsChecked, Mode=TwoWay}"
                         CanDrag="{Binding ElementName=chkCanDrag, Path=IsChecked, Mode=TwoWay}"
                         CanResize="{Binding ElementName=chkCanResize, Path=IsChecked, Mode=TwoWay}"
+                        ShowOuterRect="{Binding ElementName=chkShowOuterRect, Path=IsChecked, Mode=TwoWay}"
+                        ThumbFillBrush="{Binding ElementName=thumbFillPicker, Path=PreviewColorBrush}"
+                        ThumbStrokeBrush="{Binding ElementName=thumbFillPicker, Path=PreviewColorBrush}"
+                        OuterRectStrokeBrush="{Binding ElementName=outerrecrFillPicker, Path=PreviewColorBrush}"
                         Padding="1"
                         Width="200"
                         Height="100"
                         Canvas.Left="100" Canvas.Top="100"   >
                     <Grid>
                         <Ellipse IsHitTestVisible="False" Fill="Green"/>
-                        <TextBlock Text="Normal Style" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="10" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
                     </Grid>
 
                 </Controls:ResizeRotateControl>
@@ -45,7 +61,6 @@
                         Canvas.Left="400" Canvas.Top="100"   >
                     <Grid>
                         <Ellipse IsHitTestVisible="False" Fill="Green"/>
-                        <TextBlock Text="Thick Style" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="10" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
                     </Grid>
                     
                         
