@@ -8,7 +8,7 @@
     <Setter Property="Width" Value="7" />
     <Setter Property="Height" Value="7" />
     <Setter Property="Margin" Value="-2" />
-    <Setter Property="Fill" Value="Gray"/>
+    <!-- <Setter Property="Fill" Value="Gray"/> -->
   </Style>
 
 
@@ -36,10 +36,14 @@
     <Setter Property="Width" Value="7"/>
     <Setter Property="Height" Value="7"/>
     <Setter Property="Margin" Value="0,-20,0,0"/>
+    <Setter Property="FillBrush" Value="Gray"/>
+    <Setter Property="StrokeBrush" Value="Gray"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
-            <Ellipse Classes="ThumbCorner" />
+            <Ellipse Classes="ThumbCorner" 
+                      Stroke="{TemplateBinding StrokeBrush}"
+                      Fill="{TemplateBinding FillBrush}" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -49,10 +53,14 @@
     <Setter Property="Width" Value="7"/>
     <Setter Property="Height" Value="7"/>
     <Setter Property="Margin" Value="-2"/>
+    <Setter Property="FillBrush" Value="Gray"/>
+    <Setter Property="StrokeBrush" Value="Gray"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
-          <Ellipse Classes="ThumbCorner"/>
+          <Ellipse Classes="ThumbCorner" 
+                   Stroke="{TemplateBinding StrokeBrush}"
+                   Fill="{TemplateBinding FillBrush}"/>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -63,10 +71,15 @@
     <Setter Property="Width" Value="10"/>
     <Setter Property="Height" Value="10"/>
     <Setter Property="Margin" Value="0,-25,0,0"/>
-     <Setter Property="Template">
+    <Setter Property="FillBrush" Value="Gray"/>
+    <Setter Property="StrokeBrush" Value="Gray"/>
+    <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
-            <Ellipse Classes="ThumbCornerThick" />
+            <Ellipse Classes="ThumbCornerThick" 
+                Stroke="{TemplateBinding StrokeBrush}"
+                Fill="{TemplateBinding FillBrush}"
+              />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -76,10 +89,15 @@
     <Setter Property="Width" Value="10"/>
     <Setter Property="Height" Value="10"/>
     <Setter Property="Margin" Value="-3"/>
+    <Setter Property="FillBrush" Value="Gray"/>
+    <Setter Property="StrokeBrush" Value="Gray"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
-          <Ellipse Classes="ThumbCornerThick"/>
+          <Ellipse Classes="ThumbCornerThick"
+                Stroke="{TemplateBinding StrokeBrush}"
+                Fill="{TemplateBinding FillBrush}"
+              />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -94,13 +112,18 @@
   <Style Selector="Controls|ResizeRotateControl">
     <Setter Property="MinHeight" Value="50" />
     <Setter Property="MinWidth" Value="50" />
+    <Setter Property="ThumbFillBrush" Value="Gray"/>
+    <Setter Property="ThumbStrokeBrush" Value="Gray"/>
+    <Setter Property="OuterRectStrokeBrush" Value="Gray"/>
+    <Setter Property="OuterRectStrokeThickness" Value="1"/>
+    <Setter Property="SizeChromeTextBrush" Value="{DynamicResource MahApps.Brushes.Black}"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
           <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
             <Grid Margin="3,20,3,3">
               <ContentControl Content="{TemplateBinding Content}"
-                              Margin="{TemplateBinding Padding}" />
+                              Margin="{TemplateBinding Padding}"/>
             </Grid>
 
             <Controls:MoveThumb Cursor="SizeAll"
@@ -110,15 +133,18 @@
 
             <Grid IsHitTestVisible="False" Margin="3,20,3,3" x:Name="PART_VisualGrid"
               >
-              <Rectangle StrokeThickness="1"
+              <Rectangle StrokeThickness="{TemplateBinding OuterRectStrokeThickness}"
                         Margin="1"
-                        Stroke="Gray"
-                        ZIndex="-99" />
-              <Line StrokeThickness="1" StartPoint="0,0" EndPoint="0,20"
+                        Stroke="{TemplateBinding OuterRectStrokeBrush}"
+                        ZIndex="-99"
+                        IsVisible="{TemplateBinding ShowOuterRect}"
+                         />
+              <Line StrokeThickness="{TemplateBinding OuterRectStrokeThickness}" 
+                    StartPoint="0,0" EndPoint="0,20"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Margin="0,-19,0,0"
-                    Stroke="Gray" 
+                    Stroke="{TemplateBinding OuterRectStrokeBrush}" 
                     IsVisible="{TemplateBinding IsRotationEnabled}"
                     />
             </Grid>
@@ -129,9 +155,11 @@
                             VerticalAlignment="Top"
                             HorizontalAlignment="Center"
                             IsVisible="{TemplateBinding IsRotationEnabled}"
-                            >
-                
-              </Controls:RotateThumb>
+                            FillBrush="{TemplateBinding ThumbFillBrush}"
+                            StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
+                            x:Name="PART_RotateThumb"
+
+                            />
 
               <Controls:ResizeThumb
                            Cursor="SizeNorthSouth"
@@ -139,6 +167,8 @@
                            HorizontalAlignment="Stretch"
                            x:Name="PART_ResizeThumbTopCenter"
                            IsVisible="{TemplateBinding CanResize}"
+                           FillBrush="{TemplateBinding ThumbFillBrush}"
+                           StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                            />
                 
               <Controls:ResizeThumb
@@ -147,6 +177,8 @@
                            HorizontalAlignment="Left"
                            x:Name="PART_ResizeThumbLeftCenter"
                            IsVisible="{TemplateBinding CanResize}"
+                           FillBrush="{TemplateBinding ThumbFillBrush}"
+                           StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                            />
                 
               <Controls:ResizeThumb
@@ -155,6 +187,8 @@
                               HorizontalAlignment="Right"
                               x:Name="PART_ResizeThumbRightCenter"
                               IsVisible="{TemplateBinding CanResize}"
+                              FillBrush="{TemplateBinding ThumbFillBrush}"
+                              StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                               />
                 
               <Controls:ResizeThumb 
@@ -163,6 +197,8 @@
                             HorizontalAlignment="Stretch"
                             x:Name="PART_ResizeThumbBottomCenter"
                             IsVisible="{TemplateBinding CanResize}"
+                            FillBrush="{TemplateBinding ThumbFillBrush}"
+                            StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                             />
                 
               <Controls:ResizeThumb 
@@ -171,6 +207,8 @@
                              HorizontalAlignment="Left"
                              x:Name="PART_ResizeThumbTopLeft"
                              IsVisible="{TemplateBinding CanResize}"
+                             FillBrush="{TemplateBinding ThumbFillBrush}"
+                             StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                              />
                 
               <Controls:ResizeThumb 
@@ -179,6 +217,8 @@
                              HorizontalAlignment="Right"
                              x:Name="PART_ResizeThumbTopRight"
                              IsVisible="{TemplateBinding CanResize}"
+                             FillBrush="{TemplateBinding ThumbFillBrush}"
+                             StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                              />
                 
               <Controls:ResizeThumb 
@@ -187,6 +227,8 @@
                              HorizontalAlignment="Left"
                              x:Name="PART_ResizeThumbBottomLeft"
                              IsVisible="{TemplateBinding CanResize}"
+                             FillBrush="{TemplateBinding ThumbFillBrush}"
+                             StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                              />
                 
               <Controls:ResizeThumb 
@@ -195,10 +237,13 @@
                              HorizontalAlignment="Right"
                              x:Name="PART_ResizeThumbBottomRight"
                              IsVisible="{TemplateBinding CanResize}"
+                             FillBrush="{TemplateBinding ThumbFillBrush}"
+                             StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                              />
             </Grid>
          
             <Controls:SizeChrome VerticalAlignment="Center" Margin="3,8,3,3"  
+                  Foreground="{TemplateBinding SizeChromeTextBrush}"
                   x:Name="PART_SizeChrome" IsVisible="{TemplateBinding ShowAlwaysSizing}"/>
          
           </Grid>
@@ -210,6 +255,11 @@
   <Style Selector="Controls|ResizeRotateControl.ThickStyle">
     <Setter Property="MinHeight" Value="60" />
     <Setter Property="MinWidth" Value="60" />
+    <Setter Property="ThumbFillBrush" Value="Gray"/>
+    <Setter Property="ThumbStrokeBrush" Value="Gray"/>
+    <Setter Property="OuterRectStrokeBrush" Value="Gray"/>
+    <Setter Property="OuterRectStrokeThickness" Value="2"/>
+    <Setter Property="SizeChromeTextBrush" Value="{DynamicResource MahApps.Brushes.Black}"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
@@ -226,15 +276,18 @@
 
             <Grid IsHitTestVisible="False" Margin="3,23,3,3" x:Name="PART_VisualGrid"
               >
-              <Rectangle StrokeThickness="2"
+              <Rectangle StrokeThickness="{TemplateBinding OuterRectStrokeThickness}"
                         Margin="1"
-                        Stroke="Gray"
-                        ZIndex="-99" />
-              <Line StrokeThickness="2" StartPoint="0,0" EndPoint="0,25"
+                        Stroke="{TemplateBinding OuterRectStrokeBrush}"
+                        ZIndex="-99" 
+                        IsVisible="{TemplateBinding ShowOuterRect}"
+                        />
+              <Line StrokeThickness="{TemplateBinding OuterRectStrokeThickness}" 
+                    StartPoint="0,0" EndPoint="0,25"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Margin="0,-23,0,0"
-                    Stroke="Gray" 
+                    Stroke="{TemplateBinding OuterRectStrokeBrush}" 
                     IsVisible="{TemplateBinding IsRotationEnabled}"
                     />
             </Grid>
@@ -246,6 +299,8 @@
                             VerticalAlignment="Top"
                             HorizontalAlignment="Center"
                             IsVisible="{TemplateBinding IsRotationEnabled}"
+                            FillBrush="{TemplateBinding ThumbFillBrush}"
+                            StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                             />
                 
               <Controls:ResizeThumb
@@ -254,6 +309,8 @@
                            VerticalAlignment="Top"
                            HorizontalAlignment="Stretch"
                            x:Name="PART_ResizeThumbTopCenter"
+                           FillBrush="{TemplateBinding ThumbFillBrush}"
+                           StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                            />
                 
 
@@ -263,6 +320,8 @@
                            VerticalAlignment="Stretch"
                            HorizontalAlignment="Left"
                            x:Name="PART_ResizeThumbLeftCenter"
+                           FillBrush="{TemplateBinding ThumbFillBrush}"
+                           StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                            />
                 
               
@@ -272,6 +331,8 @@
                               VerticalAlignment="Stretch"
                               HorizontalAlignment="Right"
                               x:Name="PART_ResizeThumbRightCenter"
+                              FillBrush="{TemplateBinding ThumbFillBrush}"
+                              StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                               />
                 
               
@@ -281,6 +342,8 @@
                             VerticalAlignment="Bottom"
                             HorizontalAlignment="Stretch"
                             x:Name="PART_ResizeThumbBottomCenter"
+                            FillBrush="{TemplateBinding ThumbFillBrush}"
+                            StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                             />
                 
               
@@ -290,6 +353,8 @@
                              VerticalAlignment="Top"
                              HorizontalAlignment="Left"
                              x:Name="PART_ResizeThumbTopLeft"
+                             FillBrush="{TemplateBinding ThumbFillBrush}"
+                             StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                              />
                 
 
@@ -299,6 +364,8 @@
                              VerticalAlignment="Top"
                              HorizontalAlignment="Right"
                              x:Name="PART_ResizeThumbTopRight"
+                             FillBrush="{TemplateBinding ThumbFillBrush}"
+                             StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                              />
                 
               <Controls:ResizeThumb 
@@ -307,6 +374,8 @@
                              VerticalAlignment="Bottom"
                              HorizontalAlignment="Left"
                              x:Name="PART_ResizeThumbBottomLeft"
+                             FillBrush="{TemplateBinding ThumbFillBrush}"
+                             StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                              />
                 
               <Controls:ResizeThumb 
@@ -315,10 +384,13 @@
                              VerticalAlignment="Bottom"
                              HorizontalAlignment="Right"
                              x:Name="PART_ResizeThumbBottomRight"
+                             FillBrush="{TemplateBinding ThumbFillBrush}"
+                             StrokeBrush="{TemplateBinding ThumbStrokeBrush}"
                              />
             </Grid>
          
             <Controls:SizeChrome VerticalAlignment="Center" Margin="3,8,3,3"  
+                  Foreground="{TemplateBinding SizeChromeTextBrush}"
                   x:Name="PART_SizeChrome" IsVisible="{TemplateBinding ShowAlwaysSizing}"/>
          
           </Grid>

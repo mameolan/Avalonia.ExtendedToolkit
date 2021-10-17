@@ -49,7 +49,7 @@ namespace Avalonia.ExampleApp.Model
                 new FileDialogFilter()
                 {
                     Name="Image Files (*.jpg, *.png, *.bmp)"
-                    , Extensions=new List<string>(){"jpg", "png", "bmp" } 
+                    , Extensions=new List<string>(){"jpg", "png", "bmp" }
                 }
             
             };

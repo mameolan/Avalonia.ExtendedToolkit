@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.ExtendedToolkit.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 

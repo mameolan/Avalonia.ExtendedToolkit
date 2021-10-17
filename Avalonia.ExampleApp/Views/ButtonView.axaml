@@ -11,6 +11,26 @@
              x:Class="Avalonia.ExampleApp.Views.ButtonView">
   <UserControl.Resources>
     <Thickness x:Key="ControlMargin">0 5 0 0</Thickness>
+
+    <DataTemplate x:Key="dropDownContentOnlyTemplate">
+        <Border BorderBrush="{DynamicResource MahApps.Brushes.Black}" BorderThickness="0.5">
+          <TextBlock 
+            Margin="5,0,0,0" 
+            Text="{Binding Name}" 
+            VerticalAlignment="Center" 
+            Foreground="{DynamicResource MahApps.Brushes.Black}"
+          />
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate x:Key="dropDownRepeatTemplate">
+        <TextBlock 
+            Margin="5,0,0,0" 
+            Text="{Binding Name}" 
+            VerticalAlignment="Center" 
+            Foreground="{DynamicResource MahApps.Brushes.Black}"
+        />
+      </DataTemplate>
   </UserControl.Resources>
   <Grid>
     <!--xmlns:fontAwesome="clr-namespace:FontAwesome.Avalonia;assembly=FontAwesome.Avalonia"-->
@@ -178,9 +198,7 @@
 
 
       </StackPanel.Styles>
-      <StackPanel.Resources>
-
-      </StackPanel.Resources>
+      
 
       <TextBlock Classes="DescriptionHeaderStyle" Text="Toggle switch"  />
       <Controls:ToggleSwitch Margin="{StaticResource ControlMargin}"
@@ -281,42 +299,32 @@
     <StackPanel Grid.Row="1"
                     Grid.Column="4"
                     HorizontalAlignment="Stretch">
-      <TextBlock Text="DropDownButton" Classes="DescriptionHeaderStyle" />
+      <TextBlock Text="DropDownButton" Classes="DescriptionHeaderStyle"/>
+
+      <TextBlock Margin="5" Text="Content only" FontSize="16" Foreground="{DynamicResource MahApps.Brushes.Black}" />
+      <Controls:DropDownButton Margin="5"
+                                     ClickCommand="{Binding GenreDropDownMenuItemCommand}"
+                                     ClickCommandParameter="{Binding SelectedItem}"
+                                     Items="{Binding Artists}"
+                                     SelectedItem="{Binding SelectedArtist}"
+                                     DisplayMode="Content"
+                                     ItemTemplate="{StaticResource dropDownRepeatTemplate}"
+                                     DisplayTemplate="{StaticResource dropDownContentOnlyTemplate}"
+                                    />
+       
+        
+      <TextBlock Margin="5" Text="Button" FontSize="16" Foreground="{DynamicResource MahApps.Brushes.Black}" />
 
       <Controls:DropDownButton Margin="5"
-                                     Command="{Binding ArtistsDropDownCommand}"
-                                     Content="Artists"
+                                     ClickCommand="{Binding GenreDropDownMenuItemCommand}"
+                                     ClickCommandParameter="{Binding SelectedItem}"
                                      Items="{Binding Artists}"
-                               >
-        <Controls:DropDownButton.Icon>
-          <!--<fontAwesome:FontAwesome Icon="Music"/>-->
-        </Controls:DropDownButton.Icon>
-      </Controls:DropDownButton>
-
-      <Controls:DropDownButton Margin="5"
-                                     Content="Genres"
-                                     Items="{Binding Artists}"
-                                  >
-        <Controls:DropDownButton.ItemTemplate>
-          <DataTemplate>
-            <TextBlock Text="{Binding Name}"/>
-          </DataTemplate>
-        </Controls:DropDownButton.ItemTemplate>
-
+                                     SelectedItem="{Binding SelectedArtist}"
+                                     DisplayMode="Button"
+                                     ItemTemplate="{StaticResource dropDownRepeatTemplate}"
+                                     DisplayTemplate="{StaticResource dropDownRepeatTemplate}"
+                                  />
         
-        
-        <Controls:DropDownButton.MenuStyle>
-          <Style Selector="MenuItem">
-            <Setter Property="Header" Value="{Binding Name}"/>
-            <Setter Property="Command" Value="{Binding ElementName=buttonView, Path=DataContext.GenreDropDownMenuItemCommand}" />
-            <Setter Property="CommandParameter" Value="{Binding Name}" />
-          </Style>
-        </Controls:DropDownButton.MenuStyle>
-
-        <Controls:DropDownButton.Icon>
-          <!--<fontAwesome:FontAwesome Margin="6" Icon="Music" />-->
-        </Controls:DropDownButton.Icon>
-      </Controls:DropDownButton>
 
     </StackPanel>
 

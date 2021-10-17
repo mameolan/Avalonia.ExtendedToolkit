@@ -1,168 +1,127 @@
-﻿<Styles
-    xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
-    xmlns:converters="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
-    xmlns:System="clr-namespace:System;assembly=mscorlib">
+<Styles xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit">
+    <Styles.Resources>
+        <Geometry x:Key="DownGeometry">M512 801.6896L5.12 282.0096l58.1632-59.5968L512 682.3936l448.7168-460.0832 58.1632 59.5968-506.88 519.7824z</Geometry>
+        <Geometry x:Key="UpGeometry">M50.000001,0 L100,51.262779 94.262627,57.141584 50.000001,11.767713 5.7373757,57.151686 0,51.27288 z</Geometry>
+    </Styles.Resources>
 
-  <Style Selector="Controls|DropDownButton">
-    <Setter Property="ArrowBrush" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
-    <Setter Property="ArrowMouseOverBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
-    <Setter Property="ArrowPressedBrush" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
-    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.WhiteColor}" />
-    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
-    <Setter Property="BorderThickness" Value="1" />
-    <Setter Property="ButtonStyle" Value="{DynamicResource MahApps.Styles.Button.DropDown}" />
-    <Setter Property="Focusable" Value="False" />
-    <Setter Property="FontFamily" Value="{DynamicResource MahApps.Fonts.Content}" />
-    <Setter Property="FontSize" Value="{DynamicResource MahApps.Sizes.Font.Content}" />
-    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
-    <!--<Setter Property="HorizontalContentAlignment" Value="Center" />
-    <Setter Property="VerticalContentAlignment" Value="Center" />-->
-    <!--<Setter Property="MenuStyle" Value="{DynamicResource MahApps.Styles.ContextMenu}" />-->
-    <Setter Property="MinHeight" Value="26" />
-    <Setter Property="Template">
-      <Setter.Value>
-        <ControlTemplate>
-          <Border x:Name="PART_Border"
-                  Background="Transparent"
-                  BorderBrush="{TemplateBinding BorderBrush}"
-                  BorderThickness="{TemplateBinding BorderThickness}"
-                  CornerRadius="{TemplateBinding CornerRadius}"
-                  UseLayoutRounding="True">
-            <Border.ContextMenu>
-              <ContextMenu x:Name="PART_Menu"
-                               MinWidth="{TemplateBinding Width}"
-                               ItemTemplate="{TemplateBinding ItemTemplate}"
-                               ItemsPanel="{TemplateBinding ItemsPanel}"
-                               Items="{TemplateBinding Items}"
-                               UseLayoutRounding="False" />
-            </Border.ContextMenu>
-            <!--<Controls:ClipBorder x:Name="PART_ClipBorder"
-                                 CornerRadius="{TemplateBinding CornerRadius}"
-                                 >-->
-              <!--MetroButton throws a stackoverflow exception-->
-              <Button x:Name="PART_Button"
-                      HorizontalAlignment="Stretch"
-                      VerticalAlignment="Stretch"
-                      HorizontalContentAlignment="Stretch"
-                      VerticalContentAlignment="Stretch"
-                      Background="{TemplateBinding Background}"
-                      BorderBrush="{TemplateBinding BorderBrush}"
-                      Command="{TemplateBinding Command}"
-                      CommandParameter="{TemplateBinding CommandParameter}"
-                      Foreground="{TemplateBinding Foreground}"
-                      Controls:StyledElementHelper.Style="{TemplateBinding ButtonStyle}">
+    <Style Selector="Controls|DropDownButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch">
+                        <ContentControl DataContext="{TemplateBinding SelectedItem}"
+                                        ContentTemplate="{TemplateBinding DisplayTemplate}"
+                              x:Name="PART_ContentControl" Grid.Column="0"
+                              HorizontalAlignment="Stretch"
+                              Margin="0,0,5,0" />
+                        <StackPanel Grid.Column="1">
+                            <ToggleButton x:Name="PART_PopUpButton" VerticalAlignment="Stretch"
+                                        HorizontalContentAlignment="Stretch" Height="30"
+                                        IsThreeState="False" Focusable="False" />
 
-                <!--
-                    CommandTarget="{TemplateBinding CommandTarget}"
-                    RenderOptions.ClearTypeHint="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(RenderOptions.ClearTypeHint), Mode=OneWay}"
-                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                    Style="{TemplateBinding ButtonStyle}"
-                -->
+                            <Popup x:Name="PART_PopupMenu"
+                                    PlacementMode="Bottom"
+                                    Margin="0,31,0,0"
+                                    StaysOpen="False">
+                                <Border BorderBrush="{DynamicResource ThemeBorderMidBrush}" BorderThickness="1">
+                                    <ListBox
+                                        x:Name="PART_ListBox"
+                                        Items="{TemplateBinding Items}"
+                                        SelectedItem="{TemplateBinding SelectedItem}"
+                                        ItemTemplate="{TemplateBinding ItemTemplate}">
+                                    </ListBox>
+                                </Border>
+                            </Popup>
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-                <DockPanel x:Name="PART_Content"
-                           Focusable="False"
-                           LastChildFill="True">
-                  <!--  Material - ChevronDown  -->
-                  <ContentControl x:Name="PART_Arrow"
-                                  Width="9"
-                                  Height="9"
-                                  Margin="0 0 3 0"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Content="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-                                  DockPanel.Dock="Right"
-                                  Foreground="{TemplateBinding ArrowBrush}"
-                                  IsVisible="{TemplateBinding IsArrowVisible}"
-                                  Classes="PathIcon" />
-                  <!--Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}"-->
+    <Style Selector="Controls|DropDownButton[IsPopupOpen=true] /template/ ToggleButton#PART_PopUpButton">
 
-                  <StackPanel x:Name="PART_ContentOrientation"
-                              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                              VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                              Focusable="False"
-                              Orientation="Horizontal">
-                    <ContentPresenter HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"
-                                      Content="{TemplateBinding Icon}"
-                                      ContentTemplate="{TemplateBinding IconTemplate}"
-                                      Focusable="False"
-                                      UseLayoutRounding="False" />
-                    <Controls:ContentControlEx x:Name="PART_ButtonContent"
-                                               Margin="3"
-                                               Padding="{TemplateBinding Padding}"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               HorizontalContentAlignment="{TemplateBinding HorizontalAlignment}"
-                                               VerticalContentAlignment="{TemplateBinding VerticalAlignment}"
-                                               Content="{Binding Content, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                               ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentCharacterCasing}"
-                                               ContentTemplate="{TemplateBinding ContentTemplate}"
-                                               RecognizesAccessKey="True"
-                                               UseLayoutRounding="False" />
-                  </StackPanel>
-                </DockPanel>
-                <!--<Button.ContextMenu>
-                  <Controls:ContextMenuExt x:Name="PART_Menu"
-                               MinWidth="{TemplateBinding Width}"
-                               ItemTemplate="{TemplateBinding ItemTemplate}"
-                               ItemsPanel="{TemplateBinding ItemsPanel}"
-                               Items="{TemplateBinding Items}"
-                               UseLayoutRounding="False" />
-                  -->
-                  <!--Style="{TemplateBinding MenuStyle}"
-                IsOpen="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                Controls:StyledElementHelper.Style="{TemplateBinding MenuStyle}"
-                -->
-                  <!--
-                </Button.ContextMenu>-->
-              </Button>
-            <!--MetroButton throws a stackoverflow exception-->
-            <!--</Controls:ClipBorder>-->
-            
-            
-            
-          </Border>
-        </ControlTemplate>
-      </Setter.Value>
-    </Setter>
-  </Style>
+        <Setter Property="Content">
+            <Setter.Value>
+                <Template>
+                    <Grid HorizontalAlignment="Stretch">
+                        <Path Width="8" Height="8"
+                              Fill="{DynamicResource MahApps.Brushes.Black}"
+                              Stretch="Uniform"
+                              HorizontalAlignment="Right" VerticalAlignment="Center"
+                              Data="{DynamicResource UpGeometry}" />
+                    </Grid>
+                </Template>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-  <Style Selector="Controls|DropDownButton:focused">
-    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
-  </Style>
+    <Style Selector="Controls|DropDownButton[IsPopupOpen=false] /template/ ToggleButton#PART_PopUpButton">
 
-  <!--<Style Selector="Controls|DropDownButton[IsKeyboardFocusWithin=true]">
-    <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
-  </Style>-->
+        <Setter Property="Content">
+            <Setter.Value>
+                <Template>
+                    <Grid HorizontalAlignment="Stretch">
+                        <Path Width="8" Height="8"
+                              Fill="{DynamicResource MahApps.Brushes.Black}"
+                              Stretch="Uniform"
+                              HorizontalAlignment="Right" VerticalAlignment="Center"
+                              Data="{DynamicResource DownGeometry}" />
+                    </Grid>
+                </Template>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-  <Style Selector="Controls|DropDownButton:disabled">
-    <Setter Property="Opacity" Value=".55" />
-  </Style>
+    <Style Selector="Controls|DropDownButton[DisplayMode=Button] /template/ ContentControl#PART_ContentControl">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Template>
+                    <!--ContentTemplate: OneTime because otherwise a app crash is occured if the control is removed.-->
+                    <Button Content="{Binding .}"
+                          ContentTemplate="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContentControl}},Path=ContentTemplate, Mode=OneTime}"
+                          Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:DropDownButton}},Path=ClickCommand}"
+                          CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:DropDownButton}},Path=ClickCommandParameter}" />
+                </Template>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-  <Style Selector="Controls|DropDownButton[Content={x:Null}] /template/ Controls|ContentControlEx#PART_ButtonContent">
-    <Setter Property="Margin" Value="0" />
-  </Style>
+    <Style Selector="Controls|DropDownButton[DisplayMode=ToggleButton] /template/ ContentControl#PART_ContentControl">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Template>
+                    <!--ContentTemplate: OneTime because otherwise a app crash is occured if the control is removed.-->
+                    <ToggleButton Content="{Binding .}"
+                          ContentTemplate="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContentControl}},Path=ContentTemplate, Mode=OneTime}"
+                          Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:DropDownButton}},Path=ClickCommand}"
+                          IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:DropDownButton}},Path=ClickCommandParameter}" />
+                </Template>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-  <Style Selector="Controls|DropDownButton[Orientation=Vertical] /template/ ContentControl#PART_Arrow">
-    <Setter Property="DockPanel.Dock" Value="Bottom" />
-    <Setter Property="Margin" Value="0 0 0 3" />
-  </Style>
+    <Style Selector="Controls|DropDownButton[DisplayMode=RepeatButton] /template/ ContentControl#PART_ContentControl">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Template>
+                    <!--ContentTemplate: OneTime because otherwise a app crash is occured if the control is removed.-->
+                    <RepeatButton Content="{Binding .}"
+                          ContentTemplate="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContentControl}},Path=ContentTemplate, Mode=OneTime}"
+                          Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:DropDownButton}},Path=ClickCommand}"
+                          CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:DropDownButton}},Path=ClickCommandParameter}" />
+                </Template>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-  <Style Selector="Controls|DropDownButton[Orientation=Vertical] /template/ StackPanel#PART_ContentOrientation">
-    <Setter Property="Orientation" Value="Vertical" />
-  </Style>
+    <Style Selector="Controls|DropDownButton[DisplayMode=Content] /template/ ContentControl#PART_ContentControl">
+        <Setter Property="Content" Value="{Binding .}" />
+    </Style>
 
-  <Style Selector="Controls|DropDownButton:pointerover:enabled /template/ ContentControl#PART_Arrow">
-    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ArrowMouseOverBrush, Mode=OneWay}" />
-  </Style>
-
-  <Style Selector="Controls|DropDownButton:pressed /template/ ContentControl#PART_Arrow">
-    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ArrowPressedBrush, Mode=OneWay}" />
-  </Style>
-
-  <Style Selector="Controls|DropDownButton:disabled /template/ Controls|ContentControlEx#PART_ButtonContent">
-    <Setter Property="Opacity" Value=".55" />
-  </Style>
+    <Style Selector="Controls|DropDownButton[DisplayMode=NoContent] /template/ ContentControl#PART_ContentControl">
+        <Setter Property="IsVisible" Value="False" />
+    </Style>
 </Styles>

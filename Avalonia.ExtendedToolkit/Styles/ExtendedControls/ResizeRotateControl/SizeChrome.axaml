@@ -7,23 +7,25 @@
   </Styles.Resources>
 
   <Style Selector="Controls|SizeChrome">
+    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}"/>
+    <Setter Property="FontSize" Value="10"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate>
           <Grid Background="{TemplateBinding Background}">
             <TextBlock Text="{Binding Path=Width, Converter={StaticResource doubleFormatConverter}, StringFormat={}{0}}"
                        Background="Transparent"
-                       Foreground="White"
+                       Foreground="{TemplateBinding Foreground}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       FontSize="10" />
+                       FontSize="{TemplateBinding FontSize}" />
             <TextBlock Text="{Binding Path=Height, Converter={StaticResource doubleFormatConverter}, StringFormat={}{0}}"
                        Background="Transparent"
-                       Foreground="White"
+                       Foreground="{TemplateBinding Foreground}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Margin="0,25,0,0"
-                       FontSize="10" />
+                       FontSize="{TemplateBinding FontSize}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>

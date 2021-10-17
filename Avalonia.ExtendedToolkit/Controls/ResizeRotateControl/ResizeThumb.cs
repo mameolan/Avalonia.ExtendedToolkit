@@ -25,6 +25,36 @@ namespace Avalonia.ExtendedToolkit.Controls
         private ContentControl _designerItem;
         private Canvas _canvas;
 
+        /// <summary>
+        /// Gets or sets StrokeBrush.
+        /// </summary>
+        public IBrush StrokeBrush
+        {
+            get { return (IBrush)GetValue(StrokeBrushProperty); }
+            set { SetValue(StrokeBrushProperty, value); }
+        }
+
+        /// <summary>
+        /// Defines the StrokeBrush property.
+        /// </summary>
+        public static readonly StyledProperty<IBrush> StrokeBrushProperty =
+        AvaloniaProperty.Register<ResizeThumb, IBrush>(nameof(StrokeBrush));
+
+        /// <summary>
+        /// Gets or sets FillBrush.
+        /// </summary>
+        public IBrush FillBrush
+        {
+            get { return (IBrush)GetValue(FillBrushProperty); }
+            set { SetValue(FillBrushProperty, value); }
+        }
+
+        /// <summary>
+        /// Defines the FillBrush property.
+        /// </summary>
+        public static readonly StyledProperty<IBrush> FillBrushProperty =
+        AvaloniaProperty.Register<ResizeThumb, IBrush>(nameof(FillBrush));
+
         public ResizeThumb()
         {
             DragStarted += ResizeThumb_DragStarted;
