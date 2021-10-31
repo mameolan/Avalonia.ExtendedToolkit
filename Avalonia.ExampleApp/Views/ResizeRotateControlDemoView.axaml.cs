@@ -15,6 +15,10 @@ namespace Avalonia.ExampleApp.Views
         public ResizeRotateControlDemoView()
         {
             InitializeComponent();
+            this.Find<ResizeRotateControl>("resizeRotateControl").PositionChanged+=(o,e)=>
+            {
+                Console.WriteLine(e);
+            };
         }
 
 

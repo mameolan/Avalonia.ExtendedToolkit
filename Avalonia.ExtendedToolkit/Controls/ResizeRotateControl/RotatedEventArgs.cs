@@ -5,7 +5,7 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// <summary>
     /// event if the DragFinished is execute on the <see cref="RotateThumb"/>
     /// </summary>
-    public class RotateFinishedEventArgs : RoutedEventArgs
+    public class RotatedEventArgs : RoutedEventArgs
     {
         /// <summary>
         /// moved position

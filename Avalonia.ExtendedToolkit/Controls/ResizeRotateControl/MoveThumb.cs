@@ -20,7 +20,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private RotateTransform _rotateTransform;
 
-        private ContentControl _designerItem;
+        private Control _designerItem;
 
         /// <summary>
         /// registers DragStarted, DragDelta
@@ -38,7 +38,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <param name="e"></param>
         private void MoveThumb_DragStarted(object sender, VectorEventArgs e)
         {
-            _designerItem = DataContext as ContentControl;
+            _designerItem = DataContext as Control;
 
             if (_designerItem != null)
             {
@@ -65,6 +65,12 @@ namespace Avalonia.ExtendedToolkit.Controls
 
                 Canvas.SetLeft(_designerItem, Canvas.GetLeft(_designerItem) + dragDelta.X);
                 Canvas.SetTop(_designerItem, Canvas.GetTop(_designerItem) + dragDelta.Y);
+                
+                Canvas.SetRight(_designerItem, Canvas.GetLeft(_designerItem) + _designerItem.Width);
+                Canvas.SetBottom(_designerItem, Canvas.GetTop(_designerItem) + _designerItem.Height);
+
+
+
             }
         }
     }

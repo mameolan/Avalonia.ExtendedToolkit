@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
+using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -122,6 +123,74 @@ namespace Avalonia.ExtendedToolkit.Controls
         }
 
         /// <summary>
+        /// Defines the DisplayMode property.
+        /// </summary>
+        public static readonly StyledProperty<DropDownButtonContentDisplayMode> DisplayModeProperty =
+        AvaloniaProperty.Register<DropDownButton, DropDownButtonContentDisplayMode>(nameof(DisplayMode), defaultValue: DropDownButtonContentDisplayMode.Button);
+
+
+        /// <summary>
+        /// Gets or sets ArrowIcon.
+        /// </summary>
+        public IImage ArrowIcon
+        {
+            get { return (IImage)GetValue(ArrowIconProperty); }
+            set { SetValue(ArrowIconProperty, value); }
+        }
+
+        /// <summary>
+        /// Defines the ArrowIcon property.
+        /// </summary>
+        public static readonly StyledProperty<IImage> ArrowIconProperty =
+        AvaloniaProperty.Register<DropDownButton, IImage>(nameof(ArrowIcon));
+
+        /// <summary>
+        /// Gets or sets ArrowIconFillBrush.
+        /// </summary>
+        public IBrush ArrowIconFillBrush
+        {
+            get { return (IBrush)GetValue(ArrowIconFillBrushProperty); }
+            set { SetValue(ArrowIconFillBrushProperty, value); }
+        }
+
+        /// <summary>
+        /// Defines the ArrowIconFillBrush property.
+        /// </summary>
+        public static readonly StyledProperty<IBrush> ArrowIconFillBrushProperty =
+        AvaloniaProperty.Register<DropDownButton, IBrush>(nameof(ArrowIconFillBrush));
+
+        /// <summary>
+        /// Gets or sets ArrowIconWidth.
+        /// </summary>
+        public double ArrowIconWidth
+        {
+            get { return (double)GetValue(ArrowIconWidthProperty); }
+            set { SetValue(ArrowIconWidthProperty, value); }
+        }
+
+        /// <summary>
+        /// Defines the ArrowIconWidth property.
+        /// </summary>
+        public static readonly StyledProperty<double> ArrowIconWidthProperty =
+        AvaloniaProperty.Register<DropDownButton, double>(nameof(ArrowIconWidth));
+
+        /// <summary>
+        /// Gets or sets ArrowIconHeight.
+        /// </summary>
+        public double ArrowIconHeight
+        {
+            get { return (double)GetValue(ArrowIconHeightProperty); }
+            set { SetValue(ArrowIconHeightProperty, value); }
+        }
+
+        /// <summary>
+        /// Defines the ArrowIconHeight property.
+        /// </summary>
+        public static readonly StyledProperty<double> ArrowIconHeightProperty =
+        AvaloniaProperty.Register<DropDownButton, double>(nameof(ArrowIconHeight));
+
+
+        /// <summary>
         /// Gets or sets IsPopupOpen.
         /// </summary>
         public bool IsPopupOpen
@@ -136,11 +205,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<bool> IsPopupOpenProperty =
         AvaloniaProperty.Register<DropDownButton, bool>(nameof(IsPopupOpen));
 
-        /// <summary>
-        /// Defines the DisplayMode property.
-        /// </summary>
-        public static readonly StyledProperty<DropDownButtonContentDisplayMode> DisplayModeProperty =
-        AvaloniaProperty.Register<DropDownButton, DropDownButtonContentDisplayMode>(nameof(DisplayMode), defaultValue: DropDownButtonContentDisplayMode.Button);
+
 
         /// <summary>
         /// resolves the template of the control

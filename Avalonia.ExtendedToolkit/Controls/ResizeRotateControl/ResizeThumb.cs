@@ -22,7 +22,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         private RotateTransform _rotateTransform;
         private double _angle;
         private RelativePoint _transformOrigin;
-        private ContentControl _designerItem;
+        private Control _designerItem;
         private Canvas _canvas;
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <param name="e"></param>
         private void ResizeThumb_DragStarted(object sender, VectorEventArgs e)
         {
-            _designerItem = DataContext as ContentControl;
+            _designerItem = DataContext as Control;
 
             if (_designerItem != null)
             {
@@ -140,6 +140,19 @@ namespace Avalonia.ExtendedToolkit.Controls
                     default:
                         break;
                 }
+                double left = Canvas.GetLeft(_designerItem);
+                double top = Canvas.GetTop(_designerItem);
+                if (double.IsNaN(left))
+                {
+                    left = 0;
+                }
+                if(double.IsNaN(top))
+                {
+                    top=0;
+                }
+
+                Canvas.SetRight(_designerItem, left+_designerItem.Width);
+                Canvas.SetBottom(_designerItem, top + _designerItem.Height);
             }
 
             e.Handled = true;

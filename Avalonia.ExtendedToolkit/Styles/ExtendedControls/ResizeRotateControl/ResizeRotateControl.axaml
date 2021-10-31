@@ -121,9 +121,11 @@
       <Setter.Value>
         <ControlTemplate>
           <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
-            <Grid Margin="3,20,3,3">
+            <Grid Margin="3,20,3,3" x:Name="PART_ContentGrid">
               <ContentControl Content="{TemplateBinding Content}"
-                              Margin="{TemplateBinding Padding}"/>
+                              Margin="{TemplateBinding Padding}"
+                              x:Name="PART_Content"
+                              />
             </Grid>
 
             <Controls:MoveThumb Cursor="SizeAll"
@@ -252,6 +254,22 @@
     </Setter>
   </Style>
 
+  <Style Selector="Controls|ResizeRotateControl[IsRotationEnabled=false] /template/ Grid#PART_ContentGrid">
+    <Setter Property="Margin" Value="3"/>
+  </Style>
+
+  <Style Selector="Controls|ResizeRotateControl[IsRotationEnabled=false] /template/ Controls|MoveThumb#PART_MoveThumb">
+    <Setter Property="Margin" Value="3"/>
+  </Style>
+
+  <Style Selector="Controls|ResizeRotateControl[IsRotationEnabled=false] /template/ Grid#PART_VisualGrid">
+    <Setter Property="Margin" Value="3"/>
+  </Style>
+
+  <Style Selector="Controls|ResizeRotateControl[IsRotationEnabled=false] /template/ Grid#PART_ThumbGrid">
+    <Setter Property="Margin" Value="3"/>
+  </Style>
+
   <Style Selector="Controls|ResizeRotateControl.ThickStyle">
     <Setter Property="MinHeight" Value="60" />
     <Setter Property="MinWidth" Value="60" />
@@ -266,7 +284,9 @@
           <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
             <Grid Margin="3,23,3,3">
               <ContentControl Content="{TemplateBinding Content}"
-                              Margin="{TemplateBinding Padding}" />
+                              Margin="{TemplateBinding Padding}" 
+                              x:Name="PART_Content"
+                              />
             </Grid>
 
             <Controls:MoveThumb Cursor="SizeAll"

@@ -5,22 +5,23 @@
 		<OutputType>Exe</OutputType>
 		<TargetFrameworks>netcoreapp3.1</TargetFrameworks>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<IsPackable>false</IsPackable>
 		<StartupObject></StartupObject>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Avalonia" Version="0.10.7" />
-		<PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.7" />
-		<PackageReference Include="Avalonia.Desktop" Version="0.10.7" />
-		<PackageReference Include="Avalonia.ReactiveUI" Version="0.10.7" />
-		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.7" />
-		<PackageReference Include="Avalonia.Xaml.Interactions" Version="0.10.7" />
-		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.10.7" />
+		<PackageReference Include="Avalonia" Version="0.10.8" />
+		<PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.8" />
+		<PackageReference Include="Avalonia.Desktop" Version="0.10.8" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="0.10.8" />
+		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.8" />
+		<PackageReference Include="Avalonia.Xaml.Interactions" Version="0.10.8" />
+		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.10.8" />
 		<PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="DynamicData" Version="7.3.1" />
-    	<PackageReference Include="DynamicData.ReactiveUI" Version="6.11.0.2613" />
+		<PackageReference Include="DynamicData.ReactiveUI" Version="6.11.0.2613" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -34,7 +35,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Views\ColorPickerExampleView.xaml" />
+		<None Remove="Views\ColorPickerExampleView.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -68,5 +69,5 @@
 			<Private>true</Private>
 		</Reference>
 	</ItemGroup>
-	
+
 </Project>
