@@ -10,6 +10,11 @@ namespace Avalonia.ExtendedToolkit.Controls
 {
     public partial class ResizeRotateControl
     {
+
+        private static readonly string PART_ContentGrid = "PART_ContentGrid";
+        private static readonly string PART_VisualGrid = "PART_VisualGrid";
+        private static readonly string PART_ThumbGrid = "PART_ThumbGrid";
+
         private static readonly string PART_Content = "PART_Content";
         private static readonly string PART_SizeChrome = "PART_SizeChrome";
         private static readonly string PART_ResizeThumbTopCenter = "PART_ResizeThumbTopCenter";
@@ -20,16 +25,18 @@ namespace Avalonia.ExtendedToolkit.Controls
         private static readonly string PART_ResizeThumbTopRight = "PART_ResizeThumbTopRight";
         private static readonly string PART_ResizeThumbBottomLeft = "PART_ResizeThumbBottomLeft";
         private static readonly string PART_ResizeThumbBottomRight = "PART_ResizeThumbBottomRight";
-        private static readonly string PART_VisualGrid = "PART_VisualGrid";
-        private static readonly string PART_ThumbGrid = "PART_ThumbGrid";
         private static readonly string PART_MoveThumb = "PART_MoveThumb";
         private static readonly string PART_RotateThumb = "PART_RotateThumb";
 
         private List<ResizeThumb> _resizeThumbs = new List<ResizeThumb>();
+        private Grid _contentGrid;
+        private Thickness _contentGridMargin;
         private ContentControl _contentControl;
         private SizeChrome _sizeChrome;
         private Grid _visualGrid;
+        private Thickness _visualGridMargin;
         private Grid _thumbGrid;
+        private Thickness _thumbGridMargin;
         private MoveThumb _moveThumb;
         private RotateThumb _rotateThumb;
 
@@ -48,6 +55,44 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public static readonly StyledProperty<object> ContentProperty =
         AvaloniaProperty.Register<ResizeRotateControl, object>(nameof(Content));
+
+
+
+        /// <summary>
+        /// Gets or sets AllowDragOutOfView.
+        /// </summary>
+        public bool AllowDragOutOfView
+        {
+            get { return (bool)GetValue(AllowDragOutOfViewProperty); }
+            set { SetValue(AllowDragOutOfViewProperty, value); }
+        }
+
+        /// <summary>
+        /// Defines the <see cref="AllowDragOutOfView"/> property.
+        /// </summary>
+        public static readonly StyledProperty<bool> AllowDragOutOfViewProperty =
+            AvaloniaProperty.Register<ResizeRotateControl, bool>(nameof(AllowDragOutOfView), defaultValue: false);
+
+
+
+        /// <summary>
+        /// Gets or sets BouncedControl.
+        /// </summary>
+        public IControl BouncedControl
+        {
+            get { return (IControl)GetValue(BouncedControlProperty); }
+            set { SetValue(BouncedControlProperty, value); }
+        }
+
+        /// <summary>
+        /// Defines the <see cref="BouncedControl"/> property.
+        /// </summary>
+        public static readonly StyledProperty<IControl> BouncedControlProperty =
+            AvaloniaProperty.Register<ResizeRotateControl, IControl>(nameof(BouncedControl));
+
+
+
+
 
         /// <summary>
         /// Gets or sets IsRotationEnabled.

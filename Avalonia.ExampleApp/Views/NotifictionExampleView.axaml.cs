@@ -42,8 +42,8 @@ namespace Avalonia.ExampleApp.Views
                 .Background("#333333")
                 .HasBadge("Info")
                 .HasMessage("Update will be installed on next application restart. This message will be dismissed after 5 seconds.")
-                .Dismiss().WithButton("Update now", button => { })
-                .Dismiss().WithButton("Release notes", button => { })
+                .Dismiss().WithButton("Update now", button => { Console.WriteLine("Update now"); })
+                .Dismiss().WithButton("Release notes", button => { Console.WriteLine("Release notes"); })
                 .Dismiss().WithDelay(TimeSpan.FromSeconds(5))
                 .Queue();
         }
@@ -79,9 +79,9 @@ namespace Avalonia.ExampleApp.Views
                 .Background("#333333")
                 .HasBadge("Info")
                 .HasMessage("Update will be installed on next application restart.")
-                .Dismiss().WithButton("Update now", button => { })
-                .Dismiss().WithButton("Release notes", button => { })
-                .Dismiss().WithButton("Later", button => { })
+                .Dismiss().WithButton("Update now", button => { Console.WriteLine("Update now"); })
+                .Dismiss().WithButton("Release notes", button => { Console.WriteLine("Release notes"); })
+                .Dismiss().WithButton("Later", button => { Console.WriteLine("Later"); })
                 .Queue();
         }
 
@@ -94,8 +94,8 @@ namespace Avalonia.ExampleApp.Views
                 .HasBadge("Warn")
                 .HasHeader("Error")
                 .HasMessage("Failed to retrieve data.")
-                .WithButton("Try again", button => { })
-                .Dismiss().WithButton("Ignore", button => { })
+                .WithButton("Try again", button => { Console.WriteLine("Try again"); })
+                .Dismiss().WithButton("Ignore", button => { Console.WriteLine("Ignore"); })
                 .Queue();
         }
 
@@ -150,7 +150,7 @@ namespace Avalonia.ExampleApp.Views
                     Width = 40,
                     Background = Brushes.Indigo
                 })
-                .Dismiss().WithButton("Dismiss", button => { })
+                .Dismiss().WithButton("Dismiss", button => { Console.WriteLine("Dismiss"); })
                 .Queue();
         }
 

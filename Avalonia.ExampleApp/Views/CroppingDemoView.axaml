@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.CroppingDemoView">
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="90*"/>
+      <ColumnDefinition Width="10*"/>
+    </Grid.ColumnDefinitions>
+
+     <Controls:CroppingControl Grid.Column="0" 
+        ImagePath="{Binding Path}"
+        x:Name="croppingCtrl"
+        />
+      
+      <StackPanel Grid.Column="1" Margin="8">
+         <TextBlock Text="Cropped Result:" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+         <Border BorderThickness="2" 
+               BorderBrush="{DynamicResource MahApps.Brushes.Accent}" 
+               Width="100" Height="100"
+               Margin="5,8,3,0"
+            >
+            <Image  
+            Source="{Binding ElementName=croppingCtrl, Path=CroppedImage, Mode=TwoWay}"
+            />
+         </Border>
+          
+          <TextBlock Margin="5,10,0,0" Text="ESC also reset the cropping image"
+                     Foreground="{DynamicResource MahApps.Brushes.Black}"
+                     TextWrapping="WrapWithOverflow"
+                     />
+          
+      </StackPanel>
+        
+      
+      
+
+    
+  
+  
+  
+  </Grid>
+</UserControl>

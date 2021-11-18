@@ -1,0 +1,90 @@
+<Styles xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             >
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/CroppingControl/Icons.axaml"/>
+    
+    <Style Selector="Controls|ColorPicker.borderPicker">
+    <Setter Property="Padding" Value="4" />
+    <Setter Property="PreviewColorBrush" Value="Gray"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <StackPanel Orientation="Vertical">
+            <Border>
+              <StackPanel>
+                <ToggleButton x:Name="PART_Button" HorizontalContentAlignment="Stretch" 
+                       VerticalContentAlignment="Stretch" Width="30" Height="30">
+                  <ToggleButton.Content>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                        <Rectangle Height="10" x:Name="PART_ContentBorder"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Bottom"
+                              Stroke="{DynamicResource MahApps.Brushes.Black}"
+                              StrokeThickness="1"
+                              Fill="{TemplateBinding PreviewColorBrush}"
+                              />
+                    </Grid>
+                  </ToggleButton.Content>
+                </ToggleButton>
+
+                <Popup x:Name="PART_PopupMenu" PlacementTarget="{Binding #button}" PlacementMode="AnchorAndGravity"
+                       MaxHeight="400" Width="250" StaysOpen="False" UseLayoutRounding="True">
+                  <Border BorderBrush="{DynamicResource ThemeBorderMidBrush}" BorderThickness="1">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                      <Controls:ColorSelector x:Name="PART_ColorSelector" />
+                    </ScrollViewer>
+                  </Border>
+                </Popup>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Controls|ColorPicker.fillPicker">
+    <Setter Property="Padding" Value="4" />
+    <Setter Property="PreviewColorBrush" Value="Gray"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <StackPanel Orientation="Vertical">
+            <Border>
+              <StackPanel>
+                <ToggleButton x:Name="PART_Button" HorizontalContentAlignment="Stretch" 
+                       VerticalContentAlignment="Stretch">
+                  <ToggleButton.Content>
+                    <Grid HorizontalAlignment="Stretch" ColumnDefinitions="Auto, Auto">
+                        <Controls:ImageExt GeometryFillBrush="{DynamicResource MahApps.Brushes.Black}" Grid.Column="0" Source="{DynamicResource Fill_Icon}" 
+                               Width="25" Height="25"/>
+
+                        <Rectangle Grid.Column="1" Margin="10,0,0,0" Height="10" Width="10" x:Name="PART_ContentBorder"
+                              Fill="{TemplateBinding PreviewColorBrush}"
+                              />
+                    </Grid>
+                  </ToggleButton.Content>
+                </ToggleButton>
+
+                <Popup x:Name="PART_PopupMenu" PlacementTarget="{Binding #button}" PlacementMode="AnchorAndGravity"
+                       MaxHeight="400" Width="250" StaysOpen="False" UseLayoutRounding="True">
+                  <Border BorderBrush="{DynamicResource ThemeBorderMidBrush}" BorderThickness="1">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                      <Controls:ColorSelector x:Name="PART_ColorSelector" />
+                    </ScrollViewer>
+                  </Border>
+                </Popup>
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+<Style Selector="Controls|ColorPicker">
+    <Setter Property="Height" Value="30"/>
+</Style>
+
+</Styles>

@@ -24,7 +24,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         private RelativePoint _transformOrigin;
         private Control _designerItem;
         private Canvas _canvas;
-
+      
         /// <summary>
         /// Gets or sets StrokeBrush.
         /// </summary>
@@ -55,10 +55,54 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<IBrush> FillBrushProperty =
         AvaloniaProperty.Register<ResizeThumb, IBrush>(nameof(FillBrush));
 
+
+
+        /// <summary>
+        /// Gets or sets AllowResizeOutOfView.
+        /// </summary>
+        public bool AllowResizeOutOfView
+        {
+            get { return (bool)GetValue(AllowResizeOutOfViewProperty); }
+            set { SetValue(AllowResizeOutOfViewProperty, value); }
+        }
+
+        /// <summary>
+        /// Defines the <see cref="AllowResizeOutOfView"/> property.
+        /// </summary>
+        public static readonly StyledProperty<bool> AllowResizeOutOfViewProperty =
+            AvaloniaProperty.Register<ResizeThumb, bool>(nameof(AllowResizeOutOfView));
+
+
+
+        /// <summary>
+        /// Gets or sets BouncedControl.
+        /// </summary>
+        public IControl BouncedControl
+        {
+            get { return (IControl)GetValue(BouncedControlProperty); }
+            set { SetValue(BouncedControlProperty, value); }
+        }
+
+        /// <summary>
+        /// Defines the <see cref="BouncedControl"/> property.
+        /// </summary>
+        public static readonly StyledProperty<IControl> BouncedControlProperty =
+            AvaloniaProperty.Register<ResizeThumb, IControl>(nameof(BouncedControl));
+
+
+
+
+
         public ResizeThumb()
         {
             DragStarted += ResizeThumb_DragStarted;
             DragDelta += ResizeThumb_DragDelta;
+            DragCompleted += ResizeThumbDragCompleted;
+        }
+
+        private void ResizeThumbDragCompleted(object sender, VectorEventArgs e)
+        {
+            base.OnDragCompleted(e);
         }
 
         /// <summary>
@@ -99,22 +143,25 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             if (_designerItem != null)
             {
-                double deltaVertical, deltaHorizontal;
+                double deltaVertical = 0;
+                double deltaHorizontal = 0;
+                double top = 0;
+                double left = 0;
 
                 switch (VerticalAlignment)
                 {
                     case Avalonia.Layout.VerticalAlignment.Bottom:
                         deltaVertical = Math.Min(-e.Vector.Y, _designerItem.DesiredSize.Height - _designerItem.MinHeight);
-                        Canvas.SetTop(_designerItem, Canvas.GetTop(_designerItem) + (_transformOrigin.Point.Y * deltaVertical * (1 - Math.Cos(-_angle))));
-                        Canvas.SetLeft(_designerItem, Canvas.GetLeft(_designerItem) - deltaVertical * _transformOrigin.Point.Y * Math.Sin(-_angle));
-                        _designerItem.Height -= deltaVertical;
+                        top = Canvas.GetTop(_designerItem) + (_transformOrigin.Point.Y * deltaVertical * (1 - Math.Cos(-_angle)));
+                        left = Canvas.GetLeft(_designerItem) - deltaVertical * _transformOrigin.Point.Y * Math.Sin(-_angle);
+                        //_designerItem.Height -= deltaVertical;
                         break;
 
                     case Avalonia.Layout.VerticalAlignment.Top:
                         deltaVertical = Math.Min(e.Vector.Y, _designerItem.DesiredSize.Height - _designerItem.MinHeight);
-                        Canvas.SetTop(_designerItem, Canvas.GetTop(_designerItem) + deltaVertical * Math.Cos(-_angle) + (_transformOrigin.Point.Y * deltaVertical * (1 - Math.Cos(-_angle))));
-                        Canvas.SetLeft(_designerItem, Canvas.GetLeft(_designerItem) + deltaVertical * Math.Sin(-_angle) - (_transformOrigin.Point.Y * deltaVertical * Math.Sin(-_angle)));
-                        _designerItem.Height -= deltaVertical;
+                        top = Canvas.GetTop(_designerItem) + deltaVertical * Math.Cos(-_angle) + (_transformOrigin.Point.Y * deltaVertical * (1 - Math.Cos(-_angle)));
+                        left = Canvas.GetLeft(_designerItem) + deltaVertical * Math.Sin(-_angle) - (_transformOrigin.Point.Y * deltaVertical * Math.Sin(-_angle));
+                        //_designerItem.Height -= deltaVertical;
                         break;
 
                     default:
@@ -125,33 +172,67 @@ namespace Avalonia.ExtendedToolkit.Controls
                 {
                     case Avalonia.Layout.HorizontalAlignment.Left:
                         deltaHorizontal = Math.Min(e.Vector.X, _designerItem.DesiredSize.Width - _designerItem.MinWidth);
-                        Canvas.SetTop(_designerItem, Canvas.GetTop(_designerItem) + deltaHorizontal * Math.Sin(_angle) - _transformOrigin.Point.X * deltaHorizontal * Math.Sin(_angle));
-                        Canvas.SetLeft(_designerItem, Canvas.GetLeft(_designerItem) + deltaHorizontal * Math.Cos(_angle) + (_transformOrigin.Point.X * deltaHorizontal * (1 - Math.Cos(_angle))));
-                        _designerItem.Width -= deltaHorizontal;
+                        top = Canvas.GetTop(_designerItem) + deltaHorizontal * Math.Sin(_angle) - _transformOrigin.Point.X * deltaHorizontal * Math.Sin(_angle);
+                        left = Canvas.GetLeft(_designerItem) + deltaHorizontal * Math.Cos(_angle) + (_transformOrigin.Point.X * deltaHorizontal * (1 - Math.Cos(_angle)));
+                        //_designerItem.Width -= deltaHorizontal;
                         break;
 
                     case Avalonia.Layout.HorizontalAlignment.Right:
                         deltaHorizontal = Math.Min(-e.Vector.X, _designerItem.DesiredSize.Width - _designerItem.MinWidth);
-                        Canvas.SetTop(_designerItem, Canvas.GetTop(_designerItem) - _transformOrigin.Point.X * deltaHorizontal * Math.Sin(_angle));
-                        Canvas.SetLeft(_designerItem, Canvas.GetLeft(_designerItem) + (deltaHorizontal * _transformOrigin.Point.X * (1 - Math.Cos(_angle))));
-                        _designerItem.Width -= deltaHorizontal;
+                        top = Canvas.GetTop(_designerItem) - _transformOrigin.Point.X * deltaHorizontal * Math.Sin(_angle);
+                        left = Canvas.GetLeft(_designerItem) + (deltaHorizontal * _transformOrigin.Point.X * (1 - Math.Cos(_angle)));
+                        //_designerItem.Width -= deltaHorizontal;
                         break;
 
                     default:
                         break;
                 }
-                double left = Canvas.GetLeft(_designerItem);
-                double top = Canvas.GetTop(_designerItem);
+
                 if (double.IsNaN(left))
                 {
                     left = 0;
                 }
-                if(double.IsNaN(top))
+                if (double.IsNaN(top))
                 {
-                    top=0;
+                    top = 0;
                 }
 
-                Canvas.SetRight(_designerItem, left+_designerItem.Width);
+                if (AllowResizeOutOfView == false)
+                {
+                    var bouncedControl = BouncedControl != null ? BouncedControl : _designerItem.Parent;
+
+                    var controlBounds = bouncedControl.Bounds;
+
+                    var rect = new Rect(new Point(left, top), _designerItem.DesiredSize);
+
+                    if (controlBounds.Contains(rect) == false)
+                    {
+                        return;
+                    }
+
+                }
+
+                switch (VerticalAlignment)
+                {
+                    case Avalonia.Layout.VerticalAlignment.Top:
+                    case Avalonia.Layout.VerticalAlignment.Bottom:
+                        _designerItem.Height -= deltaVertical;
+                        break;
+
+                }
+
+                switch (HorizontalAlignment)
+                {
+                    case Avalonia.Layout.HorizontalAlignment.Left:
+                    case Avalonia.Layout.HorizontalAlignment.Right:
+                        _designerItem.Width -= deltaHorizontal;
+                        break;
+                }
+
+
+                Canvas.SetTop(_designerItem, top);
+                Canvas.SetLeft(_designerItem, left);
+                Canvas.SetRight(_designerItem, left + _designerItem.Width);
                 Canvas.SetBottom(_designerItem, top + _designerItem.Height);
             }
 

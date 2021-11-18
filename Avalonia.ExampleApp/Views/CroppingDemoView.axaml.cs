@@ -1,18 +1,13 @@
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.ExtendedToolkit.Controls;
 using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public partial class MainWindow : MetroWindow
+    public partial class CroppingDemoView : UserControl
     {
-        public MainWindow()
+        public CroppingDemoView()
         {
             InitializeComponent();
-#if DEBUG
-            this.AttachDevTools();
-#endif
         }
 
         private void InitializeComponent()

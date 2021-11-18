@@ -16,8 +16,35 @@ namespace Avalonia.ExtendedToolkit.Controls
         public ResizeRotateControl()
         {
             ShowAlwaysSizingProperty.Changed.AddClassHandler<ResizeRotateControl>((o, e) => OnShowAlwaysSizingChanged(o, e));
-            WidthProperty.Changed.AddClassHandler<ResizeRotateControl>((o,e)=> OnSizeChanged(o,e));
-            HeightProperty.Changed.AddClassHandler<ResizeRotateControl>((o,e)=> OnSizeChanged(o,e));
+            WidthProperty.Changed.AddClassHandler<ResizeRotateControl>((o, e) => OnSizeChanged(o, e));
+            HeightProperty.Changed.AddClassHandler<ResizeRotateControl>((o, e) => OnSizeChanged(o, e));
+            IsRotationEnabledProperty.Changed.AddClassHandler<ResizeRotateControl>((o, e) => OnIsRotationEnabledChanged(o, e));
+        }
+
+        static ResizeRotateControl()
+        {
+            AffectsMeasure<ResizeRotateControl>(IsRotationEnabledProperty);
+            AffectsRender<ResizeRotateControl>(IsRotationEnabledProperty);
+        }
+
+        private void OnIsRotationEnabledChanged(ResizeRotateControl o, AvaloniaPropertyChangedEventArgs e)
+        {
+            if (_contentGrid != null && _visualGrid != null && _thumbGrid != null && e.NewValue is bool isRotationEnabled)
+            {
+                if (isRotationEnabled)
+                {
+                    _contentGrid.Margin = _contentGridMargin;
+                    _visualGrid.Margin = _visualGridMargin;
+                    _thumbGrid.Margin = _thumbGrid.Margin;
+                }
+                else
+                {
+                    _contentGrid.Margin =
+                    _visualGrid.Margin =
+                    _thumbGrid.Margin = new Thickness(3);
+                }
+                o.InvalidateVisual();
+            }
         }
 
         private void OnSizeChanged(ResizeRotateControl o, object e)
@@ -38,22 +65,57 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
         {
+            AddOrRemoveEvents(true);
+
+            base.OnDetachedFromVisualTree(e);
+        }
+
+        private void AddOrRemoveEvents(bool remove)
+        {
             foreach (var item in _resizeThumbs)
             {
-                item.DragCompleted -= OnDragCompleted;
+                item.AllowResizeOutOfView = AllowDragOutOfView;
+                item.BouncedControl = BouncedControl;
+                if (remove)
+                {
+                    item.DragCompleted -= OnDragCompleted;
+                }
+                else
+                {
+                    item.DragCompleted += OnDragCompleted;
+                }
             }
 
             if (_moveThumb != null)
             {
-                _moveThumb.DragCompleted -= MoveThumb_DragCompleted;
+                if (remove)
+                {
+                    _moveThumb.DragCompleted -= MoveThumb_MovedFinished;
+                }
+                else
+                {
+                    _moveThumb.DragCompleted += MoveThumb_MovedFinished;
+                }
             }
 
             if (_rotateThumb != null)
             {
-                _rotateThumb.RotateFinsished -= RotateThumb_RotateFinished;
+                if (remove)
+                {
+                    _rotateThumb.RotateFinsished -= RotateThumb_RotateFinished;
+                }
+                else
+                {
+                    _rotateThumb.RotateFinsished += RotateThumb_RotateFinished;
+                }
             }
+        }
 
-            base.OnDetachedFromVisualTree(e);
+        protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+        {
+            AddOrRemoveEvents(false);
+
+            base.OnAttachedToVisualTree(e);
         }
 
         /// <summary>
@@ -62,6 +124,19 @@ namespace Avalonia.ExtendedToolkit.Controls
         protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             base.OnApplyTemplate(e);
+
+            _contentGrid = e.NameScope.Find<Grid>(PART_ContentGrid);
+
+            if (_contentGrid == null)
+                return;
+
+            _contentGridMargin = _contentGrid.Margin;
+
+            _visualGrid = e.NameScope.Find<Grid>(PART_VisualGrid);
+            _visualGridMargin = _visualGrid.Margin;
+
+            _thumbGrid = e.NameScope.Find<Grid>(PART_ThumbGrid);
+            _thumbGridMargin = _thumbGrid.Margin;
 
             _contentControl = e.NameScope.Find<ContentControl>(PART_Content);
 
@@ -77,26 +152,21 @@ namespace Avalonia.ExtendedToolkit.Controls
             _resizeThumbs.Add(e.NameScope.Find<ResizeThumb>(PART_ResizeThumbBottomLeft));
             _resizeThumbs.Add(e.NameScope.Find<ResizeThumb>(PART_ResizeThumbBottomRight));
 
-            _visualGrid = e.NameScope.Find<Grid>(PART_VisualGrid);
-            _thumbGrid = e.NameScope.Find<Grid>(PART_ThumbGrid);
-
             _moveThumb = e.NameScope.Find<MoveThumb>(PART_MoveThumb);
-            _moveThumb.DragCompleted += MoveThumb_DragCompleted;
+            _moveThumb.AllowDragOutOfView = AllowDragOutOfView;
+            _moveThumb.BouncedControl = BouncedControl;
+            _moveThumb.MovedFinished -= MoveThumb_MovedFinished;
+            _moveThumb.MovedFinished += MoveThumb_MovedFinished;
 
             _rotateThumb = e.NameScope.Find<RotateThumb>(PART_RotateThumb);
 
-            if (_rotateThumb != null)
-            {
-                _rotateThumb.RotateFinsished += RotateThumb_RotateFinished;
-            }
+            AddOrRemoveEvents(false);
 
-            foreach (var item in _resizeThumbs)
-            {
-                item.DragCompleted += OnDragCompleted;
-            }
+            RaisePropertyChanged<bool>(IsRotationEnabledProperty, new Data.Optional<bool>(), new Data.BindingValue<bool>(IsRotationEnabled));
 
             UpdateOuterRectPositions();
         }
+
         private void RotateThumb_RotateFinished(object sender, RotatedEventArgs e)
         {
             RotationAngle = e.Angle;
@@ -111,18 +181,21 @@ namespace Avalonia.ExtendedToolkit.Controls
             };
             RaiseEvent(args);
         }
-        private void MoveThumb_DragCompleted(object sender, VectorEventArgs e)
+
+        private void MoveThumb_MovedFinished(object sender, VectorEventArgs e)
         {
             var dragFinished = new VectorEventArgs();
             dragFinished.RoutedEvent = MovedEvent;
             dragFinished.Route = e.Route;
             dragFinished.Source = e.Source;
             dragFinished.Vector = e.Vector;
+            UpdateOuterRectPositions();
+
             RaiseEvent(dragFinished);
 
             RaisePositionEvent(e);
-
         }
+
         private void RaisePositionEvent(RoutedEventArgs e)
         {
             var positionEvent = new PositionChangedEventArgs();
@@ -147,7 +220,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
 
             var relativePoint = VisualExtensions.TranslatePoint(_contentControl, new Point(), this);
-
+            var margin = _contentControl.Margin;
             double left = Canvas.GetLeft(this);
             double top = Canvas.GetTop(this);
             double right = Canvas.GetRight(this);
@@ -173,12 +246,12 @@ namespace Avalonia.ExtendedToolkit.Controls
                 bottom = top + DesiredSize.Height;
             }
 
-
-            OuterRectLeft = left - relativePoint.Value.X;
-            OuterRectTop = top - relativePoint.Value.Y;
-            OuterRectRight = right - relativePoint.Value.X;
-            OuterRectBottom = bottom - relativePoint.Value.Y;
+            OuterRectLeft = left - margin.Left;
+            OuterRectTop = top - margin.Top;
+            OuterRectRight = right - margin.Right;
+            OuterRectBottom = bottom - margin.Bottom;
         }
+
         private void OnDragCompleted(object sender, VectorEventArgs e)
         {
             var dragFinished = new VectorEventArgs();
@@ -189,6 +262,5 @@ namespace Avalonia.ExtendedToolkit.Controls
             RaiseEvent(dragFinished);
             RaisePositionEvent(e);
         }
-
     }
 }

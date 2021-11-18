@@ -40,6 +40,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         protected override void OnClick()
         {
             base.OnClick();
+            Callback?.Invoke(this);
         }
 
         /// <summary>

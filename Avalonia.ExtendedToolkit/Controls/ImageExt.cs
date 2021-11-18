@@ -34,7 +34,17 @@ namespace Avalonia.ExtendedToolkit.Controls
         static ImageExt()
         {
             GeometryFillBrushProperty.Changed.AddClassHandler<ImageExt>((o, e) => OnGeometryFillBrushChanged(o, e));
+            SourceProperty.Changed.AddClassHandler<ImageExt>((o, e) => OnSourceChanged(o, e));
         }
+
+        private static void OnSourceChanged(ImageExt o, object e)
+        {
+            o.RaisePropertyChanged<IBrush>(GeometryFillBrushProperty, null, new Data.BindingValue<IBrush>(o.GeometryFillBrush));
+        }
+
+        /// <summary>
+        /// updates the brush of the geometry
+        /// </summary>
         private static void OnGeometryFillBrushChanged(ImageExt o, AvaloniaPropertyChangedEventArgs e)
         {
             var brush = e.NewValue as IBrush;

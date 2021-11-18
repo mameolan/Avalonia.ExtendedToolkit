@@ -61,6 +61,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AvaloniaResource Remove="Styles\ExtendedControls\CroppingControl.axaml" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<AvaloniaXaml Remove="Styles\Themes\Theme.Template.axaml" />
 	</ItemGroup>
 
