@@ -9,12 +9,12 @@ namespace Avalonia.ExtendedToolkit.Controls
 {
     public partial class CroppingControl : TemplatedControl
     {
-        private static readonly string PART_ScrollViewer = "PART_ScrollViewer";
+        private static readonly string PART_ContentControl = "PART_ContentControl";
+        private static readonly string PART_ZoomSlider = "PART_ZoomSlider";
         private static readonly double ZoomDevidedFactor = 50.0;
         private static readonly double MinZoomFactor = 0.01;
         private bool _isMouseCaptured;
         private Point? _mouseLeftDownPoint = null;
-
 
         private Image _image = new Image
         {
@@ -23,10 +23,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Stretch
         };
 
-        private Grid _contentGrid;
         private Slider _zoomSlider;
         private Canvas _adornerCanvas;
-        private ScrollViewer _scrollViewer;
+        private ContentControl _contentControl;
         private ItemVM _flipVertical;
 
         private ItemVM _fliphorizontal;
@@ -35,7 +34,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         private ItemVM _rotateLeftItem;
         private ItemVM _rotateRightItem;
 
-        Rectangle _backgroundRectangle = new Rectangle
+        private Rectangle _backgroundRectangle = new Rectangle
         {
             Fill = Brushes.Gray,
         };
@@ -284,8 +283,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<ICommand> PictureManipulationCommandProperty =
         AvaloniaProperty.Register<CroppingControl, ICommand>(nameof(PictureManipulationCommand));
 
-
-
         /// <summary>
         /// Gets or sets ZoomMaximum.
         /// </summary>
@@ -300,8 +297,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public static readonly StyledProperty<double> ZoomMaximumProperty =
             AvaloniaProperty.Register<CroppingControl, double>(nameof(ZoomMaximum), defaultValue: 200);
-
-
 
         /// <summary>
         /// Gets or sets ZoomMinimum.
@@ -318,10 +313,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<double> ZoomMinimumProperty =
             AvaloniaProperty.Register<CroppingControl, double>(nameof(ZoomMinimum), defaultValue: 1d);
 
-
-
-
-
         /// <summary>
         /// Gets or sets RotateResizeBackgroundBrush.
         /// </summary>
@@ -336,8 +327,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public static readonly StyledProperty<IBrush> RotateResizeBackgroundBrushProperty =
             AvaloniaProperty.Register<CroppingControl, IBrush>(nameof(RotateResizeBackgroundBrush));
-
-
 
         /// <summary>
         /// Gets or sets CancelCommand.
@@ -354,9 +343,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<ICommand> CancelCommandProperty =
             AvaloniaProperty.Register<CroppingControl, ICommand>(nameof(CancelCommand));
 
-
-
-
         /// <summary>
         /// Gets or sets BackgroundRectangleOpacity.
         /// </summary>
@@ -372,11 +358,19 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static readonly StyledProperty<double> BackgroundRectangleOpacityProperty =
             AvaloniaProperty.Register<CroppingControl, double>(nameof(BackgroundRectangleOpacity), defaultValue: 0.5d);
 
+        /// <summary>
+        /// Gets or sets ShowBackground.
+        /// </summary>
+        public bool ShowBackground
+        {
+            get { return (bool)GetValue(ShowBackgroundProperty); }
+            set { SetValue(ShowBackgroundProperty, value); }
+        }
 
-
-
-
-
-
+        /// <summary>
+        /// Defines the ShowBackground property.
+        /// </summary>
+        public static readonly StyledProperty<bool> ShowBackgroundProperty =
+        AvaloniaProperty.Register<CroppingControl, bool>(nameof(ShowBackground), defaultValue: true);
     }
 }

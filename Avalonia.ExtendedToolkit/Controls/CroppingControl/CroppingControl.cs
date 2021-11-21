@@ -165,14 +165,11 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         private void OnZoomFactorChanged(CroppingControl o, AvaloniaPropertyChangedEventArgs e)
         {
-            if (e.NewValue is double zoomFactor)
+            if (e.NewValue is double zoomFactor && _image.Source != null)
             {
                 zoomFactor = Math.Max(zoomFactor / ZoomDevidedFactor, MinZoomFactor);
 
-                //using (Bitmap bitmap = new Bitmap(ImagePath))
-                {
-                    _image.Source = _image.Source.Zoom(zoomFactor); //bitmap.Zoom(zoomFactor);
-                }
+                _image.Source = _image.Source.Zoom(zoomFactor); //bitmap.Zoom(zoomFactor);
 
                 UpdateAdornerSize();
             }
@@ -241,7 +238,6 @@ namespace Avalonia.ExtendedToolkit.Controls
 
             CroppedImage = null;
             _mouseLeftDownPoint = null;
-            _adornerCanvas.IsEnabled = false;
         }
 
         /// <summary>
@@ -271,20 +267,17 @@ namespace Avalonia.ExtendedToolkit.Controls
                 switch (croppingType)
                 {
                     case CroppingType.Circle:
-                        //croppingLeft = RubberBandEllipse.Bounds.Left;
-                        //croppingTop = RubberBandEllipse.Bounds.Top;
                         croppingLeft = Canvas.GetLeft(RubberBand as AvaloniaObject);
                         croppingTop = Canvas.GetTop(RubberBand as AvaloniaObject);
-                        croppingWidth = RubberBand.Width;//RubberBandEllipse.Bounds.Width;
-                        croppingHeight = RubberBand.Height;//RubberBandEllipse.Bounds.Height;
+                        croppingWidth = RubberBand.Width;
+                        croppingHeight = RubberBand.Height;
                         break;
 
                     case CroppingType.Rectangle:
-                        croppingLeft = Canvas.GetLeft(RubberBand as AvaloniaObject); //RubberBand.OuterRectLeft; //
-                        croppingTop = Canvas.GetTop(RubberBand as AvaloniaObject); //RubberBand.OuterRectTop;//
-                        croppingWidth = RubberBand.Width;// RubberBand.OuterRectRight - RubberBand.OuterRectLeft;
-
-                        croppingHeight = RubberBand.Height;//RubberBand.OuterRectBottom - RubberBand.OuterRectTop;
+                        croppingLeft = Canvas.GetLeft(RubberBand as AvaloniaObject);
+                        croppingTop = Canvas.GetTop(RubberBand as AvaloniaObject);
+                        croppingWidth = RubberBand.Width;
+                        croppingHeight = RubberBand.Height;
                         break;
                 }
 
@@ -433,6 +426,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 _adornerCanvas.Children.Add(_image);
                 _adornerCanvas.IsEnabled = true;
 
+                _contentControl.Content = _adornerCanvas;
+
                 _mouseLeftDownPoint = null;
                 CanDoPictureModification = true;
                 ZoomFactor = 50.0;
@@ -445,17 +440,14 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         private void UpdateAdornerSize()
         {
-            double? width = (_image?.Source as Bitmap)?.PixelSize.Width;
-            double? height = (_image?.Source as Bitmap)?.PixelSize.Height;
-
-            if (width.HasValue)
+            if (_image.DesiredSize.Width > 0)
             {
-                _adornerCanvas.Width = _image.Width;
+                _adornerCanvas.Width = _image.DesiredSize.Width;
             }
 
-            if (height.HasValue)
+            if (_image.DesiredSize.Height > 0)
             {
-                _adornerCanvas.Height = _image.Height;
+                _adornerCanvas.Height = _image.DesiredSize.Height;
             }
         }
 
@@ -468,10 +460,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             base.OnApplyTemplate(e);
 
-            _contentGrid = e.NameScope.Find<Grid>("contentGrid");
-            _zoomSlider = e.NameScope.Find<Slider>("zoomSlider");
-            _adornerCanvas = e.NameScope.Find<Canvas>("adornerCanvas");
-            _scrollViewer = e.NameScope.Find<ScrollViewer>(PART_ScrollViewer);
+            _zoomSlider = e.NameScope.Find<Slider>(PART_ZoomSlider);
+            _adornerCanvas = new Canvas();
+            _contentControl = e.NameScope.Find<ContentControl>(PART_ContentControl);
 
             Binding binding = null;
             if (RubberBandEllipse == null)
@@ -480,7 +471,6 @@ namespace Avalonia.ExtendedToolkit.Controls
                 {
                     Fill = Brushes.Transparent,
                     StrokeThickness = 1,
-                    //Stroke = Brushes.Red,
                     IsVisible = false,
                     Margin = new Thickness(2)
                 };
@@ -503,6 +493,12 @@ namespace Avalonia.ExtendedToolkit.Controls
             binding.Path = BackgroundRectangleOpacityProperty.Name;
             binding.Mode = BindingMode.OneWay;
             _backgroundRectangle.Bind(Rectangle.OpacityProperty, binding);
+
+            binding = new Binding();
+            binding.Source = this;
+            binding.Path = ShowBackgroundProperty.Name;
+            binding.Mode = BindingMode.OneWay;
+            _backgroundRectangle.Bind(Rectangle.IsVisibleProperty, binding);
 
             if (RubberBand == null)
             {

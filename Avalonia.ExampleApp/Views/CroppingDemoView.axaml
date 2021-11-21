@@ -6,7 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.CroppingDemoView">
 
-  <Grid>
+  <Grid x:Name="mainGrid">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="90*"/>
       <ColumnDefinition Width="10*"/>
@@ -15,6 +15,8 @@
      <Controls:CroppingControl Grid.Column="0" 
         ImagePath="{Binding Path}"
         x:Name="croppingCtrl"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
         />
       
       <StackPanel Grid.Column="1" Margin="8">
@@ -29,7 +31,7 @@
             />
          </Border>
           
-          <TextBlock Margin="5,10,0,0" Text="ESC also reset the cropping image"
+          <TextBlock Margin="5,10,0,0" Text="ESC also resets the cropping image"
                      Foreground="{DynamicResource MahApps.Brushes.Black}"
                      TextWrapping="WrapWithOverflow"
                      />
