@@ -1,272 +1,145 @@
-using System;
-using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
     /// <summary>
     /// main controls which supports rotate and resize of it's content
     /// </summary>
-    public class ResizeRotateControl : ContentControl
+    public partial class ResizeRotateControl : TemplatedControl
     {
-        private static readonly string PART_SizeChrome = "PART_SizeChrome";
-        private static readonly string PART_ResizeThumbTopCenter = "PART_ResizeThumbTopCenter";
-        private static readonly string PART_ResizeThumbLeftCenter = "PART_ResizeThumbLeftCenter";
-        private static readonly string PART_ResizeThumbRightCenter = "PART_ResizeThumbRightCenter";
-        private static readonly string PART_ResizeThumbBottomCenter = "PART_ResizeThumbBottomCenter";
-        private static readonly string PART_ResizeThumbTopLeft = "PART_ResizeThumbTopLeft";
-        private static readonly string PART_ResizeThumbTopRight = "PART_ResizeThumbTopRight";
-        private static readonly string PART_ResizeThumbBottomLeft = "PART_ResizeThumbBottomLeft";
-        private static readonly string PART_ResizeThumbBottomRight = "PART_ResizeThumbBottomRight";
-        private static readonly string PART_VisualGrid = "PART_VisualGrid";
-        private static readonly string PART_ThumbGrid = "PART_ThumbGrid";
-        private static readonly string PART_MoveThumb = "PART_MoveThumb";
-        private static readonly string PART_RotateThumb = "PART_RotateThumb";
-
-        private List<ResizeThumb> _resizeThumbs = new List<ResizeThumb>();
-
-        private SizeChrome _sizeChrome;
-        private Grid _visualGrid;
-        private Grid _thumbGrid;
-
-        /// <summary>
-        /// Gets or sets IsRotationEnabled.
-        /// </summary>
-        public bool IsRotationEnabled
-        {
-            get { return (bool)GetValue(IsRotationEnabledProperty); }
-            set { SetValue(IsRotationEnabledProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the IsRotationEnabled property.
-        /// </summary>
-        public static readonly StyledProperty<bool> IsRotationEnabledProperty =
-        AvaloniaProperty.Register<ResizeRotateControl, bool>(nameof(IsRotationEnabled), defaultValue: true);
-
-        /// <summary>
-        /// Gets or sets ShowAlwaysSizing.
-        /// </summary>
-        public bool ShowAlwaysSizing
-        {
-            get { return (bool)GetValue(ShowAlwaysSizingProperty); }
-            set { SetValue(ShowAlwaysSizingProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the ShowAlwaysSizing property.
-        /// </summary>
-        public static readonly StyledProperty<bool> ShowAlwaysSizingProperty =
-        AvaloniaProperty.Register<ResizeRotateControl, bool>(nameof(ShowAlwaysSizing));
-
-        /// <summary>
-        /// Gets or sets ShowOuterRect.
-        /// </summary>
-        public bool ShowOuterRect
-        {
-            get { return (bool)GetValue(ShowOuterRectProperty); }
-            set { SetValue(ShowOuterRectProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the ShowOuterRect property.
-        /// </summary>
-        public static readonly StyledProperty<bool> ShowOuterRectProperty =
-        AvaloniaProperty.Register<ResizeRotateControl, bool>(nameof(ShowOuterRect), defaultValue: true);
-
-        /// <summary>
-        /// Gets or sets CanDrag.
-        /// </summary>
-        public bool CanDrag
-        {
-            get { return (bool)GetValue(CanDragProperty); }
-            set { SetValue(CanDragProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the DragFinished routed event.
-        /// </summary>
-        public static readonly RoutedEvent<VectorEventArgs> MoveFinishedEvent =
-        RoutedEvent.Register<ResizeRotateControl, VectorEventArgs>(nameof(MoveFinishedEvent), RoutingStrategies.Bubble);
-
-        /// <summary>
-        /// Gets or sets MoveFinished eventhandler.
-        /// </summary>
-        public event EventHandler MoveFinished
-        {
-            add
-            {
-                AddHandler(MoveFinishedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(MoveFinishedEvent, value);
-            }
-        }
-
-        /// <summary>
-        /// Defines the ResizeFinished routed event.
-        /// </summary>
-        public static readonly RoutedEvent<VectorEventArgs> ResizeFinishedEvent =
-        RoutedEvent.Register<ResizeRotateControl, VectorEventArgs>(nameof(ResizeFinishedEvent), RoutingStrategies.Bubble);
-
-        /// <summary>
-        /// Gets or sets ResizeFinished eventhandler.
-        /// </summary>
-        public event EventHandler ResizeFinished
-        {
-            add
-            {
-                AddHandler(ResizeFinishedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(ResizeFinishedEvent, value);
-            }
-        }
-
-        /// <summary>
-        /// Defines the RotateFinsished routed event.
-        /// </summary>
-        public static readonly RoutedEvent<RotateFinishedEventArgs> RotateFinsishedEvent =
-        RoutedEvent.Register<ResizeRotateControl, RotateFinishedEventArgs>
-                    (nameof(RotateFinsishedEvent), RoutingStrategies.Bubble);
-
-        /// <summary>
-        /// Gets or sets RotateFinsished eventhandler.
-        /// </summary>
-        public event EventHandler<RotateFinishedEventArgs> RotateFinsished
-        {
-            add
-            {
-                AddHandler(RotateFinsishedEvent, value);
-            }
-            remove
-            {
-                RemoveHandler(RotateFinsishedEvent, value);
-            }
-        }
-
-        /// <summary>
-        /// Defines the CanDrag property.
-        /// </summary>
-        public static readonly StyledProperty<bool> CanDragProperty =
-        AvaloniaProperty.Register<ResizeRotateControl, bool>(nameof(CanDrag), defaultValue: true);
-
-        /// <summary>
-        /// Gets or sets CanResize.
-        /// </summary>
-        public bool CanResize
-        {
-            get { return (bool)GetValue(CanResizeProperty); }
-            set { SetValue(CanResizeProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the CanResize property.
-        /// </summary>
-        public static readonly StyledProperty<bool> CanResizeProperty =
-        AvaloniaProperty.Register<ResizeRotateControl, bool>(nameof(CanResize), defaultValue: true);
-
-        /// <summary>
-        /// Gets or sets ThumbFillBrush.
-        /// </summary>
-        public IBrush ThumbFillBrush
-        {
-            get { return (IBrush)GetValue(ThumbFillBrushProperty); }
-            set { SetValue(ThumbFillBrushProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the ThumbFillBrush property.
-        /// </summary>
-        public static readonly StyledProperty<IBrush> ThumbFillBrushProperty =
-        AvaloniaProperty.Register<ResizeRotateControl, IBrush>(nameof(ThumbFillBrush));
-
-        /// <summary>
-        /// Gets or sets ThumbStrokeBrush.
-        /// </summary>
-        public IBrush ThumbStrokeBrush
-        {
-            get { return (IBrush)GetValue(ThumbStrokeBrushProperty); }
-            set { SetValue(ThumbStrokeBrushProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the ThumbStrokeBrush property.
-        /// </summary>
-        public static readonly StyledProperty<IBrush> ThumbStrokeBrushProperty =
-        AvaloniaProperty.Register<ResizeRotateControl, IBrush>(nameof(ThumbStrokeBrush));
-
-        /// <summary>
-        /// Gets or sets OuterRectStrokeBrush.
-        /// </summary>
-        public IBrush OuterRectStrokeBrush
-        {
-            get { return (IBrush)GetValue(OuterRectStrokeBrushProperty); }
-            set { SetValue(OuterRectStrokeBrushProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the OuterRectStrokeBrush property.
-        /// </summary>
-        public static readonly StyledProperty<IBrush> OuterRectStrokeBrushProperty =
-        AvaloniaProperty.Register<ResizeRotateControl, IBrush>(nameof(OuterRectStrokeBrush));
-
-        /// <summary>
-        /// Gets or sets OuterRectStrokeThickness.
-        /// </summary>
-        public double OuterRectStrokeThickness
-        {
-            get { return (double)GetValue(OuterRectStrokeThicknessProperty); }
-            set { SetValue(OuterRectStrokeThicknessProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the OuterRectStrokeThickness property.
-        /// </summary>
-        public static readonly StyledProperty<double> OuterRectStrokeThicknessProperty =
-        AvaloniaProperty.Register<ResizeRotateControl, double>(nameof(OuterRectStrokeThickness));
-
-        /// <summary>
-        /// Gets or sets SizeChromeTextBrush.
-        /// </summary>
-        public IBrush SizeChromeTextBrush
-        {
-            get { return (IBrush)GetValue(SizeChromeTextBrushProperty); }
-            set { SetValue(SizeChromeTextBrushProperty, value); }
-        }
-
-        /// <summary>
-        /// Defines the SizeChromeTextBrush property.
-        /// </summary>
-        public static readonly StyledProperty<IBrush> SizeChromeTextBrushProperty =
-        AvaloniaProperty.Register<ResizeRotateControl, IBrush>(nameof(SizeChromeTextBrush));
-
         /// <summary>
         /// registers CanResize class handler
         /// </summary>
         public ResizeRotateControl()
         {
+            ShowAlwaysSizingProperty.Changed.AddClassHandler<ResizeRotateControl>((o, e) => OnShowAlwaysSizingChanged(o, e));
+            WidthProperty.Changed.AddClassHandler<ResizeRotateControl>((o, e) => OnSizeChanged(o, e));
+            HeightProperty.Changed.AddClassHandler<ResizeRotateControl>((o, e) => OnSizeChanged(o, e));
+            IsRotationEnabledProperty.Changed.AddClassHandler<ResizeRotateControl>((o, e) => OnIsRotationEnabledChanged(o, e));
         }
 
+        static ResizeRotateControl()
+        {
+            AffectsMeasure<ResizeRotateControl>(IsRotationEnabledProperty);
+            AffectsRender<ResizeRotateControl>(IsRotationEnabledProperty);
+        }
+
+        private void OnIsRotationEnabledChanged(ResizeRotateControl o, AvaloniaPropertyChangedEventArgs e)
+        {
+            if (_contentGrid != null && _visualGrid != null && _thumbGrid != null && e.NewValue is bool isRotationEnabled)
+            {
+                if (isRotationEnabled)
+                {
+                    _contentGrid.Margin = _contentGridMargin;
+                    _visualGrid.Margin = _visualGridMargin;
+                    _thumbGrid.Margin = _thumbGrid.Margin;
+                }
+                else
+                {
+                    _contentGrid.Margin =
+                    _visualGrid.Margin =
+                    _thumbGrid.Margin = new Thickness(3);
+                }
+                o.InvalidateVisual();
+            }
+        }
+
+        private void OnSizeChanged(ResizeRotateControl o, object e)
+        {
+            UpdateOuterRectPositions();
+        }
+
+        private void OnShowAlwaysSizingChanged(ResizeRotateControl o, AvaloniaPropertyChangedEventArgs e)
+        {
+            if (_sizeChrome != null && e.NewValue is bool showSizing)
+            {
+                _sizeChrome.IsVisible = showSizing;
+            }
+        }
+
+        /// <summary>
+        /// remove the dragcomplete event
+        /// </summary>
         protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
         {
-            foreach (var item in _resizeThumbs)
-            {
-                item.DragStarted -= OnDragStarted;
-                item.DragCompleted -= OnDragCompleted;
-            }
+            AddOrRemoveEvents(true);
+
             base.OnDetachedFromVisualTree(e);
         }
 
+        private void AddOrRemoveEvents(bool remove)
+        {
+            foreach (var item in _resizeThumbs)
+            {
+                item.AllowResizeOutOfView = AllowDragOutOfView;
+                item.BouncedControl = BouncedControl;
+                if (remove)
+                {
+                    item.DragCompleted -= OnDragCompleted;
+                }
+                else
+                {
+                    item.DragCompleted += OnDragCompleted;
+                }
+            }
+
+            if (_moveThumb != null)
+            {
+                if (remove)
+                {
+                    _moveThumb.DragCompleted -= MoveThumb_MovedFinished;
+                }
+                else
+                {
+                    _moveThumb.DragCompleted += MoveThumb_MovedFinished;
+                }
+            }
+
+            if (_rotateThumb != null)
+            {
+                if (remove)
+                {
+                    _rotateThumb.RotateFinsished -= RotateThumb_RotateFinished;
+                }
+                else
+                {
+                    _rotateThumb.RotateFinsished += RotateThumb_RotateFinished;
+                }
+            }
+        }
+
+        protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+        {
+            AddOrRemoveEvents(false);
+
+            base.OnAttachedToVisualTree(e);
+        }
+
+        /// <summary>
+        ///  resolves the style of this control
+        /// </summary>
         protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             base.OnApplyTemplate(e);
+
+            _contentGrid = e.NameScope.Find<Grid>(PART_ContentGrid);
+
+            if (_contentGrid == null)
+                return;
+
+            _contentGridMargin = _contentGrid.Margin;
+
+            _visualGrid = e.NameScope.Find<Grid>(PART_VisualGrid);
+            _visualGridMargin = _visualGrid.Margin;
+
+            _thumbGrid = e.NameScope.Find<Grid>(PART_ThumbGrid);
+            _thumbGridMargin = _thumbGrid.Margin;
+
+            _contentControl = e.NameScope.Find<ContentControl>(PART_Content);
+
             _sizeChrome = e.NameScope.Find<SizeChrome>(PART_SizeChrome);
 
             _resizeThumbs.Add(e.NameScope.Find<ResizeThumb>(PART_ResizeThumbTopCenter));
@@ -279,70 +152,115 @@ namespace Avalonia.ExtendedToolkit.Controls
             _resizeThumbs.Add(e.NameScope.Find<ResizeThumb>(PART_ResizeThumbBottomLeft));
             _resizeThumbs.Add(e.NameScope.Find<ResizeThumb>(PART_ResizeThumbBottomRight));
 
-            _visualGrid = e.NameScope.Find<Grid>(PART_VisualGrid);
-            _thumbGrid = e.NameScope.Find<Grid>(PART_ThumbGrid);
+            _moveThumb = e.NameScope.Find<MoveThumb>(PART_MoveThumb);
+            _moveThumb.AllowDragOutOfView = AllowDragOutOfView;
+            _moveThumb.BouncedControl = BouncedControl;
+            _moveThumb.MovedFinished -= MoveThumb_MovedFinished;
+            _moveThumb.MovedFinished += MoveThumb_MovedFinished;
 
-            var moveThumb = e.NameScope.Find<MoveThumb>(PART_MoveThumb);
-            moveThumb.DragCompleted += (o, e) =>
+            _rotateThumb = e.NameScope.Find<RotateThumb>(PART_RotateThumb);
+
+            AddOrRemoveEvents(false);
+
+            RaisePropertyChanged<bool>(IsRotationEnabledProperty, new Data.Optional<bool>(), new Data.BindingValue<bool>(IsRotationEnabled));
+
+            UpdateOuterRectPositions();
+        }
+
+        private void RotateThumb_RotateFinished(object sender, RotatedEventArgs e)
+        {
+            RotationAngle = e.Angle;
+
+            var args = new RotatedEventArgs
             {
-                var dragFinished = new VectorEventArgs();
-                dragFinished.RoutedEvent = MoveFinishedEvent;
-                dragFinished.Route = e.Route;
-                dragFinished.Source = e.Source;
-                dragFinished.Vector = e.Vector;
-                RaiseEvent(dragFinished);
+                Angle = e.Angle,
+                Vector = e.Vector,
+                Route = e.Route,
+                Source = e.Source,
+                RoutedEvent = RotatedEvent
             };
+            RaiseEvent(args);
+        }
 
-            var rotateThumb = e.NameScope.Find<RotateThumb>(PART_RotateThumb);
+        private void MoveThumb_MovedFinished(object sender, VectorEventArgs e)
+        {
+            var dragFinished = new VectorEventArgs();
+            dragFinished.RoutedEvent = MovedEvent;
+            dragFinished.Route = e.Route;
+            dragFinished.Source = e.Source;
+            dragFinished.Vector = e.Vector;
+            UpdateOuterRectPositions();
 
-            if (rotateThumb != null)
+            RaiseEvent(dragFinished);
+
+            RaisePositionEvent(e);
+        }
+
+        private void RaisePositionEvent(RoutedEventArgs e)
+        {
+            var positionEvent = new PositionChangedEventArgs();
+            positionEvent.Route = e.Route;
+            positionEvent.Source = e.Source;
+            positionEvent.RoutedEvent = PositionChangedEvent;
+
+            UpdateOuterRectPositions();
+
+            positionEvent.Left = OuterRectLeft;
+            positionEvent.Top = OuterRectTop;
+            positionEvent.Right = OuterRectRight;
+            positionEvent.Bottom = OuterRectBottom;
+            RaiseEvent(positionEvent);
+        }
+
+        private void UpdateOuterRectPositions()
+        {
+            if (_contentControl == null)
             {
-                rotateThumb.RotateFinsished += (o, e) =>
-            {
-                var args = new RotateFinishedEventArgs
-                {
-                    Angle = e.Angle,
-                    Vector = e.Vector,
-                    Route = e.Route,
-                    Source = e.Source,
-                    RoutedEvent = RotateFinsishedEvent
-                };
-                RaiseEvent(args);
-            };
+                return;
             }
 
-            //_visualGrid.IsVisible = _thumbGrid.IsVisible = CanResize;
+            var relativePoint = VisualExtensions.TranslatePoint(_contentControl, new Point(), this);
+            var margin = _contentControl.Margin;
+            double left = Canvas.GetLeft(this);
+            double top = Canvas.GetTop(this);
+            double right = Canvas.GetRight(this);
+            double bottom = Canvas.GetBottom(this);
 
-            //_resizeThumbs.ForEach(x=> x.IsVisible=CanResize);
-
-            foreach (var item in _resizeThumbs)
+            if (double.IsNaN(left) && !double.IsNaN(DesiredSize.Width) && DesiredSize.Width > 0 && !double.IsNaN(right))
             {
-                item.DragStarted += OnDragStarted;
-                item.DragCompleted += OnDragCompleted;
+                left = right - DesiredSize.Width;
             }
+
+            if (double.IsNaN(top) && !double.IsNaN(DesiredSize.Height) && DesiredSize.Height > 0 && !double.IsNaN(bottom))
+            {
+                top = bottom - DesiredSize.Height;
+            }
+
+            if (double.IsNaN(right) && !double.IsNaN(DesiredSize.Width) && DesiredSize.Width > 0 && !double.IsNaN(left))
+            {
+                right = left + DesiredSize.Width;
+            }
+
+            if (double.IsNaN(bottom) && !double.IsNaN(DesiredSize.Height) && DesiredSize.Height > 0 && !double.IsNaN(top))
+            {
+                bottom = top + DesiredSize.Height;
+            }
+
+            OuterRectLeft = left - margin.Left;
+            OuterRectTop = top - margin.Top;
+            OuterRectRight = right - margin.Right;
+            OuterRectBottom = bottom - margin.Bottom;
         }
 
         private void OnDragCompleted(object sender, VectorEventArgs e)
         {
-            if (_sizeChrome != null && ShowAlwaysSizing == false)
-            {
-                _sizeChrome.IsVisible = false;
-            }
-
             var dragFinished = new VectorEventArgs();
-            dragFinished.RoutedEvent = ResizeFinishedEvent;
+            dragFinished.RoutedEvent = ResizedEvent;
             dragFinished.Route = e.Route;
             dragFinished.Source = e.Source;
             dragFinished.Vector = e.Vector;
             RaiseEvent(dragFinished);
-        }
-
-        private void OnDragStarted(object sender, VectorEventArgs e)
-        {
-            if (_sizeChrome != null && ShowAlwaysSizing == false)
-            {
-                _sizeChrome.IsVisible = true;
-            }
+            RaisePositionEvent(e);
         }
     }
 }

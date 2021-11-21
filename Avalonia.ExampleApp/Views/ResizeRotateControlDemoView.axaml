@@ -30,6 +30,21 @@
                 <CheckBox Content="CanDrag" Name="chkCanDrag" IsChecked="True"/>
                 <CheckBox Margin="10,0,0,0" Content="CanResize" Name="chkCanResize" IsChecked="True"/>
                 <CheckBox Margin="10,0,0,0" Content="ShowOuterRect" Name="chkShowOuterRect" IsChecked="True"/> 
+                
+                <TextBlock  Margin="10,0,0,0"
+                            DataContext="{Binding ElementName=resizeRotateControl}" 
+                            VerticalAlignment="Center"
+                            Foreground="{DynamicResource MahApps.Brushes.Black}">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}Left ResizeControl:  Left: {0:#.##} Top: {1:#.##} Right: {2:#.##} Bottom: {3:#.##}">
+                            <Binding Path="OuterRectLeft"/>
+                            <Binding Path="OuterRectTop"/>
+                            <Binding Path="OuterRectRight"/>
+                            <Binding Path="OuterRectBottom"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+
             </StackPanel>
 
             <Canvas x:Name="DesignerCanvas" Grid.Row="2">

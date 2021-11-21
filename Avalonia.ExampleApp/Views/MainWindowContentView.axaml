@@ -6,198 +6,201 @@
              xmlns:Views="clr-namespace:Avalonia.ExampleApp.Views;assembly=Avalonia.ExampleApp"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.MainWindowContentView">
-  
-  <Grid Margin="5" HorizontalAlignment="Stretch">
-    <Grid.Styles>
-      <!-- borrowed style from avalonia example app -->
-      <Style Selector="TabControl.sidebar">
-        <Setter Property="TabStripPlacement" Value="Left"/>
-        <Setter Property="Padding" Value="8 0 0 0"/>
-        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}"/>
-        <Setter Property="Template">
-            <ControlTemplate>
-                <Border 
-                    Margin="{TemplateBinding Margin}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="{TemplateBinding BorderThickness}">
-                    <DockPanel>
-                        <ScrollViewer
-                            Name="PART_ScrollViewer"
-                            HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
-                            VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
-                            Background="{TemplateBinding Background}"
-                            DockPanel.Dock="Left">
-                            <ItemsPresenter
-                                Name="PART_ItemsPresenter"                          
-                                Items="{TemplateBinding Items}"
-                                ItemsPanel="{TemplateBinding ItemsPanel}"
-                                ItemTemplate="{TemplateBinding ItemTemplate}">
-                            </ItemsPresenter>
-                        </ScrollViewer>
-                        <ContentControl Content="{TemplateBinding Tag}" HorizontalContentAlignment="Right" 
-                                        DockPanel.Dock="Bottom"/>
-                        <ScrollViewer
-                            HorizontalScrollBarVisibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedItem.(ScrollViewer.HorizontalScrollBarVisibility)}"
-                            VerticalScrollBarVisibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedItem.(ScrollViewer.VerticalScrollBarVisibility)}">
-                            <ContentPresenter
-                                    Name="PART_SelectedContentHost"
-                                    Margin="{TemplateBinding Padding}"                           
-                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                    Content="{TemplateBinding SelectedContent}"
-                                    ContentTemplate="{TemplateBinding SelectedContentTemplate}">
-                            </ContentPresenter>
-                        </ScrollViewer>
-                    </DockPanel>
-                </Border>
-            </ControlTemplate>
-        </Setter>
-    </Style>
-    
-    </Grid.Styles>
+
+    <Grid Margin="5" HorizontalAlignment="Stretch">
+        <Grid.Styles>
+            <!-- borrowed style from avalonia example app -->
+            <Style Selector="TabControl.sidebar">
+                <Setter Property="TabStripPlacement" Value="Left"/>
+                <Setter Property="Padding" Value="8 0 0 0"/>
+                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.White}"/>
+                <Setter Property="Template">
+                    <ControlTemplate>
+                        <Border
+                            Margin="{TemplateBinding Margin}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <DockPanel>
+                                <ScrollViewer
+                                    Name="PART_ScrollViewer"
+                                    HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                                    VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
+                                    Background="{TemplateBinding Background}"
+                                    DockPanel.Dock="Left">
+                                    <ItemsPresenter
+                                        Name="PART_ItemsPresenter"
+                                        Items="{TemplateBinding Items}"
+                                        ItemsPanel="{TemplateBinding ItemsPanel}"
+                                        ItemTemplate="{TemplateBinding ItemTemplate}">
+                                    </ItemsPresenter>
+                                </ScrollViewer>
+                                <ContentControl Content="{TemplateBinding Tag}" HorizontalContentAlignment="Right"
+                                                DockPanel.Dock="Bottom"/>
+                                <ScrollViewer
+                                    HorizontalScrollBarVisibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedItem.(ScrollViewer.HorizontalScrollBarVisibility)}"
+                                    VerticalScrollBarVisibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedItem.(ScrollViewer.VerticalScrollBarVisibility)}">
+                                    <ContentPresenter
+                                            Name="PART_SelectedContentHost"
+                                            Margin="{TemplateBinding Padding}"
+                                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                            Content="{TemplateBinding SelectedContent}"
+                                            ContentTemplate="{TemplateBinding SelectedContentTemplate}">
+                                    </ContentPresenter>
+                                </ScrollViewer>
+                            </DockPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter>
+            </Style>
+
+        </Grid.Styles>
 
 
 
-      <TabControl Grid.Row="0" 
-          Classes="sidebar"
+        <TabControl Grid.Row="0"
+            Classes="sidebar"
           >
-        <TabItem Header="Buttons">
-          <ScrollViewer>
-            <Views:ButtonView/>
-          </ScrollViewer>
-        </TabItem>
-        <TabItem Header="TabControl">
-          <Views:TabControlExample/>
-        </TabItem>
-        
-        <TabItem Header="Group Box">
-          <ScrollViewer>
-            <Views:GroupBoxView/>
-          </ScrollViewer>
-        </TabItem>
-        
-        <TabItem Header="List Controls" >
-          <ScrollViewer>
-            <Grid>
-              <Views:ListControlsView/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>
-        
-        <TabItem Header="Tree View" >
-          <ScrollViewer>
-            <Grid>
-              <Views:TreeViewExample/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>
-        <TabItem Header="Wizard" >
-          <ScrollViewer>
-            <Views:WizardView/>
-          </ScrollViewer>
-        </TabItem>
-        <TabItem Header="DataGrid" 
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-            ScrollViewer.VerticalScrollBarVisibility="Disabled" >
-           <Views:DataGridView/>
-        </TabItem>
-        <TabItem Header="Pagination">
-          <Views:PaginationView/>
-        </TabItem>
-        <!--not working-->
-        <!--<TabItem Header="TreeGrid" >
+            <TabItem Header="Buttons">
+                <ScrollViewer>
+                    <Views:ButtonView/>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="TabControl">
+                <Views:TabControlExample/>
+            </TabItem>
+
+            <TabItem Header="Group Box">
+                <ScrollViewer>
+                    <Views:GroupBoxView/>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="List Controls" >
+                <ScrollViewer>
+                    <Grid>
+                        <Views:ListControlsView/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="Tree View" >
+                <ScrollViewer>
+                    <Grid>
+                        <Views:TreeViewExample/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Wizard" >
+                <ScrollViewer>
+                    <Views:WizardView/>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="DataGrid"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                ScrollViewer.VerticalScrollBarVisibility="Disabled" >
+                <Views:DataGridView/>
+            </TabItem>
+            <TabItem Header="Pagination">
+                <Views:PaginationView/>
+            </TabItem>
+            <!--not working-->
+            <!--<TabItem Header="TreeGrid" >
           <Grid>
             <ScrollViewer>
               <Views:TreeGridView/>
             </ScrollViewer>
           </Grid>
         </TabItem>-->
-        <TabItem Header="Progress Controls" >
-          <ScrollViewer>
-            <Grid>
-              <Views:ProgressControls/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>
-        <TabItem Header="Step Bar" >
-          <ScrollViewer>
-            <Grid>
-              <Views:StepBarView/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>
-        <TabItem Header="Sliders" >
-          <ScrollViewer>
-            <Grid>
-              <Views:Sliders/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>
-        <TabItem Header="Date Controls" >
-          <ScrollViewer>
-            <Grid>
-              <Views:DateExamples/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>
-        <TabItem Header="Hamburger Menu" >
-          <ScrollViewer>
-            <Grid>
-              <Views:HamburgerMenuView/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>
+            <TabItem Header="Progress Controls" >
+                <ScrollViewer>
+                    <Grid>
+                        <Views:ProgressControls/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Step Bar" >
+                <ScrollViewer>
+                    <Grid>
+                        <Views:StepBarView/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Sliders" >
+                <ScrollViewer>
+                    <Grid>
+                        <Views:Sliders/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Date Controls" >
+                <ScrollViewer>
+                    <Grid>
+                        <Views:DateExamples/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="Hamburger Menu" >
+                <ScrollViewer>
+                    <Grid>
+                        <Views:HamburgerMenuView/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
 
-        <TabItem Header="Tiles" >
-          <ScrollViewer>
-            <Grid>
-              <Views:TilesExample/>
-            </Grid>
-          </ScrollViewer>
-        </TabItem>
-          <!--Not  working-->
-        <!--<TabItem Header="Split View" >
+            <TabItem Header="Tiles" >
+                <ScrollViewer>
+                    <Grid>
+                        <Views:TilesExample/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <!--Not  working-->
+            <!--<TabItem Header="Split View" >
           <ScrollViewer>
             <Grid>
               <Views:SplitViewExamples/>
             </Grid>
           </ScrollViewer>
         </TabItem>-->
-        <TabItem Header="Outlook Bar" >
-          <Views:OutlookBarView/>
-        </TabItem>
+            <TabItem Header="Outlook Bar" >
+                <Views:OutlookBarView/>
+            </TabItem>
 
-        <TabItem Header="Explorer Bar" >
-          <Views:ExplorerBarView/>
-        </TabItem>
-        <TabItem Header="Property Grid" >
-          <Views:PropertyGridExamples/>
-        </TabItem>
-        <TabItem Header="Notification" >
-          <Views:NotifictionExampleView/>
-        </TabItem>
-        <TabItem Header="Child Window" >
-          <Views:ChildWindowView/>
-        </TabItem>
-        <TabItem Header="ColorPicker" >
-          <Views:ColorPickerExampleView/>
-        </TabItem>
-        <TabItem Header="IndexListControls">
-          <Views:IndexListDemoView/>
-        </TabItem>
-        <TabItem Header="Resize Rotate Control">
-          <Views:ResizeRotateControlDemoView/>
-        </TabItem>
-        <TabItem Header="Tag Control Example">
-          <Views:TagControlExample VerticalAlignment="Stretch"/>
-        </TabItem>
-        <TabItem Header="Rating Control Example">
-          <Views:RatingControlExampleView/>
-        </TabItem>
-        <TabItem Header="Colors" >
-          <Views:ColorExample/>
-        </TabItem> 
-      </TabControl>
+            <TabItem Header="Explorer Bar" >
+                <Views:ExplorerBarView/>
+            </TabItem>
+            <TabItem Header="Property Grid" >
+                <Views:PropertyGridExamples/>
+            </TabItem>
+            <TabItem Header="Notification" >
+                <Views:NotifictionExampleView/>
+            </TabItem>
+            <TabItem Header="Child Window" >
+                <Views:ChildWindowView/>
+            </TabItem>
+            <TabItem Header="ColorPicker" >
+                <Views:ColorPickerExampleView/>
+            </TabItem>
+            <TabItem Header="IndexListControls">
+                <Views:IndexListDemoView/>
+            </TabItem>
+            <TabItem Header="Resize Rotate Control">
+                <Views:ResizeRotateControlDemoView/>
+            </TabItem>
+            <TabItem Header="Cropping Control">
+                <Views:CroppingDemoView/>
+            </TabItem>
+            <TabItem Header="Tag Control Example">
+                <Views:TagControlExample VerticalAlignment="Stretch"/>
+            </TabItem>
+            <TabItem Header="Rating Control Example">
+                <Views:RatingControlExampleView/>
+            </TabItem>
+            <TabItem Header="Colors" >
+                <Views:ColorExample/>
+            </TabItem>
+        </TabControl>
     </Grid>
-    
+
 </UserControl>

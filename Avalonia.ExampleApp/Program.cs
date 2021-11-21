@@ -4,7 +4,9 @@ using Avalonia.ExampleApp.ViewModels;
 using Avalonia.ExampleApp.Views;
 using Avalonia.ExtendedToolkit;
 using Avalonia.ExtendedToolkit.Controls;
+using Avalonia.ExtendedToolkit.Extensions;
 using Avalonia.ReactiveUI;
+using Splat;
 
 namespace Avalonia.ExampleApp
 {
@@ -39,9 +41,10 @@ namespace Avalonia.ExampleApp
             appBuilder.UsePlatformDetect()
                 .UseSkia()
                 .UseReactiveUI()
+                .UseAvaloniaExtended()
                 //.UseDataGrid()
                 .LogToTrace();
-
+            
 
             return appBuilder;
         }

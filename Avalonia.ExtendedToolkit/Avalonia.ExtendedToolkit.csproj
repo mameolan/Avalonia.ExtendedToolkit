@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<Import Project="..\Directory.build.props" />
 
-  <PropertyGroup>
+	<PropertyGroup>
 		<TargetFrameworks>netcoreapp3.1</TargetFrameworks>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
 
@@ -16,30 +16,26 @@
 	</PropertyGroup>
 
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\Avalonia.ExtendedToolkit.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>bin\Debug\Avalonia.ExtendedToolkit.xml</DocumentationFile>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\Avalonia.ExtendedToolkit.xml</DocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DocumentationFile>bin\Release\Avalonia.ExtendedToolkit.xml</DocumentationFile>
+	</PropertyGroup>
 
 
 	<ItemGroup>
-		<PackageReference Include="Avalonia" Version="0.10.7" />
-		<PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.7" />
-		<PackageReference Include="Avalonia.Desktop" Version="0.10.7" />
-		<PackageReference Include="Avalonia.ReactiveUI" Version="0.10.7" />
-		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.7" />
-		<PackageReference Include="Avalonia.Xaml.Interactions" Version="0.10.7" />
-		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.10.7" />
-		<PackageReference Include="DynamicData" Version="7.3.1" />
-    	<PackageReference Include="DynamicData.ReactiveUI" Version="6.11.0.2613" />
+		<PackageReference Include="Avalonia" Version="0.10.10" />
+		<PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.10" />
+		<PackageReference Include="Avalonia.Desktop" Version="0.10.10" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="0.10.10" />
+		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.10.3" />
+		<PackageReference Include="Avalonia.Xaml.Interactions" Version="0.10.10.3" />
+		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.10.10.3" />
+		<PackageReference Include="DynamicData" Version="7.4.3" />
+		<PackageReference Include="DynamicData.ReactiveUI" Version="6.11.0.2613" />
 		<PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
-		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="ReactiveHistory" Version="0.10.7" />
 		<PackageReference Include="XamlColorSchemeGenerator" Version="3.0.0.31">
@@ -54,23 +50,27 @@
 		<AvaloniaResource Exclude="**\*.Template.axaml" Include="**\*.axaml">
 			<SubType>Designer</SubType>
 		</AvaloniaResource>
-    <AvaloniaResource Include="Assets\*" />
+		<AvaloniaResource Include="Assets\*" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <AvaloniaResource Remove="Controls\Wizard\ViewModel\**" />
-	  <Compile Remove="Controls\Wizard\ViewModel\**" />
-	  <EmbeddedResource Remove="Controls\Wizard\ViewModel\**" />
-	  <None Remove="Controls\Wizard\ViewModel\**" />
+		<AvaloniaResource Remove="Controls\Wizard\ViewModel\**" />
+		<Compile Remove="Controls\Wizard\ViewModel\**" />
+		<EmbeddedResource Remove="Controls\Wizard\ViewModel\**" />
+		<None Remove="Controls\Wizard\ViewModel\**" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <AvaloniaXaml Remove="Styles\Themes\Theme.Template.axaml" />
+	  <AvaloniaResource Remove="Styles\ExtendedControls\CroppingControl.axaml" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Controls\Wizard\WizardItemsConverter.cs" />
-	  <Compile Remove="Controls\Wizard\WizardPageVMConverter.cs" />
+		<AvaloniaXaml Remove="Styles\Themes\Theme.Template.axaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="Controls\Wizard\WizardItemsConverter.cs" />
+		<Compile Remove="Controls\Wizard\WizardPageVMConverter.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -83,13 +83,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Controls\PropertyGrid\Input\" />
+		<Folder Include="Controls\PropertyGrid\Input\" />
 	</ItemGroup>
 
-  <!--Only enable if you have changes in the GeneratorParameters.json or Theme.Template.xaml file
+	<!--Only enable if you have changes in the GeneratorParameters.json or Theme.Template.xaml file
       But comment afterward this target (build time can increase)
   -->
-  <!--<Target Name="GenerateXamlFilesInner" BeforeTargets="DispatchToInnerBuilds">
+	<!--<Target Name="GenerateXamlFilesInner" BeforeTargets="DispatchToInnerBuilds">
 		<PropertyGroup>
 			<XamlColorSchemeGeneratorVersion Condition="'%(PackageReference.Identity)' == 'XamlColorSchemeGenerator'">%(PackageReference.Version)</XamlColorSchemeGeneratorVersion>
 		</PropertyGroup>

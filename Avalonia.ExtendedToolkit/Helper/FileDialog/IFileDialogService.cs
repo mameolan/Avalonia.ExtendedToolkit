@@ -12,14 +12,14 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// shows the opendirectory dialog
         /// </summary>
-        Task<string> OpenDirectoryDialog(Window parent,
+        Task<string> OpenDirectoryDialog(Window parent = null,
                                         string directory = "",
                                         string title = "Choose a folder");
 
         /// <summary>
         /// opens the openfile dialog
         /// </summary>
-        Task<string[]> OpenFileDialog(Window parent,
+        Task<string[]> OpenFileDialog(Window parent = null,
                               string initialFileName = "",
                               string baseDirectory = "",
                               List<FileDialogFilter> filters = null,
@@ -29,7 +29,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// opens the opensave dialog
         /// </summary>
-        Task<string> OpenSaveFileDialog(Window parent,
+        Task<string> OpenSaveFileDialog(Window parent = null,
                                string defaultExtension = "",
                                string initialFileName = "",
                                string baseDirectory = "",

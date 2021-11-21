@@ -16,9 +16,23 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public Type StyleKey => typeof(SizeChrome);
 
+        public SizeChrome()
+        {
+            WidthProperty.Changed.AddClassHandler<SizeChrome>((o,e)=> OnCanvasRightChanged(o,e));
+            HeightProperty.Changed.AddClassHandler<SizeChrome>((o,e)=> OnCanvasRightChanged(o,e));
+        }
+
         protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
             base.OnApplyTemplate(e);
+
+            
+
+        }
+
+        private void OnCanvasRightChanged(SizeChrome o, AvaloniaPropertyChangedEventArgs e)
+        {
+            
         }
     }
 }

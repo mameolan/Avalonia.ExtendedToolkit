@@ -1,0 +1,166 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit">
+    <Styles.Resources>
+        <DataTemplate x:Key="ItemVMTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Controls:ImageExt GeometryFillBrush="{DynamicResource MahApps.Brushes.Black}" Source="{Binding Image}" Width="10" Height="10" />
+                <TextBlock Margin="5,0,0,0" Text="{Binding Text}" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.Black}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ItemVMPictureManipulationTemplate">
+            <Button Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:CroppingControl}}, Path=PictureManipulationCommand}"
+                    CommandParameter="{Binding .}"
+                    ToolTip.Tip="{Binding Text}">
+                <Controls:ImageExt GeometryFillBrush="{DynamicResource MahApps.Brushes.Black}" Source="{Binding Image}" Width="10" Height="10" />
+            </Button>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ItemVMContentTemplate">
+            <Border BorderBrush="{DynamicResource MahApps.Brushes.Black}" BorderThickness="0.5">
+                <StackPanel Orientation="Horizontal">
+                    <Controls:ImageExt GeometryFillBrush="{DynamicResource MahApps.Brushes.Black}" Source="{Binding Image}" Width="10" Height="10" />
+                    <TextBlock Margin="5,0,0,0" Text="{Binding Text}" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.Black}" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </Styles.Resources>
+
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/CroppingControl/Icons.axaml" />
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/CroppingControl/CroppingControl.ColorPicker.axaml" />
+
+    <Style Selector="Controls|CroppingControl">
+        <Setter Property="Height" Value="700"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Margin="10,0,0,0" Grid.Column="0" Orientation="Horizontal">
+                                <Button Width="30" Height="30" x:Name="btnOpen"
+                                  ToolTip.Tip="Open"
+                                  Command="{TemplateBinding OpenImageCommand}">
+                                    <Controls:ImageExt GeometryFillBrush="{DynamicResource MahApps.Brushes.Black}" Source="{StaticResource Open_Icon}" />
+                                </Button>
+
+                                <Button Margin="2,0,2,0"  Width="30" Height="30" ToolTip.Tip="Save" x:Name="btnSave"
+                                  Command="{TemplateBinding SaveCommand}">
+                                    <Controls:ImageExt GeometryFillBrush="{DynamicResource MahApps.Brushes.Black}" Source="{StaticResource Save_Icon}" />
+                                </Button>
+                            </StackPanel>
+
+                            <StackPanel Margin="10,0,0,0" Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                                <!-- pehabs future: -->
+                                <!-- <Button  ToolTip.Tip="Undo" Margin="0,0,2,0">
+                                  <Image Source="{StaticResource Undo_Icon}" />
+                                </Button>
+                                <Button  IsVisble="False" ToolTip.Tip="Redo" Margin="0,0,20,0">
+                                  <Image Source="{StaticResource Redo_Icon}" />
+                                </Button> -->
+                                <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
+                                    <TextBlock VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.Black}" Text="Border:" />
+                                    <Controls:ColorPicker Classes="borderPicker" Margin="5,0,5,0"
+                                        PreviewColorBrush="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:CroppingControl}}, Path=RotateResizeBorderBrush, Mode=OneWayToSource, TargetNullValue=Gray}" />
+                                </StackPanel>
+                                <StackPanel Margin="5,0,0,0" Orientation="Horizontal" VerticalAlignment="Stretch">
+                                    <CheckBox Content="Show Background" IsChecked="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:CroppingControl}}, Path=ShowBackground}" />
+
+                                    <TextBlock Margin="5,0,5,0" VerticalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.Black}" Text="Fill:" />
+                                    <Controls:ColorPicker Classes="fillPicker" Margin="5,0,5,0"
+                                                    IsEnabled="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:CroppingControl}}, Path=ShowBackground}"
+                                                    PreviewColorBrush="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:CroppingControl}}, Path=RotateResizeBackgroundBrush, Mode=OneWayToSource, TargetNullValue=Gray}" />
+                                </StackPanel>
+                                <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
+                                    <Controls:DropDownButton
+                                            Items="{TemplateBinding CroppingTypes}"
+                                            SelectedItem="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:CroppingControl}}, Path=CurrentCroppingType}"
+                                            ItemTemplate="{StaticResource ItemVMTemplate}"
+                                            DisplayTemplate="{StaticResource ItemVMContentTemplate}"
+                                            DisplayMode="Content"
+                                            MinWidth="100"
+                                            IsEnabled="{TemplateBinding CanDoPictureModification}" />
+                                </StackPanel>
+
+                                <StackPanel Margin="5,0,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch">
+
+                                    <TextBlock VerticalAlignment="Center" Margin="0,0,5,0" Foreground="{DynamicResource MahApps.Brushes.Black}" Text="Flip" />
+
+                                    <ItemsControl Items="{TemplateBinding FlipItems}"
+                                                  ItemTemplate="{StaticResource ItemVMPictureManipulationTemplate}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal" Spacing="5" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                </StackPanel>
+
+                                <StackPanel Margin="5,0,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                    <TextBlock VerticalAlignment="Center" Margin="0,0,5,0" Foreground="{DynamicResource MahApps.Brushes.Black}" Text="Rotate" />
+
+                                    <ItemsControl Items="{TemplateBinding RotateItems}"
+                                                  ItemTemplate="{StaticResource ItemVMPictureManipulationTemplate}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal" Spacing="5" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Button Grid.Column="2" Width="100"
+                                    Margin="0,0,2,0"
+                                    HorizontalAlignment="Right" Content="Reset" Command="{TemplateBinding CancelCommand}" />
+                        </Grid>
+
+                        <Border Grid.Row="1"  Margin="2"
+                                BorderBrush="{DynamicResource MahApps.Brushes.Accent}"
+                                BorderThickness="2" CornerRadius="4">
+                            <Grid>
+                                <ScrollViewer
+                                            HorizontalScrollBarVisibility="Auto"
+                                            VerticalScrollBarVisibility="Auto"
+                                            VerticalAlignment="Stretch"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalContentAlignment="Stretch"
+                                            HorizontalContentAlignment="Stretch">
+                                    <ContentControl
+                                            VerticalAlignment="Stretch"
+                                            HorizontalAlignment="Stretch"
+                                            x:Name="PART_ContentControl" />
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+
+                        <StackPanel Margin="2" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center"
+                                    IsEnabled="{TemplateBinding CanDoPictureModification}">
+                            <TextBlock Margin="5,0,5,0" Foreground="{DynamicResource MahApps.Brushes.Black}" Text="0%" />
+                            <RepeatButton Interval="100" Content="-" Command="{TemplateBinding ZoomDecrementCommand}" ClickMode="Press"  Width="25" />
+                            <Slider x:Name="PART_ZoomSlider"
+                                    Minimum="{TemplateBinding ZoomMinimum}"
+                                    Maximum="{TemplateBinding ZoomMaximum}"
+                                    Margin="5,0,5,0" Width="200"
+                                    Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:CroppingControl}}, Path=ZoomFactor, Mode=TwoWay}" />
+                            <RepeatButton Interval="100" Margin="5,0,0,0" Content="+" Command="{TemplateBinding ZoomIncrementCommand}" ClickMode="Press" Width="25" />
+                            <TextBlock Margin="5,0,0,0" Foreground="{DynamicResource MahApps.Brushes.Black}" Text="200%" />
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</Styles>

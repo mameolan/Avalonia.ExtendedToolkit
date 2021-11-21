@@ -179,4 +179,7 @@
 
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/Pagination.axaml"/>
 
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/CroppingControl/CroppingControl.axaml"/>
+    
+    
 </Styles>

@@ -26,21 +26,21 @@ namespace Avalonia.ExtendedToolkit.Controls
         private RotateTransform _rotateTransform;
         private Vector _startVector;
         private Point _centerPoint;
-        private ContentControl _designerItem;
+        private Control _designerItem;
         private Canvas _canvas;
         private double _currentRotateAngle;
 
         /// <summary>
         /// Defines the RotateFinsished routed event.
         /// </summary>
-        public static readonly RoutedEvent<RotateFinishedEventArgs> RotateFinsishedEvent =
-        RoutedEvent.Register<RotateThumb, RotateFinishedEventArgs>
+        public static readonly RoutedEvent<RotatedEventArgs> RotateFinsishedEvent =
+        RoutedEvent.Register<RotateThumb, RotatedEventArgs>
                     (nameof(RotateFinsishedEvent), RoutingStrategies.Bubble);
 
         /// <summary>
         /// Gets or sets RotateFinsished eventhandler.
         /// </summary>
-        public event EventHandler<RotateFinishedEventArgs> RotateFinsished
+        public event EventHandler<RotatedEventArgs> RotateFinsished
         {
             add
             {
@@ -91,7 +91,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void RotateThumb_DragCompleted(object sender, VectorEventArgs e)
         {
-            var args = new RotateFinishedEventArgs
+            var args = new RotatedEventArgs
             {
                 Angle = _currentRotateAngle,
                 Vector = e.Vector,
@@ -145,7 +145,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <param name="e"></param>
         private void RotateThumb_DragStarted(object sender, VectorEventArgs e)
         {
-            _designerItem = DataContext as ContentControl;
+            _designerItem = DataContext as Control;
 
             if (_designerItem != null)
             {

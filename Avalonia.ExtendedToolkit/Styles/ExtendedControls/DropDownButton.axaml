@@ -1,12 +1,27 @@
 <Styles xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit">
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             xmlns:ext="clr-namespace:Avalonia.ExtendedToolkit;assembly=Avalonia.ExtendedToolkit"
+             xmlns:extension="clr-namespace:Avalonia.ExtendedToolkit.Extensions;assembly=Avalonia.ExtendedToolkit"
+             xmlns:converter="clr-namespace:Avalonia.ExtendedToolkit.Converters;assembly=Avalonia.ExtendedToolkit"
+             >
     <Styles.Resources>
-        <Geometry x:Key="DownGeometry">M512 801.6896L5.12 282.0096l58.1632-59.5968L512 682.3936l448.7168-460.0832 58.1632 59.5968-506.88 519.7824z</Geometry>
-        <Geometry x:Key="UpGeometry">M50.000001,0 L100,51.262779 94.262627,57.141584 50.000001,11.767713 5.7373757,57.151686 0,51.27288 z</Geometry>
+        <DrawingImage x:Key="ArrowImage">
+            <DrawingImage.Drawing>
+                <DrawingGroup>
+                      <GeometryDrawing Brush="{DynamicResource MahApps.Brushes.Black}"
+                                       Geometry="M512 801.6896L5.12 282.0096l58.1632-59.5968L512 682.3936l448.7168-460.0832 58.1632 59.5968-506.88 519.7824z"/>
+                </DrawingGroup>
+            </DrawingImage.Drawing>
+        </DrawingImage>
+
     </Styles.Resources>
 
     <Style Selector="Controls|DropDownButton">
+        <Setter Property="ArrowIcon" Value="{StaticResource ArrowImage}"/>
+        <Setter Property="ArrowIconWidth" Value="8"/>
+        <Setter Property="ArrowIconHeight" Value="8"/>
+        <Setter Property="ArrowIconFillBrush" Value="{DynamicResource MahApps.Brushes.Black}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -19,7 +34,15 @@
                         <StackPanel Grid.Column="1">
                             <ToggleButton x:Name="PART_PopUpButton" VerticalAlignment="Stretch"
                                         HorizontalContentAlignment="Stretch" Height="30"
-                                        IsThreeState="False" Focusable="False" />
+                                        IsThreeState="False" Focusable="False" >
+                                <Controls:ImageExt 
+                                     x:Name="PART_ArrowImage"
+                                     Width="{TemplateBinding ArrowIconWidth}" 
+                                     Height="{TemplateBinding ArrowIconHeight}"
+                                     Source="{TemplateBinding ArrowIcon}"
+                                     GeometryFillBrush="{TemplateBinding ArrowIconFillBrush}"
+                                     />
+                            </ToggleButton>
 
                             <Popup x:Name="PART_PopupMenu"
                                     PlacementMode="Bottom"
@@ -41,38 +64,13 @@
         </Setter>
     </Style>
 
-    <Style Selector="Controls|DropDownButton[IsPopupOpen=true] /template/ ToggleButton#PART_PopUpButton">
-
-        <Setter Property="Content">
+    <Style Selector="Controls|DropDownButton[IsPopupOpen=true] /template/ Controls|ImageExt#PART_ArrowImage">
+        <Setter Property="RenderTransform">
             <Setter.Value>
-                <Template>
-                    <Grid HorizontalAlignment="Stretch">
-                        <Path Width="8" Height="8"
-                              Fill="{DynamicResource MahApps.Brushes.Black}"
-                              Stretch="Uniform"
-                              HorizontalAlignment="Right" VerticalAlignment="Center"
-                              Data="{DynamicResource UpGeometry}" />
-                    </Grid>
-                </Template>
+                <RotateTransform Angle="180"/>
             </Setter.Value>
         </Setter>
-    </Style>
-
-    <Style Selector="Controls|DropDownButton[IsPopupOpen=false] /template/ ToggleButton#PART_PopUpButton">
-
-        <Setter Property="Content">
-            <Setter.Value>
-                <Template>
-                    <Grid HorizontalAlignment="Stretch">
-                        <Path Width="8" Height="8"
-                              Fill="{DynamicResource MahApps.Brushes.Black}"
-                              Stretch="Uniform"
-                              HorizontalAlignment="Right" VerticalAlignment="Center"
-                              Data="{DynamicResource DownGeometry}" />
-                    </Grid>
-                </Template>
-            </Setter.Value>
-        </Setter>
+        
     </Style>
 
     <Style Selector="Controls|DropDownButton[DisplayMode=Button] /template/ ContentControl#PART_ContentControl">
