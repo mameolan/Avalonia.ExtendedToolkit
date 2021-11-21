@@ -10,20 +10,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.10.8" />
-    <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.8" />
-    <PackageReference Include="Avalonia.Desktop" Version="0.10.8" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.8" />
-    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.8" />
-    <PackageReference Include="Avalonia.Xaml.Interactions" Version="0.10.8" />
-    <PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.10.8" />
+    <PackageReference Include="Avalonia" Version="0.10.10" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.10" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.10" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.10" />
+    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.10.3" />
+    <PackageReference Include="Avalonia.Xaml.Interactions" Version="0.10.10.3" />
+    <PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.10.10.3" />
     <PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="ReactiveHistory" Version="0.10.7" />
     <PackageReference Include="XamlColorSchemeGenerator" Version="3.0.0.31">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
     <PackageReference Include="Microsoft.Reactive.Testing" Version="5.0.0" />
     <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
