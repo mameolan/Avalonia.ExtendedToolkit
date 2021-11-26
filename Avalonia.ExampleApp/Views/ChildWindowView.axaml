@@ -39,13 +39,14 @@
            <Controls:ChildWindow  
                           x:Name="child01"
                           Title="TestChild 1"
+                          ChildWindowHeight="300"
+                          ChildWindowWidth="400"
                           CloseByEscape="False"
                           IsAutoCloseEnabled="True"
                           OverlayBrush="{DynamicResource MahApps.Brushes.White}"
                           Background="{DynamicResource MahApps.Brushes.White}"
                           HorizontalContentAlignment="Stretch"
                           VerticalContentAlignment="Top"
-                          
                           >
                 <!-- not working -->
                 <!-- ChildWindowImage="Hand" -->

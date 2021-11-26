@@ -18,16 +18,12 @@
                                 Stretch="Uniform" />
                         <Border x:Name="PART_Icon" IsVisible="False"
                                 >
-                          <DrawingPresenter x:Name="PART_DrawingPresenter"  Stretch="Uniform" Height="{Binding Height,ElementName=mainGrid}">
-                                <DrawingPresenter.Drawing>
-                                    <DrawingGroup>
-                                    <GeometryDrawing 
-                                        Geometry="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:RateItem}}, Path=Icon}"
-                                        Brush="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:RateItem}}, Path=Foreground}"
-                                        />
-                                    </DrawingGroup>
-                                </DrawingPresenter.Drawing>
-                            </DrawingPresenter>
+                                <Path x:Name="PART_FillPath" 
+                                        Width="{Binding Width,ElementName=mainGrid}"
+                                        Height="{Binding Height,ElementName=mainGrid}"
+                                        Data="{TemplateBinding Icon}" 
+                                        Fill="{TemplateBinding Foreground}" 
+                                        Stretch="Uniform"/>
                         </Border>
                 </Grid>
             </ControlTemplate>
@@ -44,8 +40,9 @@
         <Setter Property="ScaleTransform.ScaleX" Value="1" />
         <Setter Property="ScaleTransform.ScaleY" Value="1" />
     </Style>
+   
 
-    <Style Selector="Controls|RateItem[IsHalf=true][AllowHalf=true] /template/ DrawingPresenter#PART_DrawingPresenter">
+    <Style Selector="Controls|RateItem[IsHalf=true][AllowHalf=true] /template/ Path#PART_FillPath">
        <Setter Property="Clip" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:RateItem}},Path=ClipRectangleGeometry}" />
     </Style>
     
