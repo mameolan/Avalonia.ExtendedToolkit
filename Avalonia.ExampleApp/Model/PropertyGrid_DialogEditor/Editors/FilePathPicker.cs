@@ -61,7 +61,7 @@ namespace Avalonia.ExampleApp.Model
                 if (x.IsFaulted == false)
                 {
 
-                    string result = x.Result.FirstOrDefault();
+                    string result = x.Result?.FirstOrDefault();
 
                     if (string.IsNullOrEmpty(result) == false)
                         propertyValue.StringValue = result;
