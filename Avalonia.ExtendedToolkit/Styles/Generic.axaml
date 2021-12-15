@@ -181,5 +181,6 @@
 
   <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/CroppingControl/CroppingControl.axaml"/>
     
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/RangeSlider.axaml"/>
     
 </Styles>
