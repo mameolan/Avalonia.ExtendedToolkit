@@ -1,5 +1,4 @@
 using System;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
@@ -7,7 +6,7 @@ using Avalonia.Layout;
 namespace Avalonia.ExtendedToolkit.Controls
 {
     //base on http://timokorinth.de/creating-range-slider-wpf-silverlight/
-    
+
     /// <summary>
     /// contol which has two two slider for managing an upper and lower value
     /// </summary>
@@ -131,7 +130,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 rangeSlider.PseudoClasses.Set(":vertical", orientation == Orientation.Vertical);
                 rangeSlider.PseudoClasses.Set(":horizontal", orientation == Orientation.Horizontal);
-            
+
                 // SetProgressBorder();
                 // SetLowerValueVisibility();
             }
@@ -159,7 +158,6 @@ namespace Avalonia.ExtendedToolkit.Controls
             {
                 return;
             }
-
 
             if (e.Property == RangeSlider.LowerValueProperty)
             {
@@ -197,6 +195,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                     upperPoint = this.DesiredSize.Width - upperPoint;
                     _progressBorder.Margin = new Thickness(lowerPoint, 0, upperPoint, 0);
                     break;
+
                 case Orientation.Vertical:
                     lowerPoint = (this.DesiredSize.Height * (LowerValue - Minimum)) / (Maximum - Minimum);
                     upperPoint = (this.DesiredSize.Height * (UpperValue - Minimum)) / (Maximum - Minimum);
@@ -204,10 +203,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                     _progressBorder.Margin = new Thickness(0, upperPoint, 0, lowerPoint);
                     break;
             }
-
-
         }
-
 
         /// <summary>
         /// resolves the template and sets the progressborder
@@ -222,7 +218,5 @@ namespace Avalonia.ExtendedToolkit.Controls
             SetProgressBorder();
             SetLowerValueVisibility();
         }
-
-
     }
 }
