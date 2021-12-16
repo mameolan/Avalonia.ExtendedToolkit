@@ -1,0 +1,74 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.ExampleApp.Views.RangeSliderDemoView">
+    <UserControl.Styles>
+        <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+        </Style>
+    </UserControl.Styles>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Horizontal Alignment" FontSize="20" />
+
+            <Grid Grid.Row="1" Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock Text="LowerValue: " />
+                    <TextBlock Margin="10,0,0,0" Text="{Binding ElementName=rangeHorizontal, Path=LowerValue, StringFormat={}{0:0.0}}" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock Margin="100,0,0,0" Text="UpperValue: " />
+                    <TextBlock Margin="10,0,0,0" Text="{Binding ElementName=rangeHorizontal, Path=UpperValue, StringFormat={}{0:0.0}}" />
+                </StackPanel>
+            </Grid>
+            <Controls:RangeSlider x:Name="rangeHorizontal" Grid.Row="2" Orientation="Horizontal" LowerValue="20" UpperValue="60" />
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Vertical Alignment" FontSize="20" />
+            <Grid Grid.Row="1" Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock Text="LowerValue: " />
+                    <TextBlock Margin="10,0,0,0" Text="{Binding ElementName=rangeVertical, Path=LowerValue, StringFormat={}{0:0.0}}" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock Text="UpperValue: " />
+                    <TextBlock Margin="10,0,0,0" Text="{Binding ElementName=rangeVertical, Path=UpperValue, StringFormat={}{0:0.0}}" />
+                </StackPanel>
+            </Grid>
+            <Controls:RangeSlider x:Name="rangeVertical" Grid.Row="2" Orientation="Vertical" LowerValue="20" UpperValue="60" />
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,170 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:Avalonia.ExtendedToolkit.Controls;assembly=Avalonia.ExtendedToolkit">
+
+    <Style Selector="RepeatButton.RepeatButtonControlTemplate">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style Selector="Thumb.ThumbStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Border x:Name="Background"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}" />
+                        <Border x:Name="BackgroundOver"
+                                Background="{TemplateBinding Foreground}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                IsVisible="False" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style Selector="Thumb.ThumbStyle:pointerover /template/ Border#BackgroundOver">
+        <Setter Property="IsVisible" Value="True" />
+    </Style>
+
+    <Style Selector="Thumb.ThumbStyle:pressed /template/ Border#BackgroundOver">
+        <Setter Property="IsVisible" Value="True" />
+    </Style>
+
+    <Style Selector="Slider.SliderStyleHorizontal">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid x:Name="Root">
+                        <Grid x:Name="HorizontalTemplate">
+                            <Track x:Name="PART_Track" Orientation="Horizontal">
+                                <Track.IncreaseButton>
+                                    <RepeatButton x:Name="HorizontalTrackLargeChangeIncreaseRepeatButton"
+                                                 Classes="RepeatButtonControlTemplate" />
+                                </Track.IncreaseButton>
+                                <Track.DecreaseButton>
+                                    <RepeatButton x:Name="HorizontalTrackLargeChangeDecreaseRepeatButton"
+                                        Classes="RepeatButtonControlTemplate" />
+                                </Track.DecreaseButton>
+                                <Track.Thumb>
+                                    <Thumb x:Name="HorizontalThumb"
+                                            Height="16" IsTabStop="True"
+                                            Width="10"
+                                            Classes="ThumbStyle"
+                                            Background="{DynamicResource MahApps.Brushes.Gray2}"
+                                            BorderBrush="#00000000"
+                                            Margin="1" />
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style Selector="Slider.SliderStyleVertical">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid x:Name="Root">
+                        <Grid x:Name="HorizontalTemplate">
+                            <Track x:Name="PART_Track" Orientation="Vertical">
+                                <Track.IncreaseButton>
+                                    <RepeatButton x:Name="HorizontalTrackLargeChangeIncreaseRepeatButton"
+                                                 Classes="RepeatButtonControlTemplate" />
+                                </Track.IncreaseButton>
+                                <Track.DecreaseButton>
+                                    <RepeatButton x:Name="HorizontalTrackLargeChangeDecreaseRepeatButton"
+                                        Classes="RepeatButtonControlTemplate" />
+                                </Track.DecreaseButton>
+                                <Track.Thumb>
+                                    <Thumb x:Name="HorizontalThumb"
+                                            Height="10" IsTabStop="True"
+                                            Width="16"
+                                            Classes="ThumbStyle"
+                                            Background="{DynamicResource MahApps.Brushes.Gray2}"
+                                            BorderBrush="#00000000"
+                                            Margin="1" />
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style Selector="Controls|RangeSlider">
+        <Setter Property="Height" Value="20" />
+        <Setter Property="Width" Value="200" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border BorderThickness="0.5" BorderBrush="{DynamicResource MahApps.Brushes.Gray2}">
+                        <Grid Margin="1.5,0" x:Name="PART_LayoutRoot" Background="Transparent">
+                            <Border x:Name="PART_ProgressBorder"
+                                    Background="{DynamicResource MahApps.Brushes.Accent2}"
+                                    BorderThickness="1,5" />
+
+                            <Slider x:Name="PART_LowerSlider"
+                                    Minimum="{Binding RelativeSource={RelativeSource AncestorType=Controls:RangeSlider}, Path=Minimum, Mode=TwoWay}"
+                                    Maximum="{Binding RelativeSource={RelativeSource AncestorType=Controls:RangeSlider}, Path=Maximum, Mode=TwoWay}"
+                                    Value="{Binding RelativeSource={RelativeSource AncestorType=Controls:RangeSlider}, Path=LowerValue, Mode=TwoWay}"
+                                    Classes="SliderStyleHorizontal"
+                                    Orientation="{TemplateBinding Orientation}" />
+
+                            <Slider x:Name="PART_UpperSlider"
+                                    Minimum="{Binding RelativeSource={RelativeSource AncestorType=Controls:RangeSlider}, Path=Minimum, Mode=TwoWay}"
+                                    Maximum="{Binding RelativeSource={RelativeSource AncestorType=Controls:RangeSlider}, Path=Maximum, Mode=TwoWay}"
+                                    Value="{Binding RelativeSource={RelativeSource AncestorType=Controls:RangeSlider}, Path=UpperValue, Mode=TwoWay}"
+                                    Classes="SliderStyleHorizontal"
+                                    Orientation="{TemplateBinding Orientation}" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style Selector="Controls|RangeSlider:vertical">
+        <Setter Property="Height" Value="200" />
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Gray2}">
+                        <Grid Margin="1" x:Name="PART_LayoutRoot" Background="Transparent">
+                            <Border x:Name="PART_ProgressBorder"
+                                    Background="{DynamicResource MahApps.Brushes.Accent2}"
+                                    BorderThickness="1,5" />
+
+                            <Slider x:Name="PART_LowerSlider"
+                                    Minimum="{Binding RelativeSource={RelativeSource AncestorType=Controls:RangeSlider}, Path=Minimum, Mode=TwoWay}"
+                                    Maximum="{Binding RelativeSource={RelativeSource AncestorType=Controls:RangeSlider}, Path=Maximum, Mode=TwoWay}"
+                                    Value="{Binding RelativeSource={RelativeSource AncestorType=Controls:RangeSlider}, Path=LowerValue, Mode=TwoWay}"
+                                    Classes="SliderStyleVertical"
+                                    Orientation="{TemplateBinding Orientation}" />
+
+                            <Slider x:Name="PART_UpperSlider"
+                                    Minimum="{Binding RelativeSource={RelativeSource AncestorType=Controls:RangeSlider}, Path=Minimum, Mode=TwoWay}"
+                                    Maximum="{Binding RelativeSource={RelativeSource AncestorType=Controls:RangeSlider}, Path=Maximum, Mode=TwoWay}"
+                                    Value="{Binding RelativeSource={RelativeSource AncestorType=Controls:RangeSlider}, Path=UpperValue, Mode=TwoWay}"
+                                    Classes="SliderStyleVertical"
+                                    Orientation="{TemplateBinding Orientation}" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</Styles>

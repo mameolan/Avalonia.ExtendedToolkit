@@ -160,7 +160,7 @@
           -->
 
           <Border Name="TrackBackground" Grid.Row="1" Height="4" Margin="6,0" VerticalAlignment="Center"/>
-          <Track x:Name="PART_Track" Grid.Row="1" Orientation="Horizontal">
+          <Track x:Name="PART_Track" Grid.Row="1" IsDirectionReversed="{TemplateBinding IsDirectionReversed}" Orientation="Horizontal">
             <Track.DecreaseButton>
               <RepeatButton x:Name="PART_DecreaseButton"
                             Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackValueFillBrush)}"
@@ -335,7 +335,7 @@
                    Placement="Right"
                    Visibility="Collapsed" />-->
           <Border Name="TrackBackground" Grid.Column="1" Width="4" Margin="0,6" HorizontalAlignment="Center"/>
-          <Track x:Name="PART_Track" Grid.Column="1" Orientation="Vertical" IsDirectionReversed="True">
+          <Track x:Name="PART_Track" Grid.Column="1" Orientation="Vertical" IsDirectionReversed="{TemplateBinding IsDirectionReversed}">
             <Track.DecreaseButton>
               <RepeatButton x:Name="PART_DecreaseButton"
                             Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:SliderHelper.TrackValueFillBrush)}"

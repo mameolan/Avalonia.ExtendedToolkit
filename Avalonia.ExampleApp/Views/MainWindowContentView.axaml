@@ -126,13 +126,21 @@
                     </Grid>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="Sliders" >
+            <TabItem Header="Slider" >
                 <ScrollViewer>
                     <Grid>
                         <Views:Sliders/>
                     </Grid>
                 </ScrollViewer>
             </TabItem>
+            <TabItem Header="Range Slider" >
+                <ScrollViewer>
+                    <Grid>
+                        <Views:RangeSliderDemoView/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
             <TabItem Header="Date Controls" >
                 <ScrollViewer>
                     <Grid>
