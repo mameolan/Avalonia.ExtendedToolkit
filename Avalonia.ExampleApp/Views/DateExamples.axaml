@@ -3,38 +3,44 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
-             xmlns:globalization="clr-namespace:System.Globalization;assembly=mscorlib"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Avalonia.ExampleApp.Views.DateExamples">
-  <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*"/>
-      <ColumnDefinition />
-      <ColumnDefinition />
-    </Grid.ColumnDefinitions>
+    <StackPanel>
 
-    <CheckBox x:Name="IsTodayHighlightedCheckBox"
-                Grid.Column="0"
-                Content="IsTodayHighlighted"
-                IsChecked="True" 
-                VerticalAlignment="Top"
-              />
-    
-    <StackPanel Grid.Column="1"
-                >
-      <TextBlock Text="Calendar" Classes="DescriptionHeaderStyle" />
-      <Calendar Margin="5"
-                DisplayDateStart="{x:Static system:DateTime.Now}"
-                SelectionMode="MultipleRange" 
-                IsTodayHighlighted="{Binding ElementName=IsTodayHighlightedCheckBox, Path=IsChecked, Mode=TwoWay}"
-                />
-     </StackPanel>
+        <TextBlock Classes="DescriptionHeaderStyle" Text="Calendar" />
 
-    <StackPanel Grid.Column="2" >
-      <TextBlock Text="Disabled Calendar" Classes="DescriptionHeaderStyle" />
-      <Calendar Margin="5"
-                 HorizontalAlignment="Center"
-                 IsEnabled="False" />
+        <Grid Grid.Row="1" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <CheckBox x:Name="IsTodayHighlightedCheckBox"
+                        Grid.Column="0"
+                        Content="IsTodayHighlighted"
+                        IsChecked="True"
+                        VerticalAlignment="Top" />
+
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="Calendar" Classes="DescriptionHeaderStyle" />
+                <Calendar Margin="5"
+                          DisplayDateStart="{x:Static system:DateTime.Now}"
+                          SelectionMode="MultipleRange"
+                          IsTodayHighlighted="{Binding ElementName=IsTodayHighlightedCheckBox, Path=IsChecked, Mode=TwoWay}" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <TextBlock Text="Disabled Calendar" Classes="DescriptionHeaderStyle" />
+                <Calendar Margin="5"
+                          HorizontalAlignment="Center"
+                          IsEnabled="False" />
+            </StackPanel>
+        </Grid>
+
+        <TextBlock Margin="0,30,0,0" Classes="DescriptionHeaderStyle" Text="Date Picker" />
+        <Grid  Margin="0,20,0,0">
+            <DatePicker Width="200" HorizontalAlignment="Center" />
+        </Grid>
     </StackPanel>
-  </Grid>
 </UserControl>
