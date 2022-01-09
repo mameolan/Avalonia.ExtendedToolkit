@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.ExtendedToolkit.Extensions;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
@@ -146,6 +147,12 @@ namespace Avalonia.ExtendedToolkit.Controls
             if (_designerItem != null && _isDragStarted)
             {
                 Point dragDelta = new Point(e.Vector.X, e.Vector.Y);
+                
+                if (_rotateTransform != null)
+                {
+                    dragDelta = _rotateTransform.Value.Transform(dragDelta);
+                }
+                
                 var left = Canvas.GetLeft(_designerItem) + dragDelta.X;
                 var top = Canvas.GetTop(_designerItem) + dragDelta.Y;
                 var right = Canvas.GetLeft(_designerItem) + _designerItem.Width;
@@ -167,11 +174,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 }
 
 
-                if (_rotateTransform != null)
-                {
-                    //TODO Fix me?
-                    //dragDelta = this.rotateTransform.Transform(dragDelta);
-                }
+                
 
 
 

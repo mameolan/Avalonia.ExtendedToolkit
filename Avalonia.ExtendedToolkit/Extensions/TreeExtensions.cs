@@ -52,7 +52,18 @@ namespace Avalonia.ExtendedToolkit.Extensions
             return result;
         }
 
-
+        /// <summary>
+        /// Transforms the specified point and 
+        /// the give matrix
+        /// to the resulting point
+        /// </summary>
+        public static Point Transform(this Matrix matrix, Point point)
+        {
+            //calculation taken from MonoGame.Extended/Math/Matrix2.cs
+            double x = point.X * matrix.M11 + point.Y * matrix.M21 + matrix.M31;
+            double y = point.X * matrix.M12 + point.Y * matrix.M22 + matrix.M32;
+            return new Point(x, y);
+        }
 
         /// <summary>
         /// tries to find the parent by type
@@ -65,7 +76,7 @@ namespace Avalonia.ExtendedToolkit.Extensions
             if (control is T)
                 return (T)control;
 
-            if(control.TemplatedParent is T)
+            if (control.TemplatedParent is T)
             {
                 return (T)control.TemplatedParent;
             }
@@ -73,7 +84,7 @@ namespace Avalonia.ExtendedToolkit.Extensions
 
 
 
-            if(control is IContentControl
+            if (control is IContentControl
                 && ((IContentControl)control).Content is T)
             {
                 return (T)((IContentControl)control).Content;
@@ -86,14 +97,14 @@ namespace Avalonia.ExtendedToolkit.Extensions
 
             while (parent != null)
             {
-                if(parent is T)
+                if (parent is T)
                 {
                     return (T)parent;
                 }
 
                 T result = TryFindParent<T>(parent);
 
-                if(result is T)
+                if (result is T)
                 {
                     return result;
                 }
@@ -137,7 +148,8 @@ namespace Avalonia.ExtendedToolkit.Extensions
         /// <returns></returns>
         public static IEnumerable<IControl> GetChildObjects(this IControl parent, bool forceUsingTheVisualTreeHelper = false)
         {
-            if (parent == null) yield break;
+            if (parent == null)
+                yield break;
 
             ILogical parentLogical = parent as ILogical;
 
@@ -154,7 +166,7 @@ namespace Avalonia.ExtendedToolkit.Extensions
             {
                 IVisual visual = parent as IVisual;
 
-                foreach(var item in VisualTree.VisualExtensions.GetVisualChildren(visual))
+                foreach (var item in VisualTree.VisualExtensions.GetVisualChildren(visual))
                 {
                     IControl avalonia = item as IControl;
                     if (avalonia != null)
@@ -199,7 +211,7 @@ namespace Avalonia.ExtendedToolkit.Extensions
         /// <returns></returns>
         public static IEnumerable<IVisual> GetAncestors(this IVisual child)
         {
-            IVisual parent= VisualTree.VisualExtensions.GetVisualParent(child);
+            IVisual parent = VisualTree.VisualExtensions.GetVisualParent(child);
             while (parent != null)
             {
                 yield return parent;
