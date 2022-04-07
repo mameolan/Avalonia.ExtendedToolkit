@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using Avalonia.Controls.Primitives;
 using Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyTypes;
@@ -90,19 +91,17 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 
             if (template is string)
             {
-                var genericStyle = Application.Current.Styles.OfType<StyleInclude>().FirstOrDefault(styleInclude => styleInclude.
-                             Source.AbsoluteUri.StartsWith("avares://Avalonia.ExtendedToolkit/Styles/Generic.axaml"));
 
-                var result = (genericStyle.Loaded as Styles)?.OfType<StyleInclude>()
-                        .FirstOrDefault(styleInclude => styleInclude.
-                             Source.AbsoluteUri.EndsWith("PropertyGrid/Editor/EditorResources.axaml"));
-
-                //result.Loaded.TryGetResource(template, out object resourceValue);
-                result.TryGetResource(template, out object resourceValue);
-
-                ControlTemplate controlTemplate = resourceValue as ControlTemplate;
-
-                return controlTemplate;// inlineTemplate;
+                if(Application.Current.Styles.TryGetResource(template, out object resourceValue))
+                {
+                    ControlTemplate controlTemplate = resourceValue as ControlTemplate;
+                    return controlTemplate;// inlineTemplate;
+                }
+                else
+                {
+                    Debug.WriteLine("########Generic.axaml or Generic.All.axaml have to be added to the App.axaml############");            
+                    return null;
+                }
             }
             else
             {

@@ -8,7 +8,7 @@
         <StyleInclude Source="resm:Avalonia.Controls.DataGrid.Themes.Default.xaml?assembly=Avalonia.Controls.DataGrid" />
         <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Themes/Light.Blue.axaml"/>
         <StyleInclude Source="avares://Avalonia.Controlz/Styles/Generic.axaml"/>
-        <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Generic.axaml"/>
+        <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Generic.All.axaml"/>
         <Style Selector="TextBlock.DescriptionHeaderStyle">
             <Setter Property="FontSize" Value="22" />
             <Setter Property="HorizontalAlignment" Value="Center" />

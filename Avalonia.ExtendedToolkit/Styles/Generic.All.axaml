@@ -1,0 +1,4 @@
+<Styles xmlns="https://github.com/avaloniaui">
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Generic.axaml"/>
+  <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Default.Datagrid.axaml"/>
+</Styles>
