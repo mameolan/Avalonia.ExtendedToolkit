@@ -106,7 +106,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 animation.Duration = TimeSpan.FromSeconds(animatableMessage.AnimationOutDuration);
 
                 Animatable animatable = animatableMessage.AnimatableElement as Animatable;
-                animation.RunAsync(animatable);
+                animation.RunAsync(animatable, null);
             }
         }
     }

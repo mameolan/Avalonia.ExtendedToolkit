@@ -251,7 +251,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                     //this.BeginAnimation(AnimationDecorator.AnimationOpacityProperty, animation);
                 }
 
-                await Task.WhenAll(new Task[] { animation.RunAsync(this) }).ContinueWith(x =>
+                await Task.WhenAll(new Task[] { animation.RunAsync(this, null) }).ContinueWith(x =>
                 {
                     animating = false;
                 });
@@ -296,7 +296,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             keyFrame.Setters.Add(new Setter(AnimationDecorator.HeightOffsetProperty, 0));
             animation.Children.Add(keyFrame);
 
-            animation.RunAsync(this);
+            animation.RunAsync(this, Clock);
             return delta;
         }
 
