@@ -1,0 +1,23 @@
+<Styles xmlns="https://github.com/avaloniaui">
+    <!-- datagrid start-->
+    <!-- default start -->
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGrid.axaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGridCell.axaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGridColumnHeader.axaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGridRow.axaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGridRowGroupHeader.axaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Default/Controls.DataGridRowHeader.axaml"/>
+    <!-- default end -->
+    <!-- metro start -->
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGrid.axaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGridCell.axaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGridColumnHeader.axaml"/>
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGridRow.axaml"/>
+    <!-- <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGridRowGroupHeader.axaml"/> -->
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/DefaultControls/DataGrid/Metro/Controls.DataGridRowHeader.axaml"/>
+    
+    <!-- metro end -->
+
+    <!-- datagrid end-->
+  
+</Styles>

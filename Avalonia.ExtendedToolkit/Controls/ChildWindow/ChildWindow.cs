@@ -119,7 +119,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                     // otherwise it could be hidden on start
                 }
 
-                _showAnimationTask = _showAnimation.RunAsync(childWindow).ContinueWith(
+                _showAnimationTask = _showAnimation.RunAsync(childWindow,null).ContinueWith(
                  x =>
                  {
 #warning little bit hacky should be done in the animation
@@ -146,7 +146,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
                 _hideAnimationTokenSource = new CancellationTokenSource();
 
-                _hideAnimationTask = _hideAnimation.RunAsync(childWindow).ContinueWith(
+                _hideAnimationTask = _hideAnimation.RunAsync(childWindow,Clock).ContinueWith(
                      x =>
                      {
                          childWindow.OnClosingFinished();

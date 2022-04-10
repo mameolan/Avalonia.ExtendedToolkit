@@ -46,20 +46,26 @@ Please have a look at the example app or in the [wiki](https://github.com/mameol
 
 ```xml	
 <Application.Styles>
-	<StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.xaml"/>
+	<StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.axaml"/>
 	<StyleInclude Source="resm:Avalonia.Controls.DataGrid.Themes.Default.xaml?assembly=Avalonia.Controls.DataGrid" />
-	<StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Generic.xaml"/>
+	<!-- without datagrid -->
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Generic.axaml"/>
+    <!-- includes datagrid seperately: -->
+    <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Default.Datagrid.axaml"/>
+    
+    <!-- with datagrid -->
+    <!-- <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Generic.All.axaml"/> -->
 </Application.Styles>
 
 ```
 
-Set Color in App.xaml Styles like this i.e.:
+Set Color in App.axaml Styles like this i.e.:
 
 ```xml
-<StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Themes/Dark.Blue.xaml"/>
+<StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Themes/Dark.Blue.axaml"/>
 ```
 
-or use the ThemeManager (App.xaml.cs):
+or use the ThemeManager (App.axaml.cs):
 
 ```cs
 public override void OnFrameworkInitializationCompleted()
@@ -73,5 +79,17 @@ public override void OnFrameworkInitializationCompleted()
 
    base.OnFrameworkInitializationCompleted();
 }
+```
+
+### AppBuilder Setup:
+
+```cs
+appBuilder
+.UsePlatformDetect()
+...
+.UseSkia()
+.UseReactiveUI() //required
+.UseAvaloniaExtended() //for i.e. dialog service
+...
 ```
 
