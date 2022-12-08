@@ -18,7 +18,7 @@
     <PackageReference Include="Avalonia.Xaml.Interactions" Version="0.10.13.3" />
     <PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.10.13.3" />
     <PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="ReactiveHistory" Version="0.10.7" />
     <PackageReference Include="XamlColorSchemeGenerator" Version="3.0.0.31">
       <NoWarn>NU1701</NoWarn>

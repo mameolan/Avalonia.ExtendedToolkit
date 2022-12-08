@@ -36,7 +36,7 @@
 		<PackageReference Include="DynamicData" Version="7.6.5" />
 		<PackageReference Include="DynamicData.ReactiveUI" Version="6.11.0.2613" />
 		<PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 		<PackageReference Include="ReactiveHistory" Version="0.10.7" />
 		<PackageReference Include="XamlColorSchemeGenerator" Version="3.0.0.31">
 			<NoWarn>NU1701</NoWarn>
