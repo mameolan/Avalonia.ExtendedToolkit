@@ -59,7 +59,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         AvaloniaProperty.Register<StepBar, int>(nameof(StepIndex), defaultValue: 0,
         coerce: (o, e) => { return CoerceStepIndex(o, e); });
 
-        private static int CoerceStepIndex(IAvaloniaObject ctrl, int stepIndex)
+        private static int CoerceStepIndex(AvaloniaObject ctrl, int stepIndex)
         {
             StepBar stepBar = ctrl as StepBar;
             int itemsCount = stepBar.Items.OfType<object>().Count();
@@ -150,8 +150,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             NextCommand = ReactiveCommand.Create(() => Next(), outputScheduler: RxApp.MainThreadScheduler);
             PreviousCommand = ReactiveCommand.Create(() => Prev(), outputScheduler: RxApp.MainThreadScheduler);
-
-            ItemContainerGenerator.Materialized += ItemContainerGenerator_StatusChanged;
+            //.orig
+            //ItemContainerGenerator.Materialized += ItemContainerGenerator_StatusChanged;
             StepIndexProperty.Changed.AddClassHandler<StepBar>((o, e) => OnStepIndexChanged(o, e));
         }
 
@@ -159,44 +159,46 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// returns <see cref="ItemContainerGenerator"/> of type <see cref="StepBarItem"/>
         /// </summary>
         /// <returns></returns>
-        protected override IItemContainerGenerator CreateItemContainerGenerator()
-        {
-            return new ItemContainerGenerator<StepBarItem>(
-                this,
-                StepBarItem.ContentProperty,
-                StepBarItem.ContentTemplateProperty);
-        }
+        //.orig
+        //protected override ItemContainerGenerator CreateItemContainerGenerator()
+        //{
+        //    return new ItemContainerGenerator<StepBarItem>(
+        //        this,
+        //        StepBarItem.ContentProperty,
+        //        StepBarItem.ContentTemplateProperty);
+        //}
 
         /// <summary>
         /// sets the step index of the items and property
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ItemContainerGenerator_StatusChanged(object sender, ItemContainerEventArgs e)
-        {
-            var count = Items.OfType<StepBarItem>().Count();
+        //.orig
+        //private void ItemContainerGenerator_StatusChanged(object sender, ItemContainerEventArgs e)
+        //{
+        //    var count = Items.OfType<StepBarItem>().Count();
 
-            if (count <= 0)
-                return;
+        //    if (count <= 0)
+        //        return;
 
-            for (var i = 0; i < count; i++)
-            {
-                if (ItemContainerGenerator.ContainerFromIndex(i) is StepBarItem stepBarItem)
-                {
-                    stepBarItem.Index = i + 1;
-                }
-            }
+        //    for (var i = 0; i < count; i++)
+        //    {
+        //        if (ItemContainerGenerator.ContainerFromIndex(i) is StepBarItem stepBarItem)
+        //        {
+        //            stepBarItem.Index = i + 1;
+        //        }
+        //    }
 
-            if (_oriStepIndex > 0)
-            {
-                StepIndex = _oriStepIndex;
-                _oriStepIndex = -1;
-            }
-            else
-            {
-                OnStepIndexChanged(StepIndex);
-            }
-        }
+        //    if (_oriStepIndex > 0)
+        //    {
+        //        StepIndex = _oriStepIndex;
+        //        _oriStepIndex = -1;
+        //    }
+        //    else
+        //    {
+        //        OnStepIndexChanged(StepIndex);
+        //    }
+        //}
 
         /// <summary>
         /// calls <see cref="OnStepIndexChanged(int)"/>

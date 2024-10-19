@@ -1,6 +1,7 @@
 ﻿using System;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -31,6 +32,19 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public static readonly StyledProperty<bool> IsDraggingProperty =
             AvaloniaProperty.Register <MetroThumb, bool>(nameof(IsDragging));
+
+        event EventHandler<RoutedEventArgs> IMetroThumb.DoubleTapped
+        {
+            add
+            {
+                throw new NotImplementedException();
+            }
+
+            remove
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         /// <summary>
         /// set is dragging to true

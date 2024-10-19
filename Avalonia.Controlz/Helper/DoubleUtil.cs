@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows;
+using System.Drawing;
 using System.Runtime.InteropServices;
 
 namespace Avalonia.Controlz
@@ -209,15 +211,15 @@ namespace Avalonia.Controlz
         public static bool AreClose(Rect rect1, Rect rect2)
         {
             // If they're both empty, don't bother with the double logic.
-            if (rect1.IsEmpty)
+            if (rect1.Height == 0 && rect1.Width == 0)
             {
-                return rect2.IsEmpty;
+                return !(rect2.Height != 0 || rect2.Width != 0);
             }
 
             // At this point, rect1 isn't empty, so the first thing we can test is
             // rect2.IsEmpty, followed by property-wise compares.
 
-            return (!rect2.IsEmpty) &&
+            return (rect2.Height != 0 || rect2.Width != 0) &&
                 DoubleUtil.AreClose(rect1.X, rect2.X) &&
                 DoubleUtil.AreClose(rect1.Y, rect2.Y) &&
                 DoubleUtil.AreClose(rect1.Height, rect2.Height) &&

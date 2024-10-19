@@ -20,9 +20,11 @@
               BorderThickness="{TemplateBinding BorderThickness}"
               Padding="{TemplateBinding Padding}">
             <ItemsPresenter Name="PART_ItemsPresenter"
-                            Items="{TemplateBinding Items}"
+                            
                             ItemsPanel="{TemplateBinding ItemsPanel}"
-                            ItemTemplate="{TemplateBinding ItemTemplate}"/>
+                            />
+              <!--bad viewItems="{TemplateBinding Items}"
+              ItemTemplate="{TemplateBinding ItemTemplate}"-->
           </Border>
         </ControlTemplate>
       </Setter.Value>

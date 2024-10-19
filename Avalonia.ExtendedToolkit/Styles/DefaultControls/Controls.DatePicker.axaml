@@ -56,7 +56,7 @@
     </Style>
     <Style Selector="ListBoxItem.DateTimePickerItem:pointerover /template/ ContentPresenter">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="TextBlock.Background" Value="Transparent" />
+        <!--fix to get rid of duplicate Background setters<Setter Property="TextBlock.Background" Value="Transparent" />-->
         <Setter Property="TextBlock.Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
     </Style>
 
@@ -78,13 +78,12 @@
             <ControlTemplate>
                 <Grid Name="LayoutRoot" Margin="{TemplateBinding Padding}" RowDefinitions="Auto,*">
                     <ContentPresenter Name="HeaderContentPresenter" Grid.Row="0"
-                                      Content="{TemplateBinding Header}"
-                                      ContentTemplate="{TemplateBinding HeaderTemplate}"
                                       Margin="{DynamicResource DatePickerTopHeaderMargin}"
                                       MaxWidth="{DynamicResource DatePickerThemeMaxWidth}"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Top" />
-
+                    <!--bad viewContent="{TemplateBinding Header}"
+                    ContentTemplate="{TemplateBinding HeaderTemplate}"-->
                     <Button Name="FlyoutButton" Grid.Row="1"
                             Foreground="{TemplateBinding Foreground}"
                             Background="{TemplateBinding Background}"
@@ -112,17 +111,17 @@
                             </ControlTemplate>
                         </Button.Template>
                         <Grid Name="ButtonContentGrid" ColumnDefinitions="78*,Auto,132*,Auto,78*">
-                            <TextBlock Name="DayText" Text="day" HorizontalAlignment="Center"
+                            <TextBlock Name="PART_DayTextBlock" Text="day" HorizontalAlignment="Center"
                                        Padding="{DynamicResource DatePickerHostPadding}"
                                        FontFamily="{TemplateBinding FontFamily}"
                                        FontWeight="{TemplateBinding FontWeight}"
                                        FontSize="{TemplateBinding FontSize}" />
-                            <TextBlock Name="MonthText" Text="month" TextAlignment="Left"
+                            <TextBlock x:Name="PART_MonthTextBlock" Text="month" TextAlignment="Left"
                                        Padding="{DynamicResource DatePickerHostMonthPadding}"
                                        FontFamily="{TemplateBinding FontFamily}"
                                        FontWeight="{TemplateBinding FontWeight}"
                                        FontSize="{TemplateBinding FontSize}" />
-                            <TextBlock Name="YearText" Text="year" HorizontalAlignment="Center"
+                            <TextBlock Name="PART_YearTextBlock" Text="year" HorizontalAlignment="Center"
                                        Padding="{DynamicResource DatePickerHostPadding}"
                                        FontFamily="{TemplateBinding FontFamily}"
                                        FontWeight="{TemplateBinding FontWeight}"
@@ -141,7 +140,7 @@
                     </Button>
 
                     <Popup Name="Popup" WindowManagerAddShadowHint="False"
-                           StaysOpen="False" PlacementTarget="{TemplateBinding}"
+                           IsLightDismissEnabled="False" PlacementTarget="{TemplateBinding}"
                            PlacementMode="Bottom">
                         <DatePickerPresenter Name="PickerPresenter" />
                     </Popup>
@@ -202,12 +201,12 @@
                         Padding="{DynamicResource DateTimeFlyoutBorderPadding}"
                         MaxHeight="398">
                     <Grid Name="ContentRoot" RowDefinitions="*,Auto">
-                        <Grid Name="PickerContainer">
+                        <Grid x:Name="PART_PickerContainer">
                             <!--Column Definitions set in code, ignore here-->
-                            <Panel Name="MonthHost">
+                            <Panel x:Name="PART_MonthHost">
                                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                                               VerticalScrollBarVisibility="Hidden">
-                                    <DateTimePickerPanel Name="MonthSelector"
+                                    <DateTimePickerPanel x:Name="PART_MonthSelector"
                                                         PanelType="Month"
                                                         ItemHeight="{DynamicResource DatePickerFlyoutPresenterItemHeight}"
                                                         ShouldLoop="True" />
@@ -217,10 +216,10 @@
                                 <RepeatButton Name="MonthDownButton"
                                               Classes="DateTimeFlyoutButtonStyle DownButton" />
                             </Panel>
-                            <Panel Name="DayHost">
+                            <Panel x:Name="PART_DayHost">
                                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                                               VerticalScrollBarVisibility="Hidden">
-                                    <DateTimePickerPanel Name="DaySelector"
+                                    <DateTimePickerPanel x:Name="PART_DaySelector"
                                                         PanelType="Day"
                                                         ItemHeight="{DynamicResource DatePickerFlyoutPresenterItemHeight}"
                                                         ShouldLoop="True" />
@@ -230,10 +229,10 @@
                                 <RepeatButton Name="DayDownButton"
                                               Classes="DateTimeFlyoutButtonStyle DownButton" />
                             </Panel>
-                            <Panel Name="YearHost">
+                            <Panel x:Name="PART_YearHost">
                                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                                               VerticalScrollBarVisibility="Hidden">
-                                    <DateTimePickerPanel Name="YearSelector"
+                                    <DateTimePickerPanel x:Name="PART_YearSelector"
                                                         PanelType="Year"
                                                         ItemHeight="{DynamicResource DatePickerFlyoutPresenterItemHeight}"
                                                         ShouldLoop="False" />
@@ -263,12 +262,12 @@
                             <Rectangle Height="{DynamicResource DatePickerSpacerThemeWidth}" VerticalAlignment="Top"
                                        Fill="{DynamicResource ThemeControlMidHighBrush}"
                                        Grid.ColumnSpan="2" />
-                            <Button Name="AcceptButton" Grid.Column="0" Classes="DateTimeFlyoutButtonStyle"
+                            <Button x:Name="PART_AcceptButton" Grid.Column="0" Classes="DateTimeFlyoutButtonStyle"
                                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <Path Stroke="{Binding $parent[Button].Foreground}" StrokeLineCap="Round"
                                       StrokeThickness="0.75" Data="M0.5,8.5 5,13.5 15.5,3" />
                             </Button>
-                            <Button Name="DismissButton" Grid.Column="1" Classes="DateTimeFlyoutButtonStyle"
+                            <Button x:Name="PART_DismissButton" Grid.Column="1" Classes="DateTimeFlyoutButtonStyle"
                                        FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <Path Stroke="{Binding $parent[Button].Foreground}" StrokeLineCap="Round"
                                       StrokeThickness="0.75" Data="M2,2 14,14 M2,14 14 2" />

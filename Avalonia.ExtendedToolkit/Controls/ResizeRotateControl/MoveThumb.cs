@@ -74,17 +74,17 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Gets or sets BouncedControl.
         /// </summary>
-        public IControl BouncedControl
+        public Control BouncedControl
         {
-            get { return (IControl)GetValue(BouncedControlProperty); }
+            get { return (Control)GetValue(BouncedControlProperty); }
             set { SetValue(BouncedControlProperty, value); }
         }
 
         /// <summary>
         /// Defines the <see cref="BouncedControl"/> property.
         /// </summary>
-        public static readonly StyledProperty<IControl> BouncedControlProperty =
-            AvaloniaProperty.Register<MoveThumb, IControl>(nameof(BouncedControl));
+        public static readonly StyledProperty<Control> BouncedControlProperty =
+            AvaloniaProperty.Register<MoveThumb, Control>(nameof(BouncedControl));
 
 
 
@@ -161,8 +161,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 if (AllowDragOutOfView == false)
                 {
                     var bouncedControl = BouncedControl != null ? BouncedControl : _designerItem.Parent;
-
-                    var controlBounds = bouncedControl.Bounds;
+                    //.edited, think many
+                    var controlBounds = ((Control)bouncedControl).Bounds;
 
                     var rect = new Rect(new Point(left, top), _designerItem.DesiredSize);
 

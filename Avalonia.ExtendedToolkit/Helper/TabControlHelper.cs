@@ -13,7 +13,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// CloseButtonEnabled AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<bool> CloseButtonEnabledProperty =
-            AvaloniaProperty.RegisterAttached<IControl, bool>("CloseButtonEnabled",
+            AvaloniaProperty.RegisterAttached<Control, bool>("CloseButtonEnabled",
                 typeof(TabControlHelper), defaultValue:false);
 
         /// <summary>
@@ -21,9 +21,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static bool GetCloseButtonEnabled(IControl element)
+        public static bool GetCloseButtonEnabled(Control element)
         {
-            return element.GetValue(CloseButtonEnabledProperty);
+            return element.GetValue<bool>(CloseButtonEnabledProperty);
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetCloseButtonEnabled(IControl element, bool value)
+        public static void SetCloseButtonEnabled(Control element, bool value)
         {
             element.SetValue(CloseButtonEnabledProperty, value);
         }
@@ -40,16 +40,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// CloseTabCommand AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<ICommand> CloseTabCommandProperty =
-            AvaloniaProperty.RegisterAttached<IControl, ICommand>("CloseTabCommand", typeof(TabControlHelper));
+            AvaloniaProperty.RegisterAttached<Control, ICommand>("CloseTabCommand", typeof(TabControlHelper));
 
         /// <summary>
         /// get CloseTabCommand
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static ICommand GetCloseTabCommand(IControl element)
+        public static ICommand GetCloseTabCommand(Control element)
         {
-            return element.GetValue(CloseTabCommandProperty);
+            return element.GetValue<ICommand>(CloseTabCommandProperty);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetCloseTabCommand(IControl element, ICommand value)
+        public static void SetCloseTabCommand(Control element, ICommand value)
         {
             element.SetValue(CloseTabCommandProperty, value);
         }
@@ -66,14 +66,14 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// CloseTabCommandParameter AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<object> CloseTabCommandParameterProperty =
-            AvaloniaProperty.RegisterAttached<IControl, object>("CloseTabCommandParameter", typeof(TabControlHelper));
+            AvaloniaProperty.RegisterAttached<Control, object>("CloseTabCommandParameter", typeof(TabControlHelper));
 
         /// <summary>
         /// get CloseTabCommandParameter
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static object GetCloseTabCommandParameter(IControl element)
+        public static object GetCloseTabCommandParameter(Control element)
         {
             return element.GetValue(CloseTabCommandParameterProperty);
         }
@@ -83,7 +83,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetCloseTabCommandParameter(IControl element, object value)
+        public static void SetCloseTabCommandParameter(Control element, object value)
         {
             element.SetValue(CloseTabCommandParameterProperty, value);
         }
@@ -92,7 +92,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// Underlined AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<UnderlinedType> UnderlinedProperty =
-            AvaloniaProperty.RegisterAttached<IControl, UnderlinedType>("Underlined",
+            AvaloniaProperty.RegisterAttached<Control, UnderlinedType>("Underlined",
                 typeof(TabControlHelper), defaultValue: UnderlinedType.None);
 
         /// <summary>
@@ -100,9 +100,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static UnderlinedType GetUnderlined(IControl element)
+        public static UnderlinedType GetUnderlined(Control element)
         {
-            return element.GetValue(UnderlinedProperty);
+            return element.GetValue<UnderlinedType>(UnderlinedProperty);
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetUnderlined(IControl element, UnderlinedType value)
+        public static void SetUnderlined(Control element, UnderlinedType value)
         {
             element.SetValue(UnderlinedProperty, value);
 
@@ -124,16 +124,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// IsTabPanelSelected AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<bool> IsTabPanelSelectedProperty =
-            AvaloniaProperty.RegisterAttached<IControl, bool>("IsTabPanelSelected", typeof(TabControlHelper), defaultValue:false);
+            AvaloniaProperty.RegisterAttached<Control, bool>("IsTabPanelSelected", typeof(TabControlHelper), defaultValue:false);
 
         /// <summary>
         /// get IsTabPanelSelected
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static bool GetIsTabPanelSelected(IControl element)
+        public static bool GetIsTabPanelSelected(Control element)
         {
-            return element.GetValue(IsTabPanelSelectedProperty);
+            return element.GetValue<bool>(IsTabPanelSelectedProperty);
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetIsTabPanelSelected(IControl element, bool value)
+        public static void SetIsTabPanelSelected(Control element, bool value)
         {
             element.SetValue(IsTabPanelSelectedProperty, value);
         }
@@ -150,7 +150,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// UnderlineBrush AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<IBrush> UnderlineBrushProperty =
-            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineBrush",
+            AvaloniaProperty.RegisterAttached<Control, IBrush>("UnderlineBrush",
                 typeof(TabControlHelper),defaultValue: (IBrush)Brushes.Transparent);
 
         /// <summary>
@@ -158,9 +158,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static IBrush GetUnderlineBrush(IControl element)
+        public static IBrush GetUnderlineBrush(Control element)
         {
-            return element.GetValue(UnderlineBrushProperty);
+            return element.GetValue<IBrush>(UnderlineBrushProperty);
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetUnderlineBrush(IControl element, IBrush value)
+        public static void SetUnderlineBrush(Control element, IBrush value)
         {
             element.SetValue(UnderlineBrushProperty, value);
         }
@@ -177,7 +177,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// UnderlineSelectedBrush AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<IBrush> UnderlineSelectedBrushProperty =
-            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineSelectedBrush",
+            AvaloniaProperty.RegisterAttached<Control, IBrush>("UnderlineSelectedBrush",
                 typeof(TabControlHelper), defaultValue: (IBrush)Brushes.Transparent);
 
         /// <summary>
@@ -185,9 +185,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static IBrush GetUnderlineSelectedBrush(IControl element)
+        public static IBrush GetUnderlineSelectedBrush(Control element)
         {
-            return element.GetValue(UnderlineSelectedBrushProperty);
+            return element.GetValue<IBrush>(UnderlineSelectedBrushProperty);
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetUnderlineSelectedBrush(IControl element, IBrush value)
+        public static void SetUnderlineSelectedBrush(Control element, IBrush value)
         {
             element.SetValue(UnderlineSelectedBrushProperty, value);
         }
@@ -204,7 +204,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// UnderlineMouseOverBrush AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<IBrush> UnderlineMouseOverBrushProperty =
-            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineMouseOverBrush",
+            AvaloniaProperty.RegisterAttached<Control, IBrush>("UnderlineMouseOverBrush",
                 typeof(TabControlHelper), defaultValue: (IBrush)Brushes.Transparent);
 
         /// <summary>
@@ -212,9 +212,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static IBrush GetUnderlineMouseOverBrush(IControl element)
+        public static IBrush GetUnderlineMouseOverBrush(Control element)
         {
-            return element.GetValue(UnderlineMouseOverBrushProperty);
+            return element.GetValue<IBrush>(UnderlineMouseOverBrushProperty);
         }
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetUnderlineMouseOverBrush(IControl element, IBrush value)
+        public static void SetUnderlineMouseOverBrush(Control element, IBrush value)
         {
             element.SetValue(UnderlineMouseOverBrushProperty, value);
         }
@@ -231,7 +231,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// UnderlineMouseOverSelectedBrush AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<IBrush> UnderlineMouseOverSelectedBrushProperty =
-            AvaloniaProperty.RegisterAttached<IControl, IBrush>("UnderlineMouseOverSelectedBrush",
+            AvaloniaProperty.RegisterAttached<Control, IBrush>("UnderlineMouseOverSelectedBrush",
                 typeof(TabControlHelper), defaultValue: (IBrush)Brushes.Transparent);
 
         /// <summary>
@@ -239,9 +239,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static IBrush GetUnderlineMouseOverSelectedBrush(IControl element)
+        public static IBrush GetUnderlineMouseOverSelectedBrush(Control element)
         {
-            return element.GetValue(UnderlineMouseOverSelectedBrushProperty);
+            return element.GetValue<IBrush>(UnderlineMouseOverSelectedBrushProperty);
         }
 
         /// <summary>
@@ -249,7 +249,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetUnderlineMouseOverSelectedBrush(IControl element, IBrush value)
+        public static void SetUnderlineMouseOverSelectedBrush(Control element, IBrush value)
         {
             element.SetValue(UnderlineMouseOverSelectedBrushProperty, value);
         }
@@ -258,7 +258,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// Transition AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<TransitionType> TransitionProperty =
-            AvaloniaProperty.RegisterAttached<IControl, TransitionType>("Transition",
+            AvaloniaProperty.RegisterAttached<Control, TransitionType>("Transition",
                 typeof(TabControlHelper), defaultValue:TransitionType.Default);
 
         /// <summary>
@@ -266,9 +266,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static TransitionType GetTransition(IControl element)
+        public static TransitionType GetTransition(Control element)
         {
-            return element.GetValue(TransitionProperty);
+            return element.GetValue<TransitionType>(TransitionProperty);
         }
 
         /// <summary>
@@ -276,7 +276,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetTransition(IControl element, TransitionType value)
+        public static void SetTransition(Control element, TransitionType value)
         {
             element.SetValue(TransitionProperty, value);
         }
@@ -285,16 +285,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// UnderlinePlacement AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<Dock?> UnderlinePlacementProperty =
-            AvaloniaProperty.RegisterAttached<IControl, Dock?>("UnderlinePlacement", typeof(TabControlHelper));
+            AvaloniaProperty.RegisterAttached<Control, Dock?>("UnderlinePlacement", typeof(TabControlHelper));
 
         /// <summary>
         /// get UnderlinePlacement
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static Dock? GetUnderlinePlacement(IControl element)
+        public static Dock? GetUnderlinePlacement(Control element)
         {
-            return element.GetValue(UnderlinePlacementProperty);
+            return element.GetValue<Dock?>(UnderlinePlacementProperty);
         }
 
         /// <summary>
@@ -302,7 +302,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetUnderlinePlacement(IControl element, Dock? value)
+        public static void SetUnderlinePlacement(Control element, Dock? value)
         {
             string classNameSet = ":underlineplacementset";
             string classNameNotSet = ":underlineplacementnotset";

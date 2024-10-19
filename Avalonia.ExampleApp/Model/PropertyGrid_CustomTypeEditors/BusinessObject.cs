@@ -228,7 +228,7 @@ namespace Avalonia.ExampleApp.Model.PropertyGrid_CustomTypeEditors
                 , coerce: (o, e) => { return ValidateDevice(o, e); }
                 );
 
-        private static VideoDevices ValidateDevice(IAvaloniaObject o, VideoDevices e)
+        private static VideoDevices ValidateDevice(AvaloniaObject o, VideoDevices e)
         {
             if (IsDeviceLegal(e) == false)
             {

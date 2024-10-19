@@ -26,17 +26,17 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// get/sets the image
         /// </summary>
-        public IBitmap Image
+        public Bitmap Image
         {
-            get { return (IBitmap)GetValue(ImageProperty); }
+            get { return (Bitmap)GetValue(ImageProperty); }
             set { SetValue(ImageProperty, value); }
         }
 
         /// <summary>
         /// <see cref="Image"/>
         /// </summary>
-        public static readonly StyledProperty<IBitmap> ImageProperty =
-            AvaloniaProperty.Register<OutlookSection, IBitmap>(nameof(Image));
+        public static readonly StyledProperty<Bitmap> ImageProperty =
+            AvaloniaProperty.Register<OutlookSection, Bitmap>(nameof(Image));
 
         /// <summary>
         /// get/sets IsSelected

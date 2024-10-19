@@ -87,17 +87,17 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Gets or sets the ImageSource for the image in the header.
         /// </summary>
-        public IBitmap Image
+        public Bitmap Image
         {
-            get { return (IBitmap)GetValue(ImageProperty); }
+            get { return (Bitmap)GetValue(ImageProperty); }
             set { SetValue(ImageProperty, value); }
         }
 
         /// <summary>
         /// <see cref="Image"/>
         /// </summary>
-        public static readonly StyledProperty<IBitmap> ImageProperty =
-            AvaloniaProperty.Register<OdcExpander, IBitmap>(nameof(Image));
+        public static readonly StyledProperty<Bitmap> ImageProperty =
+            AvaloniaProperty.Register<OdcExpander, Bitmap>(nameof(Image));
 
         /// <summary>
         /// get/sets IsExpanded

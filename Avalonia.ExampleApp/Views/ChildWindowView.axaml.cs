@@ -8,7 +8,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class ChildWindowView : UserControl
+    public partial class ChildWindowView : UserControl
     {
         private ChildWindow _child01;
         TestChildWindow _testWindow;

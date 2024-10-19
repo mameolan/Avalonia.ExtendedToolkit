@@ -40,11 +40,13 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         private void InitialWork()
         {
-            (_defaultPicker.Items as AvaloniaList<object>).Clear();
+            //.edited
+            (_defaultPicker.ItemsSource as AvaloniaList<object>).Clear();
             CustomColors customColors = new CustomColors();
             foreach (var item in customColors.SelectableColors)
             {
-                (_defaultPicker.Items as AvaloniaList<object>).Add(item);
+                //.edited
+                (_defaultPicker.ItemsSource as AvaloniaList<object>).Add(item);
             }
             _defaultPicker.SelectionChanged += DefaultPicker_SelectionChanged;
         }

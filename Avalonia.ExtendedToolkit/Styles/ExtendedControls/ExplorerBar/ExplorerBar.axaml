@@ -19,7 +19,7 @@
   <Style Selector="Controls|OdcExpanderHeader.ExplorerBar">
     <Setter Property="CircleButtonStroke" Value="#30000000"/>
     <Setter Property="CircleButtonFill" Value="{DynamicResource ControlBrush}"/>
-    <Setter Property="CircleButtonForeground" Value="#F0000000"/>
+    <!--<Setter Property="CircleButtonForeground" Value="#F0000000"/>-->
   </Style>
 
 
@@ -47,11 +47,13 @@
           <Border Background="{TemplateBinding Background}">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
               <ItemsPresenter
-                  Items="{TemplateBinding Items}"
+                  
                   ItemsPanel="{TemplateBinding ItemsPanel}"
-                  ItemTemplate="{TemplateBinding ItemTemplate}"
+                  
                                   
                 />
+                <!--Items="{TemplateBinding Items}"
+                ItemTemplate="{TemplateBinding ItemTemplate}"-->
             </ScrollViewer>
           </Border>
 

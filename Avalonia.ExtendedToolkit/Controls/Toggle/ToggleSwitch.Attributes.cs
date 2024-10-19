@@ -304,7 +304,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <see cref="ContentDirection"/>
         /// </summary>
         public static readonly StyledProperty<FlowDirection> ContentDirectionProperty =
-            AvaloniaProperty.Register<ToggleSwitch, FlowDirection>(nameof(ContentDirection), defaultValue: FlowDirection.LeftToRight);
+            AvaloniaProperty.Register<ToggleSwitch, FlowDirection>(nameof(ContentDirection), defaultValue: Controls.FlowDirection.LeftToRight);
 
         /// <summary>
         /// Gets or sets the padding of the inner content.

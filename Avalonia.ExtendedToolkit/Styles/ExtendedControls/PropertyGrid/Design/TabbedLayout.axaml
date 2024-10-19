@@ -21,18 +21,22 @@
                 <!--TODO: Which background: ?-->
                 <Border Grid.Row="0" BorderThickness="0"  >
                   <ItemsPresenter Name="PART_ItemsPresenter"
-                                  Items="{TemplateBinding Items}"
-                                  ItemTemplate="{TemplateBinding ItemTemplate}"
+                                 
+                                  
                                   ItemsPanel="{TemplateBinding ItemsPanel}" 
                                     />
+                    <!--bad viewItems="{TemplateBinding Items}"
+                    ItemTemplate="{TemplateBinding ItemTemplate}"-->
                 </Border>
                 <ScrollViewer Grid.Row="1" Margin="1,3,1,0" VerticalScrollBarVisibility="Visible">
                   <ContentPresenter
                             Name="PART_SelectedContentHost"
                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Content="{TemplateBinding SelectedContent}"
-                            ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
+                            
+                             />
+                    <!--bad code in VMContent="{TemplateBinding SelectedContent}"
+                    ContentTemplate="{TemplateBinding SelectedContentTemplate}"-->
                 </ScrollViewer>
               </Grid>
             </Border>

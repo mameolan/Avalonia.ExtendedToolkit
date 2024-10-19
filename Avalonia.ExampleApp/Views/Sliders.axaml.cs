@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class Sliders : UserControl
+    public partial class Sliders : UserControl
     {
         public Sliders()
         {

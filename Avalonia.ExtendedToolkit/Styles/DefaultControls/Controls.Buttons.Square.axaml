@@ -30,7 +30,7 @@
                        Fill="{DynamicResource ControlsDisabledBrush}"
                        IsHitTestVisible="False"
                        Opacity="0" />
-            <Controls:ContentControlEx x:Name="PART_ContentPresenter"
+            <Controls:ContentControlEx x:Name="PART_Controls:ContentControlEx"
                                        Padding="{TemplateBinding Padding}"
                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -47,7 +47,7 @@
   <Style Selector="Controls|SquareButton[IsEnabled=false] /template/ Rectangle#DisabledVisualElement">
     <Setter Property="Opacity" Value="0.7" />
     <Style.Animations>
-      <Animation Duration="00:00:05"  RepeatCount="1">
+      <Animation Duration="00:00:05"  IterationCount="1">
         <KeyFrame Cue="100%">
           <Setter Property="Opacity" Value="0.7" />
         </KeyFrame>
@@ -58,7 +58,7 @@
   <Style Selector="Controls|SquareButton[IsEnabled=false] /template/ Controls|ContentControlEx#PART_ContentPresenter">
     <Setter Property="Opacity" Value="0.3" />
     <Style.Animations>
-      <Animation Duration="00:00:05" RepeatCount="1">
+      <Animation Duration="00:00:05" IterationCount="1">
         <KeyFrame Cue="100%">
           <Setter Property="Opacity" Value="0.3" />
         </KeyFrame>
@@ -107,7 +107,7 @@
                        Fill="{DynamicResource ControlsDisabledBrush}"
                        IsHitTestVisible="False"
                        Opacity="0" />
-            <Controls:ContentControlEx x:Name="PART_ContentPresenter"
+            <Controls:ContentControlEx x:Name="PART_Controls:ContentControlEx"
                                        Padding="{TemplateBinding Padding}"
                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -177,7 +177,7 @@
                 <Rectangle x:Name="PressedRectangle"
                            Fill="{DynamicResource MahApps.Brushes.Black}"
                            Opacity="0" />
-                <Controls:ContentControlEx x:Name="PART_ContentPresenter"
+                <Controls:ContentControlEx x:Name="PART_Controls:ContentControlEx"
                                            Padding="{TemplateBinding Padding}"
                                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -283,7 +283,7 @@
                 <Rectangle x:Name="PressedRectangle"
                            Fill="White"
                            Opacity="0" />
-                <Controls:ContentControlEx x:Name="PART_ContentPresenter"
+                <Controls:ContentControlEx x:Name="PART_Controls:ContentControlEx"
                                            Padding="{TemplateBinding Padding}"
                                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"

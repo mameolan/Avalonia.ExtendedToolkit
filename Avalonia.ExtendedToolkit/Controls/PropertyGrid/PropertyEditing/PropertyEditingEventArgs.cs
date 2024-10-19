@@ -29,7 +29,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.PropertyEditing
         /// <param name="routedEvent"></param>
         /// <param name="source"></param>
         /// <param name="propertyDescriptor"></param>
-        public PropertyEditingEventArgs(RoutedEvent routedEvent, IInteractive source, PropertyDescriptor propertyDescriptor)
+        public PropertyEditingEventArgs(RoutedEvent routedEvent, Interactive source, PropertyDescriptor propertyDescriptor)
           : base(routedEvent, source)
         {
             PropertyDescriptor = propertyDescriptor;

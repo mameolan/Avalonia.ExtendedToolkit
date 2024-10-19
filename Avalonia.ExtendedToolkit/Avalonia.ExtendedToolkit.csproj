@@ -2,10 +2,11 @@
 	<Import Project="..\Directory.build.props" />
 
 	<PropertyGroup>
-		<TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+    <TargetFramework>net8.0</TargetFramework>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<IsPackable>true</IsPackable>
+		<Platforms>AnyCPU;x64;x86</Platforms>
 	</PropertyGroup>
 
 
@@ -13,6 +14,7 @@
 		<PackageId>mameolan.Avalonia.ExtendedToolkit</PackageId>
 		<Description>Extended Controls for Avalonia UI.</Description>
 		<PackageTags>gui;avalonia;avaloniaui;xaml</PackageTags>
+		<OutputType>Library</OutputType>
 	</PropertyGroup>
 
 
@@ -20,27 +22,46 @@
 		<DocumentationFile>bin\Debug\Avalonia.ExtendedToolkit.xml</DocumentationFile>
 	</PropertyGroup>
 
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+	  <DocumentationFile>bin\Debug\Avalonia.ExtendedToolkit.xml</DocumentationFile>
+	</PropertyGroup>
+
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	  <DocumentationFile>bin\Debug\Avalonia.ExtendedToolkit.xml</DocumentationFile>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<DocumentationFile>bin\Release\Avalonia.ExtendedToolkit.xml</DocumentationFile>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+	  <DocumentationFile>bin\Release\Avalonia.ExtendedToolkit.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+	  <DocumentationFile>bin\Release\Avalonia.ExtendedToolkit.xml</DocumentationFile>
+	</PropertyGroup>
+
 
 	<ItemGroup>
-		<PackageReference Include="Avalonia" Version="0.10.13" />
-		<PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.13" />
-		<PackageReference Include="Avalonia.Desktop" Version="0.10.13" />
-		<PackageReference Include="Avalonia.ReactiveUI" Version="0.10.13" />
-		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.13.3" />
-		<PackageReference Include="Avalonia.Xaml.Interactions" Version="0.10.13.3" />
-		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.10.13.3" />
-		<PackageReference Include="DynamicData" Version="7.6.5" />
+		<PackageReference Include="Avalonia" Version="11.1.4" />
+		<PackageReference Include="Avalonia.Controls.DataGrid" Version="11.1.4" />
+		<PackageReference Include="Avalonia.Controls.ItemsRepeater" Version="11.1.4" />
+		<PackageReference Include="Avalonia.Desktop" Version="11.1.4" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="11.1.4" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.1.4" />
+		<PackageReference Include="Avalonia.Themes.Simple" Version="11.1.4" />
+		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="11.1.0.4" />
+		<PackageReference Include="Avalonia.Xaml.Interactions" Version="11.1.0.4" />
+		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="11.1.0.4" />
+		<PackageReference Include="DynamicData" Version="9.0.4" />
 		<PackageReference Include="DynamicData.ReactiveUI" Version="6.11.0.2613" />
 		<PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="MessagePack" Version="2.5.172" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="ReactiveHistory" Version="0.10.7" />
-		<PackageReference Include="XamlColorSchemeGenerator" Version="3.0.0.31">
-			<NoWarn>NU1701</NoWarn>
-		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -76,6 +97,7 @@
 	<ItemGroup>
 		<EmbeddedResource Include="Styles\Themes\GeneratorParameters.json" />
 		<None Remove=".gitignore" />
+		<None Remove="Styles\ExtendedControls\SplitView.txt" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -85,18 +107,4 @@
 	<ItemGroup>
 		<Folder Include="Controls\PropertyGrid\Input\" />
 	</ItemGroup>
-
-	<!--Only enable if you have changes in the GeneratorParameters.json or Theme.Template.xaml file
-      But comment afterward this target (build time can increase)
-  -->
-	<!--<Target Name="GenerateXamlFilesInner" BeforeTargets="DispatchToInnerBuilds">
-		<PropertyGroup>
-			<XamlColorSchemeGeneratorVersion Condition="'%(PackageReference.Identity)' == 'XamlColorSchemeGenerator'">%(PackageReference.Version)</XamlColorSchemeGeneratorVersion>
-		</PropertyGroup>
-    <Exec Command="&quot;$(NuGetPackageRoot)\xamlcolorschemegenerator\$(XamlColorSchemeGeneratorVersion)\tools\XamlColorSchemeGenerator.exe&quot; &quot;$(MSBuildProjectDirectory)\Styles\Themes\GeneratorParameters.json&quot;" />
-	</Target>
-	<Target Name="GenerateXamlFiles" BeforeTargets="DispatchToInnerBuilds;BeforeBuild">
-		<MSBuild Projects="$(MSBuildProjectFile)" Targets="GenerateXamlFilesInner" Properties="TargetFramework=once" />
-  </Target>-->
-
 </Project>

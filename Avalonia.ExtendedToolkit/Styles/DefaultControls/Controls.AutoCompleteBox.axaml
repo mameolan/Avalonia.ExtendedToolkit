@@ -31,7 +31,7 @@
                  MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
                  MaxHeight="{TemplateBinding MaxDropDownHeight}"
                  PlacementTarget="{TemplateBinding}"
-                 StaysOpen="False">
+                 IsLightDismissEnabled="False">
             <Border BorderBrush="{DynamicResource MahApps.Brushes.Black}"
                     BorderThickness="1">
               <ListBox Name="PART_SelectingItemsControl"

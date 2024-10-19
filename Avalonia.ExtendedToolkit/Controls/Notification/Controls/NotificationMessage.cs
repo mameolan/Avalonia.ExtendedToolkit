@@ -386,7 +386,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// The animatable element used for show/hide animations.
         /// </summary>
-        public IControl AnimatableElement => this;
+        public Control AnimatableElement => this;
 
         public NotificationMessage()
         {

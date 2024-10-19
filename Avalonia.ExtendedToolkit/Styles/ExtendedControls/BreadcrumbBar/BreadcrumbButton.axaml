@@ -79,7 +79,7 @@
                                       VerticalScrollBarVisibility="Auto" Focusable="False">
                                 <ItemsControl Margin="{TemplateBinding Padding}"
                                           KeyboardNavigation.TabNavigation="Cycle"
-                                              Items="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=Items}"
+                                              ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=Items}"
                                      />
                               </ScrollViewer>
                             </Grid>
@@ -90,7 +90,7 @@
                   </StackPanel.ContextMenu>
                 </StackPanel>
               </Controls:AeroChrome.Content>
-              <!--<Controls:AeroChrome.ContextMenu>
+              <Controls:AeroChrome.ContextMenu>
                 <ContextMenu x:Name="PART_Menu" 
                         >
                   <ContextMenu.ItemsPanel>
@@ -116,7 +116,7 @@
                                   VerticalScrollBarVisibility="Auto" Focusable="False">
                             <ItemsControl Margin="{TemplateBinding Padding}"
                                       KeyboardNavigation.TabNavigation="Cycle"
-                                          Items="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=Items}"
+                                          ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=Items}"
                                      />
                           </ScrollViewer>
                         </Grid>
@@ -126,7 +126,7 @@
                     </ControlTemplate>
                   </ContextMenu.Template>
                 </ContextMenu>
-              </Controls:AeroChrome.ContextMenu>-->
+              </Controls:AeroChrome.ContextMenu>
             </Controls:AeroChrome>
 
 

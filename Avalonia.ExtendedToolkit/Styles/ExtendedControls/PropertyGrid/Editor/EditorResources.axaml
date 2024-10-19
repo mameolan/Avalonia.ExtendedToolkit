@@ -31,12 +31,13 @@
                    TextBlock.Foreground="{DynamicResource MahApps.Brushes.Black}"
                    />
         </Expander.Header>
-        <design:PropertyItemsLayout Grid.IsSharedSizeScope="True" Items="{Binding SubProperties}"/>
+        <design:PropertyItemsLayout Grid.IsSharedSizeScope="True" ItemsSource="{Binding SubProperties}"/>
+          
       </Expander>
     </ControlTemplate>
 
     <ControlTemplate x:Key="{x:Static editors:EditorKeys.DefaultCategoryEditorKey}">
-      <design:PropertyItemsLayout Items="{Binding Properties}"/>
+        <design:PropertyItemsLayout ItemsSource="{Binding Properties}"/>
     </ControlTemplate>
 
     <!--Note that commit on typing cannot work together with the roolback since every keystroke is committed and the roolback value is lost-->
@@ -107,10 +108,11 @@
       <!--
       -->
       <ComboBox x:Name="PART_editor"
-        Items="{Binding Source={StaticResource NamedColorList}}"
-        ItemTemplate="{DynamicResource {x:Static editors:EditorKeys.NamedColorEditorKey}}"
-        IsEnabled="{Binding IsEditable}"/>
-    </ControlTemplate>
+        ItemsSource="{Binding Source={StaticResource NamedColorList}}"
+        IsEnabled="{Binding IsEditable}"
+        ItemTemplate="{DynamicResource {x:Static editors:EditorKeys.NamedColorEditorKey}}"/>
+
+  </ControlTemplate>
 
     <!--<DataTemplate x:Key="{x:Static editors:Resources.XmlLanguageEditorKey}">
       <ComboBox

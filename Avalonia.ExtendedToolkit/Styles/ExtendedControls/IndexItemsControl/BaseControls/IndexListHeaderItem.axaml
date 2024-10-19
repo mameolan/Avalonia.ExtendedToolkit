@@ -35,14 +35,13 @@
                                 Content="{TemplateBinding Header}"
                                 HorizontalContentAlignment="{TemplateBinding HorizontalAlignment}"
                                 Padding="{TemplateBinding Padding}"
-                                TextBlock.FontWeight="Bold" 
-                                TextBlock.FontSize="{TemplateBinding FontSize}"
                                 />
             </Grid>
           </Border>
           <ItemsPresenter Name="PART_ItemsPresenter"
-                          Items="{TemplateBinding Items}"
+                          
                           ItemsPanel="{TemplateBinding ItemsPanel}" />
+            <!--bad viewItems="{TemplateBinding Items}"-->
         </StackPanel>
       </ControlTemplate>
     </Setter>

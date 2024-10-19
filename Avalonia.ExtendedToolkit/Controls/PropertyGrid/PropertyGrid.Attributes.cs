@@ -138,17 +138,17 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
         /// </summary>
         /// <value>The layout to be used to display properties.</value>
         //[Content]
-        public IControl Layout
+        public Control Layout
         {
-            get { return (IControl)GetValue(LayoutProperty); }
+            get { return (Control)GetValue(LayoutProperty); }
             set { SetValue(LayoutProperty, value); }
         }
 
         /// <summary>
         /// <see cref="Layout"/>
         /// </summary>
-        public static readonly StyledProperty<IControl> LayoutProperty =
-            AvaloniaProperty.Register<PropertyGrid, IControl>(nameof(Layout), defaultValue: default(AlphabeticalLayout));
+        public static readonly StyledProperty<Control> LayoutProperty =
+            AvaloniaProperty.Register<PropertyGrid, Control>(nameof(Layout), defaultValue: default(AlphabeticalLayout));
 
         /// <summary>
         /// <see cref="SelectedObject"/>
@@ -300,13 +300,13 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                     foreach (var item in _properties)
                         HookPropertyChanged(item);
                 }
-
+                //.orig, think many
                 //OnPropertyChanged("Properties");
 
-                RaisePropertyChanged(HasPropertiesProperty, !HasProperties, HasProperties);
+                //RaisePropertyChanged(HasPropertiesProperty, !HasProperties, HasProperties);
                 //OnPropertyChanged("HasProperties");
 
-                RaisePropertyChanged(BrowsablePropertiesProperty, new Data.Optional<IEnumerable<PropertyItem>>(), new Data.BindingValue<IEnumerable<PropertyItem>>(BrowsableProperties));
+                //RaisePropertyChanged(BrowsablePropertiesProperty, new Data.Optional<IEnumerable<PropertyItem>>(), new Data.BindingValue<IEnumerable<PropertyItem>>(BrowsableProperties));
                 //OnPropertyChanged("BrowsableProperties");
             }
         }
@@ -421,9 +421,10 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid
                     _categories.Sort(CategoryComparer);
 
                 RaisePropertyChanged(HasCategoriesProperty, !HasCategories, HasCategories);
-                RaisePropertyChanged(BrowsablePropertiesProperty, 
-                            new Data.Optional<IEnumerable<PropertyItem>>(), 
-                            new Data.BindingValue<IEnumerable<PropertyItem>>(BrowsableProperties));
+                //.orig, think many
+                //RaisePropertyChanged(BrowsablePropertiesProperty, 
+                //new Data.Optional<IEnumerable<PropertyItem>>(), 
+                //            new Data.BindingValue<IEnumerable<PropertyItem>>(BrowsableProperties));
                 //        OnPropertyChanged("BrowsableCategories");
             }
         }

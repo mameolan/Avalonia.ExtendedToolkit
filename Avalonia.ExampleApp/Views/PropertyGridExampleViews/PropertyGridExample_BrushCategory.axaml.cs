@@ -8,7 +8,7 @@ using Avalonia.Media;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class PropertyGridExample_BrushCategory : UserControl
+    public partial class PropertyGridExample_BrushCategory : UserControl
     {
         private PropertyGrid _propertyGrid;
 

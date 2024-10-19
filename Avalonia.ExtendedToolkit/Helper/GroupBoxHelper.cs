@@ -12,16 +12,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// HeaderForeground AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<IBrush> HeaderForegroundProperty =
-        AvaloniaProperty.RegisterAttached<IControl, IBrush>("HeaderForeground", typeof(GroupBoxHelper));
+        AvaloniaProperty.RegisterAttached<Control, IBrush>("HeaderForeground", typeof(GroupBoxHelper));
 
         /// <summary>
         /// get HeaderForeground
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static IBrush GetHeaderForeground(IControl element)
+        public static IBrush GetHeaderForeground(Control element)
         {
-            return element.GetValue(HeaderForegroundProperty);
+            return element.GetValue<IBrush>(HeaderForegroundProperty);
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetHeaderForeground(IControl element, IBrush value)
+        public static void SetHeaderForeground(Control element, IBrush value)
         {
             element.SetValue(HeaderForegroundProperty, value);
         }

@@ -3,26 +3,29 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+		<TargetFrameworks>net8.0</TargetFrameworks>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<IsPackable>false</IsPackable>
 		<StartupObject></StartupObject>
+		<Platforms>AnyCPU;x64;x86</Platforms>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Avalonia" Version="0.10.13" />
-		<PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.13" />
-		<PackageReference Include="Avalonia.Desktop" Version="0.10.13" />
-		<PackageReference Include="Avalonia.ReactiveUI" Version="0.10.13" />
-		<PackageReference Include="Avalonia.Diagnostics" Version="0.10.13" />
-		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.13.3" />
-		<PackageReference Include="Avalonia.Xaml.Interactions" Version="0.10.13.3" />
-		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="0.10.13.3" />
+		<PackageReference Include="Avalonia" Version="11.1.4" />
+		<PackageReference Include="Avalonia.Controls.DataGrid" Version="11.1.4" />
+		<PackageReference Include="Avalonia.Controls.ItemsRepeater" Version="11.1.4" />
+		<PackageReference Include="Avalonia.Desktop" Version="11.1.4" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="11.1.4" />
+		<PackageReference Include="Avalonia.Diagnostics" Version="11.1.4" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.1.4" />
+		<PackageReference Include="Avalonia.Themes.Simple" Version="11.1.4" />
+		<PackageReference Include="Avalonia.Xaml.Behaviors" Version="11.1.0.4" />
+		<PackageReference Include="Avalonia.Xaml.Interactions" Version="11.1.0.4" />
+		<PackageReference Include="Avalonia.Xaml.Interactivity" Version="11.1.0.4" />
 		<PackageReference Include="GridExtra.Avalonia" Version="0.9.1" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="DynamicData" Version="7.6.5" />
-		<PackageReference Include="DynamicData.ReactiveUI" Version="6.11.0.2613" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="DynamicData" Version="9.0.4" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -21,7 +21,7 @@
                               Margin="5 5"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Center"
-                              Items="{Binding UnderlineValues}"
+                              ItemsSource="{Binding UnderlineValues}"
                               SelectedItem="{Binding SelectedUnderline, Mode=TwoWay}" />
                     <TextBlock Margin="5 5"
                                VerticalAlignment="Center"
@@ -31,7 +31,7 @@
                               Margin="5 5"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Center"
-                              Items="{Binding TabStripPlacementValues}"
+                              ItemsSource="{Binding TabStripPlacementValues}"
                               SelectedItem="{Binding SelectedTabStripPlacement, Mode=TwoWay}" />
                     <TextBlock Margin="5 5"
                                VerticalAlignment="Center"
@@ -41,7 +41,7 @@
                               Margin="5 5"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Center"
-                              Items="{Binding UnderlinedPlacementValues}"
+                              ItemsSource="{Binding UnderlinedPlacementValues}"
                               SelectedItem="{Binding SelectedUnderlinedPlacement, Mode=TwoWay}" />
                 </StackPanel>
       </Grid>
@@ -66,7 +66,7 @@
                               Margin="5 5"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Center"
-                              Items="{Binding UnderlineValues}"
+                              ItemsSource="{Binding UnderlineValues}"
                               SelectedItem="{Binding SelectedUnderline, Mode=TwoWay}" />
                     <TextBlock Margin="5 5"
                                VerticalAlignment="Center"
@@ -76,7 +76,7 @@
                               Margin="5 5"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Center"
-                              Items="{Binding TabStripPlacementValues}"
+                              ItemsSource="{Binding TabStripPlacementValues}"
                               SelectedItem="{Binding SelectedTabStripPlacement, Mode=TwoWay}" />
                     <TextBlock Margin="5 5"
                                VerticalAlignment="Center"
@@ -86,7 +86,7 @@
                               Margin="5 5"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Center"
-                              Items="{Binding UnderlinedPlacementValues}"
+                              ItemsSource="{Binding UnderlinedPlacementValues}"
                               SelectedItem="{Binding SelectedUnderlinedPlacement, Mode=TwoWay}" />
                 </StackPanel>
             </Grid>

@@ -19,10 +19,10 @@
       <Setter.Value>
         <ControlTemplate>
           <ItemsPresenter
-              Items="{TemplateBinding Items}"
               ItemsPanel="{TemplateBinding ItemsPanel}"
-              ItemTemplate="{TemplateBinding ItemTemplate}"
             />
+            <!--ItemTemplate="{TemplateBinding ItemTemplate}"
+            Items="{TemplateBinding Items}"-->
         </ControlTemplate>
       </Setter.Value>
     </Setter>

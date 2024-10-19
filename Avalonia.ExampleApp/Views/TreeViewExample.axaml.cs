@@ -6,7 +6,7 @@ using Avalonia.Collections;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class TreeViewExample : UserControl
+    public partial class TreeViewExample : UserControl
     {
         private TreeView myTreeView;
 

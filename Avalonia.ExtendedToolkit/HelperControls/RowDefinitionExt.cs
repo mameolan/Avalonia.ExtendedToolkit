@@ -5,7 +5,7 @@ namespace Avalonia.ExtendedToolkit
     /// <summary>
     /// should be remove if avalonia supports naming of rowdefinition
     /// </summary>
-    public class RowDefinitionExt:RowDefinition
+    public class RowDefinitionExt: RowDefinition
     {
         /// <summary>
         /// get/set Name

@@ -6,7 +6,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class TabControlExample : UserControl
+    public partial class TabControlExample : UserControl
     {
         
         public TabControlExample()

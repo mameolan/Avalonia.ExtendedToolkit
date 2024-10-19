@@ -173,10 +173,10 @@ namespace Avalonia.ExtendedToolkit.Controls
             ShowSeparatorsProperty.Changed.AddClassHandler<WindowCommands>((o, e) => OnShowSeparatorsChanged(o, e));
             ShowLastSeparatorProperty.Changed.AddClassHandler<WindowCommands>((o, e) => OnShowLastSeparatorChanged(o, e));
             ParentWindowProperty.Changed.AddClassHandler<WindowCommands>((o, e) => OnParentWindowChanged(o, e));
+            //.edited
+            //(ItemsSource as AvaloniaList<object>).CollectionChanged += OnItemsChanged;
 
-            (Items as AvaloniaList<object>).CollectionChanged += OnItemsChanged;
-
-            this.Initialized += WindowCommands_Initialized;
+            //this.Initialized += WindowCommands_Initialized;
 
             ClassesProperty.Changed.AddClassHandler<WindowCommands>((o, e) => OnClassesChanged(o, e));
         }
@@ -349,8 +349,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 return windowCommandsItem;
             }
 
-            IControl control = item as IControl;
-            IControl parent = control.Parent;
+            Control control = item as Control;
+            Control parent = (Control)control.Parent;
 
             var index = ItemContainerGenerator.IndexFromContainer(parent);
             return (WindowCommandsItem)ItemContainerGenerator.ContainerFromIndex(index);

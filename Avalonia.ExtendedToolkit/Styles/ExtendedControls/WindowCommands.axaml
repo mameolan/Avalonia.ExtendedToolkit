@@ -135,7 +135,7 @@
                      Focusable="false"
                      IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsOverflowOpen}"
                      PlacementMode="Bottom"
-                     StaysOpen="false">
+                     IsLightDismissEnabled="false">
                 <!--PopupAnimation="Slide"-->
                 <Grid x:Name="DropDownBorder" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=Background, Mode=OneWay}">
                   <Panel x:Name="PART_ToolBarOverflowPanel"
@@ -225,7 +225,7 @@
                      Focusable="false"
                      IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsOverflowOpen}"
                      PlacementMode="Bottom"
-                     StaysOpen="false">
+                     IsLightDismissEnabled="false">
                 <!--PopupAnimation="Slide"-->
 
                 <Grid x:Name="DropDownBorder" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Controls:MetroWindow}}, Path=Background, Mode=OneWay}">

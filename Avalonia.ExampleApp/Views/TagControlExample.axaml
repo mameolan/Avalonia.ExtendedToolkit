@@ -35,6 +35,7 @@
 
             <Controls:TagControl Grid.Row="1" ShowAddButton="True" 
                     Items="{Binding Categories, Mode=TwoWay}" 
+                    IsEnabled="True"
                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                     SuggestedTags="{Binding SuggestedTags}"
                     VerticalAlignment="Stretch"

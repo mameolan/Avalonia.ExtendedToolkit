@@ -50,14 +50,14 @@
                             MinWidth="75"
                             Command="{TemplateBinding HelpCommand}"
                             Content="{TemplateBinding HelpButtonContent}">
-                      <Controls:MetroButton.IsVisible>
+                      <!--<Controls:MetroButton.IsVisible>
                         <MultiBinding>
                           <Binding RelativeSource="{RelativeSource TemplatedParent}"
                                    Path="IsHelpButtonVisible" />
                           <Binding RelativeSource="{RelativeSource TemplatedParent}"
                                    Path="CurrentPage.HelpButtonVisible" />
                         </MultiBinding>
-                      </Controls:MetroButton.IsVisible>
+                      </Controls:MetroButton.IsVisible>-->
                     </Controls:MetroButton>
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
@@ -65,41 +65,41 @@
                       <Controls:MetroButton Name="BackButton"
                               Command="{TemplateBinding PreviousPageCommand}"
                               Content="{TemplateBinding BackButtonContent}">
-                        <Controls:MetroButton.IsVisible>
+                        <!--<Controls:MetroButton.IsVisible>
                           <MultiBinding>
                             <Binding RelativeSource="{RelativeSource TemplatedParent}"
                                      Path="IsBackButtonVisible" />
                             <Binding RelativeSource="{RelativeSource TemplatedParent}"
                                      Path="CurrentPage.IsBackButtonVisible" />
                           </MultiBinding>
-                        </Controls:MetroButton.IsVisible>
+                        </Controls:MetroButton.IsVisible>-->
                       </Controls:MetroButton>
                       <Controls:MetroButton Name="NextButton"
                                 Margin="7,0,0,0"
                                 Command="{TemplateBinding NextPageCommand}"
                                 Content="{TemplateBinding NextButtonContent}">
-                        <Controls:MetroButton.IsVisible>
+                        <!--<Controls:MetroButton.IsVisible>
                           <MultiBinding>
                             <Binding RelativeSource="{RelativeSource TemplatedParent}"
                                      Path="IsNextButtonVisibile" />
                             <Binding RelativeSource="{RelativeSource TemplatedParent}"
                                      Path="CurrentPage.IsNextButtonVisibile" />
                           </MultiBinding>
-                        </Controls:MetroButton.IsVisible>
+                        </Controls:MetroButton.IsVisible>-->
                       </Controls:MetroButton>
 
                       <Controls:MetroButton Name="FinishButton"
                                 Margin="7,0,0,0"
                                 Command="{TemplateBinding FinishCommand}"
                                 Content="{TemplateBinding FinishButtonContent}">
-                        <Controls:MetroButton.IsVisible>
+                        <!--<Controls:MetroButton.IsVisible>
                           <MultiBinding>
                             <Binding RelativeSource="{RelativeSource TemplatedParent}"
                                      Path="IsFinishButtonVisible" />
                             <Binding RelativeSource="{RelativeSource TemplatedParent}"
                                      Path="CurrentPage.IsFinishButtonVisible" />
                           </MultiBinding>
-                        </Controls:MetroButton.IsVisible>
+                        </Controls:MetroButton.IsVisible>-->
                       </Controls:MetroButton>
 
                       <Controls:MetroButton Name="CancelButton"
@@ -109,12 +109,12 @@
                               Content="{TemplateBinding CancelButtonContent}">
 
                         <Controls:MetroButton.IsVisible>
-                          <MultiBinding>
+                          <!--<MultiBinding>
                             <Binding RelativeSource="{RelativeSource TemplatedParent}"
                                      Path="IsCancelButtonVisible" />
                             <Binding RelativeSource="{RelativeSource TemplatedParent}"
                                      Path="CurrentPage.IsCancelButtonVisible" />
-                          </MultiBinding>
+                          </MultiBinding>-->
                         </Controls:MetroButton.IsVisible>
                       </Controls:MetroButton>
                     </StackPanel>

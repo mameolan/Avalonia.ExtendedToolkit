@@ -47,11 +47,11 @@
                             <Popup x:Name="PART_PopupMenu"
                                     PlacementMode="Bottom"
                                     Margin="0,31,0,0"
-                                    StaysOpen="False">
+                                    IsLightDismissEnabled="False">
                                 <Border BorderBrush="{DynamicResource ThemeBorderMidBrush}" BorderThickness="1">
                                     <ListBox
                                         x:Name="PART_ListBox"
-                                        Items="{TemplateBinding Items}"
+                                        ItemsSource="{TemplateBinding Items}"
                                         SelectedItem="{TemplateBinding SelectedItem}"
                                         ItemTemplate="{TemplateBinding ItemTemplate}">
                                     </ListBox>

@@ -85,6 +85,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 RemoveHandler(DragCompletedEvent, value);
             }
         }
+        public event EventHandler<RoutedEventArgs> DoubleTapped;
 
         /// <summary>
         /// Indicates that the left mouse button is pressed and is over the MetroThumbContentControl.

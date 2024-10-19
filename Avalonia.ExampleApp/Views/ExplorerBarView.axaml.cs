@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class ExplorerBarView : UserControl
+    public partial class ExplorerBarView : UserControl
     {
         private BreadcrumbBar _breadcrumbBar;
 
@@ -29,7 +29,8 @@ namespace Avalonia.ExampleApp.Views
             {
                 var trace = e.Item.Header;
                 items.Add(BreadcrumbItem.CreateItem(trace));
-                e.Item.Items = items;
+                //.edited
+                e.Item.ItemsSource = items;
             }
             
         }

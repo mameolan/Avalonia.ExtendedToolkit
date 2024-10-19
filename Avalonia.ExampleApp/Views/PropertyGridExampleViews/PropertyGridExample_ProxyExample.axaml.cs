@@ -6,7 +6,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class PropertyGridExample_ProxyExample : UserControl
+    public partial class PropertyGridExample_ProxyExample : UserControl
     {
         public PropertyGridExample_ProxyExample()
         {

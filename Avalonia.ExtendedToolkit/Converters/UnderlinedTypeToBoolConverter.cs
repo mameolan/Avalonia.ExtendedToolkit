@@ -23,7 +23,7 @@ namespace Avalonia.ExtendedToolkit.Converters
         /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            IControl control = value as IControl;
+            Control control = value as Control;
             if (control != null && parameter is UnderlinedType)
             {
                 UnderlinedType underlinedTypeParam = (UnderlinedType)parameter;

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+﻿using System.Collections.Generic;
 using Avalonia.Media;
 
 namespace Avalonia.ExtendedToolkit.Extensions
@@ -20,17 +17,16 @@ namespace Avalonia.ExtendedToolkit.Extensions
         {
             get
             {
-                if(_fontFamilies.Count==0)
+                if (_fontFamilies.Count == 0)
                 {
-                    foreach (var item in FontManager.Current.GetInstalledFontFamilyNames())
+                    //.fixed?
+                    foreach (var item in FontManager.Current.SystemFonts)
                     {
-                        _fontFamilies.Add(new FontFamily(item));
+                        _fontFamilies.Add(new FontFamily(item.Name));
                     }
                 }
-                return _fontFamilies;
+                return FontManager.Current.SystemFonts;
             }
         }
-
-
     }
 }

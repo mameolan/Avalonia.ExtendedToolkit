@@ -580,17 +580,17 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Gets or sets FocusedElement.
         /// </summary>
-        public IControl FocusedElement
+        public Control FocusedElement
         {
-            get { return (IControl)GetValue(FocusedElementProperty); }
+            get { return (Control)GetValue(FocusedElementProperty); }
             set { SetValue(FocusedElementProperty, value); }
         }
 
         /// <summary>
         /// Defines the <see cref="FocusedElement"/> property.
         /// </summary>
-        public static readonly StyledProperty<IControl> FocusedElementProperty =
-            AvaloniaProperty.Register<ChildWindow, IControl>(nameof(FocusedElement));
+        public static readonly StyledProperty<Control> FocusedElementProperty =
+            AvaloniaProperty.Register<ChildWindow, Control>(nameof(FocusedElement));
 
 
 

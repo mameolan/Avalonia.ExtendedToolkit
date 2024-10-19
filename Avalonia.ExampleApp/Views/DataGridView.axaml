@@ -8,7 +8,7 @@
     <TabControl>
       <TabItem Header="Default Style">
         <Grid>
-          <DataGrid Items="{Binding Albums}"
+          <DataGrid ItemsSource="{Binding Albums}"
                     RowHeaderWidth="20"
                     SelectionMode="Single"
                     Margin="10"
@@ -34,7 +34,7 @@
 
       <TabItem Header="Default Style Grouped">
         <Grid>
-          <DataGrid Items="{Binding GroupedAlbums}"
+          <DataGrid ItemsSource="{Binding GroupedAlbums}"
                     RowHeaderWidth="20"
                     SelectionMode="Single"
                     Margin="10"
@@ -61,7 +61,7 @@
 
       <TabItem Header="Metro Style">
         <Grid>
-        <DataGrid Classes="Metro" Items="{Binding Albums}"
+        <DataGrid Classes="Metro" ItemsSource="{Binding Albums}"
                   RowHeaderWidth="20"
                   SelectionMode="Single"
                   Margin="10"
@@ -85,7 +85,7 @@
       </TabItem>
       <TabItem Header="Metro Style Grouped">
         <Grid>
-        <DataGrid Classes="Metro" Items="{Binding GroupedAlbums}"
+        <DataGrid Classes="Metro" ItemsSource="{Binding GroupedAlbums}"
                   RowHeaderWidth="20"
                   SelectionMode="Single"
                   Margin="10"

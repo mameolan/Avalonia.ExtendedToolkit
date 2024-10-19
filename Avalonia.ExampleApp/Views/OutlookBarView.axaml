@@ -23,7 +23,7 @@
                          >
       <Controls:OutlookBar.Items>
 
-        <Controls:OutlookSection Header="Mail" Image="/Assets/Web.png" >
+        <!--<Controls:OutlookSection Header="Mail" Image="/Assets/Web.png">
           <Controls:OdcExpander Header="Number of Buttons"
                                 Margin="0" ShowEllipse="False" IsExpanded="True"
                 >
@@ -32,7 +32,7 @@
               <Button Margin="4">Show Fewer Buttons</Button>
             </StackPanel>
           </Controls:OdcExpander>
-        </Controls:OutlookSection>
+        </Controls:OutlookSection>-->
 
         <!--Image="/Assets/AlignTableCellMiddleCenterHS.png"-->
         <Controls:OutlookSection Header="Calendar" Content="Hello World" />

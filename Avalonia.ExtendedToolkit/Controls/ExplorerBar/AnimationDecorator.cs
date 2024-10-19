@@ -250,8 +250,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                     animation.Children.Add(keyFrame);
                     //this.BeginAnimation(AnimationDecorator.AnimationOpacityProperty, animation);
                 }
-
-                await Task.WhenAll(new Task[] { animation.RunAsync(this, null) }).ContinueWith(x =>
+                //.edited, null arg removal
+                await Task.WhenAll(new Task[] { animation.RunAsync(this) }).ContinueWith(x =>
                 {
                     animating = false;
                 });
@@ -295,8 +295,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             keyFrame.Cue = new Cue(1);
             keyFrame.Setters.Add(new Setter(AnimationDecorator.HeightOffsetProperty, 0));
             animation.Children.Add(keyFrame);
-
-            animation.RunAsync(this, Clock);
+            //.edited, CLock removal
+            animation.RunAsync(this);
             return delta;
         }
 

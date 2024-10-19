@@ -38,7 +38,7 @@
       <ComboBox
       x:Name="PART_editor"
       SelectedItem="{Binding PropertyValue.Value}"
-      Items="{Binding Source={StaticResource XmlLanguageList}}"
+      ItemsSource="{Binding Source={StaticResource XmlLanguageList}}"
       IsEnabled="{Binding IsEditable}"
       />
     </ControlTemplate>
@@ -134,13 +134,13 @@
           <ComboBox
                     Grid.Column="0"
                     Margin="2"
-                    Items="{Binding Source={StaticResource FontFamilyList}}"
+                    ItemsSource="{Binding Source={StaticResource FontFamilyList}}"
                     SelectedItem="{Binding [FontFamily].PropertyValue.Value}"/>
           <!--DisplayMemberPath="FamilyNames.Values[0]"-->
           <ComboBox
                     Grid.Column="1"
                     Margin="2"
-                    Items="{Binding Source={StaticResource FontSizeList}}"
+                    ItemsSource="{Binding Source={StaticResource FontSizeList}}"
                     SelectedItem="{Binding [FontSize].PropertyValue.Value}"/>
         </Grid>
         <StackPanel Orientation="Horizontal">

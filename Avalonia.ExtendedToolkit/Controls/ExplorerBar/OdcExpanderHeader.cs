@@ -141,17 +141,17 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Gets or sets the Image to display on the header.
         /// </summary>
-        public IBitmap Image
+        public Bitmap Image
         {
-            get { return (IBitmap)GetValue(ImageProperty); }
+            get { return (Bitmap)GetValue(ImageProperty); }
             set { SetValue(ImageProperty, value); }
         }
 
         /// <summary>
         /// <see cref="Image"/>
         /// </summary>
-        public static readonly StyledProperty<IBitmap> ImageProperty =
-            AvaloniaProperty.Register<OdcExpanderHeader, IBitmap>(nameof(Image));
+        public static readonly StyledProperty<Bitmap> ImageProperty =
+            AvaloniaProperty.Register<OdcExpanderHeader, Bitmap>(nameof(Image));
 
         static OdcExpanderHeader()
         {
@@ -170,7 +170,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
         {
             base.OnAttachedToVisualTree(e);
-            RaisePropertyChanged(ExpandGeometryProperty, null, ExpandGeometry);
+            //.obsolete, ExpandGeometryProperty is styled
+            //RaisePropertyChanged(ExpandGeometryProperty, null, ExpandGeometry);
         }
     }
 }

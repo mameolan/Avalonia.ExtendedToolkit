@@ -5,7 +5,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class SplitViewExamples : UserControl
+    public partial class SplitViewExamples : UserControl
     {
         private ExtendedToolkit.Controls.SplitView _splitView;
 

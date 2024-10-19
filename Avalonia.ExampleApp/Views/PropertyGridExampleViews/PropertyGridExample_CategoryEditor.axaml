@@ -25,7 +25,7 @@
           <ComboBox
                     Grid.Column="0"
                     Margin="2"
-                    Items="{Binding Source={StaticResource FontFamilyList}}"
+                    ItemsSource="{Binding Source={StaticResource FontFamilyList}}"
                     SelectedItem="{Binding SelectedObject.FontFamily, ElementName=pg}"
                     />
           <!--
@@ -34,7 +34,7 @@
           <ComboBox
                     Grid.Column="1"
                     Margin="2"
-                    Items="{Binding Source={StaticResource FontSizeList}}"
+                    ItemsSource="{Binding Source={StaticResource FontSizeList}}"
                     SelectedItem="{Binding SelectedObject.FontSize, ElementName=pg}"/>
         </Grid>
         <StackPanel Orientation="Horizontal">

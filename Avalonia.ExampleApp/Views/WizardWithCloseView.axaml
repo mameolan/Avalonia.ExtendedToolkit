@@ -7,8 +7,7 @@
              x:Class="Avalonia.ExampleApp.Views.WizardWithCloseView"
              >
   <Grid>
-      <Controls:Wizard 
-        FinishButtonClosesWindow="True">
+      <Controls:Wizard FinishButtonClosesWindow="True">
         <Controls:WizardPage Title="Hallo" PageType="Exterior"/>
         <Controls:WizardPage Title="World" PageType="Exterior" CanFinish="True"/>
       </Controls:Wizard>

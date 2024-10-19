@@ -24,7 +24,7 @@
                   BorderThickness="{TemplateBinding BorderThickness}"
                   Background="{TemplateBinding Background}">
 
-            <Controls:ContentControlEx x:Name="PART_ContentPresenter"
+            <Controls:ContentControlEx x:Name="PART_Controls:ContentControlEx"
                                        Padding="{TemplateBinding Padding}"
                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -68,7 +68,7 @@
                   Background="{TemplateBinding Background}"
                   BorderBrush="{TemplateBinding BorderBrush}"
                   BorderThickness="{TemplateBinding BorderThickness}">
-            <Controls:ContentControlEx x:Name="PART_ContentPresenter"
+            <Controls:ContentControlEx x:Name="PART_Controls:ContentControlEx"
                                        Padding="{TemplateBinding Padding}"
                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"

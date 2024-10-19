@@ -70,7 +70,7 @@
             </Border.LayoutTransform>-->
             </Border>
             <LayoutTransformControl.LayoutTransform>
-              <Controls:ScaleTransformEx x:Name="scaleT"  ScaleY="1" />
+              <!--bad view<Controls:ScaleTransformEx x:Name="scaleT"  ScaleY="1" />-->
             </LayoutTransformControl.LayoutTransform>
           </LayoutTransformControl>
         </ControlTemplate>
@@ -93,28 +93,29 @@
     <Setter Property="Background"
                       Value="{Binding RelativeSource={RelativeSource TemplatedParent},Path=PressedHeaderBackground}" />
   </Style>
-
-  <Style Selector="Controls|OdcExpander[IsMinimized=false] /template/ Controls|ScaleTransformEx#scaleT">
+  <Style Selector="Controls|OdcExpander[IsMinimized=false] /template/ Controls">
+  <!-- bad view<Style Selector="Controls|OdcExpander[IsMinimized=false] /template/ Controls|ScaleTransformEx#scaleT">-->
     <Style.Animations>
       <Animation Duration="{StaticResource animTime}">
         <KeyFrame Cue="0%">
-          <Setter Property="ScaleY" Value="0" />
+          <!--bad view<Setter Property="ScaleY" Value="0" />-->
         </KeyFrame>
         <KeyFrame Cue="100%">
-          <Setter Property="ScaleY" Value="1" />
+          <!--bad view<Setter Property="ScaleY" Value="1" />-->
         </KeyFrame>
       </Animation>
     </Style.Animations>
   </Style>
 
-  <Style Selector="Controls|OdcExpander[IsMinimized=true] /template/  Controls|ScaleTransformEx#scaleT">
+  <!--bad view<Style Selector="Controls|OdcExpander[IsMinimized=true] /template/  Controls|ScaleTransformEx#scaleT">-->
+  <Style Selector="Controls|OdcExpander[IsMinimized=true] /template/  Controls">
     <Style.Animations>
       <Animation Duration="{StaticResource animTime}">
         <KeyFrame Cue="0%">
-          <Setter Property="ScaleY" Value="1" />
+          <!--bad view<Setter Property="ScaleY" Value="1" />-->
         </KeyFrame>
         <KeyFrame Cue="100%">
-          <Setter Property="ScaleY" Value="0" />
+          <!--bad view<Setter Property="ScaleY" Value="0" />-->
         </KeyFrame>
       </Animation>
     </Style.Animations>

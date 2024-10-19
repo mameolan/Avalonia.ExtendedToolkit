@@ -15,6 +15,7 @@ using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using ReactiveUI;
 using Splat;
+using SkiaSharp;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -292,11 +293,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 }
 
                 var croppingBounds = new Rect((int)croppingLeft, (int)croppingTop, (int)croppingWidth, (int)croppingHeight);
-
-                Debug.WriteLine($"Cropping Area: X: {croppingLeft} Y: {croppingTop} Width: {croppingWidth} Height: {croppingHeight}");
-
-                CroppedImage = _image.Source.CreateCroppedBitmap((float)croppingLeft, (float)croppingTop,
-                                     (float)croppingWidth, (float)croppingHeight, croppingType);
+                //Debug.WriteLine($"Cropping Area: X: {croppingLeft} Y: {croppingTop} Width: {croppingWidth} Height: {croppingHeight}");
+                CroppedImage = _image.Source.CreateCroppedBitmap((float)croppingLeft, (float)croppingTop, (float)croppingWidth, (float)croppingHeight, croppingType);
             }
         }
 

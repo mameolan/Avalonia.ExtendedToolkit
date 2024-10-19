@@ -6,7 +6,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class TestChildWindow : UserControl
+    public partial class TestChildWindow : UserControl
     {
         public ChildWindow Child{get;}
 

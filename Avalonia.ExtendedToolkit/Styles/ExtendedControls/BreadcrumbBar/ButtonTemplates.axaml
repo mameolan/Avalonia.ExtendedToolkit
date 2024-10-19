@@ -45,7 +45,6 @@
     <Setter Property="ImageWidth" Value="16" />
     <Setter Property="ImageHeight" Value="16" />
     <Setter Property="BorderThickness" Value="0" />
-    <Setter Property="Focusable" Value="False" />
     <Setter Property="BorderBrush" Value="{DynamicResource Odc.Brushes.Border}" />
     <Setter Property="Template" >
       <Setter.Value>

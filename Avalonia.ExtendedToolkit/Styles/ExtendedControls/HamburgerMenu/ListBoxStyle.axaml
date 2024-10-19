@@ -9,10 +9,12 @@
         <ControlTemplate>
           <ScrollViewer>
                 <ItemsPresenter Margin="0"
-                Items="{TemplateBinding Items}"
+                
                 ItemsPanel="{TemplateBinding ItemsPanel}"
-                ItemTemplate="{TemplateBinding ItemTemplate}"
+                
                             />
+              <!--bad viewItems="{TemplateBinding Items}"
+              ItemTemplate="{TemplateBinding ItemTemplate}"-->
           </ScrollViewer>
         </ControlTemplate>
       </Setter.Value>

@@ -81,18 +81,19 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// generator for the <see cref="IndexListHeaderItem"/> subitems
         /// </summary>
         /// <returns></returns>
-        protected override IItemContainerGenerator CreateItemContainerGenerator()
-        {
-            var result = new IndexListItemGenerator(
-                                    this,
-                                    IndexListHeaderItem.HeaderProperty,
-                                    IndexListHeaderItem.ItemTemplateProperty,
-                                    IndexListHeaderItem.ItemsProperty
-                                    );
-            result.Materialized += ContainerMaterialized;
+        //.orig
+        //protected override ItemContainerGenerator CreateItemContainerGenerator()
+        //{
+        //    var result = new IndexListItemGenerator(
+        //                            this,
+        //                            IndexListHeaderItem.HeaderProperty,
+        //                            IndexListHeaderItem.ItemTemplateProperty,
+        //                            IndexListHeaderItem.ItemsProperty
+        //                            );
+        //    result.Materialized += ContainerMaterialized;
 
-            return result;
-        }
+        //    return result;
+        //}
 
         /// <summary>
         /// if item is found and <see cref="AutoScrollToSelectedItem"/> is
@@ -100,40 +101,42 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ContainerMaterialized(object sender, ItemContainerEventArgs e)
-        {
-            var selectedItem = SelectedItem;
+        //.orig
+        //private void ContainerMaterialized(object sender, ItemContainerEventArgs e)
+        //{
+        //    var selectedItem = SelectedItem;
 
-            if (selectedItem == null)
-            {
-                return;
-            }
+        //    if (selectedItem == null)
+        //    {
+        //        return;
+        //    }
 
-            foreach (var container in e.Containers)
-            {
-                if (container.Item == selectedItem)
-                {
-                    ((IndexListItem)container.ContainerControl).IsSelected = true;
+        //    foreach (var container in e.Containers)
+        //    {
+        //        if (container.Item == selectedItem)
+        //        {
+        //            ((IndexListItem)container.ContainerControl).IsSelected = true;
 
-                    if (AutoScrollToSelectedItem)
-                    {
-                        Dispatcher.UIThread.Post(container.ContainerControl.BringIntoView);
-                    }
+        //            if (AutoScrollToSelectedItem)
+        //            {
+        //                Dispatcher.UIThread.Post(container.ContainerControl.BringIntoView);
+        //            }
 
-                    break;
-                }
-            }
-        }
+        //            break;
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// Scrolls the specified item into view.
         /// </summary>
         /// <param name="item">The item.</param>
-        public void ScrollIntoView(object item)
-        {
-            int index = Items.OfType<object>().ToList().IndexOf(item);
-            Presenter?.ScrollIntoView(index);
-        }
+        //.orig
+        //public void ScrollIntoView(object item)
+        //{
+        //    int index = Items.OfType<object>().ToList().IndexOf(item);
+        //    Presenter?.ScrollIntoView(index);
+        //}
 
         /// <inheritdoc/>
         protected override void OnPointerPressed(PointerPressedEventArgs e)
@@ -145,7 +148,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             if (prop.IsLeftButtonPressed || prop.IsRightButtonPressed)
             {
                 e.Handled = UpdateSelectionFromEventSource(
-                    e.Source,
+                    //.edited
+                    (Interactive)e.Source,
                     true);
             }
         }
@@ -158,7 +162,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <param name="select"></param>
         /// <returns></returns>
         protected bool UpdateSelectionFromEventSource(
-            IInteractive eventSource,
+            Interactive eventSource,
             bool select = true
             )
         {
@@ -178,9 +182,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="eventSource"></param>
         /// <returns></returns>
-        protected IndexListItem GetContainerFromEventSource(IInteractive eventSource)
+        protected IndexListItem GetContainerFromEventSource(Interactive eventSource)
         {
-            var item = ((IVisual)eventSource).GetSelfAndVisualAncestors()
+            var item = ((Visual)eventSource).GetSelfAndVisualAncestors()
                 .OfType<IndexListItem>()
                 .FirstOrDefault();
             return item;
@@ -194,7 +198,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <param name="container"></param>
         /// <param name="isSelect"></param>
         protected void UpdateSelectionFromContainer(
-            IControl container,
+            Control container,
             bool isSelect = true
             )
         {

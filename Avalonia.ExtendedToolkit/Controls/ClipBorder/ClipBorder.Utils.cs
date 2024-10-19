@@ -138,15 +138,15 @@ namespace Avalonia.ExtendedToolkit.Controls
         public static bool IsCloseTo(this Rect rect1, Rect rect2)
         {
             // If they're both empty, don't bother with the double logic.
-            if (rect1.IsEmpty)
+            if (rect1.Height == 0 && rect1.Width == 0)
             {
-                return rect2.IsEmpty;
+                return !(rect2.Height != 0 || rect2.Width != 0);
             }
 
             // At this point, rect1 isn't empty, so the first thing we can test is
             // rect2.IsEmpty, followed by property-wise compares.
 
-            return (!rect2.IsEmpty)
+            return (rect2.Height != 0 || rect2.Width != 0)
                    && rect1.X.IsCloseTo(rect2.X) && rect1.Y.IsCloseTo(rect2.Y)
                    && rect1.Height.IsCloseTo(rect2.Height) && rect1.Width.IsCloseTo(rect2.Width);
         }

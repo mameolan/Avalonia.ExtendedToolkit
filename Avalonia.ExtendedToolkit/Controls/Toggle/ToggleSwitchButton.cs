@@ -24,7 +24,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         private TranslateTransform _BackgroundTranslate;
         private Thumb _DraggingThumb;
         private Grid _SwitchTrack;
-        private IControl _ThumbIndicator;
+        private Control _ThumbIndicator;
         private TranslateTransform _ThumbTranslate;
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             _BackgroundTranslate = rectangle.RenderTransform as TranslateTransform; //e.NameScope.Find<TranslateTransform>(PART_BackgroundTranslate);
             _DraggingThumb = e.NameScope.Find<Thumb>(PART_DraggingThumb);
             _SwitchTrack = e.NameScope.Find<Grid>(PART_SwitchTrack);
-            _ThumbIndicator = e.NameScope.Find<IControl>(PART_ThumbIndicator);
+            _ThumbIndicator = e.NameScope.Find<Control>(PART_ThumbIndicator);
             _ThumbTranslate = _ThumbIndicator.RenderTransform as TranslateTransform; //e.NameScope.Find<TranslateTransformExt>(PART_ThumbTranslate);
 
             if (_ThumbIndicator != null && _ThumbTranslate != null && _BackgroundTranslate != null)

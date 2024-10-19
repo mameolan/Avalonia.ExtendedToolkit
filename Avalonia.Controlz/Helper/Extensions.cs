@@ -17,19 +17,19 @@ namespace Avalonia.Controlz.Helper
         /// <typeparam name="T"></typeparam>
         /// <param name="control"></param>
         /// <returns></returns>
-        public static T FindParent<T>(this IControl control) where T : IControl
+        public static T FindParent<T>(this Control control) where T : Control
         {
             if (control.Parent is T)
                 return (T)control.Parent;
 
-            IControl parent = control.Parent.Parent;
+            Control parent = (Control)control.Parent.Parent;
 
             while (parent != null)
             {
                 if (parent is T)
                     return (T)parent;
 
-                parent = parent.Parent;
+                parent = (Control)parent.Parent;
             }
             return default(T);
         }
@@ -43,7 +43,7 @@ namespace Avalonia.Controlz.Helper
         /// <param name="control"></param>
         /// <param name="forceUsingTheVisualTreeHelper"></param>
         /// <returns></returns>
-        public static T FindChild<T>(this IControl control,bool forceUsingTheVisualTreeHelper = false) where T : IControl
+        public static T FindChild<T>(this Control control,bool forceUsingTheVisualTreeHelper = false) where T : Control
         {
             //if (control.Parent is T)
             //    return (T)control.Parent;
@@ -70,7 +70,7 @@ namespace Avalonia.Controlz.Helper
         /// <param name="parent"></param>
         /// <param name="forceUsingTheVisualTreeHelper"></param>
         /// <returns></returns>
-        public static IEnumerable<IControl> GetChildObjects(this IControl parent, bool forceUsingTheVisualTreeHelper = false)
+        public static IEnumerable<Control> GetChildObjects(this Control parent, bool forceUsingTheVisualTreeHelper = false)
         {
             if (parent == null) yield break;
 
@@ -80,20 +80,20 @@ namespace Avalonia.Controlz.Helper
             {
                 foreach (var item in LogicalExtensions.GetLogicalChildren(parentLogical))
                 {
-                    IControl avalonia = item as IControl;
+                    Control avalonia = item as Control;
                     if (avalonia != null)
-                        yield return item as IControl;
+                        yield return item as Control;
                 }
             }
             else
             {
-                IVisual visual = parent as IVisual;
+                Visual visual = parent as Visual;
 
                 foreach (var item in VisualTree.VisualExtensions.GetVisualChildren(visual))
                 {
-                    IControl avalonia = item as IControl;
+                    Control avalonia = item as Control;
                     if (avalonia != null)
-                        yield return item as IControl;
+                        yield return item as Control;
                 }
             }
         }
@@ -105,12 +105,12 @@ namespace Avalonia.Controlz.Helper
         /// <param name="source"></param>
         /// <param name="forceUsingTheVisualTreeHelper"></param>
         /// <returns></returns>
-        public static IEnumerable<T> FindChildren<T>(this IControl source, bool forceUsingTheVisualTreeHelper = false) where T : IControl
+        public static IEnumerable<T> FindChildren<T>(this Control source, bool forceUsingTheVisualTreeHelper = false) where T : Control
         {
             if (source != null)
             {
                 var childs = GetChildObjects(source, forceUsingTheVisualTreeHelper);
-                foreach (IControl child in childs)
+                foreach (Control child in childs)
                 {
                     //analyze if children match the requested type
                     if (child != null && child is T)
@@ -132,9 +132,9 @@ namespace Avalonia.Controlz.Helper
         /// </summary>
         /// <param name="child"></param>
         /// <returns></returns>
-        public static IEnumerable<IVisual> GetAncestors(this IVisual child)
+        public static IEnumerable<Visual> GetAncestors(this Visual child)
         {
-            IVisual parent = VisualTree.VisualExtensions.GetVisualParent(child);
+            Visual parent = VisualTree.VisualExtensions.GetVisualParent(child);
             while (parent != null)
             {
                 yield return parent;
@@ -148,16 +148,16 @@ namespace Avalonia.Controlz.Helper
         /// attache property of classes
         /// </summary>
         public static readonly AttachedProperty<Classes> ClassesProperty =
-            AvaloniaProperty.RegisterAttached<IStyledElement, Classes>(nameof(Classes), typeof(Extensions));
+            AvaloniaProperty.RegisterAttached<StyledElement, Classes>(nameof(Classes), typeof(Extensions));
 
         /// <summary>
         /// Get classes
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static Classes GetClasses(IStyledElement element)
+        public static Classes GetClasses(StyledElement element)
         {
-            return element.GetValue(ClassesProperty);
+            return element.GetValue<Classes>(ClassesProperty);
         }
 
         /// <summary>
@@ -165,17 +165,17 @@ namespace Avalonia.Controlz.Helper
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetClasses(IStyledElement element, Classes value)
+        public static void SetClasses(StyledElement element, Classes value)
         {
             element.SetValue(ClassesProperty, value);
             OnClassesChanged(element, value);
         }
 
-        private static void OnClassesChanged(IStyledElement element, Classes value)
+        private static void OnClassesChanged(StyledElement element, Classes value)
         {
             if (value != null)
             {
-                element.Classes = value;
+                element.Classes.Add(value.ToString());
             }
         }
     }

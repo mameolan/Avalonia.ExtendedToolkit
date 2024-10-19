@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class OutlookBarView : UserControl
+    public partial class OutlookBarView : UserControl
     {
         public OutlookBarView()
         {

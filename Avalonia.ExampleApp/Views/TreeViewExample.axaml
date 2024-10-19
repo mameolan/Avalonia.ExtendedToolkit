@@ -21,7 +21,7 @@
       </Grid.RowDefinitions>
 
       <TextBlock Grid.Row="0" Text="Enable" Foreground="{DynamicResource MahApps.Brushes.Black}" Width="100"/>
-      <TreeView Items="{Binding Artists}" Margin="5"
+      <TreeView ItemsSource="{Binding Artists}" Margin="5"
               Height="300"
               Grid.Row="1"
               ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -53,7 +53,7 @@
       <TextBlock Grid.Row="0" Text="Disabled" Foreground="{DynamicResource MahApps.Brushes.Black}"
                  Width="100"/>
 
-      <TreeView Items="{Binding Artists}" x:Name="disableTree"
+      <TreeView ItemsSource="{Binding Artists}" x:Name="disableTree"
             Grid.Row="1" IsEnabled="False" Margin="5"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
             ScrollViewer.HorizontalScrollBarVisibility="Auto"

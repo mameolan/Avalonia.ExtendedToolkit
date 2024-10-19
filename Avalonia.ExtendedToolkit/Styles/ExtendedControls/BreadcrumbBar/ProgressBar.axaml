@@ -12,7 +12,7 @@
         <ControlTemplate>
           <Grid Name="Background">
             <Rectangle Name="PART_Track" Margin="1,1,1,1" />
-            <Decorator Name="PART_Indicator" Margin="1,1,1,1" HorizontalAlignment="Left">
+            <Border Name="PART_Indicator" Margin="1,1,1,1" HorizontalAlignment="Left">
               <Grid Name="Foreground">
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition MaxWidth="15" />
@@ -106,7 +106,7 @@
                   </Border.Background>
                 </Border>
               </Grid>
-            </Decorator>
+            </Border>
             <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
                     BorderBrush="{TemplateBinding Border.BorderBrush}" />
           </Grid>

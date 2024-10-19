@@ -57,7 +57,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         public FlyoutsControl()
         {
             //ItemsPanelProperty.OverrideDefaultValue<FlyoutsControl>(DefaultPanel);
-            ItemsProperty.Changed.AddClassHandler<FlyoutsControl>((o, e) => OnItemsChaned(o, e));
+            ItemsSourceProperty.Changed.AddClassHandler<FlyoutsControl>((o, e) => OnItemsChaned(o, e));
         }
 
         private void OnItemsChaned(FlyoutsControl o, AvaloniaPropertyChangedEventArgs e)
@@ -69,10 +69,11 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// use FlyoutContainerGenerator as container generator
         /// </summary>
         /// <returns></returns>
-        protected override IItemContainerGenerator CreateItemContainerGenerator()
-        {
-            return new FlyoutContainerGenerator(this);
-        }
+        //.orig
+        //protected override ItemContainerGenerator CreateItemContainerGenerator()
+        //{
+        //    return new FlyoutContainerGenerator(this);
+        //}
 
         /// <summary>
         /// called from the <see cref="FlyoutContainerGenerator.CreateContainer(object)"/> only.

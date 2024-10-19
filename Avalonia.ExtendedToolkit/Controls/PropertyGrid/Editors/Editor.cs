@@ -91,8 +91,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Editors
 
             if (template is string)
             {
-
-                if(Application.Current.Styles.TryGetResource(template, out object resourceValue))
+                //.edited
+                if(Application.Current.Styles.TryGetResource(template, ThemeVariant.Default ,out object resourceValue))
                 {
                     ControlTemplate controlTemplate = resourceValue as ControlTemplate;
                     return controlTemplate;// inlineTemplate;

@@ -16,7 +16,7 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// </summary>
     public class FlyoutStatusChangedRoutedEventArgs : RoutedEventArgs
     {
-        internal FlyoutStatusChangedRoutedEventArgs(RoutedEvent rEvent, IInteractive source)
+        internal FlyoutStatusChangedRoutedEventArgs(RoutedEvent rEvent, Interactive source)
             : base(rEvent, source)
         {
         }

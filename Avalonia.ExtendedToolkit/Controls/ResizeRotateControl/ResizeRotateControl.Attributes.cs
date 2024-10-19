@@ -78,17 +78,17 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Gets or sets BouncedControl.
         /// </summary>
-        public IControl BouncedControl
+        public Control BouncedControl
         {
-            get { return (IControl)GetValue(BouncedControlProperty); }
+            get { return (Control)GetValue(BouncedControlProperty); }
             set { SetValue(BouncedControlProperty, value); }
         }
 
         /// <summary>
         /// Defines the <see cref="BouncedControl"/> property.
         /// </summary>
-        public static readonly StyledProperty<IControl> BouncedControlProperty =
-            AvaloniaProperty.Register<ResizeRotateControl, IControl>(nameof(BouncedControl));
+        public static readonly StyledProperty<Control> BouncedControlProperty =
+            AvaloniaProperty.Register<ResizeRotateControl, Control>(nameof(BouncedControl));
 
 
 

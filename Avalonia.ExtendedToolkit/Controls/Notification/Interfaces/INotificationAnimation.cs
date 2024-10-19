@@ -37,6 +37,6 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// Typically this is the whole Control object so that the entire
         /// item can be animated.
         /// </summary>
-        IControl AnimatableElement { get; }
+        Control AnimatableElement { get; }
     }
 }

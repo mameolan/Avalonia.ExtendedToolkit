@@ -2,6 +2,10 @@ using System;
 using System.IO;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Avalonia.Skia;
+using Avalonia.Rendering.SceneGraph;
+using Avalonia.Rendering.Composition;
+using Avalonia.Platform;
 
 namespace Avalonia.ExtendedToolkit.Extensions
 {
@@ -25,15 +29,14 @@ namespace Avalonia.ExtendedToolkit.Extensions
                 var height = croppedBitmap.SourceRect.Height;
 
                 var pixelSize = new PixelSize(width, height);
-                var size = new Size(width, height);
                 var dpiVector = new Vector(96, 96);
-                using (var renderBitmap = new RenderTargetBitmap(pixelSize, dpiVector))
+                using (RenderTargetBitmap renderBitmap = new RenderTargetBitmap(pixelSize, dpiVector))
                 {
-                    using (var context = new DrawingContext(renderBitmap.CreateDrawingContext(null)))
+                    using (var context = renderBitmap.CreateDrawingContext())
                     {
                         var source = new Rect(0, 0, croppedBitmap.Size.Width, croppedBitmap.Size.Height);
                         var rect = new Rect(croppedBitmap.SourceRect.X, croppedBitmap.SourceRect.Y, croppedBitmap.SourceRect.Width, croppedBitmap.SourceRect.Height);
-                        croppedBitmap.Draw(context, source, rect, Avalonia.Visuals.Media.Imaging.BitmapInterpolationMode.HighQuality);
+                        croppedBitmap.Draw(context, source, rect);
                     }
                     renderBitmap.Save(path);
                 }
@@ -59,11 +62,11 @@ namespace Avalonia.ExtendedToolkit.Extensions
                 var dpiVector = new Vector(96, 96);
                 using (var renderBitmap = new RenderTargetBitmap(pixelSize, dpiVector))
                 {
-                    using (var context = new DrawingContext(renderBitmap.CreateDrawingContext(null)))
+                    using (var context = renderBitmap.CreateDrawingContext())
                     {
                         var source = new Rect(0, 0, croppedBitmap.Size.Width, croppedBitmap.Size.Height);
                         var rect = new Rect(croppedBitmap.SourceRect.X, croppedBitmap.SourceRect.Y, croppedBitmap.SourceRect.Width, croppedBitmap.SourceRect.Height);
-                        croppedBitmap.Draw(context, source, rect, Avalonia.Visuals.Media.Imaging.BitmapInterpolationMode.HighQuality);
+                        croppedBitmap.Draw(context, source, rect);
                     }
                     renderBitmap.Save(stream);
                 }
@@ -71,11 +74,11 @@ namespace Avalonia.ExtendedToolkit.Extensions
         }
 
         /// <summary>
-        /// converts the <see cref="IImage"/> to a <see cref="System.Drawing.Bitmap"/>
+        /// converts the <see cref="IImage"/> to a <see cref="Avalonia.Media.Imaging.RenderTargetBitmap"/>
         /// </summary>
-        public static System.Drawing.Bitmap GetDrawingBitmap(this IImage image)
+        public static RenderTargetBitmap GetDrawingBitmap(this IImage image)
         {
-            return new System.Drawing.Bitmap(new MemoryStream(image.GetImageSourceAsByte()));
+            return new RenderTargetBitmap(new PixelSize((int)image.Size.Width, (int)image.Size.Width));
         }
 
         /// <summary>
@@ -100,16 +103,16 @@ namespace Avalonia.ExtendedToolkit.Extensions
         }
 
         /// <summary>
-        /// creates a <see cref="Bitmap"/> from <see cref="System.Drawing.Bitmap"/>
+        /// creates a <see cref="Bitmap"/> from <see cref="Avalonia.Media.Imaging.RenderTargetBitmap"/>
         /// </summary>
-        public static IImage FromDrawingBitmap(this IImage image, System.Drawing.Bitmap source)
+        public static IImage FromDrawingBitmap(this IImage image, RenderTargetBitmap source)
         {
             IImage result = null;
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                source.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                source.Save(memoryStream);
                 memoryStream.Position = 0;
-                if (memoryStream.Length > 0 && source.Width > 0 && source.Height > 0)
+                if (memoryStream.Length > 0 && source.Size.Width > 0 && source.Size.Height > 0)
                 {
                     result = new Bitmap(memoryStream);
                 }
@@ -127,11 +130,11 @@ namespace Avalonia.ExtendedToolkit.Extensions
                 switch (flipType)
                 {
                     case FipType.Horizontal:
-                        bitmap.RotateFlip(System.Drawing.RotateFlipType.RotateNoneFlipY);
+                        bitmap.Flip(FipType.Horizontal);
                         break;
 
                     case FipType.Vertical:
-                        bitmap.RotateFlip(System.Drawing.RotateFlipType.RotateNoneFlipX);
+                        bitmap.Flip(FipType.Vertical);
                         break;
                 }
 
@@ -149,11 +152,11 @@ namespace Avalonia.ExtendedToolkit.Extensions
                 switch (rotateType)
                 {
                     case RotateType.LeftHandedRotation:
-                        bitmap.RotateFlip(System.Drawing.RotateFlipType.Rotate270FlipNone);
+                        bitmap.Rotate(RotateType.LeftHandedRotation);
                         break;
 
                     case RotateType.RightHandedRotation:
-                        bitmap.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                        bitmap.Rotate(RotateType.RightHandedRotation);
                         break;
                 }
                 return image.FromDrawingBitmap(bitmap);
@@ -181,24 +184,23 @@ namespace Avalonia.ExtendedToolkit.Extensions
                 return image;
             }
 
-            using (System.Drawing.Bitmap sourceBitmap = image.GetDrawingBitmap())
+            using (RenderTargetBitmap sourceBitmap = image.GetDrawingBitmap())
             {
-                var width = (float)(sourceBitmap.Width);
-                var height = (float)(sourceBitmap.Width);
+                var width = (float)(sourceBitmap.Size.Width);
+                var height = (float)(sourceBitmap.Size.Height);
 
-                var scaleWidth = (int)Math.Max(Math.Round(sourceBitmap.Width * zoomFactor, MidpointRounding.ToEven), 1);
-                var scaleHeight = (int)Math.Max(Math.Round(sourceBitmap.Height * zoomFactor, MidpointRounding.ToEven), 1);
-                using (var scaledBitmap = new System.Drawing.Bitmap(scaleWidth, scaleHeight))
+                var scaleWidth = (int)Math.Max(Math.Round(sourceBitmap.Size.Width * zoomFactor, MidpointRounding.ToEven), 1);
+                var scaleHeight = (int)Math.Max(Math.Round(sourceBitmap.Size.Height * zoomFactor, MidpointRounding.ToEven), 1);
+                using (var scaledBitmap = new RenderTargetBitmap(new PixelSize(scaleWidth, scaleHeight)))
                 {
-                    using (System.Drawing.Graphics graphics = System.Drawing.Graphics.FromImage(scaledBitmap))
-                    {
-                        graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
-                        graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                        graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                        graphics.FillRectangle(System.Drawing.Brushes.Transparent, new System.Drawing.RectangleF(0, 0, width, height));
-                        graphics.DrawImage(sourceBitmap, new System.Drawing.Rectangle(0, 0, scaleWidth, scaleHeight));
-                    }
-
+                    //var graphics = new DrawingImage { };
+                    //graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
+                    //graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                    //graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    //graphics.FillRectangle(System.Drawing.Brushes.Transparent, new System.Drawing.RectangleF(0, 0, width, height));
+                    //graphics.Drawing { }
+                    //(sourceBitmap, new System.Drawing.Rectangle(0, 0, scaleWidth, scaleHeight));
+                    //}
                     return image.FromDrawingBitmap(scaledBitmap);
                 }
             }
@@ -215,13 +217,12 @@ namespace Avalonia.ExtendedToolkit.Extensions
 
 
         /// <summary>
-        /// creates a cropped <see cref="System.Drawing.Bitmap"/> by <see cref="CroppingType"/>
+        /// creates a cropped <see cref="RenderTargetBitmap"/> by <see cref="CroppingType"/>
         /// </summary>
-        private static System.Drawing.Bitmap CreateCroppedDrawingBitmap(IImage image, float x, float y, float width, float height, CroppingType croppingType)
+        private static RenderTargetBitmap CreateCroppedDrawingBitmap(IImage image, float x, float y, float width, float height, CroppingType croppingType)
         {
 
-
-            System.Drawing.Bitmap sourceBitmap = image.GetDrawingBitmap();
+            RenderTargetBitmap sourceBitmap = image.GetDrawingBitmap();
 
             if (x < 0 || float.IsNaN(x))
             {
@@ -233,14 +234,14 @@ namespace Avalonia.ExtendedToolkit.Extensions
                 y = 0;
             }
 
-            if (x + width >= sourceBitmap.Width)
+            if (x + width >= sourceBitmap.Size.Width)
             {
-                width = sourceBitmap.Width;
+                width = (float)sourceBitmap.Size.Width;
             }
 
-            if (y + height >= sourceBitmap.Height)
+            if (y + height >= sourceBitmap.Size.Height)
             {
-                height = sourceBitmap.Height;
+                height = (float)sourceBitmap.Size.Height;
             }
 
 
@@ -254,26 +255,23 @@ namespace Avalonia.ExtendedToolkit.Extensions
                 height = 1;
             }
 
-
-
-
-            System.Drawing.RectangleF cropRect = new System.Drawing.RectangleF(x, y, width, height);
-            var target = new System.Drawing.Bitmap((int)cropRect.Width, (int)cropRect.Height);
+            var cropRect = new Rect(x, y, width, height);
+            var target = new RenderTargetBitmap(new PixelSize((int)cropRect.Width, (int)cropRect.Height));
 
             if (croppingType == CroppingType.Rectangle)
             {
-                using (var graphics = System.Drawing.Graphics.FromImage(target))
-                {
-                    graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
-                    graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                    graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                    graphics.Clear(System.Drawing.Color.Transparent);
+                //using (var graphics = System.Drawing.Graphics.FromImage(target))
+                //{
+                //    graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
+                //    graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                //    graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                //    graphics.Clear(System.Drawing.Color.Transparent);
 
-                    graphics.DrawImage(sourceBitmap, new System.Drawing.Rectangle(0, 0, target.Width, target.Height),
-                        cropRect,
-                        System.Drawing.GraphicsUnit.Pixel);
-                    graphics.Flush();
-                }
+                //    graphics.DrawImage(sourceBitmap, new System.Drawing.Rectangle(0, 0, target.Width, target.Height),
+                //        cropRect,
+                //        System.Drawing.GraphicsUnit.Pixel);
+                //    graphics.Flush();
+                //}
             }
             else
             {
@@ -281,19 +279,19 @@ namespace Avalonia.ExtendedToolkit.Extensions
 
                 try
                 {
-                    using (var graphics = System.Drawing.Graphics.FromImage(target))
-                    {
-                        graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
-                        graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
-                        graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                        graphics.Clear(System.Drawing.Color.Transparent);
-                        using (System.Drawing.TextureBrush brush = new System.Drawing.TextureBrush(sourceBitmap, cropRect))
-                        {
-                            cropRect.X = 0;
-                            cropRect.Y = 0;
-                            graphics.FillEllipse(brush, cropRect);
-                        }
-                    }
+                    //using (var graphics = System.Drawing.Graphics.FromImage(target))
+                    //{
+                    //    graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
+                    //    graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                    //    graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    //    graphics.Clear(System.Drawing.Color.Transparent);
+                    //    using (System.Drawing.TextureBrush brush = new System.Drawing.TextureBrush(sourceBitmap, cropRect))
+                    //    {
+                    //        cropRect.X = 0;
+                    //        cropRect.Y = 0;
+                    //        graphics.FillEllipse(brush, cropRect);
+                    //    }
+                    //}
                 }
                 catch(Exception ex)
                 {

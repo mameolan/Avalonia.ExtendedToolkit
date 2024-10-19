@@ -28,9 +28,8 @@
                         Source="{TemplateBinding Image}"
                         VerticalAlignment="Center" Stretch="Fill" MaxWidth="16" MaxHeight="16" />
                 <ContentPresenter Grid.Column="0" Content="{TemplateBinding Content}" x:Name="content"
-                        VerticalAlignment="Center" TextBlock.FontWeight="Bold"
-                                  TextBlock.Foreground="{DynamicResource OdcExpanderHeader.Brushes.TextForeground}"
-                        ContentTemplate="{TemplateBinding ContentTemplate}" Margin="4,0,0,0" />
+                        VerticalAlignment="Center" FontWeight="Bold" ContentTemplate="{TemplateBinding ContentTemplate}"
+                        Foreground="{DynamicResource OdcExpanderHeader.Brushes.TextForeground}" Margin="4,0,0,0"/>
               </StackPanel>
               <Grid Grid.Column="1" Margin="0,0,4,0" x:Name="circleButton" VerticalAlignment="Center">
                 <Ellipse Name="circle" Width="16.5" Height="16.5" 

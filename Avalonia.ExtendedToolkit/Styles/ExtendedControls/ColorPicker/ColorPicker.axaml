@@ -31,7 +31,7 @@
                 </ToggleButton>
 
                 <Popup x:Name="PART_PopupMenu" PlacementTarget="{Binding #button}" PlacementMode="AnchorAndGravity"
-                       MaxHeight="400" Width="250" StaysOpen="False" UseLayoutRounding="True">
+                       MaxHeight="400" Width="250" IsLightDismissEnabled="False" UseLayoutRounding="True">
                   <Border BorderBrush="{DynamicResource ThemeBorderMidBrush}" BorderThickness="1">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                       <Controls:ColorSelector x:Name="PART_ColorSelector" />

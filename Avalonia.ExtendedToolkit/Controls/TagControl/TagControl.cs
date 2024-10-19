@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.VisualTree;
+using DynamicData.Kernel;
 
 namespace Avalonia.ExtendedToolkit.Controls
 {
@@ -16,7 +18,7 @@ namespace Avalonia.ExtendedToolkit.Controls
     public partial class TagControl : TemplatedControl
     {
         /// <summary>
-        /// deselcts the other items
+        /// deselects the other items
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -50,7 +52,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         private void OnTagItemPropertyChanged(object sender, AvaloniaPropertyChangedEventArgs e)
         {
-            RaisePropertyChanged(IsAnyItemInEditModeProperty, new Data.Optional<bool>(), ItemsSource.Any(x => x.IsInEditMode));
+            RaisePropertyChanged<bool>(IsAnyItemInEditModeProperty, new bool(), ItemsSource.Any(x => x.IsInEditMode));
         }
 
         /// <summary>
@@ -99,7 +101,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             if (sender is TagItem tagItem)
             {
                 tagItem.IsSelected = true;
-                //SelectedItem=tagItem.Text;
+                SelectedItem=tagItem.Text;
 
                 RemoveTag(tagItem);
             }
@@ -117,7 +119,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             if (prop.IsLeftButtonPressed || prop.IsRightButtonPressed)
             {
                 e.Handled = UpdateSelectionFromEventSource(
-                    e.Source,
+                    //.edited
+                    (Interactive)e.Source,
                     true);
             }
         }
@@ -126,7 +129,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// updates the selection from container
         /// </summary>
         protected bool UpdateSelectionFromEventSource(
-            IInteractive eventSource,
+            Interactive eventSource,
             bool select = true
             )
         {
@@ -144,9 +147,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// tries to find the TagItem from eventsource
         /// </summary>
-        protected TagItem GetContainerFromEventSource(IInteractive eventSource)
+        protected TagItem GetContainerFromEventSource(Interactive eventSource)
         {
-            var item = ((IVisual)eventSource).GetSelfAndVisualAncestors()
+            var item = ((Visual)eventSource).GetSelfAndVisualAncestors()
                 .OfType<TagItem>()
                 .FirstOrDefault();
             return item;
@@ -159,7 +162,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <param name="container"></param>
         /// <param name="isSelect"></param>
         protected void UpdateSelectionFromContainer(
-            IControl container,
+            Control container,
             bool isSelect = true
             )
         {
@@ -280,7 +283,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                                           OnAcceptEdit,
                                           TagMargin));
                 }
-                RaisePropertyChanged(IsAnyItemInEditModeProperty, new Data.Optional<bool>(), ItemsSource.Any(x => x.IsInEditMode));
+                RaisePropertyChanged<bool>(IsAnyItemInEditModeProperty, new  bool(), ItemsSource.Any(x => x.IsInEditMode));
             }
         }
 

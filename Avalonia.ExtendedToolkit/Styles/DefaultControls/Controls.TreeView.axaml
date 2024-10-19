@@ -129,11 +129,10 @@
 
               </Grid>
             </Border>
-            <ItemsPresenter x:Name="ItemsHost"
-                            Items="{TemplateBinding Items}"
-                            ItemsPanel="{TemplateBinding ItemsPanel}"
-                            ItemTemplate="{TemplateBinding ItemTemplate}"
-                            />
+            <ItemsPresenter x:Name="ItemsHost" ItemsPanel="{TemplateBinding ItemsPanel}"/>
+                <!--Items="{TemplateBinding Items}"-->
+                <!--ItemTemplate="{TemplateBinding ItemTemplate}"-->
+                            
           </StackPanel>
           <!--<ControlTemplate.Triggers>
             
@@ -231,10 +230,9 @@
                           Focusable="False"
                           HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
                           VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
-              <ItemsPresenter Items="{TemplateBinding Items}" 
-                              ItemsPanel="{TemplateBinding ItemsPanel}"
-                              ItemTemplate="{TemplateBinding ItemTemplate}"
-                              />
+              <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"/>
+                                           <!--ItemTemplate="{TemplateBinding ItemTemplate}"
+                                           Items="{TemplateBinding Items}-->
             </ScrollViewer>
           </Border>
         </ControlTemplate>

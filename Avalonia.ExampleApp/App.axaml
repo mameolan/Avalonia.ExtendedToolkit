@@ -3,9 +3,11 @@
              x:Class="Avalonia.ExampleApp.App">
 
     <Application.Styles>
-        <StyleInclude Source="avares://Avalonia.Themes.Default/DefaultTheme.xaml"/>
-        <StyleInclude Source="avares://Avalonia.Themes.Default/Accents/BaseLight.xaml"/>
-        <StyleInclude Source="resm:Avalonia.Controls.DataGrid.Themes.Default.xaml?assembly=Avalonia.Controls.DataGrid" />
+        <!--<StyleInclude Source="avares://Avalonia.Themes.Fluent/FluentDark.xaml"/>
+        <StyleInclude Source="avares://Avalonia.Themes.Fluent/Accents/BaseDark.xaml"/>-->
+        <!--bad view<SimpleTheme Mode="Dark"/>-->
+        <!--<StyleInclude Source="resm:Avalonia.Controls.DataGrid.Themes.Default.xaml?assembly=Avalonia.Controls.DataGrid" />-->
+        <FluentTheme/>
         <StyleInclude Source="avares://Avalonia.ExtendedToolkit/Styles/Themes/Light.Blue.axaml"/>
         <StyleInclude Source="avares://Avalonia.Controlz/Styles/Generic.axaml"/>
         <!-- without datagrid -->

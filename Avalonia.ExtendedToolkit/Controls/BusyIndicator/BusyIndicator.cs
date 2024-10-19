@@ -102,17 +102,17 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Gets or sets a Control that should get the focus when the busy indicator disapears.
         /// </summary>
-        public IControl FocusAfterBusy
+        public Control FocusAfterBusy
         {
-            get { return (IControl)GetValue(FocusAfterBusyProperty); }
+            get { return (Control)GetValue(FocusAfterBusyProperty); }
             set { SetValue(FocusAfterBusyProperty, value); }
         }
 
         /// <summary>
         /// <see cref="FocusAfterBusy"/>
         /// </summary>
-        public static readonly StyledProperty<IControl> FocusAfterBusyProperty =
-            AvaloniaProperty.Register<BusyIndicator, IControl>(nameof(FocusAfterBusy));
+        public static readonly StyledProperty<Control> FocusAfterBusyProperty =
+            AvaloniaProperty.Register<BusyIndicator, Control>(nameof(FocusAfterBusy));
 
         /// <summary>
         /// Gets or sets a value indicating the style to use for the overlay.

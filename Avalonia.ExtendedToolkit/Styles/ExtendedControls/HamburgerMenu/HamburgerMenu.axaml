@@ -44,7 +44,7 @@
             </ToggleButton>
             <ListBox Classes="HamburgerMenu"
                      x:Name="contentList"
-                     Items="{TemplateBinding Content}"
+                     ItemsSource="{TemplateBinding Content}"
                      HorizontalAlignment="Left" Margin="0,40,0,0"
                      VerticalAlignment="Top"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"

@@ -5,7 +5,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class TestMainWindow : MetroWindow
+    public partial class TestMainWindow : MetroWindow
     {
         public TestMainWindow()
         {

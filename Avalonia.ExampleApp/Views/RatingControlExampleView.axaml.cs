@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class RatingControlExampleView : UserControl
+    public partial class RatingControlExampleView : UserControl
     {
         public RatingControlExampleView()
         {

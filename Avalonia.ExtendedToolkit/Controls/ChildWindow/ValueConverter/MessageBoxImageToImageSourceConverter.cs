@@ -3,6 +3,7 @@ using System.Globalization;
 using Avalonia.Controls;
 using Avalonia.Data.Converters;
 using Avalonia.Markup.Xaml.Styling;
+using Avalonia.Styling;
 using Avalonia.VisualTree;
 
 namespace Avalonia.ExtendedToolkit.Controls.ChildWindowConverter
@@ -14,7 +15,7 @@ namespace Avalonia.ExtendedToolkit.Controls.ChildWindowConverter
     /// </summary>
     public class MessageBoxImageToImageSourceConverter : IValueConverter
     {
-        private readonly IVisual hand_stop_error;
+        private readonly Visual hand_stop_error;
 
         private const string HandStopErrorResource = "avares://Avalonia.ExtendedToolkit/Styles/ExtendedControls/ChildWindow/Icons.axaml";
 
@@ -29,9 +30,9 @@ namespace Avalonia.ExtendedToolkit.Controls.ChildWindowConverter
             };
 
             object icon = null;
-            if (icons.TryGetResource("appbar_noentry", out icon))
+            if (icons.TryGetResource("appbar_noentry", ThemeVariant.Default, out icon))
             {
-                hand_stop_error = icon as IVisual;
+                hand_stop_error = icon as Visual;
             }
         }
 

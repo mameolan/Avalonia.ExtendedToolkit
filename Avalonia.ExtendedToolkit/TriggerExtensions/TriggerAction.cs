@@ -9,7 +9,7 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
     /// </summary>
     public abstract class TriggerAction :Animatable, IBehavior, IAction
     {
-        private IAvaloniaObject _associatedObject;
+        private AvaloniaObject _associatedObject;
         private Type associatedObjectTypeConstraint;
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
         /// <summary>
         /// returns the AssociatedObject
         /// </summary>
-        public IAvaloniaObject AssociatedObject => _associatedObject;
+        public AvaloniaObject AssociatedObject => _associatedObject;
 
         /// <summary>
         /// Gets the associated object type constraint.
@@ -44,7 +44,7 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
             }
         }
 
-        IAvaloniaObject IBehavior.AssociatedObject => throw new NotImplementedException();
+        AvaloniaObject IBehavior.AssociatedObject => throw new NotImplementedException();
 
         internal TriggerAction(Type associatedObjectTypeConstraint)
         {
@@ -127,11 +127,6 @@ namespace Avalonia.ExtendedToolkit.TriggerExtensions
             CallInvoke(parameter);
 
             return true;
-        }
-
-        public void Attach(IAvaloniaObject associatedObject)
-        {
-            _associatedObject = associatedObject;
         }
     }
 }

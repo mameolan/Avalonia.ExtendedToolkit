@@ -366,10 +366,10 @@ namespace Avalonia.ExampleApp.ViewModels
             ColorSchemes = ThemeManager.Instance.ColorSchemes;
             BaseColors = ThemeManager.Instance.BaseColors;
 
-            ThemeManager.Instance.IsThemeChanged += (o, e) =>
-                  {
-                      BrushResources = FindBrushResources();
-                  };
+            //ThemeManager.Instance.IsThemeChanged += (o, e) =>
+            //      {
+            //          BrushResources = FindBrushResources();
+            //      };
 
 
             if (ThemeManager.Instance.SelectedTheme == null)
@@ -449,10 +449,7 @@ namespace Avalonia.ExampleApp.ViewModels
             Categories = new ObservableCollection<string>();
             Categories.Add("TagItem");
 
-            SuggestedTags = new ObservableCollection<string>();
-            SuggestedTags.Add("c#");
-            SuggestedTags.Add("dotnet");
-            SuggestedTags.Add("c++");
+            SuggestedTags = ["c#", "dotnet", "c++"];
 
             PageChangedCommand = ReactiveCommand.Create<int>(x => UpdatePaginationItems(x), outputScheduler: RxApp.MainThreadScheduler);
 
@@ -575,7 +572,7 @@ namespace Avalonia.ExampleApp.ViewModels
         {
             IClassicDesktopStyleApplicationLifetime desktopLifetime =
                 Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime;
-
+            
             if (desktopLifetime != null
                 && desktopLifetime.MainWindow != null
                 )

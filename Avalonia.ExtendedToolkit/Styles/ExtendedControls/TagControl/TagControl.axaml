@@ -33,6 +33,8 @@
               <Button Grid.Column="0" Classes="AddTagButton"
                         HorizontalAlignment="Left" VerticalAlignment="Top"
                         Name="btnAddTagButton"
+                        MinHeight="30"
+                        MinWidth="30"
                         Margin="{TemplateBinding TagMargin}"
                         IsEnabled="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:TagControl}} ,Path=IsAnyItemInEditMode, Converter={StaticResource InverseBooleanConverter}}" 
                         >
@@ -43,9 +45,9 @@
                     </MultiBinding> 
                 </Button.IsVisible>
                 </Button>
-              <ItemsPresenter Grid.Column="1"
+              <ItemsControl Grid.Column="1"
                           Name="PART_ItemsPresenter"
-                          Items="{TemplateBinding ItemsSource}"
+                          ItemsSource="{TemplateBinding ItemsSource}"
                           ItemsPanel="{TemplateBinding ItemsPanel}"
                           MaxWidth="500" />
             </Grid>

@@ -13,7 +13,7 @@
       <RowDefinition Height="35"/>
     </Grid.RowDefinitions>
 
-    <DataGrid Grid.Row="0" Items="{Binding AlbumsPagnitation}"
+    <DataGrid Grid.Row="0" ItemsSource="{Binding AlbumsPagnitation}"
                     RowHeaderWidth="20"
                     SelectionMode="Single"
                     Margin="10"

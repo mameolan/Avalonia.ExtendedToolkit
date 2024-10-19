@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class HamburgerMenuProfileView : UserControl
+    public partial class HamburgerMenuProfileView : UserControl
     {
         public HamburgerMenuProfileView()
         {

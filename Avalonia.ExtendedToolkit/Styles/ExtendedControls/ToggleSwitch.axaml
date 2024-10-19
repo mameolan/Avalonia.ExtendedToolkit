@@ -150,7 +150,7 @@
                   <Rectangle Fill="{TemplateBinding OffSwitchBrush}" x:Name="PART_OffSwitch" RenderTransformOrigin="0.5,0.5">
                     <Rectangle.RenderTransform>
                       <!--x:Name="PART_BackgroundTranslate"-->
-                      <tk:TranslateTransformExt Name="PART_BackgroundTranslate" />
+                      <!--bad view<tk:TranslateTransformExt Name="PART_BackgroundTranslate" />-->
                     </Rectangle.RenderTransform>
                   </Rectangle>
                   <Rectangle x:Name="PART_BackgroundOverlay"
@@ -165,7 +165,7 @@
                 <Rectangle.RenderTransform>
                   <!--x:Name="PART_ThumbTranslate"-->
                   <!--<TranslateTransform />-->
-                  <tk:TranslateTransformExt Name="PART_ThumbTranslate" />
+                  <!--bad view<tk:TranslateTransformExt Name="PART_ThumbTranslate" />-->
                 </Rectangle.RenderTransform>
               </Rectangle>
             </Grid>

@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class DataGridView : UserControl
+    public partial class DataGridView : UserControl
     {
         public DataGridView()
         {

@@ -9,13 +9,13 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class PropertyGridExample_CustomTypeEditors : UserControl
+    public partial class PropertyGridExample_CustomTypeEditors : UserControl
     {
         static Random random = new Random();
         private CategoryItem _tempItem;
         private int _tempIndex;
         readonly BusinessObject bo;
-        private readonly PropertyGrid propertyGrid;
+        private readonly PropertyGrid propertyGrid1;
 
         public PropertyGridExample_CustomTypeEditors()
         {
@@ -23,10 +23,10 @@ namespace Avalonia.ExampleApp.Views
 
             bo = new BusinessObject();
 
-            propertyGrid = this.Find<PropertyGrid>("propertyGrid");
-            propertyGrid.SelectedObjectsChanged += PropertyGrid_SelectedObjectsChanged;
-            propertyGrid.SelectedObject = bo;
-            propertyGrid.PropertyValueChanged += PropertyGrid_PropertyValueChanged;
+            propertyGrid1 = this.Find<PropertyGrid>("propertyGrid");
+            propertyGrid1.SelectedObjectsChanged += PropertyGrid_SelectedObjectsChanged;
+            propertyGrid1.SelectedObject = bo;
+            propertyGrid1.PropertyValueChanged += PropertyGrid_PropertyValueChanged;
 
             Button btnTest = this.Find<Button>("btnTest");
             btnTest.Click += BtnTest_Click;
@@ -49,12 +49,12 @@ namespace Avalonia.ExampleApp.Views
                 new BusinessObject { Name = "Charles Darvin", Integer1 = 10 }
             };
 
-            this.propertyGrid.SelectedObjects = objects;
+            this.propertyGrid1.SelectedObjects = objects;
         }
 
         private void BtnSwitchObjects_Click(object sender, Interactivity.RoutedEventArgs e)
         {
-            propertyGrid.SelectedObject = new BusinessObject
+            propertyGrid1.SelectedObject = new BusinessObject
             {
                 Name = Path.GetRandomFileName(),
                 Password = Path.GetRandomFileName(),
@@ -69,16 +69,16 @@ namespace Avalonia.ExampleApp.Views
 
         private void BtnTest_Click(object sender, Interactivity.RoutedEventArgs e)
         {
-            PropertyItem prop = propertyGrid.Properties["Name"];
+            PropertyItem prop = propertyGrid1.Properties["Name"];
             if (prop != null)
             {
                 //workaround because setting isbrowsable is not working right now
-                var result= propertyGrid.Categories.FirstOrDefault(x => x.Properties.Contains(prop));
+                var result= propertyGrid1.Categories.FirstOrDefault(x => x.Properties.Contains(prop));
 
                 if(result!=null)
                 {
                     _tempItem = result;
-                    _tempIndex = propertyGrid.Categories.IndexOf(result);
+                    _tempIndex = propertyGrid1.Categories.IndexOf(result);
                     propertyGrid.Categories.Remove(result);
                 }
                 else 

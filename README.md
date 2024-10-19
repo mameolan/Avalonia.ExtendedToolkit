@@ -5,7 +5,18 @@
 
 ![alt text](github/Images/Avalonia.ExampleApp-Overview.gif "Main application")   
 
+Fork of original ExtendedToolkit from mameolan, porting to Avalonia 11 and Dotnet 8. 
+Original blocks of code, commented during rewriting are labeled by ".orig".
+Dangerous changes are labeled by ".editing".
+Not working Views code (XML) labeled by "bad view".
 
+Things to do:
+1. Fix themes management (replace "XamlColorSchemeGenerator" dependency) and re-implement themes changes.
+2. Controls Extensions re-implementation (KeyExt etc).
+3. Fixing View code - what to do with "ItemTemplate" removed in Avalonia 11 (not removed, changed? https://github.com/AvaloniaUI/Avalonia/pull/11281)
+4. Controls fix - fix ItemContainer methods (https://github.com/AvaloniaUI/Avalonia/pull/9677 ?), removed in Avalonia 11 and other staff.
+
+Original code taken from @maeolan and some blocks from @Nekohim3, but heavily rewritten
 
 Avalonia.ExtendedTool wants to port some controls from the WPF to Avalonia.
 

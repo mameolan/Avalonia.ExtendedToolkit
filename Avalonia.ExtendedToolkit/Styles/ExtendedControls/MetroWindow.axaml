@@ -15,7 +15,6 @@
     <Setter Property="FontSize" Value="{DynamicResource FontSizeNormal}" />
     <Setter Property="FontFamily" Value="{TemplateBinding FontFamily}" />
     <Setter Property="FlyoutOverlayBrush" Value="{DynamicResource MetroWindow.FlyoutOverlayBrush}" />
-    <Setter Property="HasSystemDecorations" Value="false" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray10}" />
     <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
@@ -25,7 +24,7 @@
     <Setter Property="OverlayBrush" Value="{DynamicResource MahApps.Brushes.BlackColor}" />
     <!--<Setter Property="OverlayFadeIn" Value="{StaticResource OverlayFastSemiFadeIn}" />
     <Setter Property="OverlayFadeOut" Value="{StaticResource OverlayFastSemiFadeOut}" />-->
-    <Setter Property="TextBox.FontSize" Value="{DynamicResource MahApps.Sizes.Font.Content}" />
+    <!--<Setter Property="TextBox.FontSize" Value="{DynamicResource MahApps.Sizes.Font.Content}" />-->
     <Setter Property="TitleForeground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
     <Setter Property="TitleTemplate">
       <Setter.Value>

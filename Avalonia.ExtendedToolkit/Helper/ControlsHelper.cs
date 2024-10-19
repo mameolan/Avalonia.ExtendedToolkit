@@ -12,16 +12,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// attached property ContentCharacterCasing
         /// </summary>
         public static readonly AttachedProperty<CharacterCasing> ContentCharacterCasingProperty =
-            AvaloniaProperty.RegisterAttached<IControl, CharacterCasing>("ContentCharacterCasing", typeof(ControlsHelper), defaultValue: CharacterCasing.Normal);
+            AvaloniaProperty.RegisterAttached<Control, CharacterCasing>("ContentCharacterCasing", typeof(ControlsHelper), defaultValue: CharacterCasing.Normal);
 
         /// <summary>
         /// get ContentCharacterCasing
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static CharacterCasing GetContentCharacterCasing(IControl element)
+        public static CharacterCasing GetContentCharacterCasing(Control element)
         {
-            return element.GetValue(ContentCharacterCasingProperty);
+            return element.GetValue<CharacterCasing>(ContentCharacterCasingProperty);
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetContentCharacterCasing(IControl element, CharacterCasing value)
+        public static void SetContentCharacterCasing(Control element, CharacterCasing value)
         {
             element.SetValue(ContentCharacterCasingProperty, value);
         }
@@ -38,16 +38,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// attached property CornerRadius
         /// </summary>
         public static readonly AttachedProperty<CornerRadius> CornerRadiusProperty =
-            AvaloniaProperty.RegisterAttached<IControl, CornerRadius>(nameof(CornerRadius), typeof(ControlsHelper));
+            AvaloniaProperty.RegisterAttached<Control, CornerRadius>(nameof(CornerRadius), typeof(ControlsHelper));
 
         /// <summary>
         /// get CornerRadius
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static CornerRadius GetCornerRadius(IControl element)
+        public static CornerRadius GetCornerRadius(Control element)
         {
-            return element.GetValue(CornerRadiusProperty);
+            return element.GetValue<CornerRadius>(CornerRadiusProperty);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetCornerRadius(IControl element, CornerRadius value)
+        public static void SetCornerRadius(Control element, CornerRadius value)
         {
             element.SetValue(CornerRadiusProperty, value);
         }
@@ -64,16 +64,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// FocusBorderBrush AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<IBrush> FocusBorderBrushProperty =
-            AvaloniaProperty.RegisterAttached<IControl, IBrush>("FocusBorderBrush", typeof(ControlsHelper), defaultValue: (IBrush)Brushes.Transparent);
+            AvaloniaProperty.RegisterAttached<Control, IBrush>("FocusBorderBrush", typeof(ControlsHelper), defaultValue: (IBrush)Brushes.Transparent);
 
         /// <summary>
         /// get FocusBorderBrush
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static IBrush GetFocusBorderBrush(IControl element)
+        public static IBrush GetFocusBorderBrush(Control element)
         {
-            return element.GetValue(FocusBorderBrushProperty);
+            return element.GetValue<IBrush>(FocusBorderBrushProperty);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetFocusBorderBrush(IControl element, IBrush value)
+        public static void SetFocusBorderBrush(Control element, IBrush value)
         {
             element.SetValue(FocusBorderBrushProperty, value);
         }
@@ -90,16 +90,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// FocusBorderThickness AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<Thickness> FocusBorderThicknessProperty =
-                    AvaloniaProperty.RegisterAttached<IControl, Thickness>("FocusBorderThickness", typeof(ControlsHelper));
+                    AvaloniaProperty.RegisterAttached<Control, Thickness>("FocusBorderThickness", typeof(ControlsHelper));
 
         /// <summary>
         /// get FocusBorderThickness
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static Thickness GetFocusBorderThickness(IControl element)
+        public static Thickness GetFocusBorderThickness(Control element)
         {
-            return element.GetValue(FocusBorderThicknessProperty);
+            return element.GetValue<Thickness>(FocusBorderThicknessProperty);
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetFocusBorderThickness(IControl element, Thickness value)
+        public static void SetFocusBorderThickness(Control element, Thickness value)
         {
             element.SetValue(FocusBorderThicknessProperty, value);
         }
@@ -116,16 +116,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// HeaderMargin AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<Thickness> HeaderMarginProperty =
-            AvaloniaProperty.RegisterAttached<IControl, Thickness>("HeaderMargin", typeof(ControlsHelper));
+            AvaloniaProperty.RegisterAttached<Control, Thickness>("HeaderMargin", typeof(ControlsHelper));
 
         /// <summary>
         /// get HeaderMargin
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static Thickness GetHeaderMargin(IControl element)
+        public static Thickness GetHeaderMargin(Control element)
         {
-            return element.GetValue(HeaderMarginProperty);
+            return element.GetValue<Thickness>(HeaderMarginProperty);
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetHeaderMargin(IControl element, Thickness value)
+        public static void SetHeaderMargin(Control element, Thickness value)
         {
             element.SetValue(HeaderMarginProperty, value);
         }
@@ -142,16 +142,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// HeaderFontFamily AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<FontFamily> HeaderFontFamilyProperty =
-            AvaloniaProperty.RegisterAttached<IControl, FontFamily>("HeaderFontFamily", typeof(ControlsHelper), defaultValue: FontFamily.Default);
+            AvaloniaProperty.RegisterAttached<Control, FontFamily>("HeaderFontFamily", typeof(ControlsHelper), defaultValue: FontFamily.Default);
 
         /// <summary>
         /// get HeaderFontFamily
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static FontFamily GetHeaderFontFamily(IControl element)
+        public static FontFamily GetHeaderFontFamily(Control element)
         {
-            return element.GetValue(HeaderFontFamilyProperty);
+            return element.GetValue<FontFamily>(HeaderFontFamilyProperty);
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetHeaderFontFamily(IControl element, FontFamily value)
+        public static void SetHeaderFontFamily(Control element, FontFamily value)
         {
             element.SetValue(HeaderFontFamilyProperty, value);
         }
@@ -168,16 +168,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// HeaderFontSize AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<double> HeaderFontSizeProperty =
-            AvaloniaProperty.RegisterAttached<IControl, double>("HeaderFontSize", typeof(ControlsHelper), defaultValue: 12);
+            AvaloniaProperty.RegisterAttached<Control, double>("HeaderFontSize", typeof(ControlsHelper), defaultValue: 12);
 
         /// <summary>
         /// get HeaderFontSize
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static double GetHeaderFontSize(IControl element)
+        public static double GetHeaderFontSize(Control element)
         {
-            return element.GetValue(HeaderFontSizeProperty);
+            return element.GetValue<double>(HeaderFontSizeProperty);
         }
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetHeaderFontSize(IControl element, double value)
+        public static void SetHeaderFontSize(Control element, double value)
         {
             element.SetValue(HeaderFontSizeProperty, value);
         }
@@ -194,16 +194,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// HeaderFontWeight AttachedProperty
         /// </summary>
         public static readonly AttachedProperty<FontWeight> HeaderFontWeightProperty =
-            AvaloniaProperty.RegisterAttached<IControl, FontWeight>("HeaderFontWeight", typeof(ControlsHelper), defaultValue: FontWeight.Normal);
+            AvaloniaProperty.RegisterAttached<Control, FontWeight>("HeaderFontWeight", typeof(ControlsHelper), defaultValue: FontWeight.Normal);
 
         /// <summary>
         /// get HeaderFontWeight
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static FontWeight GetHeaderFontWeight(IControl element)
+        public static FontWeight GetHeaderFontWeight(Control element)
         {
-            return element.GetValue(HeaderFontWeightProperty);
+            return element.GetValue<FontWeight>(HeaderFontWeightProperty);
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetHeaderFontWeight(IControl element, FontWeight value)
+        public static void SetHeaderFontWeight(Control element, FontWeight value)
         {
             element.SetValue(HeaderFontWeightProperty, value);
         }

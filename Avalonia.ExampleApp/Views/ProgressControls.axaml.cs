@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class ProgressControls : UserControl
+    public partial class ProgressControls : UserControl
     {
         public ProgressControls()
         {

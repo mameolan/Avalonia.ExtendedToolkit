@@ -54,15 +54,15 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
         /// <typeparam name="T"></typeparam>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static T FindVisualParent<T>(this IControl element) where T : class
+        public static T FindVisualParent<T>(this Control element) where T : class
         {
             if (element == null)
                 return default(T);
-            IControl parent = element.Parent;
+            Control parent = (Control)element.Parent;
 
             if (parent is T)
                 return parent as T;
-            if(parent is IControl)
+            if(parent is Control)
                 return FindVisualParent<T>(parent);
 
             return null;
@@ -74,7 +74,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
         /// <typeparam name="T"></typeparam>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static IEnumerable<T> FindVisualChildren<T>(this IVisual element) where T : IVisual
+        public static IEnumerable<T> FindVisualChildren<T>(this Visual element) where T : Visual
         {
             List<T> result = new List<T>();
             foreach(var item in VisualTree.VisualExtensions.GetVisualChildren(element))
@@ -84,8 +84,8 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
                 {
                     result.Add(child);
                 }
-
-                if(child?.VisualChildren.Any()==true)
+                //.edited
+                if(child?.GetVisualChildren().Any()==true)
                 {
                     result.AddRange(FindVisualChildren<T>(child));
                 }
@@ -99,7 +99,7 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
         /// <typeparam name="T"></typeparam>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static T FindVisualChild<T>(this IVisual element) where T : IVisual
+        public static T FindVisualChild<T>(this Visual element) where T : Visual
         {
             if (element == null)
                 return default(T);
@@ -113,15 +113,15 @@ namespace Avalonia.ExtendedToolkit.Controls.PropertyGrid.Utils
                 for (var i = 0; i < children.Count(); i++)
                 {
                     //object child = VisualTreeHelper.GetChild(element, i);
-                    IVisual child = children.ElementAt(i);
+                    Visual child = children.ElementAt(i);
 
                     if (child is SearchTextBox)
                         continue;//speeds up things a bit
                     if (child is T)
                         return (T)child;
-                    if (child is IVisual)
+                    if (child is Visual)
                     {
-                        var res = FindVisualChild<T>(child as IVisual);
+                        var res = FindVisualChild<T>(child as Visual);
                         if (res == null)
                             continue;
                         return res;

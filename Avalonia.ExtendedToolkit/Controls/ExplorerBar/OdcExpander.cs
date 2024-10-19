@@ -88,8 +88,8 @@ namespace Avalonia.ExtendedToolkit.Controls
             //ExpanderHeaderWidth = _header.Width;
 
             base.OnApplyTemplate(e);
-
-            RaisePropertyChanged(HeaderClassesProperty, null, HeaderClasses);
+            //.obsolete, HeaderClassesProperty is styled
+            //RaisePropertyChanged(HeaderClassesProperty, null, HeaderClasses);
         }
     }
 }

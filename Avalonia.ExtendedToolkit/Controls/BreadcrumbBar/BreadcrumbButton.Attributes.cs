@@ -44,17 +44,17 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Gets or sets the Image of the BreadcrumbButton.
         /// </summary>
-        public IBitmap Image
+        public Bitmap Image
         {
-            get { return (IBitmap)GetValue(ImageProperty); }
+            get { return (Bitmap)GetValue(ImageProperty); }
             set { SetValue(ImageProperty, value); }
         }
 
         /// <summary>
         /// <see cref="Image"/>
         /// </summary>
-        public static readonly StyledProperty<IBitmap> ImageProperty =
-            AvaloniaProperty.Register<BreadcrumbButton, IBitmap>(nameof(Image));
+        public static readonly StyledProperty<Bitmap> ImageProperty =
+            AvaloniaProperty.Register<BreadcrumbButton, Bitmap>(nameof(Image));
 
         /// <summary>
         /// returns HasImage

@@ -113,7 +113,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         AvaloniaProperty.Register<Pagination, int>(nameof(MaxPageCount), defaultValue: 1,
             coerce: (o, e) => MaxPageCountValidate(o, e));
 
-        private static int MaxPageCountValidate(IAvaloniaObject o, int value)
+        private static int MaxPageCountValidate(AvaloniaObject o, int value)
         {
             var intValue = (int)value;
             if (intValue < 1)
@@ -139,7 +139,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         AvaloniaProperty.Register<Pagination, int>(nameof(DataCountPerPage), defaultValue: 20
             , coerce: (o, e) => DataCountPerPageValidate(o, e));
 
-        private static int DataCountPerPageValidate(IAvaloniaObject pagination, int value)
+        private static int DataCountPerPageValidate(AvaloniaObject pagination, int value)
         {
             var intValue = (int)value;
             if (intValue < 1)
@@ -165,7 +165,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         AvaloniaProperty.Register<Pagination, int>(nameof(PageIndex), defaultValue: 1,
             coerce: (o, e) => PageIndexValidate(o, e));
 
-        private static int PageIndexValidate(IAvaloniaObject o, int value)
+        private static int PageIndexValidate(AvaloniaObject o, int value)
         {
             Pagination pagination = o as Pagination;
 

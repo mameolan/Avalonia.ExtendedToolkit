@@ -50,16 +50,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// get/sets image to display
         /// </summary>
-        public IBitmap Image
+        public Bitmap Image
         {
-            get { return (IBitmap)GetValue(ImageProperty); }
+            get { return (Bitmap)GetValue(ImageProperty); }
             set { SetValue(ImageProperty, value); }
         }
 
         /// <summary>
         /// <see cref="Image"/>
         /// </summary>
-        public static readonly StyledProperty<IBitmap> ImageProperty =
-            AvaloniaProperty.Register<ImageButton, IBitmap>(nameof(Image));
+        public static readonly StyledProperty<Bitmap> ImageProperty =
+            AvaloniaProperty.Register<ImageButton, Bitmap>(nameof(Image));
     }
 }

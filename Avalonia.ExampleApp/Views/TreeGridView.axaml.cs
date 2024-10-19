@@ -6,7 +6,7 @@ using System;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class TreeGridView : UserControl
+    public partial class TreeGridView : UserControl
     {
         private const int Levels = 3;
         private const int Roots = 10;
@@ -26,7 +26,8 @@ namespace Avalonia.ExampleApp.Views
             DataGrid grid = this.FindControl<DataGrid>("grid");
 
             // Set the model for the grid
-            grid.Items = model.FlatModel;
+            //.edited
+            grid.ItemsSource = model.FlatModel;
 
         }
 

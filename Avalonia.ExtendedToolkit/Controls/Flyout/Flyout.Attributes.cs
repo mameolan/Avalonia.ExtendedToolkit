@@ -324,17 +324,17 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Gets or sets the focused element.
         /// </summary>
-        public IControl FocusedElement
+        public Control FocusedElement
         {
-            get { return (IControl)GetValue(FocusedElementProperty); }
+            get { return (Control)GetValue(FocusedElementProperty); }
             set { SetValue(FocusedElementProperty, value); }
         }
 
         /// <summary>
         /// <see cref="FocusedElement"/>
         /// </summary>
-        public static readonly StyledProperty<IControl> FocusedElementProperty =
-            AvaloniaProperty.Register<Flyout, IControl>(nameof(FocusedElement));
+        public static readonly StyledProperty<Control> FocusedElementProperty =
+            AvaloniaProperty.Register<Flyout, Control>(nameof(FocusedElement));
 
         /// <summary>
         /// Gets or sets a value indicating whether the flyout should try focus an element.

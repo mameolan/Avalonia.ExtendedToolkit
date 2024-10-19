@@ -11,7 +11,11 @@ using Avalonia.Markup.Xaml.Styling;
 using Avalonia.Styling;
 using Newtonsoft.Json;
 using ReactiveUI;
-using XamlColorSchemeGenerator;
+using Avalonia.Themes.Fluent;
+using Avalonia.Themes;
+using Avalonia.Themes.Simple;
+
+//.origusing XamlColorSchemeGenerator;
 
 namespace Avalonia.ExtendedToolkit
 {
@@ -111,7 +115,7 @@ namespace Avalonia.ExtendedToolkit
         {
             get
             {
-                if(_selectedTheme == null)
+                if (_selectedTheme == null)
                 {
                     _selectedTheme = Themes.FirstOrDefault();
                 }
@@ -229,71 +233,71 @@ namespace Avalonia.ExtendedToolkit
             IDisposable disposableForSelectedBaseColor = null;
 
             window.Opened += (o, e) =>
-              {
+            {
 
-                  if (SelectedTheme == null)
-                  {
-                      SelectedTheme = Themes.FirstOrDefault();
-                  }
+                if (SelectedTheme == null)
+                {
+                    SelectedTheme = Themes.FirstOrDefault();
+                }
 
-                  //ObserveOn(RxApp.MainThreadScheduler)
-                  disposableForSelectedTheme = this.WhenAnyValue(x => x.SelectedTheme).Where(x => x != null)
-                  .Subscribe(x =>
-                  {
-                      var item = window.Styles.GetThemeStyle();
+                //ObserveOn(RxApp.MainThreadScheduler)
+                disposableForSelectedTheme = this.WhenAnyValue(x => x.SelectedTheme).Where(x => x != null)
+                .Subscribe(x =>
+                {
+                    var item = window.Styles.GetThemeStyle();
 
-                      int index = window.Styles.GetThemeStyleIndex(item);
-                      var result = window.CheckAccess();
-                      if (index == -1)
-                      {
-                          try
-                          {
-                              window.Styles.Add(x.ThemeStyle);
-                          }
-                          catch(InvalidOperationException)
-                          {
-                              //HACK: just reload the theme
-                              StyleInclude themeStyleInclude = x.ThemeStyle as StyleInclude;
+                    int index = window.Styles.GetThemeStyleIndex(item);
+                    var result = window.CheckAccess();
+                    if (index == -1)
+                    {
+                        try
+                        {
+                            window.Styles.Add(x.ThemeStyle);
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            //HACK: just reload the theme
+                            StyleInclude themeStyleInclude = x.ThemeStyle as StyleInclude;
 
-                              var theme = new StyleInclude(new Uri("resm:Styles?assembly=Avalonia.ExtendedToolkit"))
-                              {
-                                  Source = themeStyleInclude.Source
-                              };
-                              window.Styles.Add(theme);
-                          }
-                          catch
-                          {
-                              
+                            var theme = new StyleInclude(new Uri("resm:Styles?assembly=Avalonia.ExtendedToolkit"))
+                            {
+                                Source = themeStyleInclude.Source
+                            };
+                            window.Styles.Add(theme);
+                        }
+                        catch
+                        {
 
-                          }
 
-                          
-                      }
-                      else
-                      {
-                         
+                        }
 
-                          window.Styles.Remove(item);
-                          window.Styles.Add(x.ThemeStyle);
-                      }
-                  });
 
-                  //ObserveOn(RxApp.MainThreadScheduler)
+                    }
+                    else
+                    {
 
-                  disposableForSelectedBaseColor = this.WhenAnyValue(x => x.SelectedBaseColor).Where(x => x != null).Subscribe(selectedBaseColor =>
-                  {
-                      var colorScheme = SelectedTheme?.ColorScheme ?? Themes.Select(x => x.ColorScheme)
-                                                                        .FirstOrDefault();
 
-                      SelectedTheme = Themes.FirstOrDefault(x => x.ColorScheme == colorScheme
-                                                                && x.BaseColorScheme == selectedBaseColor);
-                  });
+                        window.Styles.Remove(item);
+                        window.Styles.Add(x.ThemeStyle);
+                    }
+                });
 
-                  if (registeredWindows.Contains(window) == false)
-                  {
-                      registeredWindows.Add(window);
-                  }
-              };
+                //ObserveOn(RxApp.MainThreadScheduler)
+
+                disposableForSelectedBaseColor = this.WhenAnyValue(x => x.SelectedBaseColor).Where(x => x != null).Subscribe(selectedBaseColor =>
+                {
+                    var colorScheme = SelectedTheme?.ColorScheme ?? Themes.Select(x => x.ColorScheme)
+                                                                      .FirstOrDefault();
+
+                    SelectedTheme = Themes.FirstOrDefault(x => x.ColorScheme == colorScheme
+                                                              && x.BaseColorScheme == selectedBaseColor);
+                });
+
+                if (registeredWindows.Contains(window) == false)
+                {
+                    registeredWindows.Add(window);
+                }
+            };
 
             window.Closing += (o, e) =>
             {
@@ -317,33 +321,33 @@ namespace Avalonia.ExtendedToolkit
             {
                 var assembly = typeof(ThemeManager).Assembly;
                 string resourceName = assembly.GetManifestResourceNames().FirstOrDefault(x => x.Contains(GeneratedParameterFile));
-                GeneratorParameters generatorParameters = null;
-                using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-                {
-                    using (StreamReader sr = new StreamReader(stream))
-                    {
-                        generatorParameters = JsonConvert.DeserializeObject<GeneratorParameters>(sr.ReadToEnd());
-                    }
-                }
+                //GeneratorParameters generatorParameters = null;
+                //using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+                //{
+                //    using (StreamReader sr = new StreamReader(stream))
+                //    {
+                //        generatorParameters = JsonConvert.DeserializeObject<GeneratorParameters>(sr.ReadToEnd());
+                //    }
+                //}
 
-                string nameSpace = typeof(ThemeManager).Namespace;
-                string basePath = resourceName.Replace(GeneratedParameterFile, string.Empty)
-                                    .Replace(nameSpace, string.Empty)
-                                    .Replace(".", "/");
-                basePath = nameSpace + basePath;
+                //string nameSpace = typeof(ThemeManager).Namespace;
+                //string basePath = resourceName.Replace(GeneratedParameterFile, string.Empty)
+                //                    .Replace(nameSpace, string.Empty)
+                //                    .Replace(".", "/");
+                //basePath = nameSpace + basePath;
 
                 List<string> availableXamlThemes = new List<string>();
-                foreach (var colorScheme in generatorParameters.ColorSchemes.Select(x => x.Name))
-                {
-                    foreach (var baseColorScheme in generatorParameters.BaseColorSchemes.Select(x => x.Name))
-                    {
-                        string themeName = $"{baseColorScheme}.{colorScheme}";
+                //foreach (var colorScheme in generatorParameters.ColorSchemes.Select(x => x.Name))
+                //{
+                //    foreach (var baseColorScheme in generatorParameters.BaseColorSchemes.Select(x => x.Name))
+                //    {
+                //        string themeName = $"{baseColorScheme}.{colorScheme}";
 
-                        string xamlPathName = basePath + $"{themeName}.axaml";
-                        availableXamlThemes.Add(xamlPathName);
-                    }
-                }
-                availableXamlThemes = availableXamlThemes.OrderBy(x => x).ToList();
+                //        string xamlPathName = basePath + $"{themeName}.axaml";
+                //        availableXamlThemes.Add(xamlPathName);
+                //    }
+                //}
+                //availableXamlThemes = availableXamlThemes.OrderBy(x => x).ToList();
 
                 foreach (string xamlFile in availableXamlThemes)
                 {

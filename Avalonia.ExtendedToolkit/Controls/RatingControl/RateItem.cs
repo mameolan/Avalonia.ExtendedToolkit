@@ -336,13 +336,13 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// sets is half and sets the pointer enter pseudo class
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnPointerEnter(PointerEventArgs e)
+        protected override void OnPointerEntered(PointerEventArgs e)
         {
             PointerPseudoClasses.ForEach(item => PseudoClasses.Remove(item));
 
             PseudoClasses.Add(PointerEnter_PseudoClass);
 
-            base.OnPointerEnter(e);
+            base.OnPointerEntered(e);
             if (IsReadOnly)
                 return;
             _isSentValue = false;
@@ -406,13 +406,13 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// sets pointerleave pseudo class
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnPointerLeave(PointerEventArgs e)
+        protected override void OnPointerExited(PointerEventArgs e)
         {
             PointerPseudoClasses.ForEach(item => PseudoClasses.Remove(item));
 
             PseudoClasses.Add(PointerLeave_PseudoClass);
 
-            base.OnPointerLeave(e);
+            base.OnPointerExited(e);
             if (IsReadOnly)
                 return;
 

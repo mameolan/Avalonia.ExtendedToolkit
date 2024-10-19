@@ -8,7 +8,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class StepBarView : UserControl
+    public partial class StepBarView : UserControl
     {
         public StepBarView()
         {

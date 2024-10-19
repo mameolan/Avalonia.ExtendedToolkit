@@ -60,18 +60,21 @@
                         BorderThickness="0"
                         Classes="progressBarTemplate" />
                 <Controls:BreadcrumbButton
-                        Items="{TemplateBinding CollapsedTraces}"
+                        
                         Grid.Column="0"
                         x:Name="PART_Root"
                         MinWidth="0"
-                        EnableVisualButtonStyle="False"
+                        
                         Mode="{TemplateBinding OverflowMode}"
                         SelectedItem="{Binding SelectedItem,RelativeSource={RelativeSource TemplatedParent},Mode=TwoWay}"
-                        ItemTemplate="{TemplateBinding OverflowItemTemplate}"
+                        ItemsSource="{TemplateBinding CollapsedTraces}"
                         IsImageVisible="True"
                         Image="{Binding SelectedBreadcrumb.Image, RelativeSource={RelativeSource TemplatedParent}}"
                         IsDropDownPressed="{Binding IsOverflowPressed,RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
-                  <!--ItemTemplateSelector="{TemplateBinding OverflowItemTemplateSelector}"-->
+                        
+                    ItemTemplate="{TemplateBinding OverflowItemTemplate}"
+                    EnableVisualButtonStyle="False"-->
+                    <!--ItemTemplateSelector="{TemplateBinding OverflowItemTemplateSelector}"-->
                 </Controls:BreadcrumbButton>
                 <ContentPresenter x:Name="container" Grid.Column="1"
                         Content="{Binding RootItem,RelativeSource={RelativeSource TemplatedParent}}" />
@@ -95,20 +98,20 @@
                         Margin="0"
                         Focusable="True"
                         ItemTemplate="{TemplateBinding DropDownItemTemplate}"
-                        Items="{Binding DropDownItems,RelativeSource={RelativeSource TemplatedParent}}" BorderThickness="0"
                         Grid.Column="0"
+                        ItemsSource="{Binding DropDownItems,RelativeSource={RelativeSource TemplatedParent}} BorderThickness=0}"
                         SelectedIndex="{Binding SelectedDropDownIndex,RelativeSource={RelativeSource TemplatedParent},Mode=TwoWay}"
                         Grid.ColumnSpan="3" />
-                <!--IsEditable="True"-->
-
+                  <!--bad viewIsEditable="True"-->
                 <ItemsControl
                         x:Name="buttons"
                         Grid.Column="3"
                         Margin="1,0,-1,0"
-                        Items="{Binding Buttons,RelativeSource={RelativeSource TemplatedParent}}"
+                        ItemsSource="{Binding Buttons,RelativeSource={RelativeSource TemplatedParent}}"
                         Focusable="False">
-                  <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
+                    <ItemsControl.ItemsPanel>
+
+                        <ItemsPanelTemplate>
                       <!--IsItemsHost="True"-->
                       <StackPanel Orientation="Horizontal"  />
                     </ItemsPanelTemplate>

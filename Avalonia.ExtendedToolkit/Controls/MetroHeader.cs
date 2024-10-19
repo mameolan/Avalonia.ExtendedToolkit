@@ -8,7 +8,7 @@ namespace Avalonia.ExtendedToolkit.Controls
     /// <summary>
     /// metroheader control
     /// </summary>
-    public class MetroHeader : GroupBox, IStyledElement
+    public class MetroHeader : GroupBox//.orig, StyledElement
     {
         /// <summary>
         /// style key of this control

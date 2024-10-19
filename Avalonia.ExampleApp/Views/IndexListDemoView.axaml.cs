@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class IndexListDemoView : UserControl
+    public partial class IndexListDemoView : UserControl
     {
         private IndexItemsControl _indexItemsList;
 

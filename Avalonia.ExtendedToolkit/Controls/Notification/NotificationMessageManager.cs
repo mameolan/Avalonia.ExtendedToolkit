@@ -91,7 +91,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                     animation.Duration = TimeSpan.FromSeconds(animatableMessage.AnimationOutDuration);
 
                     Animatable animatable = animatableMessage.AnimatableElement as Animatable;
-                    animation.RunAsync(animatable, null).ContinueWith(x =>
+                    //.edited, null arg removal
+                    animation.RunAsync(animatable).ContinueWith(x =>
                     {
                         TriggerMessageDismissed(message);
                     }, TaskScheduler.FromCurrentSynchronizationContext());

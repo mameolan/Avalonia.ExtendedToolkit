@@ -34,13 +34,15 @@ namespace Avalonia.ExtendedToolkit.Controls
         static ImageExt()
         {
             GeometryFillBrushProperty.Changed.AddClassHandler<ImageExt>((o, e) => OnGeometryFillBrushChanged(o, e));
-            SourceProperty.Changed.AddClassHandler<ImageExt>((o, e) => OnSourceChanged(o, e));
+            //.obsolete, OnSourceChanged not needed, GeometryFillBrushProperty is styled now
+            //SourceProperty.Changed.AddClassHandler<ImageExt>((o, e) => OnSourceChanged(o, e));
         }
 
-        private static void OnSourceChanged(ImageExt o, object e)
-        {
-            o.RaisePropertyChanged<IBrush>(GeometryFillBrushProperty, null, new Data.BindingValue<IBrush>(o.GeometryFillBrush));
-        }
+        //private static void OnSourceChanged(ImageExt o, object e)
+        //{
+        //.obsolete
+        //o.RaisePropertyChanged<IBrush>(GeometryFillBrushProperty, null, o.GeometryFillBrush);
+        //}
 
         /// <summary>
         /// updates the brush of the geometry

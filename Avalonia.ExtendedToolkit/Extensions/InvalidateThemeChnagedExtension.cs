@@ -9,28 +9,29 @@ namespace Avalonia.ExtendedToolkit.Extensions
         /// Defines the IsAttached attach property.
         /// </summary>
         public static readonly AttachedProperty<bool> IsAttachedProperty =
-        AvaloniaProperty.RegisterAttached<IControl, bool>("IsAttached", typeof(InvalidateThemeChangedExtension));
+        AvaloniaProperty.RegisterAttached<Control, bool>("IsAttached", typeof(InvalidateThemeChangedExtension));
 
         /// <summary>
         /// Gets the attach property IsAttached.
         /// </summary>
-        public static bool GetIsAttached(IControl element)
+        public static bool GetIsAttached(Control element)
         {
-            return element.GetValue(IsAttachedProperty);
+            return element.GetValue<bool>(IsAttachedProperty);
         }
 
         /// <summary>
         /// Sets the attach property IsAttached.
         /// </summary>
 
-        public static void SetIsAttached(IControl element, bool value)
+        public static void SetIsAttached(Control element, bool value)
         {
             element.SetValue(IsAttachedProperty, value);
             ThemeManager.Instance.IsThemeChanged += (o, e) =>
               {
                   element?.InvalidateArrange();
                   element?.InvalidateMeasure();
-                  element?.InvalidateStyles();
+                  //.orig
+                  //element?.InvalidateStyles();
                   element?.InvalidateVisual();
               };
 

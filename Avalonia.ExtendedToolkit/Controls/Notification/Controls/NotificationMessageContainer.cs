@@ -85,7 +85,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <param name="message"></param>
         private void RemoveMessage(INotificationMessage message)
         {
-            (Items as AvaloniaList<object>).Remove(message);
+            //.edited
+            Items.Remove(message);
         }
 
         /// <summary>
@@ -96,7 +97,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <exception cref="InvalidOperationException">Can't use both ItemsSource and Items collection at the same time.</exception>
         private void ManagerOnOnMessageQueued(object sender, NotificationMessageManagerEventArgs args)
         {
-            (Items as AvaloniaList<object>).Add(args.Message);
+            //.edited
+            Items.Add(args.Message);
 
             if (args.Message is INotificationAnimation animatableMessage
                 && animatableMessage.AnimatableElement != null)
@@ -106,7 +108,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 animation.Duration = TimeSpan.FromSeconds(animatableMessage.AnimationOutDuration);
 
                 Animatable animatable = animatableMessage.AnimatableElement as Animatable;
-                animation.RunAsync(animatable, null);
+                //.edited, null arg removal
+                animation.RunAsync(animatable);
             }
         }
     }

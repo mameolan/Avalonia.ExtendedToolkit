@@ -9,7 +9,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class ResizeRotateControlDemoView : UserControl
+    public partial class ResizeRotateControlDemoView : UserControl
     {
 
         public ResizeRotateControlDemoView()

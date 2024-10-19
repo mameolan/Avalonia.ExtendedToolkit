@@ -41,7 +41,7 @@ namespace Avalonia.ExampleApp
             appBuilder.UsePlatformDetect()
                 .UseSkia()
                 .UseReactiveUI()
-                .UseAvaloniaExtended()
+                //.UseAvaloniaNative()
                 //.UseDataGrid()
                 .LogToTrace();
             

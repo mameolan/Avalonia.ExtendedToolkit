@@ -10,7 +10,6 @@
     <Setter Property="FontFamily" Value="{TemplateBinding FontFamily}" />
     <Setter Property="FlyoutOverlayBrush" Value="{DynamicResource MetroWindow.FlyoutOverlayBrush}" />
 
-    <Setter Property="HasSystemDecorations" Value="false" />
     <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Template">
       <ControlTemplate>

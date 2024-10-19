@@ -63,7 +63,7 @@ namespace Avalonia.Controlz.Controls
                 int numInCurrentRow = 0;
                 double currentRowWidth = 0;
                 double maxRowWidth = 0;
-                foreach (IControl child in Children)
+                foreach (Control child in Children)
                 {
                     if (child.IsVisible == false)
                         continue;
@@ -107,7 +107,7 @@ namespace Avalonia.Controlz.Controls
             }
             else if (tabAlignment == Dock.Left || tabAlignment == Dock.Right)
             {
-                foreach (IControl child in Children)
+                foreach (Control child in Children)
                 {
                     if (child.IsVisible == false)
                         continue;
@@ -131,7 +131,7 @@ namespace Avalonia.Controlz.Controls
             return contentSize;
         }
 
-        private Size GetDesiredSizeWithoutMargin(IControl element)
+        private Size GetDesiredSizeWithoutMargin(Control element)
         {
             Thickness margin = (Thickness)element.GetValue(MarginProperty);
             Size desiredSizeWithoutMargin = new Size(
@@ -145,7 +145,7 @@ namespace Avalonia.Controlz.Controls
         {
             double[] headerSize = new double[_numHeaders];
             int childIndex = 0;
-            foreach (IControl child in Children)
+            foreach (Control child in Children)
             {
                 if (child.IsVisible == false)
                     continue;
@@ -183,7 +183,7 @@ namespace Avalonia.Controlz.Controls
 
             int childIndex = 0;
             int separatorIndex = 0;
-            foreach (IControl child in Children)
+            foreach (Control child in Children)
             {
                 if (child.IsVisible == false)
                     continue;
@@ -235,7 +235,7 @@ namespace Avalonia.Controlz.Controls
         private void ArrangeVertical(Size arrangeSize)
         {
             double childOffsetY = 0d;
-            foreach (IControl child in Children)
+            foreach (Control child in Children)
             {
                 if (child.IsVisible)
                 {
@@ -255,7 +255,7 @@ namespace Avalonia.Controlz.Controls
             int childIndex = 0;
             if (solution.Length > 0)
             {
-                foreach (IControl child in Children)
+                foreach (Control child in Children)
                 {
                     if (child.IsVisible)
                         continue;

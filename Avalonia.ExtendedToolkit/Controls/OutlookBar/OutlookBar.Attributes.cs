@@ -28,8 +28,8 @@ namespace Avalonia.ExtendedToolkit.Controls
         private ObservableCollection<object> _overflowMenu;
         private ObservableCollection<Button> _optionButtons;
 
-        private static readonly FuncTemplate<IPanel> DefaultPanel =
-            new FuncTemplate<IPanel>(() => new VirtualizingStackPanel() { HorizontalAlignment = HorizontalAlignment.Stretch });
+        private static readonly FuncTemplate<Panel> DefaultPanel =
+            new FuncTemplate<Panel>(() => new VirtualizingStackPanel() { HorizontalAlignment = HorizontalAlignment.Stretch });
 
         /// <summary>
         /// style key for this control

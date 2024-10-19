@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class DateExamples : UserControl
+    public partial class DateExamples : UserControl
     {
         public DateExamples()
         {

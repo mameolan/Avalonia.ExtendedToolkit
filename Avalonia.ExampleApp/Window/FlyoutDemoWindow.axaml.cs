@@ -8,7 +8,7 @@ using Avalonia.Styling;
 
 namespace Avalonia.ExampleApp.Window
 {
-    public class FlyoutDemoWindow : MetroWindow
+    public partial class FlyoutDemoWindow : MetroWindow
     {
         public new Type StyleKey => typeof(MetroWindow);
 

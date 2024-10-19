@@ -132,20 +132,20 @@ namespace Avalonia.ExtendedToolkit.Controls.Panels
             bool isEven = true;
             bool foundSelected = false;
 
-            foreach (IControl element in this.Children)
+            foreach (Control element in this.Children)
             {
                 //if (this.IsItemsHost)
                 //{
                 SelectingItemsControl SelectorParent = this.TemplatedParent as SelectingItemsControl;
                 var generator = SelectorParent?.ItemContainerGenerator as ItemContainerGenerator;
-                if (SelectorParent != null && SelectorParent.SelectedItem is IControl && generator != null)
+                if (SelectorParent != null && SelectorParent.SelectedItem is Control && generator != null)
                 {
 #warning is this correct?
                     //UIElement selectedElement = (SelectorParent.ItemContainerGenerator.ContainerFromItem(SelectorParent.SelectedItem) as UIElement);
 
-                    var indexContainer = generator.IndexFromContainer(SelectorParent.SelectedItem as IControl);
+                    var indexContainer = generator.IndexFromContainer(SelectorParent.SelectedItem as Control);
 
-                    IControl selectedElement = generator.ContainerFromIndex(indexContainer);
+                    Control selectedElement = generator.ContainerFromIndex(indexContainer);
 
                     if (selectedElement != null)
                     {

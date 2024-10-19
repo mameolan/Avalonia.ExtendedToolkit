@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class PropertyGridExample_ComplexProperty : UserControl
+    public partial class PropertyGridExample_ComplexProperty : UserControl
     {
         public PropertyGridExample_ComplexProperty()
         {

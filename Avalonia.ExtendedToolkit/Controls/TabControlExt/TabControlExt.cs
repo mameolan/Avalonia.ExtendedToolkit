@@ -173,11 +173,11 @@ namespace Avalonia.ExtendedToolkit.Controls
         AvaloniaProperty.Register<TabControlExt, UnderlinedType>(nameof(Underlined), defaultValue: UnderlinedType.None);
 
 
-
-        protected override IItemContainerGenerator CreateItemContainerGenerator()
-        {
-            return new TabItemExtContainerGenerator(this);
-        }
+        //.orig
+        //protected override IItemContainerGenerator CreateItemContainerGenerator()
+        //{
+        //    return new TabItemExtContainerGenerator(this);
+        //}
 
         protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {

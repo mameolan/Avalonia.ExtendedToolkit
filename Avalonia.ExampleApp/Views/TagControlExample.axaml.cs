@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class TagControlExample : UserControl
+    public partial class TagControlExample : UserControl
     {
         public TagControlExample()
         {

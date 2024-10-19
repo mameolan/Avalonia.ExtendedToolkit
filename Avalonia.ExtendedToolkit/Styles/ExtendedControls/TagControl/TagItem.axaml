@@ -142,7 +142,7 @@
               <AutoCompleteBox
                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                          Items="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:TagControl}}, Path=PossibleSuggestedTags}"
+                          ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:TagControl}}, Path=PossibleSuggestedTags}"
                           Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:TagItem}}, Path=Text, Mode=TwoWay}"
                           BorderThickness="0"
                           Background="Transparent"

@@ -1,5 +1,6 @@
-﻿using Avalonia.Controls;
+﻿
 using Avalonia.ExtendedToolkit.Controls;
+using Avalonia.ExtendedToolkit;
 using Splat;
 
 namespace Avalonia.ExtendedToolkit.Extensions
@@ -12,8 +13,8 @@ namespace Avalonia.ExtendedToolkit.Extensions
         /// <summary>
         /// registers some extra service
         /// </summary>
-        public static TAppBuilder UseAvaloniaExtended<TAppBuilder>(this TAppBuilder builder)
-            where TAppBuilder : AppBuilderBase<TAppBuilder>, new()
+        //.dangerous change?
+        public static AppBuilder UseAvaloniaExtended<TAppBuilder>(this AppBuilder builder)
         {
             var result = builder.AfterPlatformServicesSetup(x =>
             {

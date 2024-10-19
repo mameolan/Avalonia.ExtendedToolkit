@@ -9,7 +9,7 @@ using System;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class NotifictionExampleView : UserControl
+    public partial class NotifictionExampleView : UserControl
     {
         public NotifictionExampleView()
         {

@@ -43,7 +43,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// image to show
         /// </summary>
-        public IBitmap Image { get; set; }
+        public Bitmap Image { get; set; }
 
         /// <summary>
         /// The trace that is used to show the title of a breadcrumb.

@@ -22,8 +22,9 @@
                 Padding="{TemplateBinding Padding}"
                 Background="{TemplateBinding Background}"
                 UseLayoutRounding="True">
-              <ItemsPresenter Items="{TemplateBinding Items}">
-                <!--<ItemsPresenter.Effect>
+              <ItemsPresenter>
+                  <!--Items="{TemplateBinding Items}"-->
+                  <!--<ItemsPresenter.Effect>
                   <DropShadowEffect
                       BlurRadius="10"
                       Direction="270"

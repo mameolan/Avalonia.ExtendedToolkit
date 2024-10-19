@@ -44,11 +44,11 @@
                                                 Placement="Bottom"
                                                 IsVisible="False"
                                                  />
-                               <ItemsPresenter Name="PART_ItemsPresenter"
-                                    Items="{TemplateBinding Items}"
-                                    ItemsPanel="{TemplateBinding ItemsPanel}"
-                                    ItemTemplate="{TemplateBinding ItemTemplate}"
-                                />
+                            <ItemsControl ItemsSource="{TemplateBinding ItemsSource}" ItemTemplate="{TemplateBinding ItemTemplate}" ItemsPanel="{TemplateBinding ItemsPanel}">   
+                            </ItemsControl>
+                               <!--<ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}"/>-->
+                            <!--bad viewItems="{TemplateBinding Items}"
+                            ItemTemplate="{TemplateBinding ItemTemplate}"-->
                         </Grid>
                         <Border x:Name="ContentPanel"
                                 

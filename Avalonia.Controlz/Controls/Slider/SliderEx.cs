@@ -296,10 +296,10 @@ namespace Avalonia.Controlz.Controls
             Thumb.DragDeltaEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragDelta(o, e), RoutingStrategies.Bubble);
             Thumb.DragCompletedEvent.AddClassHandler<SliderEx>((o, e) => OnThumbDragCompleted(o, e), RoutingStrategies.Bubble);
 
-            SelectionStartProperty.Changed.AddClassHandler((Action<SliderEx, AvaloniaPropertyChangedEventArgs>)((o, e) => OnSelectionStartChanged(o, e)));
-            SelectionEndProperty.Changed.AddClassHandler((Action<SliderEx, AvaloniaPropertyChangedEventArgs>)((o, e) => OnSelectionEndChanged(o, e)));
-            ValueProperty.Changed.AddClassHandler((Action<SliderEx, AvaloniaPropertyChangedEventArgs>)((o, e) => OnValueChanged(o, e)));
-            TickPlacementProperty.Changed.AddClassHandler((Action<SliderEx, AvaloniaPropertyChangedEventArgs>)((o, e) => OnTickPlacementChanged(o, e)));
+            SelectionStartProperty.Changed.AddClassHandler<SliderEx>((Action<SliderEx, AvaloniaPropertyChangedEventArgs>)((o, e) => OnSelectionStartChanged(o, e)));
+            SelectionEndProperty.Changed.AddClassHandler<SliderEx>((Action<SliderEx, AvaloniaPropertyChangedEventArgs>)((o,   e) => OnSelectionEndChanged(o, e)));
+            ValueProperty.Changed.AddClassHandler<SliderEx>((Action<SliderEx, AvaloniaPropertyChangedEventArgs>)((o,          e) => OnValueChanged(o, e)));
+            TickPlacementProperty.Changed.AddClassHandler<SliderEx>((Action<SliderEx, AvaloniaPropertyChangedEventArgs>)((o,  e) => OnTickPlacementChanged(o, e)));
         }
 
 
@@ -486,7 +486,7 @@ namespace Avalonia.Controlz.Controls
         /// updates the pseudo classes
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> e)
+        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
         {
             base.OnPropertyChanged(e);
             if(e.Property == OrientationProperty && e.NewValue is Orientation newValue)
@@ -915,8 +915,8 @@ namespace Avalonia.Controlz.Controls
             //{
             //    _autoToolTip.PlacementTarget = Track != null ? Track.Thumb : null;
             //}
-
-            RaisePropertyChanged(TickPlacementProperty, TickPlacement.None, TickPlacement);
+            //.orig
+            //RaisePropertyChanged(TickPlacementProperty, TickPlacement.None, TickPlacement);
             base.OnApplyTemplate(e);
         }
 

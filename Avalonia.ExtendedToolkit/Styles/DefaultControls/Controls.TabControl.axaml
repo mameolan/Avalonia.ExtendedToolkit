@@ -22,9 +22,10 @@
                     <DockPanel>
                         <ItemsPresenter
                             Name="PART_ItemsPresenter"
-                            Items="{TemplateBinding Items}"
                             ItemsPanel="{TemplateBinding ItemsPanel}"
-                            ItemTemplate="{TemplateBinding ItemTemplate}">
+                            >
+                            <!--bad viewItems="{TemplateBinding Items}"
+                            ItemTemplate="{TemplateBinding ItemTemplate}"-->
                         </ItemsPresenter>
                         <ContentPresenter
                             Name="PART_SelectedContentHost"

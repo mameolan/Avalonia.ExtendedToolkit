@@ -6,7 +6,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class PropertyGridExample_DialogEditor : UserControl
+    public partial class PropertyGridExample_DialogEditor : UserControl
     {
         public PropertyGridExample_DialogEditor()
         {

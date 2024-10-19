@@ -30,8 +30,6 @@
                     Background="{DynamicResource MahApps.Brushes.AccentBase}"
                     CornerRadius="9"
                     RenderTransformOrigin=".5,.5"
-                    TextBlock.FontSize="11"
-                    TextBlock.FontWeight="DemiBold"
                     IsVisible="{TemplateBinding IsBadgeSet}">
               <!--
 

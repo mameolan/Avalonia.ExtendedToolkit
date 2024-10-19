@@ -11,8 +11,8 @@ namespace Avalonia.Controlz.Controls
     {
 
 #warning finish implementation
-        private static readonly FuncTemplate<IPanel> DefaultPanel =
-           new FuncTemplate<IPanel>(() => new DockPanel());
+        private static readonly FuncTemplate<Panel> DefaultPanel =
+           new FuncTemplate<Panel>(() => new DockPanel());
 
         static StatusBar()
         {
@@ -32,14 +32,15 @@ namespace Avalonia.Controlz.Controls
         /// creates an item container of an <see cref="StatusBarItem"/>
         /// </summary>
         /// <returns></returns>
-        protected override IItemContainerGenerator CreateItemContainerGenerator()
-        {
-            var itemContainer = new ItemContainerGenerator<StatusBarItem>(
-               this,
-               StatusBarItem.ContentProperty,
-               StatusBarItem.ContentTemplateProperty);
+        //.orig
+        //protected override ItemContainerGenerator CreateItemContainerGenerator()
+        //{
+        //    var itemContainer = new ItemContainerGenerator<StatusBarItem>(
+        //       this,
+        //       StatusBarItem.ContentProperty,
+        //       StatusBarItem.ContentTemplateProperty);
 
-            return itemContainer;
-        }
+        //    return itemContainer;
+        //}
     }
 }

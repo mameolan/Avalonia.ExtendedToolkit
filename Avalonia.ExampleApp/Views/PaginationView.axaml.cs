@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class PaginationView : UserControl
+    public partial class PaginationView : UserControl
     {
         public PaginationView()
         {

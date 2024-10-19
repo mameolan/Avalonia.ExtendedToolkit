@@ -161,8 +161,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             _rotateThumb = e.NameScope.Find<RotateThumb>(PART_RotateThumb);
 
             AddOrRemoveEvents(false);
-
-            RaisePropertyChanged<bool>(IsRotationEnabledProperty, new Data.Optional<bool>(), new Data.BindingValue<bool>(IsRotationEnabled));
+            //.edited, think many
+            //.orig, think many
+            //RaisePropertyChanged<bool>(IsRotationEnabledProperty, new bool(), IsRotationEnabled);
 
             UpdateOuterRectPositions();
         }
@@ -184,11 +185,11 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void MoveThumb_MovedFinished(object sender, VectorEventArgs e)
         {
-            var dragFinished = new VectorEventArgs();
+            var dragFinished = new VectorEventArgs() { Vector = e.Vector };
             dragFinished.RoutedEvent = MovedEvent;
             dragFinished.Route = e.Route;
             dragFinished.Source = e.Source;
-            dragFinished.Vector = e.Vector;
+            //dragFinished.Vector = e.Vector;
             UpdateOuterRectPositions();
 
             RaiseEvent(dragFinished);
@@ -254,11 +255,11 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void OnDragCompleted(object sender, VectorEventArgs e)
         {
-            var dragFinished = new VectorEventArgs();
+            var dragFinished = new VectorEventArgs() { Vector = e.Vector };
             dragFinished.RoutedEvent = ResizedEvent;
             dragFinished.Route = e.Route;
             dragFinished.Source = e.Source;
-            dragFinished.Vector = e.Vector;
+            //dragFinished.Vector = e.Vector;
             RaiseEvent(dragFinished);
             RaisePositionEvent(e);
         }

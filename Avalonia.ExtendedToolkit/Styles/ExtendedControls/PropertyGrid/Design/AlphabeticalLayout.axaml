@@ -11,7 +11,7 @@
         <ControlTemplate>
           <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <design:PropertyItemsLayout Grid.IsSharedSizeScope="True" 
-                                        Items="{Binding Properties}" 
+                                        ItemsSource="{Binding Properties}"
                                         Background="{Binding ItemsBackground}"
                                         VerticalAlignment="Stretch"
                                         />

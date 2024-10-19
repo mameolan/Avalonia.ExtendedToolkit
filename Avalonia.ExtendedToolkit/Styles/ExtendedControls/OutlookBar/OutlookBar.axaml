@@ -271,12 +271,12 @@
                                     <DockPanel x:Name="optionButtons" IsVisible="False" Focusable="False"
                                                Height="{Binding ElementName=contentGrid, Path=Height}">
                                         <ItemsControl DockPanel.Dock="Bottom"
-                                                      Items="{TemplateBinding OptionButtons}"
+                                               ItemsSource="{TemplateBinding OptionButtons}"       
                                                Focusable="False" />
                                         <ToggleButton Content="{TemplateBinding NavigationPaneText}" ClickMode="Press"
                                                 x:Name="PART_ToggleButton"
                                                 IsChecked="{Binding IsPopupVisible,RelativeSource={RelativeSource TemplatedParent},Mode=TwoWay}"
-                                                TextBlock.FontSize="14" BorderThickness="1"
+                                                 BorderThickness="1"
                                                       Classes="verticalToggleButtonStyle" />
                                         <DockPanel.Resources>
                                             <!--<Style TargetType="{x:Type Button}" BasedOn="{StaticResource verticalButtonStyle}" />
@@ -284,7 +284,7 @@
                                         </DockPanel.Resources>
                                     </DockPanel>
                                     <Popup x:Name="PART_Popup" PlacementMode="Right"
-                                            StaysOpen="False">
+                                            IsLightDismissEnabled="False">
                                         <!--
                     PopupAnimation="Fade"
                     AllowsTransparency="True"
@@ -342,9 +342,8 @@
                                         </Button.Content>
                                     </Button>
                                     <ItemsControl
-                                      Items="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:OutlookBar}}, Path=MaximizedSections, Mode=TwoWay}"
-                                      Focusable="False"
-                      />
+                                      ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:OutlookBar}}, Path=MaximizedSections, Mode=TwoWay}"
+                                      Focusable="False"/>
                                     <Border Height="{TemplateBinding ButtonHeight}" x:Name="PART_MinimizedContainer"
                                             Background="{DynamicResource Odc.Brushes.SectionButtonGradient}"
                                             BorderBrush="Transparent"
@@ -356,7 +355,7 @@
                                                 <ColumnDefinition Width="20*" MinWidth="20" />
                                             </Grid.ColumnDefinitions>
                                             <ItemsControl Grid.Column="0" x:Name="minimizedButtons"
-                                                  Items="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:OutlookBar}}, Path=MinimizedSections, Mode=TwoWay}"
+                                                  ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:OutlookBar}}, Path=MinimizedSections, Mode=TwoWay}"
                                                   ClipToBounds="True" Focusable="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                                   Margin="1" >
                                                 <ItemsControl.ItemsPanel>
@@ -376,7 +375,7 @@
                                                 </ToggleButton.Content>
                                                 <ToggleButton.ContextMenu>
                                                     <ContextMenu
-                                                            Items="{TemplateBinding OverflowMenuItems}"
+                                                            ItemsSource="{TemplateBinding OverflowMenuItems}"
                                                             ItemTemplate="{TemplateBinding ItemTemplate}"
                                                             ItemsPanel="{TemplateBinding ItemsPanel}"
                                                             UseLayoutRounding="False">

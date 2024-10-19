@@ -24,7 +24,7 @@
               <Storyboard x:Key="Visible State" />
               <Storyboard x:Key="Normal State" />
             </Border.Resources>-->
-            <Controls:ContentControlEx x:Name="PART_ContentPresenter"
+            <Controls:ContentControlEx x:Name="Controls:ContentControlEx"
                                        Margin="{TemplateBinding Padding}"
                                        Content="{TemplateBinding Content}"
                                        ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.ContentCharacterCasing)}"

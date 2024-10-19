@@ -118,8 +118,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                     // don't let the storyboard end it's completed event
                     // otherwise it could be hidden on start
                 }
-
-                _showAnimationTask = _showAnimation.RunAsync(childWindow,null).ContinueWith(
+                //.edited
+                _showAnimationTask = _showAnimation.RunAsync(childWindow).ContinueWith(
                  x =>
                  {
 #warning little bit hacky should be done in the animation
@@ -145,8 +145,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                 childWindow.StopAutoCloseTimer();
 
                 _hideAnimationTokenSource = new CancellationTokenSource();
-
-                _hideAnimationTask = _hideAnimation.RunAsync(childWindow,Clock).ContinueWith(
+                //.edited, removed Clock
+                _hideAnimationTask = _hideAnimation.RunAsync(childWindow).ContinueWith(
                      x =>
                      {
                          childWindow.OnClosingFinished();
@@ -170,7 +170,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 // first focus itself
                 this.Focus();
 
-                var elementToFocus = this.FocusedElement ?? /*TreeHelper.FindChildren<UIElement>(this)*/VisualTree.VisualExtensions.GetVisualChildren(this).OfType<IControl>().FirstOrDefault(c => c.Focusable);
+                var elementToFocus = this.FocusedElement ?? /*TreeHelper.FindChildren<UIElement>(this)*/VisualTree.VisualExtensions.GetVisualChildren(this).OfType<Control>().FirstOrDefault(c => c.Focusable);
                 if (this.ShowCloseButton && this._closeButton != null && elementToFocus == null)
                 {
                     this._closeButton.SetValue(FocusableProperty, true);
@@ -237,7 +237,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             if (e.Handled == false)
             {
                 var container = this.Parent as Panel;
-                var elementOnTop = container?.Children.OfType<IControl>().OrderBy(c => c.GetValue(Panel.ZIndexProperty)).LastOrDefault();
+                var elementOnTop = container?.Children.OfType<Control>().OrderBy(c => c.GetValue(Panel.ZIndexProperty)).LastOrDefault();
 
                 if (elementOnTop != null && !Equals(elementOnTop, this))
                 {

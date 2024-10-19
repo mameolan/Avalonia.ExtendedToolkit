@@ -76,7 +76,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         private void ExecuteCloseCommand()
         {
-            //this.IsSelected = true;
+            this.IsSelected = true;
 
             RaiseEvent(new RoutedEventArgs(ClosingEvent, this));
 
@@ -99,6 +99,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             if (_txtInput != null)
             {
+                _txtInput.SelectionChanged -= txtInput_SetSelection;
                 _txtInput.KeyDown -= OnInputKeyUp;
                 _txtInput.GotFocus -= txtInput_GotFocus;
                 _txtInput.LostFocus -= txtInput_LostFocus;
@@ -112,6 +113,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         {
             if (_txtInput != null)
             {
+                _txtInput.SelectionChanged += txtInput_SetSelection;
                 _txtInput.KeyDown += OnInputKeyUp;
                 _txtInput.GotFocus += txtInput_GotFocus;
                 _txtInput.LostFocus += txtInput_LostFocus;
@@ -255,6 +257,11 @@ namespace Avalonia.ExtendedToolkit.Controls
         private TagControl ParentControl
         {
             get { return this.TryFindParent<TagControl>(); }
+        }
+
+        private void txtInput_SetSelection(object sender, SelectionChangedEventArgs e)
+        {
+            Console.WriteLine(e);
         }
 
         static TagItem()

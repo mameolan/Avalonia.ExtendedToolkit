@@ -11,7 +11,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// AttachedProperty VerticalScrollBarOnLeftSide
         /// </summary>
         public static readonly AttachedProperty<bool> VerticalScrollBarOnLeftSideProperty =
-            AvaloniaProperty.RegisterAttached<IControl, bool>
+            AvaloniaProperty.RegisterAttached<Control, bool>
             ("VerticalScrollBarOnLeftSide", typeof(ScrollViewerHelper));
 
         /// <summary>
@@ -19,9 +19,9 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static bool GetVerticalScrollBarOnLeftSide(IControl element)
+        public static bool GetVerticalScrollBarOnLeftSide(Control element)
         {
-            return element.GetValue(VerticalScrollBarOnLeftSideProperty);
+            return element.GetValue<bool>(VerticalScrollBarOnLeftSideProperty);
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetVerticalScrollBarOnLeftSide(IControl element, bool value)
+        public static void SetVerticalScrollBarOnLeftSide(Control element, bool value)
         {
             element.SetValue(VerticalScrollBarOnLeftSideProperty, value);
         }

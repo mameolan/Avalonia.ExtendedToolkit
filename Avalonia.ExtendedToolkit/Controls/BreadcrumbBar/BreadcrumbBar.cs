@@ -177,7 +177,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        private static double CoerceProgressMaximum(IAvaloniaObject d, double baseValue)
+        private static double CoerceProgressMaximum(AvaloniaObject d, double baseValue)
         {
             BreadcrumbBar bar = d as BreadcrumbBar;
             double value = (double)baseValue;
@@ -188,7 +188,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             return value;
         }
 
-        private static double CoerceProgressMinimum(IAvaloniaObject d, double baseValue)
+        private static double CoerceProgressMinimum(AvaloniaObject d, double baseValue)
         {
             BreadcrumbBar bar = d as BreadcrumbBar;
             double value = (double)baseValue;
@@ -198,7 +198,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             return value;
         }
 
-        private static double CoerceProgressValue(IAvaloniaObject o, double baseValue)
+        private static double CoerceProgressValue(AvaloniaObject o, double baseValue)
         {
             BreadcrumbBar bar = o as BreadcrumbBar;
             double value = (double)baseValue;
@@ -286,7 +286,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             }
         }
 
-        private object GetImage(IBitmap imageSource)
+        private object GetImage(Bitmap imageSource)
         {
             if (imageSource == null) return null;
             Image image = new Image();
@@ -645,7 +645,9 @@ namespace Avalonia.ExtendedToolkit.Controls
             BreadcrumbItem breadcrumbItem = Content as BreadcrumbItem;
 
             _isInitial = true;
-            RaisePropertyChanged(RootProperty, new Optional<object>(), new Optional<object>(breadcrumbItem.Items));
+            //.orig, think many, f*ing Styled Properties
+            //var options = new Optional<object>();
+            //SetAndRaise(RootProperty, ref options, new Optional<object>(breadcrumbItem.Items));
             _isInitial = false;
 
             //RaisePropertyChanged(PathProperty, string.Empty, Path);

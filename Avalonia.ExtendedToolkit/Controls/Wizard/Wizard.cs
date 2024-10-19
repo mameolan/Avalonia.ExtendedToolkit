@@ -21,15 +21,16 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public Wizard()
         {
-            Items = new AvaloniaList<WizardPage>();
+            //ItemsSource = new AvaloniaList<WizardPage>();
 
-            CurrentPageProperty.Changed.AddClassHandler((Action<Wizard, AvaloniaPropertyChangedEventArgs>)((o, e) => OnCurrentPageChanged(o, e)));
-            ItemsPanelProperty.Changed.AddClassHandler((Action<Wizard, AvaloniaPropertyChangedEventArgs>)((o, e) => OnItemChanged(o, e)));
-            ItemsProperty.Changed.AddClassHandler((Action<Wizard, AvaloniaPropertyChangedEventArgs>)((o, e) => OnItemSourceChanged(o, e)));
+            CurrentPageProperty.Changed.AddClassHandler<Wizard>((Action<Wizard, AvaloniaPropertyChangedEventArgs>)((o, e) => OnCurrentPageChanged(o, e)));
+            ItemsPanelProperty.Changed.AddClassHandler<Wizard>((Action<Wizard, AvaloniaPropertyChangedEventArgs>)((o,  e) => OnItemChanged(o, e)));
+            //.edited
+            ItemsSourceProperty.Changed.AddClassHandler<Wizard>((Action<Wizard, AvaloniaPropertyChangedEventArgs>)((o,       e) => OnItemSourceChanged(o, e)));
 
             Initialized += (o, e) =>
             {
-                if (Items.OfType<object>().Any() && CurrentPage == null)
+               if (Items.OfType<object>().Any() && CurrentPage == null)
                     CurrentPage = Items.OfType<WizardPage>().FirstOrDefault();
             };
         }
@@ -51,7 +52,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         private void OnItemSourceChanged(Wizard wizard, AvaloniaPropertyChangedEventArgs e)
         {
             if (Items == null)
-                Items = new AvaloniaList<WizardPage>();
+                ItemsSource = new AvaloniaList<WizardPage>();
 
             if (e.NewValue == null)
                 return;
@@ -66,16 +67,18 @@ namespace Avalonia.ExtendedToolkit.Controls
                     WizardPage wizardPage = new WizardPage();
                     wizardPage.DataContext = vm;
                     wizardPage.CanCancel = CanCancel;
-                    (Items as AvaloniaList<WizardPage>).Add(wizardPage);
+                    //.edited
+                    //(ItemsSource as AvaloniaList<WizardPage>).Add(wizardPage);
                 }
             }
         }
 
         private void OnItemChanged(Wizard o, AvaloniaPropertyChangedEventArgs e)
         {
+            //.edited
             if (Items == null)
             {
-                Items = new AvaloniaList<WizardPage>();
+                ItemsSource = new AvaloniaList<WizardPage>();
             }
 
             if (e.NewValue == null)
@@ -89,7 +92,7 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// fires can execute on the commands
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> e)
+        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs e)
         {
             base.OnPropertyChanged(e);
             if (

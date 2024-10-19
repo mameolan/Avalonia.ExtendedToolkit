@@ -74,7 +74,7 @@
 
     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Height="35">
       <TextBlock Text="Themes" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
-      <ComboBox Name="cmbThemes" Margin="10,1,0,1" Items="{Binding BaseColors}"
+      <ComboBox Name="cmbThemes" Margin="10,1,0,1" ItemsSource="{Binding BaseColors}"
          SelectedIndex="0" SelectedItem="{Binding SelectedBaseColor}" Width="100">
         <ComboBox.ItemTemplate>
           <DataTemplate>
@@ -84,7 +84,7 @@
       </ComboBox>
 
       <TextBlock Margin="10,0,0,0" Text="Color Schemes" Foreground="{DynamicResource MahApps.Brushes.Black}"/>
-      <ComboBox  Name="cmbColorScheme" Margin="10,1,0,1" Items="{Binding ColorSchemes}"
+      <ComboBox  Name="cmbColorScheme" Margin="10,1,0,1" ItemsSource="{Binding ColorSchemes}"
          SelectedIndex="0" SelectedItem="{Binding SelectedColorScheme}" Width="100"
                 >
         <ComboBox.ItemTemplate>

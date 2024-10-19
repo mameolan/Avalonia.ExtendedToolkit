@@ -39,32 +39,32 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// get/set IconLight
         /// </summary>
-        public IBitmap IconLight
+        public Bitmap IconLight
         {
-            get { return (IBitmap)GetValue(IconLightProperty); }
+            get { return (Bitmap)GetValue(IconLightProperty); }
             set { SetValue(IconLightProperty, value); }
         }
 
         /// <summary>
         /// <see cref="IconLight"/>
         /// </summary>
-        public static readonly StyledProperty<IBitmap> IconLightProperty =
-            AvaloniaProperty.Register<HamburgerMenuItem, IBitmap>(nameof(IconLight));
+        public static readonly StyledProperty<Bitmap> IconLightProperty =
+            AvaloniaProperty.Register<HamburgerMenuItem, Bitmap>(nameof(IconLight));
 
         /// <summary>
         /// get/set IconBlack
         /// </summary>
-        public IBitmap IconBlack
+        public Bitmap IconBlack
         {
-            get { return (IBitmap)GetValue(IconBlackProperty); }
+            get { return (Bitmap)GetValue(IconBlackProperty); }
             set { SetValue(IconBlackProperty, value); }
         }
 
         /// <summary>
         /// <see cref="IconBlack"/>
         /// </summary>
-        public static readonly StyledProperty<IBitmap> IconBlackProperty =
-            AvaloniaProperty.Register<HamburgerMenuItem, IBitmap>(nameof(IconBlack));
+        public static readonly StyledProperty<Bitmap> IconBlackProperty =
+            AvaloniaProperty.Register<HamburgerMenuItem, Bitmap>(nameof(IconBlack));
 
         /// <summary>
         /// get/set SelectionIndicatorColor

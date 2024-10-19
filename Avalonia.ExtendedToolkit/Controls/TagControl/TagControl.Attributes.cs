@@ -7,6 +7,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.Data;
 using Avalonia.Interactivity;
 
 namespace Avalonia.ExtendedToolkit.Controls
@@ -63,17 +64,17 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// <summary>
         /// Gets or sets ItemsPanel.
         /// </summary>
-        public ITemplate<IPanel> ItemsPanel
+        public ITemplate<Panel> ItemsPanel
         {
-            get { return (ITemplate<IPanel>)GetValue(ItemsPanelProperty); }
+            get { return (ITemplate<Panel>)GetValue(ItemsPanelProperty); }
             set { SetValue(ItemsPanelProperty, value); }
         }
 
         /// <summary>
         /// Defines the ItemsPanel property.
         /// </summary>
-        public static readonly StyledProperty<ITemplate<IPanel>> ItemsPanelProperty =
-        AvaloniaProperty.Register<TagControl, ITemplate<IPanel>>(nameof(ItemsPanel));
+        public static readonly StyledProperty<ITemplate<Panel>> ItemsPanelProperty =
+        AvaloniaProperty.Register<TagControl, ITemplate<Panel>>(nameof(ItemsPanel));
 
         /// <summary>
         /// Defines the <see cref="SelectedItem"/> property.
@@ -310,5 +311,22 @@ namespace Avalonia.ExtendedToolkit.Controls
         /// </summary>
         public static readonly StyledProperty<Thickness> TagMarginProperty =
         AvaloniaProperty.Register<TagControl, Thickness>(nameof(TagMargin), defaultValue: new Thickness(5));
+
+        private bool _suggestedValuesOnly = false;
+
+        public static readonly DirectProperty<TagControl, bool> SuggestedValuesOnlyProperty =
+        AvaloniaProperty.RegisterDirect<TagControl, bool>(
+        nameof(_suggestedValuesOnly),
+        o => o._suggestedValuesOnly,
+        (o, v) => o._suggestedValuesOnly = v);
+
+        public bool SuggestedValuesOnly
+        {
+            get { return _suggestedValuesOnly; }
+            set
+            {
+                SetAndRaise(SuggestedValuesOnlyProperty, ref _suggestedValuesOnly, value);
+            }
+        }
     }
 }

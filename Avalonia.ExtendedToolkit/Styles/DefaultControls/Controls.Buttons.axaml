@@ -24,7 +24,7 @@
       <Setter.Value>
         <ControlTemplate>
           <Grid Background="{TemplateBinding Background}">
-            <ContentControl x:Name="PART_ContentPresenter"
+            <ContentControl x:Name="PART_ContentControl"
                                        Padding="{TemplateBinding Padding}"
                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -130,7 +130,7 @@
                     Opacity="0"
                     CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CornerRadius, Mode=OneWay}" />
 
-            <Controls:ContentControlEx x:Name="PART_ContentPresenter"
+            <Controls:ContentControlEx x:Name="PART_Controls:ContentControlEx"
                                        Margin="{TemplateBinding BorderThickness}"
                                        Padding="{TemplateBinding Padding}"
                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -193,7 +193,7 @@
                     CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CornerRadius, Mode=OneWay}"
                     IsHitTestVisible="False"
                     Opacity="0" />
-            <Controls:ContentControlEx x:Name="PART_ContentPresenter"
+            <Controls:ContentControlEx x:Name="PART_Controls:ContentControlEx"
                                        Margin="{TemplateBinding BorderThickness}"
                                        Padding="{TemplateBinding Padding}"
                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"

@@ -223,8 +223,9 @@
                   Grid.Column="2"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch"
-                  Items="{TemplateBinding Buttons}">
-                <ItemsControl.ItemsPanel>
+                  ItemsSource="{TemplateBinding Buttons}"
+                  >
+                  <ItemsControl.ItemsPanel>
                   <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" Spacing="1" />
                   </ItemsPanelTemplate>

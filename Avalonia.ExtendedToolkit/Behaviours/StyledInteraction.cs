@@ -18,7 +18,7 @@ namespace Avalonia.ExtendedToolkit.Helper
     {
         static StyledInteraction()
         {
-            BehaviorsProperty.Changed.AddClassHandler((Action<AvaloniaObject, AvaloniaPropertyChangedEventArgs>)((o, e) => OnBehaviorsPropertyChanged(o, e)));
+            BehaviorsProperty.Changed.AddClassHandler<AvaloniaObject>((Action<AvaloniaObject, AvaloniaPropertyChangedEventArgs>)((o, e) => OnBehaviorsPropertyChanged(o, e)));
 
             
         }

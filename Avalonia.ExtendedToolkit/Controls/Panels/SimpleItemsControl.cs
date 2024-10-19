@@ -65,7 +65,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         public IEnumerable Items { get; internal set; }
 
-        internal IPanel ItemsHost { get; set; }
+        internal Panel ItemsHost { get; set; }
 
         public SimpleItemsControl()
         {
@@ -124,7 +124,7 @@ namespace Avalonia.ExtendedToolkit.Controls
             ItemsHost?.Children.Clear();
             base.OnApplyTemplate(e);
 
-            ItemsHost = e.NameScope.Find<IPanel>(ElementPanel);
+            ItemsHost = e.NameScope.Find<Panel>(ElementPanel);
             Refresh();
         }
 

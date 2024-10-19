@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class ColorPickerExampleView : UserControl
+    public partial class ColorPickerExampleView : UserControl
     {
         public ColorPickerExampleView()
         {

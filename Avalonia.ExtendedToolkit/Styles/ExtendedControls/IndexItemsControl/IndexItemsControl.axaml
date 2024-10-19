@@ -46,12 +46,14 @@
               <TextBox Grid.Row="0" Text="{TemplateBinding SearchText, Mode=TwoWay}" IsVisible="{TemplateBinding ShowSearch}"
               Margin="0,0,0,10"  Watermark="Search" />
 
-              <Controls:IndexList Grid.Row="1" Items="{TemplateBinding IndexItems}"
+              <Controls:IndexList Grid.Row="1"
                     MinWidth="300"
                     Classes="indexDetailsList"
                     VerticalAlignment="Stretch"
-                    x:Name="contentListBox">
-                <Controls:IndexList.DataTemplates>
+                    x:Name="contentListBox"
+                    ItemsSource="{TemplateBinding IndexItems}">
+                  
+                  <Controls:IndexList.DataTemplates>
                   <TreeDataTemplate ItemsSource="{Binding SubItems}" DataType="{x:Type Controls:IndexItemModel}">
                     <TextBlock Text="{Binding Text}" />
                   </TreeDataTemplate>
@@ -59,13 +61,14 @@
               </Controls:IndexList>
             </Grid>
 
-            <ItemsControl Grid.Column="1" Items="{TemplateBinding IndexItems}"
+            <ItemsControl Grid.Column="1" 
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
                           VerticalAlignment="Center"
                           HorizontalAlignment="Left"
+                          ItemsSource="{TemplateBinding IndexItems}"
                           >
-              <ItemsControl.ItemTemplate>
+                <ItemsControl.ItemTemplate>
                 <DataTemplate>
                   <Grid>
                     <Button Content="{Binding Text}"

@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace Avalonia.ExampleApp.Views
 {
-    public class WizardView : UserControl
+    public partial class WizardView : UserControl
     {
         public WizardView()
         {

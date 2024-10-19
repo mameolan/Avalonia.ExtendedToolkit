@@ -41,7 +41,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                     WindowState = WindowState.Maximized;
                     break;
             }
-            RaisePropertyChanged(WindowStateProperty, oldValue, WindowState, Data.BindingPriority.TemplatedParent);
+            //.obsolete, WindowStateProperty is styled
+            //RaisePropertyChanged(WindowStateProperty, oldValue, Data.BindingPriority.TemplatedParent);
         }
 
         internal void HandleFlyoutStatusChange(Flyout flyout, List<Flyout> visibleFlyouts)
@@ -289,7 +290,7 @@ namespace Avalonia.ExtendedToolkit.Controls
                 var flyouts = this.Flyouts.GetFlyouts().ToList();
                 // since we disabled the ThemeManager OnThemeChanged part, we must change all children flyouts too
                 // e.g if the FlyoutsControl is hosted in a UserControl
-                var allChildFlyouts = (this.Content as IVisual)?.GetSelfAndVisualDescendants().OfType<FlyoutsControl>().ToList();
+                var allChildFlyouts = (this.Content as Visual)?.GetSelfAndVisualDescendants().OfType<FlyoutsControl>().ToList();
                 if (allChildFlyouts?.Any()==true)
                 {
                     flyouts.AddRange(allChildFlyouts.SelectMany(flyoutsControl => flyoutsControl.GetFlyouts()));
@@ -578,8 +579,8 @@ namespace Avalonia.ExtendedToolkit.Controls
                             KeyModifiers.None
                         );
                     }
-
-                    window.PlatformImpl.BeginMoveDrag(dummyPointerPressedEventArgs);
+                    //.later, seems like we need to implement it for differents OS`s, brrrr
+                    //window.PlatformImpl.BeginMoveDrag(dummyPointerPressedEventArgs);
                 }
                 catch
                 {
@@ -687,7 +688,7 @@ namespace Avalonia.ExtendedToolkit.Controls
 
         private void FlyoutsPreviewMouseDown(object sender, PointerPressedEventArgs e)
         {
-            var element = (e.Source as IControl);
+            var element = (e.Source as Control);
             if (element != null)
             {
                 // no preview if we just clicked these elements

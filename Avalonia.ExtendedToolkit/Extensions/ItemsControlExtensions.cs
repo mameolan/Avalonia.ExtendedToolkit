@@ -36,9 +36,9 @@ namespace Avalonia.ExtendedToolkit.Extensions
                 //    return null;
             }
 
-            IVisual uiVisual = container as IVisual;
+            Visual uiVisual = container as Visual;
 
-            uiVisual = VisualTree.VisualExtensions.GetVisualParent<IVisual>(uiVisual);
+            uiVisual = VisualTree.VisualExtensions.GetVisualParent<Visual>(uiVisual);
 
             return GetItemsOwner(uiLogical as AvaloniaObject);
         }

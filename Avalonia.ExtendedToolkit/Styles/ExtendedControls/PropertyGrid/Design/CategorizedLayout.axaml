@@ -9,10 +9,9 @@
         <ControlTemplate>
           <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <design:CategoryItemsLayout Grid.IsSharedSizeScope="True"
-                                        Items="{Binding Categories}"
+                                        ItemsSource="{Binding Categories}"
                                         Background="{Binding ItemsBackground}"
-                                        VerticalAlignment="Stretch"
-                                        />
+                                        VerticalAlignment="Stretch"/>
           </ScrollViewer>
         </ControlTemplate>
       </Setter.Value>

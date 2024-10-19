@@ -146,7 +146,7 @@
 
   <Style Selector="Controls|MetroToggleButton.MetroCircleToggleButtonStyle:checked /template/ Ellipse#ellipsebg">
     <Style.Animations>
-      <Animation Duration="0:0:0.3" RepeatCount="1">
+      <Animation Duration="0:0:0.3" IterationCount="1">
         <KeyFrame Cue="0%">
           <Setter Property="Opacity" Value="0" />
         </KeyFrame>
@@ -160,7 +160,7 @@
 
   <Style Selector="Controls|MetroToggleButton.MetroCircleToggleButtonStyle:checked">
     <Style.Animations>
-      <Animation Duration="0:0:0.3" RepeatCount="1">
+      <Animation Duration="0:0:0.3" IterationCount="1">
         <KeyFrame Cue="100%">
           <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
         </KeyFrame>
